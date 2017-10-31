@@ -1,17 +1,16 @@
-# Welcome to MkDocs
+# Welcome to Pi-hole Documentation
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+## Get Support
 
-## Commands
+### Github
+-  Pi-hole core : [pi-hole/pi-hole](https://github.com/pi-hole/pi-hole)
+-  Pi-hole web : [pi-hole/adminLTE](https://github.com/pi-hole/adminLTE)
+-  Pi-hole FTL : [pi-hole/FTL](https://github.com/pi-hole/FTL)
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+### Forums
+- [Pi-hole Discourse](https://discourse.pi-hole.net)
+- Reddit : [/r/pihole](https://reddit.com/r/pihole)
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+### Social Media
+- Twitter : [@the_pi_hole](https://twitter.com/the_pi_hole) 
+- Facebook :  [ThePiHole](https://facebook.com/ThePiHole)

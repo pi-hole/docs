@@ -1,1 +1,17 @@
-site_name: My Docs
+site_name: "Pi-hole documentation"
+site_url: https://pi-hole.github.io/docs/
+copyright: 'Copyright &copy; 2017 Pi-hole LLC'
+repo_name: pi-hole/docs
+repo_url: https://github.com/pi-hole/docs
+edit_uri: ../docs/edit/master/docs/
+remote_branch: gh-pages
+theme: material
+pages:
+- 'Information & Support': 'index.md'
+- 'Prerequisites': 'prerequesites.md'
+extra:
+  social:
+    - type: globe
+      link: https://pi-hole.net
+    - type: github-alt
+      link: https://github.com/pi-hole
