@@ -8,7 +8,7 @@
 -  Pi-hole FTL : [pi-hole/FTL](https://github.com/pi-hole/FTL)
 
 ### Forums
-- [Pi-hole Discourse](https://discourse.pi-hole.net)
+- Discourse: [Pi-hole Userspace](https://discourse.pi-hole.net)
 - Reddit : [/r/pihole](https://reddit.com/r/pihole)
 
 ### Social Media
