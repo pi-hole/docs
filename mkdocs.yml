@@ -9,6 +9,15 @@ theme: material
 pages:
 - 'Information & Support': 'index.md'
 - 'Prerequisites': 'prerequesites.md'
+- 'Guides':
+  - 'Pi-hole and OpenVPN Server':
+    - 'Overview': 'guides/vpn/overview.md'
+    - 'Installation': 'guides/vpn/installation.md'
+    - 'Setup OpenVPN Server': 'guides/vpn/setup-openvpn-server.md'
+    - 'Firewall Configuration': 'guides/vpn/firewall.md'
+    - 'Connecting clients': 'guides/vpn/clients.md'
+    - 'Optional: Only route DNS via VPN': 'guides/vpn/only-dns-via-vpn.md'
+    - 'Optional: Dual operation: LAN & VPN at the same time': 'guides/vpn/dual-operation.md'
 extra:
   social:
     - type: globe
