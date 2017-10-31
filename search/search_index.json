@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "Welcome to Pi-hole Documentation\n\n\nGet Support\n\n\nGithub\n\n\n\n\nPi-hole core : \npi-hole/pi-hole\n\n\nPi-hole web : \npi-hole/adminLTE\n\n\nPi-hole FTL : \npi-hole/FTL\n\n\n\n\nForums\n\n\n\n\nPi-hole Discourse\n\n\nReddit : \n/r/pihole\n\n\n\n\nSocial Media\n\n\n\n\nTwitter : \n@the_pi_hole\n \n\n\nFacebook :  \nThePiHole",
+            "text": "Welcome to Pi-hole Documentation\n\n\nGet Support\n\n\nGithub\n\n\n\n\nPi-hole core : \npi-hole/pi-hole\n\n\nPi-hole web : \npi-hole/adminLTE\n\n\nPi-hole FTL : \npi-hole/FTL\n\n\n\n\nForums\n\n\n\n\nDiscourse: \nPi-hole Userspace\n\n\nReddit : \n/r/pihole\n\n\n\n\nSocial Media\n\n\n\n\nTwitter : \n@the_pi_hole\n \n\n\nFacebook :  \nThePiHole",
             "title": "Information & Support"
         },
         {
@@ -22,7 +22,7 @@
         },
         {
             "location": "/#forums",
-            "text": "Pi-hole Discourse  Reddit :  /r/pihole",
+            "text": "Discourse:  Pi-hole Userspace  Reddit :  /r/pihole",
             "title": "Forums"
         },
         {
