@@ -1,0 +1,194 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Welcome to Pi-hole Documentation\n\n\nGet Support\n\n\nGithub\n\n\n\n\nPi-hole core : \npi-hole/pi-hole\n\n\nPi-hole web : \npi-hole/adminLTE\n\n\nPi-hole FTL : \npi-hole/FTL\n\n\n\n\nForums\n\n\n\n\nPi-hole Discourse\n\n\nReddit : \n/r/pihole\n\n\n\n\nSocial Media\n\n\n\n\nTwitter : \n@the_pi_hole\n \n\n\nFacebook :  \nThePiHole",
+            "title": "Information & Support"
+        },
+        {
+            "location": "/#welcome-to-pi-hole-documentation",
+            "text": "",
+            "title": "Welcome to Pi-hole Documentation"
+        },
+        {
+            "location": "/#get-support",
+            "text": "",
+            "title": "Get Support"
+        },
+        {
+            "location": "/#github",
+            "text": "Pi-hole core :  pi-hole/pi-hole  Pi-hole web :  pi-hole/adminLTE  Pi-hole FTL :  pi-hole/FTL",
+            "title": "Github"
+        },
+        {
+            "location": "/#forums",
+            "text": "Pi-hole Discourse  Reddit :  /r/pihole",
+            "title": "Forums"
+        },
+        {
+            "location": "/#social-media",
+            "text": "Twitter :  @the_pi_hole    Facebook :   ThePiHole",
+            "title": "Social Media"
+        },
+        {
+            "location": "/prerequesites/",
+            "text": "",
+            "title": "Prerequisites"
+        },
+        {
+            "location": "/guides/vpn/overview/",
+            "text": "This tutorial walks you through the installation of Pi-hole combined with an VPN server for secure access from remote clients. Via this VPN you cannot only access your admin interface remotely, but also use the DNS server and hence the full filtering capabilities of your Pi-hole from everywhere around the globe. Another plus is that your internet traffic will always be fully encrypted, so surfing on an unencrypted WiFi (like on airports or hotels) becomes a significant boost in terms of security.\n\n\nIf you don't want a full-tunnel, we provide a wiki of how to set up your server to exclusively route DNS traffic, but nothing else via the VPN.\n\n\nOn another optional page, we describe how to set up Pi-hole + VPN in such a way that it is usable both locally (no VPN) and from remote (through VPN) while preserving full functionality.\n\n\n\n\nSecurity Information\n\n\nFor security purposes, it is recommended that the CA machine should be separate from the machine running OpenVPN. If you loose control of your CA private key, you can no longer trust any certificates from this CA. Anyone with access to this CA private key can sign new certificates without your knowledge, which then can connect to your OpenVPN server without needing to modify anything on the VPN server. Place your CA files on a storage which can be offline as much as possible, only to be activated when you need to get a new certificate for a client or server.",
+            "title": "Overview"
+        },
+        {
+            "location": "/guides/vpn/overview/#security-information",
+            "text": "For security purposes, it is recommended that the CA machine should be separate from the machine running OpenVPN. If you loose control of your CA private key, you can no longer trust any certificates from this CA. Anyone with access to this CA private key can sign new certificates without your knowledge, which then can connect to your OpenVPN server without needing to modify anything on the VPN server. Place your CA files on a storage which can be offline as much as possible, only to be activated when you need to get a new certificate for a client or server.",
+            "title": "Security Information"
+        },
+        {
+            "location": "/guides/vpn/installation/",
+            "text": "Install OpenVPN server\n\n\nUsing the quick OpenVPN \"road warrior\" installer. It should be fine using the suggested defaults if you have no special needs:\n\n\nwget https://git.io/vpn -O openvpn-install.sh\nsudo bash openvpn-install.sh\n\n\n\n\nIt will ask you a few questions before starting the setup:\n\n\n\n\n\n\nIPv4 address: Your Pi's IP Address\n\n\n\n\n\n\nWhat port do you want OpenVPN listening to?\n\n\n\n\n\n\nUDP - fast (\nrecommended\n) (unless you experience connection problems)\n\n\n\n\n\n\nTCP - reliable\n\n\n\n\n\n\nDNS to use with the VPN\n      Use your PiHole's DNS (Current system resolvers)\n\n\n\n\n\n\nLooks like your server is behind a NAT!\n\n\n\n\n\n\nIf your server is NATed (e.g. LowEndSpirit), I need to know the external IP\nIf that's not the case, just ignore this and leave the next field blank\nExternal IP: Provide your External IP\n\n\n\n\nInstall Pi-hole\n\n\ncurl -sSL https://install.pi-hole.net | bash\n\n\n\n\nDuring the install, choose \ntun0\n as networking interface .  If \ntun0\n isn't available, the installation of the OpenVPN server failed.\n\n\n\n\nAfter you installed OpenVPN and Pi-hole you should continue with \nconfiguring OpenVPN to use the Pi-hole DNS server\n!",
+            "title": "Installation"
+        },
+        {
+            "location": "/guides/vpn/installation/#install-openvpn-server",
+            "text": "Using the quick OpenVPN \"road warrior\" installer. It should be fine using the suggested defaults if you have no special needs:  wget https://git.io/vpn -O openvpn-install.sh\nsudo bash openvpn-install.sh  It will ask you a few questions before starting the setup:    IPv4 address: Your Pi's IP Address    What port do you want OpenVPN listening to?    UDP - fast ( recommended ) (unless you experience connection problems)    TCP - reliable    DNS to use with the VPN\n      Use your PiHole's DNS (Current system resolvers)    Looks like your server is behind a NAT!    If your server is NATed (e.g. LowEndSpirit), I need to know the external IP\nIf that's not the case, just ignore this and leave the next field blank\nExternal IP: Provide your External IP",
+            "title": "Install OpenVPN server"
+        },
+        {
+            "location": "/guides/vpn/installation/#install-pi-hole",
+            "text": "curl -sSL https://install.pi-hole.net | bash  During the install, choose  tun0  as networking interface .  If  tun0  isn't available, the installation of the OpenVPN server failed.   After you installed OpenVPN and Pi-hole you should continue with  configuring OpenVPN to use the Pi-hole DNS server !",
+            "title": "Install Pi-hole"
+        },
+        {
+            "location": "/guides/vpn/setup-openvpn-server/",
+            "text": "Configure DNS server settings\n\n\nto use your Pi-hole as DNS server\n\n\nFirst, get the IP of your \ntun0\n interface:\n\n\nifconfig tun0 | grep 'inet addr'\n\n\n\n\nIn my case this returns\n\n\n\ninet addr:10.8.0.1\n  P-t-P:10.8.0.1  Mask:255.255.255.0\n\n\n\nAfterwards, change your settings in \n/etc/openvpn/server.conf\n from\n\n\npush \"dhcp-option DNS 8.8.8.8\"\n\n\n\n\nto\n\n\npush \"dhcp-option DNS \n10.8.0.1\n\"\n\n\n(where you might have to replace the IP if you found something different in the previous step)\n\n\nFinally, restart your OpenVPN server.\n\n\nsudo service openvpn restart\n\n\n\n\n\n\nIf you don't run in a home environment (with devices protected and shielded by a router), but in a datacenter, your Pi-hole web interface and DNS server may still be available from the public Internet. If this is the case, we strongly advise to continue with our \ndetailed instructions on how to configure your Firewall\n.\n\n\nOtherwise (or afterwards), you may want to \nconfigure your client devices\n now.\n\n\n\n\nOptional: Set up DDNS host name\n\n\nIf you operate your Pi-hole + OpenVPN at home, it is very likely that you are sitting behind a NAT / dynamically changing IP address. In this case, you should set up a dynamic DNS record, which allows you to reach your server. You can exchange the address that has been configured during the setup of OpenVPN like this:\n\n\nsudo nano /etc/openvpn/client-common.txt\n\n\n\n\nLook for the \nremote\n line and adjust it accordingly (remove IP address, add host name), e.g.\n\n\nremote home.mydomain.de 1194\n\n\n\n\nThis change has to be repeated in each client config file (\n*.conf\n) that you have been created up till now.\n\n\nIf you have set up a DDNS domain for your IP address, you will likely need to add a host-record to Pi-hole's settings. If you don't do this, clients (like the Android OpenVPN client) will not able to connect to the VPN server when \ninside the internal network\n (while it will work from outside).\n\n\npi@raspberrypi:~# pihole -a hostrecord home.mydomain.de 192.168.1.10\nSetting host record for home.mydomain.de -> 192.168.1.10\n\n\n\n\nAfterwards, the client will be able to connect to the VPN server both from inside and outside you local network.",
+            "title": "Setup OpenVPN Server"
+        },
+        {
+            "location": "/guides/vpn/setup-openvpn-server/#configure-dns-server-settings",
+            "text": "to use your Pi-hole as DNS server  First, get the IP of your  tun0  interface:  ifconfig tun0 | grep 'inet addr'  In my case this returns  inet addr:10.8.0.1   P-t-P:10.8.0.1  Mask:255.255.255.0  Afterwards, change your settings in  /etc/openvpn/server.conf  from  push \"dhcp-option DNS 8.8.8.8\"  to \npush \"dhcp-option DNS  10.8.0.1 \" \n(where you might have to replace the IP if you found something different in the previous step)  Finally, restart your OpenVPN server.  sudo service openvpn restart   If you don't run in a home environment (with devices protected and shielded by a router), but in a datacenter, your Pi-hole web interface and DNS server may still be available from the public Internet. If this is the case, we strongly advise to continue with our  detailed instructions on how to configure your Firewall .  Otherwise (or afterwards), you may want to  configure your client devices  now.",
+            "title": "Configure DNS server settings"
+        },
+        {
+            "location": "/guides/vpn/setup-openvpn-server/#optional-set-up-ddns-host-name",
+            "text": "If you operate your Pi-hole + OpenVPN at home, it is very likely that you are sitting behind a NAT / dynamically changing IP address. In this case, you should set up a dynamic DNS record, which allows you to reach your server. You can exchange the address that has been configured during the setup of OpenVPN like this:  sudo nano /etc/openvpn/client-common.txt  Look for the  remote  line and adjust it accordingly (remove IP address, add host name), e.g.  remote home.mydomain.de 1194  This change has to be repeated in each client config file ( *.conf ) that you have been created up till now.  If you have set up a DDNS domain for your IP address, you will likely need to add a host-record to Pi-hole's settings. If you don't do this, clients (like the Android OpenVPN client) will not able to connect to the VPN server when  inside the internal network  (while it will work from outside).  pi@raspberrypi:~# pihole -a hostrecord home.mydomain.de 192.168.1.10\nSetting host record for home.mydomain.de -> 192.168.1.10  Afterwards, the client will be able to connect to the VPN server both from inside and outside you local network.",
+            "title": "Optional: Set up DDNS host name"
+        },
+        {
+            "location": "/guides/vpn/firewall/",
+            "text": "Optional: Firewall configuration (using iptables)\n\n\nIf your server is visible to the world, you will want prevent port 53/80 from being accessible from the global Internet. You will want be only able to connect to your Pi-hole from within the VPN.\n\n\nUsing \niptables\n: First, verify that there is no rule that explicitly accepts \nhttp\n requests\n\n\nsudo iptables -L --line-numbers\n\n\n\n\nIf you get something like\n\n\nChain INPUT (policy ACCEPT)\nnum  target     prot opt source               destination\n\n1    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http\n\n2    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain\n3    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain\n\n\nChain FORWARD (policy ACCEPT)\nnum  target     prot opt source               destination\n\n\nChain OUTPUT (policy ACCEPT)\nnum  target     prot opt source               destination\n\n\nyou have to first explicitly delete the first INPUT rule using:\n\n\nsudo iptables -D INPUT 1\n\n\n\n\nWe recommend that you empty out the firewall so you have full control over its setup.\n\n\nFor setting up your firewall in conjunction with your VPN you have \nTWO\n options:\n\n\nOption 1: Allow everything within your VPN:\n\n\nsudo iptables -I INPUT -i tun0 -j ACCEPT\n\n\n\n\nor\n\n\nOption 2: Explicitly allow what can be accessed from within the VPN:\n\n\nsudo iptables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT\nsudo iptables -A INPUT -i tun0 -p udp --destination-port 80 -j ACCEPT\n\n\n\n\nObviously, it is important to enable SSH and VPN access from anywhere\n\n\nsudo iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT\nsudo iptables -A INPUT -p tcp --destination-port 1194 -j ACCEPT\nsudo iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT\n\n\n\n\nThe next crucial setting is to explicitly allow TCP/IP to do \"three way handshakes\":\n\n\nsudo iptables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT\n\n\n\n\nAlso, we want to allow any loopback traffic, i.e. the Pi is allowed to talk to itself without any limitations using \n127.0.0.0/8\n:\n\n\nsudo iptables -I INPUT -i lo -j ACCEPT\n\n\n\n\nFinally, prevent access from anywhere else (i.e. if no rule has matched up to this point):\n\n\nsudo iptables -P INPUT DROP\n\n\n\n\nOptional: If you want to allow access to the Pi-hole from within the VPN \nand\n from the local network, you will have to explicitly allow your local network as well (assuming the local network is within the address space 192.168.\n178\n.1 - 192.168.\n178\n.254):\n\n\nsudo iptables -A INPUT -s 192.168.\n178\n.0/24 -p tcp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -s 192.168.\n178\n.0/24 -p udp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -s 192.168.\n178\n.0/24 -p tcp --destination-port 80 -j ACCEPT\nsudo iptables -A INPUT -s 192.168.\n178\n.0/24 -p udp --destination-port 80 -j ACCEPT\n\n\nSee also \nthis\n thread on Discourse.\n\n\n\n\nOptional: IPv6\n\n\nNote that you will have to repeat the firewall setup using \nip6tables\n if your server is also reachable via IPv6:\n\n\nsudo ip6tables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT\nsudo ip6tables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT\nsudo ip6tables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT\nsudo ip6tables -A INPUT -i tun0 -p udp --destination-port 80 -j ACCEPT\nsudo ip6tables -A INPUT -p tcp --destination-port 22 -j ACCEPT\nsudo ip6tables -A INPUT -p tcp --destination-port 1194 -j ACCEPT\nsudo ip6tables -A INPUT -p udp --destination-port 1194 -j ACCEPT\nsudo ip6tables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT\nsudo ip6tables -I INPUT -i lo -j ACCEPT\nsudo ip6tables -P INPUT DROP",
+            "title": "Firewall Configuration"
+        },
+        {
+            "location": "/guides/vpn/firewall/#optional-firewall-configuration-using-iptables",
+            "text": "If your server is visible to the world, you will want prevent port 53/80 from being accessible from the global Internet. You will want be only able to connect to your Pi-hole from within the VPN.  Using  iptables : First, verify that there is no rule that explicitly accepts  http  requests  sudo iptables -L --line-numbers  If you get something like \nChain INPUT (policy ACCEPT)\nnum  target     prot opt source               destination 1    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http \n2    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain\n3    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain  Chain FORWARD (policy ACCEPT)\nnum  target     prot opt source               destination  Chain OUTPUT (policy ACCEPT)\nnum  target     prot opt source               destination \nyou have to first explicitly delete the first INPUT rule using:  sudo iptables -D INPUT 1  We recommend that you empty out the firewall so you have full control over its setup.  For setting up your firewall in conjunction with your VPN you have  TWO  options:  Option 1: Allow everything within your VPN:  sudo iptables -I INPUT -i tun0 -j ACCEPT  or  Option 2: Explicitly allow what can be accessed from within the VPN:  sudo iptables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT\nsudo iptables -A INPUT -i tun0 -p udp --destination-port 80 -j ACCEPT  Obviously, it is important to enable SSH and VPN access from anywhere  sudo iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT\nsudo iptables -A INPUT -p tcp --destination-port 1194 -j ACCEPT\nsudo iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT  The next crucial setting is to explicitly allow TCP/IP to do \"three way handshakes\":  sudo iptables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT  Also, we want to allow any loopback traffic, i.e. the Pi is allowed to talk to itself without any limitations using  127.0.0.0/8 :  sudo iptables -I INPUT -i lo -j ACCEPT  Finally, prevent access from anywhere else (i.e. if no rule has matched up to this point):  sudo iptables -P INPUT DROP  Optional: If you want to allow access to the Pi-hole from within the VPN  and  from the local network, you will have to explicitly allow your local network as well (assuming the local network is within the address space 192.168. 178 .1 - 192.168. 178 .254): \nsudo iptables -A INPUT -s 192.168. 178 .0/24 -p tcp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -s 192.168. 178 .0/24 -p udp --destination-port 53 -j ACCEPT\nsudo iptables -A INPUT -s 192.168. 178 .0/24 -p tcp --destination-port 80 -j ACCEPT\nsudo iptables -A INPUT -s 192.168. 178 .0/24 -p udp --destination-port 80 -j ACCEPT \nSee also  this  thread on Discourse.",
+            "title": "Optional: Firewall configuration (using iptables)"
+        },
+        {
+            "location": "/guides/vpn/firewall/#optional-ipv6",
+            "text": "Note that you will have to repeat the firewall setup using  ip6tables  if your server is also reachable via IPv6:  sudo ip6tables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT\nsudo ip6tables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT\nsudo ip6tables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT\nsudo ip6tables -A INPUT -i tun0 -p udp --destination-port 80 -j ACCEPT\nsudo ip6tables -A INPUT -p tcp --destination-port 22 -j ACCEPT\nsudo ip6tables -A INPUT -p tcp --destination-port 1194 -j ACCEPT\nsudo ip6tables -A INPUT -p udp --destination-port 1194 -j ACCEPT\nsudo ip6tables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT\nsudo ip6tables -I INPUT -i lo -j ACCEPT\nsudo ip6tables -P INPUT DROP",
+            "title": "Optional: IPv6"
+        },
+        {
+            "location": "/guides/vpn/clients/",
+            "text": "See bottom of this page for how to generate additional client certificates\n\n\nConnect from a client\n\n\nThere are various tutorials available for all operating systems for how to connect to an OpenVPN server.\n\n\nAndroid\n\n\nSee special page \nhere\n.\n\n\nLinux\n\n\nI'll demonstrate the procedure here for Ubuntu Linux (which trivially extends to Linux Mint, etc.)\n\n\n\n\nInstall the necessary network-manager plugins\n\n\n\n\nsudo apt-get install network-manager-openvpn network-manager-openvpn-gnome\nsudo service network-manager restart\n\n\n\n\n\n\nSecurely copy the necessary certificates from your OpenVPN server to your client (e.g. using \nsftp\n). They are located in \n/etc/openvpn/easy-rsa/pki\n\n\n\n\nYou will need:\n\n\n\n\nUser Certificate: \n/etc/openvpn/easy-rsa/pki/issued/client.crt\n\n\nCA Certificate: \n/etc/openvpn/easy-rsa/pki/ca.crt\n\n\nPrivate Key: \n/etc/openvpn/easy-rsa/pki/private/client.key\n\n\nPrivate Key Password: Depending on your settings (might even be empty)\n\n\nTA Key: \n/etc/openvpn/ta.key\n\n\n\n\nFurther details can be found in the screenshots provided below:\n\n\n\n\n\n\n\n\n\n\n\nYour whole network traffic will now securely be transferred to your Pi-hole.\n\n\n\nWindows\n\n\nYou will have to install additional software. See https://openvpn.net/index.php/open-source/downloads.html\n\n\n\n\nOptional: Add more client certificates\n\n\nYou have to generate an individual certificate for each client. This can be done very conveniently like shown below:\n\n\n\nsudo bash openvpn-install.sh\n\n\nLooks like OpenVPN is already installed\n\n\nWhat do you want to do?\n   \n1) Add a new user\n\n   2) Revoke an existing user\n   3) Remove OpenVPN\n   4) Exit\nSelect an option [1-4]: \n1\n\n\nTell me a name for the client certificate\nPlease, use one word only, no special characters\nClient name: thinkpad2\nGenerating a 2048 bit RSA private key\n.......................+++\n....+++\nwriting new private key to '/etc/openvpn/easy-rsa/pki/private/thinkpad2.key.kHwbBkvK9b'\n\n\n\n\nUsing configuration from /etc/openvpn/easy-rsa/openssl-1.0.cnf\nCheck that the request matches the signature\nSignature ok\nThe Subject's Distinguished Name is as follows\ncommonName            :ASN.1 12:'thinkpad2'\nCertificate is to be certified until Feb 28 10:24:26 2027 GMT (3650 days)\n\n\nWrite out database with 1 new entries\nData Base Updated\n\n\nClient thinkpad2 added, configuration is available at /root/thinkpad2.ovpn\n\n\n\nCopy the file \n/root/thinkpad2.ovpn\n to your new client.\n\n\nWARNING\n Anyone who gets his hands on this configuration/certificate file can obtain full access to your VPN. Make sure that you use only trusted paths for transferring the file (e.g. \nnever\n send it via an un-encrypted channel, e.g. email or FTP). Best strategy is to use an USB thumbdrive to avoid any network transport at all. Make sure to delete the certificate on the USB drive afterwards.\n\n\nNOTICE\n If one of your certificates has been compromised, remove it using option \n2\n (see above) and generate a new certificate. This will effectively lock out anyone who might have gotten access to the certificate.",
+            "title": "Connecting clients"
+        },
+        {
+            "location": "/guides/vpn/clients/#connect-from-a-client",
+            "text": "There are various tutorials available for all operating systems for how to connect to an OpenVPN server.",
+            "title": "Connect from a client"
+        },
+        {
+            "location": "/guides/vpn/clients/#android",
+            "text": "See special page  here .",
+            "title": "Android"
+        },
+        {
+            "location": "/guides/vpn/clients/#linux",
+            "text": "I'll demonstrate the procedure here for Ubuntu Linux (which trivially extends to Linux Mint, etc.)   Install the necessary network-manager plugins   sudo apt-get install network-manager-openvpn network-manager-openvpn-gnome\nsudo service network-manager restart   Securely copy the necessary certificates from your OpenVPN server to your client (e.g. using  sftp ). They are located in  /etc/openvpn/easy-rsa/pki   You will need:   User Certificate:  /etc/openvpn/easy-rsa/pki/issued/client.crt  CA Certificate:  /etc/openvpn/easy-rsa/pki/ca.crt  Private Key:  /etc/openvpn/easy-rsa/pki/private/client.key  Private Key Password: Depending on your settings (might even be empty)  TA Key:  /etc/openvpn/ta.key   Further details can be found in the screenshots provided below:      Your whole network traffic will now securely be transferred to your Pi-hole.",
+            "title": "Linux"
+        },
+        {
+            "location": "/guides/vpn/clients/#windows",
+            "text": "You will have to install additional software. See https://openvpn.net/index.php/open-source/downloads.html",
+            "title": "Windows"
+        },
+        {
+            "location": "/guides/vpn/clients/#optional-add-more-client-certificates",
+            "text": "You have to generate an individual certificate for each client. This can be done very conveniently like shown below:  sudo bash openvpn-install.sh  Looks like OpenVPN is already installed  What do you want to do?\n    1) Add a new user \n   2) Revoke an existing user\n   3) Remove OpenVPN\n   4) Exit\nSelect an option [1-4]:  1  Tell me a name for the client certificate\nPlease, use one word only, no special characters\nClient name: thinkpad2\nGenerating a 2048 bit RSA private key\n.......................+++\n....+++\nwriting new private key to '/etc/openvpn/easy-rsa/pki/private/thinkpad2.key.kHwbBkvK9b'   Using configuration from /etc/openvpn/easy-rsa/openssl-1.0.cnf\nCheck that the request matches the signature\nSignature ok\nThe Subject's Distinguished Name is as follows\ncommonName            :ASN.1 12:'thinkpad2'\nCertificate is to be certified until Feb 28 10:24:26 2027 GMT (3650 days)  Write out database with 1 new entries\nData Base Updated  Client thinkpad2 added, configuration is available at /root/thinkpad2.ovpn  \nCopy the file  /root/thinkpad2.ovpn  to your new client.  WARNING  Anyone who gets his hands on this configuration/certificate file can obtain full access to your VPN. Make sure that you use only trusted paths for transferring the file (e.g.  never  send it via an un-encrypted channel, e.g. email or FTP). Best strategy is to use an USB thumbdrive to avoid any network transport at all. Make sure to delete the certificate on the USB drive afterwards.  NOTICE  If one of your certificates has been compromised, remove it using option  2  (see above) and generate a new certificate. This will effectively lock out anyone who might have gotten access to the certificate.",
+            "title": "Optional: Add more client certificates"
+        },
+        {
+            "location": "/guides/vpn/only-dns-via-vpn/",
+            "text": "Optional: Only route DNS via VPN\n\n\nWith this setup you will force connected clients to use only the DNS provided by the VPN connection, i.e. the Pi-hole. Do this only if you \ndon't\n want to tunnel all traffic from the client thru the VPN, but only its DNS queries.\n\n\nEdit your \n/etc/openvpn/server.conf\n and remove (comment) the following line:\n\n\n# push \"redirect-gateway def1 bypass-dhcp\"\n\n\n\n\nUsing a client config file\n\n\nThis works pretty much out of the box with common \nclient.ovpn\n files, like this provided one: \nclient.ovpn\n\n\nRemember to replace the locations of your keys and the address/host name of your server.\n\n\nUsing the Network Manager\n\n\nWhen using the Network Manager, you will have to do some additional setting on the client side of things:\n\n\n\n\nAlternative 1: Disable Network Manager's internal DNS server\n\n\nEdit \n/etc/NetworkManager/NetworkManager.conf\n:\n\n\n# dns=dnsmasq\n\n\n\n\nand restart the Network Manager:\n\n\nsudo restart network-manager\n\n\n\n\nWhen connecting your DNS server will now be properly picked up and used by your client.\n\n\nAlternative 2: Set DNS server address of your Pi-hole manually on the main interface\n\n\nYou can also set the address of the DNS server manually (use the device which actually connects to the internet, e.g. \neth0\n):\n\n\n\n\nAfter doing either alternative, you should see:\n\n\npi.hole has address W.X.Y.Z (outside address of your VPN server)\npi.hole has IPv6 address A:B:C:D:E:F (outside address of your VPN server)\n\n\n\n\nThe web interface of your Pi-hole will be visible at \nhttp://pi.hole/admin/\n (even with the recommended firewall configuration mentioned on another subpage)\n\n\n\n\n\n\nTroubleshooting\n\n\nIf your new DNS server configuration has not been activated (try restarting the interface / system) you will see\n\n\nhost pi.hole\nHost pi.hole not found: 3(NXDOMAIN)\n\n\n\n\nIf you are not connected to your VPN network you will see\n\n\nhost pi.hole\n;; connection timed out; no servers could be reached",
+            "title": "Optional: Only route DNS via VPN"
+        },
+        {
+            "location": "/guides/vpn/only-dns-via-vpn/#optional-only-route-dns-via-vpn",
+            "text": "With this setup you will force connected clients to use only the DNS provided by the VPN connection, i.e. the Pi-hole. Do this only if you  don't  want to tunnel all traffic from the client thru the VPN, but only its DNS queries.  Edit your  /etc/openvpn/server.conf  and remove (comment) the following line:  # push \"redirect-gateway def1 bypass-dhcp\"",
+            "title": "Optional: Only route DNS via VPN"
+        },
+        {
+            "location": "/guides/vpn/only-dns-via-vpn/#using-a-client-config-file",
+            "text": "This works pretty much out of the box with common  client.ovpn  files, like this provided one:  client.ovpn  Remember to replace the locations of your keys and the address/host name of your server.",
+            "title": "Using a client config file"
+        },
+        {
+            "location": "/guides/vpn/only-dns-via-vpn/#using-the-network-manager",
+            "text": "When using the Network Manager, you will have to do some additional setting on the client side of things:",
+            "title": "Using the Network Manager"
+        },
+        {
+            "location": "/guides/vpn/only-dns-via-vpn/#alternative-1-disable-network-managers-internal-dns-server",
+            "text": "Edit  /etc/NetworkManager/NetworkManager.conf :  # dns=dnsmasq  and restart the Network Manager:  sudo restart network-manager  When connecting your DNS server will now be properly picked up and used by your client.",
+            "title": "Alternative 1: Disable Network Manager's internal DNS server"
+        },
+        {
+            "location": "/guides/vpn/only-dns-via-vpn/#alternative-2-set-dns-server-address-of-your-pi-hole-manually-on-the-main-interface",
+            "text": "You can also set the address of the DNS server manually (use the device which actually connects to the internet, e.g.  eth0 ):   After doing either alternative, you should see:  pi.hole has address W.X.Y.Z (outside address of your VPN server)\npi.hole has IPv6 address A:B:C:D:E:F (outside address of your VPN server)  The web interface of your Pi-hole will be visible at  http://pi.hole/admin/  (even with the recommended firewall configuration mentioned on another subpage)",
+            "title": "Alternative 2: Set DNS server address of your Pi-hole manually on the main interface"
+        },
+        {
+            "location": "/guides/vpn/only-dns-via-vpn/#troubleshooting",
+            "text": "If your new DNS server configuration has not been activated (try restarting the interface / system) you will see  host pi.hole\nHost pi.hole not found: 3(NXDOMAIN)  If you are not connected to your VPN network you will see  host pi.hole\n;; connection timed out; no servers could be reached",
+            "title": "Troubleshooting"
+        },
+        {
+            "location": "/guides/vpn/dual-operation/",
+            "text": "Optional: Only route DNS via VPN\n\n\nWith this setup you will force connected clients to use only the DNS provided by the VPN connection, i.e. the Pi-hole. Do this only if you \ndon't\n want to tunnel all traffic from the client thru the VPN, but only its DNS queries.\n\n\nEdit your \n/etc/openvpn/server.conf\n and remove (comment) the following line:\n\n\n# push \"redirect-gateway def1 bypass-dhcp\"\n\n\n\n\nUsing a client config file\n\n\nThis works pretty much out of the box with common \nclient.ovpn\n files, like this provided one: \nclient.ovpn\n\n\nRemember to replace the locations of your keys and the address/host name of your server.\n\n\nUsing the Network Manager\n\n\nWhen using the Network Manager, you will have to do some additional setting on the client side of things:\n\n\n\n\nAlternative 1: Disable Network Manager's internal DNS server\n\n\nEdit \n/etc/NetworkManager/NetworkManager.conf\n:\n\n\n# dns=dnsmasq\n\n\n\n\nand restart the Network Manager:\n\n\nsudo restart network-manager\n\n\n\n\nWhen connecting your DNS server will now be properly picked up and used by your client.\n\n\nAlternative 2: Set DNS server address of your Pi-hole manually on the main interface\n\n\nYou can also set the address of the DNS server manually (use the device which actually connects to the internet, e.g. \neth0\n):\n\n\n\n\nAfter doing either alternative, you should see:\n\n\npi.hole has address W.X.Y.Z (outside address of your VPN server)\npi.hole has IPv6 address A:B:C:D:E:F (outside address of your VPN server)\n\n\n\n\nThe web interface of your Pi-hole will be visible at \nhttp://pi.hole/admin/\n (even with the recommended firewall configuration mentioned on another subpage)\n\n\n\n\n\n\nTroubleshooting\n\n\nIf your new DNS server configuration has not been activated (try restarting the interface / system) you will see\n\n\nhost pi.hole\nHost pi.hole not found: 3(NXDOMAIN)\n\n\n\n\nIf you are not connected to your VPN network you will see\n\n\nhost pi.hole\n;; connection timed out; no servers could be reached",
+            "title": "Optional: Dual operation: LAN & VPN at the same time"
+        },
+        {
+            "location": "/guides/vpn/dual-operation/#optional-only-route-dns-via-vpn",
+            "text": "With this setup you will force connected clients to use only the DNS provided by the VPN connection, i.e. the Pi-hole. Do this only if you  don't  want to tunnel all traffic from the client thru the VPN, but only its DNS queries.  Edit your  /etc/openvpn/server.conf  and remove (comment) the following line:  # push \"redirect-gateway def1 bypass-dhcp\"",
+            "title": "Optional: Only route DNS via VPN"
+        },
+        {
+            "location": "/guides/vpn/dual-operation/#using-a-client-config-file",
+            "text": "This works pretty much out of the box with common  client.ovpn  files, like this provided one:  client.ovpn  Remember to replace the locations of your keys and the address/host name of your server.",
+            "title": "Using a client config file"
+        },
+        {
+            "location": "/guides/vpn/dual-operation/#using-the-network-manager",
+            "text": "When using the Network Manager, you will have to do some additional setting on the client side of things:",
+            "title": "Using the Network Manager"
+        },
+        {
+            "location": "/guides/vpn/dual-operation/#alternative-1-disable-network-managers-internal-dns-server",
+            "text": "Edit  /etc/NetworkManager/NetworkManager.conf :  # dns=dnsmasq  and restart the Network Manager:  sudo restart network-manager  When connecting your DNS server will now be properly picked up and used by your client.",
+            "title": "Alternative 1: Disable Network Manager's internal DNS server"
+        },
+        {
+            "location": "/guides/vpn/dual-operation/#alternative-2-set-dns-server-address-of-your-pi-hole-manually-on-the-main-interface",
+            "text": "You can also set the address of the DNS server manually (use the device which actually connects to the internet, e.g.  eth0 ):   After doing either alternative, you should see:  pi.hole has address W.X.Y.Z (outside address of your VPN server)\npi.hole has IPv6 address A:B:C:D:E:F (outside address of your VPN server)  The web interface of your Pi-hole will be visible at  http://pi.hole/admin/  (even with the recommended firewall configuration mentioned on another subpage)",
+            "title": "Alternative 2: Set DNS server address of your Pi-hole manually on the main interface"
+        },
+        {
+            "location": "/guides/vpn/dual-operation/#troubleshooting",
+            "text": "If your new DNS server configuration has not been activated (try restarting the interface / system) you will see  host pi.hole\nHost pi.hole not found: 3(NXDOMAIN)  If you are not connected to your VPN network you will see  host pi.hole\n;; connection timed out; no servers could be reached",
+            "title": "Troubleshooting"
+        }
+    ]
+}
