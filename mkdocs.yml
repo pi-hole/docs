@@ -18,7 +18,7 @@ markdown_extensions:
   - pymdownx.extra
   - footnotes
 pages:
-- 'Support': 'index.md'
+- 'Overview & Support': 'index.md'
 - 'Getting Started':
   - 'Prerequisites': 'main/prerequesites.md'
   - 'Installation': 'main/basic-install.md'
