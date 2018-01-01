@@ -6,10 +6,13 @@ repo_name: pi-hole/docs
 repo_url: https://github.com/pi-hole/docs
 edit_uri: ../docs/edit/master/docs/
 remote_branch: gh-pages
-theme: material
+theme: readthedocs
 pages:
-- 'Information & Support': 'index.md'
-- 'Prerequisites': 'prerequesites.md'
+- 'Support': 'index.md'
+- 'Getting Started':
+  - 'Prerequisites': 'main/prerequesites.md'
+  - 'Installation': 'main/basic-install.md'
+  - 'Post-Install': 'main/post-install.md'
 - 'Guides':
   - 'Pi-hole and OpenVPN Server':
     - 'Overview': 'guides/vpn/overview.md'
