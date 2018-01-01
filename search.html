@@ -7,18 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="/docs/images/favicon.png">
+  <link rel="shortcut icon" href="./images/favicon.png">
   
   <title>Pi-hole documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="/docs/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="/docs/css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="/docs/css/highlight.css">
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
   
-  <script src="/docs/js/jquery-2.1.1.min.js"></script>
-  <script src="/docs/js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="/docs/js/highlight.pack.js"></script> 
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
   
 </head>
 
@@ -29,9 +29,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="/docs/" class="icon icon-home"> Pi-hole documentation</a>
+        <a href="." class="icon icon-home"> Pi-hole documentation</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="/docs/search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
   </form>
 </div>
@@ -43,7 +43,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="/docs/">Support</a>
+    <a class="" href=".">Support</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -52,15 +52,15 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="/docs/main/prerequesites/">Prerequisites</a>
+    <a class="" href="main/prerequesites/">Prerequisites</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="/docs/main/basic-install/">Installation</a>
+    <a class="" href="main/basic-install/">Installation</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="/docs/main/post-install/">Post-Install</a>
+    <a class="" href="main/post-install/">Post-Install</a>
                 </li>
     </ul>
 	    </li>
@@ -75,31 +75,31 @@
     <ul class="subnav">
                 <li class="toctree-l3">
                     
-    <a class="" href="/docs/guides/vpn/overview/">Overview</a>
+    <a class="" href="guides/vpn/overview/">Overview</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="/docs/guides/vpn/installation/">Installation</a>
+    <a class="" href="guides/vpn/installation/">Installation</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="/docs/guides/vpn/setup-openvpn-server/">Setup OpenVPN Server</a>
+    <a class="" href="guides/vpn/setup-openvpn-server/">Setup OpenVPN Server</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="/docs/guides/vpn/firewall/">Firewall Configuration</a>
+    <a class="" href="guides/vpn/firewall/">Firewall Configuration</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="/docs/guides/vpn/clients/">Connecting clients</a>
+    <a class="" href="guides/vpn/clients/">Connecting clients</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="/docs/guides/vpn/only-dns-via-vpn/">Optional: Only route DNS via VPN</a>
+    <a class="" href="guides/vpn/only-dns-via-vpn/">Optional: Only route DNS via VPN</a>
                 </li>
                 <li class="toctree-l3">
                     
-    <a class="" href="/docs/guides/vpn/dual-operation/">Optional: Dual operation: LAN & VPN at the same time</a>
+    <a class="" href="guides/vpn/dual-operation/">Optional: Dual operation: LAN & VPN at the same time</a>
                 </li>
     </ul>
                 </li>
@@ -116,7 +116,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="/docs/">Pi-hole documentation</a>
+        <a href=".">Pi-hole documentation</a>
       </nav>
 
       
@@ -124,7 +124,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="/docs/">Docs</a> &raquo;</li>
+    <li><a href=".">Docs</a> &raquo;</li>
     
     
     <li class="wy-breadcrumbs-aside">
@@ -137,9 +137,16 @@
             <div class="section">
               
 
-  <h1 id="404-page-not-found">404</h1>
+  <h1 id="search">Search Results</h1>
 
-  <p><strong>Page not found</strong></p>
+  <form id="content_search" action="search.html">
+    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus>
+  </form>
+
+  <div id="mkdocs-search-results" class="search-results">
+    Searching...
+  </div>
 
 
             </div>
@@ -173,10 +180,10 @@
       
     </span>
 </div>
-    <script>var base_url = '/docs';</script>
-    <script src="/docs/js/theme.js"></script>
-      <script src="/docs/search/require.js"></script>
-      <script src="/docs/search/search.js"></script>
+    <script>var base_url = '.';</script>
+    <script src="./js/theme.js"></script>
+      <script src="./search/require.js"></script>
+      <script src="./search/search.js"></script>
 
 </body>
 </html>

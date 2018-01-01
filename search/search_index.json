@@ -3,7 +3,7 @@
         {
             "location": "/",
             "text": "Welcome to Pi-hole Documentation\n\n\nGet Support\n\n\nGithub\n\n\n\n\nPi-hole core : \npi-hole/pi-hole\n\n\nPi-hole web : \npi-hole/adminLTE\n\n\nPi-hole FTL : \npi-hole/FTL\n\n\n\n\nForums\n\n\n\n\nDiscourse: \nPi-hole Userspace\n\n\nReddit : \n/r/pihole\n\n\n\n\nSocial Media\n\n\n\n\nTwitter : \n@the_pi_hole\n \n\n\nFacebook :  \nThePiHole",
-            "title": "Information & Support"
+            "title": "Support"
         },
         {
             "location": "/#welcome-to-pi-hole-documentation",
@@ -31,9 +31,64 @@
             "title": "Social Media"
         },
         {
-            "location": "/prerequesites/",
-            "text": "",
+            "location": "/main/prerequesites/",
+            "text": "Hardware\n\n\nPi-hole is very lightweight, and does not require much processing power\n\n\n\n\n~52MB of free space\n\n\n512MB RAM\n\n\n\n\nDespite the name, you are not limited to running Pi-hole on a Raspberry Pi. \nAny hardware that runs one of the supported operating systems will do! \n\n\nSupported Operating Systems\n\n\nThe following operating systems are \nofficially\n supported:\n\n\n\n\nRaspbian: Jessie / Stretch\n\n\nUbuntu: 16.04 / 16.10\n\n\nFedora: 26 / 27\n\n\nDebian: 8 / 9\n\n\nCentOS: 7 (not ARM)\n\n\n\n\nIP Addressing\n\n\nPi-hole needs a static IP address to properly function (a DHCP reservation is just fine).  Users may run into issues because \nwe currently install \ndhcpcd5\n, which may conflict with other running network managers\n such as \ndhclient\n, \ndhcpcd\n, \nnetworkmanager\n, and \nsystemd-networkd\n.  \n\n\nAs part of our install process, \nwe append some lines to \n/etc/dhcpcd.conf\n in order to statically assign an IP address\n, so take note of this prior to installing. \n\n\nPlease be aware of this fact because it \nmay cause confusion\n.  This is not the ideal situation for us to be in, but since a significant portion of our users are running Pi-hole on Raspbian; and because Pi-hole's roots began with the Raspberry Pi, it's a problem that is \ndifficult problem to get away from\n.\n\n\nDue to the complexity of different ways of setting an IP address across different systems, it's a slow process and \nwe need help\n.  If you're willing to contribute, please let us know.\n\n\nPorts\n\n\nWe need ports \n53\n, \n80\n, and \n4711\n.  Port \n80\n is optional if you decide not to install the Web dashboard during installation.\n\n\nPort 53 should be used by \ndnsmasq\n\nIf you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries.\n\n\nPort 80 should be used by \nlighttpd\n\nIf you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which \nlighttpd\n listens, which allows you keep both Web servers running.\n\n\nPort 4711 should be used by \npihole-FTL\n\nFTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else.",
             "title": "Prerequisites"
+        },
+        {
+            "location": "/main/prerequesites/#hardware",
+            "text": "Pi-hole is very lightweight, and does not require much processing power   ~52MB of free space  512MB RAM   Despite the name, you are not limited to running Pi-hole on a Raspberry Pi. \nAny hardware that runs one of the supported operating systems will do!",
+            "title": "Hardware"
+        },
+        {
+            "location": "/main/prerequesites/#supported-operating-systems",
+            "text": "The following operating systems are  officially  supported:   Raspbian: Jessie / Stretch  Ubuntu: 16.04 / 16.10  Fedora: 26 / 27  Debian: 8 / 9  CentOS: 7 (not ARM)",
+            "title": "Supported Operating Systems"
+        },
+        {
+            "location": "/main/prerequesites/#ip-addressing",
+            "text": "Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).  Users may run into issues because  we currently install  dhcpcd5 , which may conflict with other running network managers  such as  dhclient ,  dhcpcd ,  networkmanager , and  systemd-networkd .    As part of our install process,  we append some lines to  /etc/dhcpcd.conf  in order to statically assign an IP address , so take note of this prior to installing.   Please be aware of this fact because it  may cause confusion .  This is not the ideal situation for us to be in, but since a significant portion of our users are running Pi-hole on Raspbian; and because Pi-hole's roots began with the Raspberry Pi, it's a problem that is  difficult problem to get away from .  Due to the complexity of different ways of setting an IP address across different systems, it's a slow process and  we need help .  If you're willing to contribute, please let us know.",
+            "title": "IP Addressing"
+        },
+        {
+            "location": "/main/prerequesites/#ports",
+            "text": "We need ports  53 ,  80 , and  4711 .  Port  80  is optional if you decide not to install the Web dashboard during installation.  Port 53 should be used by  dnsmasq \nIf you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries.  Port 80 should be used by  lighttpd \nIf you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which  lighttpd  listens, which allows you keep both Web servers running.  Port 4711 should be used by  pihole-FTL \nFTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else.",
+            "title": "Ports"
+        },
+        {
+            "location": "/main/basic-install/",
+            "text": "One-Step Automated Install\n\n\nThose who want to get started quickly and conveniently, may install Pi-hole using the following command:\n\n\ncurl -sSL https://install.pi-hole.net | bash\n\n\n\n\nAlternative Install Methods\n\n\nPiping to \nbash\n is controversial\n, as it prevents you from \nreading code that is about to run\n on your system. Therefore, we provide these alternative installation methods which allow code review before installation: \n\n\nMethod 1: Clone our repository and run\n\n\ngit clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole\ncd \"Pi-hole/automated install/\"\nsudo bash basic-install.sh\n\n\n\n\nMethod 2: Manually download the installer and run\n\n\nwget -O basic-install.sh https://install.pi-hole.net\nsudo bash basic-install.sh",
+            "title": "Installation"
+        },
+        {
+            "location": "/main/basic-install/#one-step-automated-install",
+            "text": "Those who want to get started quickly and conveniently, may install Pi-hole using the following command:  curl -sSL https://install.pi-hole.net | bash",
+            "title": "One-Step Automated Install"
+        },
+        {
+            "location": "/main/basic-install/#alternative-install-methods",
+            "text": "Piping to  bash  is controversial , as it prevents you from  reading code that is about to run  on your system. Therefore, we provide these alternative installation methods which allow code review before installation:",
+            "title": "Alternative Install Methods"
+        },
+        {
+            "location": "/main/basic-install/#method-1-clone-our-repository-and-run",
+            "text": "git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole\ncd \"Pi-hole/automated install/\"\nsudo bash basic-install.sh",
+            "title": "Method 1: Clone our repository and run"
+        },
+        {
+            "location": "/main/basic-install/#method-2-manually-download-the-installer-and-run",
+            "text": "wget -O basic-install.sh https://install.pi-hole.net\nsudo bash basic-install.sh",
+            "title": "Method 2: Manually download the installer and run"
+        },
+        {
+            "location": "/main/post-install/",
+            "text": "Post-install: Make your network take advantage of Pi-hole\n\n\nOnce the installer has been run, you will need to \nconfigure your router to have \nDHCP clients use Pi-hole as their DNS server\n which ensures that all devices connecting to your network will have content blocked without any further intervention.\n\n\nIf your router does not support setting the DNS server, you can \nuse Pi-hole's built in DHCP server\n; just be sure to disable DHCP on your router first (if it has that feature available).\n\n\nAs a last resort, you can always manually set each device to use Pi-hole as their DNS server.",
+            "title": "Post-Install"
+        },
+        {
+            "location": "/main/post-install/#post-install-make-your-network-take-advantage-of-pi-hole",
+            "text": "Once the installer has been run, you will need to  configure your router to have  DHCP clients use Pi-hole as their DNS server  which ensures that all devices connecting to your network will have content blocked without any further intervention.  If your router does not support setting the DNS server, you can  use Pi-hole's built in DHCP server ; just be sure to disable DHCP on your router first (if it has that feature available).  As a last resort, you can always manually set each device to use Pi-hole as their DNS server.",
+            "title": "Post-install: Make your network take advantage of Pi-hole"
         },
         {
             "location": "/guides/vpn/overview/",
