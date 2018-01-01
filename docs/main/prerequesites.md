@@ -29,13 +29,11 @@ Due to the complexity of different ways of setting an IP address across differen
 
 ###Ports
 
-We need ports _53_, _80_, and _4711_.  Port _80_ is optional if you decide not to install the Web dashboard during installation.
+| Service             | Port   | Notes |
+| --------------------|:-------|:------|
+| dnsmasq              | 53   |If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries.|
+|lighttpd|80|If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running.|
+|pihole-FTL | 4711|FTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else.|
 
-**Port 53 should be used by `dnsmasq`**
-If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries.
-
-**Port 80 should be used by `lighttpd`**
-If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running.
-
-**Port 4711 should be used by `pihole-FTL`**
-FTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else.
+!!! info
+    The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.

@@ -7,6 +7,16 @@ repo_url: https://github.com/pi-hole/docs
 edit_uri: ../docs/edit/master/docs/
 remote_branch: gh-pages
 theme: material
+markdown_extensions:
+  - codehilite(guess_lang=true)
+  - toc(permalink=true)
+  - admonition
+  - pymdownx.magiclink
+  - pymdownx.tasklist(custom_checkbox=true)
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.extra
+  - footnotes
 pages:
 - 'Support': 'index.md'
 - 'Getting Started':
