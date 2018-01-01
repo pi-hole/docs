@@ -23,6 +23,7 @@ pages:
   - 'Prerequisites': 'main/prerequesites.md'
   - 'Installation': 'main/basic-install.md'
   - 'Post-Install': 'main/post-install.md'
+  - 'Updating': 'main/update.md'
 - 'Guides':
   - 'Pi-hole and OpenVPN Server':
     - 'Overview': 'guides/vpn/overview.md'
