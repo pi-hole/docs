@@ -1,4 +1,4 @@
-## Post-install: Make your network take advantage of Pi-hole
+## Making your network take advantage of Pi-hole
 
 Once the installer has been run, you will need to [configure your router to have **DHCP clients use Pi-hole as their DNS server**](https://discourse.pi-hole.net/t/how-do-i-configure-my-devices-to-use-pi-hole-as-their-dns-server/245) which ensures that all devices connecting to your network will have content blocked without any further intervention.
 

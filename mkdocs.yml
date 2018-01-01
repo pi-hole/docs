@@ -6,7 +6,7 @@ repo_name: pi-hole/docs
 repo_url: https://github.com/pi-hole/docs
 edit_uri: ../docs/edit/master/docs/
 remote_branch: gh-pages
-theme: readthedocs
+theme: material
 pages:
 - 'Support': 'index.md'
 - 'Getting Started':
@@ -28,3 +28,4 @@ extra:
       link: https://pi-hole.net
     - type: github-alt
       link: https://github.com/pi-hole
+extra_css: [extra.css]
