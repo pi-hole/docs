@@ -1,3 +1,5 @@
+### <span style="color:red">Important: This documentation is for Pi-hole v4.0 which is currently under development</span>
+
 <p align="center">
 <a href="https://pi-hole.net"><img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole"></a><br/>
 <b>Network-wide ad blocking via your own Linux hardware</b><br/>
@@ -20,15 +22,19 @@ The Pi-hole is a [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_Sinkhole) that
 
 ## Get Support
 
-### Github
+The best places to get support is through our community platforms:
+
+- Discourse: [Pi-hole Userspace](https://discourse.pi-hole.net)
+- Reddit : [/r/pihole](https://reddit.com/r/pihole)
+
+## Report Issues
+
+Issues should be reported on the repositories:
+
 -  Pi-hole core : [pi-hole/pi-hole](https://github.com/pi-hole/pi-hole)
 -  Pi-hole web : [pi-hole/adminLTE](https://github.com/pi-hole/adminLTE)
 -  Pi-hole FTL : [pi-hole/FTL](https://github.com/pi-hole/FTL)
 
-### Forums
-- Discourse: [Pi-hole Userspace](https://discourse.pi-hole.net)
-- Reddit : [/r/pihole](https://reddit.com/r/pihole)
-
-### Social Media
-- Twitter : [@the_pi_hole](https://twitter.com/the_pi_hole) 
+## Social Media
+- Twitter : [@the_pi_hole](https://twitter.com/the_pi_hole)
 - Facebook :  [ThePiHole](https://facebook.com/ThePiHole)
