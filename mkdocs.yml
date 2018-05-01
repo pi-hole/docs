@@ -1,9 +1,10 @@
 site_name: "Pi-hole documentation"
 site_url: https://pi-hole.github.io/docs/
-site_favicon: images/favicon.png
 copyright: 'Copyright &copy; 2018 Pi-hole LLC'
 remote_branch: gh-pages
-theme: material
+theme:
+  name: 'material'
+  favicon: 'images/favicon.png'
 markdown_extensions:
   - codehilite(guess_lang=true)
   - toc(permalink=true)
