@@ -11,7 +11,8 @@ body, input {
     font-family: "Source Sans Pro", "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: black;
 }
-code {
+.md-typeset code, .md-typeset pre {
     display: inline-block;
     white-space: pre-wrap;
+    color: rgb(83, 43, 168);
 }
