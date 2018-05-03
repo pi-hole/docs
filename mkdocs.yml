@@ -26,6 +26,7 @@ pages:
   - 'Updating': 'main/update.md'
 - 'FTLDNS':
   - 'Overview': "ftldns/index.md"
+  - 'RegEx blocking': "ftldns/regex.md"
   - 'In-depth manual': "ftldns/in-depth.md"
 - 'Guides':
   - 'Pi-hole and OpenVPN Server':

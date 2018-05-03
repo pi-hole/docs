@@ -9,6 +9,6 @@ However, this also implies that *FTL*DNS cannot bind to ports 53 (DNS) among som
 
 We specifically add the following capabilities to `pihole-FTL`:
 
-- `CAP_NET_BIND_SERVICE`: Allows *FTl*DNS binding to TCP/UDP sockets below 1024 (specifically DNS service on port 53)
+- `CAP_NET_BIND_SERVICE`: Allows *FTL*DNS binding to TCP/UDP sockets below 1024 (specifically DNS service on port 53)
 - `CAP_NET_RAW`: use RAW and PACKET sockets (we need a RAW socket for handling DHCPv6 requests)
 - `CAP_NET_ADMIN`: modify routing tables and other network-related operations (to allow for handling DHCP requests)
