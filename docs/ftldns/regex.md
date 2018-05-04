@@ -63,8 +63,7 @@ Character group | Interpretation
 --- | ---
 `[abc]` | matches `a`, `b`, or `c` (using explicitly specified characters)
 `[a-c]` | matches `a`, `b`, or `c` (using a *range*)
-`[a-c]?` | matches any number of `a`, `b`, `c`
-`[a-c]*` | as `[a-c]*` but optional
+`[a-c]+` | matches any non-zero number of `a`, `b`, `c`
 `[a-z]` | matches any single lowercase letter
 `[a-zA-Z]` | matches any single letter
 `[a-z0-9]` | matches any single lowercase letter or any single digit
