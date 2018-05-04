@@ -26,9 +26,14 @@ pages:
   - 'Updating': 'main/update.md'
 - 'FTLDNS':
   - 'Overview': "ftldns/index.md"
+  - 'Blocking mode': "ftldns/blockingmode.md"
   - 'RegEx blocking': "ftldns/regex.md"
+#  - 'Privacy levels': "ftldns/privacy.md"
+#  - 'Long-term database': "ftldns/database.md"
+#  - 'API documentation': "ftldns/api.md"
   - 'In-depth manual': "ftldns/in-depth.md"
 - 'Guides':
+# - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
   - 'Pi-hole and OpenVPN Server':
     - 'Overview': 'guides/vpn/overview.md'
     - 'Installation': 'guides/vpn/installation.md'
