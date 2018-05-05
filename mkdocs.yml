@@ -26,6 +26,7 @@ pages:
   - 'Updating': 'main/update.md'
 - 'FTLDNS':
   - 'Overview': "ftldns/index.md"
+  - 'Compatibility': "ftldns/compatibility.md"
   - 'Blocking mode': "ftldns/blockingmode.md"
   - 'RegEx blocking': "ftldns/regex.md"
 #  - 'Privacy levels': "ftldns/privacy.md"
