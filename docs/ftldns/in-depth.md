@@ -1,3 +1,28 @@
+## Available interfaces
+
+Pi-hole stats can be accessed via a standard Unix socket (`var/run/pihole/FTL.sock`), a telnet-like connection (TCP socket on port `4711`) as well as indirectly via the Web API (`admin/api.php`), and command line (`pihole -c -j`). You can out find more details below.
+
+## Command line arguments
+
+- `debug` - Don't go into daemon mode (stay in foreground) + more verbose logging
+- `test` - Start `FTL` and process everything, but shut down immediately afterwards
+- `version` - Don't start `FTL`, show only version
+- `tag` - Don't start `FTL`, show only git tag
+- `branch` - Don't start `FTL`, show only git branch `FTL` was compiled from
+- `no-daemon` or `-f` - Don't go into background (daemon mode)
+- `help` or `-h` - Don't start `FTL`, show help
+- `dnsmasq-test` - Test resolver config file syntax
+- `--` everything behind `--` will be passed as options to the internal resolver
+
+Command line arguments can be arbitrarily combined, e.g. `pihole-FTL debug test`
+
+## File locations
+- `/var/log/pihole-FTL.log` log file
+- `/var/run/pihole-FTL.pid` PID file
+- `/var/run/pihole-FTL.port` file containing port on which `FTL` is listening
+- `/var/run/pihole/FTL.sock` Unix socket
+
+
 ## Domain lists format
 Since Pi-hole v4.0, we use a simpler domain list format for the two important block list files `gravity.list` and `black.list`. In contrast to the traditional HOSTS format (which caused a lot of overhead), the domain list format is the minimal possible solution for saving memory while still using plain text lists for your convenience. When *FTL*DNS imports these two files, they are walked by our improved list parser speeding up the loading of block lists significantly. Regardless which blocking mode (`IP` or `NXDOMAIN`) is selected, *FTL*DNS will always load the lists into it's internal hashed cache to be able to determine the blocking status within a few milliseconds, even when you're using huge blocking lists on low-end devices. With everything we do, we design *FTL*DNS for maximum efficiency also on low-performance devices.
 
