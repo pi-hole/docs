@@ -7,7 +7,7 @@ git clone git@github.com:pi-hole/docs.git
 cd docs
 sudo pip install mkdocs
 sudo pip install mkdocs-material
-mkdocs serve
+mkdocs serve --dev-addr 0.0.0.0:8000
 ```
 
 Deploying to GitHub pages:
