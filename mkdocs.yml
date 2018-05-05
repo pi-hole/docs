@@ -30,7 +30,7 @@ pages:
   - 'RegEx blocking': "ftldns/regex.md"
 #  - 'Privacy levels': "ftldns/privacy.md"
 #  - 'Long-term database': "ftldns/database.md"
-#  - 'API documentation': "ftldns/api.md"
+  - 'Telnet API': "ftldns/telnet-api.md"
   - 'In-depth manual': "ftldns/in-depth.md"
 - 'Guides':
 # - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
