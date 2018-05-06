@@ -30,7 +30,7 @@ pages:
   - 'Blocking mode': "ftldns/blockingmode.md"
   - 'RegEx blocking': "ftldns/regex.md"
   - 'Privacy levels': "ftldns/privacylevels.md"
-#  - 'Long-term database': "ftldns/database.md"
+  - 'Long-term database': "ftldns/database.md"
   - 'Telnet API': "ftldns/telnet-api.md"
   - 'Compatibility': "ftldns/compatibility.md"
   - 'Install from source': "ftldns/compile.md"
