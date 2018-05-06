@@ -87,3 +87,16 @@ ID | Query Type
 3 | Permitted + replied to from cache
 4 | Blocked by wildcard
 5 | Blocked by `black.list`
+
+### Example for interaction with the FTL long-term database
+In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queries domains for all time, you could use
+```
+sqlite3 "/etc/pihole/pihole-FTL.db" "SELECT domain,count(domain) FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP by domain order by count(domain) desc limit 3"
+```
+which would return something like
+```
+discourse.pi-hole.net|421095
+www.pi-hole.net|132483
+posteo.de|130243
+```
+showing the domain and the number of times it was found in the long-term database. Note that such a request might take very long for computation as the entire history of queries have to be processed for this.
