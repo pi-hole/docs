@@ -30,11 +30,11 @@ pages:
   - 'Blocking mode': "ftldns/blockingmode.md"
   - 'RegEx blocking': "ftldns/regex.md"
   - 'Privacy levels': "ftldns/privacylevels.md"
-#  - 'Long-term database': "ftldns/database.md"
-  - 'Debugging FTLDNS': "ftldns/debugging.md"
+  - 'Long-term database': "ftldns/database.md"
+  - 'Telnet API': "ftldns/telnet-api.md"
   - 'Compatibility': "ftldns/compatibility.md"
   - 'Install from source': "ftldns/compile.md"
-  - 'Telnet API': "ftldns/telnet-api.md"
+  - 'Debugging FTLDNS': "ftldns/debugging.md"
   - 'In-depth manual': "ftldns/in-depth.md"
 - 'Guides':
 # - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
