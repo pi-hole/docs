@@ -1,8 +1,8 @@
 Pi-hole *FTL*DNS uses the well-known relational database management system SQLite3 it's long-term storage of query data. In contrast to many other database management solutions, *FTL*DNS does not need a server database engine as the database engine is directly embeeded in *FTL*DNS. It seems an obvious choice as tt is probably the most widely deployed database engine - it is used today by several widespread browsers, operating systems, and embedded systems (such as mobile phones), among others. Hence, it is rich in supported platform and offered features. SQLite implements most of the SQL-92 standard for SQL and can be used for high-level queries.
 
-We update the database file periodically and on exit of *FTL*DNS (triggered e.g. by a `service restart`). The updating frequency can be controlled by the parameter [`DBINTERVAL`](configfile.md#dbinterval) and defaults to once per minute. We think this value is a good compromise between SD card load due to writing and protection against data losses due to power failure events.
+We update the database file periodically and on exit of *FTL*DNS (triggered e.g. by a `service restart`). The updating frequency can be controlled by the parameter [`DBINTERVAL`](configfile.md#dbinterval) and defaults to once per minute. We think this value is a good compromise between SD card load due to writing and protection against data losses due to power failure events. *FTL*DNS needs the database to populate its internal history of the most recent 24 hours. If the database is disabled, *FTL*DNS will show an empty query history after a restart.
 
-The location of the database can be configures by the config parameter [`DBFILE`](configfile.md#dbfile). Ii defaults to `/etc/pihole/pihole-FTL.db`. If the given files does not exist, *FTL*DNS will create a new file.
+The location of the database can be configures by the config parameter [`DBFILE`](configfile.md#dbfile). It defaults to `/etc/pihole/pihole-FTL.db`. If the given files does not exist, *FTL*DNS will create a new file.
 
 You can split your long-term database by periodically rotating the database file (do this only when `pihole-FTL` is *not* running). The individual database contents can easily be merged when required.
 This could be implemented by running a monthly `cron` job such as:
@@ -13,7 +13,7 @@ sudo service pihole-FTL start
 ```
 Note that DNS resolution will not be available as long as `pihole-FTL` is stopped.
 
-Another way of controling the size of the long-term database is setting a maximal age for log queries to keep using the config parameter [`MAXDBDAYS`](configfile.md#maxdbdays). Ii defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
+Another way of controling the size of the long-term database is setting a maximal age for log queries to keep using the config parameter [`MAXDBDAYS`](configfile.md#maxdbdays). It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
 
 ---
 
