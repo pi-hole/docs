@@ -36,3 +36,5 @@ Finally, restart *FTL*DNS to use the new binary:
 ```
 sudo service pihole-FTL restart
 ```
+
+{!abbreviations.md!}

@@ -2,7 +2,7 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
 
 - `>quit`: Closes connection to client
 
-- `>kill`: Terminates FTL
+- `>kill`: Terminates `FTL`
 
 - `>stats` : Get current statistics
  ```
@@ -121,7 +121,7 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
  date 2017-03-26 13:10:43 +0200
  ```
 
-- `>dbstats` : Get some statistics about the FTL long-term storage database (this request may take some time for processing in case of a large database file)
+- `>dbstats` : Get some statistics about `FTL`'s' long-term storage database (this request may take some time for processing in case of a large database file)
  ```
  queries in database: 2700304
  database filesize: 199.20 MB
@@ -142,3 +142,5 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
  cache-live-freed: 0
  cache-inserted: 15529
  ```
+
+{!abbreviations.md!}

@@ -38,3 +38,5 @@ Issues should be reported on the repositories:
 ## Social Media
 - Twitter : [@the_pi_hole](https://twitter.com/the_pi_hole)
 - Facebook :  [ThePiHole](https://facebook.com/ThePiHole)
+
+{!abbreviations.md!}

@@ -100,3 +100,5 @@ www.pi-hole.net|132483
 posteo.de|130243
 ```
 showing the domain and the number of times it was found in the long-term database. Note that such a request might take very long for computation as the entire history of queries have to be processed for this.
+
+{!abbreviations.md!}
