@@ -8,15 +8,28 @@ theme:
   language: 'en'
 
 markdown_extensions:
+# Code highlighting in ``` ``` blocks
   - codehilite(guess_lang=true)
+# Table of Contents
   - toc(permalink=true)
+# block-styled side content
   - admonition
+# linkafies URL and email links without having to wrap them in Markdown syntax. Also, allows shortens repository issue, pull request, and commit links.
   - pymdownx.magiclink
+# Task lists (https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/)
   - pymdownx.tasklist(custom_checkbox=true)
+# Highlight words with ==mark me==
   - pymdownx.mark
+# Adds support for deletion ~~Delete me~~ and subscript text~a\ subscript~
   - pymdownx.tilde
+# This extension is a convenience extension, and it currently provides no other additional features
   - pymdownx.extra
+# Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
+# Adds the ability to define abbreviations
+  - abbr
+# Include files in other documents like {!some/dir/in/docs/filename.md!}
+  - markdown_include.include(base_path=docs)
 pages:
 - 'Overview & Support': 'index.md'
 - 'Getting Started':
@@ -27,6 +40,7 @@ pages:
 - 'FTLDNS':
   - 'Overview': "ftldns/index.md"
   - 'Configuration': "ftldns/configfile.md"
+  - 'DNS resolver': "ftldns/dns-resolver.md"
   - 'Blocking mode': "ftldns/blockingmode.md"
   - 'RegEx blocking': "ftldns/regex.md"
   - 'Privacy levels': "ftldns/privacylevels.md"
