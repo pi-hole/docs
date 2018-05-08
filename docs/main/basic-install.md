@@ -7,8 +7,8 @@ curl -sSL https://install.pi-hole.net | bash
 
 !!! info
     [Piping to `bash` is a controversial topic](https://pi-hole.net/2016/07/25/curling-and-piping-to-bash), as it prevents you from [reading code that is about to run](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) on your system.
-     
-    If you would prefer to review the code before installation, we provide these alternative installation methods. 
+
+    If you would prefer to review the code before installation, we provide these alternative installation methods.
 
 #### Alternative 1: Clone our repository and run
 ```BASH
@@ -22,3 +22,5 @@ sudo bash basic-install.sh
 wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
 ```
+
+{!abbreviations.md!}

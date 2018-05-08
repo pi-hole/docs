@@ -42,3 +42,5 @@ Queries DNS queries will be answered with an empty response (no answer section) 
 
 ##### Disadvantage
 - Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
+
+{!abbreviations.md!}

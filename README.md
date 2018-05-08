@@ -6,7 +6,7 @@ Linux Mint / Ubuntu instructions:
 git clone git@github.com:pi-hole/docs.git
 cd docs
 sudo pip install mkdocs
-sudo pip install mkdocs-material
+sudo pip install mkdocs-material markdown-include
 mkdocs serve --dev-addr 0.0.0.0:8000
 ```
 

@@ -10,3 +10,5 @@ Once you are used to it, you can skip most of the steps. Debugging *FTL*DNS is a
 7. When `pihole-FTL` has crashed, copy&paste the terminal output into a (new) issue. Also type `backtrace` and include its output. We might ask for additional information in order to isolate your particular issue.
 
 <!-- When you want to detach the debugger from `FTL` without terminating the process, you can hit `Ctrl+C` and enter `detach` followed by `quit`. -->
+
+{!abbreviations.md!}
