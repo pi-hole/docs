@@ -52,7 +52,7 @@ pages:
   - 'Debugging FTLDNS': "ftldns/debugging.md"
   - 'In-depth manual': "ftldns/in-depth.md"
 - 'Guides':
-# - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
+  - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
   - 'Pi-hole and OpenVPN Server':
     - 'Overview': 'guides/vpn/overview.md'
     - 'Installation': 'guides/vpn/installation.md'
