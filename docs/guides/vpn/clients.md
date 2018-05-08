@@ -38,7 +38,7 @@ Data Base Updated
 Client android added, configuration is available at /root/android.ovpn
 ```
 
-**WARNING** Anyone who gets his hands on this configuration/certificate file can obtain full access to your VPN. Make sure that you use only trusted paths for transferring the file (e.g. *never* send it via an un-encrypted channel, e.g. email or FTP). Best strategy is to use an USB thumb drive to avoid any network transport at all. Make sure to delete the certificate on the USB drive afterwards.
+**WARNING** Anyone who gets his hands on this configuration/certificate file can obtain full access to your VPN. Make sure that you use only trusted paths for transferring the file (e.g. *never* send it via an un-encrypted channel, e.g. email or FTP). Best strategy is to use a USB thumb drive to avoid any network transport at all. Make sure to delete the certificate on the USB drive afterwards.
 
 **NOTICE** If one of your certificates has been compromised, remove it using option `2` (see above) and generate a new certificate. This will effectively lock out anyone who might have gotten access to the certificate.
 
