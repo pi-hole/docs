@@ -62,14 +62,14 @@ You will need:
 * TA Key: `/etc/openvpn/ta.key`
 
 Further details can be found in the screenshots provided below:
-![](http://www.dl6er.de/pi-hole/openVPN/conn_type.png)
-![](http://www.dl6er.de/pi-hole/openVPN/keys.png)
-![](http://www.dl6er.de/pi-hole/openVPN/general.png)
-![](http://www.dl6er.de/pi-hole/openVPN/security.png)
-![](http://www.dl6er.de/pi-hole/openVPN/tls.png)
+![](NetworkManager3.png)
+![](NetworkManager4.png)
+![](NetworkManager5.png)
+![](NetworkManager6.png)
+![](NetworkManager7.png)
 
 Your whole network traffic will now securely be transferred to your Pi-hole.
-![](http://www.dl6er.de/pi-hole/openVPN/VPNclients.png)
+![](VPNclients.png)
 
 ### Windows
 
