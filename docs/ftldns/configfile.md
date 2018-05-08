@@ -45,7 +45,7 @@ How often do we store queries in FTL's database [minutes]?
 ### DBFILE
 `DBFILE=/etc/pihole/pihole-FTL.db`
 
-Specify path and filename of FTL's SQLite long-term database. Setting this to `DBFILE=` disables the database altogether
+Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether
 
 **[More details](database.md)**
 
@@ -84,3 +84,5 @@ Should `FTL` reply queries to blocked domains with IPs or `NXDOMAIN`?
 If defined, `FTL` will block all incoming queries which match this RegEx.
 
 **[More details](regex.md)**
+
+{!abbreviations.md!}

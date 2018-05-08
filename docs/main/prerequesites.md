@@ -4,8 +4,8 @@ Pi-hole is very lightweight, and does not require much processing power
 - ~52MB of free space
 - 512MB RAM
 
-Despite the name, you are not limited to running Pi-hole on a Raspberry Pi. 
-Any hardware that runs one of the supported operating systems will do! 
+Despite the name, you are not limited to running Pi-hole on a Raspberry Pi.
+Any hardware that runs one of the supported operating systems will do!
 
 ###Supported Operating Systems
 
@@ -19,9 +19,9 @@ The following operating systems are **officially** supported:
 
 ###IP Addressing
 
-Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).  Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.  
+Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).  Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
 
-As part of our install process, **we append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address**, so take note of this prior to installing. 
+As part of our install process, **we append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address**, so take note of this prior to installing.
 
 Please be aware of this fact because it [may cause confusion](https://github.com/pi-hole/pi-hole/issues/1713#issue-260746084).  This is not the ideal situation for us to be in, but since a significant portion of our users are running Pi-hole on Raspbian; and because Pi-hole's roots began with the Raspberry Pi, it's a problem that is [difficult problem to get away from](https://github.com/pi-hole/pi-hole/issues/1713#issuecomment-332317532).
 
@@ -37,3 +37,5 @@ Due to the complexity of different ways of setting an IP address across differen
 
 !!! info
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
+
+{!abbreviations.md!}

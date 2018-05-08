@@ -5,3 +5,5 @@ Updating is as simple as running the following command:
 ### Common issues with updating:
 
 `[Placeholder for solutions to issues]`
+
+{!abbreviations.md!}

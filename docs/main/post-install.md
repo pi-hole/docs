@@ -5,3 +5,5 @@ Once the installer has been run, you will need to [configure your router to have
 If your router does not support setting the DNS server, you can [use Pi-hole's built in DHCP server](https://discourse.pi-hole.net/t/how-do-i-use-pi-holes-built-in-dhcp-server-and-why-would-i-want-to/3026); just be sure to disable DHCP on your router first (if it has that feature available).
 
 As a last resort, you can always manually set each device to use Pi-hole as their DNS server.
+
+{!abbreviations.md!}

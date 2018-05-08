@@ -1,5 +1,5 @@
 A regular expression, or RegEx for short, is a pattern that can be used for building arbitrarily complex blocking rules in *FTL*DNS.
-We implement the Extended Regular Expressions (ERE) flavor similar to the one used by the UNIX `egrep` (or `grep -E`) command.
+We implement the ERE flavor similar to the one used by the UNIX `egrep` (or `grep -E`) command.
 
 Our implementation is computationally inexpensive as each domain is only checked once for a match (if you query `google.com`, it will be checked against your RegEx. Any subsequent query to the same domain will not be checked again until you restart `pihole-FTL`).
 
@@ -132,3 +132,5 @@ Expression | Meaning | Example
 `[^]`| Negation | `[^0-9]` matches any character *except* `0` to `9`
 `{ }` | Matches a specified number of occurrences of the previous  | `[0-9]{3}` matches any three-digit number like `315` but not `31`;<br>`[0-9]{2,4}` matches two- to four-digit numbers like `12`, `123`, and `1234` but not `1` or `12345`;<br>`[0-9]{2,}` matches any number with two or more digits like `1234567`, `123456789`, but not `1`
 `\` | Used to escape a special character not inside `[]` | `google\.com` matches `google.com`
+
+{!abbreviations.md!}

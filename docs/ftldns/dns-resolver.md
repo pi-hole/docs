@@ -21,3 +21,5 @@ The DNS forward destination determination algorithm in *FTL*DNS's is modified to
 We keep the exceptions, i.e., we try all possible forward destinations if `SERVFAIL` or `REFUSED` is received or if a timeout occurs.
 Overall, this change has proven to greatly reduce the number of actually performed queries in typical Pi-hole environments. It may even be understood as being preferential in terms of privacy (as we send queries much less often to all servers).
 This has been implemented in commit [d1c163e](https://github.com/pi-hole/FTL/commit/d1c163e499a5cd9f311610e9da1e9365bbf81e89) on the `FTLDNS` branch.
+
+{!abbreviations.md!}

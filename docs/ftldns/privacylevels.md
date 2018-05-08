@@ -34,3 +34,5 @@ This setting disables
 - Clients over time
 - Query Log
 - Long-term database logging
+
+{!abbreviations.md!}
