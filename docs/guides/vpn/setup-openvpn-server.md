@@ -2,7 +2,7 @@
 
 First, find the IP of your `tun0` interface:
 
-On jessie
+On Jessie
 ```
 ifconfig tun0 | grep 'inet addr'
 ```
@@ -65,8 +65,3 @@ Client name: iphone7
 ```
 
 This will generate a `.ovpn` file, which needs to be copied to your client machine (often times using the OpenVPN app).  This process also generates a few other files found in `/etc/openvpn/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.
-
-***
-### Next Steps
-
-Next, [configure your client devices](https://github.com/pi-hole/pi-hole/wiki/OpenVPN-server:-Connect-from-a-client) to use the VPN.

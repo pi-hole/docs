@@ -7,10 +7,10 @@ sudo iptables -L --line-numbers
 ```
 
 If you get something like
-<pre>
+```
 Chain INPUT (policy ACCEPT)
 num  target     prot opt source               destination
-<b>1    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http</b>
+1    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http
 2    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
 3    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain
 
@@ -19,7 +19,7 @@ num  target     prot opt source               destination
 
 Chain OUTPUT (policy ACCEPT)
 num  target     prot opt source               destination
-</pre>
+```
 you have to first explicitly delete the first INPUT rule using:
 ```
 sudo iptables -D INPUT 1
@@ -66,12 +66,12 @@ sudo iptables -P INPUT DROP
 ```
 
 Optional: If you want to allow access to the Pi-hole from within the VPN *and* from the local network, you will have to explicitly allow your local network as well (assuming the local network is within the address space 192.168.**178**.1 - 192.168.**178**.254):
-<pre>
-sudo iptables -A INPUT -s 192.168.<b>178</b>.0/24 -p tcp --destination-port 53 -j ACCEPT
-sudo iptables -A INPUT -s 192.168.<b>178</b>.0/24 -p udp --destination-port 53 -j ACCEPT
-sudo iptables -A INPUT -s 192.168.<b>178</b>.0/24 -p tcp --destination-port 80 -j ACCEPT
-sudo iptables -A INPUT -s 192.168.<b>178</b>.0/24 -p udp --destination-port 80 -j ACCEPT
-</pre>
+```
+sudo iptables -A INPUT -s 192.168.178.0/24 -p tcp --destination-port 53 -j ACCEPT
+sudo iptables -A INPUT -s 192.168.178.0/24 -p udp --destination-port 53 -j ACCEPT
+sudo iptables -A INPUT -s 192.168.178.0/24 -p tcp --destination-port 80 -j ACCEPT
+sudo iptables -A INPUT -s 192.168.178.0/24 -p udp --destination-port 80 -j ACCEPT
+```
 See also [this](https://discourse.pi-hole.net/t/pihole-vpn-with-iptables/2384) thread on Discourse.
 
 ---
