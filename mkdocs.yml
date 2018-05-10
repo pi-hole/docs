@@ -26,8 +26,6 @@ markdown_extensions:
   - pymdownx.extra
 # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
-# Typograph extension
-  - smarty
 # Adds the ability to define abbreviations
   - abbr
 # Include files in other documents like {!some/dir/in/docs/filename.md!}
@@ -42,6 +40,7 @@ pages:
 - 'FTLDNS':
   - 'Overview': "ftldns/index.md"
   - 'Configuration': "ftldns/configfile.md"
+  - 'DNS resolver': "ftldns/dns-resolver.md"
   - 'Blocking mode': "ftldns/blockingmode.md"
   - 'RegEx blocking': "ftldns/regex.md"
   - 'Privacy levels': "ftldns/privacylevels.md"
