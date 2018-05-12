@@ -85,13 +85,13 @@ server:
     # Require DNSSEC data for trust-anchored zones, if such data is absent, the zone becomes BOGUS
     harden-dnssec-stripped: yes
 
-    # Use Capitalization randomization
-    # This is an experimental resilience method which uses upper and lower case letters 
-    # in the question hostname to obtain randomness. Two names with the same spelling 
-    # but different case should be treated as identical. Attackers hoping to poison a
-    # DNS cache must guess the mixed-case encoding of the query. This increases the
-    # difficulty of such an attack significantly
-    use-caps-for-id: yes
+    # Don't use Capitalization randomization as it known to cause DNSSEC issues sometimes
+    # see https://discourse.pi-hole.net/t/unbound-stubby-or-dnscrypt-proxy/9378 for further details
+    use-caps-for-id: no
+
+    # Reduce EDNS reassembly buffer size.
+    # Suggested by the unbound man page to reduce fragmentation reassembly problems
+    edns-buffer-size: 1472
 
     # TTL bounds for cache
     cache-min-ttl: 3600
