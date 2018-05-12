@@ -1,6 +1,6 @@
 language: python
 install:
-- pip install mkdocs-material
+- pip install mkdocs-material markdown-include
 script:
 - mkdocs build --verbose --clean
 deploy:
