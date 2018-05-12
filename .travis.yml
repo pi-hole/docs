@@ -8,5 +8,7 @@ deploy:
  skip_cleanup: true
  github_token: $GITHUB_TOKEN
  local_dir: site
+ name: $BOT_NAME
+ email: $BOT_EMAIL
  on:
    branch: master
