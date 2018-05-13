@@ -1,5 +1,7 @@
 Pi-hole *FTL*DNS supports two different methods for blocking queries. Both have their advantages and drawbacks. They are summarized on this page. The blocking mode can be configured in `/etc/pihole/pihole-FTL.conf`.
 
+This setting can be updated by sending `SIGHUP` to `pihole-FTL` (`sudo killall -SIGHUP pihole-FTL`).
+
 ## Pi-hole's IP based blocking
 `/etc/pihole/pihole-FTL.conf` setting:
 ```
@@ -42,5 +44,26 @@ Queries DNS queries will be answered with an empty response (no answer section) 
 
 ##### Disadvantage
 - Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
+
+## Pi-hole's `NULL` IP based blocking
+`/etc/pihole/pihole-FTL.conf` setting:
+```
+BLOCKINGMODE=NULL
+```
+
+Queries will be answered with the local IP addresses of your Pi-hole (as configured in your `setupVars.conf` file)
+```
+;; QUESTION SECTION:
+;doubleclick.net.               IN      ANY
+
+;; ANSWER SECTION:
+doubleclick.net.        2       IN      A       0.0.0.0
+doubleclick.net.        2       IN      AAAA    ::
+```
+
+Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture, section 2.5.2](https://tools.ietf.org/html/rfc3513#section-2.5.2), the address `0:0:0:0:0:0:0:0` (or `::` for short) is the unspecified address. It must never be assigned to any node and indicates the absence of an address. Following [RFC1122, section 3.2](https://tools.ietf.org/html/rfc1122#section-3.2), the address `0.0.0.0` can be understood as the IPv4 equivalent of `::`.
+
+##### Advantages & Disadvantages
+Similar to `NXDOMAIN` blocking. However, it is more experimental than `NXDOMAIN` as it is not clear if all clients behave correctly when receiving these addresses.
 
 {!abbreviations.md!}
