@@ -1,5 +1,5 @@
 site_name: "Pi-hole documentation"
-site_url: https://pi-hole.github.io/docs/
+site_url: https://docs.pi-hole.net
 copyright: 'Copyright &copy; 2018 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
@@ -57,7 +57,7 @@ pages:
     - 'Installation': 'guides/vpn/installation.md'
     - 'Setup OpenVPN Server': 'guides/vpn/setup-openvpn-server.md'
     - 'Firewall Configuration': 'guides/vpn/firewall.md'
-    - 'Connecting clients': 
+    - 'Connecting clients':
       - 'General': 'guides/vpn/clients.md'
       - 'Android': 'guides/vpn/android-client.md'
     - 'Optional: Only route DNS via VPN': 'guides/vpn/only-dns-via-vpn.md'
