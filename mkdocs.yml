@@ -1,5 +1,5 @@
 site_name: "Pi-hole documentation"
-site_url: https://docs.github.net
+site_url: https://docs.pi-hole.net
 copyright: 'Copyright &copy; 2018 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
