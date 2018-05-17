@@ -2,7 +2,7 @@ Pi-hole *FTL*DNS supports two different methods for blocking queries. Both have 
 
 This setting can be updated by sending `SIGHUP` to `pihole-FTL` (`sudo killall -SIGHUP pihole-FTL`).
 
-## Pi-hole's IP based blocking
+## Pi-hole's IP blocking
 `/etc/pihole/pihole-FTL.conf` setting:
 ```
 BLOCKINGMODE=IP
@@ -25,7 +25,7 @@ doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:
 - Requires a webserver to run on your Pi-hole
 - May cause time-outs for HTTPS content even with properly configured firewall rules
 
-## Pi-hole's NXDOMAIN based blocking
+## Pi-hole's NXDOMAIN blocking
 `/etc/pihole/pihole-FTL.conf` setting:
 ```
 BLOCKINGMODE=NXDOMAIN
@@ -45,13 +45,13 @@ Queries DNS queries will be answered with an empty response (no answer section) 
 ##### Disadvantage
 - Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
 
-## Pi-hole's `NULL` IP based blocking
+## Pi-hole's unspecified IP blocking
 `/etc/pihole/pihole-FTL.conf` setting:
 ```
 BLOCKINGMODE=NULL
 ```
 
-Queries will be answered with the local IP addresses of your Pi-hole (as configured in your `setupVars.conf` file)
+Queries will be answered with the unspecified address
 ```
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
