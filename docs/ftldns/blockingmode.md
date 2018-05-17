@@ -30,7 +30,7 @@ doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:
 ```
 BLOCKINGMODE=NXDOMAIN
 ```
-Queries DNS queries will be answered with an empty response (no answer section) and status `NXDOMAIN` (*no such domain*)
+Queries will be answered with an empty response (no answer section) and status `NXDOMAIN` (*no such domain*)
 ```
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
