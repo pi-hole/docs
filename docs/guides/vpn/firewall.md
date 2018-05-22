@@ -1,93 +1,167 @@
-### Optional: Firewall configuration (using iptables)
-If your server is visible to the world, you will want prevent port 53/80 from being accessible from the global Internet. You will want be only able to connect to your Pi-hole from within the VPN.
+### (optional) Secure the server with firewall rules (`iptables`)
 
-Using `iptables`: First, verify that there is no rule that explicitly accepts `http` requests
-```
-sudo iptables -L --line-numbers
-```
+**This step is recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1)**.  If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
 
-If you get something like
-```
-Chain INPUT (policy ACCEPT)
-num  target     prot opt source               destination
-1    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http
-2    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
-3    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain
+In addition to the risk of being an open resolver, your Web interface is also open to the world increasing the risk.  So you will want to prevent ports 53 and 80, respectively, from being accessible from the public Internet.
 
-Chain FORWARD (policy ACCEPT)
-num  target     prot opt source               destination
+It's recommended that you [clear out your entire firewall](https://serverfault.com/questions/200635/best-way-to-clear-all-iptables-rules) so you have full control over it's setup.  You have two options for setting up your firewall with your VPN.
 
-Chain OUTPUT (policy ACCEPT)
-num  target     prot opt source               destination
+#### Option 1: Allow everything from within your VPN
+
+Enter this command, which will allow all traffic through the VPN `tun0` interface.
+
 ```
-you have to first explicitly delete the first INPUT rule using:
-```
-sudo iptables -D INPUT 1
+iptables -I INPUT -i tun0 -j ACCEPT
 ```
 
-We recommend that you empty out the firewall so you have full control over its setup.
+#### Option 2: Explicitly allow what can be accessed within the VPN
 
-For setting up your firewall in conjunction with your VPN you have **TWO** options:
+These commands will allow DNS and HTTP needed for name resolution (using Pi-hole as a resolver) and accessing the Web interface, respectively.
 
-Option 1: Allow everything within your VPN:
 ```
-sudo iptables -I INPUT -i tun0 -j ACCEPT
-```
-or
-
-Option 2: Explicitly allow what can be accessed from within the VPN:
-```
-sudo iptables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT
-sudo iptables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT
-sudo iptables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT
-sudo iptables -A INPUT -i tun0 -p udp --destination-port 80 -j ACCEPT
+iptables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT
+iptables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT
+iptables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT
 ```
 
-Obviously, it is important to enable SSH and VPN access from anywhere
+You will also want to enable SSH and VPN access from anywhere.
+
 ```
-sudo iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT
-sudo iptables -A INPUT -p tcp --destination-port 1194 -j ACCEPT
-sudo iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT
+iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT
+iptables -A INPUT -p tcp --destination-port 1194 -j ACCEPT
+iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT
 ```
 
 The next crucial setting is to explicitly allow TCP/IP to do "three way handshakes":
+
 ```
-sudo iptables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 ```
 
-Also, we want to allow any loopback traffic, i.e. the Pi is allowed to talk to itself without any limitations using `127.0.0.0/8`:
+Also, we want to allow any loopback traffic, i.e. the server is allowed to talk to itself without any limitations using 127.0.0.0/8:
+
 ```
-sudo iptables -I INPUT -i lo -j ACCEPT
+iptables -I INPUT -i lo -j ACCEPT
 ```
 
-Finally, prevent access from anywhere else (i.e. if no rule has matched up to this point):
+Finally, reject access from anywhere else (i.e. if no rule has matched up to this point):
+
 ```
-sudo iptables -P INPUT DROP
+iptables -P INPUT DROP
 ```
 
-Optional: If you want to allow access to the Pi-hole from within the VPN *and* from the local network, you will have to explicitly allow your local network as well (assuming the local network is within the address space 192.168.**178**.1 - 192.168.**178**.254):
-```
-sudo iptables -A INPUT -s 192.168.178.0/24 -p tcp --destination-port 53 -j ACCEPT
-sudo iptables -A INPUT -s 192.168.178.0/24 -p udp --destination-port 53 -j ACCEPT
-sudo iptables -A INPUT -s 192.168.178.0/24 -p tcp --destination-port 80 -j ACCEPT
-sudo iptables -A INPUT -s 192.168.178.0/24 -p udp --destination-port 80 -j ACCEPT
-```
-See also [this](https://discourse.pi-hole.net/t/pihole-vpn-with-iptables/2384) thread on Discourse.
+###### Blocking HTTPS advertisement assets
 
+Since you're `:head-desk:`ing with `iptables`, you can also use this opportunity to block HTTPS advertisements to [improve blocking ads that are loaded via HTTPS](https://discourse.pi-hole.net/t/why-do-some-sites-take-forever-to-load-when-using-pi-hole/3654/4) and also deal with QUIC.
+
+> Why doesn't Pi-hole just use a certificate to prevent this?  The answer is [here](https://discourse.pi-hole.net/t/slow-loading-websites/3408/12).
+
+```
+iptables -A INPUT -p udp --dport 80 -j REJECT --reject-with icmp-port-unreachable
+iptables -A INPUT -p tcp --dport 443 -j REJECT --reject-with tcp-reset
+iptables -A INPUT -p udp --dport 443 -j REJECT --reject-with icmp-port-unreachable
+```
+
+Depending on the systems you have connecting, you may benefit from appending `--reject-with tcp-reset` to the command above.  If you still get slow load times of HTTPS assets, the above may help.
+
+If you want to test how your Pi-hole behaves with blocking HTTP vs. HTTPS assets, use [this page](https://pi-hole.net/pages-to-test-ad-blocking-performance/#https-test).
+
+##### IPv6 `iptables`
+
+If your server is reachable via IPv6, you'll need to run the same commands but using `ip6tables`:
+
+```
+ip6tables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT
+ip6tables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT
+ip6tables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT
+ip6tables -A INPUT -p tcp --destination-port 22 -j ACCEPT
+ip6tables -A INPUT -p tcp --destination-port 1194 -j ACCEPT
+ip6tables -A INPUT -p udp --destination-port 1194 -j ACCEPT
+ip6tables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+ip6tables -I INPUT -i lo -j ACCEPT
+ip6tables -A INPUT -p udp --dport 80 -j REJECT --reject-with icmp6-port-unreachable
+ip6tables -A INPUT -p tcp --dport 443 -j REJECT --reject-with tcp-reset
+ip6tables -A INPUT -p udp --dport 443 -j REJECT --reject-with icmp6-port-unreachable
+ip6tables -P INPUT DROP
+```
+View the rules you just created
+
+```
+iptables -L --line-numbers
+```
+
+and they should look something like this:
+
+```
+Chain INPUT (policy DROP)
+num  target     prot opt source               destination         
+1    ACCEPT     all  --  anywhere             anywhere            
+2    ACCEPT     all  --  anywhere             anywhere             state RELATED,ESTABLISHED
+3    ACCEPT     all  --  anywhere             anywhere            
+4    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
+5    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain
+6    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http
+7    ACCEPT     udp  --  anywhere             anywhere             udp dpt:80
+8    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:ssh
+9    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:openvpn
+10   ACCEPT     udp  --  anywhere             anywhere             udp dpt:openvpn
+11   ACCEPT     tcp  --  10.8.0.0/24          anywhere             tcp dpt:domain
+12   ACCEPT     udp  --  10.8.0.0/24          anywhere             udp dpt:domain
+13   ACCEPT     tcp  --  10.8.0.0/24          anywhere             tcp dpt:http
+14   ACCEPT     udp  --  10.8.0.0/24          anywhere             udp dpt:80
+15   ACCEPT     tcp  --  10.8.0.0/24          anywhere             tcp dpt:domain
+16   ACCEPT     tcp  --  10.8.0.0/24          anywhere             tcp dpt:http
+17   ACCEPT     udp  --  10.8.0.0/24          anywhere             udp dpt:domain
+18   ACCEPT     udp  --  10.8.0.0/24          anywhere             udp dpt:80
+19   REJECT     tcp  --  anywhere             anywhere             tcp dpt:https reject-with icmp-port-unreachable
+
+Chain FORWARD (policy ACCEPT)
+num  target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+num  target     prot opt source               destination  
+```
+
+Similarly, `ip6tables -L --line-numbers` should look like this:
+
+```
+Chain INPUT (policy DROP)
+num  target     prot opt source               destination         
+1    ACCEPT     all      anywhere             anywhere            
+2    ACCEPT     all      anywhere             anywhere             state RELATED,ESTABLISHED
+3    ACCEPT     tcp      anywhere             anywhere             tcp dpt:domain
+4    ACCEPT     udp      anywhere             anywhere             udp dpt:domain
+5    ACCEPT     tcp      anywhere             anywhere             tcp dpt:http
+6    ACCEPT     udp      anywhere             anywhere             udp dpt:80
+7    ACCEPT     tcp      anywhere             anywhere             tcp dpt:ssh
+8    ACCEPT     tcp      anywhere             anywhere             tcp dpt:openvpn
+9    ACCEPT     udp      anywhere             anywhere             udp dpt:openvpn
+10   REJECT     tcp      anywhere             anywhere             tcp dpt:https reject-with icmp6-port-unreachable
+
+Chain FORWARD (policy ACCEPT)
+num  target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+num  target     prot opt source               destination  
+```
+
+##### Verify the rules are working
+
+Connect to the VPN as a client and verify you can resolve DNS names as well as access the Pi-hole Web interface.  These settings are stored in memory until you save them.  If it's not working, you can restart your server to start from scratch.  Alternatively, you could also go through and delete lines with `iptables -D INPUT <SOME LINE NUMBER>`
+
+#### Save your `iptables`
+
+If things look good, you may want to save your rules so you can revert to them if you ever make changes to the firewall.  Save them with these commands:
+
+```
+iptables-save > /etc/pihole/rules.v4
+ip6tables-save > /etc/pihole/rules.v6
+```
+
+Similarly, you can restore these rules:
+
+```
+iptables-restore < /etc/pihole/rules.v4
+ip6tables-restore < /etc/pihole/rules.v6
+```
 ---
-### Optional: IPv6
-
-Note that you will have to repeat the firewall setup using `ip6tables` if your server is also reachable via IPv6:
-
-```
-sudo ip6tables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT
-sudo ip6tables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT
-sudo ip6tables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT
-sudo ip6tables -A INPUT -i tun0 -p udp --destination-port 80 -j ACCEPT
-sudo ip6tables -A INPUT -p tcp --destination-port 22 -j ACCEPT
-sudo ip6tables -A INPUT -p tcp --destination-port 1194 -j ACCEPT
-sudo ip6tables -A INPUT -p udp --destination-port 1194 -j ACCEPT
-sudo ip6tables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
-sudo ip6tables -I INPUT -i lo -j ACCEPT
-sudo ip6tables -P INPUT DROP
-```
