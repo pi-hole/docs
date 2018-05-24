@@ -78,11 +78,4 @@ Should `FTL` reply queries to blocked domains with IPs or `NXDOMAIN`?
 
 **[More details](blockingmode.md)**
 
-### BLOCKINGREGEX
-`BLOCKINGREGEX=...`
-
-If defined, `FTL` will block all incoming queries which match this RegEx.
-
-**[More details](regex.md)**
-
 {!abbreviations.md!}
