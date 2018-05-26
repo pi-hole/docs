@@ -32,14 +32,13 @@ doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:
 BLOCKINGMODE=IP-AAAA-NODATA
 ```
 
-Queries will be answered with the local IP addresses of your Pi-hole (as configured in your `setupVars.conf` file)
+Queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). AAAA queries will answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over your static IPv4 address
 ```
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 
 ;; ANSWER SECTION:
 doubleclick.net.        2       IN      A       192.168.2.11
-doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:4242
 ```
 
 ##### Advantage
