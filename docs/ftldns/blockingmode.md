@@ -29,7 +29,7 @@ doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:
 ## Pi-hole's IPv6 NODATA blocking
 `/etc/pihole/pihole-FTL.conf` setting:
 ```
-BLOCKINGMODE=IP-AAAA-NODATA
+BLOCKINGMODE=IP-NODATA-AAAA
 ```
 
 Queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). AAAA queries will answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over your static IPv4 address
