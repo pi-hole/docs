@@ -24,6 +24,30 @@ doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:
 ##### Disadvantages
 - Requires a webserver to run on your Pi-hole
 - May cause time-outs for HTTPS content even with properly configured firewall rules
+- May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
+
+## Pi-hole's IPv6 NODATA blocking
+`/etc/pihole/pihole-FTL.conf` setting:
+```
+BLOCKINGMODE=IP-NODATA-AAAA
+```
+
+Queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). AAAA queries will answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over your static IPv4 address
+```
+;; QUESTION SECTION:
+;doubleclick.net.               IN      ANY
+
+;; ANSWER SECTION:
+doubleclick.net.        2       IN      A       192.168.2.11
+```
+
+##### Advantage
+- Shows blocking page from which blocked webpages can be whitelisted
+- Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
+
+##### Disadvantages
+- Requires a webserver to run on your Pi-hole
+- May cause time-outs for HTTPS content even with properly configured firewall rules
 
 ## Pi-hole's NXDOMAIN blocking
 `/etc/pihole/pihole-FTL.conf` setting:
