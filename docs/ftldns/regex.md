@@ -4,11 +4,7 @@ We implement the ERE flavor similar to the one used by the UNIX `egrep` (or `gre
 Our implementation is computationally inexpensive as each domain is only checked once for a match (if you query `google.com`, it will be checked against your RegEx. Any subsequent query to the same domain will not be checked again until you restart `pihole-FTL`).
 
 ## How to use regular expressions for blocking
-Add a line
-```
-BLOCKINGREGEX=^abc$
-```
-in your `/etc/pihole/pihole-FTL.conf` and restart `pihole-FTL`. **Note: this is subject to change (we plan to support a list of regular expressions for blocking in the near future).**
+*FTL*DNS reads in regular expression filters from `/etc/pihole/regex.list` (one expression per line).
 
 ## Pi-hole regular expressions tutorial
 We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing blocking rules (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
