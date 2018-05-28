@@ -54,7 +54,8 @@ sudo apt install unbound
 
 Optional: Download the list of primary root servers (serving the domain `.`). Unbound ships its own list but we can also download the most recent list and update it whenever we think it is a good idea. Note: there is no point in doing it more often then every 6 months.
 ```
-sudo wget https://www.internic.net/domain/named.root -O /var/lib/unbound/root.hints
+wget -O root.hints https://www.internic.net/domain/named.root 
+sudo mv root.hints /var/lib/unbound/
 ```
 
 ### Configure `unbound`
