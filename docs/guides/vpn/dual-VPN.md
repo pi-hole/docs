@@ -1,4 +1,4 @@
-If you however want to run two VPN servers, one that routes the traffic and one that answers only to DNS requests, you would have to create another instance of OpenVPN.
+If you want to run two VPN servers, one that routes the traffic and one that answers only to DNS requests, you would have to create another instance of OpenVPN.
 
 Why would you want to do this?
 
