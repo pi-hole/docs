@@ -63,7 +63,7 @@ If you want to add more clients, you simply need to run this script again!
 ```
 ### Install Pi-hole
 
-Next, install Pi-hole and choose `tun0` as the interface.  You can accept all the defaults, or configure Pi-hole to your liking.  The interface selection is the most important step; if you don't choose `tun0` (at least to begin with), it will not work properly.
+Next, install Pi-hole and choose `tun0` as the interface and `10.8.0.1/24` as the IP address. You can accept the rest of the defaults, or configure Pi-hole to your liking.  The interface selection is the most important step; if you don't choose `tun0` (at least to begin with), it will not work properly.
 
 ```
 curl -sSL https://install.pi-hole.net | bash
