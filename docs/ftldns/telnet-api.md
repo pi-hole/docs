@@ -118,6 +118,7 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
  version v1.6-3-g106498d-dirty
  tag v1.6
  branch master
+ hash 106498d
  date 2017-03-26 13:10:43 +0200
  ```
 
