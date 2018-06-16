@@ -72,7 +72,7 @@ Which privacy level is used?
 Should `FTL` ignore queries coming from the local machine?
 
 ### BLOCKINGMODE
-`BLOCKINGMODE=IP|IP-AAAA-NODATA|NXDOMAIN|NULL`
+`BLOCKINGMODE=IP-AAAA-NODATA|IP|NXDOMAIN|NULL`
 
 How should `FTL` reply to blocked queries?
 
