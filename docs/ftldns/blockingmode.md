@@ -28,7 +28,6 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 
 ##### Disadvantage
 - Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
-- Client's may try to resolve blocked domains more often when they think that `NXDOMAIN` cannot be the correct reply
 
 
 ## Pi-hole's IP (IPv6 NODATA) blocking
@@ -91,6 +90,6 @@ Blocked queries will be answered with an empty response (no answer section) and 
 ```
 
 ##### Advantages & Disadvantages
-Similar to `NULL` blocking, but experiments suggest that client's may try to resolve blocked domains more often compared to `NULL` blocking.
+Similar to `NULL` blocking, but experiments suggest that clients may try to resolve blocked domains more often compared to `NULL` blocking.
 
 {!abbreviations.md!}
