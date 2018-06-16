@@ -1,4 +1,4 @@
-site_name: "Pi-hole documentation"
+site_name: "Pi-hole documentation for v4.0+"
 site_url: https://docs.pi-hole.net
 copyright: 'Copyright &copy; 2018 Pi-hole LLC'
 remote_branch: gh-pages
