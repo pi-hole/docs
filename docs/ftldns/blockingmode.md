@@ -2,54 +2,7 @@ Pi-hole *FTL*DNS supports two different methods for blocking queries. Both have 
 
 This setting can be updated by sending `SIGHUP` to `pihole-FTL` (`sudo killall -SIGHUP pihole-FTL`).
 
-## Pi-hole's IP (IPv6 NODATA) blocking (default)
-`/etc/pihole/pihole-FTL.conf` setting:
-```
-BLOCKINGMODE=IP-NODATA-AAAA
-```
-
-Blocked queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). Blocked AAAA queries will answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address
-```
-;; QUESTION SECTION:
-;doubleclick.net.               IN      ANY
-
-;; ANSWER SECTION:
-doubleclick.net.        2       IN      A       192.168.2.11
-```
-
-##### Advantage
-- Shows blocking page from which blocked domains can be whitelisted
-- Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
-
-##### Disadvantages
-- Requires a webserver to run on your Pi-hole
-- May cause time-outs for HTTPS content even with properly configured firewall rules
-
-## Pi-hole's full IP blocking
-`/etc/pihole/pihole-FTL.conf` setting:
-```
-BLOCKINGMODE=IP
-```
-
-Blocked queries will be answered with the local IP addresses of your Pi-hole (as configured in your `setupVars.conf` file)
-```
-;; QUESTION SECTION:
-;doubleclick.net.               IN      ANY
-
-;; ANSWER SECTION:
-doubleclick.net.        2       IN      A       192.168.2.11
-doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:4242
-```
-
-##### Advantage
-- Shows blocking page from which blocked domains can be whitelisted
-
-##### Disadvantages
-- Requires a webserver to run on your Pi-hole
-- May cause time-outs for HTTPS content even with properly configured firewall rules
-- May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
-
-## Pi-hole's unspecified IP blocking
+## Pi-hole's unspecified IP blocking (default)
 `/etc/pihole/pihole-FTL.conf` setting:
 ```
 BLOCKINGMODE=NULL
@@ -76,6 +29,54 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 ##### Disadvantage
 - Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
 - Client's may try to resolve blocked domains more often when they think that `NXDOMAIN` cannot be the correct reply
+
+
+## Pi-hole's IP (IPv6 NODATA) blocking
+`/etc/pihole/pihole-FTL.conf` setting:
+```
+BLOCKINGMODE=IP-NODATA-AAAA
+```
+
+Blocked queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). Blocked AAAA queries will answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address
+```
+;; QUESTION SECTION:
+;doubleclick.net.               IN      ANY
+
+;; ANSWER SECTION:
+doubleclick.net.        2       IN      A       192.168.2.11
+```
+
+##### Advantage
+- Shows blocking page from which blocked domains can be whitelisted
+- Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
+
+##### Disadvantages
+- Requires a webserver to run on your Pi-hole
+- May cause time-outs for HTTPS content even with properly configured firewall rules
+
+
+## Pi-hole's full IP blocking
+`/etc/pihole/pihole-FTL.conf` setting:
+```
+BLOCKINGMODE=IP
+```
+
+Blocked queries will be answered with the local IP addresses of your Pi-hole (as configured in your `setupVars.conf` file)
+```
+;; QUESTION SECTION:
+;doubleclick.net.               IN      ANY
+
+;; ANSWER SECTION:
+doubleclick.net.        2       IN      A       192.168.2.11
+doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:4242
+```
+##### Advantage
+- Shows blocking page from which blocked domains can be whitelisted
+
+##### Disadvantages
+- Requires a webserver to run on your Pi-hole
+- May cause time-outs for HTTPS content even with properly configured firewall rules
+- May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
 
 
 ## Pi-hole's NXDOMAIN blocking
