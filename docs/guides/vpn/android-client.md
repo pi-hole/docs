@@ -1,10 +1,9 @@
-Full article: https://github.com/pi-hole/pi-hole/wiki/Pi-hole---OpenVPN-server
+- Install the official OpenVPN App from the [App Store](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
 
-1. Install the official OpenVPN App from the [App Store](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
+- Log into your OpenVPN server and use the road warrior installer to create a new certificate for your device:
 
-2. Log into your OpenVPN server and use the road warrior installer to create a new certificate for your device:
- ```
-root@ubuntu-512mb-fra1-01:~# bash openvpn-install.sh 
+```
+root@ubuntu-512mb-fra1-01:~# bash openvpn-install.sh
 Looks like OpenVPN is already installed
 
 What do you want to do?
@@ -35,7 +34,7 @@ Data Base Updated
 Client android added, configuration is available at /root/android.ovpn
 ```
 
-3. Copy the mentioned file (`/root/android.ovpn`) to your Android device (e.g. SD card) and import it in the app:
+- Copy the mentioned file (`/root/android.ovpn`) to your Android device (e.g. SD card) and import it in the app:
 
  ![](Android-Import-1.png)
 
@@ -45,10 +44,10 @@ Client android added, configuration is available at /root/android.ovpn
 
  ![](Android-Import-4.png)
 
-4. Connect to your OpenVPN server
+- Connect to your OpenVPN server
 
   ![](Android-Connected.png)
 
-5. You are ready to go!
+- You are ready to go!
 
   ![](Android-Pi-hole.png)
