@@ -8,7 +8,7 @@ So why not use the VPN tunnel to answer to DNS queries only? No traffic goes thr
 
 You can even use the same .ovpn file, with minor modifications (no need to generate it again).
 
-###Prerequisites and Configuration
+### Prerequisites and Configuration
 We're going to use the original configuration file and copy it and then, edit the second file:
 
 ```sudo cp /etc/openvpn/server.conf /etc/openvpn/server2.conf sudo nano /etc/openvpn/server2.conf```
@@ -48,7 +48,7 @@ When editing the file, update the port from the provious value, to the port you 
 Before testing, make sure you:
 
 1. have the port forwarded to the second instance of VPN
-2. ```ps ax | grep openvpn``` should show you two instances of openvpn running (with different configs)
+2. `ps ax | grep openvpn` should show you two instances of openvpn running (with different configs)
 3. you modified the ovpn file and loaded it onto the client.
 
 **Note, when connected to your secondary VPN connection (the DNS only one), you will not get a Pi-hole splash page when accessing a blocked domain directly. The page will not load or it will load with an error, and that's because we didn't route the traffic through the VPN and we didn't create an iptables rule for masquerading, so the return packets (since they are not part of the same LAN subset as your VPN-CLient-AssignedIps) get lost.**
