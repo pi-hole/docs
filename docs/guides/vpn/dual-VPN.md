@@ -11,7 +11,9 @@ You can even use the same .ovpn file, with minor modifications (no need to gener
 ### Prerequisites and Configuration
 We're going to use the original configuration file and copy it and then, edit the second file:
 
-```sudo cp /etc/openvpn/server.conf /etc/openvpn/server2.conf sudo nano /etc/openvpn/server2.conf```
+```
+sudo cp /etc/openvpn/server.conf /etc/openvpn/server2.conf sudo nano /etc/openvpn/server2.conf
+```
 
 We'll need to change the port to a diferent one from the original, so that it does not conflict with the first instance of OpenVPN
 
