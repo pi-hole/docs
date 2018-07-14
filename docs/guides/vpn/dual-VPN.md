@@ -32,13 +32,13 @@ Make sure that the DNS requests go though the instance of OpenVPN:
 push "dhcp-option DNS 10.9.0.1"
 ```
 
-One other setting that we need to change is to comment out the `bypass-dhcp` instruction so that it looks like below: 
+One other setting that we need to change is to comment out the `bypass-dhcp` instruction so that it looks like: 
 
 ```
 # push "redirect-gateway def1 bypass-dhcp"`.
 ``` 
 
-Commenting out this line, ensures that no traffic is routed via the VPN server.
+Commenting out this line ensures that no traffic is routed via the VPN server.
 
 Save the file and start the second instance of OpenVPN:
 
@@ -46,7 +46,7 @@ Save the file and start the second instance of OpenVPN:
 systemctl start openvpn@server2.service
 ```
 
-*If your distribution does not have `systemctl` you may use commands below to start OpenVPN with your second configuration as a daemon:* 
+*If your distribution does not have `systemctl` you may use command below to start OpenVPN with your second configuration as a daemon:* 
 
 ```bash
 /usr/sbin/openvpn --daemon --writepid /var/run/openvpn/server2.pid --cd /etc/openvpn --config server2.conf --script-security 2
