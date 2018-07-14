@@ -31,7 +31,7 @@ Save the file and run the second instance of OpenVPN:
 systemctl start openvpn@server2.service
 ```
 
-If the distro doesn’t have `systemctl` you may use commands like below to start your OpenVPN with your second configuration as a daemon: 
+If your distro doesn’t have `systemctl` you may use commands like below to start OpenVPN with your second configuration as a daemon: 
 
 ```
 /usr/sbin/openvpn --daemon --writepid /var/run/openvpn/server2.pid --cd /etc/openvpn --config server2.conf --script-security 2
