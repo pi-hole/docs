@@ -32,7 +32,7 @@ Make sure that the DNS requests go though the instance of OpenVPN:
 push "dhcp-option DNS 10.9.0.1"
 ```
 
-One other setting that we need to change is to comment out `# push "redirect-gateway def1 bypass-dhcp"`. TODO -- Explain why this is needed.
+One other setting that we need to change is to comment out `# push "redirect-gateway def1 bypass-dhcp"`. Commenting out this line, ensures that no traffic is routed via the VPN server.
 
 Save the file and start the second instance of OpenVPN:
 
