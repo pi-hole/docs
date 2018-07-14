@@ -18,7 +18,7 @@ sudo nano /etc/openvpn/server2.conf
 
 We will need to change the port to one different from the original, so that it does not conflict with the first instance of OpenVPN. Assuming you used the default port configuration, you should have 1194 as the port. You need to change this to a different value, making sure the port is available - 1195 should be.
 
-Nex, if needed, port forward the newly configured port from your router to your device. You will also need to assign a different class of IP addresses that will serve this connection only. 
+Next, if needed, port forward the newly configured port from your router to your device. You will also need to assign a different class of IP addresses that will serve this connection only. 
 
 Your server line should look like this:
 
