@@ -32,21 +32,27 @@ Make sure that the DNS requests go though the instance of OpenVPN:
 push "dhcp-option DNS 10.9.0.1"
 ```
 
-One other setting that we need to change is to comment out `# push "redirect-gateway def1 bypass-dhcp"`. Commenting out this line, ensures that no traffic is routed via the VPN server.
+One other setting that we need to change is to comment out the `bypass-dhcp` instruction so that it looks like below: 
+
+```
+# push "redirect-gateway def1 bypass-dhcp"`.
+``` 
+
+Commenting out this line, ensures that no traffic is routed via the VPN server.
 
 Save the file and start the second instance of OpenVPN:
 
-```
+```bash
 systemctl start openvpn@server2.service
 ```
 
-*If your distribution does not have `systemctl` you may use commands like below to start OpenVPN with your second configuration as a daemon:* 
+*If your distribution does not have `systemctl` you may use commands below to start OpenVPN with your second configuration as a daemon:* 
 
-```
+```bash
 /usr/sbin/openvpn --daemon --writepid /var/run/openvpn/server2.pid --cd /etc/openvpn --config server2.conf --script-security 2
 ```
 
-Finally, edit the existing `.ovpn` file that is used for this connection. Update the port from the previous value to the port you used for the second instance of OpenVPN.
+Finally, edit the existing `.ovpn` file used for the client connection. Update the port from the previous value to the port you used for the second instance of OpenVPN.
 
 #### Testing
 Before testing, make sure that:
@@ -55,4 +61,4 @@ Before testing, make sure that:
 2. `ps ax | grep openvpn` shows two instances of OpenVPN running (with different configs).
 3. The modified ovpn file is loaded on the client.
 
-**Note: when connected to your DNS only VPN connection you will not get a Pi-hole splash page when accessing a blocked domain directly. The page will not load or it may load with an error. This is because the web server traffic is not routed through the VPN. We did not create an `iptables` rule for masquerading and the return packets (since they are not part of the same LAN subset as your VPN Client) are prevented.**
+*Note: when connected to your DNS only VPN connection **you will not get a Pi-hole splash page when accessing a blocked domain directly.** The page will not load or it may load with an error. **This is because the web server traffic is not routed through the VPN.** We did not create an `iptables` rule for masquerading, and the return packets (since they are not part of the same LAN subset as your VPN Client) are prevented.*
