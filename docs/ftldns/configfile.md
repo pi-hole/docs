@@ -78,4 +78,14 @@ How should `FTL` reply to blocked queries?
 
 **[More details](blockingmode.md)**
 
+### REGEX_DEBUGMODE
+```
+REGEX_DEBUGMODE=false|true
+```
+
+Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.
+
+**[More details](regex/debugging.md)**
+
+
 {!abbreviations.md!}
