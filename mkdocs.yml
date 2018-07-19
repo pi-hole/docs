@@ -44,7 +44,9 @@ pages:
   - 'Configuration': "ftldns/configfile.md"
   - 'DNS resolver': "ftldns/dns-resolver.md"
   - 'Blocking mode': "ftldns/blockingmode.md"
-  - 'RegEx blocking': "ftldns/regex.md"
+  - 'RegEx blocking':
+    - "Overview": "ftldns/regex/overview.md"
+    - "Tutorial": "ftldns/regex/tutorial.md"
   - 'Privacy levels': "ftldns/privacylevels.md"
   - 'Long-term database': "ftldns/database.md"
   - 'Telnet API': "ftldns/telnet-api.md"

@@ -30,6 +30,8 @@
 *[GCC]: the GNU compiler collection (compiler system produced by the GNU Project supporting various programming languages)
 *[repo]: Repository on GitHub
 *[RegEx]: Regular expression
+*[Regex]: Regular expression
+*[regex]: Regular expression
 *[SQLite3]: Database engine that handles an SQL databases in a file
 *[ID]: Indentifier
 *[SSH]: Secure Shell is a cryptographic network protocol for operating network services securely over an unsecured network
