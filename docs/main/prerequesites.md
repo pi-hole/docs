@@ -29,13 +29,47 @@ Due to the complexity of different ways of setting an IP address across differen
 
 ###Ports
 
-| Service             | Port   | Notes |
-| --------------------|:-------|:------|
-| dnsmasq              | 53   |If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries.|
-|lighttpd|80|If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running.|
-|pihole-FTL | 4711|FTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else.|
+| Service             | Port   | Protocol | Notes |
+| --------------------|:-------|:------| --------------------|
+| dnsmasq - DNS        | 53   | TCP/UDP |If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries.|
+| dnsmasq - DHCP | 67 | IPv4 UDP |The DHCP server is an optional feature that requires additional ports.|
+| dnsmasq - DHCPv6 | 547 | IPv6 UDP |The DHCP server is an optional feature that requires additional ports.|
+|lighttpd|80|TCP|If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running.|
+|pihole-FTL | 4711| TCP |FTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else.|
 
 !!! info
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
+    The use of dnsmasq on ports _67_ or _547_ is optional and required if you use the DHCP functions of Pi-hole.
 
+###Firewalls
+
+Below are some examples of firewall rules that will need to be set on your Pi-hole server in order to use the functions available. These are only shown as guides, the actual commands used will be found with your distributions documentation.
+
+####IPTables
+
+IPTables uses two sets of tables. One set is for IPv4 chains, and the second is for IPv6 chains. If only IPv4 blocking is used for the Pi-hole installation, only apply the rules for IP4Tables. Full Stack (IPv4 and IPv6) require both sets of rules to be applied. *Note: These examples insert the rules at the front of the chain. Please see your distributions documentation to see the exact proper command to use.*
+
+IPTables (IPv4)
+
+```bash
+iptables -I INPUT 1 -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -I INPUT 1 -p tcp -m tcp --dport 53 -j ACCEPT
+iptables -I INPUT 1 -p udp -m udp --dport 53 -j ACCEPT
+iptables -I INPUT 1 -p udp -m tcp --dport 67 -j ACCEPT
+iptables -I INPUT 1 -p udp -m udp --dport 67 -j ACCEPT
+iptables -I INPUT 1 -p tcp -m tcp --dport 4711:4720 -i lo -j ACCEPT
+```
+IP6Tables (IPv6)
+
+```bash
+ip6tables -I INPUT -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
+```
+FirewallD
+
+<TODO: Explain how to use FTLDNS with firewall-cmd>
+
+```bash
+firewall-cmd --permanent --add-service=http --add-service=dns --add-service=dhcp --add-service=dhcpv6
+firewall-cmd --reload
+```
 {!abbreviations.md!}
