@@ -66,10 +66,11 @@ ip6tables -I INPUT -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
 ```
 #### FirewallD
 
-<TODO: Explain how to use FTLDNS with firewall-cmd>
-
 ```bash
 firewall-cmd --permanent --add-service=http --add-service=dns --add-service=dhcp --add-service=dhcpv6
+firewall-cmd --permanent --new-zone=ftl
+firewall-cmd --permanent --zone=ftl --add-interface=lo
+firewall-cmd --permanent --zone=ftl --add-port=4711-4720/tcp
 firewall-cmd --reload
 ```
 {!abbreviations.md!}
