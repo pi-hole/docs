@@ -66,6 +66,8 @@ ip6tables -I INPUT -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
 ```
 #### FirewallD
 
+Using the `--permanent` argument will ensure the firewall rules persist reboots. If only IPv4 blocking is used for the Pi-hole installation, the `dhcpv6` service can be removed the the commands below. Create a new zone for the local interface (`lo`) for the pihole-FTL ports to ensure the API is only accessible locally. Finally `--reload` to have the new firewall configuration to take effect immediately.
+
 ```bash
 firewall-cmd --permanent --add-service=http --add-service=dns --add-service=dhcp --add-service=dhcpv6
 firewall-cmd --permanent --new-zone=ftl
