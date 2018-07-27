@@ -29,13 +29,13 @@ Due to the complexity of different ways of setting an IP address across differen
 
 ### Ports
 
-| Service             | Port   | Protocol | Notes |
-| --------------------|:-------|:------| --------------------|
-| dnsmasq - DNS        | 53   | TCP/UDP |If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries.|
-| dnsmasq - DHCP | 67 | IPv4 UDP |The DHCP server is an optional feature that requires additional ports.|
-| dnsmasq - DHCPv6 | 547 | IPv6 UDP |The DHCP server is an optional feature that requires additional ports.|
-|lighttpd|80|TCP|If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running.|
-|pihole-FTL | 4711:4720 | TCP |FTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else.|
+| Service             | Port         | Protocol | Notes               |
+| --------------------|:-------------|:---------| --------------------|
+| dnsmasq             | 53  (DNS)    | TCP/UDP  | If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries. |
+| dnsmasq             | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
+| dnsmasq             | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
+| lighttpd            | 80  (HTTP)   | TCP      | If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running. |
+| pihole-FTL          | 4711:4720    | TCP      | FTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else. |
 
 !!! info
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
