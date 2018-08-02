@@ -35,7 +35,7 @@ Due to the complexity of different ways of setting an IP address across differen
 | dnsmasq             | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
 | dnsmasq             | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
 | lighttpd            | 80  (HTTP)   | TCP      | If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running. |
-| pihole-FTL          | 4711:4720    | TCP      | FTL is our API engine and by default uses port 4711, but will increment if it's already in use by something else. |
+| pihole-FTL          | 4711    | TCP      | FTL is our API engine and uses port 4711 on the localhost interface.  This port should not be accessible from any other interface.|
 
 !!! info
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
@@ -57,7 +57,7 @@ iptables -I INPUT 1 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -p udp -m udp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -p udp -m tcp --dport 67 -j ACCEPT
 iptables -I INPUT 1 -p udp -m udp --dport 67 -j ACCEPT
-iptables -I INPUT 1 -p tcp -m tcp --dport 4711:4720 -i lo -j ACCEPT
+iptables -I INPUT 1 -p tcp -m tcp --dport 4711 -i lo -j ACCEPT
 ```
 IP6Tables (IPv6)
 
@@ -72,7 +72,7 @@ Using the `--permanent` argument will ensure the firewall rules persist reboots.
 firewall-cmd --permanent --add-service=http --add-service=dns --add-service=dhcp --add-service=dhcpv6
 firewall-cmd --permanent --new-zone=ftl
 firewall-cmd --permanent --zone=ftl --add-interface=lo
-firewall-cmd --permanent --zone=ftl --add-port=4711-4720/tcp
+firewall-cmd --permanent --zone=ftl --add-port=4711/tcp
 firewall-cmd --reload
 ```
 {!abbreviations.md!}
