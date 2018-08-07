@@ -1,5 +1,3 @@
-### <span style="color:red">Important: This documentation is for Pi-hole v4.0 which is currently under development</span>
-
 <p align="center">
 <a href="https://pi-hole.net"><img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole"></a><br/>
 <b>Network-wide ad blocking via your own Linux hardware</b><br/>
