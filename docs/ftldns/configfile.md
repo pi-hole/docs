@@ -7,11 +7,6 @@ Possible settings (**the option shown first is the default**):
 
 Listen only for local socket connections or permit all connections
 
-### QUERY_DISPLAY
-`QUERY_DISPLAY=yes|no`
-
-Display all queries? Set to `no` to hide query display
-
 ### AAAA_QUERY_ANALYSIS
 `AAAA_QUERY_ANALYSIS=yes|no`
 
