@@ -51,7 +51,7 @@ Proceed to create a configuration file for `cloudflared` by copying the followin
 
 ```
 # Commandline args for cloudflared
-CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query
+CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
 ```
 
 Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user
