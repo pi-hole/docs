@@ -15,6 +15,8 @@ Note that DNS resolution will not be available as long as `pihole-FTL` is stoppe
 
 Another way of controlling the size of the long-term database is setting a maximum age for log queries to keep using the config parameter [`MAXDBDAYS`](configfile.md#maxdbdays). It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
 
+The config parameter [`DBIMPORT`](configfile.md#dbimport) controls whether `FTL` loads information from the database on startup. It need to do this to populate the internal datastructure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
+
 ---
 
 The long-term database contains three tables:

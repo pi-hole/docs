@@ -82,5 +82,12 @@ Controls if *FTL*DNS should print extended details about regex matching into `pi
 
 **[More details](regex/overview.md)**
 
+### DBIMPORT
+`DBIMPORT=yes|no`
+
+Should `FTL` load information from the database on startup to be aware of the most recent history?
+
+**[More details](database.md)**
+
 
 {!abbreviations.md!}
