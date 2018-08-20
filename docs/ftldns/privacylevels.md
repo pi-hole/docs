@@ -23,8 +23,8 @@ This setting disables
 - Top Clients
 - Clients over time
 
-### Level 3 - paranoia mode (hide everything)
-Disabled basically everything except the most anonymous statistics
+### Level 3 - paranoia mode (anonymize everything)
+Disable all details except the most anonymous statistics
 
 This setting disables
 
@@ -34,5 +34,8 @@ This setting disables
 - Clients over time
 - Query Log
 - Long-term database logging
+
+### Level 4 - disabled statistics
+Disables all statistics processing at all. Even the query counters will not be available.
 
 {!abbreviations.md!}

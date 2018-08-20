@@ -55,7 +55,7 @@ Up to how many hours of queries should be imported from the database and logs? M
 On which port should FTL be listening?
 
 ### PRIVACYLEVEL
-`PRIVACYLEVEL=0|1|2|3`
+`PRIVACYLEVEL=0|1|2|3|4`
 
 Which privacy level is used?
 
