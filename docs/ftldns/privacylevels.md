@@ -37,5 +37,6 @@ This setting disables
 
 ### Level 4 - disabled statistics
 Disables all statistics processing at all. Even the query counters will not be available.
+Make sure you have disabled logging to the file `/var/log/pihole.log` using `sudo pihole logging off`.
 
 {!abbreviations.md!}
