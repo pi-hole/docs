@@ -43,6 +43,7 @@ pages:
   - 'Overview': "ftldns/index.md"
   - 'Configuration': "ftldns/configfile.md"
   - 'DNS resolver': "ftldns/dns-resolver.md"
+  - 'DNS cache': "ftldns/dns-cache.md"
   - 'Blocking mode': "ftldns/blockingmode.md"
   - 'RegEx blocking':
     - "Overview": "ftldns/regex/overview.md"
