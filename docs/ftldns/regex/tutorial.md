@@ -39,9 +39,9 @@ To illustrate the usefulness of multipliers (and bounds), we provide a few examp
 
 Example | Interpretation
 --- | ---
-`^r-*\.movie` | matches a domain like `r------movie.com` where the number of dashes can be arbitrary (also none)
-`^r-?\.movie` | matches only the domains `rmovie.com` and `r-movie.com` but not those with more than one dash
-`^r-+\.movie` | matches only the domains with at least one dash, i.e., not `rmovie.com`
+`^r-*movie` | matches a domain like `r------movie.com` where the number of dashes can be arbitrary (also none)
+`^r-?movie` | matches only the domains `rmovie.com` and `r-movie.com` but not those with more than one dash
+`^r-+movie` | matches only the domains with at least one dash, i.e., not `rmovie.com`
 `^a?b+` | matches domains like `abbbb.com` (zero or one `a` at the beginning followed by one or more `b`)
 
 ### Character groups (`[]`)
