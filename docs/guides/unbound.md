@@ -68,7 +68,9 @@ Highlights:
  `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 ```ini
 server:
-    verbosity: 1
+    logfile: "/var/log/unbound/unbound.log"
+    verbosity: 0
+
     port: 5353
     do-ip4: yes
     do-udp: yes
