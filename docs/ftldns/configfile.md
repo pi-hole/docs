@@ -12,6 +12,11 @@ Listen only for local socket connections or permit all connections
 
 Allow `FTL` to analyze AAAA queries from pihole.log?
 
+### ANALYZE_ONLY_A_AND_AAAA
+`ANALYZE_ONLY_A_AND_AAAA=false|true`
+
+Should `FTL` only analyze A and AAAA queries?
+
 ### RESOLVE_IPV6
 `RESOLVE_IPV6=yes|no`
 
