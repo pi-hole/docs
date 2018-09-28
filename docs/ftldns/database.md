@@ -13,6 +13,12 @@ sudo service pihole-FTL start
 ```
 Note that DNS resolution will not be available as long as `pihole-FTL` is stopped.
 
+The database can be backed up while FTL is running when using the SQLite3 Online backup method, e.g.,
+```
+sqlite3 /etc/pihole/pihole-FTL.db ".backup /home/pi/pihole-FTL.db.backup"
+```
+will create `/home/pi/pihole-FTL.db.backup` which is a copy of your long-term database.
+
 Another way of controlling the size of the long-term database is setting a maximum age for log queries to keep using the config parameter [`MAXDBDAYS`](configfile.md#maxdbdays). It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
 
 The config parameter [`DBIMPORT`](configfile.md#dbimport) controls whether `FTL` loads information from the database on startup. It need to do this to populate the internal datastructure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
