@@ -43,8 +43,8 @@ pages:
   - 'Prerequisites': 'main/prerequesites.md'
   - 'Installation': 'main/basic-install.md'
   - 'Post-Install': 'main/post-install.md'
-  - 'Core Functions': 'main/core-functions.md'
   - 'Updating': 'main/update.md'
+- 'Core Functions': 'main/core-functions.md'
 - 'FTLDNS':
   - 'Overview': "ftldns/index.md"
   - 'Configuration': "ftldns/configfile.md"
