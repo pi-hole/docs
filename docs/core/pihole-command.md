@@ -12,7 +12,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Feature | Invocation |
  -------------- | --------------
 [Core](#core-script) | `pihole`
-[Whitelisting, Blacklisting and Wildcards](#whitelisting-blacklisting-and-wildcards) | `pihole -w`, `pihole -b`, `pihole -wild` 
+[Whitelisting, Blacklisting and Wildcards](#whitelisting-blacklisting-and-wildcards) | `pihole -w`, `pihole -b`, `pihole -wild`
 [Debugger](#debugger) | `pihole debug`
 [Log Flush](#log-flush) | `pihole flush`
 [Reconfigure](#reconfigure) | `pihole reconfigure`
@@ -34,7 +34,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | | |
  -------------- | --------------
 Help Command    | `pihole --help`
-Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) 
+Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
 Example Usage   | `pihole -b advertiser.example.com`
 
 The core script of Pi-hole provides the ability to tie many DNS related functions into a simple and user friendly management system, so that one may easily block unwanted content such as advertisements. For both the Command Line Interface (CLI) and Web Interface, we achieve this through the `pihole` command (this helps minimise code duplication, and allows users to read exactly what's happening using `bash` scripting). This "wrapper" elevates the current user (whether it be your own user account, or `www-data`) using `sudo`, but restricts the elevation to solely what can be called through the wrapper.
@@ -201,7 +201,7 @@ Uninstall Pi-hole from your system, giving the option to remove each dependency 
 | | |
  -------------- | --------------
 Help Command    | N/A
-Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) 
+Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
 Example Usage   | [`pihole status`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#status)
 
 Display the running status of Pi-hole's DNS and blocking services.
@@ -210,7 +210,7 @@ Display the running status of Pi-hole's DNS and blocking services.
 | | |
  -------------- | --------------
 Help Command    | `pihole disable --help`
-Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) 
+Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
 Example Usage   | [`pihole disable 5m`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#toggle)
 
 Toggle Pi-hole's ability to block unwanted domains. The disable option has the option to set a specified time before blocking is automatically re-enabled.
@@ -219,7 +219,7 @@ Toggle Pi-hole's ability to block unwanted domains. The disable option has the o
 | | |
  -------------- | --------------
 Help Command    | N/A
-Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) 
+Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
 Example Usage   | [`pihole restartdns`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#restartdns)
 
 Restart Pi-hole's DNS service.
@@ -240,7 +240,7 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
 | Feature | Invocation |
  -------------- | --------------
 [Web Script](#web-script) | `pihole -a`
-[Password](#password) | `pihole -a password` 
+[Password](#password) | `pihole -a password`
 [Temperature Unit](#temperature-unit) | `pihole -a celsius`, `pihole -a fahrenheit`, `pihole -a kelvin`
 [Host Record](#host-record) | `pihole -a hostrecord`
 [Email Address](#email-address) | `pihole -a email`
