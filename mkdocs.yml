@@ -44,7 +44,7 @@ pages:
   - 'Installation': 'main/basic-install.md'
   - 'Post-Install': 'main/post-install.md'
   - 'Updating': 'main/update.md'
-- 'Pi-hole Core'
+- 'Pi-hole Core':
   - '`pihole` command': 'main/pihole-command.md'
 - 'FTLDNS':
   - 'Overview': "ftldns/index.md"
