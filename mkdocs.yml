@@ -63,7 +63,7 @@ pages:
 - 'Guides':
   - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
   - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
-  - 'Editing Whitelisting and Blacklisting': guides/whitelist-blacklist.md
+  - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
   - 'Pi-hole and OpenVPN Server':
     - 'Overview': 'guides/vpn/overview.md'
     - 'Installation': 'guides/vpn/installation.md'
