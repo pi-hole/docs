@@ -4,6 +4,13 @@ We update the database file periodically and on exit of *FTL*DNS (triggered e.g.
 
 The location of the database can be configures by the config parameter [`DBFILE`](configfile.md#dbfile). It defaults to `/etc/pihole/pihole-FTL.db`. If the given file does not exist, *FTL*DNS will create a new (empty) database file.
 
+Another way of controlling the size of the long-term database is setting a maximum age for log queries to keep using the config parameter [`MAXDBDAYS`](configfile.md#maxdbdays). It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
+
+The config parameter [`DBIMPORT`](configfile.md#dbimport) controls whether `FTL` loads information from the database on startup. It need to do this to populate the internal datastructure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
+
+---
+### Split database
+
 You can split your long-term database by periodically rotating the database file (do this only when `pihole-FTL` is *not* running). The individual database contents can easily be merged when required.
 This could be implemented by running a monthly `cron` job such as:
 ```
@@ -13,15 +20,14 @@ sudo service pihole-FTL start
 ```
 Note that DNS resolution will not be available as long as `pihole-FTL` is stopped.
 
+### Backup database
+
 The database can be backed up while FTL is running when using the SQLite3 Online backup method, e.g.,
 ```
 sqlite3 /etc/pihole/pihole-FTL.db ".backup /home/pi/pihole-FTL.db.backup"
 ```
 will create `/home/pi/pihole-FTL.db.backup` which is a copy of your long-term database.
 
-Another way of controlling the size of the long-term database is setting a maximum age for log queries to keep using the config parameter [`MAXDBDAYS`](configfile.md#maxdbdays). It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
-
-The config parameter [`DBIMPORT`](configfile.md#dbimport) controls whether `FTL` loads information from the database on startup. It need to do this to populate the internal datastructure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
 
 ---
 
