@@ -1,4 +1,4 @@
-site_name: "Pi-hole documentation for v4.0+"
+site_name: "Pi-hole documentation"
 site_url: https://docs.pi-hole.net
 repo_url: "https://github.com/pi-hole/pi-hole/"
 edit_uri: ""
@@ -64,6 +64,9 @@ pages:
   - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
   - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
   - 'Upstream DNS Providers': guides/upstream-dns-providers.md
+  - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
+  - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
+  - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
   - 'Pi-hole and OpenVPN Server':
     - 'Overview': 'guides/vpn/overview.md'
     - 'Installation': 'guides/vpn/installation.md'
