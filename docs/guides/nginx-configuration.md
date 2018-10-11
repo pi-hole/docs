@@ -56,29 +56,29 @@ server {
 }
 ```
 
-7.1.	Create username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)  
+7.	Create username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)  
 `htpasswd -c /etc/nginx/.htpasswd exampleuser`
 
-7.2.    Change ownership of html directory to nginx user  
+8.    Change ownership of html directory to nginx user  
 	`chown -R www-data:www-data /var/www/html`
 
-7.3.    Make sure html directory is writable  
+9.    Make sure html directory is writable  
    `chmod -R 755 /var/www/html`
 
-7.4.    Start php7.0-fpm daemon  
+10.    Start php7.0-fpm daemon  
    `service php7.0-fpm start`
 
-7.5.    Start nginx webserver  
+11.    Start nginx webserver  
    `service nginx start`
 
 ### Optional configuration
 -       If you want to use your custom domain to access admin page (e.g.: `http://mydomain.internal/admin/settings.php` instead of `http://pi.hole/admin/settings.php`), make sure `mydomain.internal` is assigned to `server_name` in `/etc/nginx/sites-available/default`. E.g.: `server_name mydomain.internal;`
 
--       If you want to use block page for any blocked domain subpage (aka Nginx 404), add this to Pihole server block in your Nginx configuration file:
+-       If you want to use block page for any blocked domain subpage (aka Nginx 404), add this to Pi-hole server block in your Nginx configuration file:
 ```
 error_page 404 /pihole/index.php
 ```
--       When using nginx to serve pihole, Let's Encrypt can be used to directly configure nginx. Make sure to use your hostname instead of _ in `server_name _;` line above.
+-       When using nginx to serve Pi-hole, Let's Encrypt can be used to directly configure nginx. Make sure to use your hostname instead of _ in `server_name _;` line above.
 ```
 add-apt-repository ppa:certbot/certbot
 apt-get install certbot python-certbot-nginx

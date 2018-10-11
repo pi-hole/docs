@@ -63,7 +63,7 @@ pages:
 - 'Guides':
   - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
   - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
-  - 'Configuring NGINX for PiHole': guides/nginx-configuration.md
+  - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
   - 'Pi-hole and OpenVPN Server':
     - 'Overview': 'guides/vpn/overview.md'
     - 'Installation': 'guides/vpn/installation.md'
