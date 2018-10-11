@@ -154,7 +154,7 @@ Help Command    | `pihole logging --help`
 Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) 
 Example Usage   | [`pihole logging off`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#logging)
 
-This command specifies whether the Pi-hole log should be used, by commenting out `log-queries` within `/etc/dnsmasq.d/01-pihole.conf`
+This command specifies whether the Pi-hole log should be used, by commenting out `log-queries` within `/etc/dnsmasq.d/01-pihole.conf` and flushing the log.
  
 ### Query
 | | |
