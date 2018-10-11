@@ -169,7 +169,7 @@ This command will query your whitelist, blacklist, wildcards and adlists for a s
 
 * User-specified options are handled
 * Using `idn`, it will convert [Internationalized domain names](https://en.wikipedia.org/wiki/Internationalized_domain_name) into [punycode](https://en.wikipedia.org/wiki/Punycode)
-* The whitelist and the blacklist are searched (`/etc/pihole/*list`)
+* The whitelist and the blacklist are searched
 * The possible wildcard matches are then searched  (`/etc/dnsmasq.d/03-pihole-wildcard.conf`)
 * The adlists are then searched (`/etc/pihole/list.*.domains`)
 * Output is determined by the specified options, ensuring that a file name is only printed once
