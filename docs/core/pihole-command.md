@@ -14,7 +14,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Feature | Invocation |
  -------------- | --------------
 [Core](#core-script) | `pihole`
-[Whitelisting, Blacklisting and Wildcards](#whitelisting-blacklisting-and-wildcards) | `pihole -w`, `pihole -b`, `pihole -wild`
+[Whitelisting, Blacklisting and Regex](#whitelisting-blacklisting-and-regex) | `pihole -w`, `pihole -b`, `pihole -regex`, `pihole -wild`
 [Debugger](#debugger) | `pihole debug`
 [Log Flush](#log-flush) | `pihole flush`
 [Reconfigure](#reconfigure) | `pihole reconfigure`
@@ -41,22 +41,26 @@ Example Usage   | `pihole -b advertiser.example.com`
 
 The core script of Pi-hole provides the ability to tie many DNS related functions into a simple and user friendly management system, so that one may easily block unwanted content such as advertisements. For both the Command Line Interface (CLI) and Web Interface, we achieve this through the `pihole` command (this helps minimise code duplication, and allows users to read exactly what's happening using `bash` scripting). This "wrapper" elevates the current user (whether it be your own user account, or `www-data`) using `sudo`, but restricts the elevation to solely what can be called through the wrapper.
 
-### Whitelisting, Blacklisting and Wildcards
+### Whitelisting, Blacklisting and Regex
 | | |
  -------------- | --------------
-Help Command    | `pihole -w --help`, `pihole -b --help`, `pihole -wild --help`
+Help Command    | `pihole -w --help`, `pihole -b --help`, `pihole -regex --help`, `pihole -wild --help`
 Script Location | [`/opt/pihole/list.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/list.sh)
-Example Usage   | [`pihole -wild example.com example2.net`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#white-black-list)
+Example Usage   | [`pihole -regex '^example.com$' '.*\.example2.net'`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#white-black-list)
 
 Administrators need to be able to manually add and remove domains for various purposes, and these commands serve that purpose.
 
+See [Regex Blocking](/ftldns/regex/overview/) for more information about using Regex.
+
 **Basic Script Process**:
-* Each domain is validated using regex, to ensure invalid domains and IDNs are not added
+
+* Each domain is validated using regex (except when using `-regex`), to ensure invalid domains and IDNs are not added
 * A whitelisted domain gets added or removed from `/etc/pihole/whitelist.txt`
 * A blacklisted domain gets added or removed from `/etc/pihole/blacklist.txt`
   * On either list type, `gravity.sh` is then called to consolidate an updated copy of `gravity.list`, and the DNS server is reloaded
-* A wildcard domain gets added or removed from `/etc/dnsmasq.d/03-pihole-wildcard.conf`
-  * `gravity.sh` is then called to restart the DNS server
+* A regex blacklisted domain gets added or removed from `/etc/pihole/regex.list`
+* A wildcard domain gets converted into regex and added or removed from `/etc/pihole/regex.list`
+  * For both regex-based commands, `gravity.sh` is then called to restart the DNS server
 
 ### Debugger
 | | |
