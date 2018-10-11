@@ -90,6 +90,7 @@ Example Usage   | `pihole reconfigure`
 There are times where the administrator will need to repair or reconfigure the Pi-hole installation, which is performed via this command.
 
 **Basic Script Process**:
+
 * [`basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) will be run
   * **Reconfigure** will run through the first-time installation prompts, asking for upstream DNS provider, IP protocols, etc
   * **Repair** will retain your existing settings, and will attempt to repair any scripts or dependencies as necessary
@@ -135,6 +136,7 @@ Example Usage   | [`pihole -g`](https://discourse.pi-hole.net/t/the-pihole-comma
 Gravity is one of the most important scripts of Pi-hole. Its main purpose is to retrieve blocklists, and then consolidate them into one unique list for the built-in DNS server to use, but it also serves to complete the process of manual whitelisting, blacklisting and wildcard update. It is run automatically each week, but it can be invoked manually at any time.
 
 **Basic Script Process**:
+
 * It will determine Internet connectivity, and give time for `dnsmasq` to be resolvable on low-end systems if has just been restarted
 * It extracts all URLs and domains from `/etc/pihole/adlists.list`
 * It runs through each URL, downloading it if necessary
@@ -164,6 +166,7 @@ Example Usage   | [`pihole -q -exact -adlist example.domain.com`](https://discou
 This command will query your whitelist, blacklist, wildcards and adlists for a specified domain.
 
 **Basic Script Process**:
+
 * User-specified options are handled
 * Using `idn`, it will convert [Internationalized domain names](https://en.wikipedia.org/wiki/Internationalized_domain_name) into [punycode](https://en.wikipedia.org/wiki/Punycode)
 * The whitelist and the blacklist are searched (`/etc/pihole/*list`)
@@ -181,6 +184,7 @@ Example Usage   | `pihole -up`
 Check Pi-hole Core, Web Interface and FTL repositories to determine what upgrade (if any) is required. It will then automatically update and reinstall if necessary.
 
 **Basic Script Process**:
+
 * Script determines if updates are available by querying GitHub
 * Updated files are downloaded to the local filesystem using `git`
 * [`basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) is run
