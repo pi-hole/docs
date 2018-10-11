@@ -1,6 +1,5 @@
-# Caddy Webserver Frontend
 
-If you'd like to use Caddy as your main web server with PiHole, you'll need to make a few changes.
+If you'd like to use Caddy as your main web server with Pi-hole, you'll need to make a few changes.
 
 ## Modifying lighttpd configuration
 First, change the listen port in this file: 
