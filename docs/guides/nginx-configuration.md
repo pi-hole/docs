@@ -1,4 +1,5 @@
 ### Notes & Warnings
+- **This is an unsupported configuration created by the community**
 - If you're using php5, change all instances of `php7.0-fpm` to `php5-fpm` and change `/run/php/php7.0-fpm.sock` to `/var/run/php5-fpm.sock`
 
 ### Basic requirements
