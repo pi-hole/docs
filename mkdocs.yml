@@ -63,6 +63,7 @@ pages:
 - 'Guides':
   - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
   - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
+  - 'Upstream DNS Providers': guides/upstream-dns-providers.md
   - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
   - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
   - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
