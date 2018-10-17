@@ -4,11 +4,11 @@ This is my commit message
 
 Signed-off-by: Random J Developer <random@developer.example.org>
 ```
-The text can either be manually added to your commit body, or you can add either -s or --signoff to your usual git commit commands. 
+The text can either be manually added to your commit body, or you can add either `-s` or `--signoff` to your usual git commit commands. 
 
 #### Creating your signoff
 
-Git has a -s | --signoff command line option to append this automatically to your commit message:
+Git has a `-s | --signoff` command line option to append this automatically to your commit message:
 
 ```$ git commit --signoff --message 'This is my commit message'```
 
