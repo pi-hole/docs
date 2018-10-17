@@ -14,7 +14,7 @@ Restart Tor with: `sudo service tor restart`
 
 Change your Pi-hole upstream DNS server to use `127.0.10.1` in the Pi-hole WebGUI (Settings) under "Upstream DNS Servers" and click "Save".
 
-**Note:** It's currently not possible to change the Upstream DNS Server directly in the `/etc/Pi-hole/setupVars.conf` file, the Pi-hole DNS Server won't pick up the change.
+**Note:** It's currently not possible to change the Upstream DNS Server directly in the `/etc/pihole/setupVars.conf` file, the Pi-hole DNS Server won't pick up the change.
 
 If you want a recognizable hostname for the Tor DNS in your Pi-hole GUI statistics, edit `/etc/hosts` as root, include the following line at the end and save the changes
 ```
@@ -22,7 +22,7 @@ If you want a recognizable hostname for the Tor DNS in your Pi-hole GUI statisti
 ```
  Restart Pi-hole DNS Server for the `/etc/hosts` changes to take effect
 ```
-sudo Pi-hole restartdns
+sudo pihole restartdns
 ```
 ## Testing your configuration
 
@@ -40,5 +40,5 @@ sudo Pi-hole restartdns
 
 That should give you the Pi-hole IPv4 and/or IPv6 address as Answer and show up as "Pi-holed" in the WebGUI Query Log (assuming you have the default blocklist, otherwise replace `api.mixpanel.com` with any domain on your blocklist). 
 
-If any of the queries doesn't show up in the Query Log you should make sure to configure your Pi-hole/network setup properly ([this thread might help](https://www.reddit.com/r/Pi-hole/comments/7e0jg9/dns_over_tor/dq4kkvg/)).
+If any of the queries doesn't show up in the Query Log you should make sure to configure your Pi-hole/network setup properly ([this thread might help](https://www.reddit.com/r/pihole/comments/7e0jg9/dns_over_tor/dq4kkvg/)).
  
