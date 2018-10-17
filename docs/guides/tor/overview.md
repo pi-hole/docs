@@ -1,10 +1,9 @@
 **This is an unsupported configuration created by the community**
 
-If you want to protect your - unencrypted by default - DNS requests from easily being collected by your ISP or another Adversary between you and your DNS server, you can easily setup pihole to use [Tor](https://www.torproject.org) for hostname resolving. Using DNS over Tor anonymizes your IP by using [Onion-Routing](https://en.wikipedia.org/wiki/Onion_routing).
+If you want to protect your - unencrypted by default - DNS requests from easily being collected by your ISP or another Adversary between you and your DNS server, you can easily setup Pi-hole to use [Tor](https://www.torproject.org) for hostname resolving. Using DNS over Tor anonymizes your IP by using [Onion-Routing](https://en.wikipedia.org/wiki/Onion_routing).
 
 #### Contribute to the Tor project  
  If you got spare resources consider [running a Tor Relay](https://www.torproject.org/docs/tor-doc-relay.html.en) (or [Exit](https://blog.torproject.org/tips-running-exit-node)) Node to contribute back to the Tor Network. The default installation doesn't do either of these. And/Or consider [donating](https://donate.torproject.org).
-\ No newline at end of file
 
  ***
 ### ⚠️ Warnings & Considerations
