@@ -6,32 +6,50 @@
 
 The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_Sinkhole) that protects your devices from unwanted content, without installing any client-side software.
 
-This repository provides the official Pi-hole documentation you can find here: https://docs.pi-hole.net
-If you want to work on the documentation, you can live preview your changes (as you type) on your local machine. We compiled instructions tested on Linux Mint 18 and Fedora 28:
+## Documentation & User Guides
 
-- Linux Mint / Ubuntu instructions:
+This repo is the source for the official [Pi-hole documentation](https://docs.pi-hole.net/).
+
+### How to contribute.
+To add a new link on the navigation panel you need to edit the `mkdocs.yml` file in the root of the repo. There is a guide for building the navbar [on the mkdocs wiki]( https://www.mkdocs.org/user-guide/configuration/#nav)
+
+To add a new document or guide.
+
+- Navigate to the directory where it will be hosted.
+	EG. guides are in `docs/guides`
+- Create the file using a URL friendly filename.
+	EG. `docs/guides/url-friendly.md`
+- Edit your document using Markdown, there are loads of resources available for the correct syntax.
+
+
+### Testing your changes.
+Whilst working on this repo, it is advised that you review your own changes locally before commiting them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
+
+Please make sure you fork the repo and change the clone URL in the example below for your fork:
+
+- Linux Mint / Ubuntu instructions (tested on Linux Mint 18):
    - Preparations (only required once):
-   ```
-   git clone git@github.com:pi-hole/docs.git
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/docs
    cd docs
    sudo pip install mkdocs
    sudo pip install mkdocs-material markdown-include
    ```
    - Running the docs server:
-   ```
+   ```bash
    mkdocs serve --dev-addr 0.0.0.0:8000
    ```
 
-- Fedora Linux instructions:
+- Fedora Linux instructions (tested on Fedora Linux 28):
    - Preparations (only required once):
-   ```
-   git clone git@github.com:pi-hole/docs.git
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/docs
    cd docs
    pip install mkdocs --user
    pip install mkdocs-material markdown-include --user
    ```
    - Running the docs server:
-   ```
+   ```bash
    mkdocs serve --dev-addr 0.0.0.0:8000
    ```
 
