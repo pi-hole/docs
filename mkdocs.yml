@@ -81,6 +81,12 @@ pages:
     - 'Optional: Dual operation: LAN & VPN at the same time': 'guides/vpn/dual-operation.md'
     - 'Optional: Full and DNS-only': 'guides/vpn/dual-VPN.md'
     - 'Optional: Dynamic DNS': 'guides/vpn/dynDNS.md'
+  - 'TOR & Pi-hole':
+          - 'Overview': guides/tor/overview.md
+          - 'Basic Setup': guides/tor/setup.md
+          - 'Using TOR': guides/tor/using-tor.md
+          - 'Performance and other issues': guides/tor/performance-issues.md
+          - 'Using DNSSEC': guides/tor/dnssec.md
 extra:
   social:
     - type: globe
