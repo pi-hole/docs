@@ -35,8 +35,10 @@ This setting disables
 - Query Log
 - Long-term database logging
 
-### Level 4 - disabled statistics
+### Level 4 - disabled statistics (v4.1+)
 Disables all statistics processing. Even the query counters will not be available.
 Additionally, you can disable logging to the file `/var/log/pihole.log` using `sudo pihole logging off`.
+
+Note that - due to the disabled query processing - regex blocking is **not** available on level 4.
 
 {!abbreviations.md!}
