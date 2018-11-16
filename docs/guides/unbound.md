@@ -52,9 +52,9 @@ The first thing you need to do is to install the recursive DNS resolver:
 sudo apt install unbound
 ```
 
-Optional: Download the list of primary root servers (serving the domain `.`). Unbound ships its own list but we can also download the most recent list and update it whenever we think it is a good idea. Note: there is no point in doing it more often then every 6 months.
+**Important**: Download the current root hints file (the list of primary root servers which are serving the domain `.`). Update it roughly every six. Note that this file changes infrequently.
 ```
-wget -O root.hints https://www.internic.net/domain/named.root 
+wget -O root.hints https://www.internic.net/domain/named.root
 sudo mv root.hints /var/lib/unbound/
 ```
 
@@ -68,7 +68,8 @@ Highlights:
  `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 ```ini
 server:
-    logfile: "/var/log/unbound/unbound.log"
+    # If no logfile is specified, syslog is used
+    # logfile: "/var/log/unbound/unbound.log"
     verbosity: 0
 
     port: 5353
