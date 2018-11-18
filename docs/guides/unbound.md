@@ -52,7 +52,7 @@ The first thing you need to do is to install the recursive DNS resolver:
 sudo apt install unbound
 ```
 
-**Important**: Download the current root hints file (the list of primary root servers which are serving the domain `.`). Update it roughly every six. Note that this file changes infrequently.
+**Important**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently.
 ```
 wget -O root.hints https://www.internic.net/domain/named.root
 sudo mv root.hints /var/lib/unbound/
