@@ -62,6 +62,9 @@ pages:
   - 'Install from source': "ftldns/compile.md"
   - 'Debugging FTLDNS': "ftldns/debugging.md"
   - 'In-depth manual': "ftldns/in-depth.md"
+- 'Contributing':
+  - 'Contributing on Github': guides/github/contributing.md
+  - 'How to sign-off commits': guides/github/how-to-signoff.md
 - 'Guides':
   - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
   - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
