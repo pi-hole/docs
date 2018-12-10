@@ -19,13 +19,9 @@ Contributors *sign-off* that they adhere to these requirements by adding a Signe
 
 The Pi-hole project uses a DCO bot for all GitHub pulls to verify that each commit is signed off. When you create your pull request, it will automaticaly be verified by this bot. An example of what to expect is below.
 
-![Screenshot](../../images/github-commit-bots.png)
+![Screenshot](../../images/github-commit-bots-expanded.png)
 
 If your Pull Request fails the DCO check, it's necessary to fix the entire commit history in the PR. Although this is a situation we'd like to avoid the best practice is to squash the commit history to a single commit, append the DCO sign-off as described above or interactively in the rebase comment editing process, and force push. For example, if you have 2 commits in your history (Note the ~2):
-
-An example of the correct bot response is below.
-
-![Screenshot](../../images/github-commit-bots-expanded.png)
 
 ```bash
 git rebase --interactive HEAD~2
