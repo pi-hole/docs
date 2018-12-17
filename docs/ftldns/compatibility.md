@@ -7,9 +7,9 @@ We tested *FTL*DNS on the following devices:
 | VirtualBox | Ubuntu 16.10 | amd64 | `linux-x86_64`
 | Raspberry Pi Zero | Raspbian Jessie, Stretch | armv6l | `arm-linux-gnueabi`
 | Raspberry Pi 1 | Raspbian Jessie, Stretch | armv6 | `arm-linux-gnueabi`
-| Raspberry Pi 2 | Raspbian Jessie, Stretch | armv7l | `arm-linux-gnueabihf` and `arm-linux-gnuabi`
-| Raspberry Pi 3 | Raspbian Jessie, Stretch | armv7l | `arm-linux-gnuabi` and `arm-linux-gnueabihf`
-| Raspberry Pi 3 B+ | Raspbian Jessie, Stretch | armv7l | `arm-linux-gnuabi` and `arm-linux-gnueabihf`
+| Raspberry Pi 2 | Raspbian Jessie, Stretch | armv7l | `arm-linux-gnueabi` and `arm-linux-gnueabihf`
+| Raspberry Pi 3 | Raspbian Jessie, Stretch | armv7l | `arm-linux-gnueabi` and `arm-linux-gnueabihf`
+| Raspberry Pi 3 B+ | Raspbian Jessie, Stretch | armv7l | `arm-linux-gnueabi` and `arm-linux-gnueabihf`
 | Raspberry Pi 3 | openSUSE | aarch64 | `aarch64-linux-gnu`
 | NanoPi NEO | armbian Ubuntu 16.04 | armv7l | `arm-linux-gnueabihf`
 | Odroid-C2 | Ubuntu 16.04 | aarch64 | `aarch64-linux-gnu`
