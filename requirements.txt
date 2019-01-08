@@ -10,7 +10,7 @@ mkdocs==1.0.4
 mkdocs-material==3.0.4
 Pygments==2.2.0
 pymdown-extensions==5.0
-PyYAML==3.13
+PyYAML>=4.2b1
 singledispatch==3.4.0.3
 six==1.11.0
 tornado==5.1.1
