@@ -26,21 +26,18 @@ Make no mistake: **your support is absolutely vital to help keep us innovating!*
 ### Donations
 Sending a donation using our links below is **extremely helpful** in offsetting a portion of our monthly expenses:
 
-- <img src="https://pi-hole.github.io/graphics/Badges/paypal-badge-black.svg" width="24" height="24" alt="PP"/> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3J2L3Z4DHW9UY">Donate via PayPal</a><br/>
-- <img src="https://pi-hole.github.io/graphics/Badges/bitcoin-badge-black.svg" width="24" height="24" alt="BTC"/> [Bitcoin](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>
-3MDPzjXu2hjw5sGLJvKUi1uXbvQPzVrbpF</code></br>
-- <img src="https://pi-hole.github.io/graphics/Badges/bitcoin-badge-black.svg" width="24" height="24" alt="BTC"/> [Bitcoin Cash](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>qzqsz4aju2eecc6uhs7tus4vlwhhela24sdruf4qp5</code></br>
-- <img src="https://pi-hole.github.io/graphics/Badges/ethereum-badge-black.svg" width="24" height="24" alt="BTC"/> [Ethereum](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>0x79d4e90A4a0C732819526c93e21A3F1356A2FAe1</code>
+- <a href="https://pi-hole.net/donate/">Donate via PayPal or Stripe</a>
+- [Bitcoin](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>3MDPzjXu2hjw5sGLJvKUi1uXbvQPzVrbpF</code>
+- [Bitcoin Cash](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>qzqsz4aju2eecc6uhs7tus4vlwhhela24sdruf4qp5</code>
+- [Ethereum](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>0x79d4e90A4a0C732819526c93e21A3F1356A2FAe1</code>
 
 ### Alternative support
-If you'd rather not [donate](https://pi-hole.net/donate/) (_which is okay!_), there are other ways you can help support us:
+If you'd rather not donate (_which is okay!_), there are other ways you can help support us:
 
-- [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1) _affiliate link_
+- [Pi-hole Swag Store](https://pi-hole.net/shop/)
+- [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1) _new account credits with our affiliate link_
 - [UNIXstickers.com](http://unixstickers.refr.cc/jacobs) _save $5 when you spend $9 using our affiliate link_
-- [Pi-hole Swag Store](https://pi-hole.net/shop/) _affiliate link_
 - [Amazon](http://www.amazon.com/exec/obidos/redirect-home/pihole09-20) _affiliate link_
-- [Ho-ost](https://clients.ho-ost.com/aff.php?aff=19) _save 50% with our affiliate link_
-- [DNS Made Easy](https://cp.dnsmadeeasy.com/u/133706) _affiliate link_
 - [Vultr](http://www.vultr.com/?ref=7190426) _affiliate link_
 - Spreading the word about our software, and how you have benefited from it
 
@@ -61,20 +58,16 @@ If you are going to be presenting Pi-hole at a conference, meetup or even a scho
 ## Getting in touch with us
 While we are primarily reachable on our <a href="https://discourse.pi-hole.net/">Discourse User Forum</a>, we can also be found on a variety of social media outlets. **Please be sure to check the FAQ's** before starting a new discussion, as we do not have the spare time to reply to every request for assistance.
 
-<ul>
-  <li><a href="https://discourse.pi-hole.net/c/faqs">Frequently Asked Questions</a></li>
-  <li><a href="https://github.com/pi-hole/pi-hole/wiki">Pi-hole Wiki</a></li>
-  <li><a href="https://discourse.pi-hole.net/c/feature-requests?order=votes">Feature Requests</a></li>
-</ul>
+- [Frequently Asked Questions](https://discourse.pi-hole.net/c/faqs)
+- [Feature Requests](https://discourse.pi-hole.net/c/feature-requests?order=votes)
+
 <br/>
-<ul>
-  <li><a href="https://discourse.pi-hole.net/">Discourse User Forum</a></li>
-  <li><a href="https://www.reddit.com/r/pihole/">Reddit</a></li>
-  <li><a href="https://gitter.im/pi-hole/pi-hole">Gitter</a> (Real-time chat)</li>
-  <li><a href="https://twitter.com/The_Pi_Hole">Twitter</a></li>
-  <li><a href="https://www.youtube.com/channel/UCT5kq9w0wSjogzJb81C9U0w">YouTube</a></li>
-  <li><a href="https://www.facebook.com/ThePiHole/">Facebook</a></li>
-</ul>
+
+- [Reddit](https://www.reddit.com/r/pihole/)
+- [Twitter](https://twitter.com/The_Pi_Hole)
+- [Gitter](https://gitter.im/pi-hole/pi-hole)
+- [YouTube](https://www.youtube.com/channel/UCT5kq9w0wSjogzJb81C9U0w)
+- [Facebook](https://www.facebook.com/ThePiHole/)
 
 -----
 
