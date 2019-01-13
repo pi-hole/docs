@@ -1,8 +1,11 @@
+---
+title: Community Projects
+description: Things built with Pi-hole
+last_updated: Sun Jan 13 19:45:40 2019 UTC
+---
+
 - [The Big Blocklist Collection](https://wally3k.github.io)
-- [Docker Pi-hole container (x86 and ARM)](https://hub.docker.com/r/diginc/pi-hole/)
 - [Pi-Hole in the cloud](http://blog.codybunch.com/2015/07/28/Pi-Hole-in-the-cloud/)
-- [Pie in the Sky-Hole [A Pi-Hole in the cloud for ad-blocking via DNS]](https://dlaa.me/blog/post/skyhole)
-- [Pi-hole Enable/Disable Button](http://thetimmy.silvernight.org/pages/endisbutton/)
 - [Minibian Pi-hole](https://munkjensen.net/wiki/index.php/See_my_Pi-Hole#Minibian_Pi-hole)
 - [CHiP-hole: Network-wide Ad-blocker](https://www.hackster.io/jacobsalmela/chip-hole-network-wide-ad-blocker-98e037)
 - [Chrome Extension: Pi-Hole List Editor](https://chrome.google.com/webstore/detail/pi-hole-list-editor/hlnoeoejkllgkjbnnnhfolapllcnaglh) ([Source Code](https://github.com/packtloss/pihole-extension))

@@ -1,3 +1,8 @@
+---
+title: Overview of Pi-hole
+description: Brief overview of Pi-hole
+last_updated: Sun Jan 13 18:22:38 2019 UTC
+---
 <p align="center">
 <a href="https://pi-hole.net"><img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole"></a><br/>
 <b>Network-wide ad blocking via your own Linux hardware</b><br/>
