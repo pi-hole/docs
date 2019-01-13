@@ -37,31 +37,36 @@ markdown_extensions:
 # Include files in other documents like {!some/dir/in/docs/filename.md!}
   - markdown_include.include:
       base_path: docs
-pages:
-- 'Overview & Support': 'index.md'
+nav:
+- Overview: index.md
+- 'About Pi-hole':
+  - 'Contact Us': main/contact.md
+  - 'Pi-hole Origins': main/origins.md
+  - 'Presentation Support': main/presentations.md
+  - 'On the Web': main/coverage.md
 - 'Getting Started':
-  - 'Prerequisites': 'main/prerequesites.md'
-  - 'Installation': 'main/basic-install.md'
-  - 'Post-Install': 'main/post-install.md'
-  - 'Updating': 'main/update.md'
+  - 'Prerequisites': main/prerequesites.md
+  - 'Installation': main/basic-install.md
+  - 'Post-Install': main/post-install.md
+  - 'Updating': main/update.md
 - 'Pi-hole Core':
-  - 'The <samp>pihole</samp> command': 'core/pihole-command.md'
+  - 'The <samp>pihole</samp> command': core/pihole-command.md
 - 'FTLDNS':
-  - 'Overview': "ftldns/index.md"
-  - 'Configuration': "ftldns/configfile.md"
-  - 'DNS resolver': "ftldns/dns-resolver.md"
-  - 'DNS cache': "ftldns/dns-cache.md"
-  - 'Blocking mode': "ftldns/blockingmode.md"
+  - 'Overview': ftldns/index.md
+  - 'Configuration': ftldns/configfile.md
+  - 'DNS resolver': ftldns/dns-resolver.md
+  - 'DNS cache': ftldns/dns-cache.md
+  - 'Blocking mode': ftldns/blockingmode.md
   - 'RegEx blocking':
-    - "Overview": "ftldns/regex/overview.md"
-    - "Tutorial": "ftldns/regex/tutorial.md"
-  - 'Privacy levels': "ftldns/privacylevels.md"
-  - 'Long-term database': "ftldns/database.md"
-  - 'Telnet API': "ftldns/telnet-api.md"
-  - 'Compatibility': "ftldns/compatibility.md"
-  - 'Install from source': "ftldns/compile.md"
-  - 'Debugging FTLDNS': "ftldns/debugging.md"
-  - 'In-depth manual': "ftldns/in-depth.md"
+    - "Overview": ftldns/regex/overview.md
+    - "Tutorial": ftldns/regex/tutorial.md
+  - 'Privacy levels': ftldns/privacylevels.md
+  - 'Long-term database': ftldns/database.md
+  - 'Telnet API': ftldns/telnet-api.md
+  - 'Compatibility': ftldns/compatibility.md
+  - 'Install from source': ftldns/compile.md
+  - 'Debugging FTLDNS': ftldns/debugging.md
+  - 'In-depth manual': ftldns/in-depth.md
 - 'Contributing':
   - 'Contributing on Github': guides/github/contributing.md
   - 'How to sign-off commits': guides/github/how-to-signoff.md
@@ -73,23 +78,25 @@ pages:
   - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
   - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
   - 'Pi-hole and OpenVPN Server':
-    - 'Overview': 'guides/vpn/overview.md'
-    - 'Installation': 'guides/vpn/installation.md'
-    - 'Setup OpenVPN Server': 'guides/vpn/setup-openvpn-server.md'
-    - 'Firewall Configuration': 'guides/vpn/firewall.md'
+    - 'Overview': guides/vpn/overview.md
+    - 'Installation': guides/vpn/installation.md
+    - 'Setup OpenVPN Server': guides/vpn/setup-openvpn-server.md
+    - 'Firewall Configuration': guides/vpn/firewall.md
     - 'Connecting clients':
-      - 'General': 'guides/vpn/clients.md'
-      - 'Android': 'guides/vpn/android-client.md'
-    - 'Optional: Only route DNS via VPN': 'guides/vpn/only-dns-via-vpn.md'
-    - 'Optional: Dual operation: LAN & VPN at the same time': 'guides/vpn/dual-operation.md'
-    - 'Optional: Full and DNS-only': 'guides/vpn/dual-VPN.md'
-    - 'Optional: Dynamic DNS': 'guides/vpn/dynDNS.md'
+      - 'General': guides/vpn/clients.md
+      - 'Android': guides/vpn/android-client.md
+    - 'Optional: Only route DNS via VPN': guides/vpn/only-dns-via-vpn.md
+    - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/dual-operation.md
+    - 'Optional: Full and DNS-only': guides/vpn/dual-VPN.md
+    - 'Optional: Dynamic DNS': guides/vpn/dynDNS.md
   - 'TOR & Pi-hole':
           - 'Overview': guides/tor/overview.md
           - 'Basic Setup': guides/tor/setup.md
           - 'Using TOR': guides/tor/using-tor.md
           - 'Performance and other issues': guides/tor/performance-issues.md
           - 'Using DNSSEC': guides/tor/dnssec.md
+- 'Community Projects': main/projects.md
+
 extra:
   social:
     - type: globe
