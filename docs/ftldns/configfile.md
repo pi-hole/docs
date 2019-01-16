@@ -54,9 +54,10 @@ Possible settings (**the option shown first is the default**):
   How often do we store queries in FTL's database [minutes]?
 
 - `DBFILE=/etc/pihole/pihole-FTL.db`<br>
-  Specify path and filename of FTL's SQLite3 long-term database. Setting `DBFILE=` disables the database altogether
+  Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether
 
 ### Debugging options
+
 - `DEBUG_DATABASE=false|true`<br>
   Print debugging information about database actions. This prints performed SQL statements as well as some general information such as the time it took to store the queries and how many have been saved to the database.
 
@@ -83,9 +84,9 @@ Possible settings (**the option shown first is the default**):
 
 - `DEBUG_REGEX=false|true`<br>
   Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.<br>
-  **[More details](regex/overview.md)**<br>
   Due to legacy reasons, we also support the following setting to be used for enabling the same functionality:<br>
   `REGEX_DEBUGMODE=false|true`<br>
-  Note that if one of them is set to `true`, the other one cannot be used to disable this setting again.
+  Note that if one of them is set to `true`, the other one cannot be used to disable this setting again.<br>
+  **[More details](regex/overview.md)**
 
 {!abbreviations.md!}
