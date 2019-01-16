@@ -2,10 +2,31 @@ You can create a file `/etc/pihole/pihole-FTL.conf` that will be read by *FTL*DN
 
 Possible settings (**the option shown first is the default**):
 
-### SOCKET_LISTENING
-`SOCKET_LISTENING=localonly|all`
+On which port should FTL be listening?
 
-Listen only for local socket connections or permit all connections
+## DNS settings
+
+### BLOCKINGMODE
+`BLOCKINGMODE=NULL|IP-NODATA-AAAA|IP|NXDOMAIN`
+
+## Statistics settings
+
+### MAXLOGAGE
+`MAXLOGAGE=24.0`
+
+Up to how many hours of queries should be imported from the database and logs? Maximum is 744 (31 days)
+
+### PRIVACYLEVEL
+`PRIVACYLEVEL=0|1|2|3|4`
+
+Which privacy level is used?
+
+**[More details](privacylevels.md)**
+
+### IGNORE_LOCALHOST
+`IGNORE_LOCALHOST=no|yes`
+
+Should `FTL` ignore queries coming from the local machine?
 
 ### AAAA_QUERY_ANALYSIS
 `AAAA_QUERY_ANALYSIS=yes|no`
@@ -17,6 +38,22 @@ Allow `FTL` to analyze AAAA queries from pihole.log?
 
 Should `FTL` only analyze A and AAAA queries?
 
+How should `FTL` reply to blocked queries?
+
+**[More details](blockingmode.md)**
+
+## Socket settings
+
+### SOCKET_LISTENING
+`SOCKET_LISTENING=localonly|all`
+
+Listen only for local socket connections or permit all connections
+
+### FTLPORT
+`FTLPORT=4711`
+
+## Host name resolution
+
 ### RESOLVE_IPV6
 `RESOLVE_IPV6=yes|no`
 
@@ -26,6 +63,15 @@ Should `FTL` try to resolve IPv6 addresses to host names?
 `RESOLVE_IPV4=yes|no`
 
 Should `FTL` try to resolve IPv4 addresses to host names?
+
+## Database settings
+
+### DBIMPORT
+`DBIMPORT=yes|no`
+
+Should `FTL` load information from the database on startup to be aware of the most recent history?
+
+**[More details](database.md)**
 
 ### MAXDBDAYS
 `MAXDBDAYS=365`
@@ -49,34 +95,7 @@ Specify path and filename of FTL's SQLite3 long-term database. Setting this to `
 
 **[More details](database.md)**
 
-### MAXLOGAGE
-`MAXLOGAGE=24.0`
-
-Up to how many hours of queries should be imported from the database and logs? Maximum is 744 (31 days)
-
-### FTLPORT
-`FTLPORT=4711`
-
-On which port should FTL be listening?
-
-### PRIVACYLEVEL
-`PRIVACYLEVEL=0|1|2|3|4`
-
-Which privacy level is used?
-
-**[More details](privacylevels.md)**
-
-### IGNORE_LOCALHOST
-`IGNORE_LOCALHOST=no|yes`
-
-Should `FTL` ignore queries coming from the local machine?
-
-### BLOCKINGMODE
-`BLOCKINGMODE=NULL|IP-NODATA-AAAA|IP|NXDOMAIN`
-
-How should `FTL` reply to blocked queries?
-
-**[More details](blockingmode.md)**
+## Debugging options
 
 ### REGEX_DEBUGMODE
 ```
@@ -86,13 +105,6 @@ REGEX_DEBUGMODE=false|true
 Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.
 
 **[More details](regex/overview.md)**
-
-### DBIMPORT
-`DBIMPORT=yes|no`
-
-Should `FTL` load information from the database on startup to be aware of the most recent history?
-
-**[More details](database.md)**
 
 
 {!abbreviations.md!}
