@@ -1,108 +1,67 @@
 You can create a file `/etc/pihole/pihole-FTL.conf` that will be read by *FTL*DNS on startup.
 
 Possible settings (**the option shown first is the default**):
+### DNS settings
 
-## DNS settings
-
-### BLOCKINGMODE
-`BLOCKINGMODE=NULL|IP-NODATA-AAAA|IP|NXDOMAIN`
-
-How should `FTL` reply to blocked queries?
-
+- `BLOCKINGMODE=NULL|IP-NODATA-AAAA|IP|NXDOMAIN`<br>
+  How should `FTL` reply to blocked queries?<br>
 **[More details](blockingmode.md)**
 
-## Statistics settings
+### Statistics settings
 
-### MAXLOGAGE
-`MAXLOGAGE=24.0`
+- `MAXLOGAGE=24.0`<br>
+  Up to how many hours of queries should be imported from the database and logs? Maximum is 744 (31 days)
 
-Up to how many hours of queries should be imported from the database and logs? Maximum is 744 (31 days)
-
-### PRIVACYLEVEL
-`PRIVACYLEVEL=0|1|2|3|4`
-
-Which privacy level is used?
-
+- `PRIVACYLEVEL=0|1|2|3|4`<br>
+  Which privacy level is used?<br>
 **[More details](privacylevels.md)**
 
-### IGNORE_LOCALHOST
-`IGNORE_LOCALHOST=no|yes`
+- `IGNORE_LOCALHOST=no|yes`<br>
+  Should `FTL` ignore queries coming from the local machine?
 
-Should `FTL` ignore queries coming from the local machine?
+- `AAAA_QUERY_ANALYSIS=yes|no`<br>
+  Allow `FTL` to analyze AAAA queries from pihole.log?
 
-### AAAA_QUERY_ANALYSIS
-`AAAA_QUERY_ANALYSIS=yes|no`
+- `ANALYZE_ONLY_A_AND_AAAA=false|true`<br>
+  Should `FTL` only analyze A and AAAA queries?
 
-Allow `FTL` to analyze AAAA queries from pihole.log?
+### Socket settings
 
-### ANALYZE_ONLY_A_AND_AAAA
-`ANALYZE_ONLY_A_AND_AAAA=false|true`
+- `SOCKET_LISTENING=localonly|all`<br>
+  Listen only for local socket connections or permit all connections
 
-Should `FTL` only analyze A and AAAA queries?
+- `FTLPORT=4711`<br>
+  On which port should FTL be listening?
 
-## Socket settings
+### Host name resolution
 
-### SOCKET_LISTENING
-`SOCKET_LISTENING=localonly|all`
+- `RESOLVE_IPV6=yes|no`<br>
+  Should `FTL` try to resolve IPv6 addresses to host names?
 
-Listen only for local socket connections or permit all connections
+- `RESOLVE_IPV4=yes|no`<br>
+  Should `FTL` try to resolve IPv4 addresses to host names?
 
-### FTLPORT
-`FTLPORT=4711`
+### Database settings
+**[Further details concerning the database](database.md)**
 
-On which port should FTL be listening?
+- `DBIMPORT=yes|no`<br>
+  Should `FTL` load information from the database on startup to be aware of the most recent history?
 
-## Host name resolution
+- `MAXDBDAYS=365`<br>
+  How long should queries be stored in the database? Setting this to `0` disables the database
 
-### RESOLVE_IPV6
-`RESOLVE_IPV6=yes|no`
+- `DBINTERVAL=1.0`<br>
+  How often do we store queries in FTL's database [minutes]?
 
-Should `FTL` try to resolve IPv6 addresses to host names?
+- `DBFILE=/etc/pihole/pihole-FTL.db`<br>
+  Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether<br>
 
-### RESOLVE_IPV4
-`RESOLVE_IPV4=yes|no`
 
-Should `FTL` try to resolve IPv4 addresses to host names?
+### Debugging options
 
-## Database settings
-
-### DBIMPORT
-`DBIMPORT=yes|no`
-
-Should `FTL` load information from the database on startup to be aware of the most recent history?
-
-**[More details](database.md)**
-
-### MAXDBDAYS
-`MAXDBDAYS=365`
-
-How long should queries be stored in the database?
-Setting this to `0` disables the database
-
-**[More details](database.md)**
-
-### DBINTERVAL
-`DBINTERVAL=1.0`
-
-How often do we store queries in FTL's database [minutes]?
-
-**[More details](database.md)**
-
-### DBFILE
-`DBFILE=/etc/pihole/pihole-FTL.db`
-
-Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether
-
-**[More details](database.md)**
-
-## Debugging options
-
-### REGEX_DEBUGMODE
-`REGEX_DEBUGMODE=false|true`
-
-Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.
-
-**[More details](regex/overview.md)**
+- `REGEX_DEBUGMODE=false|true`<br>
+  Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.<br>
+  **[More details](regex/overview.md)**
 
 
 {!abbreviations.md!}
