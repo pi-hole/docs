@@ -3,78 +3,63 @@ You can create a file `/etc/pihole/pihole-FTL.conf` that will be read by *FTL*DN
 Possible settings (**the option shown first is the default**):
 ### DNS settings
 
-- <div class="anchor" id="blocking_mode"></div>
-  `BLOCKINGMODE=NULL|IP-NODATA-AAAA|IP|NXDOMAIN`<br>
-  How should `FTL` reply to blocked queries?<br>
+#### `BLOCKINGMODE=NULL|IP-NODATA-AAAA|IP|NXDOMAIN` {#blocking_mode data-toc-label='Blocking Mode'}
+How should `FTL` reply to blocked queries?<br>
 **[More details](blockingmode.md)**
 
 ### Statistics settings
 
-- <div class="anchor" id="maxlogage"></div>
-  `MAXLOGAGE=24.0`<br>
+#### `MAXLOGAGE=24.0` {#maxlogage data-toc-label='Max Log Age'}
   Up to how many hours of queries should be imported from the database and logs? Maximum is 744 (31 days)
-
-- <div class="anchor" id="privacylevel"></div>
-  `PRIVACYLEVEL=0|1|2|3|4`<br>
+<hr/>
+#### `PRIVACYLEVEL=0|1|2|3|4` {#privacylevel data-toc-label='Privacy Level'}
   Which privacy level is used?<br>
 **[More details](privacylevels.md)**
-
-- <div class="anchor" id="ignore_localhost"></div>
-  `IGNORE_LOCALHOST=no|yes`<br>
+<hr/>
+#### `IGNORE_LOCALHOST=no|yes` {#ignore_localhost data-toc-label='Ignore localhost'}
   Should `FTL` ignore queries coming from the local machine?
-
-- <div class="anchor" id="aaaa_query_analysis"></div>
-  `AAAA_QUERY_ANALYSIS=yes|no`<br>
+<hr/>
+#### `AAAA_QUERY_ANALYSIS=yes|no` {#aaaa_query_analysis data-toc-label='AAAA Query Analysis'}
   Allow `FTL` to analyze AAAA queries from pihole.log?
-
-- <div class="anchor" id="analyze_only_a_and_aaaa"></div>
-  `ANALYZE_ONLY_A_AND_AAAA=false|true`<br>
+<hr/>
+#### `ANALYZE_ONLY_A_AND_AAAA=false|true` {#analyze_only_a_and_aaaa data-toc-label='Analyze A and AAAA Only'}
   Should `FTL` only analyze A and AAAA queries?
 
 ### Socket settings
 
-- <div class="anchor" id="socket_listening"></div>
-  `SOCKET_LISTENING=localonly|all`<br>
+#### `SOCKET_LISTENING=localonly|all` {#socket_listening data-toc-label='Socket Listening'}
   Listen only for local socket connections or permit all connections
-
-- <div class="anchor" id="ftlport"></div>
-  `FTLPORT=4711`<br>
+<hr/>
+#### `FTLPORT=4711` {#ftlport data-toc-label='FTLDNS Port'}
   On which port should FTL be listening?
 
 ### Host name resolution
 
-- <div class="anchor" id="resolve_ipv6"></div>
-  `RESOLVE_IPV6=yes|no`<br>
+#### `RESOLVE_IPV6=yes|no` {#resolve_ipv6 data-toc-label='Resolve IPV6'}
   Should `FTL` try to resolve IPv6 addresses to host names?
-
-- <div class="anchor" id="resolve_ipv4"></div>
-  `RESOLVE_IPV4=yes|no`<br>
+<hr/>
+#### `RESOLVE_IPV4=yes|no` {#resolve_ipv4 data-toc-label='Resolve IPV4'}
   Should `FTL` try to resolve IPv4 addresses to host names?
 
 ### Database settings
 **[Further details concerning the database](database.md)**
 
-- <div class="anchor" id="dbimport"></div>
-  `DBIMPORT=yes|no`<br>
+#### `DBIMPORT=yes|no` {#dbimport data-toc-label='DB Import'}
   Should `FTL` load information from the database on startup to be aware of the most recent history?
-
-- <div class="anchor" id="maxdbdays"></div>
-  `MAXDBDAYS=365`<br>
+<hr/>
+#### `MAXDBDAYS=365` {#maxdbdays data-toc-label='Max DB Days'}
   How long should queries be stored in the database? Setting this to `0` disables the database
-
-- <div class="anchor" id="dbinterval"></div>
-  `DBINTERVAL=1.0`<br>
+<hr/>
+#### `DBINTERVAL=1.0` {#dbinterval data-toc-label='DB Interval'}
   How often do we store queries in FTL's database [minutes]?
-
-- <div class="anchor" id="dbfile"></div>
-  `DBFILE=/etc/pihole/pihole-FTL.db`<br>
+<hr/>
+#### `DBFILE=/etc/pihole/pihole-FTL.db` {#dbfile data-toc-label='DB File'}
   Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether<br>
 
 
 ### Debugging options
 
-- <div class="anchor" id="regex_debugmode"></div>
-  `REGEX_DEBUGMODE=false|true`<br>
+#### `REGEX_DEBUGMODE=false|true` {#regex_debugmode data-toc-label='REGEX Debug Mode'}
   Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.<br>
   **[More details](regex/overview.md)**
 
