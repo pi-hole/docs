@@ -2,8 +2,6 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
 
 - `>quit`: Closes connection to client
 
-- `>kill`: Terminates `FTL`
-
 - `>stats` : Get current statistics
  ```
  domains_being_blocked 116007
@@ -100,13 +98,6 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
  www.googleadservices.com
  ```
  Variant: `>recentBlocked (4)` show the four most recent blocked domains
-
-- `>memory` : get information about `FTL`'s memory usage due to its internal data structure
- ```
- memory allocated for internal data structure: 2944708 bytes (2.94 MB)
- dynamically allocated allocated memory used for strings: 23963 bytes (23.96 KB)
- Sum: 2968671 bytes (2.97 MB)
- ```
 
 - `>clientID` : Get ID of currently connected client
  ```
