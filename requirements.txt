@@ -10,7 +10,7 @@ mkdocs==1.0.4
 mkdocs-bootswatch==1.0
 mkdocs-material==3.3.0
 Pygments==2.3.1
-pymdown-extensions==5.0
+pymdown-extensions==6.0
 PyYAML==4.2b4
 singledispatch==3.4.0.3
 six==1.12.0
