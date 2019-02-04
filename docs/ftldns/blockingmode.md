@@ -18,7 +18,7 @@ doubleclick.net.        2       IN      A       0.0.0.0
 doubleclick.net.        2       IN      AAAA    ::
 ```
 
-**This blocking mode is the Pi-hole developer's recommendation.**
+**This blocking mode is the Pi-hole developers' recommendation.**
 
 Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture, section 2.5.2](https://tools.ietf.org/html/rfc3513#section-2.5.2), the address `0:0:0:0:0:0:0:0` (or `::` for short) is the unspecified address. It must never be assigned to any node and indicates the absence of an address. Following [RFC1122, section 3.2](https://tools.ietf.org/html/rfc1122#section-3.2), the address `0.0.0.0` can be understood as the IPv4 equivalent of `::`.
 
@@ -106,6 +106,6 @@ Blocked queries will be answered with an empty response (no answer section) and 
 ```
 
 ##### Advantages & Disadvantages
-Similar to `NXDOMAIN` blocking while clients might have a better acceptance for `NODATA` compared to `NXDOMAIN`.
+Similar to `NXDOMAIN` blocking. Clients might have a better acceptance of `NODATA` replies compared to `NXDOMAIN` replies.
 
 {!abbreviations.md!}
