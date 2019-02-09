@@ -1,6 +1,7 @@
 ---
 title: Docker DHCP and Network Modes
 description: Setting up DHCP for Docker Pi-hole
+last_updated: Sat Feb 09
 ---
 
 # Docker DHCP and Network Modes
