@@ -31,11 +31,11 @@ Having the container get its own IP not only solves the broadcast problem but av
 
 ### Docker Pi-hole with a bridge networking
 
-If you want to use docker's bridged network mode then you need to run a DHCP relay. A relay points to your containers forwarded port 67 and spreads the broadcast signal from isolated docker bridge onto your LAN network. Relays are very simple software, you just have to configure it to point at your Docker host's IP port 67.
+If you want to use docker's bridged network mode then you need to run a DHCP relay. A relay points to your containers forwarded port 67 and spreads the broadcast signal from isolated docker bridge onto your LAN network. Relays are very simple software, you just have to configure it to point to your Docker host's IP port 67.
 
-Although uncommon, if your router is advanced enough router it may support a DHCP relay. Try googling for your router manufacturer + DHCP relay or looking in your router's configuration around the DHCP settings or advanced areas.
+Although uncommon, if your router is an advanced enough router it may support a DHCP relay. Try googling for your router manufacturer + DHCP relay or looking in your router's configuration around the DHCP settings or advanced areas.
 
-If your router doesn't support it, you can run a software / container based DHCP relay on your LAN instead. The author of DNSMasq made a very tiny simple one called [dhcp-helper](http://thekelleys.org.uk/dhcp-helper/READ-ME). [DerFetzer](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038) kindly shared his great setup of a DHCP-helper container on the Pi-hole discourse forums.
+If your router doesn't support it, you can run a software / container based DHCP relay on your LAN instead. The author of DNSMasq made a very tiny simple one called [DHCP-helper](http://thekelleys.org.uk/dhcp-helper/READ-ME). [DerFetzer](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038) kindly shared his great setup of a DHCP-helper container on the Pi-hole Discourse forums.
 
 ### Warning about the Default bridge network
 
