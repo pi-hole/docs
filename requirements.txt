@@ -8,7 +8,7 @@ markdown-include==0.5.1
 MarkupSafe==1.1.0
 mkdocs==1.0.4
 mkdocs-bootswatch==1.0
-mkdocs-material==3.3.0
+mkdocs-material==4.0.1
 Pygments==2.3.1
 pymdown-extensions==6.0
 PyYAML==4.2b4
