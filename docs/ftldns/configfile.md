@@ -10,7 +10,7 @@ How should `FTL` reply to blocked queries?<br>
 ### Statistics settings
 
 #### `MAXLOGAGE=24.0` {#maxlogage data-toc-label='Max Log Age'}
-  Up to how many hours of queries should be imported from the database and logs? Maximum is 744 (31 days)
+  Up to how many hours of queries should be imported from the database and logs? Maximum is 24.0
 <hr/>
 #### `PRIVACYLEVEL=0|1|2|3|4` {#privacylevel data-toc-label='Privacy Level'}
   Which privacy level is used?<br>
