@@ -5,7 +5,7 @@ Jinja2==2.10
 livereload==2.6.0
 Markdown==3.0.1
 markdown-include==0.5.1
-MarkupSafe==1.1.0
+MarkupSafe==1.1.1
 mkdocs==1.0.4
 mkdocs-bootswatch==1.0
 mkdocs-material==4.0.1
