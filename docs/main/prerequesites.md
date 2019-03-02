@@ -13,7 +13,7 @@ The following operating systems are **officially** supported:
 
 - Raspbian: Jessie / Stretch
 - Ubuntu: 16.04 / 16.10
-- Fedora: 27 / 28
+- Fedora: 28 / 29
 - Debian: 8 / 9
 - CentOS: 7 (not ARM)
 
