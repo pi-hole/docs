@@ -31,5 +31,5 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 - [CryptoAUSTRALIA: How We Tried 5 Privacy Focused Raspberry Pi Projects](https://blog.cryptoaustralia.org.au/2017/10/05/5-privacy-focused-raspberry-pi-projects/) _Oct 5, 2017_
 - [CryptoAUSTRALIA: Pi-hole Workshop](https://blog.cryptoaustralia.org.au/2017/11/02/pi-hole-network-wide-ad-blocker/) _Nov 2, 2017_
 - [Bloomberg: Inside the Brotherhood of the Ad Blockers](https://www.bloomberg.com/news/features/2018-05-10/inside-the-brotherhood-of-pi-hole-ad-blockers) _May 10, 2018_
-- [How a Single Raspberry PI made my Home Network Faster](https://www.brianchristner.io/how-a-single-raspberry-pi-made-my-home-network-faster/) (March, 2019)
+- [How a Single Raspberry PI made my Home Network Faster](https://www.brianchristner.io/how-a-single-raspberry-pi-made-my-home-network-faster/) _March 1, 2019
 
