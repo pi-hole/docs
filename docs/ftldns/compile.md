@@ -3,11 +3,18 @@ We pre-compile *FTL*DNS for you to save you the trouble of compiling anything yo
 #### Installing the Required Software
 First, we'll install the basic software you'll need to compile from source, like the GCC compiler and other utilities.
 Install them by running the following command in a terminal:
-```
+###### Debian / Ubuntu / Raspbian
+```bash
 sudo apt install build-essential libgmp-dev m4
 ```
+###### Fedora
+```bash
+sudo dnf install gcc gmp-devel gmp-static m4
+```
 
-You'll also need to compile a recent version of `nettle` as *FTL*DNS uses `libnettle` for handling DNSSEC. Compile and install a recent version of `nettle` (we tested 3.4):
+---
+
+You'll also need to compile `nettle` as *FTL*DNS uses `libnettle` for handling DNSSEC. Compile and install a recent version of `nettle` (we tested 3.4):
 ```
 wget https://ftp.gnu.org/gnu/nettle/nettle-3.4.tar.gz
 tar -xvzf nettle-3.4.tar.gz
