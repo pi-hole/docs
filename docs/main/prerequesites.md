@@ -11,10 +11,10 @@ Any hardware that runs one of the supported operating systems will do!
 
 The following operating systems are **officially** supported:
 
-| Distribution | Release          |  Architecture       |
+| Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
 | Raspbian     | Jessie / Stretch | ARM                 |
-| Ubuntu       | 16.04 / 16.10    | ARM / x86_64        |
+| Ubuntu       | 18.04.1 / 18.10  | ARM / x86_64        |
 | Debian       | 8 / 9            | ARM / x86_64 / i386 |
 | Fedora       | 28 / 29          | ARM / x86_64        |
 | CentOS       | 7                | x86_64              |
