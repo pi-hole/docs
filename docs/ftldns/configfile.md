@@ -58,6 +58,9 @@ Possible settings (**the option shown first is the default**):
 
 ### Debugging options
 
+- `DEBUG_ALL=false|true`<br>
+  Enable all debug flags. If this is set to true, all other debug config options are ignored.
+
 - `DEBUG_DATABASE=false|true`<br>
   Print debugging information about database actions. This prints performed SQL statements as well as some general information such as the time it took to store the queries and how many have been saved to the database.
 
@@ -88,5 +91,11 @@ Possible settings (**the option shown first is the default**):
   `REGEX_DEBUGMODE=false|true`<br>
   Note that if one of them is set to `true`, the other one cannot be used to disable this setting again.<br>
   **[More details](regex/overview.md)**
+
+- `DEBUG_API=false|true`<br>
+  Print extra debugging information during telnet API calls. Currently only used to send extra information when getting all queries.
+
+- `DEBUG_OVERTIME=false|true`<br>
+  Print information about overTime memory operations, such as initializing or moving overTime slots.
 
 {!abbreviations.md!}
