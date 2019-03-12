@@ -11,11 +11,13 @@ Any hardware that runs one of the supported operating systems will do!
 
 The following operating systems are **officially** supported:
 
-- Raspbian: Jessie / Stretch
-- Ubuntu: 16.04 / 16.10
-- Fedora: 27 / 28
-- Debian: 8 / 9
-- CentOS: 7 (not ARM)
+| Distribution | Release          | Architecture        |
+| ------------ | ---------------- | ------------------- |
+| Raspbian     | Jessie / Stretch | ARM                 |
+| Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
+| Debian       | 8 / 9            | ARM / x86_64 / i386 |
+| Fedora       | 28 / 29          | ARM / x86_64        |
+| CentOS       | 7                | x86_64              |
 
 ### IP Addressing
 
