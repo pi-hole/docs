@@ -97,6 +97,9 @@ How should `FTL` reply to blocked queries?<br>
 <hr/>
 #### `DEBUG_OVERTIME=false|true` {#debug_overtime data-toc-label='Debug overTime'}
   Print information about overTime memory operations, such as initializing or moving overTime slots.
+<hr/>
+#### `DEBUG_EXTBLOCKED=false|true` {#debug_extblocked data-toc-label='Debug externally blocked'}
+  Print information about why FTL decided that certain queries were recognized as being externally blocked.
 
 {!abbreviations.md!}
 
