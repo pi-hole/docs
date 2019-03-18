@@ -100,6 +100,9 @@ How should `FTL` reply to blocked queries?<br>
 <hr/>
 #### `DEBUG_EXTBLOCKED=false|true` {#debug_extblocked data-toc-label='Debug externally blocked'}
   Print information about why FTL decided that certain queries were recognized as being externally blocked.
+<hr/>
+#### `DEBUG_CAPS=false|true` {#debug_caps data-toc-label='Debug Linux capabilities'}
+  Print information about capabilities granted to the pihole-FTL process. The current capabilities are printed on receipt of `SIGHUP`, i.e., the current set of capabilities can be queried without restarting `pihole-FTL` (by setting `DEBUG_CAPS=true` and thereafter sending `killall -HUP pihole-FTL`).
 
 {!abbreviations.md!}
 
