@@ -34,6 +34,7 @@ server {
         location ~ \.php$ {
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+                fastcgi_param FQDN true;
                 auth_basic "Restricted"; #For Basic Auth
                 auth_basic_user_file /etc/nginx/.htpasswd;  #For Basic Auth
         }
@@ -77,7 +78,7 @@ server {
 
 -       If you want to use block page for any blocked domain subpage (aka Nginx 404), add this to Pi-hole server block in your Nginx configuration file:
 ```
-error_page 404 /pihole/index.php
+error_page 404 /pihole/index.php;
 ```
 -       When using nginx to serve Pi-hole, Let's Encrypt can be used to directly configure nginx. Make sure to use your hostname instead of _ in `server_name _;` line above.
 ```
