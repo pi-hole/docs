@@ -108,7 +108,7 @@ server:
     # One thread should be sufficient, can be increased on beefy machines
     num-threads: 1
 
-    # Ensure kernel buffer is large enough to not loose messages in traffic spikes
+    # Ensure kernel buffer is large enough to not lose messages in traffic spikes
     so-rcvbuf: 1m
 
     # Ensure privacy of local IP ranges
