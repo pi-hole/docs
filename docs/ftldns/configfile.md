@@ -54,14 +54,55 @@ How should `FTL` reply to blocked queries?<br>
   How often do we store queries in FTL's database [minutes]?
 <hr/>
 #### `DBFILE=/etc/pihole/pihole-FTL.db` {#dbfile data-toc-label='DB File'}
-  Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether<br>
-
+  Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether
 
 ### Debugging options
 
-#### `REGEX_DEBUGMODE=false|true` {#regex_debugmode data-toc-label='REGEX Debug Mode'}
+#### `DEBUG_ALL=false|true` {#debug_all data-toc-label='Debug All'}
+  Enable all debug flags. If this is set to true, all other debug config options are ignored.
+<hr/>
+#### `DEBUG_DATABASE=false|true` {#debug_database data-toc-label='Debug Database'}
+  Print debugging information about database actions. This prints performed SQL statements as well as some general information such as the time it took to store the queries and how many have been saved to the database.
+<hr/>
+#### `DEBUG_NETWORKING=false|true` {#debug_networking data-toc-label='Debug networking'}
+  Prints a list of the detected interfaces on startup of `pihole-FTL`. Also prints whether these interfaces are IPv4 or IPv6 interfaces.
+<hr/>
+#### `DEBUG_LOCKS=false|true` {#debug_locks data-toc-label='Debug Locks'}
+  Print information about shared memory locks. Messages will be generated when waiting, obtaining, and releasing a lock.
+<hr/>
+#### `DEBUG_QUERIES=false|true` {#debug_queries data-toc-label='Debug Queries'}
+  Print extensive query information (domains, types, replies, etc.). This has always been part of the legacy `debug` mode of `pihole-FTL`.
+<hr/>
+#### `DEBUG_FLAGS=false|true` {#debug_flags data-toc-label='Debug Flags'}
+  Print flags of queries received by the DNS hooks. Only effective when `DEBUG_QUERIES` is enabled as well.
+<hr/>
+#### `DEBUG_SHMEM=false|true` {#debug_shmem data-toc-label='Debug Shared Memory'}
+  Print information about shared memory buffers. Messages are either about creating or enlarging shmem objects or string injections.
+<hr/>
+#### `DEBUG_GC=false|true` {#debug_gc data-toc-label='Debug GC'}
+  Print information about garbage collection (GC): What is to be removed, how many have been removed and how long did GC take.
+<hr/>
+#### `DEBUG_ARP=false|true` {#debug_arp data-toc-label='Debug ARP'}
+  Print information about ARP table processing: How long did parsing take, whether read MAC addresses are valid, and if the `macvendor.db` file exists.
+<hr/>
+#### `DEBUG_REGEX=false|true` {#debug_regex data-toc-label='Debug REGEX'}
   Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.<br>
+  Due to legacy reasons, we also support the following setting to be used for enabling the same functionality:<br>
+  `REGEX_DEBUGMODE=false|true`
+  Note that if one of them is set to `true`, the other one cannot be used to disable this setting again.<br>
   **[More details](regex/overview.md)**
-
+<hr/>
+#### `DEBUG_API=false|true` {#debug_api data-toc-label='Debug Telnet'}
+  Print extra debugging information during telnet API calls. Currently only used to send extra information when getting all queries.
+<hr/>
+#### `DEBUG_OVERTIME=false|true` {#debug_overtime data-toc-label='Debug overTime'}
+  Print information about overTime memory operations, such as initializing or moving overTime slots.
+<hr/>
+#### `DEBUG_EXTBLOCKED=false|true` {#debug_extblocked data-toc-label='Debug externally blocked'}
+  Print information about why FTL decided that certain queries were recognized as being externally blocked.
+<hr/>
+#### `DEBUG_CAPS=false|true` {#debug_caps data-toc-label='Debug Linux capabilities'}
+  Print information about capabilities granted to the pihole-FTL process. The current capabilities are printed on receipt of `SIGHUP`, i.e., the current set of capabilities can be queried without restarting `pihole-FTL` (by setting `DEBUG_CAPS=true` and thereafter sending `killall -HUP pihole-FTL`).
 
 {!abbreviations.md!}
+
