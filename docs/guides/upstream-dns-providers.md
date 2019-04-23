@@ -77,7 +77,7 @@ CloudFlare will never log your IP address (the way other companies identify you)
 - 1.1.1.1
 - 1.0.0.1
 
-[More information on Cloudflare DNS](https://cloudflare-dns.com/#explanation)
+[More information on Cloudflare DNS](https://cloudflare-dns.com/dns/#explanation)
 
 ### Custom
 With custom, you'll choose your favorite DNS provider.
