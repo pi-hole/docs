@@ -18,7 +18,7 @@ If you have set up a DDNS domain for your IP address, you will likely need to ad
 pihole -a hostrecord home.mydomain.de 192.168.1.10
 ```
 
-If you don't do this, clients (like the Android OpenVPN client) will not able to connect to the VPN server when *inside the internal network* (while it will work from outside).  Afterwards, the client will be able to connect to the VPN server both from inside and outside you local network.
+If you don't do this, clients (like the Android OpenVPN client) will not able to connect to the VPN server when *inside the internal network* (while it will work from outside).  Afterwards, the client will be able to connect to the VPN server both from inside and outside your local network.
 
 ## Setting up DynDNS update
 
