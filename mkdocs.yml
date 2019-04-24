@@ -96,6 +96,7 @@ nav:
     - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/dual-operation.md
     - 'Optional: Full and DNS-only': guides/vpn/dual-VPN.md
     - 'Optional: Dynamic DNS': guides/vpn/dynDNS.md
+    - 'Troubleshooting': guides/vpn/troubleshooting.md
   - 'TOR & Pi-hole':
           - 'Overview': guides/tor/overview.md
           - 'Basic Setup': guides/tor/setup.md
