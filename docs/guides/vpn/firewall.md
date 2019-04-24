@@ -94,10 +94,10 @@ and they should look something like this:
 
 ```
 Chain INPUT (policy DROP)
-num  target     prot opt source               destination         
-1    ACCEPT     all  --  anywhere             anywhere            
+num  target     prot opt source               destination
+1    ACCEPT     all  --  anywhere             anywhere
 2    ACCEPT     all  --  anywhere             anywhere             state RELATED,ESTABLISHED
-3    ACCEPT     all  --  anywhere             anywhere            
+3    ACCEPT     all  --  anywhere             anywhere
 4    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
 5    ACCEPT     udp  --  anywhere             anywhere             udp dpt:domain
 6    ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:http
@@ -116,18 +116,18 @@ num  target     prot opt source               destination
 19   REJECT     tcp  --  anywhere             anywhere             tcp dpt:https reject-with icmp-port-unreachable
 
 Chain FORWARD (policy ACCEPT)
-num  target     prot opt source               destination         
+num  target     prot opt source               destination
 
 Chain OUTPUT (policy ACCEPT)
-num  target     prot opt source               destination  
+num  target     prot opt source               destination
 ```
 
 Similarly, `ip6tables -L --line-numbers` should look like this:
 
 ```
 Chain INPUT (policy DROP)
-num  target     prot opt source               destination         
-1    ACCEPT     all      anywhere             anywhere            
+num  target     prot opt source               destination
+1    ACCEPT     all      anywhere             anywhere
 2    ACCEPT     all      anywhere             anywhere             state RELATED,ESTABLISHED
 3    ACCEPT     tcp      anywhere             anywhere             tcp dpt:domain
 4    ACCEPT     udp      anywhere             anywhere             udp dpt:domain
@@ -139,10 +139,10 @@ num  target     prot opt source               destination
 10   REJECT     tcp      anywhere             anywhere             tcp dpt:https reject-with icmp6-port-unreachable
 
 Chain FORWARD (policy ACCEPT)
-num  target     prot opt source               destination         
+num  target     prot opt source               destination
 
 Chain OUTPUT (policy ACCEPT)
-num  target     prot opt source               destination  
+num  target     prot opt source               destination
 ```
 
 ##### Verify the rules are working
@@ -164,4 +164,3 @@ Similarly, you can restore these rules:
 iptables-restore < /etc/pihole/rules.v4
 ip6tables-restore < /etc/pihole/rules.v6
 ```
----
