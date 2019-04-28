@@ -93,17 +93,17 @@ ID | Query Type
 <!-- Query | A | AAAA | ANY | SRV | SOA | PTR | TXT -->
 
 ### Supported status types
-ID | Query Type
---- | ---
-0 | Unknown status (was not answered by forward destination)
-1 | Blocked by `gravity.list`
-2 | Permitted + forwarded
-3 | Permitted + replied to from cache
-4 | Blocked by wildcard
-5 | Blocked by `black.list`
-6 | Blocked by upstream server (known blocking page IP address)
-7 | Blocked by upstream server (`0.0.0.0` or `::`)
-8 | Blocked by upstream server (`NXDOMAIN` with `RA` bit unset)
+ID | Status | | Details
+--- | --- | --- | ---
+0 | Unknown status | &#x2754; | (was not answered by forward destination)
+1 | Blocked | &#x274C; | Domain contained in [gravity database](gravity.md#gravity)
+2 | Allowed | &#x2705; | Forwarded
+3 | Allowed | &#x2705; | Known, replied to from cache
+4 | Blocked | &#x274C; | Domain matched by a rule in the [regex database](gravity.md#regex)
+5 | Blocked | &#x274C; | Domain contained in [blacklist database](gravity.md#blacklist)
+6 | Blocked | &#x274C; | By upstream server (known blocking page IP address)
+7 | Blocked | &#x274C; | By upstream server (`0.0.0.0` or `::`)
+8 | Blocked | &#x274C; | By upstream server (`NXDOMAIN` with `RA` bit unset)
 
 ### Example for interaction with the FTL long-term database
 In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queries domains for all time, you could use
