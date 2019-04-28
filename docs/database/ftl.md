@@ -28,7 +28,6 @@ sqlite3 /etc/pihole/pihole-FTL.db ".backup /home/pi/pihole-FTL.db.backup"
 ```
 will create `/home/pi/pihole-FTL.db.backup` which is a copy of your long-term database.
 
-
 ---
 
 The long-term database contains three tables:
@@ -59,10 +58,10 @@ Label | Type | Allowed to by empty | Content
 `id` | integer | No | ID for the table used to select a counter (see below)
 `value` | integer | No | Value of a given counter
 
-Counter ID | Interpretation
+ID | Interpretation
 --- | ---
 0 | Total number of queries
-1 | Total number of blocked queries (Query `status` 1, 4 or 5)
+1 | Total number of blocked queries
 
 SQLite3 syntax used to create this table:
 ```
@@ -105,7 +104,7 @@ ID | Status | | Details
 7 | Blocked | &#x274C; | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | &#x274C; | By upstream server (`NXDOMAIN` with `RA` bit unset)
 
-### Example for interaction with the FTL long-term database
+### Example for interaction with the queries database
 In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queries domains for all time, you could use
 ```
 sqlite3 "/etc/pihole/pihole-FTL.db" "SELECT domain,count(domain) FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP by domain order by count(domain) desc limit 3"
