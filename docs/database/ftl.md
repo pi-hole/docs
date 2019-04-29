@@ -95,11 +95,11 @@ ID | Query Type
 ID | Status | | Details
 --- | --- | --- | ---
 0 | Unknown status | &#x2754; | (was not answered by forward destination)
-1 | Blocked | &#x274C; | Domain contained in [gravity database](gravity.md#gravity)
+1 | Blocked | &#x274C; | Domain contained in [gravity database](gravity.md#gravity-table)
 2 | Allowed | &#x2705; | Forwarded
 3 | Allowed | &#x2705; | Known, replied to from cache
-4 | Blocked | &#x274C; | Domain matched by a rule in the [regex database](gravity.md#regex)
-5 | Blocked | &#x274C; | Domain contained in [blacklist database](gravity.md#blacklist)
+4 | Blocked | &#x274C; | Domain matched by a rule in the [regex database](gravity.md#regex-table)
+5 | Blocked | &#x274C; | Domain contained in [blacklist database](gravity.md#blacklist-table)
 6 | Blocked | &#x274C; | By upstream server (known blocking page IP address)
 7 | Blocked | &#x274C; | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | &#x274C; | By upstream server (`NXDOMAIN` with `RA` bit unset)

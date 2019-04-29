@@ -4,8 +4,8 @@ We implement the POSIX Extended Regular Expressions similar to the one used by t
 Our implementation is light and fast as each domain is only checked once for a match (if you query `google.com`, it will be checked against your RegEx. Any subsequent query to the same domain will not be checked again until you restart `pihole-FTL`).
 
 ## How to use regular expressions for blocking
-*FTL*DNS reads in regular expression filters from `/etc/pihole/regex.list` (one expression per line, lines starting with `#` will be skipped).
-To tell *FTL*DNS to reload the list, either:
+*FTL*DNS reads in regular expression filters from the [`regex` database table](../../database/gravity.md#regex-table).
+To tell *FTL*DNS to reload the list of regex filters, either:
 
 - Execute the `>recompile-regex` API command (`echo ">recompile-regex" | nc localhost 4711`) or
 - Send `SIGHUP` to `pihole-FTL` (`sudo killall -SIGHUP pihole-FTL`) or
@@ -22,7 +22,7 @@ Once the debugging mode is enabled, each match will be logged to `/var/log/pihol
 ```
 [2018-07-17 17:40:51.304] Regex in line 2 "((^)|(\.))twitter\." matches "whatever.twitter.com"
 ```
-The given line number corresponds to the line in the file `/etc/pihole/regex.list`.
+The given line number corresponds to the line in the `regex` database table.
 
 Note that validation is only done on the first occurrence of a domain to increase the computational efficiency of *FTL*DNS.
 
