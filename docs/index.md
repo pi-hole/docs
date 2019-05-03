@@ -1,7 +1,7 @@
 ---
 title: Overview of Pi-hole
 description: Brief overview of Pi-hole
-last_updated: Sun Jan 13 18:22:38 2019 UTC
+last_updated: Thur May 02 01:00:00 2019 UTC
 ---
 <p align="center">
 <a href="https://pi-hole.net"><img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole"></a><br/>
@@ -32,16 +32,13 @@ Make no mistake: **your support is absolutely vital to help keep us innovating!*
 Sending a donation using our links below is **extremely helpful** in offsetting a portion of our monthly expenses:
 
 - <a href="https://pi-hole.net/donate/">Donate via PayPal or Stripe</a>
-- [Bitcoin](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>3MDPzjXu2hjw5sGLJvKUi1uXbvQPzVrbpF</code>
-- [Bitcoin Cash](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>qzqsz4aju2eecc6uhs7tus4vlwhhela24sdruf4qp5</code>
-- [Ethereum](https://commerce.coinbase.com/checkout/fb7facaf-bebd-46be-bb77-b358f4546763): <code>0x79d4e90A4a0C732819526c93e21A3F1356A2FAe1</code>
+- [Bitcoin, Bitcoin Cash, Ethereum, Litecoin](https://commerce.coinbase.com/checkout/dd304d04-f324-4a77-931b-0db61c77a41b)
 
 ### Alternative support
 If you'd rather not donate (_which is okay!_), there are other ways you can help support us:
 
 - [Pi-hole Swag Store](https://pi-hole.net/shop/)
 - [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1) _new account credits with our affiliate link_
-- [UNIXstickers.com](http://unixstickers.refr.cc/jacobs) _save $5 when you spend $9 using our affiliate link_
 - [Amazon](http://www.amazon.com/exec/obidos/redirect-home/pihole09-20) _affiliate link_
 - [Vultr](http://www.vultr.com/?ref=7190426) _affiliate link_
 - Spreading the word about our software, and how you have benefited from it
