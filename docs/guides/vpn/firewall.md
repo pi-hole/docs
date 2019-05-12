@@ -4,7 +4,7 @@
 
 In addition to the risk of being an open resolver, your Web interface is also open to the world increasing the risk.  So you will want to prevent ports 53 and 80, respectively, from being accessible from the public Internet.
 
-It's recommended that you [clear out your entire firewall](https://serverfault.com/questions/200635/best-way-to-clear-all-iptables-rules) so you have full control over it's setup.  You have two options for setting up your firewall with your VPN.
+It's recommended that you [clear out your entire firewall](https://serverfault.com/questions/200635/best-way-to-clear-all-iptables-rules) so you have full control over its setup.  You have two options for setting up your firewall with your VPN.
 
 #### Option 1: Allow everything from within your VPN
 
