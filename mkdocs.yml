@@ -55,6 +55,7 @@ nav:
   - 'Updating': main/update.md
 - 'Pi-hole Core':
   - 'The <samp>pihole</samp> command': core/pihole-command.md
+  - '<samp>setupVars.conf</samp> options': core/setupvars-conf.md
 - 'FTLDNS':
   - 'Overview': ftldns/index.md
   - 'Configuration': ftldns/configfile.md
