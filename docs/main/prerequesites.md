@@ -57,7 +57,7 @@ IPTables (IPv4)
 iptables -I INPUT 1 -p tcp -m tcp --dport 80 -j ACCEPT
 iptables -I INPUT 1 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -p udp -m udp --dport 53 -j ACCEPT
-iptables -I INPUT 1 -p udp -m tcp --dport 67 -j ACCEPT
+iptables -I INPUT 1 -p tcp -m tcp --dport 67 -j ACCEPT
 iptables -I INPUT 1 -p udp -m udp --dport 67 -j ACCEPT
 iptables -I INPUT 1 -p tcp -m tcp --dport 4711 -i lo -j ACCEPT
 ```
