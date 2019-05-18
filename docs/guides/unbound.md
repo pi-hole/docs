@@ -97,10 +97,6 @@ server:
     # Suggested by the unbound man page to reduce fragmentation reassembly problems
     edns-buffer-size: 1472
 
-    # TTL bounds for cache
-    cache-min-ttl: 3600
-    cache-max-ttl: 86400
-
     # Perform prefetching of close to expired message cache entries
     # This only applies to domains that have been frequently queried
     prefetch: yes
