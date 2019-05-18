@@ -101,6 +101,9 @@ ID | Query Type
 3 | Permitted + replied to from cache
 4 | Blocked by wildcard
 5 | Blocked by `black.list`
+6 | Blocked by upstream server (known blocking page IP address)
+7 | Blocked by upstream server (`0.0.0.0` or `::`)
+8 | Blocked by upstream server (`NXDOMAIN` with `RA` bit unset)
 
 ### Example for interaction with the FTL long-term database
 In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queries domains for all time, you could use
