@@ -121,5 +121,17 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 
 (don't forget to hit Return or click on `Save`)
 
+### Updating cloudflared install package post install
+
+#### AMD64 architecture (most devices)
+
+Download the  latest installer package, then use `apt-get` to upgrade the package along with any dependencies. Proceed to run the binary with the `-v` flag to check it is all working.
+
+```
+sudo apt-get update
+wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
+sudo apt-get upgrade ./cloudflared-stable-linux-amd64.deb
+cloudflared -v
+```
 
 [^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
