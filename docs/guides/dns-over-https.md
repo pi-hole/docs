@@ -15,7 +15,7 @@ In the following sections we will be covering how to install and configure this 
 
 ### Installing `cloudflared`
 
-The installation is fairly straightforward, however be aware of what architecture you are installing on (`amd64` or `arm`).
+The installation is fairly straightforward, and for this guide we will focus on amd64 as our architecture.
 
 #### AMD64 architecture (most devices)
 
@@ -24,18 +24,6 @@ Download the installer package, then use `apt-get` to install the package along 
 ```
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
 sudo apt-get install ./cloudflared-stable-linux-amd64.deb
-cloudflared -v
-```
-
-#### ARM architecture (Raspberry Pi)
-
-Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working.
-
-```
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
-tar -xvzf cloudflared-stable-linux-arm.tgz
-sudo cp ./cloudflared /usr/local/bin
-sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
 
