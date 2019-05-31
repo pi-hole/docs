@@ -1,6 +1,8 @@
 ### (optional) Secure the server with firewall rules (`iptables`)
 
-**This step is recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1)**.  If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
+**If you are behind a NAT and not running the Pi-hole on a cloud server, you do not need to issue the IPTABLE commands bellow as the firewall rules are already handled by the RoadWarror installer.
+
+**This step is optional but recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1)**.  If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
 
 In addition to the risk of being an open resolver, your Web interface is also open to the world increasing the risk.  So you will want to prevent ports 53 and 80, respectively, from being accessible from the public Internet.
 
