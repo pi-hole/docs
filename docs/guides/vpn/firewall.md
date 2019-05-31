@@ -1,6 +1,6 @@
 ### (optional) Secure the server with firewall rules (`iptables`)
 
-**If you are behind a NAT and not running the Pi-hole on a cloud server, you do not need to issue the IPTABLE commands bellow as the firewall rules are already handled by the RoadWarror installer.
+**If you are behind a NAT and not running the Pi-hole on a cloud server, you do not need to issue the IPTABLE commands bellow as the firewall rules are already handled by the RoadWarrior installer.
 
 **This step is optional but recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1)**.  If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
 
