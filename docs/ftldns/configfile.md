@@ -59,7 +59,7 @@ How should `FTL` reply to blocked queries?<br>
 ### File options
 
 #### `LOGFILE=/var/log/pihole-FTL.log` {#file_LOGFILE data-toc-label='Log file'}
-  Location of FTL's log file.
+  Location of FTL's log file. If you want to move the log file to a different place, also consider [this FAQ article](https://discourse.pi-hole.net/t/moving-the-pi-hole-log-to-another-location-device/2041).
 
 #### `PIDFILE=/var/run/pihole-FTL.pid` {#file_PIDFILE data-toc-label='Process identifier file'}
   File which contains the PID of FTL's main process.
