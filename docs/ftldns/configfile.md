@@ -56,6 +56,32 @@ How should `FTL` reply to blocked queries?<br>
 #### `DBFILE=/etc/pihole/pihole-FTL.db` {#dbfile data-toc-label='DB File'}
   Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether
 
+### File options
+
+#### `LOGFILE=/var/log/pihole-FTL.log` {#file_LOGFILE data-toc-label='Log file'}
+  Location of FTL's log file.
+
+#### `PIDFILE=/var/run/pihole-FTL.pid` {#file_PIDFILE data-toc-label='Process identifier file'}
+  File which contains the PID of FTL's main process.
+
+#### `PORTFILE=/var/run/pihole-FTL.port` {#file_PORTFILE data-toc-label='Port file'}
+  File containing the port FTL's API is listening on.
+
+#### `SOCKETFILE=/var/run/pihole/FTL.sock` {#file_SOCKETFILE data-toc-label='Socket file'}
+  File containing the socket FTL's API is listening on.
+
+#### `SETUPVARSFILE=/etc/pihole/setupVars.conf` {#file_SETUPVARSFILE data-toc-label='setupVars file'}
+  Config file of Pi-hole containing, e.g., the current blocking status (do not change).
+
+#### `AUDITLISTFILE=/etc/pihole/auditlog.list` {#file_AUDITLISTFILE data-toc-label='Audit list file'}
+  List containing the audited domains.
+
+#### `MACVENDORDB=/etc/pihole/macvendor.db` {#file_MACVENDORDB data-toc-label='MacVendor database file'}
+  Database containing MAC -> Vendor information for the network table.
+
+<!-- #### `GRAVITYDB=/etc/pihole/gravity.db`
+  Database containing the blocked, white- and blacklisted domains as well as the regex filters. -->
+
 ### Debugging options
 
 #### `DEBUG_ALL=false|true` {#debug_all data-toc-label='Debug All'}
