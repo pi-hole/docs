@@ -21,6 +21,8 @@ The installation is fairly straightforward, and for this guide we will focus on 
 
 Download the installer package, then use `apt-get` to install the package along with any dependencies. Proceed to run the binary with the `-v` flag to check it is all working.
 
+For this guide, we will be referencing the "latest" .deb binary file for amd64 directly from cloudflared: https://developers.cloudflare.com/argo-tunnel/downloads/ 
+
 ```
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
 sudo apt-get install ./cloudflared-stable-linux-amd64.deb
@@ -109,9 +111,9 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 
 (don't forget to hit Return or click on `Save`)
 
-### Updating cloudflared install package post install
+### Updating cloudflared install package post install for amd64 architecture (most devices)
 
-#### AMD64 architecture (most devices)
+### Download and update manually:
 
 Download the  latest installer package, then use `apt-get` to upgrade the package along with any dependencies. Proceed to run the binary with the `-v` flag to check it is all working.
 
@@ -122,4 +124,46 @@ sudo apt-get upgrade ./cloudflared-stable-linux-amd64.deb
 cloudflared -v
 ```
 
-[^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
+### Download and update using apt-get by adding souce to your local repo list:
+
+Referencing cloudflared's repo list, https://pkg.cloudflare.com/, we can use the provided steps to add cloudflared to your local installaiton source. This allows you to update/upgrade clouflared along with your other local packages using apt-get directly.
+
+
+Add the repository (replace <RELEASE> with the Ubuntu release name):
+
+```
+echo 'deb http://pkg.cloudflare.com/ <RELEASE> main' | 
+sudo tee /etc/apt/sources.list.d/cloudflare-main.list
+```
+
+For example (Xenial):
+
+```
+echo 'deb http://pkg.cloudflare.com/ xenial main' | 
+sudo tee /etc/apt/sources.list.d/cloudflare-main.list
+```
+
+Import GPG key:
+
+```
+curl -C - https://pkg.cloudflare.com/pubkey.gpg | sudo apt-key add -
+```
+
+Update apt cache:
+
+```
+sudo apt-get update
+```
+Update packages(s):
+
+```
+sudo apt-get update
+```
+
+Check Version:
+
+```
+cloudflared -v
+```
+
+(Portions of) [^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
