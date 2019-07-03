@@ -79,9 +79,6 @@ How should `FTL` reply to blocked queries?<br>
 #### `MACVENDORDB=/etc/pihole/macvendor.db` {#file_MACVENDORDB data-toc-label='MacVendor database file'}
   Database containing MAC -> Vendor information for the network table.
 
-<!-- #### `GRAVITYDB=/etc/pihole/gravity.db`
-  Database containing the blocked, white- and blacklisted domains as well as the regex filters. -->
-
 ### Debugging options
 
 #### `DEBUG_ALL=false|true` {#debug_all data-toc-label='Debug All'}
