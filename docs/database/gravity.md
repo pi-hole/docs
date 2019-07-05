@@ -13,7 +13,7 @@ During each run of `pihole -g`, this table is flushed and completely rebuilt fro
 
 Label | Type | Uniqueness enforced | Content
 ----- | ---- | ------------------- | --------
-`domain` | text | Yes | Blocked domains compiled from enabled adlists
+`domain` | text | Yes | Blocked domain compiled from enabled adlists
 
 ## Audit Table (`auditlist`)
 The `audit` table contains domains that have been audited by the user on the web interface.
