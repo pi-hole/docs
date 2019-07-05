@@ -3,7 +3,7 @@ The `whitelist` table contains all whitelisted domains. It has a few extra field
 
 The date fields are defined as `INTEGER` fields as they expect numerical timestamps also known as *UNIX time*. The `date_added` and `date_modified` fields are initialized with the current timestamp converted to UNIX time. The  `comment` field is optional and can be empty.
 
-Pi-hole's *FTL*DNS reads the whitelisted table through the `vw_whitelist` view, omitting any disabled  domains.
+Pi-hole's *FTL*DNS reads the whitelisted table through the `vw_whitelist` view, omitting any disabled domains.
 
 Label | Type | Uniqueness enforced | Content
 ----- | ---- | ------------------- | --------
@@ -30,7 +30,7 @@ The `adlist` table contains all sources for domains to be collected by `pihole -
 Label | Type | Uniqueness enforced | Content
 ----- | ---- | ------------------- | --------
 `id` | integer | Yes | Unique ID for database operations
-`address` | text | Yes | Full address of the list
+`address` | text | Yes | The URL of the list
 `enabled` | boolean | No | Flag whether domain should be used by `pihole-FTL`<br>(`0` = disabled, `1` = enabled)
 `date_added` | integer | No | Timestamp when domain was added
 `date_modified` | integer | No | Timestamp when domain was last modified, automatically updated when a record is changed

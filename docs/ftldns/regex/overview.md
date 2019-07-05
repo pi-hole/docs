@@ -4,7 +4,7 @@ We implement the POSIX Extended Regular Expressions similar to the one used by t
 Our implementation is light and fast as each domain is only checked once for a match (if you query `google.com`, it will be checked against your RegEx. Any subsequent query to the same domain will not be checked again until you restart `pihole-FTL`).
 
 ## How to use regular expressions for blocking
-*FTL*DNS reads in regular expression filters from the [`regex` database table](../../database/gravity.md#regex-table).
+*FTL*DNS reads in regular expression filters from the [`regex` database table](../../database/gravity/lists.md#regex-table-regex).
 To tell *FTL*DNS to reload the list of regex filters, either:
 
 - Execute the `>recompile-regex` API command (`echo ">recompile-regex" | nc localhost 4711`) or

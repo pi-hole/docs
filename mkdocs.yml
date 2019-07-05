@@ -59,9 +59,9 @@ nav:
   - 'Overview': database/index.md
   - 'Query database': database/ftl.md
   - 'Domain database':
-    - 'Overview': database/gravity.md
-    - 'List tables': database/gravity-lists.md
-    - 'Group management': database/gravity-groups.md
+    - 'Overview': database/gravity/index.md
+    - 'List tables': database/gravity/lists.md
+    - 'Group management': database/gravity/groups.md
 - 'FTLDNS':
   - 'Overview': ftldns/index.md
   - 'Configuration': ftldns/configfile.md

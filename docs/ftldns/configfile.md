@@ -42,7 +42,7 @@ How should `FTL` reply to blocked queries?<br>
   Should `FTL` try to resolve IPv4 addresses to host names?
 
 ### Database settings
-**[Further details concerning the database](database.md)**
+**[Further details concerning the database](../database/index.md)**
 
 #### `DBIMPORT=yes|no` {#dbimport data-toc-label='DB Import'}
   Should `FTL` load information from the database on startup to be aware of the most recent history?

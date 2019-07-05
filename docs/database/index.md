@@ -3,6 +3,6 @@ Pi-hole uses the well-known relational database management system SQLite3 both f
 Details concerning the databases, their contained tables and exemplary SQL commands allowing even complex requests to Pi-hole's databases are described on the subpages of this category.
 
 - [Query database `/etc/pihole/pihole-FTL.db`](ftl.md)
-- [Domain database `/etc/pihole/gravity.db`](gravity.md)
+- [Domain database `/etc/pihole/gravity.db`](gravity/index.md)
 
 {!abbreviations.md!}

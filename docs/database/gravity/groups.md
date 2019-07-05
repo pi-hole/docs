@@ -11,11 +11,11 @@ Label | Type | Uniqueness enforced | Content
 `comment` | text | No | Optional field for arbitrary user comments
 
 Group management is implemented using so called linking tables. Hence, it is possible to
-- manage domains in no, one, or multiple groups at the same time,
+- associate domains with any number of groups,
 - manage adlists together with groups,
 - use the same groups for, e.g., black- and whitelisted domains at the same time.
 
-The linking tables are particularly simple, as they only like group `id`s with list `id`s. As an example, we describe the `whitelist_by_group` table. All other linking tables are constructed similarly.
+The linking tables are particularly simple, as they only link group `id`s with list `id`s. As an example, we describe the `whitelist_by_group` table. All other linking tables are constructed similarly.
 
 Label | Type | Content
 ----- | ---- | -------
@@ -25,11 +25,9 @@ Label | Type | Content
 ## Effect of group management
 The great flexibility to manage domains in no, one, or multiple groups may result in unexpected behavior when, e.g., the domains are enabled in some but disabled in other groups. For the sake of convenience, we describe all possible configurations and whether *FTL*DNS uses these domains (&#10004;) or not (&#10008;) in these cases.
 
-- Domain disabled: &#10008;<br>Note that the domain is never imported by *FTL*DNS, even if it is contained in (at least one) enabled group.
+- Domain disabled: &#10008;<br>Note that the domain is never imported by *FTL*DNS, even if it is contained in an enabled group.
 
 - Domain enabled: It depends...
     - Not managed by a group: &#10004;
-    - Contained in one group that is enabled: &#10004;
-    - Contained in one disabled group: &#10008;
-    - Contained in multiple groups (all disabled): &#10008;
-    - Contained in multiple groups (at least one enabled): &#10004;
+    - Contained in one or more groups (at least one enabled): &#10004;
+    - Contained in one or more groups (all disabled): &#10008;
