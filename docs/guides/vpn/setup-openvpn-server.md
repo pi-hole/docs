@@ -28,6 +28,12 @@ This `push` directive is setting a [DHCP option](https://www.incognito.com/tips-
 
 It's [suggested to have Pi-hole be the only resolver](https://discourse.pi-hole.net/t/why-should-pi-hole-be-my-only-dns-server/3376) as it defines the upstream servers.  Setting a non-Pi-hole resolver here [may have adverse effects on ad blocking](https://discourse.pi-hole.net/t/why-should-pi-hole-be-my-only-dns-server/3376) but it _can_ provide failover connectivity in the case of Pi-hole not working if that is something you are concerned about.
 
+Furthermore, you might want to enable logging for your OpenVPN server. In this case, add the following lines to your server's config file:
+```
+log /var/log/openvpn.log
+verb 3
+```
+
 ### Restart OpenVPN to apply the changes
 
 Depending on your operating system, one of these commands should work to restart the service.

@@ -53,4 +53,12 @@ Please make sure you fork the repo and change the clone URL in the example below
    mkdocs serve --dev-addr 0.0.0.0:8000
    ```
 
-After these commands, the currently checked out branch is accessible through your favorite browser at http://localhost:8000
+- Docker instructions:
+  - One-shot run:
+  ```bash
+  docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it python:2-alpine \
+    sh -c "pip install --user mkdocs mkdocs-material markdown-include && \
+    /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
+   ```
+
+After these commands, the current branch is accessible through your favorite browser at http://localhost:8000

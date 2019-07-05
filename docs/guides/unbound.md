@@ -97,15 +97,11 @@ server:
     # Suggested by the unbound man page to reduce fragmentation reassembly problems
     edns-buffer-size: 1472
 
-    # TTL bounds for cache
-    cache-min-ttl: 3600
-    cache-max-ttl: 86400
-
     # Perform prefetching of close to expired message cache entries
     # This only applies to domains that have been frequently queried
     prefetch: yes
 
-    # One thread should be sufficient, can be increased on beefy machines
+    # One thread should be sufficient, can be increased on beefy machines. In reality for most users running on small networks or on a single machine it should be unnecessary to seek performance enhancement by increasing num-threads above 1.
     num-threads: 1
 
     # Ensure kernel buffer is large enough to not lose messages in traffic spikes
