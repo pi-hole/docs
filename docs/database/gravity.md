@@ -7,7 +7,7 @@ The database furthermore stores white-, black-, and regex lists which are all di
 In addition to the ability to add comments to individual domains, we also offer a powerful way of managing domains through groups. Each domain can be associated with no group, exactly one group, or multiple groups. See [domain group management](gravity-groups.md) for further details.
 
 ## Gravity Table (`gravity`)
-The `gravity` table consists of the domains that have been processed by Pi-hole's `gravity` (`pihole -g`) command. The domain in this list are the unique collection of domains sources from the configured sources (see the [`adlist` table](gravity-lists.md#adlists-table)).
+The `gravity` table consists of the domains that have been processed by Pi-hole's `gravity` (`pihole -g`) command. The domain in this list are the unique collection of domains sourced from the configured sources (see the [`adlist` table](gravity-lists.md#adlists-table)).
 
 During each run of `pihole -g`, this table is flushed and completely rebuilt from the newly obtained set of domains to be blocked.
 
