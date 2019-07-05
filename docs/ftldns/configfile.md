@@ -73,9 +73,6 @@ How should `FTL` reply to blocked queries?<br>
 #### `SETUPVARSFILE=/etc/pihole/setupVars.conf` {#file_SETUPVARSFILE data-toc-label='setupVars file'}
   Config file of Pi-hole containing, e.g., the current blocking status (do not change).
 
-#### `AUDITLISTFILE=/etc/pihole/auditlog.list` {#file_AUDITLISTFILE data-toc-label='Audit list file'}
-  List containing the audited domains.
-
 #### `MACVENDORDB=/etc/pihole/macvendor.db` {#file_MACVENDORDB data-toc-label='MacVendor database file'}
   Database containing MAC -> Vendor information for the network table.
 
