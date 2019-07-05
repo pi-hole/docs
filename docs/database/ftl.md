@@ -45,12 +45,6 @@ Label | Type | Allowed to by empty | Content
 `client` | text | No | Requesting client (IP address)
 `forward` | text | Yes | Forward destination used for this query (only set if `status == 2`)
 
-SQLite3 syntax used to create this table:
-```
-CREATE TABLE queries ( id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER NOT NULL, type INTEGER NOT NULL, status INTEGER NOT NULL, domain TEXT NOT NULL, client TEXT NOT NULL, forward TEXT );
-CREATE INDEX idx_queries_timestamps ON queries (timestamp);
-```
-
 ### Counters table
 This table contains counter values integrated over the entire lifetime of the table
 
@@ -63,11 +57,6 @@ ID | Interpretation
 --- | ---
 0 | Total number of queries
 1 | Total number of blocked queries
-
-SQLite3 syntax used to create this table:
-```
-CREATE TABLE counters ( id INTEGER PRIMARY KEY NOT NULL, value INTEGER NOT NULL );
-```
 
 ### FTL table
 The FTL tables contains some data used by *FTL*DNS for determining which queries to save to the database. This table does not contain any entries of general interest.
@@ -105,10 +94,10 @@ ID | Status | | Details
 7 | Blocked | &#x274C; | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | &#x274C; | By upstream server (`NXDOMAIN` with `RA` bit unset)
 
-### Example for interaction with the queries database
+### Example for interaction with the long-term query database
 In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queries domains for all time, you could use
 ```
-sqlite3 "/etc/pihole/pihole-FTL.db" "SELECT domain,count(domain) FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP by domain order by count(domain) desc limit 3"
+sqlite3 "/etc/pihole/pihole-FTL.db" "SELECT domain,count(domain) FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP BY domain ORDER BY count(domain) DESC LIMIT 3"
 ```
 which would return something like
 ```

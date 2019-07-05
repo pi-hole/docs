@@ -1,71 +1,25 @@
 Pi-hole uses the well-known relational database management system SQLite3 for managing the various domains that are used to control the DNS filtering system. The database-based domain management has been added with Pi-hole v5.0.
 
-## Gravity Table
-The `gravity` table consists of the domains that have been processed by Pi-hole's `gravity` (`pihole -g`) command. The domain in this list are the unique collection of domains sources from the configured sources (see [Adlists Table](gravity.md#adlists-table)).
+## Domain lists
+The database furthermore stores white-, black-, and regex lists which are all directly relevant for Pi-hole's domain blocking behavior. They are stored alongside some properties such as if they are currently enabled or when they have last been modified. For a full description, see the [domain lists](gravity-lists.md) page.
+
+## Domain group management
+In addition to the ability to add comments to individual domains, we also offer a powerful way of managing domains through groups. Each domain can either be not added to a group ("individual"), added to exactly one group ("grouped") or can even be added and managed through multiple groups ("multi-grouped"). See [domain group management](gravity-groups.md) for further details.
+
+## Gravity Table (`gravity`)
+The `gravity` table consists of the domains that have been processed by Pi-hole's `gravity` (`pihole -g`) command. The domain in this list are the unique collection of domains sources from the configured sources (see the [`adlist` table](gravity-lists.md#adlists-table)).
 
 During each run of `pihole -g`, this table is flushed and completely rebuilt from the newly obtained set of domains to be blocked.
 
-SQLite3 syntax used to create this table and its view:
-```sql
-CREATE TABLE gravity (domain TEXT UNIQUE NOT NULL);
-```
-## Whitelist Table
-The `whitelist` table contains all manually whitelisted domains. It has a few extra fields to store data related to a given domain such as the `enabled` state, the dates when the domain were added and when it has last been modified, and an optional comment.
+Label | Type | Uniqueness enforced | Content
+----- | ---- | ------------------- | --------
+`domain` | text | Yes | Blocked domains compiled from enabled adlists
 
-The date fields are defined as `INTEGER` fields as they expect numerical timestamps also known as *UNIX time*. The `date_added` field is initialized with the current timestamp converted to UNIX time. The `date_modified` as well as the `comment` fields are optional and can be empty (`NULL`).
+## Audit Table (`auditlist`)
+The `audit` table contains domains that have been audited by the user on the web interface.
 
-Pi-hole's *FTL*DNS reads the whitelisted table through the `vw_whitelist` view, omitting any disabled (`enabled != 1`) domains.
-
-SQLite3 syntax used to create this table and its view:
-```sql
-CREATE TABLE whitelist (domain        TEXT UNIQUE NOT NULL,
-                        enabled       BOOLEAN     NOT NULL DEFAULT 1,
-                        date_added    INTEGER     NOT NULL DEFAULT (cast(strftime('%s', 'now') as int)),
-                        date_modified INTEGER,
-                        comment       TEXT);
-CREATE VIEW vw_whitelist AS SELECT DISTINCT a.domain FROM whitelist a WHERE a.enabled == 1;
-```
-
-## Blacklist Table
-The `blacklist` table contains all manually blacklisted domains. Just like the `whitelist` table, it has a few extra fields to store data related to a given domain such as the `enabled` state, the dates when the domain were added and when it has last been modified, and an optional comment.
-
-Pi-hole's *FTL*DNS reads the blacklisted table through the `vw_blacklist` view, omitting any disabled (`enabled != 1`) or whitelisted domains (domains in the `vw_whitelist` view).
-
-SQLite3 syntax used to create this table and its view:
-```sql
-CREATE TABLE blacklist (domain        TEXT UNIQUE NOT NULL,
-                        enabled       BOOLEAN     NOT NULL DEFAULT 1,
-                        date_added    INTEGER     NOT NULL DEFAULT (cast(strftime('%s', 'now') as int)),
-                        date_modified INTEGER,
-                        comment       TEXT);
-CREATE VIEW vw_blacklist AS SELECT DISTINCT a.domain FROM blacklist a WHERE
-            a.enabled == 1 AND a.domain NOT IN vw_whitelist;
-```
-
-## Regex Table
-The `regex` table contains all regex based filters. Just like the `black`- and `whitelist` tables, it has a few extra fields to store data related to a given filter.
-
-SQLite3 syntax used to create this table and its view:
-```sql
-CREATE TABLE regex (domain        TEXT UNIQUE NOT NULL,
-                    enabled       BOOLEAN     NOT NULL DEFAULT 1,
-                    date_added    INTEGER     NOT NULL DEFAULT (cast(strftime('%s', 'now') as int)),
-                    date_modified INTEGER,
-                    comment       TEXT);
-CREATE VIEW vw_regex AS SELECT DISTINCT a.domain FROM regex a WHERE a.enabled == 1;
-
-```
-
-## Adlists Table
-The `adlists` table contains all sources for domains to be collected by `pihole -g`. Just like the other tables, it has a few extra fields to store data related to a given source.
-
-SQLite3 syntax used to create this table and its view:
-```sql
-CREATE TABLE adlists (address       TEXT UNIQUE NOT NULL,
-                      enabled       BOOLEAN     NOT NULL DEFAULT 1,
-                      date_added    INTEGER     NOT NULL DEFAULT (cast(strftime('%s', 'now') as int)),
-                      date_modified INTEGER,
-                      comment       TEXT);
-
-CREATE VIEW vw_adlists AS SELECT DISTINCT a.address FROM adlists a WHERE a.enabled == 1;
-```
+Label | Type | Uniqueness enforced | Content
+----- | ---- | ------------------- | --------
+`id` | integer | Yes | Unique ID for database operations
+`domain` | text | Yes | Domain
+`date_added` | integer | No | Unix timestamp when domain was added
