@@ -16,7 +16,7 @@ The following operating systems are **officially** supported:
 | Raspbian     | Jessie / Stretch | ARM                 |
 | Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
 | Debian       | 8 / 9            | ARM / x86_64 / i386 |
-| Fedora       | 28 / 29          | ARM / x86_64        |
+| Fedora       | 29 / 30          | ARM / x86_64        |
 | CentOS       | 7                | x86_64              |
 
 ### IP Addressing
