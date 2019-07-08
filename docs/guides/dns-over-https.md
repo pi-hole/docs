@@ -22,10 +22,18 @@ The installation is fairly straightforward, however be aware of what architectur
 Download the installer package, then use `apt-get` to install the package along with any dependencies. Proceed to run the binary with the `-v` flag to check it is all working.
 
 ```
+# For Debian/Ubuntu
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
 sudo apt-get install ./cloudflared-stable-linux-amd64.deb
 cloudflared -v
+
+# For CentOS/RHEL/Fedora
+wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.rpm
+sudo yum install ./cloudflared-stable-linux-amd64.rpm
+cloudflared -v
 ```
+
+**Note:** Binaries for other operating systems can be found here: https://developers.cloudflare.com/argo-tunnel/downloads/
 
 #### ARM architecture (Raspberry Pi)
 
