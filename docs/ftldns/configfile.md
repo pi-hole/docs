@@ -42,7 +42,7 @@ How should `FTL` reply to blocked queries?<br>
   Should `FTL` try to resolve IPv4 addresses to host names?
 
 ### Database settings
-**[Further details concerning the database](database.md)**
+**[Further details concerning the database](../database/index.md)**
 
 #### `DBIMPORT=yes|no` {#dbimport data-toc-label='DB Import'}
   Should `FTL` load information from the database on startup to be aware of the most recent history?
@@ -72,9 +72,6 @@ How should `FTL` reply to blocked queries?<br>
 
 #### `SETUPVARSFILE=/etc/pihole/setupVars.conf` {#file_SETUPVARSFILE data-toc-label='setupVars file'}
   Config file of Pi-hole containing, e.g., the current blocking status (do not change).
-
-#### `AUDITLISTFILE=/etc/pihole/auditlog.list` {#file_AUDITLISTFILE data-toc-label='Audit list file'}
-  List containing the audited domains.
 
 #### `MACVENDORDB=/etc/pihole/macvendor.db` {#file_MACVENDORDB data-toc-label='MacVendor database file'}
   Database containing MAC -> Vendor information for the network table.
