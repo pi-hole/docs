@@ -1,5 +1,5 @@
 ## Group management
-Any domain on the individual lists as well as the adlists entries can be managed through groups. This allows not only grouping them together to highlight their relationship, but also enabling/disabling them together if one, for instance, wants to visit a specific service only temporarily.
+Any blocklist or domain on the white-/black-/regex-lists can be managed through groups. This allows not only grouping them together to highlight their relationship, but also enabling/disabling them together if one, for instance, wants to visit a specific service only temporarily.
 
 Groups are defined in the `group` table and can have an optional description in addition to a mandatory name of the group.
 
