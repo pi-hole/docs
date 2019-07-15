@@ -1,5 +1,5 @@
 # Pi-hole regular expressions tutorial
-We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing blocking rules (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
+We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing blocking or whitelisting rules (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
 
 ### Anchors (`^` and `$`)
 First of all, we look at anchors which can be used to indicate the start or the end of a domain, respectively. If you don't specify anchors, the match may be partial (see examples below).

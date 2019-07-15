@@ -68,7 +68,7 @@ nav:
   - 'DNS resolver': ftldns/dns-resolver.md
   - 'DNS cache': ftldns/dns-cache.md
   - 'Blocking mode': ftldns/blockingmode.md
-  - 'RegEx blocking':
+  - 'RegEx filtering':
     - "Overview": ftldns/regex/overview.md
     - "Tutorial": ftldns/regex/tutorial.md
   - 'Privacy levels': ftldns/privacylevels.md
