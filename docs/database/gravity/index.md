@@ -1,7 +1,7 @@
 Pi-hole uses the well-known relational database management system SQLite3 for managing the various domains that are used to control the DNS filtering system. The database-based domain management has been added with Pi-hole v5.0.
 
 ## Domain lists
-The database stores white-, black-, and regex lists which are all directly relevant for Pi-hole's domain blocking behavior. They are stored alongside some properties such as if they are currently enabled or when they have last been modified. For a full description, see the [domain lists](lists.md) page.
+The database stores white-, and blacklists which are directly relevant for Pi-hole's domain blocking behavior. They are stored alongside some properties such as if they are currently enabled or when they have last been modified. For a full description, see the [domain lists](lists.md) page.
 
 ## Domain group management
 In addition to the ability to add comments to individual domains, we also offer a powerful way of managing domains through groups. Each domain can be associated with no group, exactly one group, or multiple groups. See [domain group management](groups.md) for further details.
@@ -23,3 +23,5 @@ Label | Type | Uniqueness enforced | Content
 `id` | integer | Yes | Unique ID for database operations
 `domain` | text | Yes | Domain
 `date_added` | integer | No | Unix timestamp when domain was added
+
+{!abbreviations.md!}
