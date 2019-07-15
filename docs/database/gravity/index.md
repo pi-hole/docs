@@ -15,8 +15,8 @@ Label | Type | Uniqueness enforced | Content
 ----- | ---- | ------------------- | --------
 `domain` | text | Yes | Blocked domain compiled from enabled adlists
 
-## Audit Table (`auditlist`)
-The `audit` table contains domains that have been audited by the user on the web interface.
+## Audit Table (`domain_audit`)
+The `domain_audit` table contains domains that have been audited by the user on the web interface.
 
 Label | Type | Uniqueness enforced | Content
 ----- | ---- | ------------------- | --------
