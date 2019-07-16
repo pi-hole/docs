@@ -15,8 +15,8 @@ Label | Type | Uniqueness enforced | Content
 `date_modified` | integer | No | Timestamp when domain was last modified, automatically updated when a record is changed
 `comment` | text | No | Optional field for arbitrary user comments
 
-### RegEx Whitelisting Table (`regex_whitelist`)
-In addition to the `whitelist` table, we also provide a `regex_whitelist` table containing all RegEx based whitelisting filters. Just like the `whitelist` table, it has a few extra fields to store data related to a given filter.
+### Regex Whitelisting Table (`regex_whitelist`)
+In addition to the `whitelist` table, we also provide a `regex_whitelist` table containing all regex based whitelisting filters. Just like the `whitelist` table, it has a few extra fields to store data related to a given filter.
 
 Its schema is identical to the schema of the `whitelist` table.
 
@@ -26,7 +26,7 @@ The `blacklist` table contains all blacklisted domains. Just like the `whitelist
 
 Its schema is identical to the schema of the `whitelist` table.
 
-### RegEx Blacklisting Table (`regex_blacklist`)
+### Regex Blacklisting Table (`regex_blacklist`)
 Just as for whitelisting, *FTL*DNS also supports blacklisting using regular expression filters.
 
 The schema of the `regex_blacklist` table is identical to the schema of the `whitelist` table.
