@@ -167,7 +167,7 @@ server:
     # https://github.com/wkumari/draft-kh-dnsop-7706bis/pull/8
     auth-zone:
         name: "."
-        zonefile: /db/root.zone
+        zonefile: /var/lib/unbound/root.zone
         master: 199.9.14.201        # b.root-servers.net
         master: 2001:500:200::b     # b.root-servers.net
         master: 192.33.4.12     # c.root-servers.net
