@@ -62,17 +62,16 @@ Highlights:
  `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 ```ini
 server:
-    # One thread should be sufficient, can be increased on beefy machines. In reality for most users running on small networks or on a single machine it should be unnecessary to seek performance enhancement by increasing num-threads above 1.
+    # One thread should be sufficient, can be increased on beefy machines.
+    # In reality for most users running on small networks or on a single machine it
+    # should be unnecessary to seek performance enhancement by increasing num-threads above 1.
     num-threads: 1
 
     # If no logfile is specified, syslog is used
     # logfile: "/var/log/unbound/unbound.log"
     verbosity: 0
 
-    # Ensure Unbound is running on loopback interface
-    interface: 127.0.0.1@53
-
-    # Use an unassigned port
+    # Use an unassigned port, port 5353 for example is used by Avahi / Multicast DNS
     port: 10053
 
     do-ip4: yes
@@ -89,11 +88,6 @@ server:
     # Allow lo0
     access-control: 127.0.0.0/8 allow
     access-control: ::1 allow
-    # Allow lan
-    access-control: 192.168.0.0/16 allow
-    access-control: 172.16.0.0/12 allow
-    access-control: 10.0.0.0/8 allow
-    access-control: fd80:1fe9:fcee::/48 allow
 
     # Prints one line per query to the log, making the server (significantly) slower
     #log-queries: no
@@ -106,11 +100,15 @@ server:
 
     # The maximum dependency depth that Unbound will pursue in answering a query (reduced memory)
     target-fetch-policy: "2 1 0 0 0 0"
-
+    
+    # Very small EDNS buffer sizes from queries are ignored
     harden-short-bufsize: yes
+    
+    # Very large queries are ignored
     harden-large-queries: yes
 
     # Use 0x20-encoded random bits in the query to foil spoof attempts
+    # See "https://discourse.pi-hole.net/t/unbound-stubby-or-dnscrypt-proxy/9378" for further details
     use-caps-for-id: yes
 
     # DNSSEC bogus answers against DNS Rebinding
@@ -121,25 +119,24 @@ server:
     private-address: 169.254.0.0/16
     private-address: fd00::/8
     private-address: fe80::/10
-    # Turning on 127.0.0.0/8 would hinder many spamblocklists as they use that
-    #private-address: 127.0.0.0/8
     # Adding ::ffff:0:0/96 stops IPv4-mapped IPv6 addresses from bypassing the filter
     private-address: ::ffff:0:0/96
-    # add 
-    private-address: 2001:470:b35c::/48
 
+    # Prevents against DNS poisoning, when the threshold is reached, rrset and 
+    # message caches are cleared and a warning is printed
     unwanted-reply-threshold: 10000000
 
+    # Localhost can be used for queries
     do-not-query-localhost: no
 
-    # Affects buffer space
+    # Affects buffer space. Turning it on gives about 10 percent more traffic and
+    # load on the machine, but popular items do not expire from the cache.
     #prefetch: no
 
     # UDP EDNS reassembly buffer advertised to peers. Default 4096.
     # May need lowering on broken networks with fragmentation/MTU issues,
     # particularly if validating DNSSEC.
-    #
-    #edns-buffer-size: 1480
+    #edns-buffer-size: 1472
 
     # Use TCP for "forward-zone" requests. Useful if you are making
     # DNS requests over an SSH port forwarding.
