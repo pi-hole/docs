@@ -67,4 +67,5 @@ rtt min/avg/max/mdev = 18.740/18.894/19.017/0.189 ms
 
 ### Important last step
 The undocumented `pihole -a -i all` command is simply what runs when you choose _Listen on all interfaces, permit all origins (make sure your Pi-hole is firewalled)_, which if you've read this far in the tutorial, you should understand that we don't want you to knowingly or unknowing set up an open resolver.
+
 ![screenshot](listening-behavior.png)
