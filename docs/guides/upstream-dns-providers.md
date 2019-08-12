@@ -6,7 +6,6 @@ Level3
 Comodo
 DNS.WATCH
 Quad9
-FamilyShield DNS
 CloudFlare DNS
 Custom
 ```
