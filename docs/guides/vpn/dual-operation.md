@@ -9,7 +9,7 @@ This setup assumes that your local network is in the range **192.168.2.0** (i.e.
 - devices in 192.168.0.1 - 192.168.0.254 -> `route 192.168.0.0`
 - devices in 192.168.123.1 - 192.168.123.254 -> `route 192.168.123.0`
 
-Edit your `/etc/openvpn/server.conf`:
+Edit your `/etc/openvpn/server/server.conf`:
 
 ```
 push "route 192.168.2.0 255.255.255.0"

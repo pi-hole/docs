@@ -14,7 +14,7 @@ ip a
 Edit the OpenVPN config file:
 
 ```
-vim /etc/openvpn/server.conf
+vim /etc/openvpn/server/server.conf
 ```
 
 Set this line to use your Pi-hole's IP address, which you determined from the `ifconfig` command and comment out or remove the other line (if it exists):
@@ -70,4 +70,4 @@ Please, use one word only, no special characters
 Client name: iphone7
 ```
 
-This will generate a `.ovpn` file, which needs to be copied to your client machine (often times using the OpenVPN app).  This process also generates a few other files found in `/etc/openvpn/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.
+This will generate a `.ovpn` file, which needs to be copied to your client machine (often times using the OpenVPN app).  This process also generates a few other files found in `/etc/openvpn/server/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.

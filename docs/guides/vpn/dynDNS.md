@@ -1,7 +1,7 @@
 If you operate your Pi-hole + OpenVPN at home, it is very likely that you are sitting behind a NAT / dynamically changing IP address. In this case, you should set up a dynamic DNS record, which allows you to reach your server. You can exchange the address that has been configured during the setup of OpenVPN like this:
 
 ```
-vim /etc/openvpn/client-common.txt
+vim /etc/openvpn/server/client-common.txt
 ```
 
 Look for the `remote` line and adjust it accordingly (remove IP address, add host name), e.g.

@@ -21,7 +21,7 @@ Generating a 2048 bit RSA private key
 ..................................+++
 writing new private key to '...'
 -----
-Using configuration from /etc/openvpn/easy-rsa/openssl-1.0.cnf
+Using configuration from /etc/openvpn/server/easy-rsa/openssl-1.0.cnf
 Check that the request matches the signature
 Signature ok
 The Subject's Distinguished Name is as follows
