@@ -2,7 +2,7 @@
 
 With this setup, you will force connected clients to use **only the DNS provided by the VPN connection, i.e. the Pi-hole.**  Do this only if you **don't** want to tunnel all traffic from the client through the VPN, but only its DNS queries.
 
-Edit your `/etc/openvpn/server.conf` and remove (comment out) the following line:
+Edit your `/etc/openvpn/server/server.conf` and remove (comment out) the following line:
 
 ```
 # push "redirect-gateway def1 bypass-dhcp"

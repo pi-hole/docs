@@ -26,7 +26,7 @@ Please, use one word only, no special characters
 Client name: iphone7
 ```
 
-This will generate a `.ovpn` file, which needs to be copied to your client machine (often times using the OpenVPN app).  This process also generates a few other files found in `/etc/openvpn/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.
+This will generate a `.ovpn` file, which needs to be copied to your client machine (often times using the OpenVPN app).  This process also generates a few other files found in `/etc/openvpn/server/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.
 
 ## Connect a client using the `.ovpn` file
 
@@ -64,15 +64,15 @@ sudo apt-get install network-manager-openvpn network-manager-openvpn-gnome
 sudo service network-manager restart
 ```
 
-2. Securely copy the necessary certificates from your OpenVPN server to your client (e.g. using `sftp`). They are located in `/etc/openvpn/easy-rsa/pki`
+2. Securely copy the necessary certificates from your OpenVPN server to your client (e.g. using `sftp`). They are located in `/etc/openvpn/server/easy-rsa/pki`
 
 You will need:
 
-* User Certificate: `/etc/openvpn/easy-rsa/pki/issued/client.crt`
-* CA Certificate: `/etc/openvpn/easy-rsa/pki/ca.crt`
-* Private Key: `/etc/openvpn/easy-rsa/pki/private/client.key`
+* User Certificate: `/etc/openvpn/server/easy-rsa/pki/issued/client.crt`
+* CA Certificate: `/etc/openvpn/server/easy-rsa/pki/ca.crt`
+* Private Key: `/etc/openvpn/server/easy-rsa/pki/private/client.key`
 * Private Key Password: Depending on your settings (might even be empty)
-* TA Key: `/etc/openvpn/ta.key`
+* TA Key: `/etc/openvpn/server/ta.key`
 
 Further details can be found in the screenshots provided below:
 ![](NetworkManager3.png)
