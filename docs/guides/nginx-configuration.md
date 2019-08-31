@@ -15,7 +15,7 @@
 `systemctl enable nginx`
 6.	Edit `/etc/nginx/sites-available/default` to:
 
-```
+```nginx
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -77,11 +77,11 @@ server {
 -       If you want to use your custom domain to access admin page (e.g.: `http://mydomain.internal/admin/settings.php` instead of `http://pi.hole/admin/settings.php`), make sure `mydomain.internal` is assigned to `server_name` in `/etc/nginx/sites-available/default`. E.g.: `server_name mydomain.internal;`
 
 -       If you want to use block page for any blocked domain subpage (aka Nginx 404), add this to Pi-hole server block in your Nginx configuration file:
-```
+```nginx
 error_page 404 /pihole/index.php;
 ```
 -       When using nginx to serve Pi-hole, Let's Encrypt can be used to directly configure nginx. Make sure to use your hostname instead of _ in `server_name _;` line above.
-```
+```bash
 add-apt-repository ppa:certbot/certbot
 apt-get install certbot python-certbot-nginx
 
