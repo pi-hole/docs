@@ -77,4 +77,17 @@ firewall-cmd --permanent --zone=ftl --add-interface=lo
 firewall-cmd --permanent --zone=ftl --add-port=4711/tcp
 firewall-cmd --reload
 ```
+
+#### ufw
+
+ufw stores all rules persistent, so you just need to execute the commands below. If only IPv4 blocking is used for the Pi-hole installation, the rule `546:547/udp` can be removed from the commands below.
+
+```bash
+ufw allow 80/tcp
+ufw allow 53/tcp
+ufw allow 53/udp
+ufw allow 67/tcp
+ufw allow 67/udp
+ufw allow 546:547/udp
+```
 {!abbreviations.md!}
