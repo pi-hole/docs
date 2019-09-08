@@ -15,7 +15,7 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 - [Adafruit: Raspberry Pi Quick Look at Pi Hole ad blocking server with Tony D](https://www.youtube.com/watch?v=eg4u2j1HYlI) _Jun 20, 2016_
 - [The Defrag Show: Endoscope USB Camera, The Final [HoloLens] Vote, Adblock Pi and more](https://channel9.msdn.com/Shows/The-Defrag-Show/Defrag-Endoscope-USB-Camera-The-Final-HoloLens-Vote-Adblock-Pi-and-more?WT.mc_id=dlvr_twitter_ch9#time=20m39s) _Jan 27, 2016_
 - [Know How 355: Killing ads with a Raspberry Pi-Hole!](https://www.twit.tv/shows/know-how/episodes/355) _Nov 9, 2017_
-- [Linus Tech Tips: Block EVERY Online Ad with THIS](https://www.youtube.com/watch?v=KBXTnrD_Zs4) (August, 2019)
+- [Linus Tech Tips: Block EVERY Online Ad with THIS](https://www.youtube.com/watch?v=KBXTnrD_Zs4) _Aug 28, 2019_
 
 ### Podcasts
 
