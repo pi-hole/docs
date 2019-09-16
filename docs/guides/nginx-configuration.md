@@ -32,8 +32,9 @@ server {
         }
 
         location ~ \.php$ {
-                include snippets/fastcgi-php.conf;
+		include fastcgi_params;
                 fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+		fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
                 fastcgi_param FQDN true;
                 auth_basic "Restricted"; #For Basic Auth
                 auth_basic_user_file /etc/nginx/.htpasswd;  #For Basic Auth
