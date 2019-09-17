@@ -2,7 +2,7 @@
 
 You're constantly using new DNS Servers that are located all over the world, so it might happen that sometimes hostname resolving is slow or might not work at all for certain domains. In this cases you have to wait some minutes until you switch to another Tor circuit or configure Tor to accept control connections and send a command that tells Tor to [switch circuits immediately](https://superuser.com/a/139018).   
 
-You could set `ExitNodes` in your torrc to a specific set of Exit nodes that are reliable for you or use only Exit nodes in a [specific country](http://www.b3rn3d.com/blog/2014/03/05/tor-country-codes/) (on Debian derivatives you need to have the `tor-geoipdb` package installed for that to work) and thus avoid problems with DNS lookups to some extend. 
+You could set `ExitNodes` in your torrc to a specific set of Exit nodes that are reliable for you or use only Exit nodes in a [specific country](https://b3rn3d.herokuapp.com/blog/2014/03/05/tor-country-codes/) (on Debian derivatives you need to have the `tor-geoipdb` package installed for that to work) and thus avoid problems with DNS lookups to some extend. 
 
 Keep in mind that this approach increases the correlation attack vulnerability if you only have a small amount of `ExitNodes` set or your selected country/s has/have few Exit nodes. If your goal is only to slightly increase security and maintain performance and reliability, this approach might be for you. It is not recommended.
 

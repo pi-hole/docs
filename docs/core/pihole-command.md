@@ -130,7 +130,7 @@ Chronometer is a console dashboard of real-time stats, which can be displayed vi
 | | |
  -------------- | --------------
 Help Command    | N/A
-Script Location | [`/opt/pihole/gravity.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/gravity.sh)
+Script Location | [`/opt/pihole/gravity.sh`](https://github.com/pi-hole/pi-hole/blob/master/gravity.sh)
 Example Usage   | [`pihole -g`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#gravity)
 
 Gravity is one of the most important scripts of Pi-hole. Its main purpose is to retrieve blocklists, and then consolidate them into one unique list for the built-in DNS server to use, but it also serves to complete the process of manual whitelisting, blacklisting and wildcard update. It is run automatically each week, but it can be invoked manually at any time.
