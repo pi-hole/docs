@@ -18,7 +18,7 @@ The following operating systems are **officially** supported:
 
 | Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
-| Raspbian     | Jessie / Stretch/Buster | ARM                 |
+| Raspbian     | Jessie / Stretch / Buster | ARM                 |
 | Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
 | Debian       | 8 / 9            | ARM / x86_64 / i386 |
 | Fedora       | 28 / 29          | ARM / x86_64        |
