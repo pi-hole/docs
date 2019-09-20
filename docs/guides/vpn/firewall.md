@@ -66,8 +66,6 @@ iptables -A INPUT -p udp --dport 443 -j REJECT --reject-with icmp-port-unreachab
 
 Depending on the systems you have connecting, you may benefit from appending `--reject-with tcp-reset` to the command above.  If you still get slow load times of HTTPS assets, the above may help.
 
-If you want to test how your Pi-hole behaves with blocking HTTP vs. HTTPS assets, use [this page](https://pi-hole.net/pages-to-test-ad-blocking-performance/#https-test).
-
 ##### IPv6 `iptables`
 
 If your server is reachable via IPv6, you'll need to run the same commands but using `ip6tables`:
