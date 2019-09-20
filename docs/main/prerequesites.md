@@ -1,3 +1,8 @@
+---
+title: Prerequisites
+description: Operating system and network requirements
+last_updated: Fri September 20 2019
+---
 ### Hardware
 Pi-hole is very lightweight, and does not require much processing power
 
@@ -13,7 +18,7 @@ The following operating systems are **officially** supported:
 
 | Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
-| Raspbian     | Jessie / Stretch | ARM                 |
+| Raspbian     | Jessie / Stretch / Buster | ARM                 |
 | Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
 | Debian       | 8 / 9            | ARM / x86_64 / i386 |
 | Fedora       | 28 / 29          | ARM / x86_64        |
