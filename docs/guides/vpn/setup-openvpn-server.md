@@ -38,8 +38,8 @@ verb 3
 
 Depending on your operating system, one of these commands should work to restart the service.
 ```
-systemctl restart openvpn
-service openvpn restart
+systemctl restart openvpn-server@server
+service openvpn-server@server restart
 ```
 
 ## Create a client config file (`.ovpn`)
