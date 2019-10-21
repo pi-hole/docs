@@ -19,9 +19,9 @@ The installation is fairly straightforward, however be aware of what architectur
 
 #### AMD64 architecture (most devices)
 
-Download the installer package, then use `apt-get` to install the package along with any dependencies. Proceed to run the binary with the `-v` flag to check it is all working.
+Download the installer package, then use `apt-get` to install the package along with any dependencies. Proceed to run the binary with the `-v` flag to check it is all working:
 
-```
+```sh
 # For Debian/Ubuntu
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
 sudo apt-get install ./cloudflared-stable-linux-amd64.deb
@@ -37,9 +37,9 @@ cloudflared -v
 
 #### ARM architecture (Raspberry Pi)
 
-Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working.
+Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working:
 
-```
+```sh
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
 tar -xvzf cloudflared-stable-linux-arm.tgz
 sudo cp ./cloudflared /usr/local/bin
@@ -49,29 +49,29 @@ cloudflared -v
 
 #### Configuring `cloudflared` to run on startup
 
-Create a cloudflared user to run the daemon.
+Create a cloudflared user to run the daemon:
 
-```
+```sh
 sudo useradd -s /usr/sbin/nologin -r -M cloudflared
 ```
 
-Proceed to create a configuration file for `cloudflared` by copying the following in to `/etc/default/cloudflared`. This file contains the command-line options that get passed to cloudflared on startup.
+Proceed to create a configuration file for `cloudflared` by copying the following in to `/etc/default/cloudflared`. This file contains the command-line options that get passed to cloudflared on startup:
 
-```
+```sh
 # Commandline args for cloudflared
 CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
 ```
 
-Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user
+Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user:
 
-```
+```sh
 sudo chown cloudflared:cloudflared /etc/default/cloudflared
 sudo chown cloudflared:cloudflared /usr/local/bin/cloudflared
 ```
 
-Then create the `systemd` script by copying the following in to `/lib/systemd/system/cloudflared.service`. This will control the running of the service and allow it to run on startup.
+Then create the `systemd` script by copying the following in to `/etc/systemd/system/cloudflared.service`. This will control the running of the service and allow it to run on startup:
 
-```
+```ini
 [Unit]
 Description=cloudflared DNS over HTTPS proxy
 After=syslog.target network-online.target
@@ -89,16 +89,17 @@ KillMode=process
 WantedBy=multi-user.target
 ```
 
-Enable the `systemd` service to run on startup, then start the service and check its status.
-```
+Enable the `systemd` service to run on startup, then start the service and check its status:
+
+```sh
 sudo systemctl enable cloudflared
 sudo systemctl start cloudflared
 sudo systemctl status cloudflared
 ```
 
-Now test that it is working! Run the following `dig` command, a response should be returned similar to the one below
+Now test that it is working! Run the following `dig` command, a response should be returned similar to the one below:
 
-```
+```sh
 dig @127.0.0.1 -p 5053 google.com
 
 
@@ -123,6 +124,7 @@ google.com.		299	IN	A	243.65.127.221
 ```
 
 ### Configuring Pi-hole
+
 Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server:
 
 ![Screenshot of Pi-hole configuration](../images/DoHConfig.png)
