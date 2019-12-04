@@ -144,7 +144,7 @@ Gravity is one of the most important scripts of Pi-hole. Its main purpose is to 
 * It will attempt to parse the file into a domains-only format if necessary
 * Lists are merged, comments removed, sorted uniquely and stored as `list.preEventHorizon`
 * Whitelisted entries within `/etc/pihole/whitelist.txt` are removed from `list.preEventHorizon` and saved into a temporary file
-* Blacklisted, "localhost" and temporary file entries are added as seperate `.list` files
+* Blacklisted, "localhost" and temporary file entries are added as separate `.list` files
 * Gravity cleans up temporary content and reloads the DNS server
 
 ### Logging
@@ -272,7 +272,7 @@ Help Command    | N/A
 Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#web-password)
 
-Set Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or seperately as to not display on screen (e.g: `pihole -a -p`).
+Set Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on screen (e.g: `pihole -a -p`).
 
 ### Temperature Unit
 | | |
