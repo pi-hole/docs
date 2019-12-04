@@ -24,7 +24,7 @@ push "dhcp-option DNS 10.8.0.1"
 #push "dhcp-option DNS 8.8.8.8"
 ```
 
-This `push` directive is setting a [DHCP option](https://www.incognito.com/tips-and-tutorials/dhcp-options-in-plain-english/), which tells client's connecting to the VPN that they should use Pi-hole as their primary DNS server.
+This `push` directive is setting a [DHCP option](https://www.incognito.com/tutorials/dhcp-options-in-plain-english/), which tells client's connecting to the VPN that they should use Pi-hole as their primary DNS server.
 
 It's [suggested to have Pi-hole be the only resolver](https://discourse.pi-hole.net/t/why-should-pi-hole-be-my-only-dns-server/3376) as it defines the upstream servers.  Setting a non-Pi-hole resolver here [may have adverse effects on ad blocking](https://discourse.pi-hole.net/t/why-should-pi-hole-be-my-only-dns-server/3376) but it _can_ provide failover connectivity in the case of Pi-hole not working if that is something you are concerned about.
 

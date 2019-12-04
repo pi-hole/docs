@@ -1,6 +1,6 @@
 ## Install an operating system
 
-Once you have your preferred OS up and running.  You may already have a server set up on your network, or you may prefer to make a [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1) droplet.  In either case, you'll use the quick OpenVPN "road warrior" installer.  The cloud-hosted server option is convenient if you don't want to host the hardware at home, but you'll need to take additional steps to secure the server as it's available on the public Internet.  Failure to do so is [not only irresponsible, but you also put yourself and others at risk](https://www.us-cert.gov/ncas/alerts/TA13-088A).
+Once you have your preferred OS up and running.  You may already have a server set up on your network, or you may prefer to make a [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1) droplet.  In either case, you'll use the quick OpenVPN "road warrior" installer.  The cloud-hosted server option is convenient if you don't want to host the hardware at home, but you'll need to take additional steps to secure the server as it's available on the public Internet.  Failure to do so is [not only irresponsible, but you also put yourself and others at risk](https://www.us-cert.gov/ncas/alerts/TA13-088A).
 
 ## Install OpenVPN + Pi-hole
 

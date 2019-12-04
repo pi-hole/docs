@@ -2,7 +2,7 @@
 
 **If you are behind a NAT and not running the Pi-hole on a cloud server, you do not need to issue the IPTABLES commands bellow as the firewall rules are already handled by the RoadWarrior installer.
 
-**This step is optional but recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](http://www.digitalocean.com/?refcode=344d234950e1)**.  If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
+**This step is optional but recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1)**.  If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
 
 In addition to the risk of being an open resolver, your Web interface is also open to the world increasing the risk.  So you will want to prevent ports 53 and 80, respectively, from being accessible from the public Internet.
 
@@ -54,7 +54,7 @@ iptables -P INPUT DROP
 
 ###### Blocking HTTPS advertisement assets
 
-Since you're `:head-desk:`ing with `iptables`, you can also use this opportunity to block HTTPS advertisements to [improve blocking ads that are loaded via HTTPS](https://discourse.pi-hole.net/t/why-do-some-sites-take-forever-to-load-when-using-pi-hole/3654/4) and also deal with QUIC.
+Since you're `:head-desk:`ing with `iptables`, you can also use this opportunity to block HTTPS advertisements to [improve blocking ads that are loaded via HTTPS](https://discourse.pi-hole.net/t/why-do-some-sites-take-forever-to-load-when-using-pi-hole-for-versions-v4-0/3654/4) and also deal with QUIC.
 
 > Why doesn't Pi-hole just use a certificate to prevent this?  The answer is [here](https://discourse.pi-hole.net/t/slow-loading-websites/3408/12).
 

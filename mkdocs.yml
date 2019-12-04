@@ -1,5 +1,5 @@
 site_name: "Pi-hole documentation"
-site_url: https://docs.pi-hole.net
+site_url: https://docs.pi-hole.net/
 repo_url: "https://github.com/pi-hole/pi-hole/"
 edit_uri: ""
 copyright: 'Copyright &copy; 2018 Pi-hole LLC'
