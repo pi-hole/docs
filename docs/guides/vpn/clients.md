@@ -30,7 +30,7 @@ This will generate a `.ovpn` file, which needs to be copied to your client machi
 
 ## Connect a client using the `.ovpn` file
 
-The OpenVPN documentation has some decent [guides on connecting desktop clients for Mac, Windows, and Linux](https://openvpn.net/index.php/access-server/docs/admin-guides-sp-859543150/howto-connect-client-configuration.html), so we'll instead explain how to connect a mobile device, since that provides the most usefulness in today's world--**connecting to your ad-blocking VPN via a mobile device**.  We'll go through two examples:
+The OpenVPN documentation has some decent [guides on connecting desktop clients for Mac, Windows, and Linux](https://openvpn.net/vpn-server-resources/), so we'll instead explain how to connect a mobile device, since that provides the most usefulness in today's world--**connecting to your ad-blocking VPN via a mobile device**.  We'll go through two examples:
 
 1. connect an iPhone using the OpenVPN Connect mobile app (see [here](https://github.com/pi-hole/pi-hole/wiki/OpenVPN-server:-Connect-from-a-client-(Android)) for Android)
 2. connect a Linux machine
@@ -85,4 +85,4 @@ Your whole network traffic will now securely be transferred to your Pi-hole.
 
 ### Windows
 
-You will have to install additional software. See https://openvpn.net/index.php/open-source/downloads.html
+You will have to install additional software. See https://openvpn.net/community-downloads/

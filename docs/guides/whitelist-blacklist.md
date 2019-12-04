@@ -1,6 +1,6 @@
 ### What to Whitelist or Blacklist
 
-[This extension for Google Chrome](https://chrome.google.com/webstore/detail/whitelist-assistant-by-dn/fdmpekabnlekabjlimjkfmdjajnddgpc) can help you in finding out which domains you need to whitelist.
+[This extension for Google Chrome](https://chrome.google.com/webstore/detail/adamone-assistant/fdmpekabnlekabjlimjkfmdjajnddgpc) can help you in finding out which domains you need to whitelist.
 
 
 ### How to Whitelist or Blacklist
