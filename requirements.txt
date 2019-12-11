@@ -8,7 +8,7 @@ MarkupSafe==1.1.1
 mkdocs==1.0.4
 mkdocs-bootswatch==1.0
 mkdocs-material==4.5.1
-Pygments==2.5.1
+Pygments==2.5.2
 pymdown-extensions==6.2
 PyYAML==5.2
 singledispatch==3.4.0.3
