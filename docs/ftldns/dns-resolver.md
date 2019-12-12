@@ -11,12 +11,15 @@ If we would start to modify the resolver code in too many places, then this woul
 ### Implemented modifications in `dnsmasq`'s source code
 
 #### FTL hooks
+
 We place hooks in a lot of places in the resolver that branch out into `FTL` code to process queries and responses. By this, we keep the resolver code itself clean.
 
 #### Remove limit on maximum cache size
+
 Users are able to configure the size of the resolvers name cache. The default is 150 names. Setting the cache size to zero disables caching. We think users should be allowed to set the cache size to any value they find appropriate. However, `dnsmasq`'s source code contains a condition that limits the maximum size of the cache to 10,000 names. We removed this hard-coded upper limit in [option.c](https://github.com/pi-hole/FTL/commit/ea3309e7b1991f50d40555b9a18f39894c237b29#diff-733116077302620357dcd8252f41449dR2582R258) and submitted a patch to remove this hard-coded limit in the upstream version of `dnsmasq`.
 
 #### Improve detection algorithm for determining the "best" forward destination
+
 The DNS forward destination determination algorithm in *FTL*DNS's is modified to be much less restrictive than the original algorithm in `dnsmasq`. We keep using the fastest responding server now for 1000 queries or 10 minutes (whatever happens earlier) instead of 50 queries or 10 seconds (default values in `dnsmasq`).
 We keep the exceptions, i.e., we try all possible forward destinations if `SERVFAIL` or `REFUSED` is received or if a timeout occurs.
 Overall, this change has proven to greatly reduce the number of actually performed queries in typical Pi-hole environments. It may even be understood as being preferential in terms of privacy (as we send queries much less often to all servers).

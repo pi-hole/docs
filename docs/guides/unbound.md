@@ -59,7 +59,7 @@ sudo apt install unbound
 
 **Important**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently.
 
-```
+```bash
 wget -O root.hints https://www.internic.net/domain/named.root
 sudo mv root.hints /var/lib/unbound/
 ```
@@ -127,17 +127,18 @@ server:
 
 Start your local recursive server and test that it's operational:
 
-```
+```bash
 sudo service unbound start
 dig pi-hole.net @127.0.0.1 -p 5353
 ```
+
 The first query may be quite slow, but subsequent queries, also to other domains under the same TLD, should be fairly quick.
 
 ### Test validation
 
 You can test DNSSEC validation using
 
-```
+```bash
 dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5353
 dig sigok.verteiltesysteme.net @127.0.0.1 -p 5353
 ```

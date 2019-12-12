@@ -3,9 +3,11 @@ Using privacy levels you can specify which level of detail you want to see in yo
 The available options are
 
 ### Level 0 - show everything
+
 Doesn't hide anything, all statistics are available
 
 ### Level 1 - hide domains
+
 Show and store all domains as `hidden`
 
 This setting disables
@@ -14,6 +16,7 @@ This setting disables
 - Top Ads
 
 ### Level 2 - hide domains and clients
+
 Show and store all domains as `hidden` and clients as `0.0.0.0`
 
 This setting disables
@@ -24,6 +27,7 @@ This setting disables
 - Clients over time
 
 ### Level 3 - anonymous mode (anonymize everything)
+
 Disable all details except the most anonymous statistics
 
 This setting disables
@@ -36,6 +40,7 @@ This setting disables
 - Long-term database logging
 
 ### Level 4 - disabled statistics (v4.1+)
+
 Disables all statistics processing. Even the query counters will not be available.
 Additionally, you can disable logging to the file `/var/log/pihole.log` using `sudo pihole logging off`.
 

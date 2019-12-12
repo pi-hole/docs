@@ -17,16 +17,18 @@ Pi-hole stats can be accessed via a standard Unix socket (`var/run/pihole/FTL.so
 Command line arguments can be arbitrarily combined, e.g. `pihole-FTL debug test`
 
 ## File locations
+
 - `/var/log/pihole-FTL.log` log file
 - `/var/run/pihole-FTL.pid` PID file
 - `/var/run/pihole-FTL.port` file containing port on which `FTL` is listening
 - `/var/run/pihole/FTL.sock` Unix socket
 
-
 ## Domain lists format
+
 Since Pi-hole v4.0, we use a simpler domain list format for the two important block list files `gravity.list` and `black.list`. In contrast to the traditional HOSTS format (which caused a lot of overhead), the domain list format is the minimal possible solution for saving memory while still using plain text lists for your convenience. When *FTL*DNS imports these two files, they are walked by our improved list parser speeding up the loading of block lists significantly. Regardless which blocking mode (`IP` or `NXDOMAIN`) is selected, *FTL*DNS will always load the lists into its internal hashed cache to be able to determine the blocking status within a few milliseconds, even when you're using huge blocking lists on low-end devices. With everything we do, we design *FTL*DNS for maximum efficiency also on low-performance devices.
 
 ## Linux capabilities
+
 Capabilities (POSIX 1003.1e, [capabilities(7)](http://man7.org/linux/man-pages/man7/capabilities.7.html)) provide fine-grained control over superuser permissions, allowing use of the `root` user to be avoided.
 For the purpose of performing permission checks, traditional UNIX implementations distinguish two categories of processes: *privileged processes* (superuser or `root`), and *unprivileged processes*. Privileged processes bypass all kernel permission checks, while unprivileged processes are subject to full permission checking based on the process's credentials (user and group permissions and supplementary process capabilities). Capabilities are implemented on Linux using extended attributes ([xattr(7)](http://man7.org/linux/man-pages/man5/attr.5.html)) in the `security` namespace. Extended attributes are supported by all major Linux file systems, including Ext2, Ext3, Ext4, Btrfs, JFS, XFS, and ReiserFS.
 

@@ -3,6 +3,7 @@ title: Overview of Pi-hole
 description: Brief overview of Pi-hole
 last_updated: Thur May 02 01:00:00 2019 UTC
 ---
+
 <p align="center">
 <a href="https://pi-hole.net"><img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole"></a><br/>
 <b>Network-wide ad blocking via your own Linux hardware</b><br/>
@@ -24,17 +25,20 @@ The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a 
 -----
 
 ## Pi-hole is free, but powered by your support
+
 There are many reoccurring costs involved with maintaining free, open source, and privacy respecting software; expenses which [our volunteer developers](https://github.com/orgs/pi-hole/people) pitch in to cover out-of-pocket. This is just one example of how strongly we feel about our software, as well as the importance of keeping it maintained.
 
 Make no mistake: **your support is absolutely vital to help keep us innovating!**
 
 ### Donations
+
 Sending a donation using our links below is **extremely helpful** in offsetting a portion of our monthly expenses:
 
-- <a href="https://pi-hole.net/donate/">Donate via PayPal or Stripe</a>
+- [Donate via PayPal or Stripe](https://pi-hole.net/donate/)
 - [Bitcoin, Bitcoin Cash, Ethereum, Litecoin](https://commerce.coinbase.com/checkout/dd304d04-f324-4a77-931b-0db61c77a41b)
 
 ### Alternative support
+
 If you'd rather not donate (_which is okay!_), there are other ways you can help support us:
 
 - [Pi-hole Swag Store](https://pi-hole.net/shop/)
@@ -44,6 +48,7 @@ If you'd rather not donate (_which is okay!_), there are other ways you can help
 - Spreading the word about our software, and how you have benefited from it
 
 ### Contributing via GitHub
+
 We welcome _everyone_ to contribute to issue reports, suggest new features, and create pull requests.
 
 If you have something to add - anything from a typo through to a whole new feature, we're happy to check it out! Just make sure to fill out our template when submitting your request; the questions that it asks will help the volunteers quickly understand what you're aiming to achieve.
