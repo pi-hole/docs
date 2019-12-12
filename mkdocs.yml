@@ -94,7 +94,6 @@ nav:
       - 'General': guides/vpn/clients.md
       - 'Android': guides/vpn/android-client.md
     - 'Optional: Only route DNS via VPN': guides/vpn/only-dns-via-vpn.md
-    - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/dual-operation.md
     - 'Optional: Full and DNS-only': guides/vpn/dual-VPN.md
     - 'Optional: Dynamic DNS': guides/vpn/dynDNS.md
     - 'Troubleshooting': guides/vpn/troubleshooting.md
