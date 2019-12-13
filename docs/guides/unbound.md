@@ -1,4 +1,5 @@
 ### The problem: Whom can you trust?
+
 Pi-hole includes a caching and *forwarding* DNS server, now known as *FTL*DNS. After applying the blocking lists, it forwards requests made by the clients to configured upstream DNS server(s). However, as has been mentioned by several users in the past, this leads to some privacy concerns as it ultimately raises the question: _Whom can you trust?_ Recently, more and more small (and not so small) DNS upstream providers have appeared on the market, advertising free and private DNS service, but how can you know that they keep their promises? Right, you can't.
 
 Furthermore, from the point of an attacker, the DNS servers of larger providers are very worthwhile targets, as they only need to poison one DNS server, but millions of users might be affected. Instead of your bank's actual IP address, you could be sent to a phishing site hosted on some island. This scenario has [already happened](https://www.zdnet.com/article/dns-cache-poisoning-attacks-exploited-in-the-wild/) and it isn't unlikely to happen again...
@@ -6,10 +7,12 @@ Furthermore, from the point of an attacker, the DNS servers of larger providers 
 When you operate your own (tiny) recursive DNS server, then the likeliness of getting affected by such an attack is greatly reduced.
 
 ### What *is* a recursive DNS server?
+
 The first distinction we have to be aware of is whether a DNS server is *authoritative* or not.  If I'm the authoritative server for, e.g., `pi-hole.net`, then I know which IP is the correct answer for a query. Recursive name servers, in contrast, resolve any query they receive by consulting the servers authoritative for this query by traversing the domain.
 Example: We want to resolve `pi-hole.net`. On behalf of the client, the recursive DNS server will traverse the path of the domain across the Internet to deliver the answer to the question.
 
 ### What does this guide provide?
+
 In only a few simple steps, we will describe how to set up your own recursive DNS server. It will run on the same device you're already using for your Pi-hole. There are no additional hardware requirements.
 
 This guide assumes a fairly recent Debian/Ubuntu based system and will use the maintainer provided packages for installation to make it an incredibly simple process. It assumes only very basic knowledge of how DNS works.
@@ -46,26 +49,32 @@ You can easily imagine even longer chains for subdomains as the query process co
 Fortunately, both your Pi-hole as well as your recursive server will be configured for efficient caching to minimize the number of queries that will actually have to be performed.
 
 ## Setting up Pi-hole as a recursive DNS server solution
+
 We will use [`unbound`](https://www.unbound.net/), a secure open source recursive DNS server primarily developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
 The first thing you need to do is to install the recursive DNS resolver:
+
 ```bash
 sudo apt install unbound
 ```
 
 **Important**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently.
+
 ```
 wget -O root.hints https://www.internic.net/domain/named.root
 sudo mv root.hints /var/lib/unbound/
 ```
 
 ### Configure `unbound`
+
 Highlights:
+
 - Listen only for queries from the local Pi-hole installation (on port 5353)
 - Listen for both UDP and TCP requests
 - Verify DNSSEC signatures, discarding BOGUS domains
 - Apply a few security and privacy tricks
 
- `/etc/unbound/unbound.conf.d/pi-hole.conf`:
+`/etc/unbound/unbound.conf.d/pi-hole.conf`:
+
 ```ini
 server:
     # If no logfile is specified, syslog is used
@@ -117,6 +126,7 @@ server:
 ```
 
 Start your local recursive server and test that it's operational:
+
 ```
 sudo service unbound start
 dig pi-hole.net @127.0.0.1 -p 5353
@@ -124,14 +134,18 @@ dig pi-hole.net @127.0.0.1 -p 5353
 The first query may be quite slow, but subsequent queries, also to other domains under the same TLD, should be fairly quick.
 
 ### Test validation
+
 You can test DNSSEC validation using
+
 ```
 dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5353
 dig sigok.verteiltesysteme.net @127.0.0.1 -p 5353
 ```
+
 The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
 
 ### Configure Pi-hole
+
 Finally, configure Pi-hole to use your recursive DNS server:
 
 ![screenshot at 2018-04-18](../images/RecursiveResolver.png)
