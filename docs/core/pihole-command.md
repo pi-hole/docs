@@ -133,8 +133,13 @@ Example Usage   | [`pihole -c -e`](https://discourse.pi-hole.net/t/the-pihole-co
 
 Chronometer is a console dashboard of real-time stats, which can be displayed via `ssh` or on an LCD screen attached directly to your hardware. The script is capable of detecting the size of your screen, and adjusting output to try and best suit it.
 
-<a href="https://i.imgur.com/NC9C4fT.jpg"><img src="https://i.imgur.com/NC9C4fT.jpg" width="450" height="600"/></a>
-<br/><sub><a href="https://www.reddit.com/r/pihole/comments/6ldjna/pihole_setup_went_so_well_at_home_for_the_1st/">Image courtesy of /u/super_nicktendo22</a></sub>
+<a href="../chronometer.jpg">
+    <img srcset="../chronometer-thumb.jpg, ../chronometer-thumb@2x.jpg 2x" src="../chronometer-thumb.jpg" alt="Chronometer in action" width="450" height="600">
+</a>
+<br/>
+<sub>
+    <a href="https://www.reddit.com/r/pihole/comments/6ldjna/pihole_setup_went_so_well_at_home_for_the_1st/">Image courtesy of /u/super_nicktendo22</a>
+</sub>
 
 ### Gravity
 
