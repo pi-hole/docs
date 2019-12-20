@@ -1,13 +1,17 @@
 site_name: "Pi-hole documentation"
 site_url: https://docs.pi-hole.net/
-repo_url: "https://github.com/pi-hole/pi-hole/"
+repo_url: "https://github.com/pi-hole/pi-hole"
 edit_uri: ""
-copyright: 'Copyright &copy; 2018 Pi-hole LLC'
+copyright: 'Copyright &copy; 2019 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
   favicon: 'images/favicon.png'
+  logo: 'images/logo.svg'
   language: 'en'
+  font:
+    text: 'Source Sans Pro'
+    code: 'Roboto Mono'
 
 markdown_extensions:
 # Code highlighting in ``` ``` blocks
@@ -99,17 +103,18 @@ nav:
     - 'Optional: Dynamic DNS': guides/vpn/dynDNS.md
     - 'Troubleshooting': guides/vpn/troubleshooting.md
   - 'TOR & Pi-hole':
-          - 'Overview': guides/tor/overview.md
-          - 'Basic Setup': guides/tor/setup.md
-          - 'Using TOR': guides/tor/using-tor.md
-          - 'Performance and other issues': guides/tor/performance-issues.md
-          - 'Using DNSSEC': guides/tor/dnssec.md
+    - 'Overview': guides/tor/overview.md
+    - 'Basic Setup': guides/tor/setup.md
+    - 'Using TOR': guides/tor/using-tor.md
+    - 'Performance and other issues': guides/tor/performance-issues.md
+    - 'Using DNSSEC': guides/tor/dnssec.md
 - 'Community Projects': main/projects.md
 
 extra:
   social:
     - type: globe
-      link: https://pi-hole.net
+      link: https://pi-hole.net/
     - type: github-alt
       link: https://github.com/pi-hole
-extra_css: [extra.css]
+extra_css:
+  - extra.css
