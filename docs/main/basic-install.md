@@ -1,7 +1,8 @@
 ## One-Step Automated Install
+
 Those who want to get started quickly and conveniently, may install Pi-hole using the following command:
 
-```BASH
+```bash
 curl -sSL https://install.pi-hole.net | bash
 ```
 
@@ -11,14 +12,16 @@ curl -sSL https://install.pi-hole.net | bash
     If you would prefer to review the code before installation, we provide these alternative installation methods.
 
 #### Alternative 1: Clone our repository and run
-```BASH
+
+```bash
 git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
 cd "Pi-hole/automated install/"
 sudo bash basic-install.sh
 ```
 
 #### Alternative 2: Manually download the installer and run
-```BASH
+
+```bash
 wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
 ```

@@ -4,8 +4,6 @@ description: Sites and articles about Pi-hole
 last_updated: Sun Jan 13 19:20:35 2019 UTC
 ---
 
-
-
 ### YouTube/Twit/Video
 
 - [Security Now Netcast: Pi-hole](https://www.youtube.com/watch?v=p7-osq_y8i8&t=100m26s) _Oct 13, 2015_
@@ -34,4 +32,3 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 - [Bloomberg: Inside the Brotherhood of the Ad Blockers](https://www.bloomberg.com/news/features/2018-05-10/inside-the-brotherhood-of-pi-hole-ad-blockers) _May 10, 2018_
 - [How a Single Raspberry PI made my Home Network Faster](https://brianchristner.io/how-a-single-raspberry-pi-made-my-home-network-faster/) _March 1, 2019_
 - [Coding Horror: An Exercise Program for the Fat Web](https://blog.codinghorror.com/an-exercise-program-for-the-fat-web/) _May 30, 2019_
-

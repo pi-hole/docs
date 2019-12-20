@@ -12,7 +12,7 @@ It's recommended that you [clear out your entire firewall](https://serverfault.c
 
 Enter this command, which will allow all traffic through the VPN `tun0` interface.
 
-```
+```bash
 iptables -I INPUT -i tun0 -j ACCEPT
 ```
 
@@ -20,7 +20,7 @@ iptables -I INPUT -i tun0 -j ACCEPT
 
 These commands will allow DNS and HTTP needed for name resolution (using Pi-hole as a resolver) and accessing the Web interface, respectively.
 
-```
+```bash
 iptables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT
 iptables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT
 iptables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT
@@ -28,7 +28,7 @@ iptables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT
 
 You will also want to enable SSH and VPN access from anywhere.
 
-```
+```bash
 iptables -A INPUT -p tcp --destination-port 22 -j ACCEPT
 iptables -A INPUT -p tcp --destination-port 1194 -j ACCEPT
 iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT
@@ -36,19 +36,19 @@ iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT
 
 The next crucial setting is to explicitly allow TCP/IP to do "three way handshakes":
 
-```
+```bash
 iptables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 ```
 
 Also, we want to allow any loopback traffic, i.e. the server is allowed to talk to itself without any limitations using 127.0.0.0/8:
 
-```
+```bash
 iptables -I INPUT -i lo -j ACCEPT
 ```
 
 Finally, reject access from anywhere else (i.e. if no rule has matched up to this point):
 
-```
+```bash
 iptables -P INPUT DROP
 ```
 
@@ -58,7 +58,7 @@ Since you're `:head-desk:`ing with `iptables`, you can also use this opportunity
 
 > Why doesn't Pi-hole just use a certificate to prevent this?  The answer is [here](https://discourse.pi-hole.net/t/slow-loading-websites/3408/12).
 
-```
+```bash
 iptables -A INPUT -p udp --dport 80 -j REJECT --reject-with icmp-port-unreachable
 iptables -A INPUT -p tcp --dport 443 -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp --dport 443 -j REJECT --reject-with icmp-port-unreachable
@@ -70,7 +70,7 @@ Depending on the systems you have connecting, you may benefit from appending `--
 
 If your server is reachable via IPv6, you'll need to run the same commands but using `ip6tables`:
 
-```
+```bash
 ip6tables -A INPUT -i tun0 -p tcp --destination-port 53 -j ACCEPT
 ip6tables -A INPUT -i tun0 -p udp --destination-port 53 -j ACCEPT
 ip6tables -A INPUT -i tun0 -p tcp --destination-port 80 -j ACCEPT
@@ -84,15 +84,16 @@ ip6tables -A INPUT -p tcp --dport 443 -j REJECT --reject-with tcp-reset
 ip6tables -A INPUT -p udp --dport 443 -j REJECT --reject-with icmp6-port-unreachable
 ip6tables -P INPUT DROP
 ```
+
 View the rules you just created
 
-```
+```bash
 iptables -L --line-numbers
 ```
 
 and they should look something like this:
 
-```
+```text
 Chain INPUT (policy DROP)
 num  target     prot opt source               destination
 1    ACCEPT     all  --  anywhere             anywhere
@@ -124,7 +125,7 @@ num  target     prot opt source               destination
 
 Similarly, `ip6tables -L --line-numbers` should look like this:
 
-```
+```text
 Chain INPUT (policy DROP)
 num  target     prot opt source               destination
 1    ACCEPT     all      anywhere             anywhere
@@ -153,14 +154,14 @@ Connect to the VPN as a client and verify you can resolve DNS names as well as a
 
 If things look good, you may want to save your rules so you can revert to them if you ever make changes to the firewall.  Save them with these commands:
 
-```
+```bash
 iptables-save > /etc/pihole/rules.v4
 ip6tables-save > /etc/pihole/rules.v6
 ```
 
 Similarly, you can restore these rules:
 
-```
+```bash
 iptables-restore < /etc/pihole/rules.v4
 ip6tables-restore < /etc/pihole/rules.v6
 ```

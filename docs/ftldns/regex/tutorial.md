@@ -1,7 +1,9 @@
 # Pi-hole regular expressions tutorial
+
 We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing blocking rules (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
 
 ### Anchors (`^` and `$`)
+
 First of all, we look at anchors which can be used to indicate the start or the end of a domain, respectively. If you don't specify anchors, the match may be partial (see examples below).
 
 Example | Interpretation
@@ -12,6 +14,7 @@ Example | Interpretation
 `com$` | matches any domain **ending** (`$`) in "com" such as `domain.com` but not `domain.com.co.uk`
 
 ### Wildcard (`.`)
+
 An unescaped period stands for any *single* character.
 
 Example | Interpretation
@@ -19,6 +22,7 @@ Example | Interpretation
 `^domain.$` | matches `domaina`, `domainb`, `domainc`, but not `domain`
 
 ### Bounds and multipliers (`{}`, `*`, `+`, and `?`)
+
 With bounds, one can denote the number of times something has to occur:
 
 Bound | Meaning
@@ -45,6 +49,7 @@ Example | Interpretation
 `^a?b+` | matches domains like `abbbb.com` (zero or one `a` at the beginning followed by one or more `b`)
 
 ### Character groups (`[]`)
+
 With character groups, a set of characters can be matched:
 
 Character group | Interpretation
@@ -61,6 +66,7 @@ Character group | Interpretation
 Bracket expressions are an exception to the character escape rule. Inside them, all special characters, including the backslash (`\`), lose their special powers, i.e. they match themselves exactly. Furthermore, to include a literal `]` in the list, make it the first character (like `[]]` or `[^]]` if negated). To include a literal `-`, make it the first or last character, or the second endpoint of a range (e.g. `[a-z-]` to match `a` to `z` and `-`).
 
 ### Groups (`()`)
+
 Using groups, we can enclose regular expressions, they are most powerful when combined with bounds or multipliers (see also alternations below).
 
 Example | Interpretation
@@ -70,6 +76,7 @@ Example | Interpretation
 `(abc){1,3}` | matches one, two or three copies of `abc`: `abc`, `abcabc`, `abcabcabc` but nothing else
 
 ### Alternations (`|`)
+
 Alternations can be used as an "or" operator in regular expressions.
 
 Example | Interpretation
@@ -79,6 +86,7 @@ Example | Interpretation
 `domain(a|b)*\.com` | matches `domain.com`, `domainaaaa.com` `domainbbb.com` but not `domainab.com` (any number of `a` or `b` in between `domain` and `.com`)
 
 ### Character classes (`[:class:]`)
+
 In addition to character groups, there are also some special character classes available, such as
 
 Character class | Group equivalent | Interpretation
@@ -90,18 +98,23 @@ Character class | Group equivalent | Interpretation
 `[:alnum:]` | `[A-Za-z0-9]` | matches alphabetic characters and digits
 
 ## Advanced examples
+
 After going through our quick tutorial, we provide some more advances examples so you can test your knowledge.
 
 ### Block domain with only numbers
+
 ```
 ^[0-9][^a-z]+\.((com)|(edu))$
 ```
+
 Blocks domains containing only numbers (no letters) and ending in `.com` or `.edu`. Blocks `555661.com`, and `456.edu`, but not `555g555.com`
 
 ### Block domains without subdomains
+
 ```
 ^[a-z0-9]+([\-]{1}[a-z0-9]+)*\.[a-z]{2,7}$
 ```
+
 A domain name shall not start or end with a dash but can contain any number of them. It must be followed by a TLD (we assume a valid TLD length of two to seven characters)
 
 ## Cheatsheet

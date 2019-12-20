@@ -1,4 +1,6 @@
+---
 title: The pihole command - Pi-hole documentation
+---
 
 Pi-hole makes use of many commands, and here we will break down those required to administer the program via the Command Line Interface.
 
@@ -33,6 +35,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 [Checkout](#checkout) | `pihole checkout`
 
 ### Core Script
+
 | | |
  -------------- | --------------
 Help Command    | `pihole --help`
@@ -42,6 +45,7 @@ Example Usage   | `pihole -b advertiser.example.com`
 The core script of Pi-hole provides the ability to tie many DNS related functions into a simple and user friendly management system, so that one may easily block unwanted content such as advertisements. For both the Command Line Interface (CLI) and Web Interface, we achieve this through the `pihole` command (this helps minimise code duplication, and allows users to read exactly what's happening using `bash` scripting). This "wrapper" elevates the current user (whether it be your own user account, or `www-data`) using `sudo`, but restricts the elevation to solely what can be called through the wrapper.
 
 ### Whitelisting, Blacklisting and Regex
+
 | | |
  -------------- | --------------
 Help Command    | `pihole -w --help`, `pihole -b --help`, `pihole -regex --help`, `pihole -wild --help`
@@ -57,12 +61,13 @@ See [Regex Blocking](/ftldns/regex/overview/) for more information about using R
 * Each domain is validated using regex (except when using `-regex`), to ensure invalid domains and IDNs are not added
 * A whitelisted domain gets added or removed from `/etc/pihole/whitelist.txt`
 * A blacklisted domain gets added or removed from `/etc/pihole/blacklist.txt`
-  * On either list type, `gravity.sh` is then called to consolidate an updated copy of `gravity.list`, and the DNS server is reloaded
+    * On either list type, `gravity.sh` is then called to consolidate an updated copy of `gravity.list`, and the DNS server is reloaded
 * A regex blacklisted domain gets added or removed from `/etc/pihole/regex.list`
 * A wildcard domain gets converted into regex and added or removed from `/etc/pihole/regex.list`
-  * For both regex-based commands, `gravity.sh` is then called to restart the DNS server
+    * For both regex-based commands, `gravity.sh` is then called to restart the DNS server
 
 ### Debugger
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -72,6 +77,7 @@ Example Usage   | [`pihole debug`](https://discourse.pi-hole.net/t/the-pihole-co
 The Pi-hole debugger will attempt to diagnose any issues, and link to an FAQ with instructions as to how an admin can rectify the issue. Once the debugger has finished, the admin has the option to upload the generated log to the [Pi-hole developers](https://github.com/orgs/pi-hole/teams/debug/members), who can help with diagnosing and rectifying persistent issues.
 
 ### Log Flush
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -81,6 +87,7 @@ Example Usage   | [`pihole flush`](https://discourse.pi-hole.net/t/the-pihole-co
 When invoked manually, this command will allow you to empty Pi-hole's log, which is located at `/var/log/pihole.log`. The command also serves to rotate the log daily, if the `logrotate` application is installed.
 
 ### Reconfigure
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -92,11 +99,12 @@ There are times where the administrator will need to repair or reconfigure the P
 **Basic Script Process**:
 
 * [`basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) will be run
-  * **Reconfigure** will run through the first-time installation prompts, asking for upstream DNS provider, IP protocols, etc
-  * **Repair** will retain your existing settings, and will attempt to repair any scripts or dependencies as necessary
+    * **Reconfigure** will run through the first-time installation prompts, asking for upstream DNS provider, IP protocols, etc
+    * **Repair** will retain your existing settings, and will attempt to repair any scripts or dependencies as necessary
 * The rest of `basic-install.sh` will then run as appropriate
 
 ### Tail
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -106,6 +114,7 @@ Example Usage   | [`pihole tail`](https://discourse.pi-hole.net/t/the-pihole-com
 Since Pi-hole will log DNS queries by default, using this command to watch the log in real-time can be useful for debugging a problematic site, or even just for sheer curiosities sake.
 
 ### Admin
+
 | | |
  -------------- | --------------
 Help Command    | `pihole -a --help`
@@ -115,6 +124,7 @@ Example Usage   | `pihole -a -p secretpassword`
 Detailed information on this is [found here](#web-script).
 
 ### Chronometer
+
 | | |
  -------------- | --------------
 Help Command    | `pihole -c --help`
@@ -127,6 +137,7 @@ Chronometer is a console dashboard of real-time stats, which can be displayed vi
 <br/><sub><a href="https://www.reddit.com/r/pihole/comments/6ldjna/pihole_setup_went_so_well_at_home_for_the_1st/">Image courtesy of /u/super_nicktendo22</a></sub>
 
 ### Gravity
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -140,7 +151,7 @@ Gravity is one of the most important scripts of Pi-hole. Its main purpose is to 
 * It will determine Internet connectivity, and give time for `dnsmasq` to be resolvable on low-end systems if has just been restarted
 * It extracts all URLs and domains from `/etc/pihole/adlists.list`
 * It runs through each URL, downloading it if necessary
-  * `curl` checks the servers `Last-Modified` header to ensure it is getting a newer version
+    * `curl` checks the servers `Last-Modified` header to ensure it is getting a newer version
 * It will attempt to parse the file into a domains-only format if necessary
 * Lists are merged, comments removed, sorted uniquely and stored as `list.preEventHorizon`
 * Whitelisted entries within `/etc/pihole/whitelist.txt` are removed from `list.preEventHorizon` and saved into a temporary file
@@ -148,19 +159,21 @@ Gravity is one of the most important scripts of Pi-hole. Its main purpose is to 
 * Gravity cleans up temporary content and reloads the DNS server
 
 ### Logging
+
 | | |
  -------------- | --------------
 Help Command    | `pihole logging --help`
-Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) 
+Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
 Example Usage   | [`pihole logging off`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#logging)
 
 This command specifies whether the Pi-hole log should be used, by commenting out `log-queries` within `/etc/dnsmasq.d/01-pihole.conf` and flushing the log.
- 
+
 ### Query
+
 | | |
  --------------- | ---------------
 Help Command    | `pihole query --help`
-Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) 
+Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
 Example Usage   | [`pihole -q -exact -adlist example.domain.com`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#adlist-query)
 
 This command will query your whitelist, blacklist, wildcards and adlists for a specified domain.
@@ -175,6 +188,7 @@ This command will query your whitelist, blacklist, wildcards and adlists for a s
 * Output is determined by the specified options, ensuring that a file name is only printed once
 
 ### Update
+
 | | |
  -------------- | --------------
 Help Command    | `pihole update`
@@ -190,6 +204,7 @@ Check Pi-hole Core, Web Interface and FTL repositories to determine what upgrade
 * [`basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) is run
 
 ### Version
+
 | | |
  --------------- | ---------------
 Help Command    | `pihole version`
@@ -199,6 +214,7 @@ Example Usage   | `pihole -v -c`
 Shows installed versions of Pi-hole, Web Interface & FTL. Also provides options to configure which details will be printed, such as current version, latest version, hash and subsystem.
 
 ### Uninstall
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -208,6 +224,7 @@ Example Usage   | [`pihole uninstall`](https://discourse.pi-hole.net/t/the-pihol
 Uninstall Pi-hole from your system, giving the option to remove each dependency individually.
 
 ### Status
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -217,6 +234,7 @@ Example Usage   | [`pihole status`](https://discourse.pi-hole.net/t/the-pihole-c
 Display the running status of Pi-hole's DNS and blocking services.
 
 ### Enable & Disable
+
 | | |
  -------------- | --------------
 Help Command    | `pihole disable --help`
@@ -226,6 +244,7 @@ Example Usage   | [`pihole disable 5m`](https://discourse.pi-hole.net/t/the-piho
 Toggle Pi-hole's ability to block unwanted domains. The disable option has the option to set a specified time before blocking is automatically re-enabled.
 
 ### Restart DNS
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -235,10 +254,11 @@ Example Usage   | [`pihole restartdns`](https://discourse.pi-hole.net/t/the-piho
 Restart Pi-hole's DNS service.
 
 ### Checkout
+
 | | |
  -------------- | --------------
 Help Command    | `pihole checkout --help`
-Script Location | [`/opt/pihole/piholeCheckout.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeCheckout.sh) 
+Script Location | [`/opt/pihole/piholeCheckout.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeCheckout.sh)
 Example Usage   | [`pihole checkout dev`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#checkout)
 
 Switch Pi-hole subsystems to a different GitHub branch. An admin can specify repositories as well as branches.
@@ -257,6 +277,7 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
 [Interface](#interface) | `pihole -a interface`
 
 ### Web Script
+
 | | |
  -------------- | --------------
 Help Command    | `pihole -a --help`
@@ -266,6 +287,7 @@ Example Usage   | `pihole -a -p secretpassword`
 Set options for the Web Interface. This script is used to tie in all Web Interface features which are not already covered by the [Core Script](#core-script).
 
 ### Password
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -275,6 +297,7 @@ Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/
 Set Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on screen (e.g: `pihole -a -p`).
 
 ### Temperature Unit
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -284,6 +307,7 @@ Example Usage   | [`pihole -a -c`](https://discourse.pi-hole.net/t/the-pihole-co
 Set specified temperature unit as preferred type. This preference will affect the Web Interface, as well as Chronometer.
 
 ### Host Record
+
 | | |
  -------------- | --------------
 Help Command    | `pihole -a hostrecord --help`
@@ -293,6 +317,7 @@ Example Usage   | `pihole -a hostrecord home.domain.com 192.168.1.1`
 Add A & AAAA records to the DNS, to be associated with an IPv4/IPv6 address.
 
 ### Email Address
+
 | | |
  -------------- | --------------
 Help Command    | N/A
@@ -302,6 +327,7 @@ Example Usage   | `pihole -a email admin@domain.com`
 Set an administrative contact address for the Block Page. This will create a hyperlink on the Block Page to the specified email address.
 
 ### Interface
+
 | | |
  -------------- | --------------
 Help Command    | `pihole -a interface --help`

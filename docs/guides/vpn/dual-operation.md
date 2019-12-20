@@ -22,32 +22,32 @@ Afterwards, we change the interface of `Pi-hole` to `eth0` (your local network a
 
 After a restart of the OpenVPN server, all clients should be able to see all devices within your (at home) local network. This is an example running on a distant server, which is connected through the VPN and can successfully communicate with all internal devices:
 
-```
+```bash
 me@client ~ $ ifconfig
-eth0      Link encap:Ethernet  HWaddr e0:xx:xx:xx:xx:xx  
+eth0      Link encap:Ethernet  HWaddr e0:xx:xx:xx:xx:xx
           inet addr:134.x.x.x  Bcast:134.x.x.x  Mask:255.x.x.x
           inet6 addr: X:X:X:X::X/64 Scope:Link
           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
           RX packets:3623911 errors:0 dropped:0 overruns:0 frame:0
           TX packets:2803670 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000 
+          collisions:0 txqueuelen:1000
           RX bytes:1921375471 (1.9 GB)  TX bytes:1227835028 (1.2 GB)
 
-lo        Link encap:Local Loopback  
+lo        Link encap:Local Loopback
           inet addr:127.0.0.1  Mask:255.0.0.0
           inet6 addr: ::1/128 Scope:Host
           UP LOOPBACK RUNNING  MTU:65536  Metric:1
           RX packets:553426 errors:0 dropped:0 overruns:0 frame:0
           TX packets:553426 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1 
+          collisions:0 txqueuelen:1
           RX bytes:113417383 (113.4 MB)  TX bytes:113417383 (113.4 MB)
 
-tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00
           inet addr:10.8.0.2  P-t-P:10.8.0.2  Mask:255.255.255.0
           UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
           RX packets:274676 errors:0 dropped:0 overruns:0 frame:0
           TX packets:331178 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:100 
+          collisions:0 txqueuelen:100
           RX bytes:43745313 (43.7 MB)  TX bytes:43956250 (43.9 MB)
 
 me@client ~ $ ping 192.168.2.123
@@ -64,8 +64,8 @@ PING 192.168.2.123 (192.168.2.123) 56(84) bytes of data.
 rtt min/avg/max/mdev = 18.740/18.894/19.017/0.189 ms
 ```
 
-
 ### Important last step
+
 The undocumented `pihole -a -i all` command is simply what runs when you choose _Listen on all interfaces, permit all origins (make sure your Pi-hole is firewalled)_, which if you've read this far in the tutorial, you should understand that we don't want you to knowingly or unknowing set up an open resolver.
 
 ![screenshot](listening-behavior.png)

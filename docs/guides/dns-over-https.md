@@ -21,7 +21,7 @@ The installation is fairly straightforward, however be aware of what architectur
 
 Download the installer package, then use `apt-get` to install the package along with any dependencies. Proceed to run the binary with the `-v` flag to check it is all working:
 
-```sh
+```bash
 # For Debian/Ubuntu
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
 sudo apt-get install ./cloudflared-stable-linux-amd64.deb
@@ -33,13 +33,13 @@ sudo yum install ./cloudflared-stable-linux-amd64.rpm
 cloudflared -v
 ```
 
-**Note:** Binaries for other operating systems can be found here: https://developers.cloudflare.com/argo-tunnel/downloads/
+**Note:** Binaries for other operating systems can be found here: <https://developers.cloudflare.com/argo-tunnel/downloads/>
 
 #### ARM architecture (Raspberry Pi)
 
 Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working:
 
-```sh
+```bash
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
 tar -xvzf cloudflared-stable-linux-arm.tgz
 sudo cp ./cloudflared /usr/local/bin
@@ -51,20 +51,20 @@ cloudflared -v
 
 Create a cloudflared user to run the daemon:
 
-```sh
+```bash
 sudo useradd -s /usr/sbin/nologin -r -M cloudflared
 ```
 
 Proceed to create a configuration file for `cloudflared` by copying the following in to `/etc/default/cloudflared`. This file contains the command-line options that get passed to cloudflared on startup:
 
-```sh
+```bash
 # Commandline args for cloudflared
 CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
 ```
 
 Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user:
 
-```sh
+```bash
 sudo chown cloudflared:cloudflared /etc/default/cloudflared
 sudo chown cloudflared:cloudflared /usr/local/bin/cloudflared
 ```
@@ -91,7 +91,7 @@ WantedBy=multi-user.target
 
 Enable the `systemd` service to run on startup, then start the service and check its status:
 
-```sh
+```bash
 sudo systemctl enable cloudflared
 sudo systemctl start cloudflared
 sudo systemctl status cloudflared
@@ -99,7 +99,7 @@ sudo systemctl status cloudflared
 
 Now test that it is working! Run the following `dig` command, a response should be returned similar to the one below:
 
-```sh
+```bash
 dig @127.0.0.1 -p 5053 google.com
 
 
@@ -130,6 +130,5 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 ![Screenshot of Pi-hole configuration](../images/DoHConfig.png)
 
 (don't forget to hit Return or click on `Save`)
-
 
 [^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)

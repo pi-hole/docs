@@ -20,4 +20,3 @@ last_updated: Sun Jan 13 19:45:40 2019 UTC
 - [Pi-hole Droid: Android client](https://github.com/friimaind/pi-hole-droid)
 - [Windows DNS Swapper](https://github.com/tryallthethings/DNS-Swapper), see [#1400](https://github.com/pi-hole/pi-hole/issues/1400)
 - [Pi-hole Visualizer](https://www.reddit.com/r/pihole/comments/82ikgb/pihole_visualizer_update/)
-

@@ -1,6 +1,7 @@
 >This tutorial is tailored for setting up OpenVPN on a cloud-hosted virtual server (such as [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1)). If you wish to have this working on your home network, you will need to tailor Pi-hole to listen on `eth0` (or similar), which we explain in [this section of the tutorial](dual-operation.md).
 
 ### High-level Overview
+
 Using a VPN is a responsible, respectful, and safe way to access your Pi-hole's capabilities remotely.  Setting up a DNS server has become a simple task with Pi-hole's automated installer, which has resulted in many people knowingly--or unknowingly--creating an open resolver, which aids in DNS Amplification Attacks.
 
 We do not encourage open resolvers but there are always people wanting access to their ad-blocking capabilities outside of their home network, whether it's on their cellular network or on an unsecured wireless network.  This article aims to provide a step-by-step walk-through on setting up a server running Pi-hole and OpenVPN so you can connect to your Pi-hole's DNS from anywhere.  This guide should work for a private server installed on your private network, but it will also work for cloud servers, such as those created on [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1).
@@ -18,4 +19,5 @@ If you don't want a full-tunnel, we provide a wiki of how to [set up your server
 In the end, you will have access to a VPN that uses Pi-hole for DNS and tunnels some or all of your network traffic
 
 ---
+
 This manual is partially based on this [HowTo](https://discourse.pi-hole.net/t/pi-hole-with-openvpn-vps-debian/861) on [Discourse](https://discourse.pi-hole.net).
