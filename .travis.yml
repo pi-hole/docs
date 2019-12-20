@@ -1,8 +1,9 @@
 language: python
 install:
-- pip install -r requirements.txt
+  - pip install -r requirements.txt
 script:
-- mkdocs build --verbose --clean
+  - mkdocs build --verbose --clean
+cache: pip
 deploy:
  provider: pages
  keep-history: true
