@@ -7,9 +7,9 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 ### YouTube/Twit/Video
 
 - [Security Now Netcast: Pi-hole](https://www.youtube.com/watch?v=p7-osq_y8i8&t=100m26s) _Oct 13, 2015_
-- [TekThing: Raspberry Pi-Hole Makes Ads Disappear!](https://youtu.be/8Co59HU2gY0?t=2m) _Dec 18, 2015_
-- [Foolish Tech Show](https://youtu.be/bYyena0I9yc?t=2m4s) _Dec 23, 2015_
-- [Digital Trends: 5 Fun, Easy Projects You Can Try With a $35 Raspberry Pi](https://youtu.be/QwrKlyC2kdM?t=1m42s) _Mar 22, 2016_
+- [TekThing: Raspberry Pi-Hole Makes Ads Disappear!](https://www.youtube.com/watch?v=8Co59HU2gY0&t=2m) _Dec 18, 2015_
+- [Foolish Tech Show](https://www.youtube.com/watch?v=bYyena0I9yc&t=2m4s) _Dec 23, 2015_
+- [Digital Trends: 5 Fun, Easy Projects You Can Try With a $35 Raspberry Pi](https://www.youtube.com/watch?v=QwrKlyC2kdM&t=1m42s) _Mar 22, 2016_
 - [Adafruit: Raspberry Pi Quick Look at Pi Hole ad blocking server with Tony D](https://www.youtube.com/watch?v=eg4u2j1HYlI) _Jun 20, 2016_
 - [The Defrag Show: Endoscope USB Camera, The Final [HoloLens] Vote, Adblock Pi and more](https://channel9.msdn.com/Shows/The-Defrag-Show/Defrag-Endoscope-USB-Camera-The-Final-HoloLens-Vote-Adblock-Pi-and-more?WT.mc_id=dlvr_twitter_ch9#time=20m39s) _Jan 27, 2016_
 - [Know How 355: Killing ads with a Raspberry Pi-Hole!](https://www.twit.tv/shows/know-how/episodes/355) _Nov 9, 2017_

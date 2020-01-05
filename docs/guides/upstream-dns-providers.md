@@ -38,7 +38,7 @@ OpenDNS also provides the OpenDNS FamilyShield (free)- option. The service block
 - 0000:0000:0000:0000:0000:ffff:d043:de7b (ipv6)
 - 0000:0000:0000:0000:0000:ffff:d043:dc7b (ipv6)
 
-[More information on OpenDNS FamilyShield](https://store.opendns.com/setup/#/familyshield) + [OpenDNS FamilyShield introduction Blog](https://blog.opendns.com/2010/06/23/introducing-familyshield-parental-controls/)
+[More information on OpenDNS FamilyShield](https://www.opendns.com/setupguide/#familyshield) + [OpenDNS FamilyShield introduction Blog](https://umbrella.cisco.com/blog/2010/06/23/introducing-familyshield-parental-controls/)
 
 ### Level3 DNS
 

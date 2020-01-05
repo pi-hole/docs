@@ -20,7 +20,7 @@ This is not recommended, but here are some things you can do:
     sudo apt install tor-geoipdb
     ```
 
-* Pick the Country Codes you want to use as ExitNodes from the "List of country codes for Tor" list on [this page](http://www.b3rn3d.com/blog/2014/03/05/tor-country-codes/).
+* Pick the Country Codes you want to use as ExitNodes from the "List of country codes for Tor" list on [this page](https://b3rn3d.herokuapp.com/blog/2014/03/05/tor-country-codes).
 
     Edit `/etc/tor/torrc` as root and, add the following lines to the end and replace `CountryCodeN` (keep the `{` and `}`) with the country code you've chosen (you can also use only one country code, in this case it would be just on `{CountryCode1}` without a comma).
 

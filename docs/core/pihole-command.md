@@ -74,7 +74,7 @@ Help Command    | N/A
 Script Location | [`/opt/pihole/piholeDebug.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeDebug.sh)
 Example Usage   | [`pihole debug`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#debug)
 
-The Pi-hole debugger will attempt to diagnose any issues, and link to an FAQ with instructions as to how an admin can rectify the issue. Once the debugger has finished, the admin has the option to upload the generated log to the [Pi-hole developers](https://github.com/orgs/pi-hole/teams/debug/members), who can help with diagnosing and rectifying persistent issues.
+The Pi-hole debugger will attempt to diagnose any issues, and link to an FAQ with instructions as to how an admin can rectify the issue. Once the debugger has finished, the admin has the option to upload the generated log to the Pi-hole developers, who can help with diagnosing and rectifying persistent issues.
 
 ### Log Flush
 
