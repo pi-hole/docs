@@ -12,6 +12,11 @@ theme:
     text: 'Source Sans Pro'
     code: 'Roboto Mono'
 
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
 markdown_extensions:
 # Code highlighting in ``` ``` blocks
   - codehilite:
