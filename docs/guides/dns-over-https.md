@@ -223,3 +223,23 @@ sudo systemctl daemon-reload
 After the above, don't forget to change the DNS back to something else in Pi-hole's DNS settings!
 
 [^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
+
+### Updating Cloudflared
+
+The `cloudflared` tool will not receive updates through the package manager, but it can be instrcted to update itself. 
+
+To do this, create the following script, and place it in `/etc/cron.weekly/cloudflared-updater.sh`:
+
+```bash
+cloudflared update
+systemctl restart cloudflared
+```
+
+Adjust permissions:
+
+```bash
+sudo chmod +x /etc/cron.weekly/cloudflared-updater.sh
+sudo chown root:root /etc/cron.weekly/cloudflared-updater.sh
+```
+
+The system will now attempt to update the cloudflared binary automatically, once per week. 
