@@ -34,8 +34,7 @@ Please make sure you fork the repo and change the clone URL in the example below
     ```bash
     git clone https://github.com/YOUR-USERNAME/docs
     cd docs
-    sudo pip install mkdocs
-    sudo pip install mkdocs-material markdown-include
+    sudo pip install -r requirements.txt
     ```
 
     - Running the docs server:
@@ -50,8 +49,7 @@ Please make sure you fork the repo and change the clone URL in the example below
     ```bash
     git clone https://github.com/YOUR-USERNAME/docs
     cd docs
-    pip install mkdocs --user
-    pip install mkdocs-material markdown-include --user
+    pip install --user -r requirements.txt
     ```
 
     - Running the docs server:
@@ -65,7 +63,7 @@ Please make sure you fork the repo and change the clone URL in the example below
 
     ```bash
     docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it python:2-alpine \
-      sh -c "pip install --user mkdocs mkdocs-material markdown-include && \
+      sh -c "pip install --user -r requirements.txt && \
       /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
      ```
 
