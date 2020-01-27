@@ -113,10 +113,10 @@ dig @127.0.0.1 -p 5053 google.com
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 1536
 ;; QUESTION SECTION:
-;google.com.			IN	A
+;google.com.                    IN      A
 
 ;; ANSWER SECTION:
-google.com.		299	IN	A	243.65.127.221
+google.com.             299     IN      A       243.65.127.221
 
 ;; Query time: 3 msec
 ;; SERVER: 127.0.0.1#5053(127.0.0.1)

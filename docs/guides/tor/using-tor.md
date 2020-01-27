@@ -33,7 +33,7 @@ Point your browser to use your Pi-hole IP or Hostname (e.g. `pi.hole`) and `Port
 
 If you want to access .onion addresses with this kind of setup you have to activate [Transparent Access to Tor Hidden Services](https://www.grepular.com/Transparent_Access_to_Tor_Hidden_Services) on the Pi-hole host.
 
-***
+---
 
 #### Notes
 

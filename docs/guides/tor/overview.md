@@ -6,7 +6,7 @@ If you want to protect your - unencrypted by default - DNS requests from easily 
 
 If you got spare resources consider [running a Tor Relay](https://www.torproject.org/docs/tor-doc-relay.html.en) (or [Exit](https://blog.torproject.org/tips-running-exit-node)) Node to contribute back to the Tor Network. The default installation doesn't do either of these. And/Or consider [donating](https://donate.torproject.org).
 
-***
+---
 
 ### ⚠️ Warnings & Considerations
 

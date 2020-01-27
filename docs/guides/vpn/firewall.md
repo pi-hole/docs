@@ -52,7 +52,7 @@ Finally, reject access from anywhere else (i.e. if no rule has matched up to thi
 iptables -P INPUT DROP
 ```
 
-###### Blocking HTTPS advertisement assets
+##### Blocking HTTPS advertisement assets
 
 Since you're `:head-desk:`ing with `iptables`, you can also use this opportunity to block HTTPS advertisements to [improve blocking ads that are loaded via HTTPS](https://discourse.pi-hole.net/t/why-do-some-sites-take-forever-to-load-when-using-pi-hole-for-versions-v4-0/3654/4) and also deal with QUIC.
 

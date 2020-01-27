@@ -1,7 +1,10 @@
-<p align="center">
-<a href="https://pi-hole.net"><img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole"></a>
-<br/><br/>
-<b>Network-wide ad blocking via your own Linux hardware</b><br/>
+<p style="text-align: center;">
+    <a href="https://pi-hole.net">
+        <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole">
+    </a>
+    <br>
+    <strong>Network-wide ad blocking via your own Linux hardware</strong>
+    <br>
 </p>
 
 The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_Sinkhole) that protects your devices from unwanted content, without installing any client-side software.
@@ -65,6 +68,6 @@ Please make sure you fork the repo and change the clone URL in the example below
     docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it python:2-alpine \
       sh -c "pip install --user -r requirements.txt && \
       /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
-     ```
+    ```
 
-After these commands, the current branch is accessible through your favorite browser at http://localhost:8000
+After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
