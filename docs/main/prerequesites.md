@@ -1,7 +1,7 @@
 ---
 title: Prerequisites
 description: Operating system and network requirements
-last_updated: Fri September 20 2019
+last_updated: January 27 2020
 ---
 
 ### Hardware
@@ -20,9 +20,9 @@ The following operating systems are **officially** supported:
 
 | Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
-| Raspbian     | Jessie / Stretch / Buster | ARM        |
+| Raspbian     | Stretch / Buster | ARM        |
 | Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
-| Debian       | 8 / 9            | ARM / x86_64 / i386 |
+| Debian       | 9 / 10           | ARM / x86_64 / i386 |
 | Fedora       | 28 / 29          | ARM / x86_64        |
 | CentOS       | 7                | x86_64              |
 
