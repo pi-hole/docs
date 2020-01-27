@@ -5,7 +5,7 @@ copyright: 'Copyright &copy; 2019 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
-  favicon: 'images/favicon.png'
+  favicon: 'images/favicon.ico'
   logo: 'images/logo.svg'
   language: 'en'
   font:
