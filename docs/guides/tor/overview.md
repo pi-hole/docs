@@ -14,7 +14,7 @@ If you got spare resources consider [running a Tor Relay](https://www.torproject
 
 Please be aware that **your ISP or an Adversary still can collect what Websites you visit by capturing HTTP (plaintext) or HTTPS ([SNI](https://en.wikipedia.org/wiki/Server_Name_Indication)) packets or by trying to [reverse lookup](https://en.wikipedia.org/wiki/Reverse_DNS_lookup) or [whois](https://en.wikipedia.org/wiki/WHOIS) the IPs you're connecting to**. To avoid that you might want to consider to additionally [route your Browser traffic over Tor](#route-browser-traffic-over-tor).
 
-Also keep in mind that even Tor can't provide 100% anonymity, for example [correlation](https://www.extremetech.com/extreme/211169-mit-researchers-figure-out-how-to-break-tor-anonymity-without-cracking-encryption) [attacks](https://nakedsecurity.sophos.com/2016/10/05/unmasking-tor-users-with-dns/) are possible. Although it's almost impossible to execute such an attack for e.g. your ISP or a random service on the internet - you might need to [change some of your habits](https://www.torproject.org/download/download.html.en#warning) to get the most out of Tor.
+Also keep in mind that even Tor can't provide 100% anonymity, for example [correlation](https://www.extremetech.com/extreme/211169-mit-researchers-figure-out-how-to-break-tor-anonymity-without-cracking-encryption) [attacks](https://nakedsecurity.sophos.com/2016/10/05/unmasking-tor-users-with-dns/) are possible. Although it's almost impossible to execute such an attack for e.g. your ISP or a random service on the internet - you might need to change some of your habits to get the most out of Tor.
 
 #### Bad Relays, Phishing, Scam
 

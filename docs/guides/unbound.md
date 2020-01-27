@@ -50,7 +50,7 @@ Fortunately, both your Pi-hole as well as your recursive server will be configur
 
 ## Setting up Pi-hole as a recursive DNS server solution
 
-We will use [`unbound`](https://www.unbound.net/), a secure open source recursive DNS server primarily developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
+We will use [`unbound`](https://github.com/NLnetLabs/unbound), a secure open source recursive DNS server primarily developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
 The first thing you need to do is to install the recursive DNS resolver:
 
 ```bash

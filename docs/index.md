@@ -45,7 +45,6 @@ Sending a donation using our links below is **extremely helpful** in offsetting 
 
 If you'd rather not donate (_which is okay!_), there are other ways you can help support us:
 
-- [Pi-hole Swag Store](https://pi-hole.net/shop/)
 - [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1) _new account credits with our affiliate link_
 - [Amazon](https://www.amazon.com/exec/obidos/redirect-home/pihole09-20) _affiliate link_
 - [Vultr](https://www.vultr.com/?ref=7190426) _affiliate link_
