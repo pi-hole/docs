@@ -32,7 +32,7 @@ To lower the chances of Bad Exit Nodes you could restrict `ExitNodes` to trusted
 
 So in the end it boils down to one of the following use cases.
 
-- Encrypt your DNS traffic using Tor so your ISP can't collect it (but still is able to [collect what Websites/IPs you visit](#%EF%B8%8F-attention-%EF%B8%8F) unless you route that traffic also over Tor) and the DNS Server won't see your real IP for the price of maybe getting a Bad Exit Node that fakes answers to DNS queries.
+- Encrypt your DNS traffic using Tor so your ISP can't collect it (but still is able to [collect what Websites/IPs you visit](#tracking) unless you route that traffic also over Tor) and the DNS Server won't see your real IP for the price of maybe getting a Bad Exit Node that fakes answers to DNS queries.
 
 - Use [DNSCrypt](#alternatives) so your ISP can't collect DNS traffic (but still can collect the websites/IPs you visit unless you route that traffic over Tor), but you have to accept that the DNSCrypt resolver you've chosen might store your DNS queries together with your IP (unless you [modify DNSCrypt to route over Tor](https://github.com/DNSCrypt/dnscrypt-proxy/issues/399#issuecomment-214329222)) and could also turn out to send faked answers to DNS queries. I guess you would call that a Bad DNSCrypt resolver then.
 
