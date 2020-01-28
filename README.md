@@ -1,10 +1,9 @@
-<p style="text-align: center;">
-    <a href="https://pi-hole.net">
-        <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole">
+<p align="center">
+    <a href="https://pi-hole.net/">
+        <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_Wordmark.svg" width="150" height="260" alt="Pi-hole">
     </a>
     <br>
     <strong>Network-wide ad blocking via your own Linux hardware</strong>
-    <br>
 </p>
 
 The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_Sinkhole) that protects your devices from unwanted content, without installing any client-side software.
