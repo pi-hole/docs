@@ -1,4 +1,4 @@
-The Pi-hole setup offers 8 options for an upstream DNS Provider during the initial setup.
+The Pi-hole setup offers 8 options for an upstream DNS provider during the initial setup.
 
 ```text
 Google
@@ -11,7 +11,7 @@ CloudFlare DNS
 Custom
 ```
 
-During the pi-hole installation you select 1 of the 7 preset providers or enter one of your own. Below you can find more information on each of the DNS Providers, along with some additional providers which have different kinds of extra filtering options (spam, phishing, adult content, etc).  
+During the pi-hole installation, you select 1 of the 7 preset providers or enter one of your own. Below you can find more information on each of the DNS providers, along with some additional providers which have different kinds of extra filtering options (spam, phishing, adult content, etc).  
 
 ### Google
 
@@ -89,7 +89,7 @@ CloudFlare will never log your IP address (the way other companies identify you)
 ### Custom
 
 With custom, you'll choose your favorite DNS provider.
-If you care about net independence and privacy I'll suggest you give a look at : [OpenNIC DNS Project](https://servers.opennic.org/)
+If you care about Internet independence and privacy, we suggest having a look at the [OpenNIC DNS Project](https://servers.opennic.org/)
 
 ### More information
 

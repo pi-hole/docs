@@ -1,10 +1,10 @@
-If you operate your Pi-hole + OpenVPN at home, it is very likely that you are sitting behind a NAT / dynamically changing IP address. In this case, you should set up a dynamic DNS record, which allows you to reach your server. You can exchange the address that has been configured during the setup of OpenVPN like this:
+If you operate your Pi-hole + OpenVPN at home, you are likely sitting behind a NAT / dynamically changing IP address. In this case, you should set up a dynamic DNS record, which allows you to reach your server. You can exchange the address that has been configured during the setup of OpenVPN like this:
 
 ```bash
 vim /etc/openvpn/server/client-common.txt
 ```
 
-Look for the `remote` line and adjust it accordingly (remove IP address, add host name), e.g.
+Look for the `remote` line and adjust it accordingly (remove IP address, add hostname), e.g.
 
 ```text
 remote home.mydomain.de 1194
@@ -18,7 +18,7 @@ If you have set up a DDNS domain for your IP address, you will likely need to ad
 pihole -a hostrecord home.mydomain.de 192.168.1.10
 ```
 
-If you don't do this, clients (like the Android OpenVPN client) will not able to connect to the VPN server when *inside the internal network* (while it will work from outside).  Afterwards, the client will be able to connect to the VPN server both from inside and outside your local network.
+If you don't do this, clients (like the Android OpenVPN client) will not able to connect to the VPN server when *inside the internal network* (while it will work from outside).  Afterward, the client will be able to connect to the VPN server both from inside and outside your local network.
 
 ## Setting up DynDNS update
 
@@ -67,7 +67,7 @@ daemon_interval="300"
 
 ### Example: Strato DynDNS
 
-In the following, we give an example of how to setup `ddclient` using the German Internet hosting provider Strato. First, you need to create a subdomain. Then you need to enable DnyDNS for this domain:
+In the following, we give an example of how to set up `ddclient` using the German Internet hosting provider Strato. First, you need to create a subdomain. Then you need to enable DnyDNS for this domain:
 
 ![](Strato-DynDNS-Domain.png)
 
@@ -92,4 +92,4 @@ password='password1234'
 meine.domain.de
 ```
 
-where you replace `strato-login-name` by your Strato login name (most likely your domain name, like `maxmustermann.de`), `password1234` by the password you configured above (see third screenshot), and `meine.domain.de` by the subdomain you created and enabled dynamic DNS for.
+where you replace `strato-login-name` by your Strato login name (most likely your domain name, like `maxmustermann.de`), `password1234` by the password you configured above (see the third screenshot), and `meine.domain.de` by the subdomain you created and enabled dynamic DNS for.

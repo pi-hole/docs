@@ -6,7 +6,7 @@ last_updated: January 27 2020
 
 ### Hardware
 
-Pi-hole is very lightweight, and does not require much processing power
+Pi-hole is very lightweight and does not require much processing power
 
 - ~52MB of free space
 - 512MB RAM
@@ -30,7 +30,7 @@ The following operating systems are **officially** supported:
 
 Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).  Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
 
-As part of our install process, **we append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address**, so take note of this prior to installing.
+As part of our install process, **we append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address**, so take note of this before installing.
 
 Please be aware of this fact because it [may cause confusion](https://github.com/pi-hole/pi-hole/issues/1713#issue-260746084).  This is not the ideal situation for us to be in but, since a significant portion of our users are running Pi-hole on Raspbian - and because Pi-hole's roots began with the Raspberry Pi - it's a problem that is [difficult to get away from](https://github.com/pi-hole/pi-hole/issues/1713#issuecomment-332317532).
 

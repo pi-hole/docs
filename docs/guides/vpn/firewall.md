@@ -34,7 +34,7 @@ iptables -A INPUT -p tcp --destination-port 1194 -j ACCEPT
 iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT
 ```
 
-The next crucial setting is to explicitly allow TCP/IP to do "three way handshakes":
+The next crucial setting is to explicitly allow TCP/IP to do "three-way handshakes":
 
 ```bash
 iptables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT

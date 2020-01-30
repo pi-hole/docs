@@ -25,15 +25,15 @@
 *[IP]: Internet protocol address
 *[IPs]: Internet protocol addresses
 *[CPU]: Central processing unit, also known as "processor"
-*[CLI]: Command Line Interface
+*[CLI]: Command-line Interface
 *[OS]: Operating system
 *[GCC]: the GNU compiler collection (compiler system produced by the GNU Project supporting various programming languages)
 *[repo]: Repository on GitHub
 *[RegEx]: Regular expression
 *[Regex]: Regular expression
 *[regex]: Regular expression
-*[SQLite3]: Database engine that handles an SQL databases in a file
-*[ID]: Indentifier
+*[SQLite3]: Database engine that handles SQL databases in a file
+*[ID]: Identifier
 *[SSH]: Secure Shell is a cryptographic network protocol for operating network services securely over an unsecured network
 *[TFTP]: Trivial File Transfer Protocol is a simple lockstep File Transfer Protocol which allows a client to get a file from or put a file onto a remote host
 *[TTL]: Time-To-Live is a mechanism that limits the lifespan or lifetime of data in a computer or network

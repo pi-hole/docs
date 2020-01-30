@@ -6,7 +6,7 @@ Once you have your preferred OS up and running.  You may already have a server s
 
 ### A note about security
 
-For security purposes, it is recommended that the CA machine should be separate from the machine running OpenVPN. If you lose control of your CA private key, you can no longer trust any certificates from this CA. Anyone with access to this CA private key can sign new certificates without your knowledge, which then can connect to your OpenVPN server without needing to modify anything on the VPN server. Place your CA files on a storage which can be offline as much as possible, only to be activated when you need to get a new certificate for a client or server.
+For security purposes, it is recommended that the CA machine should be separate from the machine running OpenVPN. If you lose control of your CA private key, you can no longer trust any certificates from this CA. Anyone with access to this CA private key can sign new certificates without your knowledge, which then can connect to your OpenVPN server without needing to modify anything on the VPN server. Place your CA files on storage that can be offline as much as possible, only to be activated when you need to get a new certificate for a client or server.
 
 This is less convenient, so many users will simply decide to install Pi-hole and OpenVPN on a single machine, which is what this guide will walkthrough.
 
