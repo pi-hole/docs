@@ -1,4 +1,4 @@
-**Up until now, this wiki has been about a server set up on a cloud host, available on the public Internet.  This section is aimed at a server set up in a private network like on a Raspberry Pi.**
+**Up until now, this wiki has been about a server set up on a cloud host, available on the public Internet. This section is aimed at a server set up in a private network like on a Raspberry Pi.**
 
 So if blocking works using `eth0` but stops working for `tun0`, as described [here](https://github.com/pi-hole/pi-hole/issues/1553), you may want to run this command `pihole -a -i all`, which should get the behavior you want by opening dnsmasq up to listen on all ports. This is not recommended for cloud servers as they should _not_ be listening on `eth0`.
 

@@ -1,8 +1,8 @@
 ## Create a client config file (`.ovpn`)
 
-Now that the server is configured, you'll want to connect some clients so you can make use of your Pi-hole wherever you are.  Doing so requires the use of a certificate.  You generate these and the resulting `.ovpn` file by running the installer and choosing `1) Add a new user` for each client that will connect to the VPN.
+Now that the server is configured, you'll want to connect some clients so you can make use of your Pi-hole wherever you are. Doing so requires the use of a certificate. You generate these and the resulting `.ovpn` file by running the installer and choosing `1) Add a new user` for each client that will connect to the VPN.
 
-You can repeat this process for as many clients as you need.  In this example, we'll "Add a new user" by naming the `.ovpn` file the same as the client's hostname but you may want to adopt your own naming strategy.
+You can repeat this process for as many clients as you need. In this example, we'll "Add a new user" by naming the `.ovpn` file the same as the client's hostname but you may want to adopt your own naming strategy.
 
 Run the OpenVPN installer again
 
@@ -27,11 +27,11 @@ Please, use one word only, no special characters
 Client name: iphone7
 ```
 
-This will generate a `.ovpn` file, which needs to be copied to your client machine (oftentimes using the OpenVPN app).  This process also generates a few other files found in `/etc/openvpn/server/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.
+This will generate a `.ovpn` file, which needs to be copied to your client machine (oftentimes using the OpenVPN app). This process also generates a few other files found in `/etc/openvpn/server/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.
 
 ## Connect a client using the `.ovpn` file
 
-The OpenVPN documentation has some decent [guides on connecting desktop clients for Mac, Windows, and Linux](https://openvpn.net/vpn-server-resources/), so we'll instead explain how to connect a mobile device since that provides the most usefulness in today's world--**connecting to your ad-blocking VPN via a mobile device**.  We'll go through two examples:
+The OpenVPN documentation has some decent [guides on connecting desktop clients for Mac, Windows, and Linux](https://openvpn.net/vpn-server-resources/), so we'll instead explain how to connect a mobile device since that provides the most usefulness in today's world--**connecting to your ad-blocking VPN via a mobile device**. We'll go through two examples:
 
 1. connect an iPhone using the OpenVPN Connect mobile app (see [here](android-client.md) for Android)
 2. connect a Linux machine
@@ -40,7 +40,7 @@ The OpenVPN documentation has some decent [guides on connecting desktop clients 
 
 First, make sure the OpenVPN connect app is installed on your phone or mobile device.
 
-Import the `.ovpn` file into iOS.  There are several ways to do this, but be careful about transferring it over an insecure medium.
+Import the `.ovpn` file into iOS. There are several ways to do this, but be careful about transferring it over an insecure medium.
 
 1. Airdrop the file from another device
 2. Store the file in a cloud app and open it ion your device

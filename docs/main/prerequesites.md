@@ -28,13 +28,13 @@ The following operating systems are **officially** supported:
 
 ### IP Addressing
 
-Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).  Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
+Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine). Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
 
 As part of our install process, **we append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address**, so take note of this before installing.
 
-Please be aware of this fact because it [may cause confusion](https://github.com/pi-hole/pi-hole/issues/1713#issue-260746084).  This is not the ideal situation for us to be in but, since a significant portion of our users are running Pi-hole on Raspbian - and because Pi-hole's roots began with the Raspberry Pi - it's a problem that is [difficult to get away from](https://github.com/pi-hole/pi-hole/issues/1713#issuecomment-332317532).
+Please be aware of this fact because it [may cause confusion](https://github.com/pi-hole/pi-hole/issues/1713#issue-260746084). This is not the ideal situation for us to be in but, since a significant portion of our users are running Pi-hole on Raspbian - and because Pi-hole's roots began with the Raspberry Pi - it's a problem that is [difficult to get away from](https://github.com/pi-hole/pi-hole/issues/1713#issuecomment-332317532).
 
-Due to the complexity of different ways of setting an IP address across different systems, it's a slow process and [we need help](https://github.com/pi-hole/pi-hole/issues/629).  If you're willing to contribute, please let us know.
+Due to the complexity of different ways of setting an IP address across different systems, it's a slow process and [we need help](https://github.com/pi-hole/pi-hole/issues/629). If you're willing to contribute, please let us know.
 
 ### Ports
 
@@ -43,8 +43,8 @@ Due to the complexity of different ways of setting an IP address across differen
 | dnsmasq             | 53  (DNS)    | TCP/UDP  | If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries. |
 | dnsmasq             | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
 | dnsmasq             | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
-| lighttpd            | 80  (HTTP)   | TCP      | If you have another Web server already running, such as Apache, Pi-hole's Web server will not work.  You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running. |
-| pihole-FTL          | 4711         | TCP      | FTL is our API engine and uses port 4711 on the localhost interface.  This port should not be accessible from any other interface.|
+| lighttpd            | 80  (HTTP)   | TCP      | If you have another Web server already running, such as Apache, Pi-hole's Web server will not work. You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running. |
+| pihole-FTL          | 4711         | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
 
 !!! info
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.

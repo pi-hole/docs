@@ -11,7 +11,7 @@ CloudFlare DNS
 Custom
 ```
 
-During the pi-hole installation, you select 1 of the 7 preset providers or enter one of your own. Below you can find more information on each of the DNS providers, along with some additional providers which have different kinds of extra filtering options (spam, phishing, adult content, etc).  
+During the pi-hole installation, you select 1 of the 7 preset providers or enter one of your own. Below you can find more information on each of the DNS providers, along with some additional providers which have different kinds of extra filtering options (spam, phishing, adult content, etc).
 
 ### Google
 

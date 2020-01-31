@@ -1,6 +1,6 @@
 ## Install an operating system
 
-Once you have your preferred OS up and running.  You may already have a server set up on your network, or you may prefer to make a [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1) droplet.  In either case, you'll use the quick OpenVPN "road warrior" installer.  The cloud-hosted server option is convenient if you don't want to host the hardware at home, but you'll need to take additional steps to secure the server as it's available on the public Internet.  Failure to do so is [not only irresponsible, but you also put yourself and others at risk](https://www.us-cert.gov/ncas/alerts/TA13-088A).
+Once you have your preferred OS up and running. You may already have a server set up on your network, or you may prefer to make a [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1) droplet. In either case, you'll use the quick OpenVPN "road warrior" installer. The cloud-hosted server option is convenient if you don't want to host the hardware at home, but you'll need to take additional steps to secure the server as it's available on the public Internet. Failure to do so is [not only irresponsible, but you also put yourself and others at risk](https://www.us-cert.gov/ncas/alerts/TA13-088A).
 
 ## Install OpenVPN + Pi-hole
 
@@ -68,7 +68,7 @@ If you want to add more clients, you simply need to run this script again!
 
 ### Install Pi-hole
 
-Next, install Pi-hole and choose `tun0` as the interface and `10.8.0.1/24` as the IP address. You can accept the rest of the defaults, or configure Pi-hole to your liking.  The interface selection is the most important step; if you don't choose `tun0` (at least to begin with), it will not work properly.
+Next, install Pi-hole and choose `tun0` as the interface and `10.8.0.1/24` as the IP address. You can accept the rest of the defaults, or configure Pi-hole to your liking. The interface selection is the most important step; if you don't choose `tun0` (at least to begin with), it will not work properly.
 
 ```bash
 curl -sSL https://install.pi-hole.net | bash

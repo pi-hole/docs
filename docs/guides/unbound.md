@@ -8,7 +8,7 @@ When you operate your own (tiny) recursive DNS server, then the likeliness of ge
 
 ### What *is* a recursive DNS server?
 
-The first distinction we have to be aware of is whether a DNS server is *authoritative* or not.  If I'm the authoritative server for, e.g., `pi-hole.net`, then I know which IP is the correct answer for a query. Recursive name servers, in contrast, resolve any query they receive by consulting the servers authoritative for this query by traversing the domain.
+The first distinction we have to be aware of is whether a DNS server is *authoritative* or not. If I'm the authoritative server for, e.g., `pi-hole.net`, then I know which IP is the correct answer for a query. Recursive name servers, in contrast, resolve any query they receive by consulting the servers authoritative for this query by traversing the domain.
 Example: We want to resolve `pi-hole.net`. On behalf of the client, the recursive DNS server will traverse the path of the domain across the Internet to deliver the answer to the question.
 
 ### What does this guide provide?
