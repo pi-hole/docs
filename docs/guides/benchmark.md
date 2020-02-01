@@ -11,7 +11,7 @@ You can extract the domains using, e.g.,
 sqlite3 /etc/pihole/pihole-FTL.db "SELECT domain FROM queries LIMIT 100000;" > domains.list
 ```
 
-This will generate a list file with (up to) 100,000 domains. You can increase the upper limit of domains, however, I'd suggest starting from not too much data for getting realistic results in a reasonable period of time.
+This will generate a list file with up to 100,000 domains. You can increase the upper limit of domains, however, we suggest starting from a small number of domains to get realistic results in a reasonable period of time.
 
 They are extracted into the list file as they are recorded in the database. There will be lots of frequently queried domains (maybe `google.com` or similar) as well as some blocked ad domains. This list will serve you as an individualized testing bench for realistic DNS queries as typically seen in **your particular environment**.
 
@@ -19,7 +19,7 @@ They are extracted into the list file as they are recorded in the database. Ther
 
 ### 2.1 Disable logging
 
-We suggest disabling both logging as well as the long-term database during the benchmark run as both the log file and the database would otherwise unnecessarily grow (maybe be several hundreds of megabytes). Not only your statistics would be distorted by the artificial mass querying, but the benchmark could also negatively be affected by the writing speed of your SD card.
+We suggest disabling both logging and the long-term database during the benchmark run as both the log file and the database would otherwise unnecessarily grow, several hundred megabytes may be possible. Not only would your statistics be distorted by the artificial mass querying, but the benchmark could also be negatively affected by the writing speed of your SD card.
 
 Logging can be disabled using `sudo pihole logging off`.
 

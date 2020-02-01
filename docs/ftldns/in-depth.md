@@ -6,7 +6,7 @@ Pi-hole stats can be accessed via a standard Unix socket (`var/run/pihole/FTL.so
 
 - `debug` - Don't go into daemon mode (stay in foreground) + more verbose logging
 - `test` - Start `FTL` and process everything, but shut down immediately afterward
-- `version` - Don't start `FTL`, show only the version
+- `version` - Don't start `FTL`, only show the version
 - `tag` - Don't start `FTL`, show only git tag
 - `branch` - Don't start `FTL`, show only git branch `FTL` was compiled from
 - `no-daemon` or `-f` - Don't go into background (daemon mode)

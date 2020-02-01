@@ -10,7 +10,7 @@ First, change the listen port in this file: `/etc/lighttpd/lighttpd.conf:`
 server.port = 1080
 ```
 
-In this case, I chose 1080 somewhat at random. Use whatever feels right to you.
+In this case, port 1080 was chosen at random. You can use a custom port.
 
 Next, restart the lighttpd server with either of these commands:
 
@@ -26,7 +26,7 @@ sudo service lighttpd restart
 
 ## Setting up your Caddyfile
 
-Now we need to set up a "virtual host" in our Caddyfile (default `/etc/caddy/Caddyfile`). There are many more options you can add, but at a bare minimum, you need to make a "default" host by binding `0.0.0.0:80`  which will accept requests for any host.
+Now set up a "virtual host" in your Caddyfile (default `/etc/caddy/Caddyfile`). There are many options you can add, but at a minimum, you need to make a "default" host by binding `0.0.0.0:80`. This will accept requests for any interface.
 
 ```
 blackhole:80, pi.hole:80, 0.0.0.0:80 {
