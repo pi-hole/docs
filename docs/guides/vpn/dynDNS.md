@@ -40,7 +40,7 @@ password=mypassword
 myhost.dyndns.org
 ```
 
-If you want to have `ddclient` running as daemon (recommended!), change also your `/etc/defaults/ddclient` to:
+If you want to have `ddclient` running as daemon (recommended!), change also your `/etc/default/ddclient` to:
 
 ```bash
 # Configuration for ddclient scripts
