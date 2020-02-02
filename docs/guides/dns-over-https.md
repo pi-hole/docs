@@ -232,8 +232,8 @@ The `cloudflared` tool will not receive updates through the package manager, how
 manually by running these commands:
 
 ```bash
-cloudflared update
-systemctl restart cloudflared
+sudo cloudflared update
+sudo systemctl restart cloudflared
 ```
 
 If you want to have the system update `cloudflared` automatically, simply place the update commands in the
