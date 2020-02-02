@@ -60,9 +60,11 @@ sudo useradd -s /usr/sbin/nologin -r -M cloudflared
 Proceed to create a configuration file for `cloudflared` by copying the following in to `/etc/default/cloudflared`. This file contains the command-line options that get passed to cloudflared on startup:
 
 ```bash
-# Commandline args for cloudflared
+# Commandline args for cloudflared, using Cloudflare DNS
 CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
 ```
+
+**Note:** The `cloudflared` binary will work with other DoH providers (for example, you could use https://8.8.8.8/dns-query for Google DNS).
 
 Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user:
 
@@ -226,16 +228,16 @@ After the above, don't forget to change the DNS back to something else in Pi-hol
 
 ### Updating Cloudflared
 
-The `cloudflared` tool will not receive updates through the package manager, but it can be instrcted to update itself. 
-
-To do this, create the following script, and place it in `/etc/cron.weekly/cloudflared-updater.sh`:
+The `cloudflared` tool will not receive updates through the package manager, however it can be updated
+manually by running these commands:
 
 ```bash
 cloudflared update
 systemctl restart cloudflared
 ```
 
-Adjust permissions:
+If you want to have the system update `cloudflared` automatically, simply place the update commands in the
+file `/etc/cron.weekly/cloudflared-updater.sh`, and adjust permissions:
 
 ```bash
 sudo chmod +x /etc/cron.weekly/cloudflared-updater.sh
