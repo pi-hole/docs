@@ -4,7 +4,7 @@ description: Brief overview of Pi-hole
 last_updated: Thur May 02 01:00:00 2019 UTC
 ---
 
-<p style="text-align: center;">
+<p class="text-center">
     <a href="https://pi-hole.net/">
         <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_Wordmark.svg" width="150" height="260" alt="Pi-hole">
     </a>
