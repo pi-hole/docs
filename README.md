@@ -26,7 +26,7 @@ To add a new document or guide.
 
 ### Testing your changes.
 
-Whilst working on this repo, it is advised that you review your own changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
+When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 

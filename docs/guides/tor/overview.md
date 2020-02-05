@@ -1,10 +1,10 @@
 **This is an unsupported configuration created by the community**
 
-If you want to protect your - unencrypted by default - DNS requests from easily being collected by your ISP or another Adversary between you and your DNS server, you can easily setup Pi-hole to use [Tor](https://www.torproject.org) for hostname resolving. Using DNS over Tor anonymizes your IP by using [Onion-Routing](https://en.wikipedia.org/wiki/Onion_routing).
+If you want to protect your - unencrypted by default - DNS requests from easily being collected by your ISP or another Adversary between you and your DNS server, you can easily set up Pi-hole to use [Tor](https://www.torproject.org) for hostname resolving. Using DNS over Tor anonymizes your IP by using [Onion-Routing](https://en.wikipedia.org/wiki/Onion_routing).
 
 #### Contribute to the Tor project
 
-If you got spare resources consider [running a Tor Relay](https://www.torproject.org/docs/tor-doc-relay.html.en) (or [Exit](https://blog.torproject.org/tips-running-exit-node)) Node to contribute back to the Tor Network. The default installation doesn't do either of these. And/Or consider [donating](https://donate.torproject.org).
+If you got spare resources, consider [running a Tor Relay](https://www.torproject.org/docs/tor-doc-relay.html.en) (or [Exit](https://blog.torproject.org/tips-running-exit-node)) Node to contribute back to the Tor Network. The default installation doesn't do either of these. And/Or consider [donating](https://donate.torproject.org).
 
 ---
 
@@ -26,17 +26,16 @@ Such apps could get malicious data injected and/or phish your data without your 
 
 **So, ideally, only use DNS over Tor if you know for a fact that the apps in your network communicate over a secure connection and properly validate certificates.**
 
-That being said, if you use DNS over Tor in the default configuration (meaning no custom `ExitNodes` in the torrc), this kind of attack requires a big portion of luck for the attacker (owner of a Bad Exit Node), because you would have to get a circuit routing over the Bad Exit Node in the same moment when using an insecure app (Tor switches the circuit at least every 10minutes in the default configuration). On top of that an attacker must first find an app that has this kind of vulnerability and has valuable data or attack vectors. This is unlikely since most apps out there that handle sensitive data at least communicate over encrypted connections that validate certificates based on system or manual root certs.
+That being said, if you use DNS over Tor in the default configuration (meaning no custom `ExitNodes` in the torrc), this kind of attack requires a big portion of luck for the attacker (owner of a Bad Exit Node), because you would have to get a circuit routing over the Bad Exit Node in the same moment when using an insecure app (Tor switches the circuit at least every 10minutes in the default configuration). On top of that, an attacker must first find an app that has this kind of vulnerability and has valuable data or attack vectors. This is unlikely since most apps out there that handle sensitive data at least communicate over encrypted connections that validate certificates based on system or manual root certs.
 
 To lower the chances of Bad Exit Nodes you could restrict `ExitNodes` to trusted ones ([country](#solution-1---only-use-exit-nodes-from-specific-countries) and/or [specific](#solution-2---only-use-specific-exit-nodes)). Choosing specific Exit Nodes would basically be the same as e.g. trusting specific [DNSCrypt resolvers](#alternatives) or [Alternative DNS Servers](https://wikileaks.org/wiki/Alternative_DNS). They might be good, they might be bad, you can't know for sure (unless the DNS answers are [DNSSEC](#dnssec) signed - but that's most likely not the case for the kinds of app that might get affected by this).
 
-So in the end it boils down to one of the following use cases.
+So, in the end, it boils down to one of the following use cases.
 
 - Encrypt your DNS traffic using Tor so your ISP can't collect it (but still is able to [collect what Websites/IPs you visit](#tracking) unless you route that traffic also over Tor) and the DNS Server won't see your real IP for the price of maybe getting a Bad Exit Node that fakes answers to DNS queries.
 
 - Use [DNSCrypt](#alternatives) so your ISP can't collect DNS traffic (but still can collect the websites/IPs you visit unless you route that traffic over Tor), but you have to accept that the DNSCrypt resolver you've chosen might store your DNS queries together with your IP (unless you [modify DNSCrypt to route over Tor](https://github.com/DNSCrypt/dnscrypt-proxy/issues/399#issuecomment-214329222)) and could also turn out to send faked answers to DNS queries. I guess you would call that a Bad DNSCrypt resolver then.
 
-- Use an unencrypted alternative DNS server (there are a lot of lists out there). In this case your ISP easily can record your DNS traffic *and* the alternative DNS server can store your DNS queries together with your IP. On top of that your ISP or the alternative DNS could also fake the answer to the DNS queries. That would be a Bad Alternative DNS Server then.
+- Use an unencrypted alternative DNS server (there are a lot of lists out there). In this case, your ISP easily can record your DNS traffic *and* the alternative DNS server can store your DNS queries together with your IP. On top of that, your ISP or the alternative DNS could also fake the answer to the DNS queries. That would be a Bad Alternative DNS Server then.
 
-- Use your ISP DNS server. In this case your ISP gets your DNS traffic for free. On top of that the ISP could also fake answers to DNS queries. Bad ISP DNS Server.  
-   The bottom line is that you have to weigh up who you trust the most and which risks you are willing to take.
+- Use your ISP DNS server. In this case, your ISP gets your DNS traffic for free. On top of that, the ISP could also fake answers to DNS queries. Bad ISP DNS Server. The bottom line is that you have to weigh up who you trust the most and which risks you are willing to take.

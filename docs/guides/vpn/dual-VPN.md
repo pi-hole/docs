@@ -1,6 +1,6 @@
 ### Dual VPN Setup - Separate DNS and VPN Traffic
 
-In order to separate VPN traffic from DNS queries you will need to run two VPN servers. One server routes the normal user traffic and the second routes only DNS requests. This can be done with two OpenVPN configurations.
+In order to separate VPN traffic from DNS queries, you will need to run two VPN servers. One server routes the normal user traffic and the second routes only DNS requests. This can be done with two OpenVPN configurations.
 
 #### Prerequisites and Configuration
 
@@ -18,7 +18,7 @@ Next, exit the new copy of the configuration. We use the `nano` editor in this e
 sudo nano /etc/openvpn/server/server2.conf
 ```
 
-We will need to change the port to one different from the original, so that it does not conflict with the first instance of OpenVPN. Assuming you used the default port configuration, you should have 1194 as the port. You need to change this to a different value, making sure the port is available - 1195 should be.
+We will need to change the port to one different from the original so that it does not conflict with the first instance of OpenVPN. Assuming you used the default port configuration, you should have 1194 as the port. You need to change this to a different value, making sure the port is available - 1195 should be.
 
 Next, if needed, port forward the newly configured port from your router to your device. You will also need to assign a different class of IP addresses that will serve this connection only.
 
@@ -28,7 +28,7 @@ Your server line should look like this:
 server 10.9.0.0 255.255.255.0
 ```
 
-Make sure that the DNS requests go though the instance of OpenVPN:
+Make sure that the DNS requests go through the instance of OpenVPN:
 
 ```
 push "dhcp-option DNS 10.9.0.1"

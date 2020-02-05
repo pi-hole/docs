@@ -18,7 +18,7 @@ This information may also be queried using `dig +short chaos txt insertions.bind
 
 #### DNS cache evictions
 
-Number of cache entries that had to be removed although the corresponding entries were **not** expired. Old cache entries get removed if the cache is full to make space for more recent domains. The cache size should be increased when this number is larger than zero.
+The number of cache entries that had to be removed although the corresponding entries were **not** expired. Old cache entries get removed if the cache is full to make space for more recent domains. The cache size should be increased when this number is larger than zero.
 
 This information may also be queried using `dig +short chaos txt evictions.bind`
 

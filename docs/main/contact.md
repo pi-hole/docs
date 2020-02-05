@@ -9,7 +9,7 @@ While we are primarily reachable on our [Discourse User Forum](https://discourse
 - [Frequently Asked Questions](https://discourse.pi-hole.net/c/faqs)
 - [Feature Requests](https://discourse.pi-hole.net/c/feature-requests?order=votes)
 
-<br/>
+<br>
 
 - [Reddit](https://www.reddit.com/r/pihole/)
 - [Twitter](https://twitter.com/The_Pi_Hole)

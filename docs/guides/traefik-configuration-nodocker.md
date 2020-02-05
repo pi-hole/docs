@@ -1,7 +1,7 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- This describes on how to use traefik on a (possibly remote) machine to serve pi-hole via https and a different domain, not how to to this in docker (via docker-compose).
+- This describes how to use traefik on a (possibly remote) machine to serve pi-hole via https and a different domain, not how to do this in docker (via docker-compose).
 
 ### Basic requirements
 

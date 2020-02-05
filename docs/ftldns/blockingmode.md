@@ -30,7 +30,7 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 - The client does not even try to establish a connection for the requested website
 - Speedup and less traffic
 - Solves potential HTTPS timeouts as requests are never performed
-- No need to run a webserver on your Pi-hole (reduces complexity when running other web services on the same machine)
+- No need to run a web server on your Pi-hole (reduces complexity when running other web services on the same machine)
 
 ### Disadvantage
 
@@ -44,7 +44,7 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 BLOCKINGMODE=IP-NODATA-AAAA
 ```
 
-Blocked queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). Blocked AAAA queries will answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address
+Blocked queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). Blocked AAAA queries will be answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address
 
 ```
 ;; QUESTION SECTION:
@@ -56,12 +56,12 @@ doubleclick.net.        2       IN      A       192.168.2.11
 
 ### Advantage
 
-- Shows blocking page from which blocked domains can be whitelisted
+- Shows a blocking page from which blocked domains can be whitelisted
 - Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
 
 ### Disadvantages
 
-- Requires a webserver to run on your Pi-hole
+- Requires a web server to run on your Pi-hole
 - May cause time-outs for HTTPS content even with properly configured firewall rules
 
 ## Pi-hole's full IP blocking
@@ -85,11 +85,11 @@ doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:
 
 ### Advantage
 
-- Shows blocking page from which blocked domains can be whitelisted
+- Shows a blocking page from which blocked domains can be whitelisted
 
 ### Disadvantages
 
-- Requires a webserver to run on your Pi-hole
+- Requires a web server to run on your Pi-hole
 - May cause time-outs for HTTPS content even with properly configured firewall rules
 - May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
 
