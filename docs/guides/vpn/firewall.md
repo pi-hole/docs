@@ -2,11 +2,11 @@
 
 **If you are behind a NAT and not running the Pi-hole on a cloud server, you do not need to issue the IPTABLES commands bellow as the firewall rules are already handled by the RoadWarrior installer.
 
-**This step is optional but recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1)**.  If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
+**This step is optional but recommended if you are running your server in the cloud, such as a droplet made on [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1)**. If this is the case, you need to secure the server for your safety as well as others to prevent aiding in DDoS attacks.
 
-In addition to the risk of being an open resolver, your Web interface is also open to the world increasing the risk.  So you will want to prevent ports 53 and 80, respectively, from being accessible from the public Internet.
+In addition to the risk of being an open resolver, your Web interface is also open to the world increasing the risk. So you will want to prevent ports 53 and 80, respectively, from being accessible from the public Internet.
 
-It's recommended that you [clear out your entire firewall](https://serverfault.com/questions/200635/best-way-to-clear-all-iptables-rules) so you have full control over its setup.  You have two options for setting up your firewall with your VPN.
+It's recommended that you [clear out your entire firewall](https://serverfault.com/questions/200635/best-way-to-clear-all-iptables-rules) so you have full control over its setup. You have two options for setting up your firewall with your VPN.
 
 #### Option 1: Allow everything from within your VPN
 
@@ -34,7 +34,7 @@ iptables -A INPUT -p tcp --destination-port 1194 -j ACCEPT
 iptables -A INPUT -p udp --destination-port 1194 -j ACCEPT
 ```
 
-The next crucial setting is to explicitly allow TCP/IP to do "three way handshakes":
+The next crucial setting is to explicitly allow TCP/IP to do "three-way handshakes":
 
 ```bash
 iptables -I INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -52,7 +52,7 @@ Finally, reject access from anywhere else (i.e. if no rule has matched up to thi
 iptables -P INPUT DROP
 ```
 
-###### Blocking HTTPS advertisement assets
+##### Blocking HTTPS advertisement assets
 
 Since you're `:head-desk:`ing with `iptables`, you can also use this opportunity to block HTTPS advertisements to [improve blocking ads that are loaded via HTTPS](https://discourse.pi-hole.net/t/why-do-some-sites-take-forever-to-load-when-using-pi-hole-for-versions-v4-0/3654/4) and also deal with QUIC.
 
@@ -64,7 +64,7 @@ iptables -A INPUT -p tcp --dport 443 -j REJECT --reject-with tcp-reset
 iptables -A INPUT -p udp --dport 443 -j REJECT --reject-with icmp-port-unreachable
 ```
 
-Depending on the systems you have connecting, you may benefit from appending `--reject-with tcp-reset` to the command above.  If you still get slow load times of HTTPS assets, the above may help.
+Depending on the systems you have connecting, you may benefit from appending `--reject-with tcp-reset` to the command above. If you still get slow load times of HTTPS assets, the above may help.
 
 ##### IPv6 `iptables`
 
@@ -148,11 +148,11 @@ num  target     prot opt source               destination
 
 ##### Verify the rules are working
 
-Connect to the VPN as a client and verify you can resolve DNS names as well as access the Pi-hole Web interface.  These settings are stored in memory until you save them.  If it's not working, you can restart your server to start from scratch.  Alternatively, you could also go through and delete lines with `iptables -D INPUT <SOME LINE NUMBER>`
+Connect to the VPN as a client and verify you can resolve DNS names as well as access the Pi-hole Web interface. These settings are stored in memory until you save them. If it's not working, you can restart your server to start from scratch. Alternatively, you could also go through and delete lines with `iptables -D INPUT <SOME LINE NUMBER>`
 
 #### Save your `iptables`
 
-If things look good, you may want to save your rules so you can revert to them if you ever make changes to the firewall.  Save them with these commands:
+If things look good, you may want to save your rules so you can revert to them if you ever make changes to the firewall. Save them with these commands:
 
 ```bash
 iptables-save > /etc/pihole/rules.v4

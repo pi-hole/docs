@@ -1,8 +1,8 @@
-**Up until now, this wiki has been about a server set up on a cloud host, available on the public Internet.  This section is aimed at a server setup in a private network like on a Raspberry Pi.**
+**Up until now, this wiki has been about a server set up on a cloud host, available on the public Internet. This section is aimed at a server set up in a private network like on a Raspberry Pi.**
 
-So if blocking works using `eth0` but stops working for `tun0`, as described [here](https://github.com/pi-hole/pi-hole/issues/1553), you may want to run this command `pihole -a -i all`, which should get the behaviour you want by opening dnsmasq up to listen on all ports. This is not recommended for cloud servers as they should _not_ be listening on `eth0`.
+So if blocking works using `eth0` but stops working for `tun0`, as described [here](https://github.com/pi-hole/pi-hole/issues/1553), you may want to run this command `pihole -a -i all`, which should get the behavior you want by opening dnsmasq up to listen on all ports. This is not recommended for cloud servers as they should _not_ be listening on `eth0`.
 
-If you want to set up your Pi-hole + OpenVPN such that you can use from both internal ((W)LAN) and external (VPN) networks, you have to apply some small changes. As additional benefit, you will be able to reach all devices in the internal network (e.g. computers, networking-aware printers, etc.) through the VPN.
+If you want to set up your Pi-hole + OpenVPN such that you can use from both internal ((W)LAN) and external (VPN) networks, you have to apply some small changes. As an additional benefit, you will be able to reach all devices in the internal network (e.g. computers, networking-aware printers, etc.) through the VPN.
 
 This setup assumes that your local network is in the range **192.168.2.0** (i.e. device addresses are in the range of 192.168.2.1 - 192.168.2.254). If this is not the case for you, you have to adjust the settings, accordingly, e.g.
 
@@ -18,7 +18,7 @@ push "dhcp-option DNS 192.168.2.123"
 
 As you can see, we change the address of the DNS server to the local IP address of our Pi-hole (which is **192.168.2.123** in this example).
 
-Afterwards, we change the interface of `Pi-hole` to `eth0` (your local network adapter instead of the VPN adapter `tun0`). This can conveniently be done by using `pihole -r` + `Reconfigure`.
+Afterward, we change the interface of `Pi-hole` to `eth0` (your local network adapter instead of the VPN adapter `tun0`). This can conveniently be done by using `pihole -r` + `Reconfigure`.
 
 After a restart of the OpenVPN server, all clients should be able to see all devices within your (at home) local network. This is an example running on a distant server, which is connected through the VPN and can successfully communicate with all internal devices:
 

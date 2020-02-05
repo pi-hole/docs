@@ -8,9 +8,9 @@ last_updated: Sat Feb 09 00:00:00 2019 UTC
 
 Docker runs in a separate network by default called a docker bridge network, which makes DHCP want to serve addresses to that network and not your LAN network where you probably want it. This document details why Docker Pi-hole DHCP is different from normal Pi-hole and how to fix the problem.
 
-### Technical details
+## Technical details
 
-Docker's bridge network mode is default and recommended as a more secure setting for containers because docker is all about isolation, they isolate processes by default and the bridge network isolates the networking by default too. You gain access to the isolated container's service ports by using port forwards in your container's runtime config; for example `-p 67:67` is DHCP. However DHCP protocol operates through a network 'broadcast' which cannot span multiple networks (docker's bridge, and your LAN network). In order to get DHCP on to your network there are a few approaches:
+Docker's bridge network mode is default and recommended as a more secure setting for containers because docker is all about isolation, they isolate processes by default and the bridge network isolates the networking by default too. You gain access to the isolated container's service ports by using port forwards in your container's runtime config; for example `-p 67:67` is DHCP. However, DHCP protocol operates through a network 'broadcast' which cannot span multiple networks (docker's bridge, and your LAN network). In order to get DHCP on to your network there are a few approaches:
 
 ## Working network modes
 
@@ -37,14 +37,14 @@ Having the container get its own IP not only solves the broadcast problem but av
 
 **Advantages**: Works well with container web reverse proxies like Nginx or Traefik
 
-If you want to use docker's bridged network mode then you need to run a DHCP relay. A relay points to your containers forwarded port 67 and spreads the broadcast signal from isolated docker bridge onto your LAN network. Relays are very simple software, you just have to configure it to point to your Docker host's IP port 67.
+If you want to use docker's bridged network mode then you need to run a DHCP relay. A relay points to your containers forwarded port 67 and spreads the broadcast signal from an isolated docker bridge onto your LAN network. Relays are very simple software, you just have to configure it to point to your Docker host's IP port 67.
 
 Although uncommon, if your router is an advanced enough router it may support a DHCP relay. Try googling for your router manufacturer + DHCP relay or looking in your router's configuration around the DHCP settings or advanced areas.
 
-If your router doesn't support it, you can run a software / container based DHCP relay on your LAN instead. The author of DNSMasq made a very tiny simple one called [DHCP-helper](http://thekelleys.org.uk/dhcp-helper/READ-ME). [DerFetzer](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038) kindly shared his great setup of a DHCP-helper container on the Pi-hole Discourse forums.
+If your router doesn't support it, you can run a software/container based DHCP relay on your LAN instead. The author of dnsmasq made a very tiny simple one called [DHCP-helper](http://thekelleys.org.uk/dhcp-helper/READ-ME). [DerFetzer](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038) kindly shared his great setup of a DHCP-helper container on the Pi-hole Discourse forums.
 
 ### Warning about the Default bridge network
 
 The out of the box [default bridge network has some limitations](https://docs.docker.com/network/bridge/#differences-between-user-defined-bridges-and-the-default-bridge) that a user created bridge network won't have. These limitations make it painful to use especially when connecting multiple containers together.
 
-Avoid using the built in default docker bridge network, the simplest way to do this is just use a docker-compose setup since it creates its own network automatically. If compose isn't an option the [bridge network](https://docs.docker.com/network/bridge/) docs should help you create your own.
+Avoid using the built-in default docker bridge network, the simplest way to do this is just use a docker-compose setup since it creates its own network automatically. If compose isn't an option the [bridge network](https://docs.docker.com/network/bridge/) docs should help you create your own.

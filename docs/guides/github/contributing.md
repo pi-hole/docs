@@ -16,7 +16,7 @@ Contributors *sign-off* that they adhere to these requirements by adding a Signe
 
 #### DCO Failures
 
-The Pi-hole project uses a DCO bot for all GitHub pulls to verify that each commit is signed off. When you create your pull request, it will automaticaly be verified by this bot. An example of what to expect is below.
+The Pi-hole project uses a DCO bot for all GitHub pulls to verify that each commit is signed off. When you create your pull request, it will automatically be verified by this bot. An example of what to expect is below.
 
 ![Screenshot](../../images/github-commit-bots-expanded.png)
 

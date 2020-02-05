@@ -1,11 +1,11 @@
-site_name: "Pi-hole documentation"
-site_url: https://docs.pi-hole.net/
-repo_url: "https://github.com/pi-hole/docs"
+site_name: 'Pi-hole documentation'
+site_url: 'https://docs.pi-hole.net/'
+repo_url: 'https://github.com/pi-hole/docs'
 copyright: 'Copyright &copy; 2019 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
-  favicon: 'images/favicon.png'
+  favicon: 'images/favicon.ico'
   logo: 'images/logo.svg'
   language: 'en'
   font:
@@ -13,101 +13,101 @@ theme:
     code: 'Roboto Mono'
 
 markdown_extensions:
-# Code highlighting in ``` ``` blocks
+  # Code highlighting in ``` ``` blocks
   - codehilite:
       guess_lang: true
-# Table of Contents
+  # Table of Contents
   - toc:
       permalink: true
-# block-styled side content
+  # block-styled side content
   - admonition
-# linkafies URL and email links without having to wrap them in Markdown syntax. Also, allows shortens repository issue, pull request, and commit links.
+  # linkifies URL and email links without having to wrap them in Markdown syntax. Also, allows shortens repository issue, pull request, and commit links.
   - pymdownx.magiclink
-# Task lists (https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/)
+  # Task lists (https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/)
   - pymdownx.tasklist:
       custom_checkbox: true
-# Highlight words with ==mark me==
+  # Highlight words with ==mark me==
   - pymdownx.mark
-# Adds support for deletion ~~Delete me~~ and subscript text~a\ subscript~
+  # Adds support for deletion ~~Delete me~~ and subscript text~a\ subscript~
   - pymdownx.tilde
-# This extension is a convenience extension which includes many pymdownx extensions
-# (https://facelessuser.github.io/pymdown-extensions/extensions/extra/)
+  # This extension is a convenience extension which includes many pymdownx extensions
+  # (https://facelessuser.github.io/pymdown-extensions/extensions/extra/)
   - pymdownx.extra
-# Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
+  # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
-# Adds the ability to define abbreviations
+  # Adds the ability to define abbreviations
   - abbr
-# Include files in other documents like {!some/dir/in/docs/filename.md!}
+  # Include files in other documents like {!some/dir/in/docs/filename.md!}
   - markdown_include.include:
       base_path: docs
-# Metadata support in pages
-# (https://squidfunk.github.io/mkdocs-material/extensions/metadata/)
+  # Metadata support in pages
+  # (https://squidfunk.github.io/mkdocs-material/extensions/metadata/)
   - meta
 
 nav:
-- Overview: index.md
-- 'About Pi-hole':
-  - 'Contact Us': main/contact.md
-  - 'Pi-hole Origins': main/origins.md
-  - 'Presentation Support': main/presentations.md
-  - 'On the Web': main/coverage.md
-- 'Getting Started':
-  - 'Prerequisites': main/prerequesites.md
-  - 'Installation': main/basic-install.md
-  - 'Post-Install': main/post-install.md
-  - 'Updating': main/update.md
-- 'Pi-hole Core':
-  - 'The <samp>pihole</samp> command': core/pihole-command.md
-- 'FTLDNS':
-  - 'Overview': ftldns/index.md
-  - 'Configuration': ftldns/configfile.md
-  - 'DNS resolver': ftldns/dns-resolver.md
-  - 'DNS cache': ftldns/dns-cache.md
-  - 'Blocking mode': ftldns/blockingmode.md
-  - 'RegEx blocking':
-    - "Overview": ftldns/regex/overview.md
-    - "Tutorial": ftldns/regex/tutorial.md
-  - 'Privacy levels': ftldns/privacylevels.md
-  - 'Long-term database': ftldns/database.md
-  - 'Telnet API': ftldns/telnet-api.md
-  - 'Compatibility': ftldns/compatibility.md
-  - 'Install from source': ftldns/compile.md
-  - 'Debugging FTLDNS': ftldns/debugging.md
-  - 'In-depth manual': ftldns/in-depth.md
-- 'Docker':
-  - 'DHCP': docker/DHCP.md
-- 'Contributing':
-  - 'Contributing on Github': guides/github/contributing.md
-  - 'How to sign-off commits': guides/github/how-to-signoff.md
-- 'Guides':
-  - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
-  - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
-  - 'Upstream DNS Providers': guides/upstream-dns-providers.md
-  - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
-  - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
-  - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
-  - 'Configuring Traefik for Pi-hole (not in Docker)': guides/traefik-configuration-nodocker.md
-  - 'Benchmarking': guides/benchmark.md
-  - 'Pi-hole and OpenVPN Server':
-    - 'Overview': guides/vpn/overview.md
-    - 'Installation': guides/vpn/installation.md
-    - 'Setup OpenVPN Server': guides/vpn/setup-openvpn-server.md
-    - 'Firewall Configuration': guides/vpn/firewall.md
-    - 'Connecting clients':
-      - 'General': guides/vpn/clients.md
-      - 'Android': guides/vpn/android-client.md
-    - 'Optional: Only route DNS via VPN': guides/vpn/only-dns-via-vpn.md
-    - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/dual-operation.md
-    - 'Optional: Full and DNS-only': guides/vpn/dual-VPN.md
-    - 'Optional: Dynamic DNS': guides/vpn/dynDNS.md
-    - 'Troubleshooting': guides/vpn/troubleshooting.md
-  - 'TOR & Pi-hole':
-    - 'Overview': guides/tor/overview.md
-    - 'Basic Setup': guides/tor/setup.md
-    - 'Using TOR': guides/tor/using-tor.md
-    - 'Performance and other issues': guides/tor/performance-issues.md
-    - 'Using DNSSEC': guides/tor/dnssec.md
-- 'Community Projects': main/projects.md
+  - Overview: index.md
+  - 'About Pi-hole':
+    - 'Contact Us': main/contact.md
+    - 'Pi-hole Origins': main/origins.md
+    - 'Presentation Support': main/presentations.md
+    - 'On the Web': main/coverage.md
+  - 'Getting Started':
+    - 'Prerequisites': main/prerequesites.md
+    - 'Installation': main/basic-install.md
+    - 'Post-Install': main/post-install.md
+    - 'Updating': main/update.md
+  - 'Pi-hole Core':
+    - 'The <samp>pihole</samp> command': core/pihole-command.md
+  - 'FTLDNS':
+    - 'Overview': ftldns/index.md
+    - 'Configuration': ftldns/configfile.md
+    - 'DNS resolver': ftldns/dns-resolver.md
+    - 'DNS cache': ftldns/dns-cache.md
+    - 'Blocking mode': ftldns/blockingmode.md
+    - 'RegEx blocking':
+      - "Overview": ftldns/regex/overview.md
+      - "Tutorial": ftldns/regex/tutorial.md
+    - 'Privacy levels': ftldns/privacylevels.md
+    - 'Long-term database': ftldns/database.md
+    - 'Telnet API': ftldns/telnet-api.md
+    - 'Compatibility': ftldns/compatibility.md
+    - 'Install from source': ftldns/compile.md
+    - 'Debugging FTLDNS': ftldns/debugging.md
+    - 'In-depth manual': ftldns/in-depth.md
+  - 'Docker':
+    - 'DHCP': docker/DHCP.md
+  - 'Contributing':
+    - 'Contributing on GitHub': guides/github/contributing.md
+    - 'How to sign-off commits': guides/github/how-to-signoff.md
+  - 'Guides':
+    - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
+    - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
+    - 'Upstream DNS Providers': guides/upstream-dns-providers.md
+    - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
+    - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
+    - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
+    - 'Configuring Traefik for Pi-hole (not in Docker)': guides/traefik-configuration-nodocker.md
+    - 'Benchmarking': guides/benchmark.md
+    - 'Pi-hole and OpenVPN Server':
+      - 'Overview': guides/vpn/overview.md
+      - 'Installation': guides/vpn/installation.md
+      - 'Setup OpenVPN Server': guides/vpn/setup-openvpn-server.md
+      - 'Firewall Configuration': guides/vpn/firewall.md
+      - 'Connecting clients':
+        - 'General': guides/vpn/clients.md
+        - 'Android': guides/vpn/android-client.md
+      - 'Optional: Only route DNS via VPN': guides/vpn/only-dns-via-vpn.md
+      - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/dual-operation.md
+      - 'Optional: Full and DNS-only': guides/vpn/dual-VPN.md
+      - 'Optional: Dynamic DNS': guides/vpn/dynDNS.md
+      - 'Troubleshooting': guides/vpn/troubleshooting.md
+    - 'TOR & Pi-hole':
+      - 'Overview': guides/tor/overview.md
+      - 'Basic Setup': guides/tor/setup.md
+      - 'Using TOR': guides/tor/using-tor.md
+      - 'Performance and other issues': guides/tor/performance-issues.md
+      - 'Using DNSSEC': guides/tor/dnssec.md
+  - 'Community Projects': main/projects.md
 
 extra:
   social:
@@ -115,5 +115,6 @@ extra:
       link: https://pi-hole.net/
     - type: github-alt
       link: https://github.com/pi-hole
+
 extra_css:
   - extra.css

@@ -1,7 +1,9 @@
 <p align="center">
-<a href="https://pi-hole.net"><img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_text.png" width="150" height="255" alt="Pi-hole"></a>
-<br/><br/>
-<b>Network-wide ad blocking via your own Linux hardware</b><br/>
+    <a href="https://pi-hole.net/">
+        <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_Wordmark.svg" width="150" height="260" alt="Pi-hole">
+    </a>
+    <br>
+    <strong>Network-wide ad blocking via your own Linux hardware</strong>
 </p>
 
 The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a [DNS sinkhole](https://en.wikipedia.org/wiki/DNS_Sinkhole) that protects your devices from unwanted content, without installing any client-side software.
@@ -24,7 +26,7 @@ To add a new document or guide.
 
 ### Testing your changes.
 
-Whilst working on this repo, it is advised that you review your own changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
+When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 
@@ -65,6 +67,6 @@ Please make sure you fork the repo and change the clone URL in the example below
     docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it python:2-alpine \
       sh -c "pip install --user -r requirements.txt && \
       /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
-     ```
+    ```
 
-After these commands, the current branch is accessible through your favorite browser at http://localhost:8000
+After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
