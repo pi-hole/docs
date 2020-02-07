@@ -77,7 +77,7 @@ nav:
   - 'Docker':
     - 'DHCP': docker/DHCP.md
   - 'Contributing':
-    - 'Contributing on Github': guides/github/contributing.md
+    - 'Contributing on GitHub': guides/github/contributing.md
     - 'How to sign-off commits': guides/github/how-to-signoff.md
   - 'Guides':
     - 'Pi-hole as All-Around DNS Solution': guides/unbound.md

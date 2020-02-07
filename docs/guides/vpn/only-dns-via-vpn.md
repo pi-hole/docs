@@ -12,11 +12,11 @@ Edit your `/etc/openvpn/server/server.conf` and remove (comment out) the followi
 
 This works pretty much out of the box with common `client.ovpn` files, like this provided one: [client.ovpn](http://www.dl6er.de/pi-hole/openVPN/client.ovpn)
 
-Remember to replace the locations of your keys and the address/host name of your server.
+Remember to replace the locations of your keys and the address/hostname of your server.
 
 ### Using the Network Manager
 
-When using the Network Manager, you will have to do some additional setting on the client side of things:
+When using the Network Manager, you will have to do some additional setting on the client's side of things:
 
 ![](NetworkManager1.png)
 
@@ -57,7 +57,7 @@ The web interface of your Pi-hole will be visible at `http://pi.hole/admin/` (ev
 
 ## Troubleshooting
 
-If your new DNS server configuration has not been activated (try restarting the interface / system) you will see
+If your new DNS server configuration has not been activated (try restarting the interface/system) you will see
 
 ```text
 host pi.hole

@@ -4,7 +4,7 @@ We provide a short but thorough introduction to our regular expressions implemen
 
 ## Anchors (`^` and `$`)
 
-First of all, we look at anchors which can be used to indicate the start or the end of a domain, respectively. If you don't specify anchors, the match may be partial (see examples below).
+First of all, we look at anchors that can be used to indicate the start or the end of a domain, respectively. If you don't specify anchors, the match may be partial (see examples below).
 
 Example | Interpretation
 --- | ---
@@ -99,7 +99,7 @@ Character class | Group equivalent | Interpretation
 
 # Advanced examples
 
-After going through our quick tutorial, we provide some more advances examples so you can test your knowledge.
+After going through our quick tutorial, we provide some more advanced examples so you can test your knowledge.
 
 ## Block domain with only numbers
 

@@ -2,7 +2,7 @@
 title: The pihole command - Pi-hole documentation
 ---
 
-Pi-hole makes use of many commands, and here we will break down those required to administer the program via the Command Line Interface.
+Pi-hole makes use of many commands, and here we will break down those required to administer the program via the command-line Interface.
 
 | Index | Invocation |
  -------------- | --------------
@@ -42,7 +42,7 @@ Help Command    | `pihole --help`
 Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
 Example Usage   | `pihole -b advertiser.example.com`
 
-The core script of Pi-hole provides the ability to tie many DNS related functions into a simple and user friendly management system, so that one may easily block unwanted content such as advertisements. For both the Command Line Interface (CLI) and Web Interface, we achieve this through the `pihole` command (this helps minimise code duplication, and allows users to read exactly what's happening using `bash` scripting). This "wrapper" elevates the current user (whether it be your own user account, or `www-data`) using `sudo`, but restricts the elevation to solely what can be called through the wrapper.
+The core script of Pi-hole provides the ability to tie many DNS related functions into a simple and user-friendly management system, so that one may easily block unwanted content such as advertisements. For both the Command-line Interface (CLI) and Web Interface, we achieve this through the `pihole` command (this helps minimize code duplication, and allows users to read exactly what's happening using `bash` scripting). This "wrapper" elevates the current user (whether it be your own user account, or `www-data`) using `sudo`, but restricts the elevation to solely what can be called through the wrapper.
 
 ### Whitelisting, Blacklisting and Regex
 
@@ -100,7 +100,7 @@ There are times where the administrator will need to repair or reconfigure the P
 
 * [`basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) will be run
     * **Reconfigure** will run through the first-time installation prompts, asking for upstream DNS provider, IP protocols, etc
-    * **Repair** will retain your existing settings, and will attempt to repair any scripts or dependencies as necessary
+    * **Repair** will retain your existing settings and will attempt to repair any scripts or dependencies as necessary
 * The rest of `basic-install.sh` will then run as appropriate
 
 ### Tail
@@ -131,7 +131,7 @@ Help Command    | `pihole -c --help`
 Script Location | [`/opt/pihole/chronometer.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/chronometer.sh)
 Example Usage   | [`pihole -c -e`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#chronometer)
 
-Chronometer is a console dashboard of real-time stats, which can be displayed via `ssh` or on an LCD screen attached directly to your hardware. The script is capable of detecting the size of your screen, and adjusting output to try and best suit it.
+Chronometer is a console dashboard of real-time stats, which can be displayed via `ssh` or on an LCD screen attached directly to your hardware. The script is capable of detecting the size of your screen and adjusting output to try and best suit it.
 
 <a href="../chronometer.jpg">
     <img srcset="../chronometer-thumb.jpg, ../chronometer-thumb@2x.jpg 2x" src="../chronometer-thumb.jpg" alt="Chronometer in action" width="450" height="600">
@@ -200,7 +200,7 @@ Help Command    | `pihole update`
 Script Location | [`/opt/pihole/update.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/update.sh)
 Example Usage   | `pihole -up`
 
-Check Pi-hole Core, Web Interface and FTL repositories to determine what upgrade (if any) is required. It will then automatically update and reinstall if necessary.
+Check Pi-hole Core, Web Interface and FTL repositories to determine what upgrades (if any) are required. It will then automatically update and reinstall if necessary.
 
 **Basic Script Process**:
 
@@ -216,7 +216,7 @@ Help Command    | `pihole version`
 Script Location | [`/opt/pihole/version.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/version.sh)
 Example Usage   | `pihole -v -c`
 
-Shows installed versions of Pi-hole, Web Interface & FTL. Also provides options to configure which details will be printed, such as current version, latest version, hash and subsystem.
+Shows installed versions of Pi-hole, Web Interface & FTL. It also provides options to configure which details will be printed, such as the current version, latest version, hash and subsystem.
 
 ### Uninstall
 
@@ -299,7 +299,7 @@ Help Command    | N/A
 Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#web-password)
 
-Set Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on screen (e.g: `pihole -a -p`).
+Set the Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on the screen (e.g: `pihole -a -p`).
 
 ### Temperature Unit
 
@@ -309,7 +309,7 @@ Help Command    | N/A
 Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | [`pihole -a -c`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#temp-unit)
 
-Set specified temperature unit as preferred type. This preference will affect the Web Interface, as well as Chronometer.
+Set the specified temperature unit as the preferred type. This preference will affect the Web Interface, as well as Chronometer.
 
 ### Host Record
 
