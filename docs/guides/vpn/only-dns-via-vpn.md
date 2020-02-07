@@ -4,7 +4,7 @@ With this setup, you will force connected clients to use **only the DNS provided
 
 Edit your `/etc/openvpn/server/server.conf` and remove (comment out) the following line:
 
-```
+```ini
 # push "redirect-gateway def1 bypass-dhcp"
 ```
 
@@ -12,22 +12,25 @@ Edit your `/etc/openvpn/server/server.conf` and remove (comment out) the followi
 
 This works pretty much out of the box with common `client.ovpn` files, like this provided one: [client.ovpn](http://www.dl6er.de/pi-hole/openVPN/client.ovpn)
 
-Remember to replace the locations of your keys and the address/host name of your server.
+Remember to replace the locations of your keys and the address/hostname of your server.
 
 ### Using the Network Manager
 
-When using the Network Manager, you will have to do some additional setting on the client side of things:
+When using the Network Manager, you will have to do some additional setting on the client's side of things:
 
 ![](NetworkManager1.png)
 
 #### Alternative 1: Disable Network Manager's internal DNS server
 
 Edit `/etc/NetworkManager/NetworkManager.conf`:
-```
+
+```ini
 # dns=dnsmasq
 ```
+
 and restart the Network Manager:
-```
+
+```bash
 sudo restart network-manager
 ```
 
@@ -40,7 +43,8 @@ You can also set the address of the DNS server manually (use the device which ac
 ![](NetworkManager2.png)
 
 After doing either alternative, you should see:
-```
+
+```text
 pi.hole has address W.X.Y.Z (outside address of your VPN server)
 pi.hole has IPv6 address A:B:C:D:E:F (outside address of your VPN server)
 ```
@@ -50,16 +54,19 @@ The web interface of your Pi-hole will be visible at `http://pi.hole/admin/` (ev
 ![](VPNdashboard.png)
 
 ---
+
 ## Troubleshooting
 
-If your new DNS server configuration has not been activated (try restarting the interface / system) you will see
-```
+If your new DNS server configuration has not been activated (try restarting the interface/system) you will see
+
+```text
 host pi.hole
 Host pi.hole not found: 3(NXDOMAIN)
 ```
 
 If you are not connected to your VPN network you will see
-```
+
+```text
 host pi.hole
 ;; connection timed out; no servers could be reached
 ```

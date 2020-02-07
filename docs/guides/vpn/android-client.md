@@ -2,7 +2,7 @@
 
 - Log into your OpenVPN server and use the road warrior installer to create a new certificate for your device:
 
-```
+```text
 root@ubuntu-512mb-fra1-01:~# bash openvpn-install.sh
 Looks like OpenVPN is already installed
 
@@ -36,18 +36,18 @@ Client android added, configuration is available at /root/android.ovpn
 
 - Copy the mentioned file (`/root/android.ovpn`) to your Android device (e.g. SD card) and import it in the app:
 
- ![](Android-Import-1.png)
+    ![](Android-Import-1.png)
 
- ![](Android-Import-2.png)
+    ![](Android-Import-2.png)
 
- ![](Android-Import-3.png)
+    ![](Android-Import-3.png)
 
- ![](Android-Import-4.png)
+    ![](Android-Import-4.png)
 
 - Connect to your OpenVPN server
 
-  ![](Android-Connected.png)
+    ![](Android-Connected.png)
 
 - You are ready to go!
 
-  ![](Android-Pi-hole.png)
+    ![](Android-Pi-hole.png)
