@@ -4,7 +4,7 @@ description: Brief overview of Pi-hole
 last_updated: Thur May 02 01:00:00 2019 UTC
 ---
 
-<p style="text-align: center;">
+<p class="text-center">
     <a href="https://pi-hole.net/">
         <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_Wordmark.svg" width="150" height="260" alt="Pi-hole">
     </a>
@@ -18,18 +18,18 @@ The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a 
 - **Resolute**: content is blocked in _non-browser locations_, such as ad-laden mobile apps and smart TVs
 - **Responsive**: seamlessly speeds up the feel of everyday browsing by caching DNS queries
 - **Lightweight**: runs smoothly with [minimal hardware and software requirements](main/prerequesites.md)
-- **Robust**: a command line interface that is quality assured for interoperability
+- **Robust**: a command-line interface that is quality assured for interoperability
 - **Insightful**: a beautiful responsive Web Interface dashboard to view and control your Pi-hole
 - **Versatile**: can optionally function as a [DHCP server](https://discourse.pi-hole.net/t/how-do-i-use-pi-holes-built-in-dhcp-server-and-why-would-i-want-to/3026), ensuring *all* your devices are protected automatically
 - **Scalable**: [capable of handling hundreds of millions of queries](https://pi-hole.net/2017/05/24/how-much-traffic-can-pi-hole-handle/) when installed on server-grade hardware
 - **Modern**: blocks ads over both IPv4 and IPv6
-- **Free**: open source software which helps ensure _you_ are the sole person in control of your privacy
+- **Free**: open-source software which helps ensure _you_ are the sole person in control of your privacy
 
 ---
 
 ## Pi-hole is free, but powered by your support
 
-There are many reoccurring costs involved with maintaining free, open source, and privacy respecting software; expenses which [our volunteer developers](https://github.com/orgs/pi-hole/people) pitch in to cover out-of-pocket. This is just one example of how strongly we feel about our software, as well as the importance of keeping it maintained.
+There are many reoccurring costs involved with maintaining free, open-source, and privacy respecting software; expenses which [our volunteer developers](https://github.com/orgs/pi-hole/people) pitch in to cover out-of-pocket. This is just one example of how strongly we feel about our software, as well as the importance of keeping it maintained.
 
 Make no mistake: **your support is absolutely vital to help keep us innovating!**
 

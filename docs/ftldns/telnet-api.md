@@ -1,6 +1,6 @@
 Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 4711`
 
-- `>quit`: Closes connection to client
+- `>quit`: Closes the connection to the client
 
 - `>stats` : Get current statistics
 
@@ -57,7 +57,7 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
 
     Variant: `>top-ads (14)` to show (up to) 14 entries
 
-- `top-clients` : get recently active top clients (IP addresses + host names (if available))
+- `top-clients` : get recently active top clients (IP addresses + hostnames (if available))
 
     ```text
     0 9373 192.168.2.1 router
@@ -67,7 +67,7 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
 
     Variant: `>top-clients (9)` to show (up to) 9 client entries or `>top-clients withzero (15)` to show (up to) 15 clients even if they have not been active recently (see PR #124 for further details)
 
-- `>forward-dest` : get forward destinations (IP addresses + host names (if available)) along with the percentage. The first result (ID -2) will always be the percentage of domains answered from blocklists, whereas the second result (ID -1) will be the queries answered from cache
+- `>forward-dest` : get forward destinations (IP addresses + hostnames (if available)) along with the percentage. The first result (ID -2) will always be the percentage of domains answered from blocklists, whereas the second result (ID -1) will be the queries answered from the cache
 
     ```text
     -2 18.70 blocklist blocklist
