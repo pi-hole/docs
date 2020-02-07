@@ -80,19 +80,19 @@
     }
     ```
 
-7. Create username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+7. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
 
     ```bash
     htpasswd -c /etc/nginx/.htpasswd exampleuser
     ```
 
-8. Change ownership of html directory to nginx user
+8. Change ownership of the html directory to nginx user
 
     ```bash
     chown -R www-data:www-data /var/www/html
     ```
 
-9. Make sure html directory is writable
+9. Make sure the html directory is writable
 
     ```bash
     chmod -R 755 /var/www/html
@@ -104,7 +104,7 @@
     service php7.3-fpm start
     ```
 
-11. Start nginx webserver
+11. Start nginx web server
 
     ```bash
     service nginx start

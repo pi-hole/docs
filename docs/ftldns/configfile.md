@@ -52,17 +52,17 @@ Listen only for local socket connections or permit all connections
 
 On which port should FTL be listening?
 
-### Host name resolution
+### Hostname resolution
 
 #### `RESOLVE_IPV6=yes|no` {#resolve_ipv6 data-toc-label='Resolve IPV6'}
 
-Should `FTL` try to resolve IPv6 addresses to host names?
+Should `FTL` try to resolve IPv6 addresses to hostnames?
 
 ---
 
 #### `RESOLVE_IPV4=yes|no` {#resolve_ipv4 data-toc-label='Resolve IPV4'}
 
-Should `FTL` try to resolve IPv4 addresses to host names?
+Should `FTL` try to resolve IPv4 addresses to hostnames?
 
 ### Database settings
 
@@ -136,7 +136,7 @@ Print debugging information about database actions. This prints performed SQL st
 
 #### `DEBUG_NETWORKING=false|true` {#debug_networking data-toc-label='Debug networking'}
 
-Prints a list of the detected interfaces on startup of `pihole-FTL`. Also prints whether these interfaces are IPv4 or IPv6 interfaces.
+Prints a list of the detected interfaces on startup of `pihole-FTL`. Also, prints whether these interfaces are IPv4 or IPv6 interfaces.
 
 ---
 

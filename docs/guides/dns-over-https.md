@@ -2,20 +2,20 @@
 
 DNS-Over-HTTPS is a protocol for performing DNS lookups via the same protocol you use to browse the web securely: **HTTPS**.
 
-With standard DNS, requests are sent in plain-text, with no method to detect tampering or misbehaviour. This means that not only can a malicous actor look at all the DNS requests you are making (and therefore what websites you are visiting), they can also tamper with the response and redirect your device to resources in their control (such as a fake login page for internet banking).
+With standard DNS, requests are sent in plain-text, with no method to detect tampering or misbehavior. This means that not only can a malicious actor look at all the DNS requests you are making (and therefore what websites you are visiting), they can also tamper with the response and redirect your device to resources in their control (such as a fake login page for internet banking).
 
 DNS-Over-HTTPS prevents this by using standard HTTPS requests to retrieve DNS information. This means that the connection from the device to the DNS server is secure and can not easily be snooped, monitored, tampered with or blocked.
-It is worth noting however, that the upstream DNS-Over-HTTPS provider will still have this ability.
+It is worth noting, however, that the upstream DNS-Over-HTTPS provider will still have this ability.
 
 ## Configuring DNS-Over-HTTPS
 
-Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/), Cloudflare implemented DNS-Over-HTTPS proxy functionality in to one of their tools: `cloudflared`.
+Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/), Cloudflare implemented DNS-Over-HTTPS proxy functionality into one of their tools: `cloudflared`.
 
-In the following sections we will be covering how to install and configure this tool on `Pi-hole`.
+In the following sections, we will be covering how to install and configure this tool on `Pi-hole`.
 
 ### Installing `cloudflared`
 
-The installation is fairly straightforward, however be aware of what architecture you are installing on (`amd64` or `arm`).
+The installation is fairly straightforward, however, be aware of what architecture you are installing on (`amd64` or `arm`).
 
 #### AMD64 architecture (most devices)
 
@@ -69,7 +69,7 @@ sudo chown cloudflared:cloudflared /etc/default/cloudflared
 sudo chown cloudflared:cloudflared /usr/local/bin/cloudflared
 ```
 
-Then create the `systemd` script by copying the following in to `/etc/systemd/system/cloudflared.service`. This will control the running of the service and allow it to run on startup:
+Then create the `systemd` script by copying the following into `/etc/systemd/system/cloudflared.service`. This will control the running of the service and allow it to run on startup:
 
 ```ini
 [Unit]

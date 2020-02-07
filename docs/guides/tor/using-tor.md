@@ -4,7 +4,7 @@ To enhance your privacy you might want to route all or part of your Browser Traf
 
 ### Tor Browser
 
-The easiest and most reliable solution would be to use the [Tor Browser](https://www.torproject.org/download/). Though that won't use your Pi-hole DNS Server out of the box. You can however disable `Proxy DNS when using SOCKS v5` in Tor Browsers Preferences -> Advanced -> Network -> Settings and [make sure](#make-sure-it-works) to point your system to use Pi-hole with DNS over Tor activated.
+The easiest and most reliable solution would be to use the [Tor Browser](https://www.torproject.org/download/). Though that won't use your Pi-hole DNS Server out of the box. You can, however, disable `Proxy DNS when using SOCKS v5` in Tor Browsers Preferences -> Advanced -> Network -> Settings and [make sure](#make-sure-it-works) to point your system to use Pi-hole with DNS over Tor activated.
 
 ### Your Browser
 
