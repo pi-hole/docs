@@ -10,7 +10,7 @@ Edit your `/etc/openvpn/server/server.conf` and remove (comment out) the followi
 
 ### Using a client config file
 
-This works pretty much out of the box with common `client.ovpn` files, like this provided one: [client.ovpn](http://www.dl6er.de/pi-hole/openVPN/client.ovpn)
+This works pretty much out of the box with common `client.ovpn` files, like this provided one: [client.ovpn](client.ovpn)
 
 Remember to replace the locations of your keys and the address/hostname of your server.
 
