@@ -49,7 +49,6 @@ nav:
   - 'About Pi-hole':
     - 'Contact Us': main/contact.md
     - 'Pi-hole Origins': main/origins.md
-    - 'Presentation Support': main/presentations.md
     - 'On the Web': main/coverage.md
   - 'Getting Started':
     - 'Prerequisites': main/prerequesites.md
