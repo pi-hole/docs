@@ -20,6 +20,6 @@
     "test": "npm run markdownlint"
   },
   "devDependencies": {
-    "markdownlint-cli": "^0.21.0"
+    "markdownlint-cli": "^0.22.0"
   }
 }
