@@ -1,7 +1,9 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
+- If you're using Raspbian Buster (debian 10), then you should install 'php7.3-fpm' instead of v7.0, and change all instances of 'php7.0-fpm' to 'php7.3-fpm'.
 - If you're using php5, change all instances of `php7.0-fpm` to `php5-fpm` and change `/run/php/php7.0-fpm.sock` to `/var/run/php5-fpm.sock`
+- The `php7.0-sqlite` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
 
@@ -12,9 +14,16 @@
     ```
 
 2. Install necessary packages
+    - For Raspbian Stretch and lower:
 
     ```bash
-    apt-get -y install nginx php7.0-fpm php7.0-zip apache2-utils
+    apt-get -y install nginx php7.0-fpm php7.0-zip apache2-utils php7.0-sqlite
+    ```
+
+    - For Raspbian Buster:
+
+    ```bash
+    apt-get -y install nginx php7.3-fpm php7.3-zip apache2-utils php7.3-sqlite
     ```
 
 3. Disable lighttpd at startup
@@ -24,9 +33,16 @@
     ```
 
 4. Enable php7.0-fpm at startup
+    - For Raspbian Stretch and lower:
 
     ```bash
     systemctl enable php7.0-fpm
+    ```
+
+    - For Raspbian Buster:
+
+    ```bash
+    systemctl enable php7.3-fpm
     ```
 
 5. Enable nginx at startup
@@ -101,8 +117,16 @@
 
 10. Start php7.0-fpm daemon
 
+    - For Raspbian Stretch and below:
+
     ```bash
     service php7.0-fpm start
+    ```
+
+    - For Raspbian Buster:
+
+    ```bash
+    service php7.3-fpm start
     ```
 
 11. Start nginx web server
