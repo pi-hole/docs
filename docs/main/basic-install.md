@@ -8,7 +8,7 @@ curl -sSL https://install.pi-hole.net | bash
 
 <!-- markdownlint-disable code-block-style -->
 !!! info
-    [Piping to `bash` is a controversial topic](https://pi-hole.net/2016/07/25/curling-and-piping-to-bash), as it prevents you from [reading code that is about to run](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) on your system.
+    [Piping to `bash` is a controversial topic](https://pi-hole.net/2016/07/25/curling-and-piping-to-bash/), as it prevents you from [reading code that is about to run](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) on your system.
 
     If you would prefer to review the code before installation, we provide these alternative installation methods.
 <!-- markdownlint-enable code-block-style -->
