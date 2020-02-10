@@ -1,4 +1,7 @@
+Babel==2.8.0
 Click==7.0
+gitdb2==2.0.6
+GitPython==3.0.7
 htmlmin==0.1.12
 Jinja2==2.11.1
 jsmin==2.2.2
@@ -7,11 +10,13 @@ Markdown==3.2
 markdown-include==0.5.1
 MarkupSafe==1.1.1
 mkdocs==1.0.4
+mkdocs-git-revision-date-localized-plugin==0.4.5
 mkdocs-material==4.6.2
 mkdocs-minify-plugin==0.2.1
-mkdocs-git-revision-date-localized-plugin==0.4.5
 Pygments==2.5.2
 pymdown-extensions==6.3
+pytz==2019.3
 PyYAML==5.3
 six==1.14.0
+smmap2==2.0.5
 tornado==6.0.3
