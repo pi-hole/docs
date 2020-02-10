@@ -1,7 +1,6 @@
 ---
 title: Prerequisites
 description: Operating system and network requirements
-last_updated: January 27 2020
 ---
 
 ### Hardware

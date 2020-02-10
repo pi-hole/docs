@@ -1,7 +1,6 @@
 ---
 title: Pi-hole News and Blogs
 description: Sites and articles about Pi-hole
-last_updated: Sun Jan 13 19:20:35 2019 UTC
 ---
 
 ### YouTube/Twit/Video

@@ -1,7 +1,6 @@
 ---
 title: Getting in touch
 description: Pi-hole contacts and social media
-last_updated: Sun Jan 13 18:33:27 2019 UTC
 ---
 
 While we are primarily reachable on our [Discourse User Forum](https://discourse.pi-hole.net/), we can also be found on a variety of social media outlets. **Please be sure to check the FAQ's** before starting a new discussion, as we do not have the spare time to reply to every request for assistance.
