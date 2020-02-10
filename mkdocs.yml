@@ -1,6 +1,6 @@
 site_name: 'Pi-hole documentation'
 site_url: 'https://docs.pi-hole.net/'
-repo_url: 'https://github.com/pi-hole/docs'
+repo_url: 'https://github.com/pi-hole/pi-hole'
 copyright: 'Copyright &copy; 2019 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
