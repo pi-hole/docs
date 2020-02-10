@@ -118,7 +118,3 @@ extra:
 
 extra_css:
   - extra.css
-
-plugins:
-  - search
-  - git-revision-date-localized
