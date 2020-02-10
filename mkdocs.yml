@@ -7,8 +7,6 @@ remote_branch: gh-pages
 theme:
   name: 'material'
   favicon: 'images/favicon.ico'
-  primary: 'deep purple'
-  accent: 'teal'
   logo: 'images/logo.svg'
   language: 'en'
   font:
@@ -121,3 +119,7 @@ extra:
 
 extra_css:
   - extra.css
+
+plugins:
+  - search
+  - git-revision-date-localized
