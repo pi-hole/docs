@@ -12,7 +12,6 @@ MarkupSafe==1.1.1
 mkdocs==1.0.4
 mkdocs-git-revision-date-localized-plugin==0.4.6
 mkdocs-material==4.6.3
-mkdocs-minify-plugin==0.2.3
 Pygments==2.5.2
 pymdown-extensions==6.3
 pytz==2019.3
