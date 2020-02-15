@@ -19,10 +19,15 @@ input {
     color: #532ba8;
 }
 
-@media only screen and (max-width: 76.1875em) {
+.md-logo img {
+    width: 48px;
+    height: 48px;
+}
+
+@media only screen and (min-width: 76.25em) {
     .md-logo img {
-        width: auto;
-        height: 48px;
+        width: 24px;
+        height: 24px;
     }
 }
 
