@@ -28,6 +28,10 @@ Built-in features include a phishing filter, this is the OpenDNS version the Pi-
 
 - 208.67.222.222
 - 208.67.220.220
+- 208.67.222.220
+- 208.67.220.222
+- 2620:119:35::35 (IPv6)
+- 2620:119:53::53 (IPv6)
 
 [More information on OpenDNS Home](https://use.opendns.com/) + [OpenDNS Wiki Page](https://en.wikipedia.org/wiki/OpenDNS)
 
@@ -35,8 +39,8 @@ OpenDNS also provides the OpenDNS FamilyShield (free)- option. The service block
 
 - 208.67.222.123
 - 208.67.220.123
-- 0000:0000:0000:0000:0000:ffff:d043:de7b (ipv6)
-- 0000:0000:0000:0000:0000:ffff:d043:dc7b (ipv6)
+- 0000:0000:0000:0000:0000:ffff:d043:de7b (IPv6)
+- 0000:0000:0000:0000:0000:ffff:d043:dc7b (IPv6)
 
 [More information on OpenDNS FamilyShield](https://www.opendns.com/setupguide/#familyshield) + [OpenDNS FamilyShield introduction Blog](https://umbrella.cisco.com/blog/2010/06/23/introducing-familyshield-parental-controls/)
 
@@ -62,8 +66,8 @@ DNS.WATCH offers Fast, free and uncensored DNS resolution.
 
 - 84.200.69.80
 - 84.200.70.40
-- 2001:1608:10:25::1c04:b12f (ipv6)
-- 2001:1608:10:25::9249:d69b (ipv6)
+- 2001:1608:10:25::1c04:b12f (IPv6)
+- 2001:1608:10:25::9249:d69b (IPv6)
 
 [More information on DNS.WATCH](https://dns.watch/)
 
@@ -73,24 +77,27 @@ Quad9 is a free, recursive, anycast DNS platform that provides end users robust 
 
 - 9.9.9.9
 - 149.112.112.112
-- 2620:fe::fe (ipv6)
+- 2620:fe::fe (IPv6)
+- 2620:fe::9 (IPv6)
 
 [More information on Quad9](https://www.quad9.net/about/)
 
 ### CloudFlare DNS
 
-CloudFlare will never log your IP address (the way other companies identify you). The independent DNS monitor DNSPerf ranks 1.1.1.1 the fastest DNS service in the world.
+CloudFlare will never log your IP address (the way other companies identify you). The independent DNS monitor [DNSPerf](https://www.dnsperf.com/) ranks Cloudflare's DNS the fastest DNS service in the world.
 
 - 1.1.1.1
 - 1.0.0.1
+- 2606:4700:4700::1111 (IPv6)
+- 2606:4700:4700::1001 (IPv6)
 
 [More information on Cloudflare DNS](https://cloudflare-dns.com/dns/#explanation)
 
 ### Custom
 
 With custom, you'll choose your favorite DNS provider.
-If you care about Internet independence and privacy, we suggest having a look at the [OpenNIC DNS Project](https://servers.opennic.org/)
+If you care about Internet independence and privacy, we suggest having a look at the [OpenNIC DNS Project](https://servers.opennic.org/).
 
 ### More information
 
-There are even more public DNS server, you can find many (with some extra information) on the [lifewire.com website](https://www.lifewire.com/free-and-public-dns-servers-2626062). A benchmark of these DNS servers (by Gibson Research Center) is available [here](https://www.grc.com/dns/Benchmark.htm)
+There are even more public DNS server, you can find many (with some extra information) on the [lifewire.com website](https://www.lifewire.com/free-and-public-dns-servers-2626062). A benchmark of these DNS servers (by Gibson Research Center) is available [here](https://www.grc.com/dns/Benchmark.htm).
