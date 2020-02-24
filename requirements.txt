@@ -1,6 +1,6 @@
 Babel==2.8.0
 Click==7.0
-gitdb2==3.0.2
+gitdb2==4.0.2
 GitPython==3.0.8
 htmlmin==0.1.12
 Jinja2==2.11.1
