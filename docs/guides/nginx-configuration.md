@@ -1,9 +1,8 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- If you're using Raspbian Buster (debian 10), then you should install 'php7.3-fpm' instead of v7.0, and change all instances of 'php7.0-fpm' to 'php7.3-fpm'.
-- If you're using php5, change all instances of `php7.0-fpm` to `php5-fpm` and change `/run/php/php7.0-fpm.sock` to `/var/run/php5-fpm.sock`
-- The `php7.0-sqlite` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
+- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with 7.0`.**
+- The `php7.3-sqlite` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
 
@@ -14,16 +13,9 @@
     ```
 
 2. Install necessary packages
-    - For Raspbian Stretch and lower:
 
     ```bash
-    apt-get -y install nginx php7.0-fpm php7.0-zip apache2-utils php7.0-sqlite
-    ```
-
-    - For Raspbian Buster:
-
-    ```bash
-    apt-get -y install nginx php7.3-fpm php7.3-zip apache2-utils php7.3-sqlite
+    apt-get -y install nginx php7.3-fpm php7.3-zip php7.3-sqlite apache2-utils
     ```
 
 3. Disable lighttpd at startup
@@ -32,14 +24,7 @@
     systemctl disable lighttpd
     ```
 
-4. Enable php7.0-fpm at startup
-    - For Raspbian Stretch and lower:
-
-    ```bash
-    systemctl enable php7.0-fpm
-    ```
-
-    - For Raspbian Buster:
+4. Enable php7.3-fpm at startup
 
     ```bash
     systemctl enable php7.3-fpm
@@ -72,7 +57,7 @@
         location ~ \.php$ {
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
-            fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
             fastcgi_param FQDN true;
             auth_basic "Restricted"; # For Basic Auth
             auth_basic_user_file /etc/nginx/.htpasswd; # For Basic Auth
@@ -115,15 +100,7 @@
     chmod -R 755 /var/www/html
     ```
 
-10. Start php7.0-fpm daemon
-
-    - For Raspbian Stretch and below:
-
-    ```bash
-    service php7.0-fpm start
-    ```
-
-    - For Raspbian Buster:
+10. Start php7.3-fpm daemon
 
     ```bash
     service php7.3-fpm start
