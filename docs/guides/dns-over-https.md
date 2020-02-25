@@ -200,6 +200,8 @@ sudo systemctl status cloudflared
 
 ```bash
 sudo systemctl stop cloudflared
+sudo systemctl disable cloudflared
+sudo systemctl daemon-reload
 sudo deluser cloudflared
 sudo rm /etc/default/cloudflared
 sudo rm /etc/systemd/system/cloudflared.service
