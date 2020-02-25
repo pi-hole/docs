@@ -177,7 +177,7 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 
 ### Updating `cloudflared`
 
-You may want to update `cloudflared` from time to time. To do so repeat the steps shown in the beginning after stopping the service and restarting it.
+#### Manual way
 
 ```bash
 # stop the service
@@ -190,6 +190,13 @@ sudo chmod +x /usr/local/bin/cloudflared
 sudo systemctl start cloudflared
 # verify the service is working fine
 sudo systemctl status cloudflared
+```
+
+#### Automatic way
+
+```bash
+sudo cloudflared update
+sudo systemctl restart cloudflared
 ```
 
 ### Uninstalling `cloudflared`
