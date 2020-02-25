@@ -53,7 +53,7 @@ Due to the complexity of different ways of setting an IP address across differen
 ### Firewalls
 
 Below are some examples of firewall rules that will need to be set on your Pi-hole server in order to use the functions available. These are only shown as guides, the actual commands used will be found with your distribution's documentation.
-Due PiHole born to work inside a local network, the following rules will block the traffic from Internet due security reason. 192.168.0.0/16 is the most common local network for home user but it can be different in you case. Check  you local network setting before apply these rules. Other common local network are: 10.0.0.0/8 and 172.16.0.0/12
+Because Pi-hole was born to work inside a local network, the following rules will block the traffic from the Internet for security reasons. `192.168.0.0/16` is the most common local network IP range for home users but it can be different in your case. Check your local network settings before applying these rules. Other common local network IPs are `10.0.0.0/8` and `172.16.0.0/12`.
 
 #### IPTables
 
