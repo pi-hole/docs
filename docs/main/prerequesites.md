@@ -44,7 +44,7 @@ Due to the complexity of different ways of setting an IP address across differen
 | dnsmasq             | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
 | dnsmasq             | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
 | lighttpd            | 80  (HTTP)   | TCP      | If you have another Web server already running, such as Apache, Pi-hole's Web server will not work. You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running. |
-| pihole-FTL          | 4711         | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
+| pihole-FTL          | 4711-4720    | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
 
 !!! info
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
@@ -53,6 +53,7 @@ Due to the complexity of different ways of setting an IP address across differen
 ### Firewalls
 
 Below are some examples of firewall rules that will need to be set on your Pi-hole server in order to use the functions available. These are only shown as guides, the actual commands used will be found with your distribution's documentation.
+Due PiHole born to work inside a local network, the following rules will block the traffic from Internet due security reason. 192.168.0.0/16 is the most common local network for home user but it can be different in you case. Check  you local network setting before apply these rules. Other common local network are: 10.0.0.0/8 and 172.16.0.0/12
 
 #### IPTables
 
@@ -61,18 +62,22 @@ IPTables uses two sets of tables. One set is for IPv4 chains, and the second is 
 IPTables (IPv4)
 
 ```bash
-iptables -I INPUT 1 -p tcp -m tcp --dport 80 -j ACCEPT
-iptables -I INPUT 1 -p tcp -m tcp --dport 53 -j ACCEPT
-iptables -I INPUT 1 -p udp -m udp --dport 53 -j ACCEPT
-iptables -I INPUT 1 -p tcp -m tcp --dport 67 -j ACCEPT
-iptables -I INPUT 1 -p udp -m udp --dport 67 -j ACCEPT
-iptables -I INPUT 1 -p tcp -m tcp --dport 4711 -i lo -j ACCEPT
+iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -I INPUT 1 -s 127.0.0.0/8 -p tcp -m tcp --dport 53 -j ACCEPT
+iptables -I INPUT 1 -s 127.0.0.0/8 -p udp -m udp --dport 53 -j ACCEPT
+iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 53 -j ACCEPT
+iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 53 -j ACCEPT
+iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 67 -j ACCEPT
+iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 67 -j ACCEPT
+iptables -I INPUT 1 -p tcp -m tcp --dport 4711:4720 -i lo -j ACCEPT
+iptables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
 
 IP6Tables (IPv6)
 
 ```bash
-ip6tables -I INPUT -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
+ip6tables -I INPUT -s fe80::/10 -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
+ip6tables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
 
 #### FirewallD
