@@ -47,9 +47,11 @@ sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
 
-#### Configuring `cloudflared` to run on startup
+### Configuring `cloudflared` to run on startup
 
-Create a cloudflared user to run the daemon:
+#### Manual way
+
+Create a `cloudflared` user to run the daemon:
 
 ```bash
 sudo useradd -s /usr/sbin/nologin -r -M cloudflared
@@ -70,6 +72,10 @@ sudo chown cloudflared:cloudflared /usr/local/bin/cloudflared
 ```
 
 Then create the `systemd` script by copying the following into `/etc/systemd/system/cloudflared.service`. This will control the running of the service and allow it to run on startup:
+
+```bash
+sudo nano /etc/systemd/system/cloudflared.service
+```
 
 ```ini
 [Unit]
@@ -97,38 +103,116 @@ sudo systemctl start cloudflared
 sudo systemctl status cloudflared
 ```
 
-Now test that it is working! Run the following `dig` command, a response should be returned similar to the one below:
+#### Automatic way
+
+<!-- markdownlint-disable code-block-style -->
+!!! warning
+    Keep in mind that this will install `cloudflared` as root.
+<!-- markdownlint-enable code-block-style -->
+
+Proceed to create a configuration file for `cloudflared` in `/etc/cloudflared` named `config.yml`:
 
 ```bash
-dig @127.0.0.1 -p 5053 google.com
+sudo mkdir /etc/cloudflared/
+sudo nano /etc/cloudflared/config.yml
+```
 
+Copy the following configuration:
 
-; <<>> DiG 9.10.3-P4-Ubuntu <<>> @127.0.0.1 -p 5053 google.com
+```yaml
+proxy-dns: true
+proxy-dns-port: 5053
+proxy-dns-upstream:
+  - https://1.1.1.1/dns-query
+  - https://1.0.0.1/dns-query
+```
+
+Now install the service via `cloudflared`'s [service command](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#service-command):
+
+```bash
+sudo cloudflared service install
+```
+
+Start the `systemd` service and check its status:
+
+```bash
+sudo systemctl start cloudflared
+sudo systemctl status cloudflared
+```
+
+Now test that it is working! Run the following `dig` command, a response should be returned similar to the one below:
+
+```text
+pi@raspberrypi:~ $ dig @127.0.0.1 -p 5053 google.com
+
+; <<>> DiG 9.11.5-P4-5.1-Raspbian <<>> @127.0.0.1 -p 5053 google.com
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 65181
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 12157
 ;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
-; EDNS: version: 0, flags:; udp: 1536
+; EDNS: version: 0, flags:; udp: 4096
+; COOKIE: 22179adb227cd67b (echoed)
 ;; QUESTION SECTION:
 ;google.com.                    IN      A
 
 ;; ANSWER SECTION:
-google.com.             299     IN      A       243.65.127.221
+google.com.             191     IN      A       172.217.22.14
 
-;; Query time: 3 msec
+;; Query time: 0 msec
 ;; SERVER: 127.0.0.1#5053(127.0.0.1)
-;; MSG SIZE  rcvd: 65
+;; WHEN: Wed Dec 04 09:29:50 EET 2019
+;; MSG SIZE  rcvd: 77
 ```
 
 ### Configuring Pi-hole
 
-Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server:
+Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server by specifying `127.0.0.1#5053` as the Custom DNS:
 
 ![Screenshot of Pi-hole configuration](../images/DoHConfig.png)
 
 (don't forget to hit Return or click on `Save`)
+
+### Updating `cloudflared`
+
+You may want to update `cloudflared` from time to time. To do so repeat the steps shown in the beginning after stopping the service and restarting it.
+
+```bash
+# stop the service
+sudo systemctl stop cloudflared
+# fetch and copy the latest version
+wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
+tar -xvzf cloudflared-stable-linux-arm.tgz
+sudo cp ./cloudflared /usr/local/bin
+sudo chmod +x /usr/local/bin/cloudflared
+sudo systemctl start cloudflared
+# verify the service is working fine
+sudo systemctl status cloudflared
+```
+
+### Uninstalling `cloudflared`
+
+#### If installed the manual way
+
+*Courtesy of <https://discourse.pi-hole.net/t/uninstall-cloudflare/21459/3>*
+
+```bash
+sudo systemctl stop cloudflared
+sudo deluser cloudflared
+sudo rm /etc/default/cloudflared
+sudo rm /etc/systemd/system/cloudflared.service
+sudo rm /usr/local/bin/cloudflared
+```
+
+#### If installed with `cloudflare service install`
+
+```bash
+sudo cloudflared service uninstall
+sudo systemctl daemon-reload
+```
+
+After the above, don't forget to change the DNS back to something else in Pi-hole's DNS settings!
 
 [^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
