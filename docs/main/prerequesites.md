@@ -68,8 +68,7 @@ iptables -I INPUT 1 -s 127.0.0.0/8 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 127.0.0.0/8 -p udp -m udp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 53 -j ACCEPT
-iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 67 -j ACCEPT
-iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 67 -j ACCEPT
+iptables -I INPUT 1 -p udp -m udp --dport 67 -j ACCEPT
 iptables -I INPUT 1 -p tcp -m tcp --dport 4711:4720 -i lo -j ACCEPT
 iptables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
@@ -77,7 +76,7 @@ iptables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 IP6Tables (IPv6)
 
 ```bash
-ip6tables -I INPUT -s fe80::/10 -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
+ip6tables -I INPUT -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
 ip6tables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
 
