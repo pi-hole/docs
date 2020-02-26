@@ -12,7 +12,7 @@ The Pi-hole[®](https://pi-hole.net/trademark-rules-and-brand-guidelines/) is a 
 
 This repo is the source for the official [Pi-hole documentation](https://docs.pi-hole.net/).
 
-### How to contribute.
+### How to contribute
 
 To add a new link on the navigation panel you need to edit the `mkdocs.yml` file in the root of the repo. There is a guide for building the navbar [on the mkdocs wiki](https://www.mkdocs.org/user-guide/configuration/#nav)
 
@@ -24,7 +24,7 @@ To add a new document or guide.
     EG. `docs/guides/url-friendly.md`
 - Edit your document using Markdown, there are loads of resources available for the correct syntax.
 
-### Testing your changes.
+### Testing your changes
 
 When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
 
