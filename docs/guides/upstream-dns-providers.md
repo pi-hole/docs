@@ -33,7 +33,7 @@ Built-in features include a phishing filter, this is the OpenDNS version the Pi-
 - 2620:119:35::35 (IPv6)
 - 2620:119:53::53 (IPv6)
 
-[More information on OpenDNS Home](https://use.opendns.com/) + [OpenDNS Wiki Page](https://en.wikipedia.org/wiki/OpenDNS)
+[More information on OpenDNS Home](https://use.opendns.com/) + [OpenDNS Wikipedia Page](https://en.wikipedia.org/wiki/OpenDNS)
 
 OpenDNS also provides the OpenDNS FamilyShield (free)- option. The service blocks pornographic content, including our “Pornography,” “Tasteless,” and “Sexuality” categories, in addition to proxies and anonymizers (which can render filtering useless). It also blocks phishing and some malware.
 
