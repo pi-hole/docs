@@ -39,8 +39,6 @@ OpenDNS also provides the OpenDNS FamilyShield (free)- option. The service block
 
 - 208.67.222.123
 - 208.67.220.123
-- 0000:0000:0000:0000:0000:ffff:d043:de7b (IPv6)
-- 0000:0000:0000:0000:0000:ffff:d043:dc7b (IPv6)
 
 [More information on OpenDNS FamilyShield](https://www.opendns.com/setupguide/#familyshield) + [OpenDNS FamilyShield introduction Blog](https://umbrella.cisco.com/blog/2010/06/23/introducing-familyshield-parental-controls/)
 
@@ -95,8 +93,7 @@ CloudFlare will never log your IP address (the way other companies identify you)
 
 ### Custom
 
-With custom, you'll choose your favorite DNS provider.
-If you care about Internet independence and privacy, we suggest having a look at the [OpenNIC DNS Project](https://servers.opennic.org/).
+With custom, you'll choose your favorite DNS provider. If you care about Internet independence and privacy, we suggest having a look at the [OpenNIC DNS Project](https://servers.opennic.org/).
 
 ### More information
 
