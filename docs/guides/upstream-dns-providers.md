@@ -97,4 +97,4 @@ With custom, you'll choose your favorite DNS provider. If you care about Interne
 
 ### More information
 
-There are even more public DNS server, you can find many (with some extra information) on the [lifewire.com website](https://www.lifewire.com/free-and-public-dns-servers-2626062). A benchmark of these DNS servers (by Gibson Research Center) is available [here](https://www.grc.com/dns/Benchmark.htm).
+There are even more public DNS server, you can find many (with some extra information) on [this](https://www.lifewire.com/free-and-public-dns-servers-2626062) Lifewire page. A benchmark of these DNS servers (by Gibson Research Center) is available [here](https://www.grc.com/dns/Benchmark.htm).
