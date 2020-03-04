@@ -225,3 +225,5 @@ sudo systemctl daemon-reload
 After the above, don't forget to change the DNS back to something else in Pi-hole's DNS settings!
 
 [^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
+
+{!abbreviations.md!}

@@ -38,3 +38,5 @@ cp pki/crl.pem ../
 service openvpn restart
 exit
 ```
+
+{!abbreviations.md!}

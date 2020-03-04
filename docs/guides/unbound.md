@@ -152,3 +152,5 @@ Finally, configure Pi-hole to use your recursive DNS server:
 ![screenshot at 2018-04-18](../images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
+
+{!abbreviations.md!}

@@ -93,3 +93,5 @@ meine.domain.de
 ```
 
 where you replace `strato-login-name` by your Strato login name (most likely your domain name, like `maxmustermann.de`), `password1234` by the password you configured above (see the third screenshot), and `meine.domain.de` by the subdomain you created and enabled dynamic DNS for.
+
+{!abbreviations.md!}

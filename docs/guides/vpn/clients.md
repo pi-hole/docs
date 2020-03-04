@@ -95,3 +95,5 @@ Your whole network traffic will now securely be transferred to your Pi-hole.
 ### Windows
 
 You will have to install additional software. See <https://openvpn.net/community-downloads/>
+
+{!abbreviations.md!}

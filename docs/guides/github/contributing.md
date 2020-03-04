@@ -29,3 +29,5 @@ git push origin --force
 ```
 
 Note, that in general rewriting history in this way is something that can cause issues with the review process and this should only be done to correct a DCO mistake.
+
+{!abbreviations.md!}

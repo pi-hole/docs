@@ -41,3 +41,5 @@ If you want to access .onion addresses with this kind of setup you have to activ
 * From the [Tor Manual](https://www.torproject.org/docs/tor-manual.html.en) regarding `DNSPort`:
 
     > This port only handles A, AAAA, and PTR requests
+
+{!abbreviations.md!}

@@ -75,3 +75,5 @@
     ```
 
 4. Restart pi-hole's lighttpd and traefik, then you should be able to access your pihole via `https://pihole.domain.tld/`
+
+{!abbreviations.md!}

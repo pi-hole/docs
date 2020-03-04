@@ -70,3 +70,5 @@ If you are not connected to your VPN network you will see
 host pi.hole
 ;; connection timed out; no servers could be reached
 ```
+
+{!abbreviations.md!}

@@ -21,3 +21,5 @@ In the end, you will have access to a VPN that uses Pi-hole for DNS and tunnels 
 ---
 
 This manual is partially based on this [HowTo](https://discourse.pi-hole.net/t/pi-hole-with-openvpn-vps-debian/861) on [Discourse](https://discourse.pi-hole.net).
+
+{!abbreviations.md!}

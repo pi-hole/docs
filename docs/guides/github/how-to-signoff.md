@@ -45,3 +45,5 @@ git commit --amend --signoff
 ```
 
 If you've pushed your changes to GitHub already you'll need to force push your branch after this with `git push -f`.
+
+{!abbreviations.md!}

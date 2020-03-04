@@ -51,3 +51,5 @@ Client android added, configuration is available at /root/android.ovpn
 - You are ready to go!
 
     ![](Android-Pi-hole.png)
+
+{!abbreviations.md!}

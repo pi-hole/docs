@@ -165,3 +165,5 @@ Similarly, you can restore these rules:
 iptables-restore < /etc/pihole/rules.v4
 ip6tables-restore < /etc/pihole/rules.v6
 ```
+
+{!abbreviations.md!}

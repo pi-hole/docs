@@ -75,3 +75,5 @@ Lastly, ensure that requests for JavaScript files from advertisement domains are
 curl -H "Host: badhost" pi.hole/malicious.js
 var x = "Pi-hole: A black hole for Internet advertisements."
 ```
+
+{!abbreviations.md!}

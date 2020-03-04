@@ -48,3 +48,5 @@ If your router doesn't support it, you can run a software/container based DHCP r
 The out of the box [default bridge network has some limitations](https://docs.docker.com/network/bridge/#differences-between-user-defined-bridges-and-the-default-bridge) that a user created bridge network won't have. These limitations make it painful to use especially when connecting multiple containers together.
 
 Avoid using the built-in default docker bridge network, the simplest way to do this is just use a docker-compose setup since it creates its own network automatically. If compose isn't an option the [bridge network](https://docs.docker.com/network/bridge/) docs should help you create your own.
+
+{!abbreviations.md!}

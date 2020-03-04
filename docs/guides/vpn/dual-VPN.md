@@ -65,3 +65,5 @@ Before testing, make sure that:
 3. The modified ovpn file is loaded on the client.
 
 *Note: when connected to your DNS only VPN connection **you will not get a Pi-hole splash page when accessing a blocked domain directly.** The page will not load or it may load with an error. **This is because the web server traffic is not routed through the VPN.** We did not create an `iptables` rule for masquerading, and the return packets (since they are not part of the same LAN subset as your VPN Client) are prevented.*
+
+{!abbreviations.md!}

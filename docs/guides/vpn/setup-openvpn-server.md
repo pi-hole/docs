@@ -77,3 +77,5 @@ Client name: iphone7
 ```
 
 This will generate a `.ovpn` file, which needs to be copied to your client machine (oftentimes using the OpenVPN app). This process also generates a few other files found in `/etc/openvpn/server/easy-rsa/pki/`, which make public key authentication possible; you only need to worry about the `.ovpn` file, though.
+
+{!abbreviations.md!}

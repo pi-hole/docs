@@ -80,3 +80,5 @@ Add `-d` as an additional argument (e.g `pihole -w -d domain1 [domain2...]`)
 
 To remove domains from the blacklist:
 Add `-d` as an additional argument (e.g `pihole -b -d domain1 [domain2...]`)
+
+{!abbreviations.md!}

@@ -76,3 +76,5 @@ Also, you can't (AFAIK) change the internal IPv4 Tor DNS address on the Pi-hole 
 To get the fingerprint of your current Exit node, you can configure `SocksPort 0.0.0.0:9050` in your torrc, restart tor, point your browser to use your Pi-hole's IP and port 9050 as Socks5 proxy, visit e.g. [check.torproject.org](https://check.torproject.org/) to get your Exit Node IP, search for that IP on [atlas.torproject.org](https://atlas.torproject.org), click on one of the results and it will show the Fingerprint top right under details.
 
 These fingerprints can be set as a comma-separated value for `ExitNodes`. Don't forget to remove the `SocksPort` option and restart tor if you don't need it anymore. Also, it should be noted that the Exit node you get over `SocksPort` is not necessarily the same as the one you get when issuing DNS requests over the `DNSPort` since Tor internally keeps multiple circuits open. Again, setting `ExitNodes` manually is not recommended.
+
+{!abbreviations.md!}

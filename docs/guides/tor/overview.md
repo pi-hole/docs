@@ -39,3 +39,5 @@ So, in the end, it boils down to one of the following use cases.
 - Use an unencrypted alternative DNS server (there are a lot of lists out there). In this case, your ISP easily can record your DNS traffic *and* the alternative DNS server can store your DNS queries together with your IP. On top of that, your ISP or the alternative DNS could also fake the answer to the DNS queries. That would be a Bad Alternative DNS Server then.
 
 - Use your ISP DNS server. In this case, your ISP gets your DNS traffic for free. On top of that, the ISP could also fake answers to DNS queries. Bad ISP DNS Server. The bottom line is that you have to weigh up who you trust the most and which risks you are willing to take.
+
+{!abbreviations.md!}

@@ -73,3 +73,5 @@ Next, install Pi-hole and choose `tun0` as the interface and `10.8.0.1/24` as th
 ```bash
 curl -sSL https://install.pi-hole.net | bash
 ```
+
+{!abbreviations.md!}

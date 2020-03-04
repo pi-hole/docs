@@ -129,3 +129,5 @@
 
     certbot --nginx -m "$email" -d "$domain" -n --agree-tos --no-eff-email
     ```
+
+{!abbreviations.md!}
