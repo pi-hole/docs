@@ -169,7 +169,7 @@ google.com.             191     IN      A       172.217.22.14
 
 ### Configuring Pi-hole
 
-Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server by specifying `127.0.0.1#5053` as the Custom DNS:
+Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server by specifying `127.0.0.1#5053` as the Custom DNS (IPv4):
 
 ![Screenshot of Pi-hole configuration](../images/DoHConfig.png)
 
