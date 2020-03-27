@@ -180,15 +180,18 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 #### Manual way
 
 ```bash
-# stop the service
-sudo systemctl stop cloudflared
 # fetch and copy the latest version
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
 tar -xvzf cloudflared-stable-linux-arm.tgz
+# stop the service
+sudo systemctl stop cloudflared
+# copy the binary
 sudo cp ./cloudflared /usr/local/bin
 sudo chmod +x /usr/local/bin/cloudflared
+# start the service
 sudo systemctl start cloudflared
-# verify the service is working fine
+# verify the service and binary are working fine
+cloudflared -v
 sudo systemctl status cloudflared
 ```
 
