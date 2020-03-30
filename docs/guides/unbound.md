@@ -63,7 +63,8 @@ sudo apt install unbound
 wget -O root.hints https://www.internic.net/domain/named.root
 sudo mv root.hints /var/lib/unbound/
 ```
-**Important**: Make sure to give ownership of root.hints file to user and group unbound by entering:
+
+**Important**: Make sure to give ownership of `root.hints` file to user and group `unbound` by entering:
 
 ```bash
 sudo chown unbound:unbound root.hints
@@ -75,7 +76,7 @@ Then verify with:
 ls -la
 ```
 
-Example of file owned by user:unbound and group:unbound:
+Example of file owned by `user:unbound` and `group:unbound`:
 
 ```bash
 -rw-r--r--  1 unbound unbound 3316 Feb 20 01:51 root.hints"
