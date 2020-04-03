@@ -71,6 +71,4 @@ Please make sure you fork the repo and change the clone URL in the example below
 
 After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
 
-<a href="https://www.netlify.com">
-<img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg" alt="Deploys by Netlify" />
-</a>
+[![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://www.netlify.com/)
