@@ -57,7 +57,9 @@ The first thing you need to do is to install the recursive DNS resolver:
 sudo apt install unbound
 ```
 
-**Important**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently.
+If you are installing unbound from a package manager, it should install the root.hints automatically with the dependency dns-root-data. The root hints will then be automatically updated by your packaged manager. 
+
+**Optional**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently. This is only necessary if you are not installing unbound from a package manager. 
 
 ```bash
 wget -O root.hints https://www.internic.net/domain/named.root
@@ -90,7 +92,8 @@ server:
     do-ip6: no
 
     # Use this only when you downloaded the list of primary root servers!
-    root-hints: "/var/lib/unbound/root.hints"
+    # If you use the default dns-root-data package, unbound will find it automatically
+    #root-hints: "/var/lib/unbound/root.hints"
 
     # Trust glue only if it is within the server's authority
     harden-glue: yes
