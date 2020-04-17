@@ -91,6 +91,22 @@ CloudFlare will never log your IP address (the way other companies identify you)
 
 [More information on Cloudflare DNS](https://cloudflare-dns.com/dns/#explanation)
 
+Cloudflare also provides 1.1.1.1 for Families, a set of resolvers that can block malware only, or malware and adult content.
+
+Malware Blocking Only
+- 1.1.1.2
+- 1.0.0.2
+- 2606:4700:4700::1112 (IPv6)
+- 2606:4700:4700::1002 (IPv6)
+
+Malware and Adult Content
+- 1.1.1.3
+- 1.0.0.3
+- 2606:4700:4700::1113 (IPv6)
+- 2606:4700:4700::1003 (IPv6)
+
+[More info on 1.1.1.1 for Families(https://blog.cloudflare.com/introducing-1-1-1-1-for-families/)]
+
 ### Custom
 
 With custom, you'll choose your favorite DNS provider. If you care about Internet independence and privacy, we suggest having a look at the [OpenNIC DNS Project](https://servers.opennic.org/).
