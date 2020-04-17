@@ -105,7 +105,7 @@ Malware and Adult Content
 - 2606:4700:4700::1113 (IPv6)
 - 2606:4700:4700::1003 (IPv6)
 
-[More info on 1.1.1.1 for Families(https://blog.cloudflare.com/introducing-1-1-1-1-for-families/)]
+[More info on 1.1.1.1 for Families](https://blog.cloudflare.com/introducing-1-1-1-1-for-families/)
 
 ### Custom
 
