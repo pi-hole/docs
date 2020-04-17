@@ -94,12 +94,14 @@ CloudFlare will never log your IP address (the way other companies identify you)
 Cloudflare also provides 1.1.1.1 for Families, a set of resolvers that can block malware only, or malware and adult content.
 
 Malware Blocking Only
+
 - 1.1.1.2
 - 1.0.0.2
 - 2606:4700:4700::1112 (IPv6)
 - 2606:4700:4700::1002 (IPv6)
 
 Malware and Adult Content
+
 - 1.1.1.3
 - 1.0.0.3
 - 2606:4700:4700::1113 (IPv6)
