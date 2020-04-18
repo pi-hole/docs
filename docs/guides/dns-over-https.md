@@ -64,7 +64,7 @@ Proceed to create a configuration file for `cloudflared` by copying the followin
 CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
 ```
 
-**Note:** The `cloudflared` binary will work with other DoH providers (for example, you could use https://8.8.8.8/dns-query for Google DNS).
+**Note:** The `cloudflared` binary will work with other DoH providers (for example, you could use `https://8.8.8.8/dns-query` for Google DNS).
 
 Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user:
 
@@ -244,4 +244,4 @@ sudo chmod +x /etc/cron.weekly/cloudflared-updater.sh
 sudo chown root:root /etc/cron.weekly/cloudflared-updater.sh
 ```
 
-The system will now attempt to update the cloudflared binary automatically, once per week. 
+The system will now attempt to update the cloudflared binary automatically, once per week.
