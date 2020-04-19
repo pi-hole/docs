@@ -9,7 +9,7 @@ It is worth noting, however, that the upstream DNS-Over-HTTPS provider will stil
 
 ## Configuring DNS-Over-HTTPS
 
-Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/), Cloudflare implemented DNS-Over-HTTPS proxy functionality into one of their tools: `cloudflared`.
+Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/), Cloudflare implemented DNS-Over-HTTPS proxy functionality into one of their tools: [`cloudflared`](https://github.com/cloudflare/cloudflared).
 
 In the following sections, we will be covering how to install and configure this tool on `Pi-hole`.
 
@@ -169,7 +169,7 @@ google.com.             191     IN      A       172.217.22.14
 
 ### Configuring Pi-hole
 
-Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server by specifying `127.0.0.1#5053` as the Custom DNS:
+Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server by specifying `127.0.0.1#5053` as the Custom DNS (IPv4):
 
 ![Screenshot of Pi-hole configuration](../images/DoHConfig.png)
 
@@ -180,15 +180,13 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 #### Manual way
 
 ```bash
-# stop the service
-sudo systemctl stop cloudflared
-# fetch and copy the latest version
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
 tar -xvzf cloudflared-stable-linux-arm.tgz
+sudo systemctl stop cloudflared
 sudo cp ./cloudflared /usr/local/bin
 sudo chmod +x /usr/local/bin/cloudflared
 sudo systemctl start cloudflared
-# verify the service is working fine
+cloudflared -v
 sudo systemctl status cloudflared
 ```
 

@@ -6,6 +6,8 @@ copyright: 'Copyright &copy; 2019 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
+#  icon:
+#    repo: fontawesome/brands/github-alt
   favicon: 'images/favicon.ico'
   logo: 'images/logo.svg'
   language: 'en'
@@ -111,9 +113,9 @@ nav:
 
 extra:
   social:
-    - type: globe
+    - icon: fontawesome/solid/globe-americas
       link: https://pi-hole.net/
-    - type: github-alt
+    - icon: fontawesome/brands/github
       link: https://github.com/pi-hole
 
 extra_css:
