@@ -152,7 +152,7 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 
 ### Configure Pi-hole
 
-Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5353` as the Custom DNS (IPv4):
+Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
 
 ![Upstream DNS Servers Configuration](../images/RecursiveResolver.png)
 
