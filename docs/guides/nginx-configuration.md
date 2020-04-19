@@ -1,7 +1,8 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- If you're using php5, change all instances of `php7.0-fpm` to `php5-fpm` and change `/run/php/php7.0-fpm.sock` to `/var/run/php5-fpm.sock`
+- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with 7.0`.**
+- The `php7.3-sqlite` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
 
@@ -14,7 +15,7 @@
 2. Install necessary packages
 
     ```bash
-    apt-get -y install nginx php7.0-fpm php7.0-zip apache2-utils
+    apt-get -y install nginx php7.3-fpm php7.3-zip php7.3-sqlite apache2-utils
     ```
 
 3. Disable lighttpd at startup
@@ -23,10 +24,10 @@
     systemctl disable lighttpd
     ```
 
-4. Enable php7.0-fpm at startup
+4. Enable php7.3-fpm at startup
 
     ```bash
-    systemctl enable php7.0-fpm
+    systemctl enable php7.3-fpm
     ```
 
 5. Enable nginx at startup
@@ -56,7 +57,7 @@
         location ~ \.php$ {
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
-            fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
             fastcgi_param FQDN true;
             auth_basic "Restricted"; # For Basic Auth
             auth_basic_user_file /etc/nginx/.htpasswd; # For Basic Auth
@@ -99,10 +100,10 @@
     chmod -R 755 /var/www/html
     ```
 
-10. Start php7.0-fpm daemon
+10. Start php7.3-fpm daemon
 
     ```bash
-    service php7.0-fpm start
+    service php7.3-fpm start
     ```
 
 11. Start nginx web server
