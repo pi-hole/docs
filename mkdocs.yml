@@ -36,6 +36,8 @@ markdown_extensions:
   # This extension is a convenience extension which includes many pymdownx extensions
   # (https://facelessuser.github.io/pymdown-extensions/extensions/extra/)
   - pymdownx.extra
+  # (https://facelessuser.github.io/pymdown-extensions/extensions/details/)
+  - pymdownx.details
   # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
   # Adds the ability to define abbreviations

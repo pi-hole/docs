@@ -18,13 +18,12 @@ after your database modifications to have FTL flush its internal domain-blocking
 
     ![Adding three groups](example-groups.png)
 
-    <details><summary>Raw database instructions</summary>
-    ```sql
-    INSERT INTO "group" (id, name) VALUES (1, 'Group 1');
-    INSERT INTO "group" (id, name) VALUES (2, 'Group 2');
-    INSERT INTO "group" (id, name) VALUES (3, 'Group 3');
-    ```
-    </details>
+    ??? "Raw database instructions"
+        ```sql
+        INSERT INTO "group" (id, name) VALUES (1, 'Group 1');
+        INSERT INTO "group" (id, name) VALUES (2, 'Group 2');
+        INSERT INTO "group" (id, name) VALUES (3, 'Group 3');
+        ```
 
 2. **Add three clients.**
 
@@ -32,25 +31,23 @@ after your database modifications to have FTL flush its internal domain-blocking
 
     ![Adding three clients](example-clients-1.png)
 
-    <details><summary>Raw database instructions</summary>
-    ```sql
-    INSERT INTO client (id, ip) VALUES (1, '192.168.0.101');
-    INSERT INTO client (id, ip) VALUES (2, '192.168.0.102');
-    INSERT INTO client (id, ip) VALUES (3, '192.168.0.103');
-    ```
-    </details>
+    ??? "Raw database instructions"
+        ```sql
+        INSERT INTO client (id, ip) VALUES (1, '192.168.0.101');
+        INSERT INTO client (id, ip) VALUES (2, '192.168.0.102');
+        INSERT INTO client (id, ip) VALUES (3, '192.168.0.103');
+        ```
 
 3. **Link the clients to the created groups.** Don't forget to save each assignment by clicking on the corresponding green pen icon in the same row.
 
     ![Link groups and clients](example-clients-2.png)
 
-    <details><summary>Raw database instructions</summary>
-    ```sql
-    INSERT INTO client_by_group (client_id, group_id) VALUES (1, 1);
-    INSERT INTO client_by_group (client_id, group_id) VALUES (2, 2);
-    INSERT INTO client_by_group (client_id, group_id) VALUES (3, 3);
-    ```
-    </details>
+    ??? "Raw database instructions"
+        ```sql
+        INSERT INTO client_by_group (client_id, group_id) VALUES (1, 1);
+        INSERT INTO client_by_group (client_id, group_id) VALUES (2, 2);
+        INSERT INTO client_by_group (client_id, group_id) VALUES (3, 3);
+        ```
 
 ## Example 1: Exclude from blocking
 
@@ -58,11 +55,10 @@ after your database modifications to have FTL flush its internal domain-blocking
 
 ![Change client groups assignment](example-clients-3.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-DELETE FROM client_by_group WHERE client_id = 1 AND group_id = 0;
-```
-</details>
+??? "Raw database instructions"
+    ```sql
+    DELETE FROM client_by_group WHERE client_id = 1 AND group_id = 0;
+    ```
 
 **Result**
 
@@ -83,11 +79,10 @@ All three clients got automatically assigned to the default (`Unassociated`) gro
 
 ![Change blocklist group assignment](example-adlists-1.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-INSERT INTO adlist_by_group (adlist_id, group_id) VALUES (1,1);
-```
-</details>
+??? "Raw database instructions"
+    ```sql
+    INSERT INTO adlist_by_group (adlist_id, group_id) VALUES (1,1);
+    ```
 
 **Result**
 
@@ -114,11 +109,10 @@ Add the domain to be blocked
 
 ![Resulting row in list of domains](example-domain-1.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-INSERT INTO domainlist (type, domain, comment) VALUES (1, 'blacklisted.com', 'Blacklisted for members of group 1');
-```
-</details>
+??? "Raw database instructions"
+    ```sql
+    INSERT INTO domainlist (type, domain, comment) VALUES (1, 'blacklisted.com', 'Blacklisted for members of group 1');
+    ```
 
 **Result**
 
@@ -139,12 +133,11 @@ Assign this domain to group 1
 
 ![Assign group to a new domain](example-domain-2.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-INSERT INTO domainlist_by_group (domainlist_id, group_id) VALUES (1, 1);
-```
-(the `domainlist_id` might be different for you, check with `SELECT last_insert_rowid();` after step 1)
-</details>
+??? "Raw database instructions"
+    ```sql
+    INSERT INTO domainlist_by_group (domainlist_id, group_id) VALUES (1, 1);
+    ```
+    (the `domainlist_id` might be different for you, check with `SELECT last_insert_rowid();` after step 1)
 
 **Result**
 
@@ -164,12 +157,11 @@ Remove default assignment to all clients not belonging to a group
 
 ![Remove unassociated group from new domain](example-domain-3.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-DELETE FROM domainlist_by_group WHERE domainlist_id = 1 AND group_id = 0;
-```
-(the `domainlist_id` might be different for you, see above)
-</details>
+??? "Raw database instructions"
+    ```sql
+    DELETE FROM domainlist_by_group WHERE domainlist_id = 1 AND group_id = 0;
+    ```
+    (the `domainlist_id` might be different for you, see above)
 
 **Result**
 
@@ -195,11 +187,10 @@ Add the domain to be whitelisted
 
 ![Resulting row in list of domains](example-domain-4.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-INSERT INTO domainlist (type, domain, comment) VALUES (0, 'doubleclick.net', 'Whitelisted for members of group 2');
-```
-</details>
+??? "Raw database instructions"
+    ```sql
+    INSERT INTO domainlist (type, domain, comment) VALUES (0, 'doubleclick.net', 'Whitelisted for members of group 2');
+    ```
 
 **Result**
 
@@ -219,11 +210,10 @@ Remove default group assignment
 
 ![Remove default group assignment](example-domain-5.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-DELETE FROM domainlist_by_group WHERE domainlist_id = 2 AND group_id = 0;
-```
-</details>
+??? "Raw database instructions"
+    ```sql
+    DELETE FROM domainlist_by_group WHERE domainlist_id = 2 AND group_id = 0;
+    ```
 
 **Result**
 
@@ -243,13 +233,11 @@ Assign this domain to group 2
 
 ![Assign group to a new domain](example-domain-6.png)
 
-<details><summary>Raw database instructions</summary>
-```sql
-INSERT INTO domainlist_by_group (domainlist_id, group_id) VALUES (2, 2);
-```
-(the `domainlist_id` might be different for you, check with `SELECT last_insert_rowid();` after step 1)
-</details>
-
+??? "Raw database instructions"
+    ```sql
+    INSERT INTO domainlist_by_group (domainlist_id, group_id) VALUES (2, 2);
+    ```
+    (the `domainlist_id` might be different for you, check with `SELECT last_insert_rowid();` after step 1)
 
 **Result**
 
