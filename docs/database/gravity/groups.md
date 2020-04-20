@@ -1,6 +1,6 @@
 ## Group management
 
-Any blocklist or domain on the white-/black-/regex-lists can be managed through groups. This allows not only grouping them together to highlight their relationship, but also enabling/disabling them together if one, for instance, wants to visit a specific service only temporarily.
+Any blocklist or domain on the white-/black-/regex-lists can be managed through groups. This allows not only grouping them to highlight their relationship, but also enabling/disabling them together if one, for instance, wants to visit a specific service only temporarily.
 
 Groups are defined in the `group` table and can have an optional description in addition to the mandatory name of the group.
 

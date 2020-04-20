@@ -62,7 +62,7 @@ Should `FTL` try to resolve IPv4 addresses to hostnames?
 
 #### `DELAY_STARTUP=0` {#delay_startup data-toc-label='Delay resolver startup'}
 
-In certain configurations you may want FTL to wait a given amount of time before trying to start the DNS revolver. This is typically found when network interfaces appear only late during system startup and the interface startup prority are configured incorrectly. This setting takes any integer value between 0 and 300 seconds
+In certain configurations, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This is typically found when network interfaces appear only late during system startup and the interface startup priorities are configured incorrectly. This setting takes any integer value between 0 and 300 seconds
 
 ---
 
@@ -84,7 +84,7 @@ How often do we store queries in FTL's database [minutes]?
 
 #### `DBFILE=/etc/pihole/pihole-FTL.db` {#dbfile data-toc-label='Database Filename'}
 
-Specify path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether
+Specify the path and filename of FTL's SQLite3 long-term database. Setting this to `DBFILE=` disables the database altogether
 
 ---
 
@@ -92,27 +92,27 @@ Specify path and filename of FTL's SQLite3 long-term database. Setting this to `
 
 #### `LOGFILE=/var/log/pihole-FTL.log` {#file_LOGFILE data-toc-label='Log file'}
 
-Location of FTL's log file. If you want to move the log file to a different place, also consider [this FAQ article](https://discourse.pi-hole.net/t/moving-the-pi-hole-log-to-another-location-device/2041).
+The location of FTL's log file. If you want to move the log file to a different place, also consider [this FAQ article](https://discourse.pi-hole.net/t/moving-the-pi-hole-log-to-another-location-device/2041).
 
 #### `PIDFILE=/var/run/pihole-FTL.pid` {#file_PIDFILE data-toc-label='Process identifier file'}
 
-File which contains the PID of FTL's main process.
+The file which contains the PID of FTL's main process.
 
 #### `PORTFILE=/var/run/pihole-FTL.port` {#file_PORTFILE data-toc-label='Port file'}
 
-File containing the port FTL's API is listening on.
+The file containing the port FTL's API is listening on.
 
 #### `SOCKETFILE=/var/run/pihole/FTL.sock` {#file_SOCKETFILE data-toc-label='Socket file'}
 
-File containing the socket FTL's API is listening on.
+The file containing the socket FTL's API is listening on.
 
 #### `SETUPVARSFILE=/etc/pihole/setupVars.conf` {#file_SETUPVARSFILE data-toc-label='setupVars file'}
 
-Config file of Pi-hole containing, e.g., the current blocking status (do not change).
+The config file of Pi-hole containing, e.g., the current blocking status (do not change).
 
 #### `MACVENDORDB=/etc/pihole/macvendor.db` {#file_MACVENDORDB data-toc-label='MacVendor database file'}
 
-Database containing MAC -> Vendor information for the network table.
+The database containing MAC -> Vendor information for the network table.
 
 #### `GRAVITYDB=/etc/pihole/gravity.db` {#file_GRAVITYDB data-toc-label='Gravity database'}
 
@@ -132,7 +132,7 @@ Print debugging information about database actions. This prints performed SQL st
 
 #### `DEBUG_NETWORKING=false|true` {#debug_networking data-toc-label='Debug networking'}
 
-Prints a list of the detected interfaces on startup of `pihole-FTL`. Also, prints whether these interfaces are IPv4 or IPv6 interfaces.
+Prints a list of the detected interfaces on the startup of `pihole-FTL`. Also, prints whether these interfaces are IPv4 or IPv6 interfaces.
 
 #### `DEBUG_LOCKS=false|true` {#debug_locks data-toc-label='Debug Locks'}
 
@@ -192,6 +192,6 @@ FTL uses dynamically allocated vectors for various tasks. This config option ena
 
 #### `DEBUG_RESOLVER=false|true` {#debug_resolver data-toc-label='Debug FTL resolver'}
 
-Extensive information about host name resolution like which DNS servers are used in the first and second host name resolving tries (only affecting internally generated PTR queries).
+Extensive information about hostname resolution like which DNS servers are used in the first and second hostname resolving tries (only affecting internally generated PTR queries).
 
 {!abbreviations.md!}

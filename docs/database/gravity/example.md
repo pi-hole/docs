@@ -107,7 +107,7 @@ Add the domain to be blocked
 
 ![Add new exact blacklist domain](example-new-black.png)
 
-![Resulting row in list of domains](example-domain-1.png)
+![Resulting row in the list of domains](example-domain-1.png)
 
 ??? "Raw database instructions"
     ```sql
@@ -185,7 +185,7 @@ Add the domain to be whitelisted
 
 ![Add a new exact whitelist domain](example-new-white.png)
 
-![Resulting row in list of domains](example-domain-4.png)
+![Resulting row in the list of domains](example-domain-4.png)
 
 ??? "Raw database instructions"
     ```sql
