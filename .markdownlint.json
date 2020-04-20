@@ -9,6 +9,9 @@
   "MD007": {
     "indent": 4
   },
+  "MD012": {
+    "maximum": 2
+  },
   "MD013": false,
   "MD024": false,
   "MD025": false,
@@ -22,7 +25,8 @@
       "strong",
       "p",
       "sub",
-      "table", "tbody", "th", "tr", "td"
+      "table", "tbody", "th", "tr", "td",
+      "details", "summary"
     ]
   },
   "MD035": {
