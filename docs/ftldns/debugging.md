@@ -7,10 +7,12 @@ Once you are used to it, you can skip most of the steps. Debugging *FTL*DNS is q
     * If you don't know about `screen`, then read about it (you *will* love it!)
 3. Start a screen session using `screen`
 4. Configure `gdb` by installing a globally valid intialization file:
-   ```bash
-   echo "handle SIGHUP nostop SIGPIPE nostop SIGTERM nostop SIG32 nostop SIG34 nostop SIG35 nostop" | sudo tee /root/.gdbinit
-   ```
-   You can omit this step, however, you will have to remember to run the quoted line on *every start* of `gdb` in order to properly debug FTL.
+
+    ```bash
+    echo "handle SIGHUP nostop SIGPIPE nostop SIGTERM nostop SIG32 nostop SIG34 nostop SIG35 nostop" | sudo tee /root/.gdbinit
+    ```
+
+    You can omit this step, however, you will have to remember to run the quoted line on *every start* of `gdb` in order to properly debug FTL.
 
 ### Start of debugging session
 
