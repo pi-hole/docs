@@ -65,7 +65,7 @@ The following configuration will automatically fetch and setup Https for your do
 
 ```
 myawesomesite.com {
-reverse_proxy localhost:1080
+  reverse_proxy localhost:1080
 }
 ```
 
@@ -73,8 +73,8 @@ Additionally you can make pihole reacheable via a subdomain and optionally can y
 
 ```
 pihole.myawesomesite.com {
-reverse_proxy localhost:1080
-encode zstd gzip
+  reverse_proxy localhost:1080
+  encode zstd gzip
 }
 ```
 
