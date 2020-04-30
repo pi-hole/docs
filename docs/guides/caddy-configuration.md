@@ -88,7 +88,7 @@ Next, verify you can load the admin page. Open up `http://pi.hole/admin` (or use
 
 Finally, verify that requests for ads are being black holed:
 
-```bash
+```console
 $ curl -H "Host: badhost" pi.hole/
 <html>
 <head>
