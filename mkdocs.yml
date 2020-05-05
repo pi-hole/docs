@@ -115,8 +115,10 @@ extra:
   social:
     - icon: fontawesome/solid/globe-americas
       link: https://pi-hole.net/
+      name: Website
     - icon: fontawesome/brands/github
       link: https://github.com/pi-hole
+      name: GitHub
 
 extra_css:
   - extra.css
