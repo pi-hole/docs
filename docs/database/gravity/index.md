@@ -56,6 +56,17 @@ Label | Type | Content
 `date_modified` | integer | Timestamp when a client was last modified, automatically updated when a record is changed
 `comment` | text | Optional field for arbitrary user comments, the only field that is allowed to be `NULL`
 
+Clients can be identified by subnets. Arbitrary subnet configurations can be specified using the widely known [Classless Inter-Domain Routing (CIDR) notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_blocks).
+This allows to specify "broad clients" such as
+
+- `192.168.1.0/24` which will match al clients in the range `192.168.1.1` to `192.168.1.255` (256 devices),
+- `10.8.0.0/16` will match all clients in the range `10.8.0.1` to `10.8.255.255` (65,536 devices), and
+- `192.168.100.0/22` representing the 1024 IPv4 addresses from `192.168.100.0` to `192.168.103.255`.
+
+CIDR notation can be used for IPv6 subnets as well. The IPv6 block `2001:db8::/48` represents all IPv6 addresses from `2001:db8:0:0:0:0:0:0` to `2001:db8:0:ffff:ffff:ffff:ffff:ffff` (1,208,925,819,614,629,174,706,176 = roughly one heptillion devices).
+
+Note that Pi-hole's implementation is more generic than what is written on the linked Wikipedia article as you can use *any* CIDR block (not only multiples of 4).
+
 ## Audit Table (`domain_audit`)
 
 The `domain_audit` table contains domains that have been audited by the user on the web interface.
