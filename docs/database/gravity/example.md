@@ -14,7 +14,7 @@ after your database modifications to have FTL flush its internal domain-blocking
 
 1. **Add three groups.**
 
-    The `Unassociated` group has a special meaning and cannot be deleted. All domains, clients, and adlists without a specific group assignment are automatically managed through this group. Disabling this group will disable Pi-hole blocking for all unmanaged devices.
+    The `Default` group has a special meaning and cannot be deleted. All domains, clients, and adlists without a specific group assignment are automatically managed through this group. Disabling this group will disable Pi-hole blocking for all unmanaged devices.
 
     ![Adding three groups](example-groups.png)
 
@@ -38,7 +38,7 @@ after your database modifications to have FTL flush its internal domain-blocking
         INSERT INTO client (id, ip) VALUES (3, '192.168.0.103');
         ```
 
-3. **Link the clients to the created groups.** Don't forget to save each assignment by clicking on the corresponding green pen icon in the same row.
+3. **Link the clients to the created groups.**
 
     ![Link groups and clients](example-clients-2.png)
 
@@ -51,9 +51,11 @@ after your database modifications to have FTL flush its internal domain-blocking
 
 ## Example 1: Exclude from blocking
 
-**Task:** Exclude client 1 from Pi-hole's blocking by removing client 1 from the `Unassociated` group (see comment above).
+**Task:** Exclude client 1 from Pi-hole's blocking by removing client 1 from the `Default` group.
 
-![Change client groups assignment](example-clients-3.png)
+![Change client groups assignment](example-clients-3_1.png)
+
+![Change client groups assignment - Overview](example-clients-3.png)
 
 ??? "Raw database instructions"
     ```sql
@@ -62,22 +64,23 @@ after your database modifications to have FTL flush its internal domain-blocking
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | doubleclick.net | Yes
-192.168.0.101 |   1   | doubleclick.net | **No**
-192.168.0.102 |   2   | doubleclick.net | Yes
-192.168.0.103 |   3   | doubleclick.net | Yes
-192.168.0.104 |   4   | doubleclick.net | Yes
+*all other*   |   Default   | doubleclick.net | Yes
+192.168.0.101 |   Group 1   | doubleclick.net | **No**
+192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
+192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
 
 
-All three clients got automatically assigned to the default (`Unassociated`) group when they were added. The default group includes all adlists and list domains (if not already changed by the user). When we remove the default group for client `192.168.0.101`, we effectively remove all associations to any adlists and domains. This leaves this client completely unblocked.
+All three clients got automatically assigned to the default (`Default`) group when they were added. The default group includes all adlists and list domains (if not already changed by the user). When we remove the default group for client `192.168.0.101`, we effectively remove all associations to any adlists and domains. This leaves this client completely unblocked.
 
 ## Example 2: Blocklist management
 
 **Task:** Assign adlist with ID 1 to group 1 (in addition to the default assignment to group 0). This results in client `192.168.0.101` using *only this* adlist (we removed the default association in the last step).
 
-![Change blocklist group assignment](example-adlists-1.png)
+![Change blocklist group assignment](example-adlists-1_1.png)
+
+![Change blocklist group assignment - Overview](example-adlists-1.png)
 
 ??? "Raw database instructions"
     ```sql
@@ -86,13 +89,12 @@ All three clients got automatically assigned to the default (`Unassociated`) gro
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | doubleclick.net | Yes
-192.168.0.101 |   1   | doubleclick.net | **Yes**
-192.168.0.102 |   2   | doubleclick.net | Yes
-192.168.0.103 |   3   | doubleclick.net | Yes
-192.168.0.104 |   4   | doubleclick.net | Yes
+*all other*   |   Default   | doubleclick.net | Yes
+192.168.0.101 |   Group 1   | doubleclick.net | **Yes**
+192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
+192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
 
 
 `192.168.0.101` gets `doubleclick.net` blocked as it uses an adlist including this domain. All other clients stay unchanged.
@@ -116,16 +118,15 @@ Add the domain to be blocked
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | blacklisted.com | Yes
-192.168.0.101 |   1   | blacklisted.com | **No**
-192.168.0.102 |   2   | blacklisted.com | Yes
-192.168.0.103 |   3   | blacklisted.com | Yes
-192.168.0.104 |   4   | blacklisted.com | Yes
+*all other*   |   Default   | blacklisted.com | **Yes**
+192.168.0.101 |   Group 1   | blacklisted.com | No
+192.168.0.102 |   Group 2 + Default   | blacklisted.com | **Yes**
+192.168.0.103 |   Group 3 + Default   | blacklisted.com | **Yes**
 
 
-Note that Pi-hole is *not* blocking this domain for client `192.168.0.101` as we removed the default assignment through group 0 above. All remaining clients are linked through the unassociated group to this domain and see it as being blocked.
+Note that Pi-hole is *not* blocking this domain for client `192.168.0.101` as we removed the default assignment through group 0 above. All remaining clients are linked through the Default group to this domain and see it as being blocked.
 
 ### Step 2
 
@@ -141,21 +142,20 @@ Assign this domain to group 1
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | blacklisted.com | Yes
-192.168.0.101 |   1   | blacklisted.com | **Yes**
-192.168.0.102 |   2   | blacklisted.com | Yes
-192.168.0.103 |   3   | blacklisted.com | Yes
-192.168.0.104 |   4   | blacklisted.com | Yes
+*all other*   |   Default   | blacklisted.com | Yes
+192.168.0.101 |   Group 1   | blacklisted.com | **Yes**
+192.168.0.102 |   Group 2 + Default   | blacklisted.com | Yes
+192.168.0.103 |   Group 3 + Default   | blacklisted.com | Yes
 
-All clients see this domain as being blocked. Client 1 due to a direct assignment through group 1, all remaining clients through the default group 0 (unchanged).
+All clients see this domain as being blocked: Client 1 due to a direct assignment through group 1, all remaining clients through the default group 0 (unchanged).
 
 ### Step 3
 
 Remove default assignment to all clients not belonging to a group
 
-![Remove unassociated group from new domain](example-domain-3.png)
+![Remove Default group from new domain](example-domain-3.png)
 
 ??? "Raw database instructions"
     ```sql
@@ -165,13 +165,12 @@ Remove default assignment to all clients not belonging to a group
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | blacklisted.com | **No**
-192.168.0.101 |   1   | blacklisted.com | Yes
-192.168.0.102 |   2   | blacklisted.com | **No**
-192.168.0.103 |   3   | blacklisted.com | **No**
-192.168.0.104 |   4   | blacklisted.com | **No**
+*all other*   |   Default   | blacklisted.com | **No**
+192.168.0.101 |   Group 1   | blacklisted.com | Yes
+192.168.0.102 |   Group 2 + Default   | blacklisted.com | **No**
+192.168.0.103 |   Group 3 + Default   | blacklisted.com | **No**
 
 While client 1 keeps its explicit assignment through group 1, the remaining clients lost their unassignments when we removed group 0 from the assignment.
 
@@ -194,13 +193,12 @@ Add the domain to be whitelisted
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | doubleclick.net | **No**
-192.168.0.101 |   1   | doubleclick.net | Yes
-192.168.0.102 |   2   | doubleclick.net | **No**
-192.168.0.103 |   3   | doubleclick.net | **No**
-192.168.0.104 |   4   | doubleclick.net | **No**
+*all other*   |   Default   | doubleclick.net | **No**
+192.168.0.101 |   Group 1   | doubleclick.net | Yes
+192.168.0.102 |   Group 2 + Default   | doubleclick.net | **No**
+192.168.0.103 |   Group 3 + Default   | doubleclick.net | **No**
 
 Client `192.168.0.101` is not whitelisting this domain as we removed the default assignment through group 0 above. All remaining clients are linked through the default group to this domain and see it as being whitelisted. Note that this is completely analog to [step 1](#step-1_1) of [example 3](#example-3-blacklisting).
 
@@ -217,13 +215,12 @@ Remove default group assignment
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | doubleclick.net | **Yes**
-192.168.0.101 |   1   | doubleclick.net | Yes
-192.168.0.102 |   2   | doubleclick.net | **Yes**
-192.168.0.103 |   3   | doubleclick.net | **Yes**
-192.168.0.104 |   4   | doubleclick.net | **Yes**
+*all other*   |   Default   | doubleclick.net | **Yes**
+192.168.0.101 |   Group 1   | doubleclick.net | Yes
+192.168.0.102 |   Group 2 + Default   | doubleclick.net | **Yes**
+192.168.0.103 |   Group 3 + Default   | doubleclick.net | **Yes**
 
 Requests from all clients are blocked as the new whitelist entry is not associated with any group and, hence, is not used by any client.
 
@@ -241,12 +238,11 @@ Assign this domain to group 2
 
 **Result**
 
-Client        | Group | Domain | Blocked
+Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
-*all other*   |   0   | doubleclick.net | Yes
-192.168.0.101 |   1   | doubleclick.net | **No**
-192.168.0.102 |   2   | doubleclick.net | Yes
-192.168.0.103 |   3   | doubleclick.net | Yes
-192.168.0.104 |   4   | doubleclick.net | Yes
+*all other*   |   Default   | doubleclick.net | Yes
+192.168.0.101 |   Group 1   | doubleclick.net | **No**
+192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
+192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
 
 Client 2 got the whitelist entry explicitly assigned to. Accordingly, client 2 does not get the domain blocked whereas all remaining clients still see this domain as blocked.

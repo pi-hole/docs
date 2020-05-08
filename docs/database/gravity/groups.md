@@ -24,7 +24,7 @@ Label | Type | Content
 `domainlist_id` | integer | `id` of domain in the `domainlist` table
 `group_id` | integer | `id` of associated group in the `group` table
 
-Group `0` is special as it is automatically assigned to domains and clients not being a member of other groups. Each newly added client or domain gets assigned to group zero when being added.
+Group `Default` (`group_id` `0`) is special as it is automatically assigned to domains and clients not being a member of other groups. Each newly added client or domain gets assigned to group zero when being added.
 
 ## Effect of group management
 
