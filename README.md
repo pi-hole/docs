@@ -30,13 +30,14 @@ When working on this repo, it is advised that you review your changes locally be
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 
-- Linux Mint / Ubuntu instructions (tested on Linux Mint 18):
+- Linux Mint / Ubuntu 18.04 LTS / 19.10:
     - Preparations (only required once):
 
     ```bash
     git clone https://github.com/YOUR-USERNAME/docs
     cd docs
-    sudo pip install -r requirements.txt
+    sudo apt install python3-pip
+    sudo pip3 install -r requirements.txt
     ```
 
     - Running the docs server:
