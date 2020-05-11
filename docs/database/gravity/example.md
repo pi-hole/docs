@@ -53,8 +53,6 @@ after your database modifications to have FTL flush its internal domain-blocking
 
 **Task:** Exclude client 1 from Pi-hole's blocking by removing client 1 from the `Default` group.
 
-![Change client groups assignment](example-clients-3_1.png)
-
 ![Change client groups assignment - Overview](example-clients-3.png)
 
 ??? "Raw database instructions"
@@ -77,8 +75,6 @@ All three clients got automatically assigned to the default (`Default`) group wh
 ## Example 2: Blocklist management
 
 **Task:** Assign adlist with ID 1 to group 1 (in addition to the default assignment to group 0). This results in client `192.168.0.101` using *only this* adlist (we removed the default association in the last step).
-
-![Change blocklist group assignment](example-adlists-1_1.png)
 
 ![Change blocklist group assignment - Overview](example-adlists-1.png)
 
