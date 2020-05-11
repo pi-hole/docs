@@ -1,7 +1,7 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with 7.0`.**
+- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with `7.0`.**
 - The `php7.3-sqlite` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
