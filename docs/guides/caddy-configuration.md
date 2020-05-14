@@ -26,11 +26,47 @@ or
 sudo service lighttpd restart
 ```
 
+## Installing Caddy
+
+Follow the instructions on the [Caddy download](https://caddyserver.com/docs/download) documentation page.
+
 ## Setting up your Caddyfile
 
-Now set up a "virtual host" in your Caddyfile (default `/etc/caddy/Caddyfile`). There are many options you can add, but at a minimum, you need to make a "default" host by binding `0.0.0.0:80`. This will accept requests for any interface.
+Now set up a "virtual host" in your Caddyfile (default `/etc/caddy/Caddyfile`). There are many options you can add, but at a minimum, you need to make a "default" host by binding `:80`. This will accept requests for any interface on port `80`.
 
-### Caddyfile (Caddy Version 1)
+### Caddyfile (for Caddy v2)
+
+```
+http://pi.hole:80 {
+  reverse_proxy localhost:1080
+}
+```
+
+- If you'd like to enable Https on your site, make sure your server is reachable via your domain name (ex: myawesomesite.com) and is pointing to the right IP address.
+- Additionally you need to open ports :80 and :443 (Apart from the one's required specifically for pi-hole) for your server before setting up https.
+
+The following configuration will automatically fetch and setup HTTPS for your domain using Lets-Encrypt
+
+```
+myawesomesite.com {
+  reverse_proxy localhost:1080
+}
+```
+
+Additionally you can make pihole reacheable via a subdomain and optionally can you enable Zstandard and Gzip compression as follows:
+
+```
+pihole.myawesomesite.com {
+  reverse_proxy localhost:1080
+  encode zstd gzip
+}
+```
+
+Finally, run `sudo systemctl caddy reload` to reload Caddy with the new configuration.
+
+### Caddyfile (for Caddy v1)
+
+Caddy v1 is no longer actively supported, but the following is a config example if you're running an old installation.
 
 ```
 blackhole:80, pi.hole:80, 0.0.0.0:80 {
@@ -48,37 +84,7 @@ blackhole:80, pi.hole:80, 0.0.0.0:80 {
 }
 ```
 
-In this case, I've chosen to also add blackhole and pi.hole as valid names to open the admin page with.
-
-### Caddyfile (Caddy version 2)
-
-```
-pi.hole:80{
-  reverse_proxy localhost:1080
-}
-```
-
-- If you'd like to enable Https on your site, make sure your server is reacheable via your domain name (ex: myawesomesite.com) and is pointing to the right IP address.
-- Additionally you need to open ports :80 and :443 (Apart from the one's required specifically for pi-hole) for your server before setting up https.
-
-The following configuration will automatically fetch and setup Https for your domain using Lets-Encrypt
-
-```
-myawesomesite.com {
-  reverse_proxy localhost:1080
-}
-```
-
-Additionally you can make pihole reacheable via a subdomain and optionally can you enable Zstandard and Gzip compression as follows:
-
-```
-pihole.myawesomesite.com {
-  reverse_proxy localhost:1080
-  encode zstd gzip
-}
-```
-
-Finally, run `sudo systemctl daemon-reload` to force caddy to load the new configuration.
+In this example, `blackhole` and `pi.hole` are added as valid names with which to open the admin page.
 
 ## Verifying your setup
 
@@ -108,4 +114,6 @@ curl -H "Host: badhost" pi.hole/malicious.js
 var x = "Pi-hole: A black hole for Internet advertisements."
 ```
 
-For more information visit caddy's documentation [website](https://caddyserver.com/docs/).
+For more information visit Caddy's documentation [website](https://caddyserver.com/docs/).
+
+For usage questions or support, visit the [Caddy Community forums](https://caddy.community/).
