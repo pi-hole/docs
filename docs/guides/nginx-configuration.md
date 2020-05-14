@@ -2,7 +2,7 @@
 
 - **This is an unsupported configuration created by the community**
 - **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with `7.0`.**
-- The `php7.3-sqlite` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
+- The `php7.3-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
 
@@ -15,7 +15,7 @@
 2. Install necessary packages
 
     ```bash
-    apt-get -y install nginx php7.3-fpm php7.3-zip php7.3-sqlite apache2-utils
+    apt-get -y install nginx php7.3-fpm php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
     ```
 
 3. Disable lighttpd at startup
@@ -100,13 +100,19 @@
     chmod -R 755 /var/www/html
     ```
 
-10. Start php7.3-fpm daemon
+10. Grant the admin panel access to the gravity database
+
+    ```bash
+    usermod -aG pihole www-data
+    ```
+
+11. Start php7.3-fpm daemon
 
     ```bash
     service php7.3-fpm start
     ```
 
-11. Start nginx web server
+12. Start nginx web server
 
     ```bash
     service nginx start
