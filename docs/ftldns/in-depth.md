@@ -23,10 +23,6 @@ Command-line arguments can be arbitrarily combined, e.g. `pihole-FTL debug test`
 - `/var/run/pihole-FTL.port` file containing port on which `FTL` is listening
 - `/var/run/pihole/FTL.sock` Unix socket
 
-## Domain lists format
-
-Since Pi-hole v4.0, we use a simpler domain list format for the two important blocklist files `gravity.list` and `black.list`. In contrast to the traditional HOSTS format (which caused a lot of overhead), the domain list format is the minimal possible solution for saving memory while still using plain text lists for your convenience. When *FTL*DNS imports these two files, they are walked by our improved list parser speeding up the loading of blocklists significantly. Regardless of which blocking mode (`IP` or `NXDOMAIN`) is selected, *FTL*DNS will always load the lists into its internal hashed cache to be able to determine the blocking status within a few milliseconds, even when you're using huge blocking lists on low-end devices. With everything we do, we design *FTL*DNS for maximum efficiency also on low-performance devices.
-
 ## Linux capabilities
 
 Capabilities (POSIX 1003.1e, [capabilities(7)](http://man7.org/linux/man-pages/man7/capabilities.7.html)) provide fine-grained control over superuser permissions, allowing the use of the `root` user to be avoided.
