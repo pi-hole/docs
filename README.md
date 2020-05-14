@@ -30,7 +30,7 @@ When working on this repo, it is advised that you review your changes locally be
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 
-- Linux Mint / Ubuntu 18.04 LTS / 19.10:
+- Linux Mint / Ubuntu 18.04 LTS / 19.10 / 20.04 LTS:
     - Preparations (only required once):
 
     ```bash

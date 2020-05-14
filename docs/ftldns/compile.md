@@ -19,12 +19,12 @@ sudo dnf install gcc gmp-devel gmp-static m4
 
 ---
 
-You'll also need to compile `nettle` as *FTL*DNS uses `libnettle` for handling DNSSEC. Compile and install a recent version of `nettle` (we recommend 3.5):
+You'll also need to compile `nettle` as *FTL*DNS uses `libnettle` for handling DNSSEC. Compile and install a recent version of `nettle` (we tested and recommend 3.6):
 
 ```bash
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.5.tar.gz
-tar -xvzf nettle-3.5.tar.gz
-cd nettle-3.5
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.6.tar.gz
+tar -xvzf nettle-3.6.tar.gz
+cd nettle-3.6
 ./configure
 make
 sudo make install
@@ -44,7 +44,7 @@ If you want to build another branch and not `master`, use checkout to get to thi
 *FTL*DNS can now be compiled and installed:
 
 ```bash
-make -j 4
+make -j $(nproc)
 sudo make install
 ```
 
