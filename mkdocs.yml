@@ -2,7 +2,7 @@ site_name: 'Pi-hole documentation'
 site_url: 'https://docs.pi-hole.net/'
 repo_url: 'https://github.com/pi-hole/pi-hole'
 edit_uri: '../docs/blob/master/docs/'
-copyright: 'Copyright &copy; 2019 Pi-hole LLC'
+copyright: 'Copyright &copy; 2020 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
@@ -36,6 +36,8 @@ markdown_extensions:
   # This extension is a convenience extension which includes many pymdownx extensions
   # (https://facelessuser.github.io/pymdown-extensions/extensions/extra/)
   - pymdownx.extra
+  # (https://facelessuser.github.io/pymdown-extensions/extensions/details/)
+  - pymdownx.details
   # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
   # Adds the ability to define abbreviations
@@ -60,6 +62,13 @@ nav:
     - 'Updating': main/update.md
   - 'Pi-hole Core':
     - 'The <samp>pihole</samp> command': core/pihole-command.md
+  - 'Databases':
+    - 'Overview': database/index.md
+    - 'Query database': database/ftl.md
+    - 'Domain database':
+      - 'Overview': database/gravity/index.md
+      - 'Group management': database/gravity/groups.md
+      - 'Examples': database/gravity/example.md
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
@@ -70,7 +79,6 @@ nav:
       - "Overview": ftldns/regex/overview.md
       - "Tutorial": ftldns/regex/tutorial.md
     - 'Privacy levels': ftldns/privacylevels.md
-    - 'Long-term database': ftldns/database.md
     - 'Telnet API': ftldns/telnet-api.md
     - 'Compatibility': ftldns/compatibility.md
     - 'Install from source': ftldns/compile.md
@@ -115,8 +123,10 @@ extra:
   social:
     - icon: fontawesome/solid/globe-americas
       link: https://pi-hole.net/
+      name: Website
     - icon: fontawesome/brands/github
       link: https://github.com/pi-hole
+      name: GitHub
 
 extra_css:
   - extra.css
