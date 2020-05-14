@@ -4,9 +4,7 @@
 
 ### How to Whitelist or Blacklist
 
-There are scripts to aid users in adding or removing domains to the whitelist or blacklist.
-
-The scripts will first parse `whitelist.txt` or `blacklist.txt` for any changes, and if any additions or deletions are detected, it will reload `dnsmasq` so that they are effective immediately.
+There are scripts to aid users in adding or removing domains to the whitelist or blacklist from the CLI
 
 Each script accepts the following parameters:
 
@@ -22,19 +20,19 @@ Domains passed are parsed by the script to ensure they are valid domains. If a d
 
 #### Example `pihole -w` usages
 
-* Attempt to add one or more domains to the whitelist and reload dnsmasq:
+* Attempt to add one or more domains to the whitelist and reload pihole-FTL:
 
     ```bash
     pihole -w domain1 [domain2...]
     ```
 
-* Attempt to add one or more domains to the whitelist, but do not reload dnsmasq:
+* Attempt to add one or more domains to the whitelist, but do not reload pihole-FTL:
 
     ```bash
     pihole -w -nr domain1 [domain2...]
     ```
 
-* Attempt to add one or more domains to the whitelist and force dnsmasq to reload:
+* Attempt to add one or more domains to the whitelist and force pihole-FTL to reload:
 
     ```bash
     pihole -w -f domain1 [domain2...]
@@ -48,19 +46,19 @@ pihole -w -d domain1 [domain2...]
 
 #### Example `pihole -b` usages
 
-* Attempt to add one or more domains to the blacklist and reload dnsmasq:
+* Attempt to add one or more domains to the blacklist and reload pihole-FTL:
 
     ```bash
     pihole -b domain1 [domain2...]
     ```
 
-* Attempt to add one or more domains to the blacklist, but do not reload dnsmasq:
+* Attempt to add one or more domains to the blacklist, but do not reload pihole-FTL:
 
     ```bash
     pihole -b -nr domain1 [domain2...]
     ```
 
-* Attempt to add one or more domains to the blacklist and force dnsmasq to reload:
+* Attempt to add one or more domains to the blacklist and force pihole-FTL to reload:
 
     ```bash
     pihole -b -f domain1 [domain2...]
