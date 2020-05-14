@@ -37,13 +37,13 @@ Now set up a "virtual host" in your Caddyfile (default `/etc/caddy/Caddyfile`). 
 ### Caddyfile (for Caddy v2)
 
 ```
-http://pi.hole:80 {
+http://pi.hole {
   reverse_proxy localhost:1080
 }
 ```
 
-- If you'd like to enable Https on your site, make sure your server is reachable via your domain name (ex: myawesomesite.com) and is pointing to the right IP address.
-- Additionally you need to open ports :80 and :443 (Apart from the one's required specifically for pi-hole) for your server before setting up https.
+- If you'd like to enable HTTPS on your site, make sure your server is reachable via your domain name (ex: myawesomesite.com) and is pointing to the right IP address.
+- Additionally you need to open ports :80 and :443 (Apart from the one's required specifically for pi-hole) for your server before setting up HTTPS.
 
 The following configuration will automatically fetch and setup HTTPS for your domain using Lets-Encrypt
 
