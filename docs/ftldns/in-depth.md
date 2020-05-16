@@ -1,6 +1,6 @@
 ## Available interfaces
 
-Pi-hole stats can be accessed via a standard Unix socket (`var/run/pihole/FTL.sock`), a telnet-like connection (TCP socket on port `4711`) as well as indirectly via the Web API (`admin/api.php`), and the command line (`pihole -c -j`). You can out find more details below.
+Pi-hole stats can be accessed via a standard Unix socket (`/run/pihole/FTL.sock`), a telnet-like connection (TCP socket on port `4711`) as well as indirectly via the Web API (`admin/api.php`), and the command line (`pihole -c -j`). You can out find more details below.
 
 ## Command-line arguments
 
@@ -19,9 +19,9 @@ Command-line arguments can be arbitrarily combined, e.g. `pihole-FTL debug test`
 ## File locations
 
 - `/var/log/pihole-FTL.log` log file
-- `/var/run/pihole-FTL.pid` PID file
-- `/var/run/pihole-FTL.port` file containing port on which `FTL` is listening
-- `/var/run/pihole/FTL.sock` Unix socket
+- `/run/pihole-FTL.pid` PID file
+- `/run/pihole-FTL.port` file containing port on which `FTL` is listening
+- `/run/pihole/FTL.sock` Unix socket
 
 ## Linux capabilities
 

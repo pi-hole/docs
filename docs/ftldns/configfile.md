@@ -94,15 +94,15 @@ Specify the path and filename of FTL's SQLite3 long-term database. Setting this 
 
 The location of FTL's log file. If you want to move the log file to a different place, also consider [this FAQ article](https://discourse.pi-hole.net/t/moving-the-pi-hole-log-to-another-location-device/2041).
 
-#### `PIDFILE=/var/run/pihole-FTL.pid` {#file_PIDFILE data-toc-label='Process identifier file'}
+#### `PIDFILE=/run/pihole-FTL.pid` {#file_PIDFILE data-toc-label='Process identifier file'}
 
 The file which contains the PID of FTL's main process.
 
-#### `PORTFILE=/var/run/pihole-FTL.port` {#file_PORTFILE data-toc-label='Port file'}
+#### `PORTFILE=/run/pihole-FTL.port` {#file_PORTFILE data-toc-label='Port file'}
 
 The file containing the port FTL's API is listening on.
 
-#### `SOCKETFILE=/var/run/pihole/FTL.sock` {#file_SOCKETFILE data-toc-label='Socket file'}
+#### `SOCKETFILE=/run/pihole/FTL.sock` {#file_SOCKETFILE data-toc-label='Socket file'}
 
 The file containing the socket FTL's API is listening on.
 
