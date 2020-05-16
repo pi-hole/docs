@@ -31,7 +31,7 @@ jobs:
         run: python3 -m pip install -r requirements.txt
 
       - name: Build docs
-        run: mkdocs build --clean --verbose
+        run: mkdocs build --clean
 
       - name: Upload docs
         uses: actions/upload-artifact@v1
