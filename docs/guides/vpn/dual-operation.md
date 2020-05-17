@@ -1,6 +1,6 @@
 **Up until now, this wiki has been about a server set up on a cloud host, available on the public Internet. This section is aimed at a server set up in a private network like on a Raspberry Pi.**
 
-So if blocking works using `eth0` but stops working for `tun0`, as described [here](https://github.com/pi-hole/pi-hole/issues/1553), you may want to run this command `pihole -a -i all`, which should get the behavior you want by opening dnsmasq up to listen on all ports. This is not recommended for cloud servers as they should _not_ be listening on `eth0`.
+So if blocking works using `eth0` but stops working for `tun0`, as described [here](https://github.com/pi-hole/pi-hole/issues/1553), you may want to run this command `pihole -a -i all`, which should get the behavior you want by opening pihole-FTL up to listen on all ports. This is not recommended for cloud servers as they should _not_ be listening on `eth0`.
 
 If you want to set up your Pi-hole + OpenVPN such that you can use from both internal ((W)LAN) and external (VPN) networks, you have to apply some small changes. As an additional benefit, you will be able to reach all devices in the internal network (e.g. computers, networking-aware printers, etc.) through the VPN.
 
