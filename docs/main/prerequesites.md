@@ -20,11 +20,11 @@ The following operating systems are **officially** supported:
 
 | Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
-| Raspbian     | Stretch / Buster | ARM        |
+| Raspbian     | Stretch / Buster | ARM                 |
 | Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
 | Debian       | 9 / 10           | ARM / x86_64 / i386 |
-| Fedora       | 28 / 29          | ARM / x86_64        |
-| CentOS       | 7                | x86_64              |
+| Fedora       | 31 / 32          | ARM / x86_64        |
+| CentOS       | 7 / 8            | x86_64              |
 
 ### IP Addressing
 
