@@ -13,6 +13,5 @@ While we are primarily reachable on our [Discourse User Forum](https://discourse
 
 - [Reddit](https://www.reddit.com/r/pihole/)
 - [Twitter](https://twitter.com/The_Pi_Hole)
-- [Gitter](https://gitter.im/pi-hole/pi-hole)
 - [YouTube](https://www.youtube.com/channel/UCT5kq9w0wSjogzJb81C9U0w)
 - [Facebook](https://www.facebook.com/ThePiHole/)

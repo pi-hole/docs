@@ -20,11 +20,11 @@ The following operating systems are **officially** supported:
 
 | Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
-| Raspbian     | Stretch / Buster | ARM        |
+| Raspbian     | Stretch / Buster | ARM                 |
 | Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
 | Debian       | 9 / 10           | ARM / x86_64 / i386 |
-| Fedora       | 28 / 29          | ARM / x86_64        |
-| CentOS       | 7                | x86_64              |
+| Fedora       | 31 / 32          | ARM / x86_64        |
+| CentOS       | 7 / 8            | x86_64              |
 
 ### IP Addressing
 
@@ -53,7 +53,8 @@ Due to the complexity of different ways of setting an IP address across differen
 ### Firewalls
 
 Below are some examples of firewall rules that will need to be set on your Pi-hole server in order to use the functions available. These are only shown as guides, the actual commands used will be found with your distribution's documentation.
-Because Pi-hole was designed to work inside a local network, the following rules will block the traffic from the Internet for security reasons. `192.168.0.0/16` is the most common local network IP range for home users but it can be different in your case, for example other common local network IPs are `10.0.0.0/8` and `172.16.0.0/12`.  
+Because Pi-hole was designed to work inside a local network, the following rules will block the traffic from the Internet for security reasons. `192.168.0.0/16` is the most common local network IP range for home users but it can be different in your case, for example other common local network IPs are `10.0.0.0/8` and `172.16.0.0/12`.
+
 **Check your local network settings before applying these rules.**
 
 #### IPTables
@@ -68,8 +69,7 @@ iptables -I INPUT 1 -s 127.0.0.0/8 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 127.0.0.0/8 -p udp -m udp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 53 -j ACCEPT
-iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 67 -j ACCEPT
-iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 67 -j ACCEPT
+iptables -I INPUT 1 -p udp --dport 67:68 --sport 67:68 -j ACCEPT
 iptables -I INPUT 1 -p tcp -m tcp --dport 4711:4720 -i lo -j ACCEPT
 iptables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
@@ -77,7 +77,7 @@ iptables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 IP6Tables (IPv6)
 
 ```bash
-ip6tables -I INPUT -s fe80::/10 -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
+ip6tables -I INPUT -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
 ip6tables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
 
