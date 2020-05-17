@@ -28,6 +28,8 @@ jobs:
           key: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
 
+      - run: pip install --upgrade wheel
+
       - name: Install Python dependencies
         run: python3 -m pip install -r requirements.txt
 
