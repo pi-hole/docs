@@ -24,8 +24,7 @@
       "img",
       "strong",
       "p",
-      "sub",
-      "table", "tbody", "th", "tr", "td"
+      "sub"
     ]
   },
   "MD035": {
