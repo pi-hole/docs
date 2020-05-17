@@ -54,12 +54,12 @@ Example Usage   | [`pihole -regex '^example.com$' '.*\.example2.net'`](https://d
 
 Administrators need to be able to manually add and remove domains for various purposes, and these commands serve that purpose.
 
-See [Regex Blocking](/ftldns/regex/overview/) for more information about using Regex.
+See [Regex Blocking](../ftldns/regex/overview.md) for more information about using Regex.
 
 **Basic Script Process**:
 
 * Each domain is validated using regex (except when using `-regex`), to ensure invalid domains and IDNs are not added
-* A domain gets added to or removed from the `domainlist` table in [`/etc/pihole/gravity.db`](/database/gravity/)
+* A domain gets added to or removed from the `domainlist` table in [`/etc/pihole/gravity.db`](../database/gravity/index.md)
 * The DNS server is then reloaded
 
 ### Debugger
@@ -150,11 +150,11 @@ Gravity is one of the most important scripts of Pi-hole. Its main purpose is to 
 **Basic Script Process**:
 
 * It will determine Internet connectivity, and give time for `pihole-FTL` to be resolvable on low-end systems if has just been restarted
-* It extracts all URLs and domains from the `adlists` table in [`/etc/pihole/gravity.db`](/database/gravity)
+* It extracts all URLs and domains from the `adlists` table in [`/etc/pihole/gravity.db`](../database/gravity/index.md)
 * It runs through each URL, downloading it if necessary
     * `curl` checks the servers `Last-Modified` header to ensure it is getting a newer version
 * It will attempt to parse the file into a domains-only format if necessary
-* Lists are merged, comments removed, sorted uniquely and stored in the `gravity` table of [`/etc/pihole/gravity.db`](/database/gravity)
+* Lists are merged, comments removed, sorted uniquely and stored in the `gravity` table of [`/etc/pihole/gravity.db`](../database/gravity/index.md)
 * Gravity cleans up temporary content and reloads the DNS server
 
 ### Logging
@@ -181,7 +181,7 @@ This command will query your whitelist, blacklist, wildcards and adlists for a s
 
 * User-specified options are handled
 * Using `idn`, it will convert [Internationalized domain names](https://en.wikipedia.org/wiki/Internationalized_domain_name) into [punycode](https://en.wikipedia.org/wiki/Punycode)
-* Database at [`/etc/pihole/gravity.db`](/database/gravity) is queried to return a list of adlists in which the queried domain exists.
+* Database at [`/etc/pihole/gravity.db`](../database/gravity/index.md) is queried to return a list of adlists in which the queried domain exists.
 
 ### Update
 
@@ -320,4 +320,4 @@ Help Command    | `pihole -a interface --help`
 Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | [`pihole -a interface local`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#interface)
 
-Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [OpenVPN](/guides/vpn/overview/) to grant your mobile devices access to the Pi-hole.
+Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [OpenVPN](../guides/vpn/overview.md) to grant your mobile devices access to the Pi-hole.
