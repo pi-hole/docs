@@ -14,7 +14,7 @@ Via this VPN, you can:
 - access your admin interface remotely
 - encrypt your Internet traffic
 
-If you don't want a full-tunnel, we provide a wiki of how to [set up your server to exclusively route DNS traffic, but nothing else via the VPN](only-dns-via-vpn.md). On another optional page, we describe how to set up Pi-hole + VPN in such a way that it is [usable both locally (no VPN) and from remote (through VPN)](dual-operation.md) while preserving full functionality.
+If you don't want a full-tunnel, we provide a page of how to [set up your server to exclusively route DNS traffic, but nothing else via the VPN](only-dns-via-vpn.md). On another optional page, we describe how to set up Pi-hole + VPN in such a way that it is [usable both locally (no VPN) and from remote (through VPN)](dual-operation.md) while preserving full functionality.
 
 In the end, you will have access to a VPN that uses Pi-hole for DNS and tunnels some or all of your network traffic
 

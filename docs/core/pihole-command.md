@@ -320,4 +320,4 @@ Help Command    | `pihole -a interface --help`
 Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | [`pihole -a interface local`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#interface)
 
-Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [OpenVPN](https://github.com/pi-hole/pi-hole/wiki/Pi-hole---OpenVPN-server) to grant your mobile devices access to the Pi-hole.
+Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [OpenVPN](/guides/vpn/overview/) to grant your mobile devices access to the Pi-hole.
