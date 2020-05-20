@@ -46,7 +46,6 @@ If you'd rather not donate (_which is okay!_), there are other ways you can help
 
 - [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1) _new account credits with our affiliate link_
 - [Amazon](https://www.amazon.com/exec/obidos/redirect-home/pihole09-20) _affiliate link_
-- [Vultr](https://www.vultr.com/?ref=7190426) _affiliate link_
 - Spreading the word about our software, and how you have benefited from it
 
 ### Contributing via GitHub
