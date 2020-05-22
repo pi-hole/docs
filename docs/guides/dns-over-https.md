@@ -58,9 +58,11 @@ sudo useradd -s /usr/sbin/nologin -r -M cloudflared
 ```
 
 Proceed to create a configuration file for `cloudflared`:
+
 ```bash
 sudo nano /etc/default/cloudflared
 ```
+
 Edit configuration file by copying the following in to `/etc/default/cloudflared`. This file contains the command-line options that get passed to cloudflared on startup:
 
 ```bash
