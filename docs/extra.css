@@ -19,23 +19,6 @@ input {
     color: #532ba8;
 }
 
-.md-logo img {
-    width: 48px;
-    height: 48px;
-}
-
-@media only screen and (min-width: 76.25em) {
-    .md-logo img {
-        width: 24px;
-        height: 24px;
-    }
-}
-
 .text-center {
     text-align: center !important;
-}
-
-/* needed because images have `max-width: 100%` in the theme */
-img {
-    height: auto;
 }
