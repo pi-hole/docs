@@ -16,7 +16,7 @@ Any hardware that runs one of the supported operating systems will do!
 
 ### Software
 
-Pi-hole will only work on distributions utilizing [systemd](https://systemd.io/) or [sysvinit](https://www.nongnu.org/sysvinit/)!
+Pi-hole is supported on distributions utilizing [systemd](https://systemd.io/) or [sysvinit](https://www.nongnu.org/sysvinit/)!
 
 #### Supported Operating Systems
 
