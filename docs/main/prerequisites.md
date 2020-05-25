@@ -30,13 +30,6 @@ The following operating systems are **officially** supported:
 | Fedora       | 31 / 32          | ARM / x86_64        |
 | CentOS       | 7 / 8            | x86_64              |
 
-!!! info
-    Pi-hole will run on most Debian-based distributions and is the preferred platform.
-
-!!! info
-    For Fedora-based distributions, it is advisable to set [SELinux to `disabled` or `permissive`](https://wiki.centos.org/HowTos/SELinux#SELinux_Modes).
-    Pi-hole can otherwise be whitelisted if the `enforcing` mode is kept.
-
 ### IP Addressing
 
 Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine). Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
