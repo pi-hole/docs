@@ -6,6 +6,7 @@ copyright: 'Copyright &copy; 2020 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
+  custom_dir: overrides
 #  icon:
 #    repo: fontawesome/brands/github-alt
   favicon: 'images/favicon.ico'
