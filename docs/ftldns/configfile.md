@@ -23,7 +23,7 @@ Use this option to disable deep CNAME inspection. This might be beneficial for v
 
 Up to how many hours of queries should be imported from the database and logs? Maximum is 24.0
 
-#### `PRIVACYLEVEL=0|1|2|3|4` {#privacylevel data-toc-label='Privacy Level'}
+#### `PRIVACYLEVEL=0|1|2|3` {#privacylevel data-toc-label='Privacy Level'}
 
 Which privacy level is used?<br>
 **[More details](privacylevels.md)**
