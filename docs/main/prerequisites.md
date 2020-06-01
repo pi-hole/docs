@@ -1,7 +1,7 @@
 ---
 title: Prerequisites
 description: Operating system and network requirements
-last_updated: January 27 2020
+last_updated: May 25 2020
 ---
 
 ### Hardware
@@ -14,7 +14,11 @@ Pi-hole is very lightweight and does not require much processing power
 Despite the name, you are not limited to running Pi-hole on a Raspberry Pi.
 Any hardware that runs one of the supported operating systems will do!
 
-### Supported Operating Systems
+### Software
+
+Pi-hole is supported on distributions utilizing [systemd](https://systemd.io/) or [sysvinit](https://www.nongnu.org/sysvinit/)!
+
+#### Supported Operating Systems
 
 The following operating systems are **officially** supported:
 
