@@ -4,7 +4,13 @@ env:
   CI: true
   PYTHON_VERSION: '3.7'
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "**"
 
 jobs:
   build:
