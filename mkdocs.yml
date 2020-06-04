@@ -140,3 +140,4 @@ plugins:
         'ftldns/database.md': database/index.md
         'ftldns/regex/index.md': ftldns/regex/overview.md
         'main/presentations.md': index.md
+        'main/prerequesites.md': main/prerequisites.md
