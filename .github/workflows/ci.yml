@@ -1,11 +1,17 @@
 name: CI
 
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "**"
+
 env:
   CI: true
   NODE: 12.x
-  PYTHON_VERSION: '3.7'
-
-on: [push, pull_request]
+  PYTHON_VERSION: "3.7"
 
 jobs:
   test:
@@ -18,15 +24,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: '${{ env.PYTHON_VERSION }}'
-          architecture: 'x64'
+          python-version: "${{ env.PYTHON_VERSION }}"
+          architecture: "x64"
 
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
           node-version: "${{ env.NODE }}"
 
-      - name: Cache dependencies
+      - name: Cache Python dependencies
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
