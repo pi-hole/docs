@@ -57,7 +57,7 @@ nav:
     - 'Pi-hole Origins': main/origins.md
     - 'On the Web': main/coverage.md
   - 'Getting Started':
-    - 'Prerequisites': main/prerequesites.md
+    - 'Prerequisites': main/prerequisites.md
     - 'Installation': main/basic-install.md
     - 'Post-Install': main/post-install.md
     - 'Updating': main/update.md
@@ -135,3 +135,9 @@ extra_css:
 plugins:
   - search
   - git-revision-date-localized
+  - redirects:
+      redirect_maps:
+        'ftldns/database.md': database/index.md
+        'ftldns/regex/index.md': ftldns/regex/overview.md
+        'main/presentations.md': index.md
+        'main/prerequesites.md': main/prerequisites.md
