@@ -5,13 +5,13 @@ We pre-compile *FTL*DNS for you to save you the trouble of compiling anything yo
 First, we'll install the basic software you'll need to compile from source, like the GCC compiler and other utilities.
 Install them by running the following command in a terminal:
 
-**Debian / Ubuntu / Raspbian**
+### Debian / Ubuntu / Raspbian
 
 ```bash
 sudo apt install build-essential libgmp-dev m4 cmake
 ```
 
-**Fedora**
+### Fedora
 
 ```bash
 sudo dnf install gcc gmp-devel gmp-static m4 cmake
