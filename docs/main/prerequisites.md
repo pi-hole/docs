@@ -30,6 +30,20 @@ The following operating systems are **officially** supported:
 | Fedora       | 31 / 32          | ARM / x86_64        |
 | CentOS       | 7 / 8            | x86_64              |
 
+<!-- markdownlint-disable code-block-style -->
+!!! info
+    One of the first tasks the install script has is to determine your Operating System's compatibility with Pi-hole
+
+    It is possible that Pi-hole will install and run on variants of the above, but we cannot test them all. If you are using an operating system not on this list you may see the following message:
+
+    ![](../images/OSWarning.png)
+
+    You can disable this check by setting an environment variable named `PIHOLE_SKIP_OS_CHECK` to `true`, however Pi-hole may have issues installing.
+    If you choose to use this environment variable, please use the [Community Help](https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/36) topic on Discourse to troubleshoot any installation issues you may (or may not!) have.
+
+
+<!-- markdownlint-enable code-block-style -->
+
 ### IP Addressing
 
 Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine). Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
