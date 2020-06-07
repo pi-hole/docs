@@ -36,7 +36,7 @@ The following operating systems are **officially** supported:
 
     It is possible that Pi-hole will install and run on variants of the above, but we cannot test them all. If you are using an operating system not on this list you may see the following message:
 
-    ![](../images/OSWarning.png)
+    ![non-supported OS warning](../images/OSWarning.png)
 
     You can disable this check by setting an environment variable named `PIHOLE_SKIP_OS_CHECK` to `true`, however Pi-hole may have issues installing.
     If you choose to use this environment variable, please use the [Community Help](https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/36) topic on Discourse to troubleshoot any installation issues you may (or may not!) have.
