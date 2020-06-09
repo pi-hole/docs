@@ -17,7 +17,7 @@ sudo apt install build-essential libgmp-dev m4 cmake
 sudo dnf install gcc gmp-devel gmp-static m4 cmake
 ```
 
-### Install `libnettle`
+## Compile `libnettle` from source
 
 *FTL*DNS uses a cryptographic library (`libnettle`) for handling DNSSEC signatures.
 Compile and install a recent version using:
