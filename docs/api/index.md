@@ -46,7 +46,7 @@ The Authorization HTTP header can be specified with `Token <your-access-token>` 
     }
     ```
 
-!!! danger "Example reply: Error (unauthorized access)"
+!!! failure "Example reply: Error (unauthorized access)"
 
     Response code: `HTTP/1.1 401 Unauthorized`
 
@@ -99,7 +99,8 @@ The form of replies to successful requests strongly depends on the selected endp
 
 In contrast, errors have a uniform appearance to ease a programatic treatment:
 
-!!! danger "Example reply: Error (unauthorized access)"
+!!! failure "Example reply: Error (unauthorized access)"
+
     ``` json
     {
         "error": {

@@ -4,10 +4,10 @@
 
 Resources:
 
-- `GET /admin/api/dns/whitelist/exact`
-- `GET /admin/api/dns/whitelist/regex`
-- `GET /admin/api/dns/blacklist/exact`
-- `GET /admin/api/dns/blacklist/regex`
+- `GET /admin/api/whitelist/exact`
+- `GET /admin/api/whitelist/regex`
+- `GET /admin/api/blacklist/exact`
+- `GET /admin/api/blacklist/regex`
 
 Requires authorization: Yes
 
@@ -24,7 +24,7 @@ None
 
         ``` bash
         curl -H "Authorization: Token <your-access-token>" \
-                http://pi.hole:8080/admin/api/dns/whitelist/exact
+             http://pi.hole:8080/admin/api/whitelist/exact
         ```
 
     === "Python 3"
@@ -32,7 +32,7 @@ None
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/dns/whitelist/exact'
+        URL = 'http://pi.hole:8080/admin/api/whitelist/exact'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -57,7 +57,7 @@ None
     ]
     ```
 
-!!! danger "Error response (database not available)"
+!!! failure "Error response (database not available)"
 
     Response code: `HTTP/1.1 402 - Request failed`
 
@@ -78,10 +78,10 @@ None
 
 Resources:
 
-- `PUT /admin/api/dns/whitelist/exact`
-- `PUT /admin/api/dns/whitelist/regex`
-- `PUT /admin/api/dns/blacklist/exact`
-- `PUT /admin/api/dns/blacklist/regex`
+- `PUT /admin/api/whitelist/exact`
+- `PUT /admin/api/whitelist/regex`
+- `PUT /admin/api/blacklist/exact`
+- `PUT /admin/api/blacklist/regex`
 
 Requires authorization: Yes
 
@@ -103,10 +103,10 @@ Name | Required | Type | Description | Default | Example
 
         ``` bash
         curl -X PUT \
-                -H "Authorization: Token <your-access-token>" \
-                http://pi.hole:8080/admin/api/dns/whitelist/exact \
-                -H "Content-Type: application/json" \
-                -d @body.json
+             -H "Authorization: Token <your-access-token>" \
+             http://pi.hole:8080/admin/api/whitelist/exact \
+             -H "Content-Type: application/json" \
+             -d @body.json
         ```
 
     === "Python 3"
@@ -114,7 +114,7 @@ Name | Required | Type | Description | Default | Example
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/dns/whitelist/exact'
+        URL = 'http://pi.hole:8080/admin/api/whitelist/exact'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
         data = json.load(open('body.json', 'rb'))
@@ -149,7 +149,7 @@ Name | Required | Type | Description | Default | Example
     }
     ```
 
-!!! danger "Error response (duplicated domain)"
+!!! failure "Error response (duplicated domain)"
 
     Response code: `HTTP/1.1 402 - Request failed`
 
@@ -175,10 +175,10 @@ Name | Required | Type | Description | Default | Example
 
 Resources:
 
-- `DELETE /admin/api/dns/whitelist/exact/<domain>`
-- `DELETE /admin/api/dns/whitelist/regex/<domain>`
-- `DELETE /admin/api/dns/blacklist/exact/<domain>`
-- `DELETE /admin/api/dns/blacklist/regex/<domain>`
+- `DELETE /admin/api/whitelist/exact/<domain>`
+- `DELETE /admin/api/whitelist/regex/<domain>`
+- `DELETE /admin/api/blacklist/exact/<domain>`
+- `DELETE /admin/api/blacklist/regex/<domain>`
 
 Requires authorization: Yes
 
@@ -190,14 +190,15 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
 
 <!-- markdownlint-disable code-block-style -->
 !!! example "Request"
+
     === "cURL"
 
         **Domain**
 
         ``` bash
         curl -X DELETE \
-                -H "Authorization: Token <your-access-token>" \
-                http://pi.hole:8080/admin/api/dns/whitelist/exact/whitelisted.com
+             -H "Authorization: Token <your-access-token>" \
+             http://pi.hole:8080/admin/api/whitelist/exact/whitelisted.com
         ```
 
         **Regular expression**
@@ -205,8 +206,8 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
         ``` bash
         regex="$(echo "(^|\\.)facebook.com$" | jq -sRr '@uri')"
         curl -X DELETE \
-                -H "Authorization: Token <your-access-token>" \
-                http://pi.hole:8080/admin/api/dns/whitelist/exact/${regex}
+             -H "Authorization: Token <your-access-token>" \
+             http://pi.hole:8080/admin/api/whitelist/exact/${regex}
         ```
 
     === "Python"
@@ -216,7 +217,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/dns/whitelist/exact/whitelisted.com'
+        URL = 'http://pi.hole:8080/admin/api/whitelist/exact/whitelisted.com'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -232,7 +233,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
         import urllib
 
         regex = urllib.parse.quote("(^|\\.)facebook.com$")
-        URL = 'http://pi.hole:8080/admin/api/dns/whitelist/exact/'
+        URL = 'http://pi.hole:8080/admin/api/whitelist/exact/'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -252,7 +253,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
     }
     ```
 
-!!! danger "Error response (database permission error)"
+!!! failure "Error response (database permission error)"
 
     Response code: `HTTP/1.1 402 - Request failed`
 
