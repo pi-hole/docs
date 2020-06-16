@@ -1,15 +1,16 @@
 
+*[API]: Application Programming Interface (a set of subroutine definitions, protocols, and tools for building application software)
 *[DNS]: Domain Name Service (decentralized naming system for computers, services, or other resources connected to the Internet)
-*[FTL]: Pi-hole's Faster Than Light daemon
+*[DnyDNS]: Dynamic DNS record pointing to a frequently changing IP address
 *[DHCP]: Dynamic Host Configuration Protocol (network management protocol for configuring Internet Protocol version 4 (IPv4) hosts with IP addresses)
 *[DHCPv6]: Dynamic Host Configuration Protocol version 6 (a network protocol for configuring Internet Protocol version 6 (IPv6) hosts with IP addresses)
+*[FTL]: Pi-hole's Faster Than Light daemon
 *[IPv4]: Internet Protocol version 4 (addresses like 192.168.0.1)
 *[IPv6]: Internet Protocol version 6 (addresses like 2001:db8::ff00:42:8329)
 *[HTTP]: Hypertext Transfer Protocol (HTTP), an application protocol for distributed, collaborative, and hypermedia information systems
 *[HTTPS]: HTTP Secure (HTTPS), an extension of the Hypertext Transfer Protocol (HTTP) for secure communication over a computer network
 *[TCP]: Transmission Control Protocol (protocol providing reliable, ordered, and error-checked delivery of data between applications running on hosts communicating via an IP network)
 *[UDP]: User Datagram Protocol (a network communications method for sending messages as datagrams)
-*[API]: Application Programming Interface (a set of subroutine definitions, protocols, and tools for building application software)
 *[PE]: Privacy Extension
 *[PID]: Process identifier (a number used to identify a process)
 *[HOSTS]: The computer file /etc/hosts is an operating system file that maps hostnames to IP addresses
@@ -39,4 +40,6 @@
 *[TFTP]: Trivial File Transfer Protocol is a simple lockstep File Transfer Protocol which allows a client to get a file from or put a file onto a remote host
 *[TTL]: Time-To-Live is a mechanism that limits the lifespan or lifetime of data in a computer or network
 *[NAT]: Network address translation
-*[DnyDNS]: Dynamic DNS record pointing to a frequently changing IP address
+*[UTF-8]: 8-bit Unicode Transformation Format - a character encoding format capable of encoding all known 1,112,064 valid Unicode characters
+*[URL]: Uniform Ressource Locator, commonly known as "web address"
+*[REST]: Representational State Transfer - a software architecture for distributed systems like the World Wide Web (WWW)
