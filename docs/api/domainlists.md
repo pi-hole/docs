@@ -106,7 +106,7 @@ Name | Required | Type | Description | Default | Example
              -X PUT \
              -H "Authorization: Token <your-access-token>" \
              -H "Content-Type: application/json" \
-             -d @body.json
+             -d '{"domain":"whitelisted.com", "enabled":true, "comment":"Some text"}'
         ```
 
     === "Python 3"
@@ -117,26 +117,12 @@ Name | Required | Type | Description | Default | Example
         URL = 'http://pi.hole:8080/admin/api/whitelist/exact'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
-        data = json.load(open('body.json', 'rb'))
+        data = {"domain":"whitelisted.com", "enabled":True, "comment":"Some text"}
 
-        response = requests.put(
-            URL,
-            json=data,
-            headers=HEADERS,
-        )
+        response = requests.put(URL, json=data, headers=HEADERS)
 
         print(response.json())
         ```
-
-    The content of `body.json` is
-
-    ``` json
-    {
-        "domain": "whitelisted.com",
-        "enabled": true,
-        "comment": "Some text"
-    }
-    ```
 
 !!! success "Success response"
 

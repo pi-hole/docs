@@ -69,16 +69,7 @@ Name | Required | Type | Description | Default | Example
              -X POST \
              -H "Authorization: Token <your-access-token>" \
              -H "Content-Type: application/json" \
-             -d @body.json
-        ```
-
-        The content of `body.json` is like,
-
-        ``` json
-        {
-            "status": "active",
-            "delay": 30
-        }
+             -d '{"status":"active", "delay":30}'
         ```
 
     === "Python 3"
@@ -89,24 +80,11 @@ Name | Required | Type | Description | Default | Example
         URL = 'http://pi.hole:8080/admin/api/dns/blocking'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
-        data = json.load(open('body.json', 'rb'))
+        data = {"status":"active", "delay":30}
 
-        response = requests.post(
-            URL,
-            json=data,
-            headers=HEADERS,
-        )
+        response = requests.post(URL, json=data, headers=HEADERS)
 
         print(response.json())
-        ```
-
-        The content of `body.json` is like,
-
-        ``` json
-        {
-            "status": "active",
-            "delay": 30
-        }
         ```
 
 !!! success "Response"
