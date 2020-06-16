@@ -102,9 +102,9 @@ Name | Required | Type | Description | Default | Example
     === "cURL"
 
         ``` bash
-        curl -X PUT \
+        curl http://pi.hole:8080/admin/api/whitelist/exact \
+             -X PUT \
              -H "Authorization: Token <your-access-token>" \
-             http://pi.hole:8080/admin/api/whitelist/exact \
              -H "Content-Type: application/json" \
              -d @body.json
         ```
@@ -196,18 +196,18 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
         **Domain**
 
         ``` bash
-        curl -X DELETE \
-             -H "Authorization: Token <your-access-token>" \
-             http://pi.hole:8080/admin/api/whitelist/exact/whitelisted.com
+        curl http://pi.hole:8080/admin/api/whitelist/exact/whitelisted.com \
+             -X DELETE \
+             -H "Authorization: Token <your-access-token>"
         ```
 
         **Regular expression**
 
         ``` bash
-        regex="$(echo "(^|\\.)facebook.com$" | jq -sRr '@uri')"
-        curl -X DELETE \
-             -H "Authorization: Token <your-access-token>" \
-             http://pi.hole:8080/admin/api/whitelist/exact/${regex}
+        regex="$(echo -n "(^|\\.)facebook.com$" | jq -sRr '@uri')"
+        curl http://pi.hole:8080/admin/api/whitelist/exact/${regex} \
+             -X DELETE \
+             -H "Authorization: Token <your-access-token>"
         ```
 
     === "Python"

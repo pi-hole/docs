@@ -18,8 +18,8 @@ None
     === "cURL"
 
         ``` bash
-        curl -H "Authorization: Token <your-access-token>" \
-                http://pi.hole:8080/admin/api/dns/cacheinfo
+        curl http://pi.hole:8080/admin/api/dns/cacheinfo \
+             -H "Authorization: Token <your-access-token>"
         ```
 
     === "Python 3"

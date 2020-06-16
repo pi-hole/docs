@@ -121,8 +121,8 @@ nav:
     - 'Overview': api/index.md
     - 'DNS':
       - 'Status': api/dns/status.md
-      - 'Domain Lists': api/dns/lists.md
       - 'Cache Info': api/dns/cacheinfo.md
+    - 'Domain Lists': api/domainlists.md
     - 'FTL':
       - 'Network': api/tbd.md
       - 'Logs': api/tbd.md

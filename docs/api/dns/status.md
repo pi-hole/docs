@@ -2,7 +2,7 @@
 
 ## GET: Obtain current blocking status
 
-Resource: `GET /admin/api/dns/status`
+Resource: `GET /admin/api/dns/blocking`
 
 Requires authorization: No
 
@@ -18,7 +18,7 @@ None
     === "cURL"
 
         ``` bash
-        curl http://pi.hole:8080/admin/api/dns/status
+        curl http://pi.hole:8080/admin/api/dns/blocking
         ```
 
     === "Python 3"
@@ -26,7 +26,7 @@ None
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/dns/status'
+        URL = 'http://pi.hole:8080/admin/api/dns/blocking'
 
         response = requests.get(URL)
 
@@ -39,14 +39,14 @@ None
 
     ``` json
     {
-        "status": "enabled"
+        "status": "active"
     }
     ```
 <!-- markdownlint-enable code-block-style -->
 
 ## `POST`: Set/change blocking status
 
-Resource: `POST /admin/api/dns/status`
+Resource: `POST /admin/api/dns/blocking`
 
 Requires authorization: Yes
 
@@ -54,8 +54,8 @@ Requires authorization: Yes
 
 Name | Required | Type | Description | Default | Example
 ---- | -------- | ---- | ----------- | ------- | -------
-`action` | Yes | String | Requested status | | `enable` or `disable`
-`time` | Optional | Number | Requested delay until opposite status is enabled | `0` | `100` (seconds)
+`status` | Yes | String | Requested status | | `active` or `inactive`
+`delay` | Optional | Number | Requested delay until opposite status is active | `0` | `100` (seconds)
 
 ### Example
 
@@ -65,19 +65,19 @@ Name | Required | Type | Description | Default | Example
     === "cURL"
 
         ``` bash
-        curl -X POST \
-                -H "Authorization: Token <your-access-token>" \
-                http://pi.hole:8080/admin/api/dns/status \
-                -H "Content-Type: application/json" \
-                -d @body.json
+        curl http://pi.hole:8080/admin/api/dns/blocking \
+             -X POST \
+             -H "Authorization: Token <your-access-token>" \
+             -H "Content-Type: application/json" \
+             -d @body.json
         ```
 
         The content of `body.json` is like,
 
         ``` json
         {
-            "action": "enable",
-            "time": 30
+            "status": "active",
+            "delay": 30
         }
         ```
 
@@ -86,7 +86,7 @@ Name | Required | Type | Description | Default | Example
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/dns/status'
+        URL = 'http://pi.hole:8080/admin/api/dns/blocking'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
         data = json.load(open('body.json', 'rb'))
@@ -104,8 +104,8 @@ Name | Required | Type | Description | Default | Example
 
         ``` json
         {
-            "action": "enable",
-            "time": 30
+            "status": "active",
+            "delay": 30
         }
         ```
 
@@ -115,7 +115,7 @@ Name | Required | Type | Description | Default | Example
 
     ``` json
     {
-        "key": "enabled"
+        "status": "active"
     }
     ```
 <!-- markdownlint-enable code-block-style -->

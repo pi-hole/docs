@@ -18,8 +18,8 @@ The Authorization HTTP header can be specified with `Token <your-access-token>` 
     === "cURL"
 
         ``` bash
-        curl -H "Authorization: Token <your-access-token>" \
-             http://pi.hole/admin/api/dns/status
+        curl http://pi.hole/admin/api/dns/status \
+             -H "Authorization: Token <your-access-token>"
         ```
 
     === "Python 3"
