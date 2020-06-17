@@ -23,7 +23,7 @@ None
     === "cURL"
 
         ``` bash
-        curl http://pi.hole:8080/admin/api/whitelist/exact \
+        curl -X GET http://pi.hole:8080/admin/api/whitelist/exact \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -104,7 +104,7 @@ The domain/regex to be listed is specified through the URL (`<domain>`).
     === "cURL"
 
         ``` bash
-        curl http://pi.hole:8080/admin/api/whitelist/exact/whitelisted.com \
+        curl -X GET http://pi.hole:8080/admin/api/whitelist/exact/whitelisted.com \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -156,14 +156,23 @@ The domain/regex to be listed is specified through the URL (`<domain>`).
     ```
 <!-- markdownlint-enable code-block-style -->
 
-## PUT: Add item
+## POST/PATCH: Add item
 
 Resources:
 
-- `PUT /admin/api/whitelist/exact`
-- `PUT /admin/api/whitelist/regex`
-- `PUT /admin/api/blacklist/exact`
-- `PUT /admin/api/blacklist/regex`
+**Create new entry (error on existing identical record)**
+
+- `POST /admin/api/whitelist/exact`
+- `POST /admin/api/whitelist/regex`
+- `POST /admin/api/blacklist/exact`
+- `POST /admin/api/blacklist/regex`
+
+**Create new or update existing entry (no error on existing record)**
+
+- `PATCH /admin/api/whitelist/exact`
+- `PATCH /admin/api/whitelist/regex`
+- `PATCH /admin/api/blacklist/exact`
+- `PATCH /admin/api/blacklist/regex`
 
 Requires authorization: Yes
 
@@ -175,7 +184,6 @@ Name | Required | Type | Description | Default | Example
 `enabled` | Optional | Boolean | Should this domain be used? | `true` | `true`
 `comment` | Optional | String | Comment for this domain | `null` | `Some text`
 
-
 ### Example
 
 <!-- markdownlint-disable code-block-style -->
@@ -184,8 +192,7 @@ Name | Required | Type | Description | Default | Example
     === "cURL"
 
         ``` bash
-        curl http://pi.hole:8080/admin/api/whitelist/exact \
-             -X PUT \
+        curl -X POST http://pi.hole:8080/admin/api/whitelist/exact \
              -H "Authorization: Token <your-access-token>" \
              -H "Content-Type: application/json" \
              -d '{"domain":"whitelisted.com", "enabled":true, "comment":"Some text"}'
@@ -201,7 +208,7 @@ Name | Required | Type | Description | Default | Example
         HEADERS = {'Authorization': f'Token {TOKEN}'}
         data = {"domain":"whitelisted.com", "enabled":True, "comment":"Some text"}
 
-        response = requests.put(URL, json=data, headers=HEADERS)
+        response = requests.post(URL, json=data, headers=HEADERS)
 
         print(response.json())
         ```
@@ -211,10 +218,15 @@ Name | Required | Type | Description | Default | Example
     Response code: `HTTP/1.1 201 Created`
 
     ``` json
-    {
-        "key": "added",
-        "domain": "whitelisted.com"
-    }
+    [
+        {
+            "domain": "whitelisted.com",
+            "enabled": true,
+            "date_added": 1589108911,
+            "date_modified": 1589108911,
+            "comment": ""
+        }
+    ]
     ```
 
 !!! failure "Error response (duplicated domain)"
@@ -235,6 +247,8 @@ Name | Required | Type | Description | Default | Example
         }
     }
     ```
+
+    When using `PATCH` instead of `POST`, duplicate domains are silently replaced without triggering an error.
 <!-- markdownlint-enable code-block-style -->
 
 ---
@@ -265,8 +279,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
 
         ``` bash
         domain="whitelisted.com"
-        curl http://pi.hole:8080/admin/api/whitelist/exact/${domain} \
-             -X DELETE \
+        curl -X DELETE http://pi.hole:8080/admin/api/whitelist/exact/${domain} \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -274,8 +287,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
 
         ``` bash
         regex="$(echo -n "(^|\\.)facebook.com$" | jq -sRr '@uri')"
-        curl http://pi.hole:8080/admin/api/whitelist/exact/${regex} \
-             -X DELETE \
+        curl -X DELETE http://pi.hole:8080/admin/api/whitelist/exact/${regex} \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -314,14 +326,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
 
 !!! success "Success response"
 
-    Response code: `HTTP/1.1 200 OK`
-
-    ``` json
-    {
-        "key": "removed",
-        "domain": "whitelisted.com"
-    }
-    ```
+    Response code: `HTTP/1.1 204 No Content`
 
 !!! failure "Error response (database permission error)"
 

@@ -18,7 +18,7 @@ The Authorization HTTP header can be specified with `Token <your-access-token>` 
     === "cURL"
 
         ``` bash
-        curl http://pi.hole/admin/api/dns/status \
+        curl -X GET http://pi.hole/admin/api/dns/status \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -73,14 +73,16 @@ Some `4xx` errors that could be handled programmatically include an error code t
 
 Code | Description | Interpretation
 ---- | ----------- | --------------
-`200` | `OK` | Everything worked as expected.
-`400` | `Bad Request` | The request was unacceptable, often due to a missing required parameter.
-`401` | `Unauthorized` | No valid API key provided for endpoint requiring authorization.
-`402` | `Request Failed` | The parameters were valid but the request failed.
-`403` | `Forbidden` | The API key doesn't have permissions to perform the request.
-`404` | `Not Found` | The requested resource doesn't exist.
-`429` | `Too Many Requests` | Too many requests hit the API too quickly.
-`500`, `502`, `503`, `504` | `Server Errors` | Something went wrong on Pi-hole's end. (These are rare.)
+`200` | `OK` | Everything worked as expected
+`201` | `Content Created` | Added a new item
+`204` | `No Content` | Removed an item
+`400` | `Bad Request` | The request was unacceptable, often due to a missing required parameter
+`401` | `Unauthorized` | No valid API key provided for endpoint requiring authorization
+`402` | `Request Failed` | The parameters were valid but the request failed
+`403` | `Forbidden` | The API key doesn't have permissions to perform the request
+`404` | `Not Found` | The requested resource doesn't exist
+`429` | `Too Many Requests` | Too many requests hit the API too quickly
+`500`, `502`, `503`, `504` | `Server Errors` | Something went wrong on Pi-hole's end (These are rare)
 
 ### JSON response
 
@@ -93,7 +95,7 @@ The form of replies to successful requests strongly depends on the selected endp
 
     ``` json
     {
-      "status": "enabled"
+      "blocking": true
     }
     ```
 

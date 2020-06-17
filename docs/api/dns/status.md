@@ -18,7 +18,7 @@ None
     === "cURL"
 
         ``` bash
-        curl http://pi.hole:8080/admin/api/dns/blocking
+        curl -X GET http://pi.hole:8080/admin/api/dns/blocking
         ```
 
     === "Python 3"
@@ -39,7 +39,20 @@ None
 
     ``` json
     {
-        "status": "active"
+        "blocking": true,
+        "timer": null
+    }
+    ```
+
+    If there is currently a timer running, the reply will be like
+
+    ``` json
+    {
+        "blocking": false,
+        "timer": {
+            "delay": 5,
+            "blocking_target": true
+        }
     }
     ```
 <!-- markdownlint-enable code-block-style -->
@@ -52,10 +65,10 @@ Requires authorization: Yes
 
 ### Parameters
 
-Name | Required | Type | Description | Default | Example
----- | -------- | ---- | ----------- | ------- | -------
-`status` | Yes | String | Requested status | | `active` or `inactive`
-`delay` | Optional | Number | Requested delay until opposite status is active | `0` | `100` (seconds)
+Name | Required | Type | Description | Example
+---- | -------- | ---- | ----------- | -------
+`blocking` | Yes | Boolean | Requested status | `true`
+`delay` | Optional | Number | Requested delay until opposite status is active, running timer can be disabled by setting delay to `-1` | `100` (seconds)
 
 ### Example
 
@@ -65,11 +78,10 @@ Name | Required | Type | Description | Default | Example
     === "cURL"
 
         ``` bash
-        curl http://pi.hole:8080/admin/api/dns/blocking \
-             -X POST \
+        curl -X POST http://pi.hole:8080/admin/api/dns/blocking \
              -H "Authorization: Token <your-access-token>" \
              -H "Content-Type: application/json" \
-             -d '{"status":"active", "delay":30}'
+             -d '{"blocking":false, "delay":30}'
         ```
 
     === "Python 3"
@@ -80,7 +92,7 @@ Name | Required | Type | Description | Default | Example
         URL = 'http://pi.hole:8080/admin/api/dns/blocking'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
-        data = {"status":"active", "delay":30}
+        data = {"blocking":False, "delay":30}
 
         response = requests.post(URL, json=data, headers=HEADERS)
 
@@ -93,9 +105,15 @@ Name | Required | Type | Description | Default | Example
 
     ``` json
     {
-        "status": "active"
+        "blocking": false,
+        "timer": {
+            "delay": 30,
+            "blocking_target": true
+        }
     }
     ```
+
+    Remember that `timer` may be `null` if there is no active timer.
 <!-- markdownlint-enable code-block-style -->
 
 {!abbreviations.md!}

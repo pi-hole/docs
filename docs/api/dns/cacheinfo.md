@@ -18,7 +18,7 @@ None
     === "cURL"
 
         ``` bash
-        curl http://pi.hole:8080/admin/api/dns/cacheinfo \
+        curl -X GET http://pi.hole:8080/admin/api/dns/cacheinfo \
              -H "Authorization: Token <your-access-token>"
         ```
 
