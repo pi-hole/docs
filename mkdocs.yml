@@ -119,9 +119,9 @@ nav:
       - 'Examples': database/gravity/example.md
   - 'Pi-hole API':
     - 'Overview': api/index.md
-    - 'DNS':
-      - 'Status': api/dns/status.md
-      - 'Cache Info': api/dns/cacheinfo.md
+    - 'DNS Information':
+      - '/dns/blocking': api/dns/blocking.md
+      - '/dns/cache': api/dns/cache.md
     - 'Domain Lists': api/domainlists.md
     - 'FTL':
       - 'Network': api/tbd.md

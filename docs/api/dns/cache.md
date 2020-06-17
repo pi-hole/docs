@@ -1,8 +1,8 @@
 # DNS - Cache Info
 
-## GET: Obtain cache information
+## GET: Obtain information about Pi-hole's DNS cache
 
-Resource: `GET /admin/api/dns/cacheinfo`
+Resource: `GET /admin/api/dns/cache`
 
 Requires authorization: No
 
