@@ -119,13 +119,11 @@ nav:
       - 'Examples': database/gravity/example.md
   - 'Pi-hole API':
     - 'Overview': api/index.md
-    - 'DNS Information':
-      - '/dns/blocking': api/dns/blocking.md
-      - '/dns/cache': api/dns/cache.md
+    - 'Blocking status': api/dns/blocking.md
+    - 'Cache information': api/dns/cache.md
     - 'Domain Lists': api/domainlists.md
-    - 'FTL':
-      - 'Network': api/tbd.md
-      - 'Logs': api/tbd.md
+    - 'Network': api/tbd.md
+    - 'Logs': api/tbd.md
     - 'Statistics':
       - 'Summary': api/tbd.md
       - 'Over time': api/tbd.md
@@ -140,7 +138,6 @@ nav:
     - 'Configuration': ftldns/configfile.md
     - 'Interfaces': ftldns/interfaces.md
     - 'DNS resolver': ftldns/dns-resolver.md
-    - 'DNS cache': ftldns/dns-cache.md
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md

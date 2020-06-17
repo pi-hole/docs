@@ -13,12 +13,12 @@ The Pi-hole API uses API keys to authenticate requests. You can view your API ke
 The Authorization HTTP header can be specified with `Token <your-access-token>` to authenticate as a user and have the same permissions that the user itself.
 
 <!-- markdownlint-disable code-block-style -->
-!!! example active "Example request"
+???+ example active "Example request"
 
     === "cURL"
 
         ``` bash
-        curl -X GET http://pi.hole/admin/api/dns/status \
+        curl -X GET http://pi.hole/api/dns/status \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -27,7 +27,7 @@ The Authorization HTTP header can be specified with `Token <your-access-token>` 
         ``` python
         import requests
 
-        URL = 'http://pi.hole/admin/api/dns/status'
+        URL = 'http://pi.hole/api/dns/status'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -36,17 +36,17 @@ The Authorization HTTP header can be specified with `Token <your-access-token>` 
         print(response.json())
         ```
 
-!!! success "Example reply: Success"
+??? success "Example reply: Success"
 
     Response code: `HTTP/1.1 200 OK`
 
     ``` json
     {
-      "status": "enabled"
+      "blocking": true
     }
     ```
 
-!!! failure "Example reply: Error (unauthorized access)"
+??? failure "Example reply: Error (unauthorized access)"
 
     Response code: `HTTP/1.1 401 Unauthorized`
 
@@ -61,7 +61,7 @@ The Authorization HTTP header can be specified with `Token <your-access-token>` 
     ```
 <!-- markdownlint-enable code-block-style -->
 
-Most but not all endpoints require authentication. API requests requiring authentication will also fail if no key is supplied.
+Most but not all endpoints require authentication. API endpoints requiring authentication will fail with code `401 Unauthorized` if no key is supplied.
 
 ## Errors
 
@@ -69,7 +69,7 @@ Pi-hole uses conventional HTTP response codes to indicate the success or failure
 
 Some `4xx` errors that could be handled programmatically include an error code that briefly explains the error reported.
 
-### HTTP code summary
+## HTTP code summary
 
 Code | Description | Interpretation
 ---- | ----------- | --------------
@@ -84,12 +84,12 @@ Code | Description | Interpretation
 `429` | `Too Many Requests` | Too many requests hit the API too quickly
 `500`, `502`, `503`, `504` | `Server Errors` | Something went wrong on Pi-hole's end (These are rare)
 
-### JSON response
+## JSON response
 
 The form of replies to successful requests strongly depends on the selected endpoint, e.g.,
 
 <!-- markdownlint-disable code-block-style -->
-!!! success "Example reply: Success"
+???+ success "Example reply: Success"
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -99,9 +99,9 @@ The form of replies to successful requests strongly depends on the selected endp
     }
     ```
 
-In contrast, errors have a uniform appearance to ease a programatic treatment:
+In contrast, errors have a uniform style to ease their programatic treatment:
 
-!!! failure "Example reply: Error (unauthorized access)"
+???+ failure "Example reply: Error (unauthorized access)"
 
     ``` json
     {
@@ -112,18 +112,52 @@ In contrast, errors have a uniform appearance to ease a programatic treatment:
         }
     }
     ```
+
+    **Reply type**
+
+    Object
+
+    **Fields**
+
+    ??? info "Key describing the error (`"key": string`)"
+        This string may be used for internal categorization of error types
+
+        Examples for `key` are:
+
+        - `bad_request`
+
+            Possible reason: Payload is invalid for this endpoint
+
+        - `database_error`
+
+            Possible reason: Failed to read/write to the database
+
+    ??? info "Human-readable description of the error (`"message": string`)"
+        This string may be shown to the user for troubleshooting
+
+        Examples for `messages` are:
+
+        - `Could not read domains from database table`
+
+            Possible reason: Database is not readable
+
+        - `No request body data`
+
+            Possible reason: Payload is empty
+
+        - `Invalid request body data`
+
+            Possible reason: Payload is not valid JSON
+
+        - `No "domain" string in body data`
+
+            Possible reason: The required field `domain` is missing in the payload
+
+    ??? info "Additional data (`"data": [object|null]`)"
+
+        The field `data` may contain a JSON object. Its content depends on the error itself and may contain further details such as the interpreted user data. If no additional data is available for this endpoint, `null` is returned instead of an object.
 <!-- markdownlint-enable code-block-style -->
 
-The items of the `error` object are always as follows:
-
-Field | Type | Description
------ | ---- | -----------
-`key` | String | Standardized key describing the error
-`message` | String | Description of the error, may be shown to the user
-
-
-In addition, `data` may contain a JSON object. This depends on the error itself and may contain further details such as the interpreted user data. If no additional data is available for this endpoint, `null` is returned instead of an object.
-
-We recommend writing code that gracefully handles all possible API exceptions.
+We recommend writing code that gracefully handles all possible API exceptions. The Pi-hole API is designed to support this by standardized error messages and human-readable hints for errors.
 
 {!abbreviations.md!}

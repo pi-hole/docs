@@ -1,24 +1,16 @@
 # DNS - Status
 
-## GET: Obtain current blocking status
+## Obtain current blocking status
 
-Resource: `GET /admin/api/dns/blocking`
-
-Requires authorization: No
-
-### Parameters
-
-None
-
-### Examples
+- `GET /api/dns/blocking`
 
 <!-- markdownlint-disable code-block-style -->
-!!! example "Request"
+???+ example "Request"
 
     === "cURL"
 
         ``` bash
-        curl -X GET http://pi.hole:8080/admin/api/dns/blocking
+        curl -X GET http://pi.hole:8080/api/dns/blocking
         ```
 
     === "Python 3"
@@ -26,14 +18,18 @@ None
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/dns/blocking'
+        URL = 'http://pi.hole:8080/api/dns/blocking'
 
         response = requests.get(URL)
 
         print(response.json())
         ```
 
-!!! success "Response"
+    **Parameters**
+
+    None
+
+??? success "Response"
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -55,33 +51,37 @@ None
         }
     }
     ```
+
+    **Fields**
+
+    ??? info "Status (`"blocking": boolean`)"
+        Current blocking status.
+
+    ??? info "Timer details (`"timer": [object|null]`)"
+        Additional information about a possibly temporary blocking mode. If no timer is running (the current blocking mode is permanent), `null` is returned instead of an object.
+
+        ??? info "Remaining time (`"delay": number`)"
+            Seconds until the blocking status indicated by `"blocking_target"` is applied.
+
+        ??? info "Remaining time (`"blocking_target": boolean`)"
+            Status applied after the timer elapsed.
+
 <!-- markdownlint-enable code-block-style -->
 
-## `POST`: Set/change blocking status
+## Change blocking status
 
-Resource: `POST /admin/api/dns/blocking`
-
-Requires authorization: Yes
-
-### Parameters
-
-Name | Required | Type | Description | Example
----- | -------- | ---- | ----------- | -------
-`blocking` | Yes | Boolean | Requested status | `true`
-`delay` | Optional | Number | Requested delay until opposite status is active, running timer can be disabled by setting delay to `-1` | `100` (seconds)
-
-### Example
+- `POST /api/dns/blocking`
 
 <!-- markdownlint-disable code-block-style -->
-!!! example "Request"
+???+ example "Request (required authorization)"
 
     === "cURL"
 
         ``` bash
-        curl -X POST http://pi.hole:8080/admin/api/dns/blocking \
+        curl -X POST http://pi.hole:8080/api/dns/blocking \
              -H "Authorization: Token <your-access-token>" \
              -H "Content-Type: application/json" \
-             -d '{"blocking":false, "delay":30}'
+             -d '{"blocking": false, "delay": 30}'
         ```
 
     === "Python 3"
@@ -89,17 +89,29 @@ Name | Required | Type | Description | Example
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/dns/blocking'
+        URL = 'http://pi.hole:8080/api/dns/blocking'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
-        data = {"blocking":False, "delay":30}
+        data = {"blocking": False, "delay": 30}
 
         response = requests.post(URL, json=data, headers=HEADERS)
 
         print(response.json())
         ```
 
-!!! success "Response"
+    **Required parameters**
+
+    ??? info "Status (`"blocking": boolean`)"
+        Blocking status to be applied. When requesting the same status as is already set, a possibly running timer is disabled.
+
+    **Optional parameters**
+
+    ??? info "Timer delay (`"delay": number`)"
+        Delay until the previous blocking status is re-applied. This can be used to disable Pi-hole's blocking temporarily. Subsequent requests overwrite previous timers. When omitting this value, a possibly running timer is disabled.
+
+        This setting has no effect when requesting the same blocking state that is already active.
+
+??? success "Response"
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -113,7 +125,9 @@ Name | Required | Type | Description | Example
     }
     ```
 
-    Remember that `timer` may be `null` if there is no active timer.
+    **Fields**
+
+    See description of the `GET` request above. Remember that `timer` may be `null` if there is no active timer.
 <!-- markdownlint-enable code-block-style -->
 
 {!abbreviations.md!}

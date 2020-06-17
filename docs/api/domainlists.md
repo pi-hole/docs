@@ -1,29 +1,19 @@
 # DNS - Domain Lists
 
-## GET: List all items
+## List all items
 
-Resources:
-
-- `GET /admin/api/whitelist/exact`
-- `GET /admin/api/whitelist/regex`
-- `GET /admin/api/blacklist/exact`
-- `GET /admin/api/blacklist/regex`
-
-Requires authorization: Yes
-
-### Parameters
-
-None
-
-### Example
+- `GET /api/whitelist/exact`
+- `GET /api/whitelist/regex`
+- `GET /api/blacklist/exact`
+- `GET /api/blacklist/regex`
 
 <!-- markdownlint-disable code-block-style -->
-!!! example "Request"
+???+ example "Request (required authorization)"
 
     === "cURL"
 
         ``` bash
-        curl -X GET http://pi.hole:8080/admin/api/whitelist/exact \
+        curl -X GET http://pi.hole:8080/api/whitelist/exact \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -32,7 +22,7 @@ None
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/whitelist/exact'
+        URL = 'http://pi.hole:8080/api/whitelist/exact'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -41,7 +31,11 @@ None
         print(response.json())
         ```
 
-!!! success "Success response"
+    **Parameters**
+
+    None
+
+??? success "Success response"
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -59,12 +53,33 @@ None
             "enabled": false,
             "date_added": 1589104951,
             "date_modified": 1589104951,
-            "comment": ""
+            "comment": null
         }
     ]
     ```
 
-!!! failure "Error response (database not available)"
+    **Reply type**
+
+    Array of objects (may be empty if no item of the requested flavor exist)
+
+    **Fields**
+
+    ??? info "Domain/regular expression (`"domain": string`)"
+        Item depending on the list type.
+
+    ??? info "Enabled (`"enabled": boolean`)"
+        Whether this item is enabled or disabled.
+
+    ??? info "Addition time (`"date_added": number`)"
+        Unix timestamp of addition of this item to Pi-hole's database.
+
+    ??? info "Modification time (`"date_modified": number`)"
+        Unix timestamp of modification of this item in Pi-hole's database.
+
+    ??? info "Comment (`"comment": [null|string]`)"
+        User-provided free-text comment for this item. May be `null` if not specified.
+
+??? failure "Error response"
 
     Response code: `HTTP/1.1 402 - Request failed`
 
@@ -81,30 +96,20 @@ None
     ```
 <!-- markdownlint-enable code-block-style -->
 
-## GET: List specific item
+## List specific item
 
-Resources:
-
-- `GET /admin/api/whitelist/exact/<domain>`
-- `GET /admin/api/whitelist/regex/<domain>`
-- `GET /admin/api/blacklist/exact/<domain>`
-- `GET /admin/api/blacklist/regex/<domain>`
-
-Requires authorization: Yes
-
-### Parameters
-
-The domain/regex to be listed is specified through the URL (`<domain>`).
-
-### Example
+- `GET /api/whitelist/exact/<domain>`
+- `GET /api/whitelist/regex/<domain>`
+- `GET /api/blacklist/exact/<domain>`
+- `GET /api/blacklist/regex/<domain>`
 
 <!-- markdownlint-disable code-block-style -->
-!!! example "Request"
+???+ example "Request (required authorization)"
 
     === "cURL"
 
         ``` bash
-        curl -X GET http://pi.hole:8080/admin/api/whitelist/exact/whitelisted.com \
+        curl -X GET http://pi.hole:8080/api/whitelist/exact/whitelisted.com \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -113,7 +118,7 @@ The domain/regex to be listed is specified through the URL (`<domain>`).
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/whitelist/exact/'
+        URL = 'http://pi.hole:8080/api/whitelist/exact/'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -123,7 +128,11 @@ The domain/regex to be listed is specified through the URL (`<domain>`).
         print(response.json())
         ```
 
-!!! success "Success response"
+    **Parameters**
+
+    Specify the requested item through the URL (`<domain>`)
+
+??? success "Success response"
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -139,7 +148,11 @@ The domain/regex to be listed is specified through the URL (`<domain>`).
     ]
     ```
 
-!!! failure "Error response (database not available)"
+    **Fields**
+
+    See description of the `GET` request above.
+
+??? failure "Error response"
 
     Response code: `HTTP/1.1 402 - Request failed`
 
@@ -156,46 +169,32 @@ The domain/regex to be listed is specified through the URL (`<domain>`).
     ```
 <!-- markdownlint-enable code-block-style -->
 
-## POST/PATCH: Add item
-
-Resources:
+## Add/update item
 
 **Create new entry (error on existing identical record)**
 
-- `POST /admin/api/whitelist/exact`
-- `POST /admin/api/whitelist/regex`
-- `POST /admin/api/blacklist/exact`
-- `POST /admin/api/blacklist/regex`
+- `POST /api/whitelist/exact`
+- `POST /api/whitelist/regex`
+- `POST /api/blacklist/exact`
+- `POST /api/blacklist/regex`
 
 **Create new or update existing entry (no error on existing record)**
 
-- `PATCH /admin/api/whitelist/exact`
-- `PATCH /admin/api/whitelist/regex`
-- `PATCH /admin/api/blacklist/exact`
-- `PATCH /admin/api/blacklist/regex`
-
-Requires authorization: Yes
-
-### Parameters
-
-Name | Required | Type | Description | Default | Example
----- | -------- | ---- | ----------- | ------- | -------
-`domain` | Yes | String | Domain to be added |  |`whitelisted.com`
-`enabled` | Optional | Boolean | Should this domain be used? | `true` | `true`
-`comment` | Optional | String | Comment for this domain | `null` | `Some text`
-
-### Example
+- `PATCH /api/whitelist/exact`
+- `PATCH /api/whitelist/regex`
+- `PATCH /api/blacklist/exact`
+- `PATCH /api/blacklist/regex`
 
 <!-- markdownlint-disable code-block-style -->
-!!! example "Request"
+???+ example "Request (required authorization)"
 
     === "cURL"
 
         ``` bash
-        curl -X POST http://pi.hole:8080/admin/api/whitelist/exact \
+        curl -X POST http://pi.hole:8080/api/whitelist/exact \
              -H "Authorization: Token <your-access-token>" \
              -H "Content-Type: application/json" \
-             -d '{"domain":"whitelisted.com", "enabled":true, "comment":"Some text"}'
+             -d '{"domain": "whitelisted.com", "enabled": true, "comment": "Some text"}'
         ```
 
     === "Python 3"
@@ -203,17 +202,30 @@ Name | Required | Type | Description | Default | Example
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/whitelist/exact'
+        URL = 'http://pi.hole:8080/api/whitelist/exact'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
-        data = {"domain":"whitelisted.com", "enabled":True, "comment":"Some text"}
+        data = {"domain": "whitelisted.com", "enabled": True, "comment": "Some text"}
 
         response = requests.post(URL, json=data, headers=HEADERS)
 
         print(response.json())
         ```
 
-!!! success "Success response"
+    **Required parameters**
+
+    ??? info "Domain/regular expression (`"domain": string`)"
+        Domain or (JSON-escaped) regular expression to be added to the database.
+
+    **Optional parameters**
+
+    ??? info "Enabled (`"enabled": boolean`)"
+        Whether this item should be added as enabled or disabled.
+
+    ??? info "Comment (`"comment": string`)"
+        User-provided free-text comment for this item.
+
+??? success "Success response"
 
     Response code: `HTTP/1.1 201 Created`
 
@@ -229,7 +241,11 @@ Name | Required | Type | Description | Default | Example
     ]
     ```
 
-!!! failure "Error response (duplicated domain)"
+    **Fields**
+
+    See description of the `GET` request above.
+
+??? failure "Error response"
 
     Response code: `HTTP/1.1 402 - Request failed`
 
@@ -248,30 +264,21 @@ Name | Required | Type | Description | Default | Example
     }
     ```
 
-    When using `PATCH` instead of `POST`, duplicate domains are silently replaced without triggering an error.
+    !!! hint "Hint: Use `PATCH` instead of `POST`"
+        When using `PATCH` instead of `POST`, duplicate domains are silently replaced without issuing an error.
 <!-- markdownlint-enable code-block-style -->
 
 ---
 
-## DELETE: Remove item
+## Remove item
 
-Resources:
-
-- `DELETE /admin/api/whitelist/exact/<domain>`
-- `DELETE /admin/api/whitelist/regex/<domain>`
-- `DELETE /admin/api/blacklist/exact/<domain>`
-- `DELETE /admin/api/blacklist/regex/<domain>`
-
-Requires authorization: Yes
-
-### Parameters
-
-The domain/regex to be removed is specified through the URL (`<domain>`).
-
-### Example request
+- `DELETE /api/whitelist/exact/<domain>`
+- `DELETE /api/whitelist/regex/<domain>`
+- `DELETE /api/blacklist/exact/<domain>`
+- `DELETE /api/blacklist/regex/<domain>`
 
 <!-- markdownlint-disable code-block-style -->
-!!! example "Request"
+???+ example "Request (required authorization)"
 
     === "cURL"
 
@@ -279,7 +286,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
 
         ``` bash
         domain="whitelisted.com"
-        curl -X DELETE http://pi.hole:8080/admin/api/whitelist/exact/${domain} \
+        curl -X DELETE http://pi.hole:8080/api/whitelist/exact/${domain} \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -287,7 +294,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
 
         ``` bash
         regex="$(echo -n "(^|\\.)facebook.com$" | jq -sRr '@uri')"
-        curl -X DELETE http://pi.hole:8080/admin/api/whitelist/exact/${regex} \
+        curl -X DELETE http://pi.hole:8080/api/whitelist/exact/${regex} \
              -H "Authorization: Token <your-access-token>"
         ```
 
@@ -298,7 +305,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/admin/api/whitelist/exact/'
+        URL = 'http://pi.hole:8080/api/whitelist/exact/'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -314,7 +321,7 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
         import requests
         import urllib
 
-        URL = 'http://pi.hole:8080/admin/api/whitelist/exact/'
+        URL = 'http://pi.hole:8080/api/whitelist/exact/'
         TOKEN = '<your-access-token>'
         HEADERS = {'Authorization': f'Token {TOKEN}'}
 
@@ -324,11 +331,15 @@ The domain/regex to be removed is specified through the URL (`<domain>`).
         print(response.json())
         ```
 
-!!! success "Success response"
+    **Parameters**
+
+    Specify the requested item through the URL (`<domain>`)
+
+??? success "Success response"
 
     Response code: `HTTP/1.1 204 No Content`
 
-!!! failure "Error response (database permission error)"
+??? failure "Error response (database permission error)"
 
     Response code: `HTTP/1.1 402 - Request failed`
 
