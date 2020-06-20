@@ -7,8 +7,8 @@ remote_branch: gh-pages
 theme:
   name: 'material'
   custom_dir: overrides
-#  icon:
-#    repo: fontawesome/brands/github-alt
+  palette:
+    scheme: preference
   favicon: 'images/favicon.ico'
   logo: 'images/logo.svg'
   language: 'en'
