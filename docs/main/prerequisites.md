@@ -34,7 +34,9 @@ The following operating systems are **officially** supported:
 
 Following packages are needed and **will be installed automatically** only if you're using installation script with a build in web server, otherwise, please install them manually.
 
-    php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl
+```bash
+php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl
+```
 
 ##### Note
 
