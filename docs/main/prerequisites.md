@@ -30,6 +30,17 @@ The following operating systems are **officially** supported:
 | Fedora       | 31 / 32          | ARM / x86_64        |
 | CentOS       | 7 / 8            | x86_64              |
 
+#### Necessary packages
+
+Following packages are needed and **will be installed automatically** only if you're using installation script with a build in web server, otherwise, please install them manually.
+
+    php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl
+
+##### Note
+
+- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with `7.0`.**
+- The `php7.3-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
+
 ### IP Addressing
 
 Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine). Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
