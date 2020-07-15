@@ -94,6 +94,9 @@ markdown_extensions:
   # Tabbed provides a syntax to easily add tabbed Markdown content.
   # (https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/)
   - pymdownx.tabbed
+  # InlineHilite is an inline code highlighter inspired by CodeHilite.
+  # (https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/)
+  - pymdownx.inlinehilite
 
 nav:
   - Overview: index.md

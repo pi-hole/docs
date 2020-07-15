@@ -52,6 +52,10 @@
     }
     ```
 
+    **Reply type**
+
+    Object
+
     **Fields**
 
     ??? info "Status (`"blocking": boolean`)"
@@ -73,7 +77,7 @@
 - `POST /api/dns/blocking`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (required authorization)"
+???+ example "Request (requires authorization)"
 
     === "cURL"
 
@@ -124,6 +128,10 @@
         }
     }
     ```
+
+    **Reply type**
+
+    Object
 
     **Fields**
 

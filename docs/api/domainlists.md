@@ -8,7 +8,7 @@
 - `GET /api/blacklist/regex`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (required authorization)"
+???+ example "Request (requires authorization)"
 
     === "cURL"
 
@@ -73,8 +73,12 @@
     ??? info "Addition time (`"date_added": number`)"
         Unix timestamp of addition of this item to Pi-hole's database.
 
+        Use `#!bash date -d @1589108911` to obtain a human-readable datetime string.
+
     ??? info "Modification time (`"date_modified": number`)"
         Unix timestamp of modification of this item in Pi-hole's database.
+
+        Use `#!bash date -d @1589104951` to obtain a human-readable datetime string.
 
     ??? info "Comment (`"comment": [null|string]`)"
         User-provided free-text comment for this item. May be `null` if not specified.
@@ -104,7 +108,7 @@
 - `GET /api/blacklist/regex/<domain>`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (required authorization)"
+???+ example "Request (requires authorization)"
 
     === "cURL"
 
@@ -186,7 +190,7 @@
 - `PATCH /api/blacklist/regex`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (required authorization)"
+???+ example "Request (requires authorization)"
 
     === "cURL"
 
@@ -278,7 +282,7 @@
 - `DELETE /api/blacklist/regex/<domain>`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (required authorization)"
+???+ example "Request (requires authorization)"
 
     === "cURL"
 
@@ -339,7 +343,7 @@
 
     Response code: `HTTP/1.1 204 No Content`
 
-??? failure "Error response (database permission error)"
+??? failure "Error response"
 
     Response code: `HTTP/1.1 402 - Request failed`
 

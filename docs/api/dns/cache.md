@@ -5,7 +5,7 @@
 - `GET /api/dns/cache`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (required authorization)"
+???+ example "Request (requires authorization)"
 
     === "cURL"
 
@@ -53,13 +53,13 @@
     ??? info "DNS cache size (`"cache_size": number`)"
         Size of the DNS domain cache, defaulting to 10,000 entries. You typically specify this number directly in `/etc/dnsmasq.d/01-pihole.conf`. It is the number of entries that can be actively cached at the same time. There is no benefit in enlarging this number *except* if the DNS cache evictions count is larger than zero.
 
-        This information may also be queried using `dig +short chaos txt cachesize.bind`
+        This information may also be queried using `#!bash dig +short chaos txt cachesize.bind`
 
     ??? info "DNS cache insertions (`"cache_inserted": number`)"
 
         Number of total insertions into the cache. This number can be substantially larger than DNS cache size as expiring cache entries naturally make room for new insertions over time. Each lookup with a non-zero TTL will be cached.
 
-        This information may also be queried using `dig +short chaos txt insertions.bind`
+        This information may also be queried using `#!bash dig +short chaos txt insertions.bind`
 
     ??? info "DNS cache evictions (`"cache_evicted": number`)"
 
@@ -67,7 +67,7 @@
 
         The cache size should be increased when the number of evicted cache entries is larger than zero.
 
-        This information may also be queried using `dig +short chaos txt evictions.bind`
+        This information may also be queried using `#!bash dig +short chaos txt evictions.bind`
 
 <!-- markdownlint-enable code-block-style -->
 

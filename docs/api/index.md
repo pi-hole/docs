@@ -99,6 +99,10 @@ The form of replies to successful requests strongly depends on the selected endp
     }
     ```
 
+    **Reply type**
+
+    Object or Array
+
 In contrast, errors have a uniform style to ease their programatic treatment:
 
 ???+ failure "Example reply: Error (unauthorized access)"
