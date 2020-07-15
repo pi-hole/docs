@@ -25,10 +25,24 @@ The following operating systems are **officially** supported:
 | Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
 | Raspbian     | Stretch / Buster | ARM                 |
-| Ubuntu       | 16.x / 18.x      | ARM / x86_64        |
+| Ubuntu       | 16.x / 18.x / 20.x      | ARM / x86_64        |
 | Debian       | 9 / 10           | ARM / x86_64 / i386 |
 | Fedora       | 31 / 32          | ARM / x86_64        |
 | CentOS       | 7 / 8            | x86_64              |
+
+<!-- markdownlint-disable code-block-style -->
+!!! info
+    One of the first tasks the install script has is to determine your Operating System's compatibility with Pi-hole
+
+    It is possible that Pi-hole will install and run on variants of the above, but we cannot test them all. If you are using an operating system not on this list you may see the following message:
+
+    ![non-supported OS warning](../images/OSWarning.png)
+
+    You can disable this check by setting an environment variable named `PIHOLE_SKIP_OS_CHECK` to `true`, however Pi-hole may have issues installing.
+    If you choose to use this environment variable, please use the [Community Help](https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/36) topic on Discourse to troubleshoot any installation issues you may (or may not!) have.
+
+
+<!-- markdownlint-enable code-block-style -->
 
 ### IP Addressing
 
