@@ -23,7 +23,7 @@ Use this option to disable deep CNAME inspection. This might be beneficial for v
 
 Up to how many hours of queries should be imported from the database and logs? Maximum is 24.0
 
-#### `PRIVACYLEVEL=0|1|2|3|4` {#privacylevel data-toc-label='Privacy Level'}
+#### `PRIVACYLEVEL=0|1|2|3` {#privacylevel data-toc-label='Privacy Level'}
 
 Which privacy level is used?<br>
 **[More details](privacylevels.md)**
@@ -34,7 +34,7 @@ Should `FTL` ignore queries coming from the local machine?
 
 #### `AAAA_QUERY_ANALYSIS=yes|no` {#aaaa_query_analysis data-toc-label='AAAA Query Analysis'}
 
-Allow `FTL` to analyze AAAA queries from pihole.log?
+Should FTL analyze `AAAA` queries? The DNS server will handle `AAAA` queries the same way, reglardless of this setting. All this does is ignoring `AAAA` queries when computing the statistics of Pi-hole. This setting is considered obsolete may may be removed in a future version.
 
 #### `ANALYZE_ONLY_A_AND_AAAA=false|true` {#analyze_only_a_and_aaaa data-toc-label='Analyze A and AAAA Only'}
 
