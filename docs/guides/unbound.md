@@ -133,7 +133,7 @@ server:
 Start your local recursive server and test that it's operational:
 
 ```bash
-sudo service unbound start
+sudo service unbound restart
 dig pi-hole.net @127.0.0.1 -p 5335
 ```
 
