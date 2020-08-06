@@ -68,7 +68,7 @@ sudo mv root.hints /var/lib/unbound/
 
 Highlights:
 
-- Listen only for queries from the local Pi-hole installation (on port 5335)
+- Listen only for queries from the local Pi-hole installation (on port 8953)
 - Listen for both UDP and TCP requests
 - Verify DNSSEC signatures, discarding BOGUS domains
 - Apply a few security and privacy tricks
@@ -82,7 +82,7 @@ server:
     verbosity: 0
 
     interface: 127.0.0.1
-    port: 5335
+    port: 8953
     do-ip4: yes
     do-udp: yes
     do-tcp: yes
@@ -134,26 +134,61 @@ Start your local recursive server and test that it's operational:
 
 ```bash
 sudo service unbound restart
-dig pi-hole.net @127.0.0.1 -p 5335
+dig pi-hole.net @127.0.0.1 -p 8953
 ```
 
 The first query may be quite slow, but subsequent queries, also to other domains under the same TLD, should be fairly quick.
-
+pihole-ftl.db
 ### Test validation
 
 You can test DNSSEC validation using
 
 ```bash
-dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5335
-dig sigok.verteiltesysteme.net @127.0.0.1 -p 5335
+dig sigfail.verteiltesysteme.net @127.0.0.1 -p 8953
+dig sigok.verteiltesysteme.net @127.0.0.1 -p 8953
 ```
 
 The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
 
 ### Configure Pi-hole
 
-Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
+Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#8953` as the Custom DNS (IPv4):
 
 ![Upstream DNS Servers Configuration](../images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
+
+### Add logging to unbound
+
+!!! warning
+	It's not recommonded to increase verbosity for daily use, as unbound logs a lot. But it might be helpful for debugging purposes.
+
+There are five levels of verbosity
+```
+Level 0 means no verbosity, only errors
+Level 1 gives operational information
+Level 2 gives  detailed operational  information
+Level 3 gives query level information
+Level 4 gives  algorithm  level  information
+Level 5 logs client identification for cache misses
+```
+First, specify the log file and the verbosity level in the `server` part of
+`/etc/unbound/unbound.conf.d/pi-hole.conf`:
+
+```ini
+server:
+    # If no logfile is specified, syslog is used
+    logfile: "/var/log/unbound/unbound.log"
+    verbosity: 1
+```
+Second, create log dir and file, set permissions:
+```
+sudo mkdir /var/log/unbound
+sudo touch /var/log/unbound/unbound.log
+sudo chown unbound /var/log/unbound/unbound.log 
+```
+
+Third, restart unbound:
+```
+sudo service unbound restart
+```
