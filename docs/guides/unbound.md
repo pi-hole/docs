@@ -161,9 +161,10 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 ### Add logging to unbound
 
 !!! warning
-	It's not recommonded to increase verbosity for daily use, as unbound logs a lot. But it might be helpful for debugging purposes.
+    It's not recommonded to increase verbosity for daily use, as unbound logs a lot. But it might be helpful for debugging purposes.
 
 There are five levels of verbosity
+
 ```
 Level 0 means no verbosity, only errors
 Level 1 gives operational information
@@ -172,6 +173,7 @@ Level 3 gives query level information
 Level 4 gives  algorithm  level  information
 Level 5 logs client identification for cache misses
 ```
+
 First, specify the log file and the verbosity level in the `server` part of
 `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 
@@ -181,14 +183,17 @@ server:
     logfile: "/var/log/unbound/unbound.log"
     verbosity: 1
 ```
+
 Second, create log dir and file, set permissions:
+
 ```
 sudo mkdir /var/log/unbound
 sudo touch /var/log/unbound/unbound.log
-sudo chown unbound /var/log/unbound/unbound.log 
+sudo chown unbound /var/log/unbound/unbound.log
 ```
 
 Third, restart unbound:
+
 ```
 sudo service unbound restart
 ```
