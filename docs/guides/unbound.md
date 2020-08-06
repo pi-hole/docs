@@ -138,7 +138,7 @@ dig pi-hole.net @127.0.0.1 -p 5335
 ```
 
 The first query may be quite slow, but subsequent queries, also to other domains under the same TLD, should be fairly quick.
-pihole-ftl.db
+
 ### Test validation
 
 You can test DNSSEC validation using
