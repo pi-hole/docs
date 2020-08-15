@@ -15,6 +15,13 @@ How should `FTL` reply to blocked queries?<br>
 
 Use this option to disable deep CNAME inspection. This might be beneficial for very low-end devices
 
+#### `BLOCK_ESNI=true|false` {#block_esni data-toc-label='ESNI blocking'}
+
+[Encrypted Server Name Indication (ESNI)](https://tools.ietf.org/html/draft-ietf-tls-esni-06) is certainly a good step into the right direction to enhance privacy on the web. It prevents on-path observers, including ISPs, coffee shop owners and firewalls, from intercepting the TLS Server Name Indication (SNI) extension by encrypting it. This prevents the SNI from being used to determine which websites users are visiting.
+
+ESNI will obviously cause issues for `pixelserv-tls` which will be unable to generate matching certificates on-the-fly when it cannot read the SNI. Cloudflare and Firefox are already enabling ESNI.
+According to the IEFT draft (link above), we can easily restore `piselserv-tls`'s operation by replying `NXDOMAIN` to `_esni.` subdomains of blocked domains as this mimics a "not configured for this domain" behavior.
+
 ---
 
 ### Statistics settings
@@ -63,6 +70,28 @@ Should `FTL` try to resolve IPv4 addresses to hostnames?
 #### `DELAY_STARTUP=0` {#delay_startup data-toc-label='Delay resolver startup'}
 
 In certain configurations, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This is typically found when network interfaces appear only late during system startup and the interface startup priorities are configured incorrectly. This setting takes any integer value between 0 and 300 seconds
+
+#### `NICE=-10` {#nice data-toc-label='Set niceness'}
+
+Can be used to change the niceness of Pi-hole FTL. Defaults to `-10` and can be
+disabled altogether by setting a value of `-999`.
+
+The nice value is an attribute that can be used to influence the CPU scheduler
+to favor or disfavor a process in scheduling decisions. The range of the nice
+value varies across UNIX systems. On modern Linux, the range is `-20` (high
+priority = not very nice to other processes) to `+19` (low priority).
+
+#### `NAMES_FROM_NETDB=true|false` {#names_from_netdb data-toc-label='Load names from network table'}
+
+Control whether FTL should use the fallback option to try to obtain client names
+from checking the network table. This behavior can be disabled
+with this option
+
+Assume an IPv6 client without a host names. However, the network table knows -
+though the client's MAC address - that this is the same device where we have a
+host name for another IP address (e.g., a DHCP server managed IPv4 address). In
+this case, we use the host name associated to the other address as this is the
+same device.
 
 ---
 
