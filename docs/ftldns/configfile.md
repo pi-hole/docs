@@ -11,11 +11,11 @@ Possible settings (**the option shown first is the default**):
 How should `FTL` reply to blocked queries?<br>
 **[More details](blockingmode.md)**
 
-#### `CNAME_DEEP_INSPECT=true|false` {#cname_deep_inspect data-toc-label='Deep CNAME inspection'}
+#### `CNAME_DEEP_INSPECT=true|false` ([#663](https://github.com/pi-hole/FTL/pull/663)) {#cname_deep_inspect data-toc-label='Deep CNAME inspection'}
 
 Use this option to disable deep CNAME inspection. This might be beneficial for very low-end devices
 
-#### `BLOCK_ESNI=true|false` {#block_esni data-toc-label='ESNI blocking'}
+#### `BLOCK_ESNI=true|false` ([#733](https://github.com/pi-hole/FTL/pull/733)) {#block_esni data-toc-label='ESNI blocking'}
 
 [Encrypted Server Name Indication (ESNI)](https://tools.ietf.org/html/draft-ietf-tls-esni-06) is certainly a good step into the right direction to enhance privacy on the web. It prevents on-path observers, including ISPs, coffee shop owners and firewalls, from intercepting the TLS Server Name Indication (SNI) extension by encrypting it. This prevents the SNI from being used to determine which websites users are visiting.
 
@@ -67,11 +67,11 @@ Should `FTL` try to resolve IPv6 addresses to hostnames?
 
 Should `FTL` try to resolve IPv4 addresses to hostnames?
 
-#### `DELAY_STARTUP=0` {#delay_startup data-toc-label='Delay resolver startup'}
+#### `DELAY_STARTUP=0` ([#716](https://github.com/pi-hole/FTL/pull/716)) {#delay_startup data-toc-label='Delay resolver startup'}
 
 In certain configurations, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This is typically found when network interfaces appear only late during system startup and the interface startup priorities are configured incorrectly. This setting takes any integer value between 0 and 300 seconds
 
-#### `NICE=-10` {#nice data-toc-label='Set niceness'}
+#### `NICE=-10` ([#798](https://github.com/pi-hole/FTL/pull/798)) {#nice data-toc-label='Set niceness'}
 
 Can be used to change the niceness of Pi-hole FTL. Defaults to `-10` and can be
 disabled altogether by setting a value of `-999`.
@@ -81,7 +81,7 @@ to favor or disfavor a process in scheduling decisions. The range of the nice
 value varies across UNIX systems. On modern Linux, the range is `-20` (high
 priority = not very nice to other processes) to `+19` (low priority).
 
-#### `NAMES_FROM_NETDB=true|false` {#names_from_netdb data-toc-label='Load names from network table'}
+#### `NAMES_FROM_NETDB=true|false` ([#784](https://github.com/pi-hole/FTL/pull/784)) {#names_from_netdb data-toc-label='Load names from network table'}
 
 Control whether FTL should use the fallback option to try to obtain client names
 from checking the network table. This behavior can be disabled
@@ -215,11 +215,11 @@ Print information about capabilities granted to the pihole-FTL process. The curr
 
 Print file and line causing a `dnsmasq` event into FTL's log files. This is handy to implement additional hooks missing from FTL.
 
-#### `DEBUG_VECTORS=false|true` {#debug_vectors data-toc-label='Vectors'}
+#### `DEBUG_VECTORS=false|true` ([#725](https://github.com/pi-hole/FTL/pull/725)) {#debug_vectors data-toc-label='Vectors'}
 
 FTL uses dynamically allocated vectors for various tasks. This config option enables extensive debugging information such as information about allocation, referencing, deletion, and appending.
 
-#### `DEBUG_RESOLVER=false|true` {#debug_resolver data-toc-label='Resolver details'}
+#### `DEBUG_RESOLVER=false|true` ([#728](https://github.com/pi-hole/FTL/pull/728})) {#debug_resolver data-toc-label='Resolver details'}
 
 Extensive information about hostname resolution like which DNS servers are used in the first and second hostname resolving tries (only affecting internally generated PTR queries).
 
