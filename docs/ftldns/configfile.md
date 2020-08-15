@@ -186,11 +186,11 @@ Print information about capabilities granted to the pihole-FTL process. The curr
 
 Print file and line causing a `dnsmasq` event into FTL's log files. This is handy to implement additional hooks missing from FTL.
 
-#### `DEBUG_VECTORS=false|true` {#debug_vectors data-toc-label='Debug FTL vectors'}
+#### `DEBUG_VECTORS=false|true` {#debug_vectors data-toc-label='Debug vectors'}
 
 FTL uses dynamically allocated vectors for various tasks. This config option enables extensive debugging information such as information about allocation, referencing, deletion, and appending.
 
-#### `DEBUG_RESOLVER=false|true` {#debug_resolver data-toc-label='Debug FTL resolver'}
+#### `DEBUG_RESOLVER=false|true` {#debug_resolver data-toc-label='Debug resolver'}
 
 Extensive information about hostname resolution like which DNS servers are used in the first and second hostname resolving tries (only affecting internally generated PTR queries).
 
