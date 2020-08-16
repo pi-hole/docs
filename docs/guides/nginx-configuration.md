@@ -1,10 +1,15 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with `7.0`.**
-- The `php7.3-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
+- **Replace `7.4` with the PHP version installed, e.g. if you're using Raspbian Stretch (Debian 9), replace `7.4` with `7.0`.**
+- The `$phpver-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
+0. Set correct PHP version (Run    `php -v` to find which version you have installed)
+
+    ```bash
+    phpver=php7.4
+    ```
 
 1. Stop default lighttpd
 
@@ -15,7 +20,7 @@
 2. Install necessary packages
 
     ```bash
-    apt-get -y install nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
+    apt-get -y install nginx $phpver-fpm $phpver-cgi $phpver-xml $phpver-sqlite3 $phpver-intl apache2-utils
     ```
 
 3. Disable lighttpd at startup
@@ -24,10 +29,10 @@
     systemctl disable lighttpd
     ```
 
-4. Enable php7.3-fpm at startup
+4. Enable $phpver-fpm at startup
 
     ```bash
-    systemctl enable php7.3-fpm
+    systemctl enable $phpver-fpm
     ```
 
 5. Enable nginx at startup
@@ -57,7 +62,7 @@
         location ~ \.php$ {
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
-            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+            fastcgi_pass unix:/run/php/phpver-fpm.sock;
             fastcgi_param FQDN true;
             auth_basic "Restricted"; # For Basic Auth
             auth_basic_user_file /etc/nginx/.htpasswd; # For Basic Auth
@@ -82,37 +87,43 @@
     }
     ```
 
-7. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+7. Insert correct php version.
+
+    ```bash
+    sed -i "s/phpver/$phpver/g" /etc/nginx/sites-available/default
+    ```
+
+8. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
 
     ```bash
     htpasswd -c /etc/nginx/.htpasswd exampleuser
     ```
 
-8. Change ownership of the html directory to nginx user
+9. Change ownership of the html directory to nginx user
 
     ```bash
     chown -R www-data:www-data /var/www/html
     ```
 
-9. Make sure the html directory is writable
+10. Make sure the html directory is writable
 
     ```bash
     chmod -R 755 /var/www/html
     ```
 
-10. Grant the admin panel access to the gravity database
+11. Grant the admin panel access to the gravity database
 
     ```bash
     usermod -aG pihole www-data
     ```
 
-11. Start php7.3-fpm daemon
+12. Start $phpver-fpm daemon
 
     ```bash
-    service php7.3-fpm start
+    service $phpver-fpm start
     ```
 
-12. Start nginx web server
+13. Start nginx web server
 
     ```bash
     service nginx start
