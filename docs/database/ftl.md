@@ -68,8 +68,6 @@ ID | Interpretation
 
 The FTL table contains some data used by *FTL*DNS for determining which queries to save to the database. This table does not contain any entries of general interest.
 
-SQLite3 syntax used to create this table:
-
 ### Supported query types
 
 ID | Query Type
@@ -81,6 +79,13 @@ ID | Query Type
 5 | SOA
 6 | PTR
 7 | TXT
+8 | NAPTR
+9 | MX
+10 | DS
+11 | RRSIG
+12 | DNSKEY
+13 | OTHER (any query type not covered above)
+
 
 <!-- ID | 1 | 2 | 3 | 4 | 5 | 6 | 7 -->
 <!-- -- | -- | -- | -- | -- | -- | -- | -- -->
