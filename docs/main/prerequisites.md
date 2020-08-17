@@ -8,7 +8,7 @@ last_updated: May 25 2020
 
 Pi-hole is very lightweight and does not require much processing power
 
-- ~52MB of free space
+- ~52MB of free space (excl. long-term and gravity databases) 
 - 512MB RAM
 
 Despite the name, you are not limited to running Pi-hole on a Raspberry Pi.
