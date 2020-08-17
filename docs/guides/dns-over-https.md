@@ -131,6 +131,9 @@ proxy-dns-port: 5053
 proxy-dns-upstream:
   - https://1.1.1.1/dns-query
   - https://1.0.0.1/dns-query
+  #Uncomment following if you want to also want to use IPv6 for  external DOH lookups
+  #- https://[2606:4700:4700::1111]/dns-query
+  #- https://[2606:4700:4700::1001]/dns-query
 ```
 
 Now install the service via `cloudflared`'s [service command](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#service-command):
