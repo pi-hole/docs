@@ -8,7 +8,7 @@ last_updated: May 25 2020
 
 Pi-hole is very lightweight and does not require much processing power
 
-- Min. 2GB SD Card, 4GB recommended
+- Min. 2GB free space, 4GB recommended
 - 512MB RAM
 
 Despite the name, you are not limited to running Pi-hole on a Raspberry Pi.
