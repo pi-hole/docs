@@ -64,7 +64,10 @@ Due to the complexity of different ways of setting an IP address across differen
 | lighttpd            | 80  (HTTP)   | TCP      | If you have another Web server already running, such as Apache, Pi-hole's Web server will not work. You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running. |
 | pihole-FTL          | 4711    | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
 
-!!! info
+!!! warning "Firewall configuration"
+    Do ***never*** open the ports listed above to the Internet. They ***will*** lead to creating an [open resolver](http://openresolverproject.org/). Open resolvers are almost always a severe danger both for you and other users of the Internet. There is a lot that can go wrong and could make you becoming part of a botnet (more precisely a DNS amplification attack participant) very easily. When you need to use your Pi-hole from the Internet (whilst travelling, etc.), you ***must*** set up a VPN to do so (see, e.g., [our OpenVPN guide](../../guides/vpn/overview) on how to do this). This will give you safe and secure access from your Pi-hole for everywhere. This cannot be stressed enough.
+
+!!! info "Optional ports"
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
     The use of pihole-FTL  on ports _67_ or _547_ is optional, but required if you use the DHCP functions of Pi-hole.
 
