@@ -67,7 +67,7 @@ Due to the complexity of different ways of setting an IP address across differen
 <!-- markdownlint-disable code-block-style -->
 <!-- markdownlint-disable no-trailing-spaces -->
 !!! warning "Firewall configuration"
-    Do ***never*** open the ports listed above to the Internet. They ***will*** lead to creating an [open resolver](http://openresolverproject.org/). Open resolvers are almost always a severe danger both for you and other users of the Internet. There is a lot that can go wrong and could make you becoming part of a botnet (more precisely a DNS amplification attack participant) very easily. When you need to use your Pi-hole from the Internet (whilst travelling, etc.), you ***must*** set up a VPN to do so (see, e.g., [our OpenVPN guide](../../guides/vpn/overview) on how to do this). This will give you safe and secure access from your Pi-hole for everywhere. This cannot be stressed enough.
+    Do ***never*** open the ports listed above to the Internet. They ***will*** lead to creating an [open resolver](http://openresolverproject.org/). Open resolvers are almost always a severe danger both for you and other users of the Internet. There is a lot that can go wrong and could make you becoming part of a botnet (more precisely a DNS amplification attack participant) very easily. When you need to use your Pi-hole from the Internet (whilst travelling, etc.), you ***must*** set up a VPN to do so (see, e.g., [our OpenVPN guide](../../guides/vpn/overview) on how to do this). This will give you safe and secure access for your Pi-hole from everywhere. This cannot be stressed enough.
 
 !!! info "Random UDP ports"
     Note that Pi-hole uses, by default, *random* UDP ports to send outbound DNS queries from, and listen for their replies on. This makes Pi-hole more secure against DNS spoofing attacks and follows the recommendations from [RFC 5452](https://tools.ietf.org/html/rfc5452#section-4.5) *Measures for Making DNS More Resilient against Forged Answers*, Section 4.5:
@@ -77,7 +77,7 @@ Due to the complexity of different ways of setting an IP address across differen
     >
     > [...]
     
-    By default, FTL chooses a random port in the range of 1,024 - 65,535 (= 64,512 possibilities) to maxime resilience against forged DNS answers.
+    By default, FTL chooses a random source port in the range of 1,024 - 65,535 (= 64,512 possibilities) to maxime resilience against forged DNS answers.
 <!-- markdownlint-enable code-block-style -->
 <!-- markdownlint-enable no-trailing-spaces -->
 
