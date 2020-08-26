@@ -65,8 +65,11 @@ Please make sure you fork the repo and change the clone URL in the example below
     - One-shot run:
 
     ```bash
-    docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it python:2-alpine \
+    docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it nikolaik/python-nodejs:python3.7-nodejs12 \
       sh -c "pip install --user -r requirements.txt && \
+      /root/.local/bin/mkdocs build && \
+      npm ci && \
+      npm test && \
       /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
     ```
 
