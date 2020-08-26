@@ -187,7 +187,7 @@ server:
 Second, create log dir and file, set permissions:
 
 ```
-sudo mkdir /var/log/unbound
+sudo mkdir -p /var/log/unbound
 sudo touch /var/log/unbound/unbound.log
 sudo chown unbound /var/log/unbound/unbound.log
 ```
