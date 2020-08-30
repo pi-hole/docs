@@ -99,6 +99,15 @@ nav:
     - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
     - 'Configuring Traefik for Pi-hole (not in Docker)': guides/traefik-configuration-nodocker.md
     - 'Benchmarking': guides/benchmark.md
+    - 'Remote accessing Pi-hole using WireGuard':
+      - 'Overview': guides/wireguard/overview.md
+      - 'Concept': guides/wireguard/concept.md
+      - 'Install server': guides/wireguard/server.md
+      - 'Add client(s)': guides/wireguard/client.md
+      - 'Optional extra features':
+        - 'Make all local devices accessible': guides/wireguard/internal.md
+        - 'Reroute all Internet traffic': guides/wireguard/route-everything.md
+      - 'Troubleshooting': guides/wireguard/faq.md
     - 'Pi-hole and OpenVPN Server':
       - 'Overview': guides/vpn/overview.md
       - 'Installation': guides/vpn/installation.md
