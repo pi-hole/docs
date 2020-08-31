@@ -37,7 +37,16 @@ cloudflared -v
 
 **Note:** Binaries for other operating systems can be found here: <https://developers.cloudflare.com/argo-tunnel/downloads/>
 
-#### ARM architecture (Raspberry Pi)
+#### arm64 architecture (64-bit Raspberry Pi)
+
+```bash
+wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64
+sudo mv cloudflared /usr/local/bin
+sudo chmod +x /usr/local/bin/cloudflared
+cloudflared -v
+```
+
+#### armhf architecture (32-bit Raspberry Pi)
 
 Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working:
 
