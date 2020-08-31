@@ -51,7 +51,7 @@ systemctl start openvpn@server2.service
 *If your distribution does not have `systemctl` you may use the command below to start an OpenVPN daemon with your second configuration:*
 
 ```bash
-/usr/sbin/openvpn --daemon --writepid /var/run/openvpn/server2.pid --cd /etc/openvpn --config server2.conf --script-security 2
+/usr/sbin/openvpn --daemon --writepid /run/openvpn/server2.pid --cd /etc/openvpn --config server2.conf --script-security 2
 ```
 
 Finally, edit the existing `.ovpn` file used for the client connection. Update the port from the previous value to the port you used for the second instance of OpenVPN.
