@@ -13,6 +13,8 @@ Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/ann
 
 In the following sections, we will be covering how to install and configure this tool on `Pi-hole`.
 
+**Note:** The `cloudflared` binary will work with other DoH providers (for example, you could use `https://8.8.8.8/dns-query` for Google's DNS-Over-HTTPS service).
+
 ### Installing `cloudflared`
 
 The installation is fairly straightforward, however, be aware of what architecture you are installing on (`amd64` or `arm`).
@@ -66,7 +68,7 @@ sudo nano /etc/default/cloudflared
 Edit configuration file by copying the following in to `/etc/default/cloudflared`. This file contains the command-line options that get passed to cloudflared on startup:
 
 ```bash
-# Commandline args for cloudflared
+# Commandline args for cloudflared, using Cloudflare DNS
 CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
 ```
 
@@ -183,7 +185,13 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 
 ### Updating `cloudflared`
 
-#### Manual way
+The `cloudflared` tool will not receive updates through the package manager. However, you should keep the program update to date. You can either do this manually, or via a cron script.
+
+The procedure for updating depends on how you configured the `cloudflared` binary.
+
+#### If you configured cloudflared with your own service files
+
+If you configured `cloudflared` manually (by writing a systemd unit yourself), to update the binary you'll simply redownload the binary from the same link, and repeat the install procedure.
 
 ```bash
 wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
@@ -196,12 +204,26 @@ cloudflared -v
 sudo systemctl status cloudflared
 ```
 
-#### Automatic way
+#### If you configued cloudflared via `service install`
+
+If you configured `cloudflared` using their `service install` command, then you can use the built in update command.
 
 ```bash
 sudo cloudflared update
 sudo systemctl restart cloudflared
 ```
+
+#### Automating Cloudflared Updates
+
+If you want to have the system update `cloudflared` automatically, simply place the update commands for your configuration method in the
+file `/etc/cron.weekly/cloudflared-updater.sh`, and adjust permissions:
+
+```bash
+sudo chmod +x /etc/cron.weekly/cloudflared-updater.sh
+sudo chown root:root /etc/cron.weekly/cloudflared-updater.sh
+```
+
+The system will now attempt to update the cloudflared binary automatically, once per week.
 
 ### Uninstalling `cloudflared`
 
