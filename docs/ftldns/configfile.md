@@ -250,7 +250,7 @@ Specify the path and filename of FTL's SQLite3 long-term database. Setting this 
 
 ### File options
 
-#### `LOGFILE=/var/log/pihole-FTL.log` {#file_LOGFILE data-toc-label='Log file'}
+#### `LOGFILE=/var/log/pihole/pihole-FTL.log` {#file_LOGFILE data-toc-label='Log file'}
 
 The location of FTL's log file. If you want to move the log file to a different place, also consider [this FAQ article](https://discourse.pi-hole.net/t/moving-the-pi-hole-log-to-another-location-device/2041).
 

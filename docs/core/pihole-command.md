@@ -80,7 +80,7 @@ Help Command    | N/A
 Script Location | [`/opt/pihole/piholeLogFlush.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeLogFlush.sh)
 Example Usage   | [`pihole flush`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#flushing-the-log)
 
-When invoked manually, this command will allow you to empty Pi-hole's log, which is located at `/var/log/pihole.log`. The command also serves to rotate the log daily, if the `logrotate` application is installed.
+When invoked manually, this command will allow you to empty Pi-hole's log, which is located at `/var/log/pihole/pihole.log`. The command also serves to rotate the log daily, if the `logrotate` application is installed.
 
 ### Reconfigure
 
