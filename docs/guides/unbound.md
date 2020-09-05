@@ -62,8 +62,7 @@ If you are installing unbound from a package manager, it should install the `roo
 **Optional**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently. This is only necessary if you are not installing unbound from a package manager. If you do this optional step, you will need to uncomment the `root-hints:` configuration line in the suggested config file.
 
 ```bash
-wget -O root.hints https://www.internic.net/domain/named.root
-sudo mv root.hints /var/lib/unbound/
+sudo wget https://www.internic.net/domain/named.root -O /var/lib/unbound/root.hints
 ```
 
 ### Configure `unbound`
