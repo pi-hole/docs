@@ -125,6 +125,7 @@ nav:
   - 'Contributing':
     - 'Contributing on GitHub': guides/github/contributing.md
     - 'How to sign-off commits': guides/github/how-to-signoff.md
+    - 'How to fork and rebase': guides/github/how-to-fork-rebase.md
   - 'Guides':
     - 'DNS':
       - 'unbound': guides/dns/unbound.md
