@@ -18,7 +18,7 @@ Command-line arguments can be arbitrarily combined, e.g. `pihole-FTL debug test`
 
 ## File locations
 
-- `/var/log/pihole-FTL.log` log file
+- `/var/log/pihole/pihole-FTL.log` log file
 - `/run/pihole-FTL.pid` PID file
 - `/run/pihole-FTL.port` file containing port on which `FTL` is listening
 - `/run/pihole/FTL.sock` Unix socket
