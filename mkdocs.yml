@@ -92,14 +92,7 @@ nav:
     - 'How to sign-off commits': guides/github/how-to-signoff.md
   - 'Guides':
     - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
-    - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
-    - 'Upstream DNS Providers': guides/upstream-dns-providers.md
-    - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
-    - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
-    - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
-    - 'Configuring Traefik for Pi-hole (not in Docker)': guides/traefik-configuration-nodocker.md
-    - 'Benchmarking': guides/benchmark.md
-    - 'Remote accessing Pi-hole using WireGuard':
+    - 'Remote access using WireGuard':
       - 'Overview': guides/wireguard/overview.md
       - 'Concept': guides/wireguard/concept.md
       - 'Install server': guides/wireguard/server.md
@@ -108,6 +101,13 @@ nav:
         - 'Make all local devices accessible': guides/wireguard/internal.md
         - 'Reroute all Internet traffic': guides/wireguard/route-everything.md
       - 'Troubleshooting': guides/wireguard/faq.md
+    - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
+    - 'Upstream DNS Providers': guides/upstream-dns-providers.md
+    - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
+    - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
+    - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
+    - 'Configuring Traefik for Pi-hole (not in Docker)': guides/traefik-configuration-nodocker.md
+    - 'Benchmarking': guides/benchmark.md
     - 'Pi-hole and OpenVPN Server':
       - 'Overview': guides/vpn/overview.md
       - 'Installation': guides/vpn/installation.md

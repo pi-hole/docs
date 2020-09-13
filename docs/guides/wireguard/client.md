@@ -25,22 +25,64 @@ wg genpsk > NAME.psk
 
 ## Add client to server configuration
 
-Add the following to your `/etc/wireguard/wg0.conf`:
-
-``` toml
-[Peer]
-Address = 10.100.0.2/24      # Replace this IP address for subsequent clients
-AllowedIPs = 10.100.0.1/32   # This client is only allowed to talk to the server
-```
-
-Then run
+Add the new client by running the command:
 
 ``` bash
-echo "PublicKey = $(cat NAME.pub)" >> /etc/wireguard/wg0.conf
-echo "PresharedKey = $(cat NAME.psk)" >> /etc/wireguard/wg0.conf
+wg set wg0 peer "$(cat NAME.pub)" preshared-key NAME.psk allowed-ips 10.100.0.2/32
 ```
 
-to copy the clients's public and pre-shared keys into the server's config file.
+<!-- markdownlint-disable code-block-style -->
+!!! info "Client IP address"
+    Make sure to increment the IP address for any further client! We add the first client with the IP address `10.100.0.2` in this example (`10.100.0.1` is the server)
+<!-- markdownlint-disable code-block-style -->
+
+Restart your server to have it save your client to its config file:
+
+``` bash
+sudo service wg-quick@wg0 restart
+```
+
+<!-- markdownlint-disable code-block-style -->
+!!! info "Restarting is optional"
+    Note that restarting the WireGuard server is optional and can be skiped. The new client will be stored in the config file on the next restart of the system. However, in case of powerloss, you will loose your new client which is why we restarting the server here (if this can be afforded).
+<!-- markdownlint-disable code-block-style -->
+
+After a restart, the server file should look like:
+
+``` toml
+[Interface]
+Address = 10.100.0.1/24
+ListenPort = 44711
+SaveConfig = true
+PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
+
+[Peer]
+Address = 10.100.0.2/24
+AllowedIPs = 10.100.0.1/32
+PublicKey = F+80gbmHVlOrU+es13S18oMEX2g=     # PublicKey will be different
+PresharedKey = 8cLaY8Bkd7PiUs0izYBQYVTEFlA=  # PresharedKey will be different
+
+# Possibly further [Peer] lines
+```
+
+The command
+
+``` bash
+wg
+```
+
+should tell you about your new client:
+
+``` plain
+interface: wg0
+  public key: XYZ123456ABC=          ⬅ Your server's public key will be different
+  private key: (hidden)
+  listening port: 44711
+
+peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be different
+  preshared key: (hidden)
+  allowed ips: 10.100.0.2/32
+```
 
 ## Create client configuration
 
@@ -54,36 +96,24 @@ with the content
 
 ``` toml
 [Interface]
-Address = 10.100.0.2/24 # Replace this IP address for subsequent clients
-DNS = 10.100.0.1        # IP address of your Pi-hole
-Domains = ~.            # Enforce all DNS over the WireGuard connection
+Address = 10.100.0.2/32 # Replace this IP address for subsequent clients
+DNS = 10.100.0.1        # IP address of your server (Pi-hole)
 ```
+
+and add the private key of this client
 
 ``` bash
 echo "PrivateKey = $(cat NAME.key)" >> NAME.conf
 ```
 
-Then add your server as the only peer for this client:
+Next, add your server as peer for this client:
 
 ``` toml
 [Peer]
-AllowedIPs = 10.0.0.1/24
+AllowedIPs = 10.100.0.0/24
 Endpoint = [your public IP or domain]:44711
 PersistentKeepalive = 25
 ```
-
-Make sure that each IP is used only once.
-
-<!-- markdownlint-disable code-block-style -->
-??? info "About the `PersistentKeepalive` setting"
-    By default WireGuard peers remain silent while they do not need to communicate, so peers located behind a NAT and/or firewall may be unreachable from other peers until they reach out to other peers themselves (or the connection may time out).
-
-    When a peer is behind NAT or a firewall, it typically wants to be able to receive incoming packets even when it is not sending any packets itself. Because NAT and stateful firewalls keep track of "connections", if a peer behind NAT or a firewall wishes to receive incoming packets, he must keep the NAT/firewall mapping valid, by periodically sending keepalive packets. This is called *persistent keepalives*.
-
-    When this option is enabled, a keepalive packet is sent to the server endpoint once every interval seconds. A sensible interval that works with a wide variety of firewalls is `25` seconds. Setting it to 0 turns the feature off, which is the default.
-    
-    **TL;DR** If you're behind NAT or a firewall and you want to receive incoming connections long after network traffic has gone silent, this option will keep the "connection" open in the eyes of NAT.
-<!-- markdownlint-disable code-block-style -->
 
 Then add the public key of the server as well as the PSK for this connection:
 
@@ -93,6 +123,19 @@ echo "PresharedKey = $(cat NAME.psk)" >> NAME.conf
 ```
 
 That's it.
+
+<!-- markdownlint-disable code-block-style -->
+??? info "About the `PersistentKeepalive` setting"
+    By default WireGuard peers remain silent while they do not need to communicate, so peers located behind a NAT and/or firewall may be unreachable from other peers until they reach out to other peers themselves (or the connection may time out).
+
+    When a peer is behind NAT or a firewall, it typically wants to be able to receive incoming packets even when it is not sending any packets itself. Because NAT and stateful firewalls keep track of "connections", if a peer behind NAT or a firewall wishes to receive incoming packets, he must keep the NAT/firewall mapping valid, by periodically sending keepalive packets. This is called *persistent keepalives*.
+
+    When this option is enabled, a keepalive packet is sent to the server endpoint once every interval seconds. A sensible interval that works with a wide variety of firewalls is `25` seconds. Setting it to 0 turns the feature off, which is the default.
+
+    Handshakes are not the same as keep-alives. A handshake establishes a limited-time session of about 3 minutes. So, for about 3 minutes your client is able to send its keep-alive packets without requireing a new session. Then, when the session expires, sending a new keep-alive requires a new session for which you should see a new handshake. In practice, the client initiates a handshake earlier.
+    
+    **TL;DR** If you're behind NAT or a firewall and you want to receive incoming connections long after network traffic has gone silent, this option will keep the "connection" open in the eyes of NAT.
+<!-- markdownlint-disable code-block-style -->
 
 ## Copy config file to client
 
@@ -104,8 +147,31 @@ qrencode -t ansiutf8 -r NAME.conf
 
 (you may need to install `qrencode` using `sudo apt-get install qrencode`)
 
+You can directly scan this QR code with the official WireGuard app after clicking on the blue plus symbol in the lower right corner.
+
 ## Connect to your WireGuard VPN
 
 After creating/copying the connection information over to your client, you may use the client you prefer to connect to your system. Mind that setting up auto-start of the WireGuard connection may lead to issues if you are doing this too early (when the system cannot resolve DNS). See our [FAQ](faq.md) for further hints.
+
+You can check if your client successfully connected by, once again, running
+
+``` plain
+wg
+```
+
+on the server. It should show some traffic for your client if everything works:
+
+``` plain
+interface: wg0
+  public key: XYZ123456ABC=          ⬅ Your server's public key will be different
+  private key: (hidden)
+  listening port: 44711
+
+peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be different
+  preshared key: (hidden)
+  allowed ips: 10.100.0.2/32
+  latest handshake: 32 seconds ago
+  transfer: 3.43 KiB received, 188 B sent
+```
 
 {!abbreviations.md!}

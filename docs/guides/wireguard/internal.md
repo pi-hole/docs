@@ -21,6 +21,7 @@ If you see the options repeated like
 
 ``` plain
 net.ipv4.ip_forward=1
+net.ipv6.conf.all.forwarding = 1
 ```
 
 they were enabled successfully.
@@ -68,4 +69,4 @@ if your internal network is in the IP range `192.168.2.1` - `192.168.2.254`.
 
 ### Client side
 
-Do the same in the `[Interface]` section.
+Do the same you did above for the server also in the `[Interface]` section of all clients you want to have this feature. It is possible to add this only for a few clients, leaving the others isolated to only the Pi-hole server itself.

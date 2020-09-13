@@ -4,7 +4,7 @@
 !!! info "The terms "server" and "client""
     Usage of the terms `server` and `client` were purposefully chosen in this guide specifically to help both new users and existing OpenVPN users become familiar with the construction of WireGuard's configuration files.
 
-    WireGuard documentation simply refers to both of these concepts as `peers`.
+    WireGuard itself simply refers to all connected devices as `peers`. It consitutes a connection between computers.
 <!-- markdownlint-enable code-block-style -->
 
 ## Installing the server components
@@ -82,20 +82,25 @@ systemctl daemon-reload
 systemctl start wg-quick@wg0
 ```
 
-If successful, you should not see any output. In case you get an error like
+If successful, you should not see any output.
 
-``` plain
-RTNETLINK answers: Operation not supported
-Unable to access interface: Protocol not supported
-```
+<!-- markdownlint-disable code-block-style -->
+??? warning "Error: RTNETLINK answers: Operation not supported"
+    In case you get an error like
 
-you should check that the WireGuard kernel module is loaded with the command below:
+    ``` plain
+    RTNETLINK answers: Operation not supported
+    Unable to access interface: Protocol not supported
+    ```
 
-```bash
-sudo modprobe wireguard
-```
+    you should check that the WireGuard kernel module is loaded with the command below:
 
-If you get an error saying the module is missing, try reinstalling WireGuard or restart your server and try again. This may happen when the WireGuard server is installed for a more recent kernel than you are currently running. This typically happens when you have neither updated nor restarted your system for a long time.
+    ```bash
+    sudo modprobe wireguard
+    ```
+
+    If you get an error saying the module is missing, try reinstalling WireGuard or restart your server and try again. This may happen when the WireGuard server is installed for a more recent kernel than you are currently running. This typically happens when you have neither updated nor restarted your system for a long time.
+<!-- markdownlint-enable code-block-style -->
 
 ## Check everything is running
 
@@ -104,6 +109,21 @@ With the following command, you can check if your `wireguard` server is running:
 ``` bash
 wg
 ```
+
+The output should look like the following:
+
+``` plain
+interface: wg0
+  public key: XYZ123456ABC=   ⬅ Your public key will be different
+  private key: (hidden)
+  listening port: 44711
+```
+
+Your public key will be different to ours. This is expected (you just created your own key above).
+
+## Set your Pi-hole to listen on all interfaces
+
+On your [Settings page (tab DNS)](http://pi.hole/admin/settings.php?tab=dns), ensure you set the listing mode of your Pi-hole to one of the `Listen of all interfaces` settings. The top one is perferred as it adds a bit of additional safety. Your WireGuard peers/clients will be correctly recognized as being only one hop away.
 
 You can now continue to add clients.
 
