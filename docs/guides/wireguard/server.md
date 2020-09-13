@@ -56,7 +56,7 @@ and put the following into it:
 ``` toml
 [Interface]
 Address = 10.100.0.1/24
-ListenPort = 44711
+ListenPort = 47111
 SaveConfig = true
 ```
 
@@ -70,7 +70,7 @@ to copy the server's private key into your config file.
 
 ## Forward port
 
-If the server is behind NAT, be sure to forward the specified port on which WireGuard will be running (for this example, `44711/UDP`) from the router to the WireGuard server.
+If the server is behind NAT, be sure to forward the specified port on which WireGuard will be running (for this example, `47111/UDP`) from the router to the WireGuard server.
 
 ## Start the server
 
@@ -116,7 +116,7 @@ The output should look like the following:
 interface: wg0
   public key: XYZ123456ABC=   ⬅ Your public key will be different
   private key: (hidden)
-  listening port: 44711
+  listening port: 47111
 ```
 
 Your public key will be different to ours. This is expected (you just created your own key above).

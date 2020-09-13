@@ -52,7 +52,7 @@ After a restart, the server file should look like:
 ``` toml
 [Interface]
 Address = 10.100.0.1/24
-ListenPort = 44711
+ListenPort = 47111
 SaveConfig = true
 PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
 
@@ -77,7 +77,7 @@ should tell you about your new client:
 interface: wg0
   public key: XYZ123456ABC=          ⬅ Your server's public key will be different
   private key: (hidden)
-  listening port: 44711
+  listening port: 47111
 
 peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be different
   preshared key: (hidden)
@@ -111,7 +111,7 @@ Next, add your server as peer for this client:
 ``` toml
 [Peer]
 AllowedIPs = 10.100.0.0/24
-Endpoint = [your public IP or domain]:44711
+Endpoint = [your public IP or domain]:47111
 PersistentKeepalive = 25
 ```
 
@@ -165,7 +165,7 @@ on the server. It should show some traffic for your client if everything works:
 interface: wg0
   public key: XYZ123456ABC=          ⬅ Your server's public key will be different
   private key: (hidden)
-  listening port: 44711
+  listening port: 47111
 
 peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be different
   preshared key: (hidden)
@@ -173,5 +173,11 @@ peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be differen
   latest handshake: 32 seconds ago
   transfer: 3.43 KiB received, 188 B sent
 ```
+
+## Test for DNS leaks
+
+You should run a DNS leak test on [www.dnsleaktest.com](https://www.dnsleaktest.com) to ensure your WireGuard tunnel does not leak DNS requests (so all are processed by your Pi-hole). The expected outcome is that you should only see DNS servers belonging to the upstream DNS destination you selected in Pi-hole. If you configured [Pi-hole as All-Around DNS Solution](../unbound.md), you should only see the public IP address of your WireGuard server and no other DNS server.
+
+See also [What is a DNS leak and why should I care?](https://www.dnsleaktest.com/what-is-a-dns-leak.html) (external link).
 
 {!abbreviations.md!}
