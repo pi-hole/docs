@@ -23,6 +23,35 @@ sudo apt update
 sudo apt install wireguard wireguard-tools wireguard-dkms
 ```
 
+If there is no `wireguard` package available for your system, you can follow the instructions below to compile WireGuard from source.
+
+<!-- markdownlint-disable code-block-style -->
+???+ info "Compile WireGuard from source"
+
+    With the following commands, you can install WireGuard from source
+
+    ``` bash
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install raspberrypi-kernel-headers libmnl-dev libelf-dev build-essential git -y
+    git clone https://git.zx2c4.com/WireGuard
+    cd WireGuard/src
+    sudo make
+    sudo make install
+    ```
+
+    With these commands, you can update your locally compiled WireGuard at any time:
+
+    ``` bash
+    cd WireGuard/
+    git pull
+    cd src
+    sudo make
+    sudo make install
+    ```
+
+    The ZX2C4 git repository is the official source for `wireguard-linux`, see [WireGuard#Repositories](https://www.wireguard.com/repositories/) (external link)
+<!-- markdownlint-enable code-block-style -->
+
 ## Initial configuration
 
 Each network interface has a private key and a list of peers. Each peer has a public key. Public keys are short and simple, and are used by peers to authenticate each other. They can be passed around for use in configuration files by any out-of-band method, similar to how one might send their SSH public key to a friend for access to a shell server.
