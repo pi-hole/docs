@@ -227,8 +227,67 @@ sudo systemctl restart cloudflared
 
 #### Automating Cloudflared Updates
 
-If you want to have the system update `cloudflared` automatically, simply place the update commands for your configuration method in the
-file `/etc/cron.weekly/cloudflared-updater.sh`, and adjust permissions:
+If you want the system to update `cloudflared` automatically, simply place the update commands for your configuration method in the
+file `/etc/cron.weekly/cloudflared-updater.sh` and adjust the permissions.
+
+Create the `cloudflared` update script:
+
+```bash
+sudo nano /etc/cron.weekly/cloudflared-updater.sh
+```
+
+Copy and paste the script into the editor:
+
+#### Manual configuration
+
+```sh
+# !/usr/bin/env bash
+# update cloudflared service
+
+cd ~
+
+# check for previous download and remove if file exists
+file="cloudflared-stable-linux-arm.tgz"
+
+if [ -f $file ] ; then
+    sudo rm $file
+fi
+
+wget --tries=2 https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
+tar -xvzf cloudflared-stable-linux-arm.tgz
+sudo systemctl stop cloudflared
+sudo cp ./cloudflared /usr/local/bin
+sudo chmod +x /usr/local/bin/cloudflared
+sudo systemctl start cloudflared
+sudo rm cloudflared-stable-linux-arm.tgz
+```
+
+#### Service configuration
+
+```sh
+# !/usr/bin/env bash
+# update cloudflared service
+
+sudo cloudflared update
+sudo systemctl restart cloudflared
+```
+
+Optionally, you can write to a log file and keep track of the versions, add this at the end of the script:
+
+```sh
+{ echo "" & date & cloudflared -v; } >> ~/cloudflared.log
+```
+
+If you added the optional logging, check the log to see if the `cloudflared` service has been updated:
+
+```console
+pi@raspberrypi:~ $ cat cloudflared.log
+
+Sun 20 Sep 01:08:46 BST 2020
+cloudflared version 2020.9.1 (built 2020-09-16-1809 UTC)
+```
+
+Adjust the permissions for the script:
 
 ```bash
 sudo chmod +x /etc/cron.weekly/cloudflared-updater.sh
