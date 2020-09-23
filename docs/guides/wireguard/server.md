@@ -117,7 +117,7 @@ and put the following into it:
 
 ``` toml
 [Interface]
-Address = 10.100.0.1/24
+Address = 10.100.0.1/24, fd08:4711::1/64
 ListenPort = 47111
 ```
 

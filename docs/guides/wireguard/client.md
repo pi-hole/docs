@@ -31,25 +31,25 @@ Add the new client by running the command:
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $(cat NAME.pub)" >> /etc/wireguard/wg0.conf
 echo "PresharedKey = $(cat NAME.psk)" >> /etc/wireguard/wg0.conf
-echo "AllowedIPs = 10.100.0.2/32" >> /etc/wireguard/wg0.conf
+echo "AllowedIPs = 10.100.0.2/32, fd08:4711::2/128" >> /etc/wireguard/wg0.conf
 ```
 
 <!-- markdownlint-disable code-block-style -->
 !!! info "Client IP address"
-    Make sure to increment the IP address for any further client! We add the first client with the IP address `10.100.0.2` in this example (`10.100.0.1` is the server)
+    Make sure to increment the IP address for any further client! We add the first client with the IP addresses `10.100.0.2` and `fd08:4711::2/128` in this example (`10.100.0.1` and `fd08:4711::1/128` are the server)
 <!-- markdownlint-disable code-block-style -->
 
 Restart your server to load the new client config:
 
 ``` bash
-sudo service wg-quick@wg0 restart
+systemctl restart wg-quick@wg0
 ```
 
 After a restart, the server file should look like:
 
 ``` toml
 [Interface]
-Address = 10.100.0.1/24
+Address = 10.100.0.1/24, fd08::1/128
 ListenPort = 47111
 SaveConfig = true
 PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
@@ -57,7 +57,7 @@ PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
 [Peer]
 PublicKey = F+80gbmHVlOrU+es13S18oMEX2g=     # PublicKey will be different
 PresharedKey = 8cLaY8Bkd7PiUs0izYBQYVTEFlA=  # PresharedKey will be different
-AllowedIPs = 10.100.0.2/32
+AllowedIPs = 10.100.0.2/32, fd08:4711::2/128
 
 # Possibly further [Peer] lines
 ```
@@ -78,7 +78,7 @@ interface: wg0
 
 peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be different
   preshared key: (hidden)
-  allowed ips: 10.100.0.2/32
+  allowed ips: 10.100.0.2/32, fd08::2/128
 ```
 
 ## Create client configuration
@@ -93,8 +93,8 @@ with the content
 
 ``` toml
 [Interface]
-Address = 10.100.0.2/32 # Replace this IP address for subsequent clients
-DNS = 10.100.0.1        # IP address of your server (Pi-hole)
+Address = 10.100.0.2/32, fd08:4711::2/128 # Replace this IP address for subsequent clients
+DNS = 10.100.0.1                     # IP address of your server (Pi-hole)
 ```
 
 and add the private key of this client
@@ -107,7 +107,7 @@ Next, add your server as peer for this client:
 
 ``` toml
 [Peer]
-AllowedIPs = 10.100.0.0/24
+AllowedIPs = 10.100.0.0/24, fd08::/64
 Endpoint = [your public IP or domain]:47111
 PersistentKeepalive = 25
 ```
@@ -117,6 +117,7 @@ Then add the public key of the server as well as the PSK for this connection:
 ``` bash
 echo "PublicKey = $(cat server.pub)" >> NAME.conf
 echo "PresharedKey = $(cat NAME.psk)" >> NAME.conf
+exit
 ```
 
 That's it.
@@ -139,7 +140,7 @@ That's it.
 You can now copy the configuration file to your client (if you created the config on the server). If the client is a mobile device such as a phone, `qrencode` can be used to generate a scanable QR code:
 
 ``` bash
-qrencode -t ansiutf8 -r NAME.conf
+sudo qrencode -t ansiutf8 -r /etc/wireguard/NAME.conf
 ```
 
 (you may need to install `qrencode` using `sudo apt-get install qrencode`)
@@ -153,7 +154,7 @@ After creating/copying the connection information over to your client, you may u
 You can check if your client successfully connected by, once again, running
 
 ``` plain
-wg
+sudo wg
 ```
 
 on the server. It should show some traffic for your client if everything works:
