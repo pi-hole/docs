@@ -119,13 +119,13 @@ and put the following into it:
 [Interface]
 Address = 10.100.0.1/24
 ListenPort = 47111
-SaveConfig = true
 ```
 
 Then run
 
 ``` bash
 echo "PrivateKey = $(cat server.key)" >> /etc/wireguard/wg0.conf
+exit # Exit the sudo session
 ```
 
 to copy the server's private key into your config file.
@@ -139,9 +139,9 @@ If the server is behind NAT, be sure to forward the specified port on which Wire
 Register your server `wg0` as:
 
 ``` bash
-systemctl enable wg-quick@wg0.service
-systemctl daemon-reload
-systemctl start wg-quick@wg0
+sudo systemctl enable wg-quick@wg0.service
+sudo systemctl daemon-reload
+sudo systemctl start wg-quick@wg0
 ```
 
 If successful, you should not see any output.
@@ -169,7 +169,7 @@ If successful, you should not see any output.
 With the following command, you can check if your `wireguard` server is running:
 
 ``` bash
-wg
+sudo wg
 ```
 
 The output should look like the following:

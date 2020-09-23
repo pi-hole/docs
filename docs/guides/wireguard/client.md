@@ -28,7 +28,10 @@ wg genpsk > NAME.psk
 Add the new client by running the command:
 
 ``` bash
-wg set wg0 peer "$(cat NAME.pub)" preshared-key NAME.psk allowed-ips 10.100.0.2/32
+echo "[Peer]" >> /etc/wireguard/wg0.conf
+echo "PublicKey = $(cat NAME.pub)" >> /etc/wireguard/wg0.conf
+echo "PresharedKey = $(cat NAME.psk)" >> /etc/wireguard/wg0.conf
+echo "AllowedIPs = 10.100.0.2/32" >> /etc/wireguard/wg0.conf
 ```
 
 <!-- markdownlint-disable code-block-style -->
@@ -36,16 +39,11 @@ wg set wg0 peer "$(cat NAME.pub)" preshared-key NAME.psk allowed-ips 10.100.0.2/
     Make sure to increment the IP address for any further client! We add the first client with the IP address `10.100.0.2` in this example (`10.100.0.1` is the server)
 <!-- markdownlint-disable code-block-style -->
 
-Restart your server to have it save your client to its config file:
+Restart your server to load the new client config:
 
 ``` bash
 sudo service wg-quick@wg0 restart
 ```
-
-<!-- markdownlint-disable code-block-style -->
-!!! info "Restarting is optional"
-    Note that restarting the WireGuard server is optional and can be skiped. The new client will be stored in the config file on the next restart of the system. However, in case of powerloss, you will loose your new client which is why we restarting the server here (if this can be afforded).
-<!-- markdownlint-disable code-block-style -->
 
 After a restart, the server file should look like:
 
@@ -57,10 +55,9 @@ SaveConfig = true
 PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
 
 [Peer]
-Address = 10.100.0.2/24
-AllowedIPs = 10.100.0.1/32
 PublicKey = F+80gbmHVlOrU+es13S18oMEX2g=     # PublicKey will be different
 PresharedKey = 8cLaY8Bkd7PiUs0izYBQYVTEFlA=  # PresharedKey will be different
+AllowedIPs = 10.100.0.2/32
 
 # Possibly further [Peer] lines
 ```
