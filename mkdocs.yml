@@ -39,6 +39,9 @@ markdown_extensions:
   - pymdownx.extra
   # (https://facelessuser.github.io/pymdown-extensions/extensions/details/)
   - pymdownx.details
+  # Tabbed provides a syntax to easily add tabbed Markdown content.
+  # https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/
+  - pymdownx.tabbed
   # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
   # Adds the ability to define abbreviations
