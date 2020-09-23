@@ -95,14 +95,14 @@ nav:
     - 'How to sign-off commits': guides/github/how-to-signoff.md
   - 'Guides':
     - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
-    - 'Remote access using WireGuard':
+    - 'WireGuard VPN':
       - 'Overview': guides/wireguard/overview.md
       - 'Concept': guides/wireguard/concept.md
       - 'Install server': guides/wireguard/server.md
       - 'Add client(s)': guides/wireguard/client.md
       - 'Optional extra features':
-        - 'Make all local devices accessible': guides/wireguard/internal.md
-        - 'Reroute all Internet traffic': guides/wireguard/route-everything.md
+        - 'Make local devices accessible': guides/wireguard/internal.md
+        - 'Tunnel all Internet traffic': guides/wireguard/route-everything.md
       - 'Troubleshooting': guides/wireguard/faq.md
     - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
     - 'Upstream DNS Providers': guides/upstream-dns-providers.md

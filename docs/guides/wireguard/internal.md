@@ -1,4 +1,4 @@
-# Access devices in the internal network through the WireGuard tunnel
+# Access internal devices through the WireGuard tunnel
 
 ## Enable IP forwarding on the server
 
@@ -33,7 +33,7 @@ A properly configured firewall is ***highly*** recommended for any Internet-faci
 !!! info "Optional for NAT"
     If the server is behind a router and receives traffic via NAT, these iptables rules are not needed.
 
-On your server, add the following to the `[INTERFACE]` section:
+On your server, add the following to the `[INTERFACE]` section of your `/etc/wireguard/wg0.conf`:
 
 ``` toml
 PostUp = iptables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -53,19 +53,21 @@ In our standard configuration, we have configured the clients in such a way that
 
 ### Server side
 
-``` toml
-[Peer]
-AllowedIPs = 10.100.0.1/32
-```
-
-Change this to
+Change the allowed addresses in your `/etc/wireguard/wg0.conf` from
 
 ``` toml
 [Peer]
-AllowedIPs = 10.100.0.1/32, 192.168.2.1/24
+AllowedIPs = 10.100.0.1/32, fd08:4711::1/64
 ```
 
-if your internal network is in the IP range `192.168.2.1` - `192.168.2.254`.
+to
+
+``` toml
+[Peer]
+AllowedIPs = 10.100.0.1/32, fd08:4711::1/64, 192.168.2.1/24
+```
+
+assuming your internal network is in the IP range `192.168.2.1` - `192.168.2.254`.
 
 ### Client side
 

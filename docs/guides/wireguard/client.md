@@ -94,7 +94,7 @@ with the content
 ``` toml
 [Interface]
 Address = 10.100.0.2/32, fd08:4711::2/128 # Replace this IP address for subsequent clients
-DNS = 10.100.0.1                     # IP address of your server (Pi-hole)
+DNS = 10.100.0.1                          # IP address of your server (Pi-hole)
 ```
 
 and add the private key of this client
