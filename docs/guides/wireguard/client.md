@@ -12,7 +12,8 @@ We generate a key-pair for the client `NAME` (replace accordingly everywhere bel
 sudo -i
 cd /etc/wireguard
 umask 077
-wg genkey | tee NAME.key | wg pubkey > NAME.pub
+name="client_name"
+wg genkey | tee "${name}.key" | wg pubkey > "${name}.pub"
 ```
 
 ## PSK Key generation
@@ -20,7 +21,7 @@ wg genkey | tee NAME.key | wg pubkey > NAME.pub
 We furthermore recommend generating a pre-shared key (PSK) in addition to the keys above. This adds an additional layer of symmetric-key cryptography to be mixed into the already existing public-key cryptography and is mainly for post-quantum resistance. A pre-shared key should be generated for each peer pair and *should not be reused*.
 
 ``` bash
-wg genpsk > NAME.psk
+wg genpsk > "${name}.psk"
 ```
 
 ## Add client to server configuration
@@ -29,8 +30,8 @@ Add the new client by running the command:
 
 ``` bash
 echo "[Peer]" >> /etc/wireguard/wg0.conf
-echo "PublicKey = $(cat NAME.pub)" >> /etc/wireguard/wg0.conf
-echo "PresharedKey = $(cat NAME.psk)" >> /etc/wireguard/wg0.conf
+echo "PublicKey = $(cat "${name}.pub")" >> /etc/wireguard/wg0.conf
+echo "PresharedKey = $(cat "${name}.psk")" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = 10.100.0.2/32, fd08:4711::2/128" >> /etc/wireguard/wg0.conf
 ```
 
@@ -86,7 +87,7 @@ peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be differen
 Create a dedicated config file for your new client:
 
 ``` bash
-nano NAME.conf
+nano "${name}.conf"
 ```
 
 with the content
@@ -100,7 +101,7 @@ DNS = 10.100.0.1                          # IP address of your server (Pi-hole)
 and add the private key of this client
 
 ``` bash
-echo "PrivateKey = $(cat NAME.key)" >> NAME.conf
+echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
 ```
 
 Next, add your server as peer for this client:
@@ -115,8 +116,8 @@ PersistentKeepalive = 25
 Then add the public key of the server as well as the PSK for this connection:
 
 ``` bash
-echo "PublicKey = $(cat server.pub)" >> NAME.conf
-echo "PresharedKey = $(cat NAME.psk)" >> NAME.conf
+echo "PublicKey = $(cat server.pub)" >> "${name}.conf"
+echo "PresharedKey = $(cat "${name}.psk")" >> "${name}.conf"
 exit
 ```
 
@@ -140,7 +141,7 @@ That's it.
 You can now copy the configuration file to your client (if you created the config on the server). If the client is a mobile device such as a phone, `qrencode` can be used to generate a scanable QR code:
 
 ``` bash
-sudo qrencode -t ansiutf8 -r /etc/wireguard/NAME.conf
+sudo qrencode -t ansiutf8 -r "/etc/wireguard/${name}.conf"
 ```
 
 (you may need to install `qrencode` using `sudo apt-get install qrencode`)
