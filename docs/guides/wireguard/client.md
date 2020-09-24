@@ -4,6 +4,38 @@ Adding clients is really simple and easy. The process for setting up a client is
 
 For each new client, the following steps must be taken. For the sake of simplicity, we will create the config file on the server itself. This, however, means that you need to transfer the config file *securely* to your server as it contains the private key of your client. An alternative way of doing this is to generate the configuration locally on your client and add the necessary lines to your server's configuration.
 
+<!-- markdownlint-disable code-block-style -->
+??? info "All commands described below at once"
+    ``` bash
+    sudo -i
+    cd /etc/wireguard
+    umask 077
+
+    name="client_name"
+
+    wg genkey | tee "${name}.key" | wg pubkey > "${name}.pub"
+    wg genpsk > "${name}.psk"
+
+    echo "[Peer]" >> /etc/wireguard/wg0.conf
+    echo "PublicKey = $(cat "${name}.pub")" >> /etc/wireguard/wg0.conf
+    echo "PresharedKey = $(cat "${name}.psk")" >> /etc/wireguard/wg0.conf
+    echo "AllowedIPs = 10.100.0.2/32, fd08:4711::2/128" >> /etc/wireguard/wg0.conf
+
+    systemctl restart wg-quick@wg0
+
+    echo "[Interface]" > "${name}.conf"
+    echo "Address = 10.100.0.2/32, fd08:4711::2/128" >> "${name}.conf" # May need editing
+    echo "DNS = 10.100.0.1" >> "${name}.conf"                          # Your Pi-hole's IP
+    echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
+    echo "PublicKey = $(cat server.pub)" >> "${name}.conf"
+    echo "PresharedKey = $(cat "${name}.psk")" >> "${name}.conf"
+
+    qrencode -t ansiutf8 -r "${name}.conf"
+
+    exit
+    ```
+<!-- markdownlint-disable code-block-style -->
+
 ## Key generation
 
 We generate a key-pair for the client `NAME` (replace accordingly everywhere below):
@@ -87,15 +119,9 @@ peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be differen
 Create a dedicated config file for your new client:
 
 ``` bash
-nano "${name}.conf"
-```
-
-with the content
-
-``` toml
-[Interface]
-Address = 10.100.0.2/32, fd08:4711::2/128 # Replace this IP address for subsequent clients
-DNS = 10.100.0.1                          # IP address of your server (Pi-hole)
+echo "[Interface]" > "${name}.conf"
+echo "Address = 10.100.0.2/32, fd08:4711::2/128" >> "${name}.conf" # May need editing
+echo "DNS = 10.100.0.1" >> "${name}.conf"                          # Your Pi-hole's IP
 ```
 
 and add the private key of this client
