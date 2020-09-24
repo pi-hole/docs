@@ -64,11 +64,19 @@ to
 
 ``` toml
 [Peer]
-AllowedIPs = 10.100.0.1/32, fd08:4711::1/64, 192.168.2.1/24
+AllowedIPs = 10.100.0.0/24, fd08:4711::/64, 192.168.2.0/24
 ```
 
-assuming your internal network is in the IP range `192.168.2.1` - `192.168.2.254`.
+assuming your internal network is in the IP range `192.168.2.1` - `192.168.2.254`. The change `10.100.0.1/32` to `10.100.0.0/24` also allows your WireGuard peers to see each other.
 
 ### Client side
 
-Do the same you did above for the server also in the `[Interface]` section of all clients you want to have this feature. It is possible to add this only for a few clients, leaving the others isolated to only the Pi-hole server itself.
+Do the same you did above for the server also in the `[Interface]` section of all clients you want to have this feature:
+
+``` toml
+[Peer]
+AllowedIPs = 10.0.0.0/24, fd08:4711::/64, 192.168.2.0/24
+```
+
+
+It is possible to add this only for a few clients, leaving the others isolated to only the Pi-hole server itself.

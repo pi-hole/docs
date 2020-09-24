@@ -4,8 +4,15 @@ Routing your entire Internet traffic is **optional**, however, it can be advanta
 
 Rerouting the Internet traffic through your Pi-hole will furthermore cause all of your Internet traffic to reach the Internet from the place where your WireGuard server is located. This can be used to obfuscate your real location as well as to be allowed to access geo-blocked content, e.g., when your Pi-hole is located in Germany but you are traveling in the United States. If you want to access a page only accessible from within Germany (like the live-broadcast of Tagesschau, etc.), this will typically not work. However, if you route your entire Internet through your Pi-hole, your network traffic will originate from Germany, allowing you to watch the content.
 
-!!! info "Ensure you're already forwarding traffic"
-    The following assumes you have already prepared your Pi-hole for [IP forwarding](internal.md). If this is not the case, follow the steps over there before continuing here.
+<!-- markdownlint-disable code-block-style -->
+!!! info "Create a second profile"
+    Instead of editing your existing configuration, you can easily add a new one with the modified `AllowedIPs` line as above. This will give you two tunnel variants and you decide - at any time from mobile - which variant you want. The one with only the DNS traffic being safely forwarded to your Pi-hole or the variant where your entire Internet traffic is encrypted and sent through your Pi-hole. You can choose at any time which is the best solution in your current situation (e.g., trusted network, unencrypted airport Wi-Fi, etc.).
+<!-- markdownlint-enable code-block-style -->
+
+<!-- markdownlint-disable code-block-style -->
+!!! warning "Ensure you're already forwarding traffic"
+    The following assumes you have already prepared your Pi-hole for [IP forwarding](internal.md#enable-ip-forwarding-on-the-server) and [enabled NAT](internal.md#enable-nat-on-the-server). If this is not the case, follow the steps over there before continuing here.
+<!-- markdownlint-enable code-block-style -->
 
 To route all traffic through the tunnel to a specific peer, add the default route (`0.0.0.0/0` for IPv4 and `::/0`for IPv6) to `AllowedIPs` in your clients's WireGuard config files:
 
