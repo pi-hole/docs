@@ -162,7 +162,7 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 
 ### Add logging to unbound
 
-!!! warning
+!!! warning:
     It's not recommonded to increase verbosity for daily use, as unbound logs a lot. But it might be helpful for debugging purposes.
 
 There are five levels of verbosity
