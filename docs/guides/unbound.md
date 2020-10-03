@@ -109,9 +109,9 @@ server:
     # see https://discourse.pi-hole.net/t/unbound-stubby-or-dnscrypt-proxy/9378 for further details
     use-caps-for-id: no
 
-    # Reduce EDNS reassembly buffer size.
-    # Suggested by the unbound man page to reduce fragmentation reassembly problems
-    edns-buffer-size: 1472
+    # DNS Flag Day 2020 recommends a message size of 1232 bytes to avoid IP
+    # fragmentation while minimizaing the use of TCP
+    edns-buffer-size: 1232
 
     # Perform prefetching of close to expired message cache entries
     # This only applies to domains that have been frequently queried
