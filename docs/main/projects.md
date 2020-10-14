@@ -1,7 +1,7 @@
 ---
 title: Community Projects
 description: Things built with Pi-hole
-last_updated: Mon Apr 20 19:45:40 2019 UTC
+last_updated: Sun Sep 06 14:28:14 2020 UTC
 ---
 
 - [The Big Blocklist Collection](https://firebog.net/)
@@ -21,3 +21,4 @@ last_updated: Mon Apr 20 19:45:40 2019 UTC
 - [Windows DNS Swapper](https://github.com/tryallthethings/DNS-Swapper), see [#1400](https://github.com/pi-hole/pi-hole/issues/1400)
 - [Pi-hole Visualizer](https://www.reddit.com/r/pihole/comments/82ikgb/pihole_visualizer_update/)
 - [Enable/Disable Pi-Hole from your iPhone Home Screen](https://codeopolis.com/posts/how-to-control-pi-hole-from-your-iphone/)
+- [Pi-hole Shortcuts: Native macOS client](https://github.com/dotWee/macOS-PiholeShortcuts)

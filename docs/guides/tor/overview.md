@@ -4,7 +4,7 @@ If you want to protect your - unencrypted by default - DNS requests from easily 
 
 #### Contribute to the Tor project
 
-If you got spare resources, consider [running a Tor Relay](https://www.torproject.org/docs/tor-doc-relay.html.en) (or [Exit](https://blog.torproject.org/tips-running-exit-node)) Node to contribute back to the Tor Network. The default installation doesn't do either of these. And/Or consider [donating](https://donate.torproject.org).
+If you got spare resources, consider [running a Tor Relay](https://community.torproject.org/relay/) (or [Exit](https://blog.torproject.org/tips-running-exit-node)) Node to contribute back to the Tor Network. The default installation doesn't do either of these. And/Or consider [donating](https://donate.torproject.org).
 
 ---
 
@@ -34,7 +34,7 @@ So, in the end, it boils down to one of the following use cases.
 
 - Encrypt your DNS traffic using Tor so your ISP can't collect it (but still is able to [collect what Websites/IPs you visit](#tracking) unless you route that traffic also over Tor) and the DNS Server won't see your real IP for the price of maybe getting a Bad Exit Node that fakes answers to DNS queries.
 
-- Use [DNSCrypt](#alternatives) so your ISP can't collect DNS traffic (but still can collect the websites/IPs you visit unless you route that traffic over Tor), but you have to accept that the DNSCrypt resolver you've chosen might store your DNS queries together with your IP (unless you [modify DNSCrypt to route over Tor](https://github.com/DNSCrypt/dnscrypt-proxy/issues/399#issuecomment-214329222)) and could also turn out to send faked answers to DNS queries. I guess you would call that a Bad DNSCrypt resolver then.
+- Use [DNSCrypt](#alternatives) so your ISP can't collect DNS traffic (but still can collect the websites/IPs you visit unless you route that traffic over Tor), but you have to accept that the DNSCrypt resolver you've chosen might store your DNS queries together with your IP (unless you [modify DNSCrypt to route over Tor](https://github.com/DNSCrypt/dnscrypt-proxy/blob/7b7107902bd7eb2298ff66d8690ab4b0b96595c8/dnscrypt-proxy/example-dnscrypt-proxy.toml#L95)) and could also turn out to send faked answers to DNS queries. I guess you would call that a Bad DNSCrypt resolver then.
 
 - Use an unencrypted alternative DNS server (there are a lot of lists out there). In this case, your ISP easily can record your DNS traffic *and* the alternative DNS server can store your DNS queries together with your IP. On top of that, your ISP or the alternative DNS could also fake the answer to the DNS queries. That would be a Bad Alternative DNS Server then.
 

@@ -60,7 +60,7 @@
         rule = "Host:pihole.domain.tld"
     ```
 
-3. Edit your /etc/lighthttpd/external.conf to
+3. Edit your /etc/lighttpd/external.conf to
 
     ```lighttpd
     $SERVER["socket"] == ":80" {
