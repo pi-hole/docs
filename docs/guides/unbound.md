@@ -57,11 +57,12 @@ The first thing you need to do is to install the recursive DNS resolver:
 sudo apt install unbound
 ```
 
-**Important**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently.
+If you are installing unbound from a package manager, it should install the `root.hints` file automatically with the dependency `dns-root-data`. The root hints will then be automatically updated by your package manager.
+
+**Optional**: Download the current root hints file (the list of primary root servers which are serving the domain "." - the root domain). Update it roughly every six months. Note that this file changes infrequently. This is only necessary if you are not installing unbound from a package manager. If you do this optional step, you will need to uncomment the `root-hints:` configuration line in the suggested config file.
 
 ```bash
-wget -O root.hints https://www.internic.net/domain/named.root
-sudo mv root.hints /var/lib/unbound/
+wget https://www.internic.net/domain/named.root -qO- | sudo tee /var/lib/unbound/root.hints
 ```
 
 ### Configure `unbound`
@@ -95,7 +96,8 @@ server:
     prefer-ip6: no
 
     # Use this only when you downloaded the list of primary root servers!
-    root-hints: "/var/lib/unbound/root.hints"
+    # If you use the default dns-root-data package, unbound will find it automatically
+    #root-hints: "/var/lib/unbound/root.hints"
 
     # Trust glue only if it is within the server's authority
     harden-glue: yes
@@ -133,7 +135,7 @@ server:
 Start your local recursive server and test that it's operational:
 
 ```bash
-sudo service unbound start
+sudo service unbound restart
 dig pi-hole.net @127.0.0.1 -p 5335
 ```
 
@@ -157,3 +159,43 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 ![Upstream DNS Servers Configuration](../images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
+
+### Add logging to unbound
+
+!!! warning
+    It's not recommended to increase verbosity for daily use, as unbound logs a lot. But it might be helpful for debugging purposes.
+
+There are five levels of verbosity
+
+```
+Level 0 means no verbosity, only errors
+Level 1 gives operational information
+Level 2 gives  detailed operational  information
+Level 3 gives query level information
+Level 4 gives  algorithm  level  information
+Level 5 logs client identification for cache misses
+```
+
+First, specify the log file and the verbosity level in the `server` part of
+`/etc/unbound/unbound.conf.d/pi-hole.conf`:
+
+```ini
+server:
+    # If no logfile is specified, syslog is used
+    logfile: "/var/log/unbound/unbound.log"
+    verbosity: 1
+```
+
+Second, create log dir and file, set permissions:
+
+```
+sudo mkdir -p /var/log/unbound
+sudo touch /var/log/unbound/unbound.log
+sudo chown unbound /var/log/unbound/unbound.log
+```
+
+Third, restart unbound:
+
+```
+sudo service unbound restart
+```

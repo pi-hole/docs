@@ -49,6 +49,23 @@ Label | Type | Allowed to by empty | Content
 `domain` | text | No | Requested domain
 `client` | text | No | Requesting client (IP address)
 `forward` | text | Yes | Forward destination used for this query (only set if `status == 2`)
+`additional_info` | blob | Yes | Data-dependent content, see below
+
+#### Data-dependent `additional_info` field
+
+The content and type of the `additional_info` row depends on the status of the given query.
+
+##### Query blocked due to a CNAME inspection (status 9, 10, 11) {#additional_info_cname data-toc-label='Blocked CNAME'}
+
+If a query was blocked due to a CNAME inspection (status 9, 10, 11), this field contains the domain which was the reason for blocking the entire CNAME chain (text).
+
+##### Query blocked due to a REGEX filter (status 4) {#additional_info_regex data-toc-label='Regular expression'}
+
+If a query was blocked due to a regex rule (status 4), this field contains the ID of the blacklist regex responsible for blocking this domain (integer).
+
+##### Other
+
+For any other query status, this field is empty. You should, however, not rely on this field being empty as we may add content of any type for other status types in future releases.
 
 ### Counters table
 
@@ -68,8 +85,6 @@ ID | Interpretation
 
 The FTL table contains some data used by *FTL*DNS for determining which queries to save to the database. This table does not contain any entries of general interest.
 
-SQLite3 syntax used to create this table:
-
 ### Supported query types
 
 ID | Query Type
@@ -81,6 +96,13 @@ ID | Query Type
 5 | SOA
 6 | PTR
 7 | TXT
+8 | NAPTR
+9 | MX
+10 | DS
+11 | RRSIG
+12 | DNSKEY
+13 | OTHER (any query type not covered above)
+
 
 <!-- ID | 1 | 2 | 3 | 4 | 5 | 6 | 7 -->
 <!-- -- | -- | -- | -- | -- | -- | -- | -- -->

@@ -15,7 +15,7 @@
 2. Install necessary packages
 
     ```bash
-    apt-get -y install nginx php7.3-fpm php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
+    apt-get -y install nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
     ```
 
 3. Disable lighttpd at startup
