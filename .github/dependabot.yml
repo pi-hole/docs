@@ -1,25 +1,20 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: saturday
-    time: "10:00"
-  open-pull-requests-limit: 10
-  versioning-strategy: increase
-- package-ecosystem: pip
-  directory: "/"
-  schedule:
-    interval: weekly
-    day: saturday
-    time: "10:00"
-  open-pull-requests-limit: 10
-  allow:
-  - dependency-type: direct
-  - dependency-type: indirect
-  ignore:
-  - dependency-name: tornado
-    versions:
-    - ">= 6.0.2.a"
-    - "< 6.0.3"
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "10:00"
+    open-pull-requests-limit: 10
+    versioning-strategy: increase
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "10:00"
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: direct
+      - dependency-type: indirect
