@@ -4,7 +4,7 @@
 
 Enable IP forwarding on your server by removing the comments in front of
 
-``` toml
+```toml
 net.ipv4.ip_forward = 1
 net.ipv6.conf.all.forwarding = 1
 ```
@@ -13,13 +13,13 @@ in the file `/etc/sysctl.d/99-sysctl.conf`
 
 Then apply the new option with the command below.
 
-``` bash
+```bash
 sudo sysctl -p
 ```
 
 If you see the options repeated like
 
-``` plain
+```plain
 net.ipv4.ip_forward=1
 net.ipv6.conf.all.forwarding = 1
 ```
@@ -35,7 +35,7 @@ A properly configured firewall is ***highly*** recommended for any Internet-faci
 
 On your server, add the following to the `[INTERFACE]` section of your `/etc/wireguard/wg0.conf`:
 
-``` toml
+```toml
 PostUp = iptables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 PostDown = iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 ```
@@ -55,14 +55,14 @@ In our standard configuration, we have configured the clients in such a way that
 
 Change the allowed addresses in your `/etc/wireguard/wg0.conf` from
 
-``` toml
+```toml
 [Peer]
 AllowedIPs = 10.100.0.1/32, fd08:4711::1/64
 ```
 
 to
 
-``` toml
+```toml
 [Peer]
 AllowedIPs = 10.100.0.0/24, fd08:4711::/64, 192.168.2.0/24
 ```
@@ -73,7 +73,7 @@ assuming your internal network is in the IP range `192.168.2.1` - `192.168.2.254
 
 Do the same you did above for the server also in the `[Interface]` section of all clients you want to have this feature:
 
-``` toml
+```toml
 [Peer]
 AllowedIPs = 10.0.0.0/24, fd08:4711::/64, 192.168.2.0/24
 ```

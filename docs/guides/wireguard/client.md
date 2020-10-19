@@ -6,7 +6,7 @@ For each new client, the following steps must be taken. For the sake of simplici
 
 <!-- markdownlint-disable code-block-style -->
 ??? info "All commands described below at once"
-    ``` bash
+    ```bash
     sudo -i
     cd /etc/wireguard
     umask 077
@@ -40,7 +40,7 @@ For each new client, the following steps must be taken. For the sake of simplici
 
 We generate a key-pair for the client `NAME` (replace accordingly everywhere below):
 
-``` bash
+```bash
 sudo -i
 cd /etc/wireguard
 umask 077
@@ -52,7 +52,7 @@ wg genkey | tee "${name}.key" | wg pubkey > "${name}.pub"
 
 We furthermore recommend generating a pre-shared key (PSK) in addition to the keys above. This adds an additional layer of symmetric-key cryptography to be mixed into the already existing public-key cryptography and is mainly for post-quantum resistance. A pre-shared key should be generated for each peer pair and *should not be reused*.
 
-``` bash
+```bash
 wg genpsk > "${name}.psk"
 ```
 
@@ -60,7 +60,7 @@ wg genpsk > "${name}.psk"
 
 Add the new client by running the command:
 
-``` bash
+```bash
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $(cat "${name}.pub")" >> /etc/wireguard/wg0.conf
 echo "PresharedKey = $(cat "${name}.psk")" >> /etc/wireguard/wg0.conf
@@ -74,13 +74,13 @@ echo "AllowedIPs = 10.100.0.2/32, fd08:4711::2/128" >> /etc/wireguard/wg0.conf
 
 Restart your server to load the new client config:
 
-``` bash
+```bash
 systemctl restart wg-quick@wg0
 ```
 
 After a restart, the server file should look like:
 
-``` toml
+```toml
 [Interface]
 Address = 10.100.0.1/24, fd08::1/128
 ListenPort = 47111
@@ -97,13 +97,13 @@ AllowedIPs = 10.100.0.2/32, fd08:4711::2/128
 
 The command
 
-``` bash
+```bash
 wg
 ```
 
 should tell you about your new client:
 
-``` plain
+```plain
 interface: wg0
   public key: XYZ123456ABC=          ⬅ Your server's public key will be different
   private key: (hidden)
@@ -118,7 +118,7 @@ peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be differen
 
 Create a dedicated config file for your new client:
 
-``` bash
+```bash
 echo "[Interface]" > "${name}.conf"
 echo "Address = 10.100.0.2/32, fd08:4711::2/128" >> "${name}.conf" # May need editing
 echo "DNS = 10.100.0.1" >> "${name}.conf"                          # Your Pi-hole's IP
@@ -126,13 +126,13 @@ echo "DNS = 10.100.0.1" >> "${name}.conf"                          # Your Pi-hol
 
 and add the private key of this client
 
-``` bash
+```bash
 echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
 ```
 
 Next, add your server as peer for this client:
 
-``` toml
+```toml
 [Peer]
 AllowedIPs = 10.100.0.0/24, fd08::/64
 Endpoint = [your public IP or domain]:47111
@@ -141,7 +141,7 @@ PersistentKeepalive = 25
 
 Then add the public key of the server as well as the PSK for this connection:
 
-``` bash
+```bash
 echo "PublicKey = $(cat server.pub)" >> "${name}.conf"
 echo "PresharedKey = $(cat "${name}.psk")" >> "${name}.conf"
 exit
@@ -158,7 +158,7 @@ That's it.
     When this option is enabled, a keepalive packet is sent to the server endpoint once every interval seconds. A sensible interval that works with a wide variety of firewalls is `25` seconds. Setting it to 0 turns the feature off, which is the default.
 
     Handshakes are not the same as keep-alives. A handshake establishes a limited-time session of about 3 minutes. So, for about 3 minutes your client is able to send its keep-alive packets without requireing a new session. Then, when the session expires, sending a new keep-alive requires a new session for which you should see a new handshake. In practice, the client initiates a handshake earlier.
-    
+
     **TL;DR** If you're behind NAT or a firewall and you want to receive incoming connections long after network traffic has gone silent, this option will keep the "connection" open in the eyes of NAT.
 <!-- markdownlint-disable code-block-style -->
 
@@ -166,7 +166,7 @@ That's it.
 
 You can now copy the configuration file to your client (if you created the config on the server). If the client is a mobile device such as a phone, `qrencode` can be used to generate a scanable QR code:
 
-``` bash
+```bash
 sudo qrencode -t ansiutf8 -r "/etc/wireguard/${name}.conf"
 ```
 
@@ -180,13 +180,13 @@ After creating/copying the connection information over to your client, you may u
 
 You can check if your client successfully connected by, once again, running
 
-``` plain
+```plain
 sudo wg
 ```
 
 on the server. It should show some traffic for your client if everything works:
 
-``` plain
+```plain
 interface: wg0
   public key: XYZ123456ABC=          ⬅ Your server's public key will be different
   private key: (hidden)

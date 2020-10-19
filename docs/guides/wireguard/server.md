@@ -11,13 +11,13 @@
 
 Installing everything we will need for a `wireguard` connections is as simple as running:
 
-``` bash
+```bash
 sudo apt-get install wireguard wireguard-tools wireguard-dkms
 ```
 
 For Ubuntu 18.04 and lower, you need to do some extra steps:
 
-``` bash
+```bash
 sudo add-apt-repository ppa:wireguard/wireguard
 sudo apt update
 sudo apt install wireguard wireguard-tools wireguard-dkms
@@ -32,7 +32,7 @@ If there is no `wireguard` package available for your system, you can follow the
 
     ### Update your local system
 
-    ``` bash
+    ```bash
     sudo apt update && sudo apt upgrade -y
     ```
 
@@ -40,19 +40,19 @@ If there is no `wireguard` package available for your system, you can follow the
 
     === "Raspberry Pi"
 
-        ``` bash
+        ```bash
         sudo apt install -y raspberrypi-kernel-headers libelf-dev build-essential pkg-config git
         ```
 
     === "Linux"
 
-        ``` bash
+        ```bash
         sudo apt install -y linux-headers-$(uname -r) libelf-dev build-essential libmnl-dev git
         ```
 
     ## Download and compile the `wireguard` module
 
-    ``` bash
+    ```bash
     git clone https://git.zx2c4.com/wireguard-linux-compat
     make -C wireguard-linux-compat/src -j$(nproc)
     sudo make -C wireguard-linux-compat/src install
@@ -60,7 +60,7 @@ If there is no `wireguard` package available for your system, you can follow the
 
     You can ignore messages like
 
-    ``` plain
+    ```plain
     Warning: modules_install: missing 'System.map' file. Skipping depmod.
     ```
 
@@ -68,7 +68,7 @@ If there is no `wireguard` package available for your system, you can follow the
 
         Run
 
-        ``` bash
+        ```bash
         sudo modprobe wireguard
         ```
 
@@ -76,7 +76,7 @@ If there is no `wireguard` package available for your system, you can follow the
 
     ## Download and compile the `wireguard` tools (`wg`, etc.)
 
-    ``` bash
+    ```bash
     git clone https://git.zx2c4.com/wireguard-tools
     make -C wireguard-tools/src -j$(nproc)
     sudo make -C wireguard-tools/src install
@@ -91,7 +91,7 @@ Each network interface has a private key and a list of peers. Each peer has a pu
 
 First, we create the folder containing our `wireguard` configuration:
 
-``` bash
+```bash
 sudo -i
 cd /etc/wireguard
 umask 077
@@ -101,7 +101,7 @@ umask 077
 
 Inhere, we generate a key-pair for the server:
 
-``` bash
+```bash
 wg genkey | tee server.key | wg pubkey > server.pub
 ```
 
@@ -109,13 +109,13 @@ wg genkey | tee server.key | wg pubkey > server.pub
 
 Create a config file
 
-``` bash
+```bash
 sudo nano /etc/wireguard/wg0.conf
 ```
 
 and put the following into it:
 
-``` toml
+```toml
 [Interface]
 Address = 10.100.0.1/24, fd08:4711::1/64
 ListenPort = 47111
@@ -123,7 +123,7 @@ ListenPort = 47111
 
 Then run
 
-``` bash
+```bash
 echo "PrivateKey = $(cat server.key)" >> /etc/wireguard/wg0.conf
 exit # Exit the sudo session
 ```
@@ -138,7 +138,7 @@ If the server is behind NAT, be sure to forward the specified port on which Wire
 
 Register your server `wg0` as:
 
-``` bash
+```bash
 sudo systemctl enable wg-quick@wg0.service
 sudo systemctl daemon-reload
 sudo systemctl start wg-quick@wg0
@@ -150,7 +150,7 @@ If successful, you should not see any output.
 ??? warning "Error: RTNETLINK answers: Operation not supported"
     In case you get an error like
 
-    ``` plain
+    ```plain
     RTNETLINK answers: Operation not supported
     Unable to access interface: Protocol not supported
     ```
@@ -168,13 +168,13 @@ If successful, you should not see any output.
 
 With the following command, you can check if your `wireguard` server is running:
 
-``` bash
+```bash
 sudo wg
 ```
 
 The output should look like the following:
 
-``` plain
+```plain
 interface: wg0
   public key: XYZ123456ABC=   ⬅ Your public key will be different
   private key: (hidden)
