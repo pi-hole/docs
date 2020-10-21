@@ -4,7 +4,7 @@
 !!! info "The terms "server" and "client""
     Usage of the terms `server` and `client` were purposefully chosen in this guide specifically to help both new users and existing OpenVPN users become familiar with the construction of WireGuard's configuration files.
 
-    WireGuard itself simply refers to all connected devices as `peers`. It consitutes a connection between computers.
+    WireGuard itself simply refers to all connected devices as `peers`. It constitutes a connection between computers.
 <!-- markdownlint-enable code-block-style -->
 
 ## Installing the server components
@@ -181,11 +181,11 @@ interface: wg0
   listening port: 47111
 ```
 
-Your public key will be different to ours. This is expected (you just created your own key above).
+Your public key will be different from ours. This is expected (you just created your own key above).
 
 ## Set your Pi-hole to listen on all interfaces
 
-On your [Settings page (tab DNS)](http://pi.hole/admin/settings.php?tab=dns), ensure you set the listing mode of your Pi-hole to one of the `Listen of all interfaces` settings. The top one is perferred as it adds a bit of additional safety. Your WireGuard peers/clients will be correctly recognized as being only one hop away.
+On your [Settings page (tab DNS)](http://pi.hole/admin/settings.php?tab=dns), ensure you set the listing mode of your Pi-hole to one of the `Listen of all interfaces` settings. The top one is preferred as it adds a bit of additional safety. Your WireGuard peers/clients will be correctly recognized as being only one hop away.
 
 You can now continue to add clients.
 

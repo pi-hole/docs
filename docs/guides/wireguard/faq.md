@@ -2,12 +2,12 @@
 
 ## Issues with dynamic server IP
 
-Host names cannot be resolved during startup. This may lead to a five minutes delay during boot. A solution to this is to disable the automatic start of the `wg` interface during start and connect only later (manually) when you are sure that you can resolve host names.
+Hostnames cannot be resolved during startup. This may lead to a five minutes delay during boot. A solution to this is to disable the automatic start of the `wg` interface during start and connect only later (manually) when you are sure that you can resolve hostnames.
 
 1. Disable `auto wg0` in `/etc/network/interfaces` (put `#` in front, like `#auto wg0`)
 2. Start `wireguard` manually using `sudo ifup wg0`
 
-If the IP changes while the connection is running, resolving the new IP address fails otten. Reconnect using
+If the IP changes while the connection is running, resolving the new IP address fails often. Reconnect using
 
 ```bash
 sudo ifdown wg0 && sudo ifup wg0
@@ -63,7 +63,7 @@ unmanaged-devices=interface-name:wg*
 
 ## Broken DNS resolution
 
-When tunneling all traffic through a WireGuard interface, the connection can become seemingly lost after a while or upon new connection. This could be caused by a network manager or DHCP client overwriting `/etc/resolv.conf`.
+When tunneling all traffic through a WireGuard interface, the connection can become seemingly lost after a while or upon a new connection. This could be caused by a network manager or DHCP client overwriting `/etc/resolv.conf`.
 By default, `wg-quick` uses `resolvconf` to register new DNS entries (from the DNS keyword in the configuration file). This will cause issues with network managers and DHCP clients that do not use `resolvconf`, as they will overwrite `/etc/resolv.conf` thus removing the DNS servers added by `wg-quick`.
 
 The solution is to use networking software that supports `resolvconf`.
@@ -75,7 +75,7 @@ The solution is to use networking software that supports `resolvconf`.
 
 ## Low MTU
 
-Due to too low MTU (lower than 1280), `wg-quick` may fail to create the WireGuard interface. This can be solved by setting the MTU value in WireGuard configuration in Interface section on client:
+Due to too low MTU (lower than 1280), `wg-quick` may fail to create the WireGuard interface. This can be solved by setting the MTU value in WireGuard configuration in the Interface section on the client:
 
 ```toml
 [Interface]

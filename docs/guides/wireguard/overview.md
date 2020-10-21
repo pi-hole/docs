@@ -1,11 +1,11 @@
 ### Remote accessing Pi-hole using WireGuard
 
-WireGuard is an ***extremely simple yet fast and modern VPN*** that utilizes state-of-the-art cryptography. Comparing to other solutions, such as OpenVPN or IPsec, it aims to be **faster, simpler and leaner** while avoiding the massive overhead involved with other VPN solutions.
+WireGuard is an ***extremely simple yet fast and modern VPN*** that utilizes state-of-the-art cryptography. Comparing to other solutions, such as OpenVPN or IPsec, it aims to be **faster, simpler, and leaner** while avoiding the massive overhead involved with other VPN solutions.
 A combination of extremely high-speed cryptographic primitives and the fact that WireGuard lives
 inside the Linux kernel means that secure networking can be very high-speed.
 It intends to be considerably more performant than OpenVPN.
 
-WireGuard is designed as a general purpose VPN for running on embedded interfaces and super computers alike, fit for many circumstances.
+WireGuard is designed as a general-purpose VPN for running on embedded interfaces and super computers alike, fit for many circumstances.
 
 There is no need to manage connections, be concerned about state, manage daemons, or worry about what's under the hood. WireGuard presents an extremely basic yet powerful interface.
 
