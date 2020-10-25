@@ -76,7 +76,7 @@ Highlights:
 
 `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 
-```ini
+```yaml
 server:
     # If no logfile is specified, syslog is used
     # logfile: "/var/log/unbound/unbound.log"
@@ -179,7 +179,7 @@ Level 5 logs client identification for cache misses
 First, specify the log file and the verbosity level in the `server` part of
 `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 
-```ini
+```yaml
 server:
     # If no logfile is specified, syslog is used
     logfile: "/var/log/unbound/unbound.log"
