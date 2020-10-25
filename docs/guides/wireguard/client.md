@@ -80,7 +80,7 @@ systemctl restart wg-quick@wg0
 
 After a restart, the server file should look like:
 
-```toml
+```bash
 [Interface]
 Address = 10.100.0.1/24, fd08::1/128
 ListenPort = 47111
@@ -132,7 +132,7 @@ echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
 
 Next, add your server as peer for this client:
 
-```toml
+```bash
 [Peer]
 AllowedIPs = 10.100.0.0/24, fd08::/64
 Endpoint = [your public IP or domain]:47111

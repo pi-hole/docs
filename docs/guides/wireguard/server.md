@@ -115,7 +115,7 @@ sudo nano /etc/wireguard/wg0.conf
 
 and put the following into it:
 
-```toml
+```bash
 [Interface]
 Address = 10.100.0.1/24, fd08:4711::1/64
 ListenPort = 47111

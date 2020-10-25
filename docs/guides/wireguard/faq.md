@@ -54,7 +54,7 @@ sudo crontab -e
 
 Users of NetworkManager should make sure that it is not managing the WireGuard interface(s). For example, create the configuration file `/etc/NetworkManager/conf.d/unmanaged.conf` with content
 
-```toml
+```bash
 [keyfile]
 unmanaged-devices=interface-name:wg*
 ```
@@ -77,7 +77,7 @@ The solution is to use networking software that supports `resolvconf`.
 
 Due to too low MTU (lower than 1280), `wg-quick` may fail to create the WireGuard interface. This can be solved by setting the MTU value in WireGuard configuration in the Interface section on the client:
 
-```toml
+```bash
 [Interface]
 MTU = 1500
 ```
