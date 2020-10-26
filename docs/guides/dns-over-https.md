@@ -58,6 +58,10 @@ sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
 
+#### `cloudflared` archive page
+
+You can find all `cloudflared` binary releases on <https://dl.equinox.io/cloudflare/cloudflared/stable/archive>.
+
 ### Configuring `cloudflared` to run on startup
 
 #### Manual way
