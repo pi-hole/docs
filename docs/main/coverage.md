@@ -26,7 +26,7 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 - [Catchpoint: Ad-Blocking on Apple iOS9: Valuing the End User Experience](http://blog.catchpoint.com/2015/09/14/ad-blocking-apple/) _Sept 14, 2015_
 - [Adafruit: Pi-hole is a black hole for internet ads](https://blog.adafruit.com/2016/03/04/pi-hole-is-a-black-hole-for-internet-ads-piday-raspberrypi-raspberry_pi/) _Mar 4, 2016_
 - [Devacron: OrangePi Zero as an Ad-Block server with Pi-Hole](https://www.devacron.com/orangepi-zero-as-an-ad-block-server-with-pi-hole/) _Dec 3, 2016_
-- [Linux Pro: The Hole Truth](http://www.linuxpromagazine.com/Issues/2017/200/The-sysadmin-s-daily-grind-Pi-hole) _2017_
+- [Linux Pro: The Hole Truth](https://www.linuxpromagazine.com/Issues/2017/200/The-sysadmin-s-daily-grind-Pi-hole) _2017_
 - [CryptoAUSTRALIA: How We Tried 5 Privacy Focused Raspberry Pi Projects](https://blog.cryptoaustralia.org.au/5-privacy-focused-raspberry-pi-projects/) _Oct 5, 2017_
 - [CryptoAUSTRALIA: Pi-hole Workshop](https://blog.cryptoaustralia.org.au/pi-hole-network-wide-ad-blocker/) _Nov 2, 2017_
 - [Bloomberg: Inside the Brotherhood of the Ad Blockers](https://www.bloomberg.com/news/features/2018-05-10/inside-the-brotherhood-of-pi-hole-ad-blockers) _May 10, 2018_
