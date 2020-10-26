@@ -65,7 +65,7 @@ Finished!
 Your client configuration is available at /root/pihole.ovpn
 If you want to add more clients, you simply need to run this script again!
 ```
-
+You can set your port to whatever you would like, however you will have to portforward this port in your routers settings from your public ip to your device (if self hosting).
 ### Install Pi-hole
 
 Next, install Pi-hole and choose `tun0` as the interface and `10.8.0.1/24` as the IP address. You can accept the rest of the defaults, or configure Pi-hole to your liking. The interface selection is the most important step; if you don't choose `tun0` (at least to begin with), it will not work properly.
