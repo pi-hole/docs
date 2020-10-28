@@ -17,10 +17,15 @@ During the pi-hole installation, you select 1 of the 7 preset providers or enter
 
 Default upstream DNS provider on the Pi-hole.
 
-- 8.8.8.8
-- 8.8.4.4
+- 8.8.8.8 (IPv4)
+- 8.8.4.4 (IPv4)
+- 2001:4860:4860::8888 (IPv6)
+- 2001:4860:4860::8844 (IPv6)
+- 2001:4860:4860::6464 (IPv6 with DNS64)
+- 2001:4860:4860::64 (IPv6 with DNS64)
 
-[More information on Google Public DNS](https://developers.google.com/speed/public-dns/)
+
+[More information on Google Public DNS](https://developers.google.com/speed/public-dns/ and https://developers.google.com/speed/public-dns/docs/dns64)
 
 ### OpenDNS Home (owned by Cisco)
 
@@ -84,10 +89,12 @@ Quad9 is a free, recursive, anycast DNS platform that provides end users robust 
 
 CloudFlare will never log your IP address (the way other companies identify you). The independent DNS monitor [DNSPerf](https://www.dnsperf.com/) ranks Cloudflare's DNS the fastest DNS service in the world.
 
-- 1.1.1.1
-- 1.0.0.1
+- 1.1.1.1 (IPv4)
+- 1.0.0.1 (IPv4)
 - 2606:4700:4700::1111 (IPv6)
 - 2606:4700:4700::1001 (IPv6)
+- 2606:4700:4700::64 (IPv6 with DNS64)
+- 2606:4700:4700::6400 (IPv6 with DNS64)
 
 [More information on Cloudflare DNS](https://cloudflare-dns.com/dns/#explanation)
 
