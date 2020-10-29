@@ -9,7 +9,7 @@ Label | Type | Uniqueness enforced | Content
 `id` | integer | Yes | Unique ID for database operations
 `enabled` | boolean | No | Flag whether domains in this group should be used<br>(`0` = disabled, `1` = enabled)
 `name` | text | No | Mandatory group name
-`comment` | text | No | Optional field for arbitrary user comments
+`description` | text | No | Optional field for arbitrary user comments
 
 Group management is implemented using so-called linking tables. Hence, it is possible to
 
