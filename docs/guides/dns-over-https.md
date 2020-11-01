@@ -154,7 +154,7 @@ proxy-dns-upstream:
 Now install the service via `cloudflared`'s [service command](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#service-command):
 
 ```bash
-sudo cloudflared service install
+sudo cloudflared service install --legacy
 ```
 
 Start the `systemd` service and check its status:
