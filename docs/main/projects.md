@@ -11,7 +11,6 @@ last_updated: Sun Sep 06 14:28:14 2020 UTC
 - [Chrome Extension: Pi-Hole List Editor](https://chrome.google.com/webstore/detail/pi-hole-list-editor/hlnoeoejkllgkjbnnnhfolapllcnaglh) ([Source Code](https://github.com/packtloss/pihole-extension))
 - [Splunk: Pi-hole Visualiser](https://splunkbase.splunk.com/app/3023/)
 - [Adblocking with Pi-hole and Ubuntu 14.04 on VirtualBox](https://hbalagtas.blogspot.com/2016/02/adblocking-with-pi-hole-and-ubuntu-1404.html)
-- [Pi-hole stats in your Mac's menu bar](https://github.com/matryer/bitbar-plugins/blob/master/Network/pi-hole.1m.py)
 - [Pi-hole unRAID Template](https://forums.unraid.net/topic/36810-support-spants-nodered-mqtt-dashing-couchdb/)
 - [Copernicus: Windows Tray Application](https://github.com/goldbattle/copernicus)
 - [Let your blink1 device blink when Pi-hole filters ads](https://gist.github.com/elpatron68/ec0b4c582e5abf604885ac1e068d233f)
