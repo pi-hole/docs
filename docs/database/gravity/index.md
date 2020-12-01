@@ -30,6 +30,7 @@ Label | Type | Uniqueness enforced | Content
 `date_added` | integer | No | Timestamp when domain was added
 `date_modified` | integer | No | Timestamp when domain was last modified, automatically updated when a record is changed
 `comment` | text | No | Optional field for arbitrary user comments
+`date_updated` | integer | No | Timestamp when this list has last been updated (`pihole -g` does **not** update this timestamp when the downloaded list did not change since the last `pihole -g` run)
 
 ## Gravity Table (`gravity`)
 
