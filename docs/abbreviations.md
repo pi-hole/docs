@@ -10,6 +10,7 @@
 *[TCP]: Transmission Control Protocol (protocol providing reliable, ordered, and error-checked delivery of data between applications running on hosts communicating via an IP network)
 *[UDP]: User Datagram Protocol (a network communications method for sending messages as datagrams)
 *[API]: Application Programming Interface (a set of subroutine definitions, protocols, and tools for building application software)
+*[PE]: Privacy Extension
 *[PID]: Process identifier (a number used to identify a process)
 *[HOSTS]: The computer file /etc/hosts is an operating system file that maps hostnames to IP addresses
 *[POSIX]: Portable Operating System Interface (a family of standards specified by the IEEE Computer Society for maintaining compatibility between operating systems)
