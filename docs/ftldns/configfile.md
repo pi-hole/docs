@@ -93,6 +93,17 @@ host name for another IP address (e.g., a DHCP server managed IPv4 address). In
 this case, we use the host name associated to the other address as this is the
 same device.
 
+#### `REFRESH_HOSTNAMES=IPV4|ALL|NONE` (PR [#953](https://github.com/pi-hole/FTL/pull/953)) {#refresh_hostnames data-toc-label='Refresh hostnames'}
+
+With this option, you can change how (and if) hourly PTR requests are made to check for changes in client and upstream server hostnames. The following options are available:
+
+- `REFRESH_HOSTNAMES=IPV4` - Do the hourly PTR lookups only for IPv4 addresses
+   This is the new default since Pi-hole FTL v5.3.2. It should resolve issues with more and more very short-lived PE IPv6 addresses coming up in a lot of networks.
+- `REFRESH_HOSTNAMES=ALL` - Do the hourly PTR lookups for all addresses
+   This is the same as what we're doing with FTL v5.3(.1). This can create a lot of PTR queries for those with many IPv6 addresses in their networks.
+- `REFRESH_HOSTNAMES=NONE` - Don't do any hourly PTR lookups
+   This means we look host names up exactly once (when we first see a client) and never again. You may miss future changes of host names.
+
 ---
 
 ### Long-term database settings
