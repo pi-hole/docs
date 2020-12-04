@@ -293,7 +293,7 @@ Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/
 
 Set the Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on the screen (e.g: `pihole -a -p`).
 
-### Teleport 
+### Teleport
 
 | | |
  -------------- | --------------
