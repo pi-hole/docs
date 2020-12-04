@@ -292,6 +292,16 @@ Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/
 
 Set the Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on the screen (e.g: `pihole -a -p`).
 
+### Teleport 
+
+| | |
+ -------------- | --------------
+Help Command    | N/A
+Script Location | N/A
+Example Usage   | `pihole -a -t`
+
+Create a configuration backup. The backup will be created in the directory from which the command is run. The backup can be imported using the Settings > Teleport page.
+
 ### Temperature Unit
 
 | | |
