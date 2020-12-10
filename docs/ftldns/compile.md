@@ -14,7 +14,7 @@ sudo apt install build-essential libgmp-dev m4 cmake libidn11-dev libreadline-de
 ### Fedora
 
 ```bash
-sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel
+sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel
 ```
 
 ## Compile `libnettle` from source
