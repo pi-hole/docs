@@ -2,7 +2,7 @@
 
 This guide was developed using a FritzBox 7530 but should work for others too. It aims to line out a few basic prinicples to have a seemless DNS experience with Pihole and Fritzboxes .
 
-> Note: 
+> Note:
 There is no single way to do it right. Choose the one best fitting your needs.
 This guide is IPv4 only. You need to adjust for IPv6 accordingly
 
@@ -28,14 +28,14 @@ With this configuration, you won't see individual clients in pihole's dashboard.
 
 ## 2) Distribute Pihole as DNS server via DHCP
 
-Using this configuration, all clients will get Pihole's IP offered as DNS server when they request a DHCP lease from your FritzBox. 
+Using this configuration, all clients will get Pihole's IP offered as DNS server when they request a DHCP lease from your FritzBox.
 DNS requests are send in this order
 
 ```bash
 Client -> Pihole -> Upstream DNS Server
 ```
 
-> Note: 
+> Note:
 The FritzBox itself will use whatever is configured under Internet/Zugangsdaten/DNS-Server.
 The FritzBox can be Pihole's upstream DNS server, as long Pihole itself is not the the upstream server for the Fritzbox. This would  cause a DNS loop.
 
