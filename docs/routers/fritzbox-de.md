@@ -1,72 +1,75 @@
-**This is an unsupported configuration created by the community**
+**Dies ist eine inoffizielle Anleitung die durch die Community gepflegt wird**
 
-This guide was developed using FRITZ!OS 07.21 but should work for others too. It aims to line out a few basic prinicples to have a seemless DNS experience with Pihole and Fritz!Boxes .
+Diese Anleitung wurde für FRITZ!OS 07.21 geschrieben, sollte jedoch auch mit anderen Firmware-Versionen funktionieren. Ziel ist es, grundlegende Prinzipien für ein reibungsloses Zusammenspiel zwischen Fritz!Box und Pihole zu verdeutlichen.
 
-> Note:
-There is no single way to do it right. Choose the one best fitting your needs.
-This guide is IPv4 only. You need to adjust for IPv6 accordingly
+> Hinweis:
+Es gibt nicht nur **die eine Art**, eine funktionierende DNS System aufzusetzen.  Konfiguriert euer Netzwerk nach euren Bedürfnissen.
+Diese Anleitung wurde für IPv4 geschrieben und muss für IPv6 Netwerke entsprechend angepasst werden.
 
-## 1) Using Pihole as upstream DNS server for your Fritz!Box
+## 1) Pihole als Upstream DNS Server der Fritz!Box (WAN  Seite)
 
-Using this configuration, Pihole is used for all devices within your network including the Fritz!Box itself. DNS requests are send in this order
+Mit dieser Konfiguration, wird Pihole für alle Geräte im Netzwerk, incl. der Fritz!Box genutzt. DNS Anfragen nehmen folgenden Weg
 
 ```bash
 Client -> Fritz!Box -> Pihole -> Upstream DNS Server
 ```
 
-To set it up, enter Pihole's IP as "Bevorzugter DNS-Server" **and** "Alternativer DNS-Server" in
+Zum Einstellen muss die IP des Pihole als "Bevorzugter DNS-Server" **und** "Alternativer DNS-Server" in
 
 ```bash
 Internet/Zugangsdaten/DNS-Server
 ```
+eingertagen werden.
 
 !!! warning
-    Don't set the Fitz!Box as upstrem DNS server for pihole! This will lead to a DNS loop as the Pihole will send the queries to the Fritz!Box which in turn will send the to Pihole.
+    Die Fritz!Box darf nicht als upstream DNS Server im Pihole eingestellt werden. Dies würde zu einem DNS Loop führen, da Pihole dann die Anfragen an dieFritz!Box senden würde, welche sie wiederum an Pihole senden würde.
 
-With this configuration, you won't see individual clients in pihole's dashboard. For pihole, all queries will appear as if they are comming from your Fritz!Box. You will therefore miss out some features, e.g. Group Management. This can be solved using method #2.
+Mit dieser Konfiguration sind im Pihole Dashboard keine individuellen Clients sichtbar. Für Pihole scheinen alle Anfragen von der Fritz!Box zu kommen. Dadurch können nicht alle Funktionen von Pihole genutzt werden, z.B. die Möglichkeit, Clients individuell zu filtern (Group Management). Wenn dies gewünscht ist, muss die Konfiguration #2 verwendet werden.
 
 
-## 2) Distribute Pihole as DNS server via DHCP
+## 2) Pihole als DNS Server via DHCP an Clients verteilen (LAN Seite)
 
-Using this configuration, all clients will get Pihole's IP offered as DNS server when they request a DHCP lease from your Fritz!Box.
-DNS requests are send in this order
+Mit dieser Konfiguration wird allen Clients die IP des Pihole als DNS Server angeboten, wenn sie einen DHCP Lease vom der Fritz!Box anfordern.
+DNS Anfragen nehmen folgenden Weg
 
 ```bash
 Client -> Pihole -> Upstream DNS Server
 ```
 
-> Note:
-The Fritz!Box itself will use whatever is configured under Internet/Zugangsdaten/DNS-Server.
-The Fritz!Box can be Pihole's upstream DNS server, as long Pihole itself is not the the upstream server for the Fritz!Box. This would  cause a DNS loop.
+> Hinweis:
+Die Fritz!Box selbst wird den unter Internet/Zugangsdaten/DNS-Server eingestellten DNS Server nutzen.
+Die Fritz!Box kann der Upstream Server von Pihole sein, solange Pihole nicht der Upstream Server der Fritz!Box ist. Dies würde zu einem DNS Loop führen.
 
-To set it up, enter Pihole's IP as "Lokaler DNS-Server" in
+Um diese Konfiguration zu nutzen, muss die IP des Pihole als "Lokaler DNS-Server" in
 
 ```bash
-Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration
+Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Heimnetz
 ```
+eingetragen werden.
 
->Note:
-Clients will notice changes in DHCP settings only after they acquire a new DHCP lease. The easiest way to force a renewal is to dis/reconnect the client from the network.
+>Hinweis:
+Clients bemerken Änderungen an den DHCP Einstellungen erst, wenn der DHCP Lease erneuert wird. Der einfachste Weg dies zu erzwingen ist ein Unterbrechen und Wiederherstellen der Netzwerkverbindung. 
 
-You should see individual clients in Pihole's web dashboard.
+Nun sollen einzelne Clients in Piholes Dashboard auftrauchen.
 
-## 3) Combining 1) and 2)
+## 3) Kombination aus 1) und 2)
 
-You can combine 1) and 2) which will let all clients  send DNS requests to your Pihole **and** the Fritz!Box itself as well.
+Durch die Kombination von 1) und 2) senden alle Clients und die Fritz!Box selbst DNS Anfragen direkt an Pihole.
 
 ```bash
 Client (incl. Fritz!Box) -> Pihole -> Upstream DNS Server
 ```
 
 !!! warning
-    Don't set the Fritz!Box as upstrem DNS server for pihole! This will lead to a DNS loop as the Pihole will send the queries to the Fritz!Box which in turn will send the to Pihole
+    Die Fritz!Box darf nicht als Upstream DNS Server des Pihole gesetzt werden. Dies würde zu einem DNS Loop führen, da Pihole die Anfragen an die Fritz!Box senden würde, welche sie wiederum an Pihole weitergeben würde.
 
-## Using Pihole within the Guest Network
+## Pihole im Gastnetzwerk nutzen
 
-You may have noticed, that there is no option to set the DNS server for the guest network in
+Es gibt in der Fritz!Box keine Möglichkeit unter
 
 ```bash
-Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration
+Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Gastnetz
 ```
+den DNS Server des Gastnetzwerks einzustellen.
 
-The Fritz!Box always set its own IP as DNS server for  the guest network. To filter its traffic, you have to setup Pihole as upstream DNS server for your Fritz!Box (see #1). As there is no other option, all DNS requests from your guest network will appear as coming from your Fritz!Box.
+Die Fritz!Box wird immer ihre eigene IP als DNS Server des Gastnetzes einstellen. Um die DNS Anfragen dennoch über den Pihole zu senden, muss der als Upstream DNS für die Fritz!Box (siehe #1) eingetragen werden. Da es keine andere Option gibt, werden alle Anfragen aus dem Gastnetz für Pihole so erscheinen, als ob sie direkt von der Fritz!Box kommen. Eine individuelle Filterung je nach Client innerhalb des Gastnetzwerks ist deshalb nicht möglich.

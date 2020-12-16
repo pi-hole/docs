@@ -119,7 +119,8 @@ nav:
       - 'Performance and other issues': guides/tor/performance-issues.md
       - 'Using DNSSEC': guides/tor/dnssec.md
   - 'Router setup':
-    - 'Fritz!Boxes (EN)': routers/fritzbox.md
+    - 'Fritz!Box (EN)': routers/fritzbox.md
+    - 'Fritz!Box (DE)': routers/fritzbox-de.md
   - 'Community Projects': main/projects.md
 
 extra:
