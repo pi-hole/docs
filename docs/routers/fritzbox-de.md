@@ -19,6 +19,7 @@ Zum Einstellen muss die IP des Pihole als "Bevorzugter DNS-Server" **und** "Alte
 ```bash
 Internet/Zugangsdaten/DNS-Server
 ```
+
 eingertagen werden.
 
 !!! warning
@@ -45,6 +46,7 @@ Um diese Konfiguration zu nutzen, muss die IP des Pihole als "Lokaler DNS-Server
 ```bash
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Heimnetz
 ```
+
 eingetragen werden.
 
 >Hinweis:
@@ -70,6 +72,7 @@ Es gibt in der Fritz!Box keine Möglichkeit unter
 ```bash
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Gastnetz
 ```
+
 den DNS Server des Gastnetzwerks einzustellen.
 
 Die Fritz!Box wird immer ihre eigene IP als DNS Server des Gastnetzes einstellen. Um die DNS Anfragen dennoch über den Pihole zu senden, muss der als Upstream DNS für die Fritz!Box (siehe #1) eingetragen werden. Da es keine andere Option gibt, werden alle Anfragen aus dem Gastnetz für Pihole so erscheinen, als ob sie direkt von der Fritz!Box kommen. Eine individuelle Filterung je nach Client innerhalb des Gastnetzwerks ist deshalb nicht möglich.
