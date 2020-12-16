@@ -14,10 +14,10 @@ Using this configuration, Pihole is used for all devices within your network inc
 Client -> Fritz!Box -> Pihole -> Upstream DNS Server
 ```
 
-To set it up, enter Pihole's IP as "Bevorzugter DNS-Server" **and** "Alternativer DNS-Server" in
+To set it up, enter Pihole's IP as "Preferred DNS server" **and** "Alternative DNS server" in
 
 ```bash
-Internet/Zugangsdaten/DNS-Server
+Internet/Account Information/DNS server
 ```
 
 !!! warning
@@ -36,13 +36,13 @@ Client -> Pihole -> Upstream DNS Server
 ```
 
 > Note:
-The Fritz!Box itself will use whatever is configured under Internet/Zugangsdaten/DNS-Server.
+The Fritz!Box itself will use whatever is configured in Internet/Account Information/DNS server.
 The Fritz!Box can be Pihole's upstream DNS server, as long Pihole itself is not the the upstream server for the Fritz!Box. This would  cause a DNS loop.
 
-To set it up, enter Pihole's IP as "Lokaler DNS-Server" in
+To set it up, enter Pihole's IP as "Local DNS server" in
 
 ```bash
-Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration
+Home Network/Network/Network Settings/IP Adresses/IPv4 Configuration/Home Network
 ```
 
 >Note:
@@ -66,7 +66,7 @@ Client (incl. Fritz!Box) -> Pihole -> Upstream DNS Server
 You may have noticed, that there is no option to set the DNS server for the guest network in
 
 ```bash
-Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration
+Home Network/Network/Network Settings/IP Adresses/IPv4 Configuration/Guest Network
 ```
 
 The Fritz!Box always set its own IP as DNS server for  the guest network. To filter its traffic, you have to setup Pihole as upstream DNS server for your Fritz!Box (see #1). As there is no other option, all DNS requests from your guest network will appear as coming from your Fritz!Box.
