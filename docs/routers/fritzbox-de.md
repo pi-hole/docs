@@ -19,7 +19,8 @@ Zum Einstellen muss die IP des Pihole als "Bevorzugter DNS-Server" **und** "Alte
 ```bash
 Internet/Zugangsdaten/DNS-Server
 ```
-![Screenshot der Fritz!Box WAN DNS Konfiguration](../images/fritzbox-wan-dns-de.png) 
+
+![Screenshot der Fritz!Box WAN DNS Konfiguration](../images/fritzbox-wan-dns-de.png)
 
 eingertagen werden.
 
@@ -46,8 +47,9 @@ Um diese Konfiguration zu nutzen, muss die IP des Pihole als "Lokaler DNS-Server
 
 ```bash
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Heimnetz
+
 ```
-![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-dhcp-de.png) 
+![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-dhcp-de.png)
 
 eingetragen werden.
 
