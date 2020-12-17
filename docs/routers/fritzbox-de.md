@@ -47,8 +47,8 @@ Um diese Konfiguration zu nutzen, muss die IP des Pihole als "Lokaler DNS-Server
 
 ```bash
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Heimnetz
-
 ```
+
 ![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-dhcp-de.png)
 
 eingetragen werden.
