@@ -19,6 +19,7 @@ To set it up, enter Pihole's IP as "Preferred DNS server" **and** "Alternative D
 ```bash
 Internet/Account Information/DNS server
 ```
+![Screenshot of Fritz!Box WAN DNS Configuration](../images/fritzbox-wan-dns.png) 
 
 !!! warning
     Don't set the Fitz!Box as upstrem DNS server for pihole! This will lead to a DNS loop as the Pihole will send the queries to the Fritz!Box which in turn will send the to Pihole.
@@ -44,6 +45,7 @@ To set it up, enter Pihole's IP as "Local DNS server" in
 ```bash
 Home Network/Network/Network Settings/IP Adresses/IPv4 Configuration/Home Network
 ```
+![Screenshot of Fritz!Box DHCP Settings](../images/fritzbox-dhcp.png) 
 
 >Note:
 Clients will notice changes in DHCP settings only after they acquire a new DHCP lease. The easiest way to force a renewal is to dis/reconnect the client from the network.
