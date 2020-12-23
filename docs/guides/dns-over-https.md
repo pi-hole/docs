@@ -82,7 +82,7 @@ Edit configuration file by copying the following in to `/etc/default/cloudflared
 
 ```bash
 # Commandline args for cloudflared, using Cloudflare DNS
-CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
+CLOUDFLARED_OPTS=--port 5053 --upstream https://cloudflare-dns.com/dns-query
 ```
 
 Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user:
@@ -144,11 +144,7 @@ Copy the following configuration:
 proxy-dns: true
 proxy-dns-port: 5053
 proxy-dns-upstream:
-  - https://1.1.1.1/dns-query
-  - https://1.0.0.1/dns-query
-  #Uncomment following if you want to also want to use IPv6 for  external DOH lookups
-  #- https://[2606:4700:4700::1111]/dns-query
-  #- https://[2606:4700:4700::1001]/dns-query
+  - https://cloudflare-dns.com/dns-query
 ```
 
 Now install the service via `cloudflared`'s [service command](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#service-command):
