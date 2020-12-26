@@ -267,6 +267,7 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
  -------------- | --------------
 [Web Script](#web-script) | `pihole -a`
 [Password](#password) | `pihole -a password`
+[Teleport](#teleport) | `pihole -a -t`
 [Temperature Unit](#temperature-unit) | `pihole -a celsius`, `pihole -a fahrenheit`, `pihole -a kelvin`
 [Host Record](#host-record) | `pihole -a hostrecord`
 [Email Address](#email-address) | `pihole -a email`
@@ -291,6 +292,16 @@ Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/
 Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#web-password)
 
 Set the Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on the screen (e.g: `pihole -a -p`).
+
+### Teleport
+
+| | |
+ -------------- | --------------
+Help Command    | N/A
+Script Location | N/A
+Example Usage   | `pihole -a -t`
+
+Create a configuration backup. The backup will be created in the directory from which the command is run. The backup can be imported using the Settings > Teleport page.
 
 ### Temperature Unit
 
