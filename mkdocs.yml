@@ -81,6 +81,7 @@ nav:
       - "Tutorial": ftldns/regex/tutorial.md
     - 'Privacy levels': ftldns/privacylevels.md
     - 'Telnet API': ftldns/telnet-api.md
+    - 'Signals': 'ftldns/signals.md'
     - 'Compatibility': ftldns/compatibility.md
     - 'Install from source': ftldns/compile.md
     - 'Debugging FTLDNS': ftldns/debugging.md
