@@ -160,6 +160,42 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 
 (don't forget to hit Return or click on `Save`)
 
+### Disable `resolvconf` for `unbound` (optional)
+
+The `unbound` package can come with a systemd service called `unbound-resolvconf.service` and default enabled.
+It instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`.
+That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured.
+If you configured `/etc/dhcpcd.conf` with a `static domain_name_servers=` line, these DNS server(s) will be ignored/overruled by this service.
+
+To check if this service is enabled for your distribution, run below one and take note of the the `Active` line.
+It will show either `active` or `inactive` or it might not even be installed resulting in a `could not be found` message:
+
+```bash
+sudo systemctl status unbound-resolvconf.service
+```
+
+To disable the service if so desire, run below two:
+
+```bash
+sudo systemctl disable unbound-resolvconf.service
+```
+
+```bash
+sudo systemctl stop unbound-resolvconf.service
+```
+
+To have the `domain_name_servers=` in the file `/etc/dhcpcd.conf` activated/propagate, run below one:
+
+```bash
+sudo systemctl restart dhcpcd
+```
+
+And check with below one if IP(s) on the `nameserver` line(s) reflects the ones in the `/etc/dhcpcd.conf` file:
+
+```bash
+cat /etc/resolv.conf
+```
+
 ### Add logging to unbound
 
 !!! warning
