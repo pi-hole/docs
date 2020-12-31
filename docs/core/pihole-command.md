@@ -187,7 +187,7 @@ This command will query your whitelist, blacklist, wildcards and adlists for a s
 
 | | |
  -------------- | --------------
-Help Command    | `pihole update`
+Help Command    | `pihole updatePihole`
 Script Location | [`/opt/pihole/update.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/update.sh)
 Example Usage   | `pihole -up`
 
