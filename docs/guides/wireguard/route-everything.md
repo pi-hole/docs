@@ -14,11 +14,28 @@ Rerouting the Internet traffic through your Pi-hole will furthermore cause all o
     The following assumes you have already prepared your Pi-hole for [IP forwarding](internal.md#enable-ip-forwarding-on-the-server) and [enabled NAT](internal.md#enable-nat-on-the-server). If this is not the case, follow the steps over there before continuing here.
 <!-- markdownlint-enable code-block-style -->
 
-To route all traffic through the tunnel to a specific peer, add the default route (`0.0.0.0/0` for IPv4 and `::/0`for IPv6) to `AllowedIPs` in your clients's WireGuard config files:
+To route all traffic through the tunnel to a specific peer, add the default route (`0.0.0.0/0` for IPv4 and `::/0`for IPv6) to `AllowedIPs` in the `[Peer]` section of your clients's WireGuard config files:
 
-```bash
+``` plain
 AllowedIPs = 0.0.0.0/0, ::/0
 ```
+
+??? info "Exemplary client config file with this change"
+    ``` plain
+    [Interface]
+    PrivateKey = [your client's private key]
+    Address = [Wireguard-internal IPs of your client, e.g. 10.100.0.2/32, fd08:4711::2/128]
+    DNS = 10.100.0.1
+
+    [Peer]
+    AllowedIPs = 0.0.0.0/0, ::/0
+    Endpoint = [your server's public IP or domain]:47111
+    PublicKey = [public key of the server]
+    PresharedKey = [pre-shared key of this client]
+    PersistentKeepalive = 25
+    ```
+
+    The important change is setting the `[Peer] -> AllowedIPs` entry to `0.0.0.0/0, ::/0`
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "Change this setting only on your clients"
