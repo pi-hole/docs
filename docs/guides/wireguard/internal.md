@@ -37,24 +37,27 @@ PostUp = iptables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -
 PostDown = iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 ```
 
+<!-- markdownlint-disable code-block-style -->
 !!! warning "**Important:** Substitute interface"
     **Without the correct interface name, this will not work!**
 
     Substitute `eth0` in the preceding lines to match the Internet-facing interface. This may be `ens2p0` or similar on more recent Ubuntu versions (check, e.g., `ip a` for details about your local interfaces).
+<!-- markdownlint-enable code-block-style -->
 
 `PostUp` and `PostDown` defines steps to be run after the interface is turned on or off, respectively. In this case, iptables is used to set Linux IP masquerade rules to allow all the clients to share the server’s IPv4 and IPv6 address.
 The rules will then be cleared once the tunnel is down.
 
+<!-- markdownlint-disable code-block-style -->
 ??? info "Exemplary server config file with this change"
     ``` plain
     [Interface]
     PrivateKey = [your server's private key]
     Address = [Wireguard-internal IPs of the server, e.g. 10.100.0.1/24, fd08:4711::1/64]
     ListenPort = 47111
-    
+
     PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp2s0 -j MASQUERADE
     PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp2s0 -j MASQUERADE
-    
+
     # Android phone
     [Peer]
     PublicKey = [public key of this client]
@@ -65,7 +68,7 @@ The rules will then be cleared once the tunnel is down.
     ```
 
     The important change is the extra PostUp` and `PostDown` in the `[Interface]` section.
-
+<!-- markdownlint-enable code-block-style -->
 ## Allow clients to access other devices
 
 In our standard configuration, we have configured the clients in such a way that they can only speak to the server. Add the network range of your local network in CIDR notation (e.g., `192.168.2.1 - 192.168.2.254` -> `192.168.2.0/24`) in the `[Peers]` section of all clients you want to have this feature:
@@ -77,6 +80,7 @@ AllowedIPs = 10.0.0.0/24, fd08:4711::/64, 192.168.2.0/24
 
 It is possible to add this only for a few clients, leaving the others isolated to only the Pi-hole server itself.
 
+<!-- markdownlint-disable code-block-style -->
 ??? info "Exemplary client config file with this change"
     ``` plain
     [Interface]
@@ -93,3 +97,4 @@ It is possible to add this only for a few clients, leaving the others isolated t
     ```
 
     The important change is the extra `192.168.2.0/24` at the end of the `[Peer] -> AllowedIPs` entry.
+<!-- markdownlint-enable code-block-style -->

@@ -20,6 +20,7 @@ To route all traffic through the tunnel to a specific peer, add the default rout
 AllowedIPs = 0.0.0.0/0, ::/0
 ```
 
+<!-- markdownlint-disable code-block-style -->
 ??? info "Exemplary client config file with this change"
     ``` plain
     [Interface]
@@ -37,7 +38,6 @@ AllowedIPs = 0.0.0.0/0, ::/0
 
     The important change is setting the `[Peer] -> AllowedIPs` entry to `0.0.0.0/0, ::/0`
 
-<!-- markdownlint-disable code-block-style -->
 !!! warning "Change this setting only on your clients"
     Do **not** set this on the server in the `[Interface]` section. WireGuard will automatically take care of setting up [correct routing](https://www.wireguard.com/netns/#routing-all-your-traffic) so that networking still functions on all your clients.
 <!-- markdownlint-enable code-block-style -->
