@@ -130,13 +130,44 @@ exit # Exit the sudo session
 
 to copy the server's private key into your config file.
 
-## Forward port
+## Forward port on your router
 
 If the server is behind a device, e.g., a router that is doing NAT, be sure to forward the specified port on which WireGuard will be running (for this example, `47111/UDP`) from the router to the WireGuard server.
 
 ??? info "NAT: Network address translation"
     Network address translation modifies network packages. Incoming connection requests have their destination address rewritten to a different one.
     NAT involves more than just changing the IP addresses. For instance, when mapping address `1.2.3.4` to `5.6.7.8`, there is no need to add a rule to do the reverse translation. A `netfilter` system called `conntrack` recognizes packets that are replies to an existing connection. Each connection has its own NAT state attached to it. Reverse translation is done automatically.
+
+## Set up a domain name for your router
+
+When connecting from outside your network, you'll need to know the public IP address of your router to connect. However, as most households are getting dynamically-assigned public IP addresses (these addresses change periodically), you need to note down the address every day before leaving the house. Since this is obviously *very* uncomfortable, we strongly suggest registering a *dynamic host record* (often called "[DynDNS](https://en.wikipedia.org/wiki/Dynamic_DNS)" record).
+
+There are many excellent guide and a lot of services offer this for free (with more or less comfort). We suggest a few providers below, however, this list is neither absolute nor exhaustive:
+
+<!-- markdownlint-disable code-block-style -->
+??? info "DynDNS providers"
+    - [Strato.de](https://www.strato.de/hosting/dynamic-dns-free/) (Guides: [EN](https://www.strato.com/faq/en_us/domain/this-is-how-easy-it-is-to-set-up-dyndns-for-your-domains/) / [DE](https://www.strato.de/faq/domains/so-einfach-richten-sie-dyndns-fuer-ihre-domains-ein/))
+
+        If you already have a hosting package at Strato, you can easily set up a subdomain to be used as DynDNS record. This is entirely free for members.
+
+    - [DNSHome.de](DNSHome.de)
+
+        This provider offers you several free subdomains under different domain names. SSL and also IPv6 are possible. DNSSEC is activated by default. They offer configuration guides for the Fritz!Box and also `ddclient` (update tool for Windows and Linux) on the website.
+
+    - [GoIP.de](http://www.goip.de/)
+
+        Go IP is a German DynDNS provider. The service is completely free and allows the registration of one domain and up to 15 subdomains per person. The website is characterized by extensive help with setting up the router.
+
+    - [noip.com](https://www.noip.com/support/knowledgebase/getting-started-with-no-ip-com/)
+
+        You can up to three hostnames like `myname.no-ip.org` for free. A disadvantage is that you have to confirm the domains at least every 30 days, otherwise they will be deleted.
+
+    - [Dyn.com](https://account.dyn.com/)
+
+        One of the first providers to offer DynDNS was the American company Dyn, whose product "DynDNS" gave its name to an entire service branch. In the meantime, numerous successors whose services are often free of charge came up. DynDNS service is especially easy to use is if it is directly supported by the router.
+<!-- markdownlint-enable code-block-style -->
+
+You can either use the methods the corresponding providers recommend or use existing DynDNS solutions inbuilt in your router (if available). Most providers are compatible with, e.g., the popular Fritz!Box routers ([EN](https://en.avm.de/service/fritzbox/fritzbox-4040/knowledge-base/publication/show/30_Setting-up-dynamic-DNS-in-the-FRITZ-Box/) / [DE](https://avm.de/service/fritzbox/fritzbox-7590/wissensdatenbank/publication/show/30_Dynamic-DNS-in-FRITZ-Box-einrichten/)).
 
 ## Start the server
 
