@@ -150,11 +150,11 @@ There are many excellent guide and a lot of services offer this for free (with m
 
         If you already have a hosting package at Strato, you can easily set up a subdomain to be used as DynDNS record. This is entirely free for members.
 
-    - [DNSHome.de](DNSHome.de)
+    - [DNSHome.de](https://DNSHome.de)
 
         This provider offers you several free subdomains under different domain names. SSL and also IPv6 are possible. DNSSEC is activated by default. They offer configuration guides for the Fritz!Box and also `ddclient` (update tool for Windows and Linux) on the website.
 
-    - [GoIP.de](http://www.goip.de/)
+    - [GoIP.de](https://www.goip.de/)
 
         Go IP is a German DynDNS provider. The service is completely free and allows the registration of one domain and up to 15 subdomains per person. The website is characterized by extensive help with setting up the router.
 
