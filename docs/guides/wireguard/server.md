@@ -136,19 +136,21 @@ If the server is behind a device, e.g., a router that is doing NAT, be sure to f
 
 ??? info "NAT: Network address translation"
     Network address translation modifies network packages. Incoming connection requests have their destination address rewritten to a different one.
-    NAT involves more than just changing the IP addresses. For instance, when mapping address `1.2.3.4` to `5.6.7.8`, there is no need to add a rule to do the reverse translation. A `netfilter` system called `conntrack` recognizes packets that are replies to an existing connection. Each connection has its own NAT state attached to it. Reverse translation is done automatically.
+    NAT involves more than just changing the IP addresses. For instance, when mapping address `1.2.3.4` to `5.6.7.8`, there is no need to add a rule to do the reverse translation. A `netfilter` system called `conntrack` recognizes packets that are replies to an existing connection. Each connection has its own NAT state attached to it. The reverse translation is done automatically.
 
 ## Set up a domain name for your router
 
-When connecting from outside your network, you'll need to know the public IP address of your router to connect. However, as most households are getting dynamically-assigned public IP addresses (these addresses change periodically), you need to note down the address every day before leaving the house. Since this is obviously *very* uncomfortable, we strongly suggest registering a *dynamic host record* (often called "[DynDNS](https://en.wikipedia.org/wiki/Dynamic_DNS)" record).
+When connecting from outside your network, you'll need to know the public IP address of your router to connect. However, as most households are getting dynamically-assigned public IP addresses (these addresses change periodically), you need to note down the address every day before leaving the house. Since this is *very* uncomfortable, we strongly suggest registering a *dynamic host record* (often called "[DynDNS](https://en.wikipedia.org/wiki/Dynamic_DNS)" record).
 
-There are many excellent guide and a lot of services offer this for free (with more or less comfort). We suggest a few providers below, however, this list is neither absolute nor exhaustive:
+The public IP address is checked at regular intervals. As soon as it changes, the router (or a DynDNS tool) sends a corresponding message to a URL of the service provider, who then updates the record.
+
+There are many excellent guides and a lot of services offer this for free (with more or less comfort). We suggest a few providers below, however, this list is neither absolute nor exhaustive:
 
 <!-- markdownlint-disable code-block-style -->
 ??? info "DynDNS providers"
     - [Strato.de](https://www.strato.de/hosting/dynamic-dns-free/) (Guides: [EN](https://www.strato.com/faq/en_us/domain/this-is-how-easy-it-is-to-set-up-dyndns-for-your-domains/) / [DE](https://www.strato.de/faq/domains/so-einfach-richten-sie-dyndns-fuer-ihre-domains-ein/))
 
-        If you already have a hosting package at Strato, you can easily set up a subdomain to be used as DynDNS record. This is entirely free for members.
+        If you already have a hosting package at Strato, you can easily set up a subdomain to be used as a DynDNS record. This is entirely free for members.
 
     - [DNSHome.de](https://DNSHome.de)
 
