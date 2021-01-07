@@ -131,4 +131,16 @@ IPv6 (include above IPv4 rules):
 ufw allow 546:547/udp
 ```
 
+### Rootkits and viruses (optional)
+
+A growing concern for vital systems are rootkits and viruses that have become more readily available for Linux based distributions.
+To extra harden your system, install at least a rootkit hunter and additionally a virus scanner.
+Below searches on the `bash` shell for APT based distros are a good starting point to choose from:
+
+```bash
+apt search rootkit
+
+apt search antivirus
+```
+
 {!abbreviations.md!}
