@@ -1,8 +1,10 @@
 `pihole-FTL` offers an efficient DNS cache that helps speed up your Internet experience. This DNS cache is part of the embedded `dnsmasq` server. Setting the cache size to zero disables caching. The DNS TTL value is used for determining the caching period. `pihole-FTL` clears its cache on receiving `SIGHUP`.
 
 <!-- markdownlint-disable code-block-style -->
-!!! warning Some warning about enlarging the DNS cache size
+!!! warning Some warning about the DNS cache size
     **There is no benefit in enlarging this number *except* if the DNS cache evictions count is larger than zero.** In contrast, a larger cache *will* consume more memory on your node, leaving less memory available for other caches of your Pi-hole. If you push this number to the extremes, it may even be that your Pi-hole gets short on memory and does not operate as expected.
+
+    Also, note that, because the DNSSEC validation process uses the cache, it is not permitted to reduce the cache size below `150` when DNSSEC is enabled.
 <!-- markdownlint-enable code-block-style -->
 
 ### Cache metrics
