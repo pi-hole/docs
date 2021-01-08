@@ -1,14 +1,26 @@
 `pihole-FTL` offers an efficient DNS cache that helps speed up your Internet experience. This DNS cache is part of the embedded `dnsmasq` server. Setting the cache size to zero disables caching. The DNS TTL value is used for determining the caching period. `pihole-FTL` clears its cache on receiving `SIGHUP`.
 
+<!-- markdownlint-disable code-block-style -->
+!!! warning Some warning about enlarging the DNS cache size
+    **There is no benefit in enlarging this number *except* if the DNS cache evictions count is larger than zero.** In contrast, a larger cache *will* consume more memory on your node, leaving less memory available for other caches of your Pi-hole. If you push this number to the extremes, it may even be that your Pi-hole gets short on memory and does not operate as expected.
+<!-- markdownlint-enable code-block-style -->
+
 ### Cache metrics
 
 The Settings page (System panel, FTL table) gives live information about the cache usage. It obtains its information from `http://pi.hole/admin/api.php?getCacheInfo`.
 
 #### DNS cache size
 
-Size of the DNS domain cache, defaulting to 10,000 entries. You typically specify this number directly in `/etc/dnsmasq.d/01-pihole.conf`. It is the number of entries that can be actively cached at the same time. There is no benefit in enlarging this number *except* if the DNS cache evictions count is larger than zero.
-
+Size of the DNS domain cache, defaulting to 10,000 entries. It is the number of entries that can be actively cached at the same time.
 This information may also be queried using `dig +short chaos txt cachesize.bind`
+
+The cache size is set in `/etc/dnsmasq.d/01-pihole.conf`. However, note that this setting does not survive Pi-hoel updates. If you want to change the cache size permanently, add a setting
+
+``` plain
+CACHE_SIZE=12345
+```
+
+in `/etc/pihole/setupVars.conf` and run `pihole -r` (Repair) to get the cache size changed for you automatically.
 
 #### DNS cache insertions
 
