@@ -2,9 +2,11 @@
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning Some warning about the DNS cache size
-    **There is no benefit in enlarging this number *except* if the DNS cache evictions count is larger than zero.** In contrast, a larger cache *will* consume more memory on your node, leaving less memory available for other caches of your Pi-hole. If you push this number to the extremes, it may even be that your Pi-hole gets short on memory and does not operate as expected.
+    **There is no benefit in increasing this number *unless* the number of DNS cache evictions is greater than zero.**
 
-    Also, note that, because the DNSSEC validation process uses the cache, it is not permitted to reduce the cache size below `150` when DNSSEC is enabled.
+    A larger cache *will* consume more memory on your node, leaving less memory available for other caches of your Pi-hole. If you push this number to the extremes, it may even be that your Pi-hole gets short on memory and does not operate as expected.
+
+    You can not reduce the cache size below `150` when DNSSEC is enabled because the DNSSEC validation process uses the cache.
 <!-- markdownlint-enable code-block-style -->
 
 ### Cache metrics
@@ -16,7 +18,7 @@ The Settings page (System panel, FTL table) gives live information about the cac
 Size of the DNS domain cache, defaulting to 10,000 entries. It is the number of entries that can be actively cached at the same time.
 This information may also be queried using `dig +short chaos txt cachesize.bind`
 
-The cache size is set in `/etc/dnsmasq.d/01-pihole.conf`. However, note that this setting does not survive Pi-hoel updates. If you want to change the cache size permanently, add a setting
+The cache size is set in `/etc/dnsmasq.d/01-pihole.conf`. However, note that this setting does not survive Pi-hole updates. If you want to change the cache size permanently, add a setting
 
 ``` plain
 CACHE_SIZE=12345
