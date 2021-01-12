@@ -4,6 +4,12 @@ Diese Anleitung wurde für FRITZ!OS 07.21 geschrieben, sollte jedoch auch mit an
 Es gibt nicht nur **die eine Art**, eine funktionierende DNS System aufzusetzen.  Konfiguriert euer Netzwerk nach euren Bedürfnissen.
 Diese Anleitung wurde für IPv4 geschrieben und muss für IPv6 Netwerke entsprechend angepasst werden.
 
+### Erweiterte Ansicht aktivieren
+
+Einige dieser Einstellungen sind nur sichtbar, wenn voher die Ansicht auf "Erweitert" gesetzt wurde. Diese wird durch Umschalten (Klick) auf "Standard" am unteren linken Bildrand aktiviert.
+
+![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-advanced-de.png)
+
 ## Pi-hole als DNS Server via DHCP an Clients verteilen (LAN Seite)
 
 Mit dieser Konfiguration wird allen Clients die IP des Pi-hole als DNS Server angeboten, wenn sie einen DHCP Lease von der Fritz!Box anfordern.
