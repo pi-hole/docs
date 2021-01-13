@@ -46,7 +46,7 @@ Mit dieser Konfiguration wird Pi-hole  auch von der Fritz!Box selbst als Upstrea
 (Clients) -> Fritz!Box -> Pi-hole -> Upstream DNS Server
 ```
 
-Zum Einstellen muss die IP des Pi-hole als "Bevorzugter DNS-Server" **und** "Alternativer DNS-Server" in
+Zum Einstellen muss die IP des Pi-hole als "Bevorzugter DNSv4-Server" **und** "Alternativer DNSv4-Server" in
 
 ```bash
 Internet/Zugangsdaten/DNS-Server
