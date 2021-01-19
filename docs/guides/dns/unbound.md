@@ -1,3 +1,5 @@
+## Pi-hole as All-Around DNS Solution
+
 ### The problem: Whom can you trust?
 
 Pi-hole includes a caching and *forwarding* DNS server, now known as *FTL*DNS. After applying the blocking lists, it forwards requests made by the clients to configured upstream DNS server(s). However, as has been mentioned by several users in the past, this leads to some privacy concerns as it ultimately raises the question: _Whom can you trust?_ Recently, more and more small (and not so small) DNS upstream providers have appeared on the market, advertising free and private DNS service, but how can you know that they keep their promises? Right, you can't.
@@ -156,9 +158,45 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 
 Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
 
-![Upstream DNS Servers Configuration](../images/RecursiveResolver.png)
+![Upstream DNS Servers Configuration](/images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
+
+### Disable `resolvconf` for `unbound` (optional)
+
+The `unbound` package can come with a systemd service called `unbound-resolvconf.service` and default enabled.
+It instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`.
+That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured.
+If you configured `/etc/dhcpcd.conf` with a `static domain_name_servers=` line, these DNS server(s) will be ignored/overruled by this service.
+
+To check if this service is enabled for your distribution, run below one and take note of the the `Active` line.
+It will show either `active` or `inactive` or it might not even be installed resulting in a `could not be found` message:
+
+```bash
+sudo systemctl status unbound-resolvconf.service
+```
+
+To disable the service if so desire, run below two:
+
+```bash
+sudo systemctl disable unbound-resolvconf.service
+```
+
+```bash
+sudo systemctl stop unbound-resolvconf.service
+```
+
+To have the `domain_name_servers=` in the file `/etc/dhcpcd.conf` activated/propagate, run below one:
+
+```bash
+sudo systemctl restart dhcpcd
+```
+
+And check with below one if IP(s) on the `nameserver` line(s) reflects the ones in the `/etc/dhcpcd.conf` file:
+
+```bash
+cat /etc/resolv.conf
+```
 
 ### Add logging to unbound
 

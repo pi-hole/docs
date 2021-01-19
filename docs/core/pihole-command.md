@@ -187,7 +187,7 @@ This command will query your whitelist, blacklist, wildcards and adlists for a s
 
 | | |
  -------------- | --------------
-Help Command    | `pihole update`
+Help Command    | `pihole updatePihole`
 Script Location | [`/opt/pihole/update.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/update.sh)
 Example Usage   | `pihole -up`
 
@@ -331,4 +331,4 @@ Help Command    | `pihole -a interface --help`
 Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | [`pihole -a interface local`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#interface)
 
-Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [OpenVPN](../guides/vpn/overview.md) to grant your mobile devices access to the Pi-hole.
+Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [Wireguard](../guides/vpn/wireguard/overview.md) to grant your mobile devices access to the Pi-hole.
