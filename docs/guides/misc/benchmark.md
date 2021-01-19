@@ -29,7 +29,7 @@ The long-term database can be disabled by setting
 DBFILE=
 ```
 
-in `/etc/pihole/pihole-FTL.conf` and running `sudo pihole restartdns` (see also [here](../ftldns/configfile.md#dbfile)).
+in `/etc/pihole/pihole-FTL.conf` and running `sudo pihole restartdns` (see also [here](/ftldns/configfile/#dbfile)).
 
 ### 2.2 Increase DNS cache size
 

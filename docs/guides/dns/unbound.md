@@ -1,3 +1,5 @@
+## Pi-hole as All-Around DNS Solution
+
 ### The problem: Whom can you trust?
 
 Pi-hole includes a caching and *forwarding* DNS server, now known as *FTL*DNS. After applying the blocking lists, it forwards requests made by the clients to configured upstream DNS server(s). However, as has been mentioned by several users in the past, this leads to some privacy concerns as it ultimately raises the question: _Whom can you trust?_ Recently, more and more small (and not so small) DNS upstream providers have appeared on the market, advertising free and private DNS service, but how can you know that they keep their promises? Right, you can't.
@@ -156,7 +158,7 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 
 Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
 
-![Upstream DNS Servers Configuration](../images/RecursiveResolver.png)
+![Upstream DNS Servers Configuration](/images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
 
