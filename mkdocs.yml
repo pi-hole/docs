@@ -128,21 +128,21 @@ nav:
       - 'Examples': database/gravity/example.md
   - 'Pi-hole API':
     - 'Overview': api/index.md
-    - 'Authentication': api/auth.md
-    - 'Blocking status': api/dns/blocking.md
-    - 'Cache information': api/dns/cache.md
-    - 'Domain Lists': api/domainlists.md
-    - 'Network': api/tbd.md
-    - 'Logs': api/tbd.md
+    - '🔑 Authentication': api/auth.md
+    - 'DNS':
+      - '🔓 Blocking status': api/dns/blocking.md
+      - '🔒 Cache information': api/dns/cache.md
+    - '🔒 Domain Lists': api/domainlists.md
+    - '🔒 Network': api/tbd.md
+    - '🔒 Logs': api/tbd.md
     - 'Statistics':
-      - 'Summary': api/tbd.md
-      - 'Over time': api/tbd.md
-      - 'Upstreams': api/tbd.md
-      - 'Top Items': api/tbd.md
-      - 'History': api/tbd.md
-    - 'Version': api/tbd.md
-    - 'Authentication': api/tbd.md
-    - 'Settings': api/tbd.md
+      - '🔓 Summary': api/tbd.md
+      - '🔓 Over time': api/tbd.md
+      - '🔒 Upstreams': api/tbd.md
+      - '🔒 Top Items': api/tbd.md
+      - '🔒 History': api/tbd.md
+    - '🔓 Version': api/tbd.md
+    - '🔒 Settings': api/tbd.md
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
     - 'Configuration': ftldns/configfile.md

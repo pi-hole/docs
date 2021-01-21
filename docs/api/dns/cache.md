@@ -5,13 +5,13 @@
 - `GET /api/dns/cache`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (requires authorization)"
+???+ example "🔒 Request"
 
     === "cURL"
 
         ``` bash
-        curl -X GET http://pi.hole:8080/api/dns/cacheinfo \
-             -H "Authorization: Token <your-access-token>"
+        curl -X GET http://pi.hole/api/dns/cacheinfo \
+             -d sid="$sid"
         ```
 
     === "Python 3"
@@ -19,11 +19,11 @@
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/api/dns/cacheinfo'
-        TOKEN = '<your-access-token>'
-        HEADERS = {'Authorization': f'Token {TOKEN}'}
+        url = 'http://pi.hole/api/dns/cacheinfo'
+        sid = '<valid session id>'
+        data = {"sid": sid}
 
-        response = requests.get(URL, headers=HEADERS)
+        response = requests.get(url, json=data)
 
         print(response.json())
         ```

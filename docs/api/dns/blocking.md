@@ -10,7 +10,7 @@
     === "cURL"
 
         ``` bash
-        curl -X GET http://pi.hole:8080/api/dns/blocking
+        curl -X GET http://pi.hole/api/dns/blocking
         ```
 
     === "Python 3"
@@ -18,9 +18,8 @@
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/api/dns/blocking'
-
-        response = requests.get(URL)
+        url = 'http://pi.hole/api/dns/blocking'
+        response = requests.get(url)
 
         print(response.json())
         ```
@@ -29,7 +28,7 @@
 
     None
 
-??? success "Response"
+???+ success "Response"
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -77,15 +76,14 @@
 - `POST /api/dns/blocking`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request (requires authorization)"
+???+ example "🔒 Request"
 
     === "cURL"
 
         ``` bash
-        curl -X POST http://pi.hole:8080/api/dns/blocking \
-             -H "Authorization: Token <your-access-token>" \
+        curl -X PUT http://pi.hole/api/dns/blocking \
              -H "Content-Type: application/json" \
-             -d '{"blocking": false, "delay": 30}'
+             -d "{\"blocking\": false, \"delay\": 30, \"sid\": \"${sid}\"}"
         ```
 
     === "Python 3"
@@ -93,12 +91,11 @@
         ``` python
         import requests
 
-        URL = 'http://pi.hole:8080/api/dns/blocking'
-        TOKEN = '<your-access-token>'
-        HEADERS = {'Authorization': f'Token {TOKEN}'}
-        data = {"blocking": False, "delay": 30}
+        sid = '<valid session id>'
+        url = 'http://pi.hole/api/dns/blocking'
+        data = {"blocking": False, "delay": 30, "sid": sid}
 
-        response = requests.post(URL, json=data, headers=HEADERS)
+        response = requests.put(url, json=data)
 
         print(response.json())
         ```
@@ -115,7 +112,7 @@
 
         This setting has no effect when requesting the same blocking state that is already active.
 
-??? success "Response"
+???+ success "Response"
 
     Response code: `HTTP/1.1 200 OK`
 

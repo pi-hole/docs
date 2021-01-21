@@ -106,8 +106,49 @@ In contrast, errors have a uniform style to ease their programatic treatment:
             }
         }
         ```
-
 <!-- markdownlint-enable code-block-style -->
+
+## HTTP methods used by this API
+
+Each HTTP request consists of a method that indicates the action to be performed on the identified resource. The relevant standards are [RFC 2616, Scn. 9](https://tools.ietf.org/html/rfc2616#section-9) (`GET/POST/PUT/DELETE`).
+
+Pi-hole's API uses the methods like this:
+
+Method   | Description
+---------|------------
+`GET`    | **Read** from resource. The resource may not exist.
+`POST`   | **Create** resources
+`PUT`    | **Create or Replace** the resource. This method commonly used to *update* entries.
+`DELETE` | **Delete** existing resource
+
+### `GET`
+
+The `GET` method means retrieve whatever information (in the form of an entity) that is identified by the Request-URI.
+
+### `POST`
+
+The `POST` method is used to request that the origin server accept the entity enclosed in the request as a new subordinate of the resource identified by the Request-URI in the Request-Line. `POST` is designed to allow a uniform method to cover the following functions:
+
+- Annotation of existing resources;
+- Posting a message to a bulletin board, newsgroup, mailing list, or similar group of articles;
+- Providing a block of data, such as the result of submitting a form, to a data-handling process;
+- Extending a database through an append operation.
+
+If a resource has been created on the origin server, the response will be `201 (Created)`.
+
+Not all action performed using the `POST` method will result in a resource that can be identified by a URI. In such a case, either `200 (OK)` or `204 (No Content)` is the appropriate response status, depending on whether or not the response includes an entity that describes the result.
+
+### `PUT`
+
+The `PUT` method requests that the enclosed entity be stored under the supplied Request-URI. If the Request-URI refers to an already existing resource, the enclosed entity will be considered as a modified version of the one residing on the origin server. If the Request-URI does not point to an existing resource, and that URI is capable of being defined as a new resource by the requesting user agent, the origin server can create the resource with that URI.
+
+The origin server will inform the user agent via a `200 (OK)` response if processing the entry was successful.
+
+### `DELETE`
+
+The `DELETE` method requests that the origin server delete the resource identified by the Request-URI. The API will not indicate success unless, at the time the response is given, it intends to delete the resource or move it to an inaccessible location.
+
+A successful response will be `200 (OK)` if the response includes an entity describing the status, `202 (Accepted)` if the action has not yet been enacted, or `204 (No Content)` if the action has been enacted but the response does not include an entity.
 
 ## Error handling
 
