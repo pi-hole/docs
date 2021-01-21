@@ -97,6 +97,12 @@ markdown_extensions:
   # InlineHilite is an inline code highlighter inspired by CodeHilite.
   # (https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/)
   - pymdownx.inlinehilite
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - MathJax-es5/config.js
+  - MathJax-es5/tex-chtml.js
 
 nav:
   - Overview: index.md
@@ -122,6 +128,7 @@ nav:
       - 'Examples': database/gravity/example.md
   - 'Pi-hole API':
     - 'Overview': api/index.md
+    - 'Authentication': api/auth.md
     - 'Blocking status': api/dns/blocking.md
     - 'Cache information': api/dns/cache.md
     - 'Domain Lists': api/domainlists.md

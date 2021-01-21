@@ -1,88 +1,8 @@
 # API Reference
 
-The Pi-hole API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [form-encoded](https://en.wikipedia.org/wiki/POST_(HTTP)#Use_for_submitting_web_forms) request bodies, returns reliable UTF-8 [JSON-encoded](http://www.json.org/) data for all API responses, and uses standard HTTP response codes, authentication, and verbs.
+The Pi-hole API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts and returns reliable UTF-8 [JSON-encoded](http://www.json.org/) data for all API responses, and uses standard HTTP response codes and verbs.
 
-## Authentication
-
-The Pi-hole API uses API keys to authenticate requests. You can view your API key in the Pi-hole Dashboard (**TODO: Link**).
-
-!!! warning
-    Your API key carries many privileges, so be sure to keep it secure!
-    Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth if your Pi-hole is reachable from the outside.
-
-The Authorization HTTP header can be specified with `Token <your-access-token>` to authenticate as a user and have the same permissions that the user itself.
-
-<!-- markdownlint-disable code-block-style -->
-???+ example active "Example request"
-
-    === "cURL"
-
-        ``` bash
-        curl -X GET http://pi.hole/api/dns/status \
-             -H "Authorization: Token <your-access-token>"
-        ```
-
-    === "Python 3"
-
-        ``` python
-        import requests
-
-        URL = 'http://pi.hole/api/dns/status'
-        TOKEN = '<your-access-token>'
-        HEADERS = {'Authorization': f'Token {TOKEN}'}
-
-        response = requests.get(URL, headers=HEADERS)
-
-        print(response.json())
-        ```
-
-??? success "Example reply: Success"
-
-    Response code: `HTTP/1.1 200 OK`
-
-    ``` json
-    {
-      "blocking": true
-    }
-    ```
-
-??? failure "Example reply: Error (unauthorized access)"
-
-    Response code: `HTTP/1.1 401 Unauthorized`
-
-    ``` json
-    {
-      "error": {
-        "key": "unauthorized",
-        "message": "Unauthorized",
-        "data": null
-      }
-    }
-    ```
-<!-- markdownlint-enable code-block-style -->
-
-Most but not all endpoints require authentication. API endpoints requiring authentication will fail with code `401 Unauthorized` if no key is supplied.
-
-## Errors
-
-Pi-hole uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted, missing authentication, etc.). Codes in the `5xx` range indicate an error with Pi-hole's API (these are rare).
-
-Some `4xx` errors that could be handled programmatically include an error code that briefly explains the error reported.
-
-## HTTP code summary
-
-Code | Description | Interpretation
----- | ----------- | --------------
-`200` | `OK` | Everything worked as expected
-`201` | `Content Created` | Added a new item
-`204` | `No Content` | Removed an item
-`400` | `Bad Request` | The request was unacceptable, often due to a missing required parameter
-`401` | `Unauthorized` | No valid API key provided for endpoint requiring authorization
-`402` | `Request Failed` | The parameters were valid but the request failed
-`403` | `Forbidden` | The API key doesn't have permissions to perform the request
-`404` | `Not Found` | The requested resource doesn't exist
-`429` | `Too Many Requests` | Too many requests hit the API too quickly
-`500`, `502`, `503`, `504` | `Server Errors` | Something went wrong on Pi-hole's end (These are rare)
+Most (but not all) endpoints require authentication. API endpoints requiring authentication will fail with code `401 Unauthorized` if no key is supplied.
 
 ## JSON response
 
@@ -90,6 +10,8 @@ The form of replies to successful requests strongly depends on the selected endp
 
 <!-- markdownlint-disable code-block-style -->
 ???+ success "Example reply: Success"
+
+    Ressource: `GET /api/dns/blocking`
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -103,9 +25,17 @@ The form of replies to successful requests strongly depends on the selected endp
 
     Object or Array
 
+    **Fields**
+
+    Depending on the particular endpoint
+
 In contrast, errors have a uniform style to ease their programatic treatment:
 
 ???+ failure "Example reply: Error (unauthorized access)"
+
+    Ressource: `GET /api/domains`
+
+    Response code: `HTTP/1.1 401 Unauthorized`
 
     ``` json
     {
@@ -160,7 +90,43 @@ In contrast, errors have a uniform style to ease their programatic treatment:
     ??? info "Additional data (`"data": [object|null]`)"
 
         The field `data` may contain a JSON object. Its content depends on the error itself and may contain further details such as the interpreted user data. If no additional data is available for this endpoint, `null` is returned instead of an object.
+
+        Examples for a failed request with `data` being set is (domain is already on this list):
+
+        ``` json
+        {
+            "error":  {
+                "key":  "database_error",
+                "message":  "Could not add to gravity database",
+                "data": {
+                    "argument": "abc.com",
+                    "enabled":  true,
+                    "sql_msg":  "UNIQUE constraint failed: domainlist.domain, domainlist.type"
+                }
+            }
+        }
+        ```
+
 <!-- markdownlint-enable code-block-style -->
+
+## Error handling
+
+Pi-hole uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted, missing authentication, etc.). Codes in the `5xx` range indicate an error with Pi-hole's API (these are rare).
+
+Some `4xx` errors that could be handled programmatically include an error code that briefly explains the error reported:
+
+Code | Description | Interpretation
+---- | ----------- | --------------
+`200` | `OK` | Everything worked as expected
+`201` | `Content Created` | Added a new item
+`204` | `No Content` | Removed an item
+`400` | `Bad Request` | The request was unacceptable, often due to a missing required parameter
+`401` | `Unauthorized` | No session identity provided for endpoint requiring authorization
+`402` | `Request Failed` | The parameters were valid but the request failed
+`403` | `Forbidden` | The API key doesn't have permissions to perform the request
+`404` | `Not Found` | The requested resource doesn't exist
+`429` | `Too Many Requests` | Too many requests hit the API too quickly
+`500`, `502`, `503`, `504` | `Server Errors` | Something went wrong on Pi-hole's end (These are rare)
 
 We recommend writing code that gracefully handles all possible API exceptions. The Pi-hole API is designed to support this by standardized error messages and human-readable hints for errors.
 
