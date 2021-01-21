@@ -97,9 +97,9 @@ Result:
     "challenge": "a2926b025bcc8618c632f81cd6cf7c37ee051c08aab74b565fd5126350fcd056",
     "session":
     {
-    "valid":    false,
-    "sid":      null,
-    "validity": null
+        "valid":    false,
+        "sid":      null,
+        "validity": null
     }
 }
 ```
@@ -111,7 +111,7 @@ Below, we provide concrete examples of how to authenticate with the Pi-hole API.
 
 ### Bash
 
-``` bash
+``` bash linenums="1"
 computePWhash() {
     local password hash1 hash2
     password="${1}"
@@ -129,7 +129,7 @@ computeResponse() {
 }
 ```
 
-``` bash
+``` bash linenums="1" hl_lines="4 5 6"
 password="ABC"
 pwhash="$(computePWhash "$password")"
 
@@ -145,7 +145,7 @@ sid="$(jq --raw-output .session.sid <<< "${session}")"
 
 We recommend using [`geraintluff/sha256`](https://github.com/geraintluff/sha256) providing a small (less than 1 KB) SHA-256 implementation.
 
-``` javascript
+``` javascript linenums="1" hl_lines="4 8 16"
 function getPWhash(password) {
     // Compute password hash twice to mitigate rainbow
     // table vulnerability
@@ -180,7 +180,9 @@ function doLogin(pwhash) {
         }
     });
 }
+```
 
+``` javascript linenums="1"
 var password = "ABC";
 var pwhash = getPWhash("ABC");
 doLogin(pwhash);
@@ -188,14 +190,15 @@ doLogin(pwhash);
 
 ### Python 3
 
-``` python
+``` python linenums="1" hl_lines="10 11 12"
 import requests
 from hashlib import sha256
 
 url = "http://pi.hole/api/auth"
 
 password = b"ABC"
-pwhash = sha256(sha256(password).hexdigest().encode("ascii")).hexdigest().encode("ascii")
+pwhash_ = sha256(password).hexdigest().encode("ascii")
+pwhash = sha256(pwhash_).hexdigest().encode("ascii")
 
 challenge = requests.get(url).json()["challenge"].encode('ascii')
 response = sha256(challenge + b":" + pwhash).hexdigest().encode("ascii")
@@ -213,9 +216,9 @@ The result of a successful authentication is
 {
     "session":
     {
-    "valid":    true,
-    "sid":      "XwrWDU7EDg64dX0sxmURDA==",
-    "validity": 300
+        "valid":    true,
+        "sid":      "XwrWDU7EDg64dX0sxmURDA==",
+        "validity": 300
     }
 }
 ```

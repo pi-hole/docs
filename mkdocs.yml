@@ -43,9 +43,9 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
-  # Code highlighting in ``` ``` blocks
-  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight
-  - pymdownx.highlight:
+  # Code highlighting in ``` ``` blocks, superseeds codehilite
+  - pymdownx.highlight
+  # allows for the nesting of code blocks inside other blocks
   - pymdownx.superfences
   - pymdownx.inlinehilite
   # Table of Contents
