@@ -5,7 +5,7 @@
 - `GET /api/dns/blocking`
 
 <!-- markdownlint-disable code-block-style -->
-???+ example "Request"
+???+ example "🔓 Request"
 
     === "cURL"
 
@@ -18,7 +18,7 @@
         ``` python
         import requests
 
-        url = 'http://pi.hole/api/dns/blocking'
+        url = 'http://pi.hole:8080/api/dns/blocking'
         response = requests.get(url)
 
         print(response.json())
@@ -92,7 +92,7 @@
         import requests
 
         sid = '<valid session id>'
-        url = 'http://pi.hole/api/dns/blocking'
+        url = 'http://pi.hole:8080/api/dns/blocking'
         data = {"blocking": False, "delay": 30, "sid": sid}
 
         response = requests.put(url, json=data)

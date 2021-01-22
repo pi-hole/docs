@@ -27,7 +27,7 @@
         ``` python
         import requests
 
-        url = 'http://pi.hole/api/domains'
+        url = 'http://pi.hole:8080/api/domains'
         sid = '<valid session id>'
         data = {"sid": sid}
 
@@ -165,7 +165,7 @@
         import requests
 
         domain = 'allowed.com'
-        url = 'http://pi.hole/api/domains/allow/exact/' + domain
+        url = 'http://pi.hole:8080/api/domains/allow/exact/' + domain
         sid = '<valid session id>'
         data = {"sid": sid}
 
@@ -246,7 +246,7 @@
         import requests
 
         domain = "allowed2.com"
-        url = 'http://pi.hole/api/domains/allow/exact/' + domain
+        url = 'http://pi.hole:8080/api/domains/allow/exact/' + domain
         sid = '<valid session id>'
         data = {
             "enabled": True,
@@ -341,7 +341,7 @@
         import requests
 
         domain = "allowed2.com"
-        url = 'http://pi.hole/api/domains/allow/regex/' + domain
+        url = 'http://pi.hole:8080/api/domains/allow/regex/' + domain
         sid = '<valid session id>'
         data = {
             "oldtype": "allow/exact",
@@ -429,7 +429,7 @@
         import requests
 
         domain = 'allowed2.com'
-        url = 'http://pi.hole/api/domains/allow/exact/' + domain
+        url = 'http://pi.hole:8080/api/domains/allow/exact/' + domain
         sid = '<valid session id>'
         data = {"sid": sid}
 
@@ -445,7 +445,7 @@
         import urllib
 
         regex = urllib.parse.quote("(^|\\.)facebook.com$")
-        url = 'http://pi.hole/api/domains/allow/exact/' + regex
+        url = 'http://pi.hole:8080/api/domains/allow/exact/' + regex
         sid = '<valid session id>'
         data = {"sid": sid}
 
