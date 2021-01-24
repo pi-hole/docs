@@ -38,5 +38,8 @@
 *[SSH]: Secure Shell is a cryptographic network protocol for operating network services securely over an unsecured network
 *[TFTP]: Trivial File Transfer Protocol is a simple lockstep File Transfer Protocol which allows a client to get a file from or put a file onto a remote host
 *[TTL]: Time-To-Live is a mechanism that limits the lifespan or lifetime of data in a computer or network
+*[UTF-8]: 8-bit Unicode Transformation Format - a character encoding format capable of encoding all known 1,112,064 valid Unicode characters
+*[URL]: Uniform Ressource Locator, commonly known as "web address"
+*[REST]: Representational State Transfer - a software architecture for distributed systems like the World Wide Web (WWW)
 *[NAT]: Network address translation
 *[DnyDNS]: Dynamic DNS record pointing to a frequently changing IP address

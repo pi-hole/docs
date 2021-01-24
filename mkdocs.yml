@@ -17,9 +17,10 @@ theme:
     code: 'Roboto Mono'
 
 markdown_extensions:
-  # Code highlighting in ``` ``` blocks
-  - codehilite:
-      guess_lang: true
+  # Code highlighting in ``` ``` blocks, superseeds codehilite
+  - pymdownx.highlight
+  # allows for the nesting of code blocks inside other blocks
+  - pymdownx.superfences
   # Table of Contents
   - toc:
       permalink: true
@@ -52,6 +53,18 @@ markdown_extensions:
   # Metadata support in pages
   # (https://squidfunk.github.io/mkdocs-material/extensions/metadata/)
   - meta
+  # Tabbed provides a syntax to easily add tabbed Markdown content.
+  # (https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/)
+  - pymdownx.tabbed
+  # InlineHilite is an inline code highlighter inspired by CodeHilite.
+  # (https://facelessuser.github.io/pymdown-extensions/extensions/inlinehilite/)
+  - pymdownx.inlinehilite
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - MathJax-es5/config.js
+  - MathJax-es5/tex-chtml.js
 
 nav:
   - Overview: index.md
@@ -73,17 +86,32 @@ nav:
       - 'Overview': database/gravity/index.md
       - 'Group management': database/gravity/groups.md
       - 'Examples': database/gravity/example.md
+  - 'Pi-hole API':
+    - 'Overview': api/index.md
+    - 'Authentication': api/auth.md
+    - 'DNS':
+      - 'Blocking status': api/dns/blocking.md
+      - 'Cache information': api/dns/cache.md
+    - 'Domains': api/domains.md
+    - 'Network': api/tbd.md
+    - 'Logs': api/tbd.md
+    - 'Statistics':
+      - 'Summary': api/tbd.md
+      - 'Over time': api/tbd.md
+      - 'Upstreams': api/tbd.md
+      - 'Top Items': api/tbd.md
+      - 'History': api/tbd.md
+    - 'Version': api/tbd.md
+    - 'Settings': api/tbd.md
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
     - 'DNS resolver': ftldns/dns-resolver.md
-    - 'DNS cache': ftldns/dns-cache.md
     - 'Blocking mode': ftldns/blockingmode.md
     - 'RegEx blocking':
       - "Overview": ftldns/regex/overview.md
       - "Tutorial": ftldns/regex/tutorial.md
     - 'Privacy levels': ftldns/privacylevels.md
-    - 'Telnet API': ftldns/telnet-api.md
     - 'Signals': 'ftldns/signals.md'
     - 'Compatibility': ftldns/compatibility.md
     - 'Install from source': ftldns/compile.md
@@ -159,6 +187,7 @@ plugins:
       redirect_maps:
         'ftldns/database.md': database/index.md
         'ftldns/regex/index.md': ftldns/regex/overview.md
+        'ftldns/dns-cache/index.md': api/dns/cache.md
         'main/presentations.md': index.md
         'main/prerequesites.md': main/prerequisites.md
         'guides/unbound.md': guides/dns/unbound.md

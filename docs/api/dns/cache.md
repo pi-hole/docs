@@ -11,7 +11,7 @@
 
 ### Cache metrics
 
-The Settings page (System panel, FTL table) gives live information about the cache usage. It obtains its information from `http://pi.hole/admin/api.php?getCacheInfo`.
+The Settings page (System panel, FTL table) gives live information about the cache usage.
 
 #### DNS cache size
 
@@ -37,5 +37,71 @@ This information may also be queried using `dig +short chaos txt insertions.bind
 The number of cache entries that had to be removed although the corresponding entries were **not** expired. Old cache entries get removed if the cache is full to make space for more recent domains. The cache size should be increased when this number is larger than zero.
 
 This information may also be queried using `dig +short chaos txt evictions.bind`
+
+
+## Obtain information about Pi-hole's DNS cache through the API
+
+- `GET /api/dns/cache`
+
+<!-- markdownlint-disable code-block-style -->
+???+ example "🔒 Request"
+
+    === "cURL"
+
+        ``` bash
+        curl -X GET http://pi.hole/api/dns/cacheinfo \
+             -d sid="$sid"
+        ```
+
+    === "Python 3"
+
+        ``` python
+        import requests
+
+        url = 'http://pi.hole:8080/api/dns/cacheinfo'
+        sid = '<valid session id>'
+        data = {"sid": sid}
+
+        response = requests.get(url, json=data)
+
+        print(response.json())
+        ```
+
+    **Parameters**
+
+    None
+
+??? success "Response"
+
+    Response code: `HTTP/1.1 200 OK`
+
+    ``` json
+    {
+        "cache_size": 10000,
+        "cache_inserted": 2616,
+        "cache_evicted": 0
+    }
+    ```
+
+    **Reply type**
+
+    Object
+
+    **Fields**
+
+    ??? info "DNS cache size (`"cache_size": number`)"
+        See above.
+
+    ??? info "DNS cache insertions (`"cache_inserted": number`)"
+
+        See above.
+
+    ??? info "DNS cache evictions (`"cache_evicted": number`)"
+
+        See above.
+
+<!-- markdownlint-enable code-block-style -->
+
+This endpoint cannot fail.
 
 {!abbreviations.md!}
