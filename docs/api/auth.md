@@ -41,7 +41,7 @@ As a result, the password itself is never transmitted plain-text. Eavesdropping 
         >
         > Now, the annual energy output of our sun is about $1.21\cdot 10^{41}$ ergs. This is enough to power about $2.7\cdot 10^{56}$ single bit changes on our ideal computer; enough state changes to put a 187-bit counter through all its values. If we built a Dyson sphere around the sun and captured all of its energy for 32 years, without any loss, we could power a computer to count up to $2^{192}$. Of course, it wouldn’t have the energy left over to perform any useful calculations with this counter.
         >
-        > But that’s just one star, and a measly one at that. A typical supernova releases something like $10^{51}$ ergs. (About a hundred times as much energy would be released in the form of neutrinos, but let them go for now.) If all of this energy could be channeled into a single orgy of computation, a `219`-bit counter could be cycled through all of its states.
+        > But that’s just one star, and a measly one at that. A typical supernova releases something like $10^{51}$ ergs. (About a hundred times as much energy would be released in the form of neutrinos, but let them go for now.) If all of this energy could be channeled into a single orgy of computation, a 219-bit counter could be cycled through all of its states.
         >
         > These numbers have nothing to do with the technology of the devices; they are the maximums that thermodynamics will allow. And they strongly imply that **brute-force attacks against 256-bit keys will be *infeasible* until computers are built from something other than matter and occupy something other than space**.
 <!-- markdownlint-enable code-block-style -->

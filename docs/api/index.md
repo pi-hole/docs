@@ -1,6 +1,6 @@
 # API Reference
 
-The Pi-hole API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts and returns reliable UTF-8 [JSON-encoded](http://www.json.org/) data for all API responses, and uses standard HTTP response codes and verbs.
+The Pi-hole API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts and returns reliable UTF-8 [JavaScript Object Notation (JSON)-encoded](http://www.json.org/) data for all API responses, and uses standard HTTP response codes and verbs.
 
 Most (but not all) endpoints require authentication. API endpoints requiring authentication will fail with code `401 Unauthorized` if no key is supplied.
 
@@ -110,7 +110,7 @@ In contrast, errors have a uniform style to ease their programatic treatment:
 
 ## HTTP methods used by this API
 
-Each HTTP request consists of a method that indicates the action to be performed on the identified resource. The relevant standards are [RFC 2616, Scn. 9](https://tools.ietf.org/html/rfc2616#section-9) (`GET/POST/PUT/DELETE`).
+Each HTTP request consists of a method that indicates the action to be performed on the identified resource. The relevant standards is [RFC 2616](https://tools.ietf.org/html/rfc2616). Though, RFC 2616 has been very clear in differentiating between the methods, complex wordings are a source of confusion for many users.
 
 Pi-hole's API uses the methods like this:
 
@@ -118,37 +118,53 @@ Method   | Description
 ---------|------------
 `GET`    | **Read** from resource. The resource may not exist.
 `POST`   | **Create** resources
-`PUT`    | **Create or Replace** the resource. This method commonly used to *update* entries.
+`PUT`    | **Create or Replace** a resource. This method is commonly used to *update* entries.
 `DELETE` | **Delete** existing resource
 
-### `GET`
+<!-- markdownlint-disable code-block-style -->
+??? info "Summarized details from [RFC 2616, Scn. 9](https://tools.ietf.org/html/rfc2616#section-9) (`GET/POST/PUT/DELETE`)"
+    ### `GET`
 
-The `GET` method means retrieve whatever information (in the form of an entity) that is identified by the Request-URI.
+    The `GET` method means retrieve whatever information (in the form of an entity) that is identified by the URI.
 
-### `POST`
+    As `GET` requests do not change the state of the resource, these are said to be **safe methods**. Additionally, `GET` requests are **idempotent**, which means that making multiple identical requests must produce the same result every time until another method (`POST` or `PUT`) has changed the state of the resource on the server.
 
-The `POST` method is used to request that the origin server accept the entity enclosed in the request as a new subordinate of the resource identified by the Request-URI in the Request-Line. `POST` is designed to allow a uniform method to cover the following functions:
+    For any given HTTP `GET`, if the resource is found on the server, then the API returns HTTP response code `200 (OK)` – along with the response body.
 
-- Annotation of existing resources;
-- Posting a message to a bulletin board, newsgroup, mailing list, or similar group of articles;
-- Providing a block of data, such as the result of submitting a form, to a data-handling process;
-- Extending a database through an append operation.
+    In case a resource is NOT found on server, then the API returns HTTP response code `404 (Not found)`. Similarly, if it is determined that `GET` request itself is not correctly formed then API will return HTTP response code `400 (Bad request)`.
 
-If a resource has been created on the origin server, the response will be `201 (Created)`.
+    ### `POST`
 
-Not all action performed using the `POST` method will result in a resource that can be identified by a URI. In such a case, either `200 (OK)` or `204 (No Content)` is the appropriate response status, depending on whether or not the response includes an entity that describes the result.
+    Use `POST` APIs to **create new subordinate records**, e.g., a file is subordinate to a directory containing it or a row is subordinate to a database table. W`POST` methods are used to create a new resource into the collection of resources.
 
-### `PUT`
+    If a resource has been created on the origin server, the response will be `201 (Created)`.
+    Not all action performed using the `POST` method will result in a resource that can be identified by a URI. In such a case, either `200 (OK)` or `204 (No Content)` is the appropriate response status, depending on whether or not the response includes an entity that describes the result.
 
-The `PUT` method requests that the enclosed entity be stored under the supplied Request-URI. If the Request-URI refers to an already existing resource, the enclosed entity will be considered as a modified version of the one residing on the origin server. If the Request-URI does not point to an existing resource, and that URI is capable of being defined as a new resource by the requesting user agent, the origin server can create the resource with that URI.
+    Note that `POST` is **neither safe nor idempotent**, and invoking two identical `POST` requests typically results in an error.
 
-The origin server will inform the user agent via a `200 (OK)` response if processing the entry was successful.
+    ### `PUT`
 
-### `DELETE`
+    Use `PUT` primarily to **update existing records** (if the resource does not exist, the API will typically create a new record for it). If a new record has been added at the given URI, or an existing resource is modified, either the `200 (OK)` or `204 (No Content)` response codes are sent to indicate successful completion of the request.
 
-The `DELETE` method requests that the origin server delete the resource identified by the Request-URI. The API will not indicate success unless, at the time the response is given, it intends to delete the resource or move it to an inaccessible location.
+    ### `DELETE`
 
-A successful response will be `200 (OK)` if the response includes an entity describing the status, `202 (Accepted)` if the action has not yet been enacted, or `204 (No Content)` if the action has been enacted but the response does not include an entity.
+    As the name applies, `DELETE` APIs are used to **delete records** (identified by the Request-URI).
+
+    A successful response will be `200 (OK)` if the response includes an entity describing the status, `202 (Accepted)` if the action has not yet been enacted, or `204 (No Content)` if the action has been enacted but the response does not include an entity.
+
+    `DELETE` operations are **idempotent**. If you `DELETE` a resource, it’s removed from the collection of resources. Repeatedly calling `DELETE` on that resource will not change the outcome – however, calling `DELETE` on a resource a second time *may* return a 404 (NOT FOUND) since it was already removed.
+
+???+ info "Example"
+    Let’s list down few URIs and their purpose to get better understanding when to use which method:
+
+    Method + URI | Interpretation
+    ---------------------|--------------------
+    `GET /api/groups` | Get all groups
+    `POST /api/groups` | Create a new group
+    `GET /api/groups/abc` | Get the group `abc`
+    `PUT /api/groups/abc` | Update the group `abc`
+    `DELETE /api/groups/abc` | Delete group `abc`
+<!-- markdownlint-enable code-block-style -->
 
 ## Error handling
 

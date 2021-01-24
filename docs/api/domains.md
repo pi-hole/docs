@@ -222,10 +222,10 @@
 
 **Create new entry (error on existing identical record)**
 
-- `POST /api/domains/allow/exact/<domain or regex>`
-- `POST /api/domains/allow/regex/<domain or regex>`
-- `POST /api/domains/allow/exact/<domain or regex>`
-- `POST /api/domains/allow/regex/<domain or regex>`
+- `POST /api/domains/allow/exact`
+- `POST /api/domains/allow/regex`
+- `POST /api/domains/allow/exact`
+- `POST /api/domains/allow/regex`
 
 <!-- markdownlint-disable code-block-style -->
 ???+ example "🔒 Request"
@@ -233,11 +233,10 @@
     === "cURL"
 
         ``` bash
-        domain="allowed2.com"
-        curl -X POST http://pi.hole/api/domains/allow/exact/${domain} \
+        curl -X POST http://pi.hole/api/domains/allow/exact \
              -d sid=$sid \
              -H "Content-Type: application/json" \
-             -d '{"enabled": true, "comment": "Some text"}'
+             -d '{"domain": "allowed2.com", "enabled": true, "comment": "Some text"}'
         ```
 
     === "Python 3"
@@ -245,10 +244,10 @@
         ``` python
         import requests
 
-        domain = "allowed2.com"
-        url = 'http://pi.hole:8080/api/domains/allow/exact/' + domain
+        url = 'http://pi.hole:8080/api/domains/allow/exact'
         sid = '<valid session id>'
         data = {
+            "item": "allowed2.com",
             "enabled": True,
             "comment": "Some text",
             "sid": sid
@@ -260,6 +259,9 @@
         ```
 
     **Optional parameters**
+
+    ??? info "Domain/regex (`"item": string`)"
+        Domain or regex to be added. When this is a regular expression, ensure it is properly JSON-escaped.
 
     ??? info "Enabled (`"enabled": boolean`)"
         Whether this item should enabled or not.
@@ -309,7 +311,7 @@
     }
     ```
 
-    !!! hint "Hint: Use `PUT` instead of `POST`"
+    !!! hint "Hint: Use `PUT` instead of `POST` to avoid unique constraints"
         When using `PUT` instead of `POST`, duplicate domains are silently replaced without issuing an error.
 <!-- markdownlint-enable code-block-style -->
 

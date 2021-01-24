@@ -1,5 +1,3 @@
-# DNS - Cache Info
-
 `pihole-FTL` offers an efficient DNS cache that helps speed up your Internet experience. This DNS cache is part of the embedded `dnsmasq` server. Setting the cache size to zero disables caching. The DNS TTL value is used for determining the caching period. `pihole-FTL` clears its cache on receiving `SIGHUP`.
 
 <!-- markdownlint-disable code-block-style -->
