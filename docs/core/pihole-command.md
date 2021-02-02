@@ -54,7 +54,7 @@ Example Usage   | [`pihole -regex '^example.com$' '.*\.example2.net'`](https://d
 
 Administrators need to be able to manually add and remove domains for various purposes, and these commands serve that purpose.
 
-See [Regex Blocking](../ftldns/regex/overview.md) for more information about using Regex.
+See [Regex Blocking](../regex/overview.md) for more information about using Regex.
 
 **Basic Script Process**:
 

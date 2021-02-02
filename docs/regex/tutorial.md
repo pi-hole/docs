@@ -89,13 +89,20 @@ Example | Interpretation
 
 In addition to character groups, there are also some special character classes available, such as
 
-Character class | Group equivalent | Interpretation
---- | --- | ---
-`[:digit:]` | `[0-9]` | matches digits
-`[:lower:]` | `[a-z]` | matched lowercase letters
-`[:upper:]` | `[A-Z]` | matched uppercase letters
-`[:alpha:]` | `[A-Za-z]` | matches alphabetic characters
-`[:alnum:]` | `[A-Za-z0-9]` | matches alphabetic characters and digits
+Character class | Group equivalent | Pi-hole specific | Interpretation
+--------------- | ---------------- | ---------------- | ---------------
+`[:digit:]` | `[0-9]` | No | matches digits
+`[:lower:]` | `[a-z]` | No | matched lowercase letters(FTL matches case-insensitive by default)
+`[:upper:]` | `[A-Z]` | No | matched uppercase letters(FTL matches case-insensitive by default)
+`[:alpha:]` | `[A-Za-z]` | No | matches alphabetic characters
+`[:alnum:]` | `[A-Za-z0-9]` | No | matches alphabetic characters and digits
+`[:blank:]` | `[ \t]` | Yes | blank characters
+`[:cntrl:]` | N/A | Yes | control characters
+`[:graph:]` | N/A | Yes | all printable characters except space
+`[:print:]` | N/A | Yes | printable characters including space
+`[:punct:]` | N/A | Yes | printable characters not space or alphanumeric
+`[:space:]` | `[ \f\n\r\t\v]` | Yes | white-space characters
+`[:xdigit:]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
 
 # Advanced examples
 
@@ -107,7 +114,7 @@ After going through our quick tutorial, we provide some more advanced examples s
 ^[0-9][^a-z]+\.((com)|(edu))$
 ```
 
-Blocks domains containing only numbers (no letters) and ending in `.com` or `.edu`. Blocks `555661.com`, and `456.edu`, but not `555g555.com`
+Blocks domains containing only numbers (no letters) and ending in `.com` or `.edu`. This blocks `555661.com`, and `456.edu`, but not `555g555.com`
 
 ### Block domains without subdomains
 

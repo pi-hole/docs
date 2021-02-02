@@ -1,7 +1,7 @@
-A regular expression, or RegEx for short, is a pattern that can be used for building arbitrarily complex filter rules in *FTL*DNS.
-We implement the POSIX Extended Regular Expressions similar to the one used by the UNIX `egrep` (or `grep -E`) command.
+A regular expression, or RegEx for short, is a pattern that **can be used for building arbitrarily complex filter** rules in *FTL*DNS.
+We implement the POSIX Extended Regular Expressions similar to the one used by the UNIX `egrep` (or `grep -E`) command. We amend the regex engine by approximate blocking (compare to `agrep`) and other special features like matching to specific query types only.
 
-Our implementation is light and fast as each domain is only checked once for a match (if you query `google.com`, it will be checked against your RegEx. Any subsequent query to the same domain will not be checked again until you restart `pihole-FTL`).
+Our implementation is light and fast as each domain is only checked once for a match. When you query `google.com`, it will be checked against your RegEx. Any subsequent query to the same domain will not be checked again until you restart `pihole-FTL`.
 
 ## Hierarchy of regex filters in *FTL*DNS
 
@@ -13,7 +13,7 @@ There are two locations where regex filters are important:
 
 ## How to use regular expressions for filtering domains
 
-*FTL*DNS reads in regular expression filters from the two [`regex` database views](../../database/gravity/index.md).
+*FTL*DNS reads in regular expression filters from the two [`regex` database views](../database/gravity/index.md).
 To tell *FTL*DNS to reload the list of regex filters, either:
 
 - Execute `pihole restartdns reload-lists` or
@@ -26,7 +26,7 @@ The first command is to be preferred as it ensures that the DNS cache itself rem
 
 To ease the usage of regular expression filters in *FTL*DNS, we offer a regex debugging mode. Set
 
-```
+``` plain
 DEBUG_REGEX=true
 ```
 

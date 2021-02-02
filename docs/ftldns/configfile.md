@@ -22,6 +22,13 @@ Use this option to disable deep CNAME inspection. This might be beneficial for v
 ESNI will obviously cause issues for `pixelserv-tls` which will be unable to generate matching certificates on-the-fly when it cannot read the SNI. Cloudflare and Firefox are already enabling ESNI.
 According to the IEFT draft (link above), we can easily restore `piselserv-tls`'s operation by replying `NXDOMAIN` to `_esni.` subdomains of blocked domains as this mimics a "not configured for this domain" behavior.
 
+#### `EDNS0_ECS=true|false` (PR [#851](https://github.com/pi-hole/FTL/pull/851)) {#block_edns0_ecs data-toc-label='EDNS ECS overwrite'}
+
+Should we overwrite the query source when client information is provided through EDNS0 client subnet (ECS) information?
+This allows Pi-hole to obtain client IPs even if they are hidden behind the NAT of a router.
+
+This feature has been requested and discussed on [Discourse](https://discourse.pi-hole.net/t/support-for-add-subnet-option-from-dnsmasq-ecs-edns0-client-subnet/35940) where further information how to use it can be found.
+
 ---
 
 ### Statistics settings
@@ -69,7 +76,7 @@ Should `FTL` try to resolve IPv4 addresses to hostnames?
 
 #### `DELAY_STARTUP=0` (PR [#716](https://github.com/pi-hole/FTL/pull/716)) {#delay_startup data-toc-label='Delay resolver startup'}
 
-In certain configurations, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This is typically found when network interfaces appear only late during system startup and the interface startup priorities are configured incorrectly. This setting takes any integer value between 0 and 300 seconds
+In certain configurations, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This is typically found when network interfaces appear only late during system startup and the interface startup priorities are configured incorrectly. This setting takes any integer value between 0 and 300 seconds.
 
 #### `NICE=-10` (PR [#798](https://github.com/pi-hole/FTL/pull/798)) {#nice data-toc-label='Set niceness'}
 
@@ -80,6 +87,13 @@ The nice value is an attribute that can be used to influence the CPU scheduler
 to favor or disfavor a process in scheduling decisions. The range of the nice
 value varies across UNIX systems. On modern Linux, the range is `-20` (high
 priority = not very nice to other processes) to `+19` (low priority).
+
+#### `MAXNETAGE=[MAXDBDAYS]` (PR [#871](https://github.com/pi-hole/FTL/pull/871)) {#maxnetage data-toc-label='Network table cleaning'}
+
+IP addresses (and associated host names) older than the specified number of days
+are removed to avoid dead entries in the network overview table. This setting
+defaults to the same value as `MAXDBDAYS` above but can be changed independently
+if needed.
 
 #### `NAMES_FROM_NETDB=true|false` (PR [#784](https://github.com/pi-hole/FTL/pull/784)) {#names_from_netdb data-toc-label='Load names from network table'}
 
@@ -206,7 +220,7 @@ Controls if *FTL*DNS should print extended details about regex matching into `pi
 Due to legacy reasons, we also support the following setting to be used for enabling the same functionality:<br>
 `REGEX_DEBUGMODE=false|true`
 Note that if one of them is set to `true`, the other one cannot be used to disable this setting again.<br>
-**[More details](regex/overview.md)**
+**[More details](../regex/overview.md)**
 
 #### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet'}
 
