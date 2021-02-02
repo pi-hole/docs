@@ -8,13 +8,13 @@ Install them by running the following command in a terminal:
 ### Debian / Ubuntu / Raspbian
 
 ```bash
-sudo apt install build-essential libgmp-dev m4 cmake libidn11-dev libreadline-dev
+sudo apt install build-essential libgmp-dev m4 cmake libidn11-dev libreadline-dev xxd
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel
+sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel xxd
 ```
 
 ## Compile `libnettle` from source

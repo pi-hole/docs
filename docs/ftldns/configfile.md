@@ -206,7 +206,7 @@ Controls if *FTL*DNS should print extended details about regex matching into `pi
 Due to legacy reasons, we also support the following setting to be used for enabling the same functionality:<br>
 `REGEX_DEBUGMODE=false|true`
 Note that if one of them is set to `true`, the other one cannot be used to disable this setting again.<br>
-**[More details](regex/overview.md)**
+**[More details](../regex/overview.md)**
 
 #### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet'}
 
