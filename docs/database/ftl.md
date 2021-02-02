@@ -87,21 +87,24 @@ The FTL table contains some data used by *FTL*DNS for determining which queries 
 
 ### Supported query types
 
-ID | Query Type
+ID | Resource Record (a.k.a. query type)
 --- | ---
-1 | A
-2 | AAAA
-3 | ANY
-4 | SRV
-5 | SOA
-6 | PTR
-7 | TXT
-8 | NAPTR
-9 | MX
-10 | DS
-11 | RRSIG
-12 | DNSKEY
-13 | OTHER (any query type not covered above)
+1 | `A`
+2 | `AAAA`
+3 | `ANY`
+4 | `SRV`
+5 | `SOA`
+6 | `PTR`
+7 | `TXT`
+8 | `NAPTR`
+9 | `MX`
+10 | `DS`
+11 | `RRSIG`
+12 | `DNSKEY`
+13 | `NS`
+14 | `OTHER` (any query type not covered elsewhere)
+15 | `SVCB`
+16 | `HTTPS`
 
 
 <!-- ID | 1 | 2 | 3 | 4 | 5 | 6 | 7 -->
@@ -112,7 +115,7 @@ ID | Query Type
 
 ID | Status | | Details
 --- | --- | --- | ---
-0 | Unknown | ❔ | was not answered by forward destination
+0 | Unknown | ❔ | Unknown status (not yet known)
 1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)
 2 | Allowed | ✅ | Forwarded
 3 | Allowed | ✅ | Known, replied to from cache
@@ -124,6 +127,9 @@ ID | Status | | Details
 9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)<br>*Blocked during deep CNAME inspection*
 10 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#regex-table-regex) filter<br>*Blocked during deep CNAME inspection*
 11 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#blacklist-table-blacklist)<br>*Blocked during deep CNAME inspection*
+12 | Allowed | ✅ | Retried query
+13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
+14 | Allowed | ✅ | Already forwarded, not forwarding again
 
 ### Example for interaction with the long-term query database
 

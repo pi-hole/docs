@@ -2,7 +2,7 @@
 
 ## Only match specific query types
 
-You can amend the regular expressions by special keywords added at the end to fine-tine regular expressions to match only specific query types.
+You can amend the regular expressions by special keywords added at the end to fine-tine regular expressions to match only specific [query types](../database/ftl.md#supported-query-types).
 
 Example:
 
@@ -22,7 +22,9 @@ but not
 dig A abc
 ```
 
-This allows you to do query type based black-/whitelisting. Some user-provided examples are:
+This allows you to do query type based black-/whitelisting.
+
+Some user-provided examples are:
 
 - `.*;querytype=!A`
   
