@@ -29,6 +29,17 @@ This allows Pi-hole to obtain client IPs even if they are hidden behind the NAT 
 
 This feature has been requested and discussed on [Discourse](https://discourse.pi-hole.net/t/support-for-add-subnet-option-from-dnsmasq-ecs-edns0-client-subnet/35940) where further information how to use it can be found.
 
+#### `RATE_LIMIT=1000/60` (PR [#1052](https://github.com/pi-hole/FTL/pull/1052)) {#rate_limit data-toc-label='Query rate limiting'}
+
+Control FTL's query rate-limiting. Rate-limited queries are answered with a `REFUSED` reply and not further processed by FTL.
+
+The default settings for FTL's rate-limiting are to permit no more than `1000` queries in `60` seconds. Both numbers can be customized independently.
+It is important to note that rate-limiting is happening on a *per-client* basis. Other clients can continue to use FTL while rate-limited clients are short-circuited at the same time.
+
+For this setting, both numbers, the maximum number of queries within a given time, **and** the length of the time interval (seconds) have to be specified. For instance, if you want to set a rate limit of 1 query per hour, the option should look like `RATE_LIMIT=1/3600`.
+
+Rate-limiting may be disabled altogether by setting `RATE_LIMIT=0/0` (this results in the same behavior as before FTL v5.7).
+
 ---
 
 ### Statistics settings
