@@ -58,6 +58,8 @@ sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
 
+Note: Users [have reported](https://github.com/cloudflare/cloudflared/issues/38) that the current version of cloudflared produces a segementation fault error on Raspberry Pi Zero W, Model 1B and 2B. As a workaround you can use an older version provided at <https://bin.equinox.io/a/4SUTAEmvqzB/cloudflared-2018.7.2-linux-arm.tar.gz> instead.
+
 #### `cloudflared` archive page
 
 You can find all `cloudflared` binary releases on <https://dl.equinox.io/cloudflare/cloudflared/stable/archive>.
