@@ -18,11 +18,11 @@
   "scripts": {
     "build": "mkdocs build --clean",
     "markdownlint": "markdownlint-cli2 \"**/*.md\" \"!**/node_modules/**\"",
-    "linkinator": "linkinator site --recurse --silent --skip \"^(?!http://localhost)\"",
+    "linkinator": "npm run build && linkinator site --recurse --silent --skip \"^(?!http://localhost)\"",
     "test": "npm run markdownlint && npm run linkinator"
   },
   "devDependencies": {
-    "linkinator": "^2.13.0",
-    "markdownlint-cli2": "0.0.13"
+    "linkinator": "^2.13.6",
+    "markdownlint-cli2": "0.0.14"
   }
 }
