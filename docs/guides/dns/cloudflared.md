@@ -232,11 +232,11 @@ sudo systemctl restart cloudflared
 #### Automating Cloudflared Updates
 
 If you want to have the system update `cloudflared` automatically, simply place the update commands for your configuration method in the
-file `/etc/cron.weekly/cloudflared-updater.sh`, and adjust permissions:
+file `/etc/cron.weekly/cloudflared-updater`, and adjust permissions:
 
 ```bash
-sudo chmod +x /etc/cron.weekly/cloudflared-updater.sh
-sudo chown root:root /etc/cron.weekly/cloudflared-updater.sh
+sudo chmod +x /etc/cron.weekly/cloudflared-updater
+sudo chown root:root /etc/cron.weekly/cloudflared-updater
 ```
 
 The system will now attempt to update the cloudflared binary automatically, once per week.
