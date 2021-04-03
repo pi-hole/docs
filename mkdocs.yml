@@ -15,6 +15,8 @@ theme:
   font:
     text: 'Source Sans Pro'
     code: 'Roboto Mono'
+  features:
+    - navigation.top
 
 markdown_extensions:
   # Code highlighting in ``` ``` blocks
