@@ -2,7 +2,7 @@ site_name: 'Pi-hole documentation'
 site_url: 'https://docs.pi-hole.net/'
 repo_url: 'https://github.com/pi-hole/pi-hole'
 edit_uri: '../docs/blob/master/docs/'
-copyright: 'Copyright &copy; 2020 Pi-hole LLC'
+copyright: 'Copyright &copy; 2021 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
@@ -17,6 +17,25 @@ theme:
     code: 'Roboto Mono'
   features:
     - navigation.top
+  palette:
+
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
 
 markdown_extensions:
   # Code highlighting in ``` ``` blocks

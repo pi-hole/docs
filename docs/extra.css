@@ -1,8 +1,3 @@
-body,
-input {
-    color: #000;
-}
-
 .md-nav {
     font-size: 14px;
     line-height: 1.4;
@@ -16,9 +11,17 @@ input {
 .md-typeset code,
 .md-typeset pre {
     white-space: pre-wrap;
-    color: #532ba8;
+    color: var(--code-color);
 }
 
 .text-center {
     text-align: center !important;
+}
+
+[data-md-color-scheme="default"] {
+    --code-color: #532ba8;
+}
+
+[data-md-color-scheme="slate"] {
+    --code-color: #a47df8;
 }
