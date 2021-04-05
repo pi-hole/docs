@@ -18,10 +18,20 @@
     text-align: center !important;
 }
 
+.md-typeset table:not([class]) th {
+    color: var(--table-foreground);
+    background-color: var(--table-background);
+}
+
 [data-md-color-scheme="default"] {
     --code-color: #532ba8;
+    --table-foreground: var(--md-default-bg-color); /* table header backgrounds */
+    --table-background: var(--md-default-fg-color--light); /* table header (text) */
 }
 
 [data-md-color-scheme="slate"] {
     --code-color: #a47df8;
+    --md-typeset-a-color: #7c90ff; /* links */
+    --table-foreground: #a3acdf; /* table header (text) */
+    --table-background: #272e53; /* table header backgrounds */
 }
