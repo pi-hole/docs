@@ -237,3 +237,8 @@ Third, restart unbound:
 ```
 sudo service unbound restart
 ```
+
+### Add Dashboard to Unbound (optional)
+
+follow this guide if you need a fancy grafana dashboard on top of unbound
+[https://github.com/jianershi/unbound-config](https://github.com/jianershi/unbound-config)
