@@ -18,3 +18,9 @@ updates:
     allow:
       - dependency-type: direct
       - dependency-type: indirect
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "10:00"
