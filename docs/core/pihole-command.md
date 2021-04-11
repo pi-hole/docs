@@ -54,7 +54,7 @@ Example Usage   | [`pihole -regex '^example.com$' '.*\.example2.net'`](https://d
 
 Administrators need to be able to manually add and remove domains for various purposes, and these commands serve that purpose.
 
-See [Regex Blocking](../ftldns/regex/overview.md) for more information about using Regex.
+See [Regex Blocking](../regex/overview.md) for more information about using Regex.
 
 **Basic Script Process**:
 
@@ -187,7 +187,7 @@ This command will query your whitelist, blacklist, wildcards and adlists for a s
 
 | | |
  -------------- | --------------
-Help Command    | `pihole update`
+Help Command    | `pihole updatePihole`
 Script Location | [`/opt/pihole/update.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/update.sh)
 Example Usage   | `pihole -up`
 
@@ -267,6 +267,7 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
  -------------- | --------------
 [Web Script](#web-script) | `pihole -a`
 [Password](#password) | `pihole -a password`
+[Teleport](#teleport) | `pihole -a -t`
 [Temperature Unit](#temperature-unit) | `pihole -a celsius`, `pihole -a fahrenheit`, `pihole -a kelvin`
 [Host Record](#host-record) | `pihole -a hostrecord`
 [Email Address](#email-address) | `pihole -a email`
@@ -291,6 +292,16 @@ Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/
 Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#web-password)
 
 Set the Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on the screen (e.g: `pihole -a -p`).
+
+### Teleport
+
+| | |
+ -------------- | --------------
+Help Command    | N/A
+Script Location | N/A
+Example Usage   | `pihole -a -t`
+
+Create a configuration backup. The backup will be created in the directory from which the command is run. The backup can be imported using the Settings > Teleport page.
 
 ### Temperature Unit
 
@@ -320,4 +331,4 @@ Help Command    | `pihole -a interface --help`
 Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | [`pihole -a interface local`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#interface)
 
-Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [OpenVPN](../guides/vpn/overview.md) to grant your mobile devices access to the Pi-hole.
+Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [Wireguard](../guides/vpn/wireguard/overview.md) to grant your mobile devices access to the Pi-hole.

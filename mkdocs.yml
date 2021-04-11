@@ -2,7 +2,7 @@ site_name: 'Pi-hole documentation'
 site_url: 'https://docs.pi-hole.net/'
 repo_url: 'https://github.com/pi-hole/pi-hole'
 edit_uri: '../docs/blob/master/docs/'
-copyright: 'Copyright &copy; 2020 Pi-hole LLC'
+copyright: 'Copyright &copy; 2021 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
@@ -15,6 +15,27 @@ theme:
   font:
     text: 'Source Sans Pro'
     code: 'Roboto Mono'
+  features:
+    - navigation.top
+  palette:
+
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
 
 markdown_extensions:
   # Code highlighting in ``` ``` blocks
@@ -39,6 +60,9 @@ markdown_extensions:
   - pymdownx.extra
   # (https://facelessuser.github.io/pymdown-extensions/extensions/details/)
   - pymdownx.details
+  # Tabbed provides a syntax to easily add tabbed Markdown content.
+  # https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/
+  - pymdownx.tabbed
   # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
   # Adds the ability to define abbreviations
@@ -76,48 +100,68 @@ nav:
     - 'DNS resolver': ftldns/dns-resolver.md
     - 'DNS cache': ftldns/dns-cache.md
     - 'Blocking mode': ftldns/blockingmode.md
-    - 'RegEx blocking':
-      - "Overview": ftldns/regex/overview.md
-      - "Tutorial": ftldns/regex/tutorial.md
     - 'Privacy levels': ftldns/privacylevels.md
     - 'Telnet API': ftldns/telnet-api.md
+    - 'Signals': 'ftldns/signals.md'
     - 'Compatibility': ftldns/compatibility.md
     - 'Install from source': ftldns/compile.md
     - 'Debugging FTLDNS': ftldns/debugging.md
     - 'In-depth manual': ftldns/in-depth.md
+  - 'RegEx blocking':
+    - "Overview": regex/overview.md
+    - "Testing": regex/testmode.md
+    - "Tutorial": regex/tutorial.md
+    - "Pi-hole extensions": regex/pi-hole.md
+    - "Approximate matching": regex/approximate.md
   - 'Docker':
     - 'DHCP': docker/DHCP.md
   - 'Contributing':
     - 'Contributing on GitHub': guides/github/contributing.md
     - 'How to sign-off commits': guides/github/how-to-signoff.md
   - 'Guides':
-    - 'Pi-hole as All-Around DNS Solution': guides/unbound.md
-    - 'Configuring DNS-Over-HTTPS on Pi-hole': guides/dns-over-https.md
-    - 'Upstream DNS Providers': guides/upstream-dns-providers.md
-    - 'Editing Whitelist and Blacklist': guides/whitelist-blacklist.md
-    - 'Configuring NGINX for Pi-hole': guides/nginx-configuration.md
-    - 'Configuring Caddy for Pi-hole': guides/caddy-configuration.md
-    - 'Configuring Traefik for Pi-hole (not in Docker)': guides/traefik-configuration-nodocker.md
-    - 'Benchmarking': guides/benchmark.md
-    - 'Pi-hole and OpenVPN Server':
-      - 'Overview': guides/vpn/overview.md
-      - 'Installation': guides/vpn/installation.md
-      - 'Setup OpenVPN Server': guides/vpn/setup-openvpn-server.md
-      - 'Firewall Configuration': guides/vpn/firewall.md
-      - 'Connecting clients':
-        - 'General': guides/vpn/clients.md
-        - 'Android': guides/vpn/android-client.md
-      - 'Optional: Only route DNS via VPN': guides/vpn/only-dns-via-vpn.md
-      - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/dual-operation.md
-      - 'Optional: Full and DNS-only': guides/vpn/dual-VPN.md
-      - 'Optional: Dynamic DNS': guides/vpn/dynDNS.md
-      - 'Troubleshooting': guides/vpn/troubleshooting.md
-    - 'TOR & Pi-hole':
-      - 'Overview': guides/tor/overview.md
-      - 'Basic Setup': guides/tor/setup.md
-      - 'Using TOR': guides/tor/using-tor.md
-      - 'Performance and other issues': guides/tor/performance-issues.md
-      - 'Using DNSSEC': guides/tor/dnssec.md
+    - 'DNS':
+      - 'unbound': guides/dns/unbound.md
+      - 'cloudflared (DoH)': guides/dns/cloudflared.md
+      - 'Upstream DNS Providers': guides/dns/upstream-dns-providers.md
+    - 'VPN':
+      - 'WireGuard':
+        - 'Overview': guides/vpn/wireguard/overview.md
+        - 'Concept': guides/vpn/wireguard/concept.md
+        - 'Install server': guides/vpn/wireguard/server.md
+        - 'Add client(s)': guides/vpn/wireguard/client.md
+        - 'Optional extra features':
+          - 'Make local devices accessible': guides/vpn/wireguard/internal.md
+          - 'Tunnel all Internet traffic': guides/vpn/wireguard/route-everything.md
+        - 'Troubleshooting': guides/vpn/wireguard/faq.md
+      - 'OpenVPN':
+        - 'Overview': guides/vpn/openvpn/overview.md
+        - 'Installation': guides/vpn/openvpn/installation.md
+        - 'Setup OpenVPN Server': guides/vpn/openvpn/setup-openvpn-server.md
+        - 'Firewall Configuration': guides/vpn/openvpn/firewall.md
+        - 'Connecting clients':
+          - 'General': guides/vpn/openvpn/clients.md
+          - 'Android': guides/vpn/openvpn/android-client.md
+        - 'Optional: Only route DNS via VPN': guides/vpn/openvpn/only-dns-via-vpn.md
+        - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/openvpn/dual-operation.md
+        - 'Optional: Full and DNS-only': guides/vpn/openvpn/dual-VPN.md
+        - 'Optional: Dynamic DNS': guides/vpn/openvpn/dynDNS.md
+        - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
+    - 'Misc':
+      - 'Benchmarking': guides/misc/benchmark.md
+      - 'Tor & Pi-hole':
+        - 'Overview': guides/misc/tor/overview.md
+        - 'Basic Setup': guides/misc/tor/setup.md
+        - 'Using Tor': guides/misc/tor/using-tor.md
+        - 'Performance and other issues': guides/misc/tor/performance-issues.md
+        - 'Using DNSSEC': guides/misc/tor/dnssec.md
+      - 'Whitelist and Blacklist editing': guides/misc/whitelist-blacklist.md
+    - 'Web server':
+      - 'NGINX': guides/webserver/nginx.md
+      - 'Caddy': guides/webserver/caddy.md
+      - 'Traefik (not in Docker)': guides/webserver/traefik-nodocker.md
+  - 'Router setup':
+    - 'Fritz!Box (EN)': routers/fritzbox.md
+    - 'Fritz!Box (DE)': routers/fritzbox-de.md
   - 'Community Projects': main/projects.md
 
 extra:
@@ -138,6 +182,32 @@ plugins:
   - redirects:
       redirect_maps:
         'ftldns/database.md': database/index.md
-        'ftldns/regex/index.md': ftldns/regex/overview.md
         'main/presentations.md': index.md
         'main/prerequesites.md': main/prerequisites.md
+        'guides/unbound.md': guides/dns/unbound.md
+        'guides/upstream-dns-providers.md': guides/dns/upstream-dns-providers.md
+        'guides/dns-over-https.md': guides/dns/cloudflared.md
+        'guides/vpn/overview.md': guides/vpn/openvpn/overview.md
+        'guides/vpn/installation.md': guides/vpn/openvpn/installation.md
+        'guides/vpn/setup-openvpn-server.md': guides/vpn/openvpn/setup-openvpn-server.md
+        'guides/vpn/firewall.md': guides/vpn/openvpn/firewall.md
+        'guides/vpn/clients.md': guides/vpn/openvpn/clients.md
+        'guides/vpn/android-client.md': guides/vpn/openvpn/android-client.md
+        'guides/vpn/only-dns-via-vpn.md': guides/vpn/openvpn/only-dns-via-vpn.md
+        'guides/vpn/dual-operation.md': guides/vpn/openvpn/dual-operation.md
+        'guides/vpn/dual-VPN.md': guides/vpn/openvpn/dual-VPN.md
+        'guides/vpn/dynDNS.md': guides/vpn/openvpn/dynDNS.md
+        'guides/vpn/troubleshooting.md': guides/vpn/openvpn/troubleshooting.md
+        'guides/benchmark.md': guides/misc/benchmark.md
+        'guides/tor/overview.md': guides/misc/tor/overview.md
+        'guides/tor/setup.md': guides/misc/tor/setup.md
+        'guides/tor/using-tor.md': guides/misc/tor/using-tor.md
+        'guides/tor/performance-issues.md': guides/misc/tor/performance-issues.md
+        'guides/tor/dnssec.md': guides/misc/tor/dnssec.md
+        'guides/whitelist-blacklist.md': guides/misc/whitelist-blacklist.md
+        'guides/nginx-configuration.md': 'guides/webserver/nginx.md'
+        'guides/caddy-configuration.md': 'guides/webserver/caddy.md'
+        'guides/traefik-configuration-nodocker.md': 'guides/webserver/traefik-nodocker.md'
+        'ftldns/regex/index.md': regex/overview.md
+        'ftldns/regex/overview.md': regex/overview.md
+        'ftldns/regex/tutorial.md': regex/tutorial.md

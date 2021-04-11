@@ -40,7 +40,7 @@ OpenDNS also provides the OpenDNS FamilyShield (free)- option. The service block
 - 208.67.222.123
 - 208.67.220.123
 
-[More information on OpenDNS FamilyShield](https://www.opendns.com/setupguide/#familyshield) + [OpenDNS FamilyShield introduction Blog](https://umbrella.cisco.com/blog/2010/06/23/introducing-familyshield-parental-controls/)
+[More information on OpenDNS FamilyShield](https://www.opendns.com/setupguide/#familyshield) + [OpenDNS FamilyShield introduction Blog](https://umbrella.cisco.com/blog/introducing-familyshield-parental-controls)
 
 ### Level3 DNS
 

@@ -17,12 +17,12 @@
   "homepage": "https://docs.pi-hole.net/",
   "scripts": {
     "build": "mkdocs build --clean",
-    "markdownlint": "markdownlint \"**/*.md\" -i \"**/node_modules/**\"",
-    "linkinator": "linkinator site --recurse --silent --skip \"^(?!http://localhost)\"",
+    "markdownlint": "markdownlint-cli2 \"**/*.md\" \"!**/node_modules/**\"",
+    "linkinator": "npm run build && linkinator site --recurse --silent --skip \"^(?!http://localhost)\"",
     "test": "npm run markdownlint && npm run linkinator"
   },
   "devDependencies": {
-    "linkinator": "^2.2.0",
-    "markdownlint-cli": "^0.24.0"
+    "linkinator": "^2.13.6",
+    "markdownlint-cli2": "0.1.2"
   }
 }

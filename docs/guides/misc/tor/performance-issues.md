@@ -39,7 +39,7 @@ This is not recommended, but here are some things you can do:
 
 ##### Solution 2 - Only use specific Exit Nodes
 
-1. Navigate to [atlas.torproject.org Top Relays](https://atlas.torproject.org/#toprelays).
+1. Navigate to [metrics.torproject.org Top Relays](https://metrics.torproject.org/rs.html#toprelays).
 2. Click on two Relays out of the list.
 3. Make sure the relay allows Port `53` in his `IPv4 Exit Policy Summary` (and/or `IPv6 Exit Policy Summary` if you want to resolve IPv6 AAAA queries).
 4. As root copy the `Fingerprint` (Top Right under Relay Details) of those two Relays to the end of your `/etc/tor/torrc` file on the Pi-hole host in the following format:

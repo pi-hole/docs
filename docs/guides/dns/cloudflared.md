@@ -58,6 +58,12 @@ sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
 
+Note: Users [have reported](https://github.com/cloudflare/cloudflared/issues/38) that the current version of cloudflared produces a segementation fault error on Raspberry Pi Zero W, Model 1B and 2B. As a workaround you can use an older version provided at <https://bin.equinox.io/a/4SUTAEmvqzB/cloudflared-2018.7.2-linux-arm.tar.gz> instead.
+
+#### `cloudflared` archive page
+
+You can find all `cloudflared` binary releases on <https://dl.equinox.io/cloudflare/cloudflared/stable/archive>.
+
 ### Configuring `cloudflared` to run on startup
 
 #### Manual way
@@ -150,7 +156,7 @@ proxy-dns-upstream:
 Now install the service via `cloudflared`'s [service command](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#service-command):
 
 ```bash
-sudo cloudflared service install
+sudo cloudflared service install --legacy
 ```
 
 Start the `systemd` service and check its status:
@@ -191,7 +197,7 @@ google.com.             191     IN      A       172.217.22.14
 
 Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server by specifying `127.0.0.1#5053` as the Custom DNS (IPv4):
 
-![Screenshot of Pi-hole configuration](../images/DoHConfig.png)
+![Screenshot of Pi-hole configuration](/images/DoHConfig.png)
 
 (don't forget to hit Return or click on `Save`)
 
@@ -228,11 +234,11 @@ sudo systemctl restart cloudflared
 #### Automating Cloudflared Updates
 
 If you want to have the system update `cloudflared` automatically, simply place the update commands for your configuration method in the
-file `/etc/cron.weekly/cloudflared-updater.sh`, and adjust permissions:
+file `/etc/cron.weekly/cloudflared-updater`, and adjust permissions:
 
 ```bash
-sudo chmod +x /etc/cron.weekly/cloudflared-updater.sh
-sudo chown root:root /etc/cron.weekly/cloudflared-updater.sh
+sudo chmod +x /etc/cron.weekly/cloudflared-updater
+sudo chown root:root /etc/cron.weekly/cloudflared-updater
 ```
 
 The system will now attempt to update the cloudflared binary automatically, once per week.

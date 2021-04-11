@@ -10,6 +10,7 @@
 *[TCP]: Transmission Control Protocol (protocol providing reliable, ordered, and error-checked delivery of data between applications running on hosts communicating via an IP network)
 *[UDP]: User Datagram Protocol (a network communications method for sending messages as datagrams)
 *[API]: Application Programming Interface (a set of subroutine definitions, protocols, and tools for building application software)
+*[PE]: Privacy Extension
 *[PID]: Process identifier (a number used to identify a process)
 *[HOSTS]: The computer file /etc/hosts is an operating system file that maps hostnames to IP addresses
 *[POSIX]: Portable Operating System Interface (a family of standards specified by the IEEE Computer Society for maintaining compatibility between operating systems)
@@ -37,3 +38,5 @@
 *[SSH]: Secure Shell is a cryptographic network protocol for operating network services securely over an unsecured network
 *[TFTP]: Trivial File Transfer Protocol is a simple lockstep File Transfer Protocol which allows a client to get a file from or put a file onto a remote host
 *[TTL]: Time-To-Live is a mechanism that limits the lifespan or lifetime of data in a computer or network
+*[NAT]: Network address translation
+*[DnyDNS]: Dynamic DNS record pointing to a frequently changing IP address

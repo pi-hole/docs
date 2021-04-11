@@ -8,13 +8,13 @@ Install them by running the following command in a terminal:
 ### Debian / Ubuntu / Raspbian
 
 ```bash
-sudo apt install build-essential libgmp-dev m4 cmake libidn11-dev
+sudo apt install build-essential libgmp-dev m4 cmake libidn11-dev libreadline-dev xxd
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel
+sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel xxd
 ```
 
 ## Compile `libnettle` from source
@@ -23,9 +23,9 @@ sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel
 Compile and install a recent version using:
 
 ```bash
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.6.tar.gz
-tar -xzf nettle-3.6.tar.gz
-cd nettle-3.6
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.7.2.tar.gz
+tar -xzf nettle-3.7.2.tar.gz
+cd nettle-3.7.2
 ./configure --libdir=/usr/local/lib
 make -j $(nproc)
 sudo make install
