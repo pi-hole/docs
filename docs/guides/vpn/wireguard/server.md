@@ -12,7 +12,7 @@
 Installing everything we will need for a `wireguard` connections is as simple as running:
 
 ```bash
-sudo apt-get install wireguard wireguard-tools wireguard-dkms
+sudo apt-get install wireguard wireguard-tools
 ```
 
 For Ubuntu 18.04 and lower, you need to do some extra steps:
@@ -20,8 +20,10 @@ For Ubuntu 18.04 and lower, you need to do some extra steps:
 ```bash
 sudo add-apt-repository ppa:wireguard/wireguard
 sudo apt update
-sudo apt install wireguard wireguard-tools wireguard-dkms
+sudo apt install wireguard wireguard-tools
 ```
+
+When you're running a kernel older than 5.6 (check with `uname -r`), you will have to install `wireguard-dkms` in addition.
 
 If there is no `wireguard` package available for your system, you can follow the instructions below to compile WireGuard from source.
 
