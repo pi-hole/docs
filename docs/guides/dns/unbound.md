@@ -45,18 +45,50 @@ After you set up your Pi-hole as described in this guide, this procedure changes
 
 You can easily imagine even longer chains for subdomains as the query process continues until your recursive resolver reaches the authoritative server for the zone that contains the queried domain name. It is obvious that the methods are very different and the own recursion is more involved than "just" asking some upstream server. This has benefits and drawbacks:
 
-- Benefit: Privacy - as you're directly contacting the responsive servers, no server can fully log the exact paths you're going, as e.g. the Google DNS servers will only be asked if you want to visit a Google website, but not if you visit the website of your favorite newspaper, etc.
+Benefits: 
 
-- Drawback: Traversing the path may be slow, especially for the first time you visit a website - while the bigger DNS providers always have answers for commonly used domains in their cache, you will have to transverse the path if you visit a page for the first time. The first request to a formerly unknown TLD may take up to a second (or even more if you're also using DNSSEC). Subsequent requests to domains under the same TLD usually complete in `< 0.1s`.
+- Privacy: As you're directly contacting the responsive servers, no server can fully log the exact paths you're going, as e.g. the Google DNS servers will only be asked if you want to visit a Google website, but not if you visit the website of your favorite newspaper, etc.
+
+No third party other than your ISP has access to your entire DNS history.  
+Your ISP sees the DNS traffic, but even if you hid the traffic from the ISP, they can quickly figure out where you are browsing based on the clear text IP's you request.  
+So, instead of having to trust your ISP and an upstream DNS provider, you only need to trust the ISP.
+
+- Security: Unbound is designed to be fast and lean and incorporates modern features based on open standards. Late 2019, Unbound has been rigorously audited, which means that the code base is more resilient than ever.
+
+There are many other privacy and security focused additions such as Query Name Minimization, DNS-over-TLS and DNS-over-HTTPS support, DNSSEC-Validated Cache, support for authority zones, and more.
+
+- License: Unbound is free, open source software under the BSD license.
+
+- No Filtering: The nameservers reply with the correct answers and there is no potential for a different IP that may be provided by an ISP DNS server or an upstream DNS service that has their own filtering.
+
+- Speed: For the initial lookups, it takes a few hundred msec.  Once the unbound cache is primed, it has a number of techniques to maximize answers from cache, including pre-fetching information before it expires.  In practice, it is quite fast.
+
+- Control: When you run your own resolver, you can control to a large extent how it operates.  There are a number of configuration options 
+available in unbound.
+
+ 
+Drawbacks: 
+
+- Traversing: Traversing the path may be slow, especially for the first time you visit a website - while the bigger DNS providers always have answers for commonly used domains in their cache, you will have to transverse the path if you visit a page for the first time. The first request to a formerly unknown TLD may take up to a second (or even more if you're also using DNSSEC). Subsequent requests to domains under the same TLD usually complete in `< 0.1s`.
 Fortunately, both your Pi-hole as well as your recursive server will be configured for efficient caching to minimize the number of queries that will actually have to be performed.
+
+- Added Complexity: There is a slight added complexity in setting up unbound in your network setup, as it is not as easy as simply typing in nameservers and clicking save. Despite this, Unbound is very easy to setup, and can be done in under 10 minutes. It's arguably easier to setup than Pi-Hole itself. 
 
 ## Setting up Pi-hole as a recursive DNS server solution
 
 We will use [`unbound`](https://github.com/NLnetLabs/unbound), a secure open-source recursive DNS server primarily developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
+
+unbound can be found in most distribution package repositories, or optionally compiled from [source](https://github.com/NLnetLabs/unbound). 
 The first thing you need to do is to install the recursive DNS resolver:
 
+- For Debian based distributions:
 ```bash
 sudo apt install unbound
+```
+
+- For RHEL based distributions:
+```bash
+sudo dnf install unbound
 ```
 
 If you are installing unbound from a package manager, it should install the `root.hints` file automatically with the dependency `dns-root-data`. The root hints will then be automatically updated by your package manager.
