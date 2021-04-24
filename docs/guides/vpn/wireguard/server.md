@@ -23,7 +23,7 @@ sudo apt update
 sudo apt install wireguard wireguard-tools
 ```
 
-When you're running a kernel older than 5.6 (check with `uname -r`), you will have to install `wireguard-dkms` in addition.
+If you're running a kernel older than 5.6 (check with `uname -r`), you will also need to install `wireguard-dkms` 
 
 If there is no `wireguard` package available for your system, you can follow the instructions below to compile WireGuard from source.
 
