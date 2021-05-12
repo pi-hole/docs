@@ -21,6 +21,22 @@ Problems like these can be difficult to find by other means, often remaining und
 
 Make sure to terminate any existing FTL process before starting FTL inside `valgrind`.
 
+### Preparations
+
+You have to stop the regular `pihole-FTL` process before starting a `valgrind` debugging session:
+
+``` bash
+sudo service pihole-FTL stop
+```
+
+Furthermore, you'll have to strip the networking capabilities from the binary using:
+
+``` bash
+sudo setcap -r /usr/bin/pihole-FTL
+```
+
+They'll automatically be re-added when using `sudo service pihole-FTL start` next time.
+
 ### Command
 
 We suggest the following one-liner to run `pihole-FTL` in `memcheck`:
