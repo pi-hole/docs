@@ -28,4 +28,8 @@ wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
 ```
 
+### Alternative 3: Use Docker to deploy Pi-hole
+
+Please refer to the [Pi-hole docker repo](https://github.com/pi-hole/docker-pi-hole) to use the Official Docker Images.
+
 {!abbreviations.md!}
