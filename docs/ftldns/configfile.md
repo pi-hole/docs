@@ -201,6 +201,10 @@ Print debugging information about database actions. This prints performed SQL st
 
 Prints a list of the detected interfaces on the startup of `pihole-FTL`. Also, prints whether these interfaces are IPv4 or IPv6 interfaces.
 
+#### `DEBUG_EDNS0=false|true` {#debug_edns0 data-toc-label='EDNS0'}
+
+Print debugging information about received EDNS(0) data.
+
 #### `DEBUG_LOCKS=false|true` {#debug_locks data-toc-label='Locks'}
 
 Print information about shared memory locks. Messages will be generated when waiting, obtaining, and releasing a lock.
