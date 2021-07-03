@@ -268,4 +268,10 @@ sudo systemctl daemon-reload
 
 After the above, don't forget to change the DNS back to something else in Pi-hole's DNS settings!
 
+---
+
+#### Notes
+* Check setup on https://www.cloudflare.com/ssl/encrypted-sni/
+* Don't enable DNSSEC in Pi-hole if you are running encrypted dns.
+
 [^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
