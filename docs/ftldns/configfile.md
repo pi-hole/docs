@@ -46,7 +46,7 @@ Rate-limiting may be disabled altogether by setting `RATE_LIMIT=0/0` (this resul
 
 #### `MAXLOGAGE=24.0` {#maxlogage data-toc-label='Max Log Age'}
 
-Up to how many hours of queries should be imported from the database and logs? Maximum is 24.0
+Up to how many hours of queries should be imported from the database and logs? Values greater than the hard-coded maximum of 24h need a locally compiled  `FTL` with a changed compile-time value.
 
 #### `PRIVACYLEVEL=0|1|2|3` {#privacylevel data-toc-label='Privacy Level'}
 
@@ -200,6 +200,10 @@ Print debugging information about database actions. This prints performed SQL st
 #### `DEBUG_NETWORKING=false|true` {#debug_networking data-toc-label='Networking'}
 
 Prints a list of the detected interfaces on the startup of `pihole-FTL`. Also, prints whether these interfaces are IPv4 or IPv6 interfaces.
+
+#### `DEBUG_EDNS0=false|true` {#debug_edns0 data-toc-label='EDNS0'}
+
+Print debugging information about received EDNS(0) data.
 
 #### `DEBUG_LOCKS=false|true` {#debug_locks data-toc-label='Locks'}
 
