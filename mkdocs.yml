@@ -98,6 +98,7 @@ nav:
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
+    - 'Interfaces': ftldns/interfaces.md
     - 'DNS resolver': ftldns/dns-resolver.md
     - 'DNS cache': ftldns/dns-cache.md
     - 'Blocking mode': ftldns/blockingmode.md
