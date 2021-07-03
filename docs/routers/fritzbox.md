@@ -6,7 +6,7 @@ This guide is IPv4 only. You need to adjust for IPv6 accordingly.
 
 ### Enable advanced settings
 
-Some of the the follwowing settings might be visible only if advanced settings are enabled. Therefore, "View" has to be changed to advanced by clicking on "Standard" in the lower left corner.
+Some of the the following settings might be visible only if advanced settings are enabled. Therefore, "View" has to be changed to advanced by clicking on "Standard" in the lower left corner.
 
 ![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-advanced.png)
 
