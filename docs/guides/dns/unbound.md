@@ -45,18 +45,50 @@ After you set up your Pi-hole as described in this guide, this procedure changes
 
 You can easily imagine even longer chains for subdomains as the query process continues until your recursive resolver reaches the authoritative server for the zone that contains the queried domain name. It is obvious that the methods are very different and the own recursion is more involved than "just" asking some upstream server. This has benefits and drawbacks:
 
-- Benefit: Privacy - as you're directly contacting the responsive servers, no server can fully log the exact paths you're going, as e.g. the Google DNS servers will only be asked if you want to visit a Google website, but not if you visit the website of your favorite newspaper, etc.
+Benefits: 
 
-- Drawback: Traversing the path may be slow, especially for the first time you visit a website - while the bigger DNS providers always have answers for commonly used domains in their cache, you will have to transverse the path if you visit a page for the first time. The first request to a formerly unknown TLD may take up to a second (or even more if you're also using DNSSEC). Subsequent requests to domains under the same TLD usually complete in `< 0.1s`.
+- Privacy: As you're directly contacting the responsive servers, no server can fully log the exact paths you're going, as e.g. the Google DNS servers will only be asked if you want to visit a Google website, but not if you visit the website of your favorite newspaper, etc.
+
+No third party other than your ISP has access to your entire DNS history.  
+Your ISP sees the DNS traffic, but even if you hid the traffic from the ISP, they can quickly figure out where you are browsing based on the clear text IP's you request.  
+So, instead of having to trust your ISP and an upstream DNS provider, you only need to trust the ISP.
+
+- Security: Unbound is designed to be fast and lean and incorporates modern features based on open standards. Late 2019, Unbound has been rigorously audited, which means that the code base is more resilient than ever.
+
+There are many other privacy and security focused additions such as Query Name Minimization, DNS-over-TLS and DNS-over-HTTPS support, DNSSEC-Validated Cache, support for authority zones, and more.
+
+- License: Unbound is free, open source software under the BSD license.
+
+- No Filtering: The nameservers reply with the correct answers and there is no potential for a different IP that may be provided by an ISP DNS server or an upstream DNS service that has their own filtering.
+
+- Speed: For the initial lookups, it takes a few hundred msec.  Once the unbound cache is primed, it has a number of techniques to maximize answers from cache, including pre-fetching information before it expires.  In practice, it is quite fast.
+
+- Control: When you run your own resolver, you can control to a large extent how it operates.  There are a number of configuration options 
+available in unbound.
+
+ 
+Drawbacks: 
+
+- Traversing: Traversing the path may be slow, especially for the first time you visit a website - while the bigger DNS providers always have answers for commonly used domains in their cache, you will have to transverse the path if you visit a page for the first time. The first request to a formerly unknown TLD may take up to a second (or even more if you're also using DNSSEC). Subsequent requests to domains under the same TLD usually complete in `< 0.1s`.
 Fortunately, both your Pi-hole as well as your recursive server will be configured for efficient caching to minimize the number of queries that will actually have to be performed.
+
+- Added Complexity: There is a slight added complexity in setting up unbound in your network setup, as it is not as easy as simply typing in nameservers and clicking save. Despite this, Unbound is very easy to setup, and can be done in under 10 minutes. It's arguably easier to setup than Pi-Hole itself. 
 
 ## Setting up Pi-hole as a recursive DNS server solution
 
 We will use [`unbound`](https://github.com/NLnetLabs/unbound), a secure open-source recursive DNS server primarily developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
+
+unbound can be found in most distribution package repositories, or optionally compiled from [source](https://github.com/NLnetLabs/unbound). 
 The first thing you need to do is to install the recursive DNS resolver:
 
+- For Debian based distributions:
 ```bash
 sudo apt install unbound
+```
+
+- For RHEL based distributions:
+```bash
+sudo dnf install unbound
 ```
 
 If you are installing unbound from a package manager, it should install the `root.hints` file automatically with the dependency `dns-root-data`. The root hints will then be automatically updated by your package manager.
@@ -75,8 +107,10 @@ Highlights:
 - Listen for both UDP and TCP requests
 - Verify DNSSEC signatures, discarding BOGUS domains
 - Apply a few security and privacy tricks
+- Optional block of configuration options near the bottom, to enable/modify for potentially enhanced security, privacy, or performance.
+- Refer to https://www.nlnetlabs.nl/documentation/unbound/unbound.conf/ for additional configuration options.
 
-`/etc/unbound/unbound.conf.d/pi-hole.conf`:
+`/etc/unbound/unbound.conf.d/pi-hole.conf` or `/etc/unbound/conf.d/pi-hole.conf`:
 
 ```yaml
 server:
@@ -98,12 +132,12 @@ server:
     prefer-ip6: no
 
     # Use this only when you downloaded the list of primary root servers!
-    # If you use the default dns-root-data package, unbound will find it automatically
+    # If you use the default dns-root-data package, unbound will find it automatically.
     #root-hints: "/var/lib/unbound/root.hints"
 
     # Trust glue only if it is within the server's authority
     harden-glue: yes
-
+    
     # Require DNSSEC data for trust-anchored zones, if such data is absent, the zone becomes BOGUS
     harden-dnssec-stripped: yes
 
@@ -124,7 +158,59 @@ server:
 
     # Ensure kernel buffer is large enough to not lose messages in traffic spikes
     so-rcvbuf: 1m
+    
+    
+    ### Optional Configuration (Security, Privacy, and Performance Enhancements) --
+    ## Uncomment or modify values as please. These are commented out as some may potentially cause issues on certain network setups.
+    ## Refer to https://www.nlnetlabs.nl/documentation/unbound/unbound.conf/ for extra information, and additional configuraiton options.
+    
+    
+    # Ignore very large queries.
+    # Default is off, since it is legal protocol wise to send these, and could be necessary for operation if TSIG or EDNS payload is very large.
+    #harden-large-queries: yes
+    
+    # Harden against algorithm downgrade when multiple algorithms  areadvertised  in  the  DS record.  
+    # If no, allows the weakest algorithm to validate the zone.  Default is no.  
+    # Zone  signers  must produce  zones  that  allow  this feature to work, but sometimes they do not, and turning this option off avoids that  validation failure.
+    #harden-algo-downgrade: yes
+    
+    # If enabled id.server and hostname.bind queries are refused.
+    #hide-identity: yes
+    
+    # Report this identity rather than the hostname of the server.
+    #identity: "Server"
+    
+    # Refuse version.server and version.bind queries
+    #hide-version: yes
+   
+    # Time to live minimum for RRsets and messages in the cache. 
+    # If the minimum kicks in, the data is cached for longer than the domain owner intended, and thus less queries are made to look up the data. 
+    # Zero makes sure the data in the cache is as the domain owner intended, higher values, especially more than an hour or so, can lead to trouble as the data in the cache does not match up with the actual data anymore
+    #cache-min-ttl: 300
+    #cache-max-ttl: 86400
 
+    # Have unbound attempt to serve old responses from cache with a TTL of 0 in the response without waiting for the actual resolution to finish.
+    # The actual resolution answer ends up in the cache later on.
+    #serve-expired: yes
+
+    # If yes, fetch the DNSKEYs earlier  in  the  validation  process,when a DS record is encountered.  
+    # This lowers the latency of requests.  It does use a little more CPU.  
+    # Also if  the  cache  is set to 0, it is no use. Default is no
+    #prefetch-key: yes
+    
+    # If set, a total number of unwanted replies is kept track  of  in every thread.  
+    # When it reaches the threshold, a defensive action is taken and a warning is printed to the log.  
+    # The defensive action  is to clear the rrset and message caches, hopefully flushing away any poison.  
+    # A value of 10 million is  suggested. Default is 0 (turned off).
+    #unwanted-reply-threshold: 100000
+    
+   # Do no insert authority/additional sections into response messages when those sections are not required. 
+   # This reduces response size significantly, and may avoid TCP fallback for some responses. This may cause a slight speedup.
+    #minimal-responses: yes
+    
+    
+    ### -- End Of Optional Configuration
+    
     # Ensure privacy of local IP ranges
     private-address: 192.168.0.0/16
     private-address: 169.254.0.0/16
@@ -152,7 +238,8 @@ dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5335
 dig sigok.verteiltesysteme.net @127.0.0.1 -p 5335
 ```
 
-The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
+The first command should give a status report of `SERVFAIL` and no IP address. 
+The second should give `NOERROR` plus an IP address.
 
 ### Configure Pi-hole
 
@@ -161,6 +248,16 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 ![Upstream DNS Servers Configuration](/images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
+
+In order to experience high speed and low latency DNS resolution, you need to make some changes to your Pi-hole. 
+These configurations are crucial because if you skip these steps you may experience very slow response times:
+
+- Open the configuration file `/etc/dnsmasq.d/01-pihole.conf` and ensure the cache size is zero by setting `cache-size=0`.
+This step is important because the caching is already handled by the Unbound.
+Please note that the changes made to this file will be overwritten to the default `cache-size=1000` once you update/modify Pi-hole.
+
+- When you're using unbound you're relying on that for DNSSEC validation and caching, and pi-hole doing those same things are just going to waste time validating DNSSEC twice. 
+In order to resolve this issue you need to un-check the `Use DNSSEC` option in Pi-hole web interface by navigating to `Settings > DNS > Advanced DNS settings`.
 
 ### Disable `resolvconf` for `unbound` (optional)
 
@@ -237,3 +334,21 @@ Third, restart unbound:
 ```
 sudo service unbound restart
 ```
+
+### Automatically start unbound on host boot
+
+This is a crucial step. If you restart your host machine, and unbound doesn't start up automatically, you will have to manually start it before your DNS is functional.
+
+- To automatically have unbound start up on system boot:
+
+```
+sudo systemctl enable unbound
+```
+
+- Ensure it is enabled:
+```
+sudo systemctl is-enabled unbound
+```
+The command should respond with `enabled`.
+
+- Reboot your machine to ensure it automatically starts up.
