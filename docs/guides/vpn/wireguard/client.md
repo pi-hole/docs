@@ -5,8 +5,10 @@ Adding clients is really simple and easy. The process for setting up a client is
 For each new client, the following steps must be taken. For the sake of simplicity, we will create the config file on the server itself. This, however, means that you need to transfer the config file *securely* to your server as it contains the private key of your client. An alternative way of doing this is to generate the configuration locally on your client and add the necessary lines to your server's configuration.
 
 <!-- markdownlint-disable code-block-style -->
+
 ??? info "All commands described below at once"
     ``` bash
+    #Be sure to shutdown your server before adding lines to /etc/wireguard/wg0.conf, else they will be overwritten.
     sudo -i
     cd /etc/wireguard
     umask 077
@@ -57,6 +59,12 @@ wg genpsk > "${name}.psk"
 ```
 
 ## Add client to server configuration
+
+Shutdown the server before making changes to the configuration file:
+
+``` bash
+wg-quick down wg0
+```
 
 Add the new client by running the command:
 
@@ -132,11 +140,17 @@ echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
 
 Next, add your server as peer for this client:
 
-``` plain
-[Peer]
-AllowedIPs = 10.100.0.0/24, fd08::/64
-Endpoint = [your public IP or domain]:47111
-PersistentKeepalive = 25
+``` bash
+echo "[Peer]" > "${name}.conf"
+echo "AllowedIPs = 10.100.0.0/24, fd08::/64 >> "${name}.conf"
+echo "Endpoint = [your public IP or domain]:47111" >> "${name}.conf" # May need editing
+echo "PersistentKeepalive = 25" >> "${name}.conf"
+```
+
+You could consider changing the AllowedIPs in the peer section above to create a full tunnel ([Tunnel all Internet traffic](route-everything.md)).
+
+```bash
+AllowedIPs = 0.0.0.0/0, ::/0
 ```
 
 Then add the public key of the server as well as the PSK for this connection:
