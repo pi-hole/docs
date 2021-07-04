@@ -1,6 +1,8 @@
+# Debugging FTLDNS using `gdb`
+
 Once you are used to it, you can skip most of the steps. Debugging *FTL*DNS is quite easy. `pihole-FTL` has been designed so that a debugger can be attached to an already running process. This will give you insights into how software (not limited to `pihole-FTL`) works.
 
-### Prerequirements (only required once)
+## Prerequirements (only required once)
 
 1. Install `screen` and `gdb` using `sudo apt-get install screen gdb`
 2. Start a screen session (it will allow you to come back even if the SSH connection died)
@@ -14,7 +16,7 @@ Once you are used to it, you can skip most of the steps. Debugging *FTL*DNS is q
 
     You can omit this step, however, you will have to remember to run the quoted line on *every start* of `gdb` in order to properly debug FTL.
 
-### Start of debugging session
+## Start of debugging session
 
 1. Use `sudo gdb -p $(pidof pihole-FTL)` to attach the debugger to the already running `pihole-FTL` process
 2. Once loading of the symbols has finished (the `(gdb)` input prompt is shown), enter `continue` to continue the operation of `pihole-FTL` inside the debugger. All debugger features are now available.
