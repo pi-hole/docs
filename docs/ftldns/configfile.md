@@ -139,7 +139,7 @@ With this option, you can change how (and if) hourly PTR requests are made to ch
 - `REFRESH_HOSTNAMES=NONE` - Don't do any hourly PTR lookups
    This means we look host names up exactly once (when we first see a client) and never again. You may miss future changes of host names.
 
-#### `PARSE_ARP_CACHE=true|false` (PR [#445](https://github.com/pi-hole/FTL/pull/445)) {#parse_arp_cache data-toc-label='Refresh hostnames'}
+#### `PARSE_ARP_CACHE=true|false` (PR [#445](https://github.com/pi-hole/FTL/pull/445)) {#parse_arp_cache data-toc-label='Parse ARP cache'}
 
 This setting can be used to disable ARP cache processing. When disabled, client identification and the network table will stop working reliably.
 
