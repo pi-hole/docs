@@ -17,6 +17,9 @@ theme:
     code: 'Roboto Mono'
   features:
     - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
   palette:
 
     # Light mode
