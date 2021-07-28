@@ -25,13 +25,13 @@ Download the installer package, then use `apt-get` to install the package along 
 
 ```bash
 # For Debian/Ubuntu
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
-sudo apt-get install ./cloudflared-stable-linux-amd64.deb
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+sudo apt-get install ./cloudflared-linux-amd64.deb
 cloudflared -v
 
 # For CentOS/RHEL/Fedora
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.rpm
-sudo yum install ./cloudflared-stable-linux-amd64.rpm
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-x86_64.rpm
+sudo yum install ./cloudflared-linux-x86_64.rpm
 cloudflared -v
 ```
 
@@ -51,9 +51,8 @@ cloudflared -v
 Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working:
 
 ```bash
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
-tar -xvzf cloudflared-stable-linux-arm.tgz
-sudo cp ./cloudflared /usr/local/bin
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-armv6
+sudo cp ./cloudflared-linux-armv6 /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
@@ -62,7 +61,7 @@ Note: Users [have reported](https://github.com/cloudflare/cloudflared/issues/38)
 
 #### `cloudflared` archive page
 
-You can find all `cloudflared` binary releases on <https://dl.equinox.io/cloudflare/cloudflared/stable/archive>.
+You can find all `cloudflared` binary releases on <https://github.com/cloudflare/cloudflared/releases>.
 
 ### Configuring `cloudflared` to run on startup
 
@@ -212,10 +211,9 @@ The procedure for updating depends on how you configured the `cloudflared` binar
 If you configured `cloudflared` manually (by writing a systemd unit yourself), to update the binary you'll simply redownload the binary from the same link, and repeat the install procedure.
 
 ```bash
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
-tar -xvzf cloudflared-stable-linux-arm.tgz
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-armv6
 sudo systemctl stop cloudflared
-sudo cp ./cloudflared /usr/local/bin
+sudo cp ./cloudflared-linux-armv6 /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 sudo systemctl start cloudflared
 cloudflared -v
