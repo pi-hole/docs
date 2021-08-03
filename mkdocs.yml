@@ -155,6 +155,7 @@ nav:
         - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
     - 'Misc':
       - 'Benchmarking': guides/misc/benchmark.md
+      - 'Setting a static IP': guides/misc/setting-static-ip.md
       - 'Tor & Pi-hole':
         - 'Overview': guides/misc/tor/overview.md
         - 'Basic Setup': guides/misc/tor/setup.md
