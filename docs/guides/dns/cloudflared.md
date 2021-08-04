@@ -51,8 +51,8 @@ cloudflared -v
 Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working:
 
 ```bash
-wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-armv6
-sudo cp ./cloudflared-linux-armv6 /usr/local/bin/cloudflared
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
+sudo cp ./cloudflared-linux-arm /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
@@ -211,9 +211,9 @@ The procedure for updating depends on how you configured the `cloudflared` binar
 If you configured `cloudflared` manually (by writing a systemd unit yourself), to update the binary you'll simply redownload the binary from the same link, and repeat the install procedure.
 
 ```bash
-wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-armv6
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
 sudo systemctl stop cloudflared
-sudo cp ./cloudflared-linux-armv6 /usr/local/bin/cloudflared
+sudo cp ./cloudflared-linux-arm /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 sudo systemctl start cloudflared
 cloudflared -v
