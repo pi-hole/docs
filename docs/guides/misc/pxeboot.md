@@ -1,14 +1,14 @@
 # Setting up a PXE Boot Server with Docker-Compose and boot Kali Linux
 
-In this guide I try to explain how to set up a PXE Boot Server with Pi-Hole and Docker-Compose. 
+In this guide I try to explain how to set up a PXE Boot Server with Pi-Hole and Docker-Compose.
 
 **Host** means the machine where docker is running.
 
-I am working in the subdirectory: 	/home/user/container/pihole
+I am working in the subdirectory: `/home/user/container/pihole`
 
-I used [https://www.kali.org/docs/installation/network-pxe/](https://www.kali.org/docs/installation/network-pxe/)  as an example. 
+I used [https://www.kali.org/docs/installation/network-pxe/](https://www.kali.org/docs/installation/network-pxe/)  as an example.
 
-## 1. Mount a TFTP Folder in the Pi-Hole Container. 
+## 1. Mount a TFTP Folder in the Pi-Hole Container.
 
 Go in in the folder where your Pi-Hole configuration is. In my case it is:
 
@@ -16,13 +16,14 @@ Go in in the folder where your Pi-Hole configuration is. In my case it is:
 cd /home/user/container/pihole
 ```
 
-Create a new folder called tftpboot with 
+Create a new folder called tftpboot with
+
 ```bash
 mkdir tftpboot
 ```
 
 Edit the docker-compose.yml and mount the tftpboot to pihole.
-Add ```- './tftpboot:/tftpboot/'``` in the Volume section. 
+Add `- './tftpboot:/tftpboot/'` in the Volume section.
 
 Example docker-compose.yml file:
 
@@ -63,21 +64,22 @@ services:
       - NET_ADMIN
 ```
 
-## 2. Now we need to tell Pi-Hole to start the integrated TFTP Server. 
+## 2. Now we need to tell Pi-Hole to start the integrated TFTP Server.
 
 Change in the etc-dnsmasq.d folder.
 
 ```bash
-cd etc-dnsmasq.d 
+cd etc-dnsmasq.d
 ```
 
 Create a file 99-pxeboot.conf and add the follwing content:
 
-```bash 
-touch 99-pxeboot.conf && nano 99-pxeboot.conf 
+```bash
+touch 99-pxeboot.conf && nano 99-pxeboot.conf
 ```
 
-Add the following content to the file and save it once finished. 
+Add the following content to the file and save it once finished.
+
 ```
 dhcp-boot=pxelinux.0
 enable-tftp
@@ -86,7 +88,8 @@ pxe-prompt="Press F8 for menu.", 60
 pxe-service=x86PC,"Boot from local disk",0
 pxe-service=x86PC,"Boot Kali Linux",kali/pxelinux
 ```
-From here on you are done with Pi-Hole. The TFTP server should run, but it needs something to deliver to the clients. 
+
+From here on you are done with Pi-Hole. The TFTP server should run, but it needs something to deliver to the clients.
 
 ## 3. Download the Netboot Image
 
@@ -102,12 +105,13 @@ Download Kali Linux.
 
 ```bash
 # 64-bit:
-wget http://http.kali.org/kali/dists/kali-rolling/main/installer-amd64/current/images/netboot/netboot.tar.gz 
+wget http://http.kali.org/kali/dists/kali-rolling/main/installer-amd64/current/images/netboot/netboot.tar.gz
 # 32-bit:
 wget http://http.kali.org/kali/dists/kali-rolling/main/installer-i386/current/images/netboot/netboot.tar.gz
 ```
 
 Unzip  and remove the Image:
+
 ```bash
 tar -zxpf netboot.tar.gz
 rm netboot.tar.gz
@@ -115,7 +119,7 @@ rm netboot.tar.gz
 
 ## 4. Start Pi-Hole
 
-You are all done. Start the Pi-Hole Container. 
+You are all done. Start the Pi-Hole Container.
 
 ```bash
 sudo docker-compose up -d
