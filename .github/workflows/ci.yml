@@ -40,10 +40,6 @@ jobs:
           key: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
 
-      # This is needed otherwise pip warns:
-      # Using legacy 'setup.py install' for DEP, since package 'wheel' is not installed.
-      - run: pip install --upgrade wheel
-
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
