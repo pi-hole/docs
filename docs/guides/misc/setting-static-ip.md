@@ -10,11 +10,13 @@ Depending on your operating system / device. There are many ways to achieve this
 
 First, lets make take some notes about our current network settings with the following command:
 
-`ip r | grep default`
+```bash
+ip r | grep default
+```
 
 This will spit out something along the lines of:
 
-```
+```text
 default via 192.168.1.254 dev eth0 proto dhcp src 192.168.1.80 metric 202`
 ```
 
@@ -22,7 +24,9 @@ The first IP address here (`192.168.1.254`) is the IP address of our router. The
 
 We also need to know the DNS server that has been set. to do this run the following command:
 
-`cat /etc/resolv.conf`
+```bash
+cat /etc/resolv.conf
+```
 
 Which will output something along the lines of:
 
@@ -35,7 +39,9 @@ We are interested in the IP address next to `nameserver`.
 
 Now that you have the above IP addresses noted down, it's time to modify `dhcpcd.conf` to set it as static. To do so, first run this command:
 
-`sudo nano /etc/dhcpcd.conf`
+```bash
+sudo nano /etc/dhcpcd.conf
+```
 
 This will bring up a text editor (`nano`) - into which you can enter your desired settings.
 
@@ -62,8 +68,6 @@ static domain_name_servers=$NAMESERVER
 To save: press `CTRL` + `X`, then `Y` and then press `ENTER` to confirm.
 
 Finally, reboot your Raspberry Pi to apply the new settings.
-
-#
 
 # All Operating Systems
 
