@@ -40,6 +40,14 @@ For this setting, both numbers, the maximum number of queries within a given tim
 
 Rate-limiting may be disabled altogether by setting `RATE_LIMIT=0/0` (this results in the same behavior as before FTL v5.7).
 
+#### `REPLY_ADDR4` (no default, PR [#965](https://github.com/pi-hole/FTL/pull/965)) {#reply_addr4 data-toc-label='Force A reply'}
+
+When using `IP` blocking mode, `FTL` determines the address of the interface a query arrived on. We then use this IP address in the blocked reply. This setting can be used to overwrite the replied IPv4 (`A`) address.
+
+#### `REPLY_ADDR6` (no default, PR [#965](https://github.com/pi-hole/FTL/pull/965)) {#reply_addr6 data-toc-label='Force AAAA reply'}
+
+When using `IP` blocking mode, `FTL` determines the address of the interface a query arrived on. We then use this IP address in the blocked reply. This setting can be used to overwrite the replied IPv6 (`AAAA`) address.
+
 ---
 
 ### Statistics settings
@@ -59,7 +67,7 @@ Should `FTL` ignore queries coming from the local machine?
 
 #### `AAAA_QUERY_ANALYSIS=yes|no` {#aaaa_query_analysis data-toc-label='AAAA Query Analysis'}
 
-Should FTL analyze `AAAA` queries? The DNS server will handle `AAAA` queries the same way, reglardless of this setting. All this does is ignoring `AAAA` queries when computing the statistics of Pi-hole. This setting is considered obsolete and may be removed in a future version.
+Should FTL analyze `AAAA` queries? The DNS server will handle `AAAA` queries the same way, reglardless of this setting. All this does is ignoring `AAAA` queries when computing the statistics of Pi-hole. This setting is considered obsolete and will be removed in a future version.
 
 #### `ANALYZE_ONLY_A_AND_AAAA=false|true` {#analyze_only_a_and_aaaa data-toc-label='Analyze A and AAAA Only'}
 
@@ -136,6 +144,10 @@ With this option, you can change how (and if) hourly PTR requests are made to ch
 - `REFRESH_HOSTNAMES=NONE` - Don't do any hourly PTR lookups
    This means we look host names up exactly once (when we first see a client) and never again. You may miss future changes of host names.
 
+#### `PARSE_ARP_CACHE=true|false` (PR [#445](https://github.com/pi-hole/FTL/pull/445)) {#parse_arp_cache data-toc-label='Parse ARP cache'}
+
+This setting can be used to disable ARP cache processing. When disabled, client identification and the network table will stop working reliably.
+
 ---
 
 ### Long-term database settings
@@ -206,6 +218,10 @@ Print debugging information about database actions. This prints performed SQL st
 
 Prints a list of the detected interfaces on the startup of `pihole-FTL`. Also, prints whether these interfaces are IPv4 or IPv6 interfaces.
 
+#### `DEBUG_EDNS0=false|true` {#debug_edns0 data-toc-label='EDNS0'}
+
+Print debugging information about received EDNS(0) data.
+
 #### `DEBUG_LOCKS=false|true` {#debug_locks data-toc-label='Locks'}
 
 Print information about shared memory locks. Messages will be generated when waiting, obtaining, and releasing a lock.
@@ -230,15 +246,13 @@ Print information about garbage collection (GC): What is to be removed, how many
 
 Print information about ARP table processing: How long did parsing take, whether read MAC addresses are valid, and if the `macvendor.db` file exists.
 
-#### `DEBUG_REGEX=false|true` {#debug_regex data-toc-label='REGEX'}
+#### `DEBUG_REGEX=false|true` {#debug_regex data-toc-label='Regular expressions'}
 
-Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.<br>
-Due to legacy reasons, we also support the following setting to be used for enabling the same functionality:<br>
-`REGEX_DEBUGMODE=false|true`
-Note that if one of them is set to `true`, the other one cannot be used to disable this setting again.<br>
+Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.
+
 **[More details](../regex/overview.md)**
 
-#### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet'}
+#### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet API'}
 
 Print extra debugging information during telnet API calls. Currently only used to send extra information when getting all queries.
 
@@ -246,9 +260,9 @@ Print extra debugging information during telnet API calls. Currently only used t
 
 Print information about overTime memory operations, such as initializing or moving overTime slots.
 
-#### `DEBUG_EXTBLOCKED=false|true` {#debug_extblocked data-toc-label='Externally blocked queries'}
+#### `DEBUG_STATUS=false|true` {#debug_status data-toc-label='Query status'}
 
-Print information about why FTL decided that certain queries were recognized as being externally blocked.
+Print information about status changes for individual queries. This can be useful to identify unexpected `unknown` queries.
 
 #### `DEBUG_CAPS=false|true` {#debug_caps data-toc-label='Linux capabilities'}
 
@@ -265,5 +279,29 @@ FTL uses dynamically allocated vectors for various tasks. This config option ena
 #### `DEBUG_RESOLVER=false|true` (PR [#728](https://github.com/pi-hole/FTL/pull/728)) {#debug_resolver data-toc-label='Resolver details'}
 
 Extensive information about hostname resolution like which DNS servers are used in the first and second hostname resolving tries (only affecting internally generated PTR queries).
+
+#### `DEBUG_EDNS0=false|true` (PR [#851](https://github.com/pi-hole/FTL/pull/851)) {#debug_edns0 data-toc-label='EDNS(0) data'}
+
+Verbose logging during EDNS(0) header analysis.
+
+#### `DEBUG_CLIENTS=false|true` (PR [#762](https://github.com/pi-hole/FTL/pull/762)) {#debug_clients data-toc-label='Clients'}
+
+Log various important client events such as change of interface (e.g., client switching from WiFi to wired or VPN connection), as well as extensive reporting about how clients were assigned to its groups.
+
+#### `DEBUG_ALIASCLIENTS=false|true` (PR [#880](https://github.com/pi-hole/FTL/pull/880)) {#debug_aliasclients data-toc-label='Aliasclients'}
+
+Log information related to alias-client processing.
+
+#### `DEBUG_EVENTS=false|true` (PR [#881](https://github.com/pi-hole/FTL/pull/881)) {#debug_events data-toc-label='Events'}
+
+Log information regarding FTL's embedded event handling queue.
+
+#### `DEBUG_HELPER=false|true` (PR [#914](https://github.com/pi-hole/FTL/pull/914)) {#debug_helper data-toc-label='Script helpers'}
+
+Log information about script helpers, e.g., due to `dhcp-script`.
+
+#### `DEBUG_EXTRA=false|true` (PR [#994](https://github.com/pi-hole/FTL/pull/994)) {#debug_extra data-toc-label='Misc.'}
+
+Temporary flag that may print additional information. This debug flag is meant to be used whenever needed for temporary investigations. The logged content may change without further notice at any time.
 
 {!abbreviations.md!}

@@ -17,6 +17,9 @@ theme:
     code: 'Roboto Mono'
   features:
     - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
   palette:
 
     # Light mode
@@ -85,6 +88,7 @@ nav:
     - 'Installation': main/basic-install.md
     - 'Post-Install': main/post-install.md
     - 'Updating': main/update.md
+    - 'Uninstalling': main/uninstall.md
   - 'Pi-hole Core':
     - 'The <samp>pihole</samp> command': core/pihole-command.md
   - 'Databases':
@@ -106,7 +110,9 @@ nav:
     - 'Signals': 'ftldns/signals.md'
     - 'Compatibility': ftldns/compatibility.md
     - 'Install from source': ftldns/compile.md
-    - 'Debugging FTLDNS': ftldns/debugging.md
+    - 'Debugging FTLDNS':
+      - 'gdb': ftldns/debugging.md
+      - 'valgrind': ftldns/valgrind.md
     - 'In-depth manual': ftldns/in-depth.md
   - 'RegEx blocking':
     - "Overview": regex/overview.md

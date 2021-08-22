@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
           architecture: "x64"
@@ -31,6 +31,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "${{ env.NODE }}"
+          cache: npm
 
       - name: Cache Python dependencies
         uses: actions/cache@v2
@@ -38,10 +39,6 @@ jobs:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
-
-      # This is needed otherwise pip warns:
-      # Using legacy 'setup.py install' for DEP, since package 'wheel' is not installed.
-      - run: pip install --upgrade wheel
 
       - name: Install Python dependencies
         run: pip install -r requirements.txt

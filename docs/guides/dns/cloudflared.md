@@ -25,24 +25,13 @@ Download the installer package, then use `apt-get` to install the package along 
 
 ```bash
 # For Debian/Ubuntu
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.deb
-sudo apt-get install ./cloudflared-stable-linux-amd64.deb
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+sudo apt-get install ./cloudflared-linux-amd64.deb
 cloudflared -v
 
 # For CentOS/RHEL/Fedora
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-amd64.rpm
-sudo yum install ./cloudflared-stable-linux-amd64.rpm
-cloudflared -v
-```
-
-**Note:** Binaries for other operating systems can be found here: <https://developers.cloudflare.com/argo-tunnel/downloads/>
-
-#### arm64 architecture (64-bit Raspberry Pi)
-
-```bash
-wget -O cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64
-sudo mv cloudflared /usr/local/bin
-sudo chmod +x /usr/local/bin/cloudflared
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-x86_64.rpm
+sudo yum install ./cloudflared-linux-x86_64.rpm
 cloudflared -v
 ```
 
@@ -51,18 +40,26 @@ cloudflared -v
 Here we are downloading the precompiled binary and copying it to the `/usr/local/bin/` directory to allow execution by the cloudflared user. Proceed to run the binary with the `-v` flag to check it is all working:
 
 ```bash
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
-tar -xvzf cloudflared-stable-linux-arm.tgz
-sudo cp ./cloudflared /usr/local/bin
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
+sudo cp ./cloudflared-linux-arm /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
 
 Note: Users [have reported](https://github.com/cloudflare/cloudflared/issues/38) that the current version of cloudflared produces a segementation fault error on Raspberry Pi Zero W, Model 1B and 2B. As a workaround you can use an older version provided at <https://bin.equinox.io/a/4SUTAEmvqzB/cloudflared-2018.7.2-linux-arm.tar.gz> instead.
 
+#### arm64 architecture (64-bit Raspberry Pi)
+
+```bash
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64
+sudo cp ./cloudflared-linux-arm64 /usr/local/bin/cloudflared
+sudo chmod +x /usr/local/bin/cloudflared
+cloudflared -v
+```
+
 #### `cloudflared` archive page
 
-You can find all `cloudflared` binary releases on <https://dl.equinox.io/cloudflare/cloudflared/stable/archive>.
+You can find all `cloudflared` binary releases on <https://github.com/cloudflare/cloudflared/releases>.
 
 ### Configuring `cloudflared` to run on startup
 
@@ -148,7 +145,7 @@ proxy-dns-port: 5053
 proxy-dns-upstream:
   - https://1.1.1.1/dns-query
   - https://1.0.0.1/dns-query
-  #Uncomment following if you want to also want to use IPv6 for  external DOH lookups
+  # Uncomment the following if you also want to use IPv6 for external DOH lookups
   #- https://[2606:4700:4700::1111]/dns-query
   #- https://[2606:4700:4700::1001]/dns-query
 ```
@@ -212,10 +209,9 @@ The procedure for updating depends on how you configured the `cloudflared` binar
 If you configured `cloudflared` manually (by writing a systemd unit yourself), to update the binary you'll simply redownload the binary from the same link, and repeat the install procedure.
 
 ```bash
-wget https://bin.equinox.io/c/VdrWdbjqyF/cloudflared-stable-linux-arm.tgz
-tar -xvzf cloudflared-stable-linux-arm.tgz
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
 sudo systemctl stop cloudflared
-sudo cp ./cloudflared /usr/local/bin
+sudo cp ./cloudflared-linux-arm /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 sudo systemctl start cloudflared
 cloudflared -v
