@@ -237,3 +237,12 @@ Third, restart unbound:
 ```
 sudo service unbound restart
 ```
+
+### Uninstall `unbound`
+
+To remove `unbound` from your system run
+
+```bash
+sudo apt remove unbound
+```
+Make sure to switch to another upstream DNS server for Pi-hole .
