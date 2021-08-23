@@ -246,4 +246,4 @@ To remove `unbound` from your system run
 sudo apt remove unbound
 ```
 
-Make sure to switch to another upstream DNS server for Pi-hole .
+Make sure to switch to another upstream DNS server for Pi-hole.
