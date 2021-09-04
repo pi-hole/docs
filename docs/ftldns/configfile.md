@@ -73,6 +73,11 @@ Should FTL analyze `AAAA` queries? The DNS server will handle `AAAA` queries the
 
 Should `FTL` only analyze A and AAAA queries?
 
+
+#### `SHOW_DNSSEC=true|false` {#show_dnssec data-toc-label='Show automatic DNSSEC queries'}
+
+Should FTL analyze and include automatically generated DNSSEC queries in the Query Log?
+
 ---
 
 ### Other settings
