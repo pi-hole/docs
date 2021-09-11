@@ -56,6 +56,44 @@ will not block `abc` with type `AAAA` (but everything else) for the clients assi
 
 will block **not** block `abc` but **everything else**.
 
+## Specify reply type
+
+Pi-hole allows you to configure the reply it serves when a regular expression matches a query. This can be controlled via the `;reply` keyword.
+
+Valid options are:
+
+- `;reply=nodata` (an empty answer will be provided)
+- `;reply=nxdomain` ("no such domain" will be provided, can cause unintended side-effects)
+- `;reply=refused` (the query will be refused)
+- `;reply=none` (the query will be silently dropped)
+- `;reply=ip` (the Pi-hole's IP address if not overwritten by [`REPLY_ADDR4`](../ftldns/configfile.md#reply_addr4) and/or [`REPLY_ADDR6`](../ftldns/configfile.md#reply_addr6))
+- `;reply=1.2.3.4` (any valid IPv4 address)
+- `;reply=fe80::1234` (any valid IPv6 address)
+
+Only one option should be specified. An exception to this rule are the last two options which may be specified at the same time to configure both an IPv4 and an IPv6 address:
+
+- IPv4 only:
+
+  ``` plain
+  myregex;reply=1.2.3.4
+  ```
+
+  will result in `A 1.2.3.4` and `AAAA ::`
+- IPv6 only:
+
+  ``` plain
+  myregex;reply=fe80::1234
+  ```
+
+  will result in `A 0.0.0.0` and `AAAA fe80:1234`
+- IPv4 and IPv6:
+
+  ``` plain
+  myregex;reply=1.2.3.4;reply=fe80::1234
+  ```
+
+  will result in `A 1.2.3.4` and `AAAA fe80:1234`
+
 ## Comments
 
 You can specify comments withing your regex using the syntax
