@@ -48,6 +48,17 @@ When using `IP` blocking mode, `FTL` determines the address of the interface a q
 
 When using `IP` blocking mode, `FTL` determines the address of the interface a query arrived on. We then use this IP address in the blocked reply. This setting can be used to overwrite the replied IPv6 (`AAAA`) address.
 
+#### `REPLY_WHEN_BUSY=DROP|ALLOW|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156)) {#reply_when_busy data-toc-label='Database busy reply'}
+
+When the gravity database is locked/busy, how should Pi-hole handle queries?
+
+- `ALLOW` - allow all queries when the database is busy
+- `BLOCK` - block all queries when the database is busy. This uses the configured `BLOCKINGMODE` (default `NULL`)
+- `REFUSE` - refuse all queries which arrive while the database is busy
+- `DROP` - just drop the queries, i.e., never reply to them at all.
+
+Despite `REFUSE` sounding similar to `DROP`, it turned out that many clients will just immediately retry, causing up to several thousands of queries per second. This does not happen in `DROP` mode.
+
 ---
 
 ### Statistics settings
