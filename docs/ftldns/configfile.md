@@ -59,7 +59,7 @@ When the gravity database is locked/busy, how should Pi-hole handle queries?
 
 Despite `REFUSE` sounding similar to `DROP`, it turned out that many clients will just immediately retry, causing up to several thousands of queries per second. This does not happen in `DROP` mode.
 
-#### `MOZILLA_CANARY=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#mozilla_canary data-toc-label='MOZILLA canary domain handling'}
+#### `MOZILLA_CANARY=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#mozilla_canary data-toc-label='Mozilla canary domain handling'}
 
 Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox automatic DoH?
 This is following the recommendation on [https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https](https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https)
@@ -320,12 +320,12 @@ Log information regarding FTL's embedded event handling queue.
 
 Log information about script helpers, e.g., due to `dhcp-script`.
 
+#### `ADDR2LINE=true|false` (PR [#774](https://github.com/pi-hole/FTL/pull/774)) {#addr2line data-toc-label='Addr2Line'}
+
+Should FTL translate its own stack addresses into code lines during the bug backtrace? This improves the analysis of crashed significantly and it is recommended to leave the option enabled.
+
 #### `DEBUG_EXTRA=false|true` (PR [#994](https://github.com/pi-hole/FTL/pull/994)) {#debug_extra data-toc-label='Misc.'}
 
 Temporary flag that may print additional information. This debug flag is meant to be used whenever needed for temporary investigations. The logged content may change without further notice at any time.
-
-#### `ADDR2LINE=true|false` (PR [#774](https://github.com/pi-hole/FTL/pull/774)) {#addr2line data-toc-label='ADDR2LINE'}
-
-Should FTL translate its own stack addresses into code lines during the bug backtrace? This improves the analysis of crashed significantly and it is recommended to leave the option enabled.
 
 {!abbreviations.md!}
