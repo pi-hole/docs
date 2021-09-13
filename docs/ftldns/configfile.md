@@ -272,7 +272,7 @@ Controls if *FTL*DNS should print extended details about regex matching into `pi
 
 **[More details](../regex/overview.md)**
 
-#### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet API'}
+#### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet'}
 
 Print extra debugging information during telnet API calls. Currently only used to send extra information when getting all queries.
 
