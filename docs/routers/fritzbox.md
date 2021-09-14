@@ -83,6 +83,11 @@ The following settings must be made:
     * **Local network in CIDR notation:** Standard IP range of the  Fritz!Box is **192.168.178.0/24**
     * **IP address of your DHCP server (router):** IP of the Fritz!Box, standard is **192.168.178.1**
     * **Local domain name (optional):** Fritz!Box uses **fritz.box**
+    
+**Tip:** Some clients may retry solving their domains when they are blocked by adding the search domain (e.g. `google.com.fritz.box`) to the DNS request. This is pointless and the forwarding of those can be blocked with the following RegExp:
+```regexp
+[^a-z0-9-].*\.fritz\.box$
+```
 
 ![Screenshot der Conditional Forwarding Einstellungen](../images/conditional-forwarding.png)
 
