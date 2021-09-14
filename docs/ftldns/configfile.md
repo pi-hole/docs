@@ -61,7 +61,7 @@ Despite `REFUSE` sounding similar to `DROP`, it turned out that many clients wil
 
 #### `MOZILLA_CANARY=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#mozilla_canary data-toc-label='Mozilla canary domain handling'}
 
-Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox automatic DoH?
+Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox automatic DNS-over-HTTP?
 This is following the recommendation on [https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https](https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https)
 
 ---
@@ -116,7 +116,7 @@ Should `FTL` try to resolve IPv4 addresses to hostnames?
 
 #### `PIHOLE_PTR=true|false` (PR [#1111](https://github.com/pi-hole/FTL/pull/1111)) {#pihole_ptr data-toc-label='Pi-hole PTR'}
 
-FTL will reply with `pi.hole` for every address for which a local interface exists. When you set this option to false, Pi-hole will not add any PTR requests itself.
+FTL will reply with `pi.hole` for every address for which a local interface exists. When you set this option to `false`, Pi-hole will **not** respond with `pi.hole` on PTR requests to local interface addresses.
 
 #### `DELAY_STARTUP=0` (PR [#716](https://github.com/pi-hole/FTL/pull/716)) {#delay_startup data-toc-label='Delay resolver startup'}
 
@@ -322,7 +322,7 @@ Log information about script helpers, e.g., due to `dhcp-script`.
 
 #### `ADDR2LINE=true|false` (PR [#774](https://github.com/pi-hole/FTL/pull/774)) {#addr2line data-toc-label='Addr2Line'}
 
-Should FTL translate its own stack addresses into code lines during the bug backtrace? This improves the analysis of crashed significantly and it is recommended to leave the option enabled.
+Should FTL translate its own stack addresses into code lines during the bug backtrace? This improves the analysis of crashed significantly. It is recommended to leave the option enabled. This option should only be disabled when `addr2line` is known to not be working correctly on the machine because, in this case, the malfunctioning `addr2line` can prevent from generating any backtrace at all.
 
 #### `DEBUG_EXTRA=false|true` (PR [#994](https://github.com/pi-hole/FTL/pull/994)) {#debug_extra data-toc-label='Misc.'}
 
