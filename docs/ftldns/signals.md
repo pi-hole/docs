@@ -37,7 +37,7 @@ Real-time signals are not guaranteed to have the same number on all operating sy
 
 Real-time signal can always be executed relative to the first (= minimum) real-time signal just like (for real-time signal 0):
 
-``` bash
+```bash
 sudo pkill -SIGRTMIN+0 pihole-FTL
 ```
 

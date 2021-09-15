@@ -2,13 +2,13 @@
 
 In order to ease regex development, we added a regex test mode to `pihole-FTL` which can be invoked like
 
-``` bash
+```bash
 pihole-FTL regex-test doubleclick.net
 ```
 
 (test `doubleclick.net` against all regexs in the gravity database), or
 
-```  bash
+```bash
 pihole-FTL regex-test doubleclick.net "(^|\.)double"
 ```
 

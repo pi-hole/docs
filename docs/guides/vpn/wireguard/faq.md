@@ -9,13 +9,13 @@ Hostnames cannot be resolved during startup. This may lead to a five minutes del
 
 If the IP changes while the connection is running, resolving the new IP address fails often. Reconnect using
 
-``` bash
+```bash
 sudo ifdown wg0 && sudo ifup wg0
 ```
 
 To achieve a permanent solution, one can install a `cron` job which restarts the connection automatically whenever a change is detected. This avoids excessive restarts of the interface. Example script (taken from [Ubuntuusers Wiki](https://wiki.ubuntuusers.de/WireGuard)):
 
-``` bash
+```bash
 #!/bin/bash
 # Check state of wg0 interface
 wgstatus=$(wg)
@@ -42,11 +42,11 @@ fi
 
 Store this file as `/home/[user name]/wg-restart.sh` and add it to your `crontab`:
 
-``` bash
+```bash
 sudo crontab -e
 ```
 
-``` plain
+```plain
 */10 * * * * bash /home/[user name]/wg-restart.sh    # Runs the script every 10 minutes
 ```
 
@@ -54,7 +54,7 @@ sudo crontab -e
 
 Users of NetworkManager should make sure that it is not managing the WireGuard interface(s). For example, create the configuration file `/etc/NetworkManager/conf.d/unmanaged.conf` with content
 
-``` bash
+```bash
 [keyfile]
 unmanaged-devices=interface-name:wg*
 ```
@@ -77,7 +77,7 @@ The solution is to use networking software that supports `resolvconf`.
 
 Due to too low MTU (lower than 1280), `wg-quick` may fail to create the WireGuard interface. This can be solved by setting the MTU value in WireGuard configuration in the Interface section on the client:
 
-``` bash
+```bash
 [Interface]
 MTU = 1500
 ```
@@ -88,7 +88,7 @@ MTU = 1500
 
 If, e.g., after reboot, the `wg0` interface isn't up before Pi-hole is ready (more precisely, the `pihole-FTL` service is started), you may experience that Pi-hole doesn't listen on the Wireguard interface. This can be mitigated by artificially delaying the start of Pi-hole using, e.g., the config option
 
-``` plain
+```plain
 DELAY_STARTUP=5
 ```
 

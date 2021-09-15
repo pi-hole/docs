@@ -21,7 +21,7 @@ Client -> Pi-hole -> Upstream DNS Server
 
 > Note:
 The Fritz!Box itself will use whatever is configured in Internet/Account Information/DNS server (see below).
-The Fritz!Box can be Pi-hole's upstream DNS server, as long Pi-hole itself is not the upstream server of the Fritz!Box. This would  cause a DNS loop.
+The Fritz!Box can be Pi-hole's upstream DNS server, as long Pi-hole itself is not the upstream server of the Fritz!Box. This would cause a DNS loop.
 
 To set it up, enter Pi-hole's IP as "Local DNS server" in
 
@@ -85,4 +85,3 @@ The following settings must be made:
     * **Local domain name (optional):** Fritz!Box uses **fritz.box**
 
 ![Screenshot der Conditional Forwarding Einstellungen](../images/conditional-forwarding.png)
-

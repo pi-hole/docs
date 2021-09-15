@@ -25,13 +25,13 @@ Make sure to terminate any existing FTL process before starting FTL inside `valg
 
 You have to stop the regular `pihole-FTL` process before starting a `valgrind` debugging session:
 
-``` bash
+```bash
 sudo service pihole-FTL stop
 ```
 
 Furthermore, you'll have to strip the networking capabilities from the binary using:
 
-``` bash
+```bash
 sudo setcap -r /usr/bin/pihole-FTL
 ```
 

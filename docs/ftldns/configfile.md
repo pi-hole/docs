@@ -70,7 +70,7 @@ This is following the recommendation on [https://support.mozilla.org/en-US/kb/co
 
 #### `MAXLOGAGE=24.0` {#maxlogage data-toc-label='Max Log Age'}
 
-Up to how many hours of queries should be imported from the database and logs? Values greater than the hard-coded maximum of 24h need a locally compiled  `FTL` with a changed compile-time value.
+Up to how many hours of queries should be imported from the database and logs? Values greater than the hard-coded maximum of 24h need a locally compiled `FTL` with a changed compile-time value.
 
 #### `PRIVACYLEVEL=0|1|2|3` {#privacylevel data-toc-label='Privacy Level'}
 

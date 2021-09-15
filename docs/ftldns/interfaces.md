@@ -32,7 +32,7 @@ By default, FTL binds the wildcard address, even when it is listening on only so
 
 If this is not what you want, you can add the option
 
-``` plain
+```plain
 bind-interfaces
 ```
 

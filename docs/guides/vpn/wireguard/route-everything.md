@@ -16,13 +16,13 @@ Rerouting the Internet traffic through your Pi-hole will furthermore cause all o
 
 To route all traffic through the tunnel to a specific peer, add the default route (`0.0.0.0/0` for IPv4 and `::/0`for IPv6) to `AllowedIPs` in the `[Peer]` section of your clients's WireGuard config files:
 
-``` plain
+```plain
 AllowedIPs = 0.0.0.0/0, ::/0
 ```
 
 <!-- markdownlint-disable code-block-style -->
 ??? info "Exemplary client config file with this change"
-    ``` plain
+    ```plain
     [Interface]
     PrivateKey = [your client's private key]
     Address = [Wireguard-internal IPs of your client, e.g. 10.100.0.2/32, fd08:4711::2/128]
