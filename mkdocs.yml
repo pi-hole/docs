@@ -190,7 +190,7 @@ plugins:
       redirect_maps:
         'ftldns/database.md': database/index.md
         'main/presentations.md': index.md
-        'main/prerequesites.md': main/prerequisites.md
+        'main/prerequisites.md': main/prerequisites.md
         'guides/unbound.md': guides/dns/unbound.md
         'guides/upstream-dns-providers.md': guides/dns/upstream-dns-providers.md
         'guides/dns-over-https.md': guides/dns/cloudflared.md

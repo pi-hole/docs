@@ -157,7 +157,7 @@ That's it.
 
     When this option is enabled, a keepalive packet is sent to the server endpoint once every interval seconds. A sensible interval that works with a wide variety of firewalls is `25` seconds. Setting it to 0 turns the feature off, which is the default.
 
-    Handshakes are not the same as keep-alives. A handshake establishes a limited-time session of about 3 minutes. So, for about 3 minutes your client is able to send its keep-alive packets without requireing a new session. Then, when the session expires, sending a new keep-alive requires a new session for which you should see a new handshake. In practice, the client initiates a handshake earlier.
+    Handshakes are not the same as keep-alives. A handshake establishes a limited-time session of about 3 minutes. So, for about 3 minutes your client is able to send its keep-alive packets without requiring a new session. Then, when the session expires, sending a new keep-alive requires a new session for which you should see a new handshake. In practice, the client initiates a handshake earlier.
 
     **TL;DR** If you're behind NAT or a firewall and you want to receive incoming connections long after network traffic has gone silent, this option will keep the "connection" open in the eyes of NAT.
 <!-- markdownlint-disable code-block-style -->

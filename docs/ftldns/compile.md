@@ -63,7 +63,7 @@ cmake ..
 cmake --build . -- -j $(nproc)
 ```
 
-Note that both ways are exactly equivalent and that you do not need `root` priviledges here.
+Note that both ways are exactly equivalent and that you do not need `root` privileges here.
 
 ## Install the new binary system-wide
 

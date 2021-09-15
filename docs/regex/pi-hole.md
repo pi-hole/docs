@@ -96,7 +96,7 @@ Only one option should be specified. An exception to this rule are the last two 
 
 ## Comments
 
-You can specify comments withing your regex using the syntax
+You can specify comments within your regex using the syntax
 
 ``` plain
 (?#some comment here)
@@ -176,7 +176,7 @@ A bracket expression specifies a set of characters by enclosing a nonempty list 
     - `[:upper:]` upper case letters (FTL matches case-insensitive by default)
     - `[:xdigit:]` hexadecimal digits
 
-Furthermore, there are two shortcurts for some character classes:
+Furthermore, there are two shortcuts for some character classes:
 
 - `\d` - Digit character (equivalent to `[[:digit:]]`)
 - `\D` - Non-digit character (equivalent to `[^[:digit:]]`)

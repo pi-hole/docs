@@ -19,9 +19,9 @@ To add a new link on the navigation panel you need to edit the `mkdocs.yml` file
 To add a new document or guide.
 
 - Navigate to the directory where it will be hosted.
-    EG. guides are in `docs/guides`
+    E.g. guides are in `docs/guides`
 - Create the file using a URL friendly filename.
-    EG. `docs/guides/url-friendly.md`
+    E.g. `docs/guides/url-friendly.md`
 - Edit your document using Markdown, there are loads of resources available for the correct syntax.
 
 ### Testing your changes

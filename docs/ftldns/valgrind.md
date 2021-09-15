@@ -1,6 +1,6 @@
 # Debugging FTLDNS using `valgrind`
 
-Ocassionally, debugging may require us to run `pihole-FTL` in `valgrind`. We also use it to measure performance and check that our memory layout is optimal (= minimal footprint).
+Occasionally, debugging may require us to run `pihole-FTL` in `valgrind`. We also use it to measure performance and check that our memory layout is optimal (= minimal footprint).
 
 `Valgrind` is a flexible program for debugging and profiling Linux executables. It consists of a core, which provides a synthetic CPU in software, and a series of debugging and profiling tools.
 
@@ -165,7 +165,7 @@ Usually the GNU C library (`libc.so`) doesn't bother to free that memory when th
 
 This, and similar, loss record can safely be ignored.
 
-For performance reasons, we keep a few prepared SQL statement always ready for execution in the main thread. However, this has the disadvatage that forks will inherit them. As [it is not safe](https://www.sqlite.org/howtocorrupt.html) to use a database connection across forks, we discard the open connection and open a new one. This will inevitably lead to a memory loss, however, the SQLite3 engine is not able to handle this any better.
+For performance reasons, we keep a few prepared SQL statement always ready for execution in the main thread. However, this has the disadvantage that forks will inherit them. As [it is not safe](https://www.sqlite.org/howtocorrupt.html) to use a database connection across forks, we discard the open connection and open a new one. This will inevitably lead to a memory loss, however, the SQLite3 engine is not able to handle this any better.
 
 As forking relies on [copy-on-write](https://en.wikipedia.org/wiki/Copy-on-write), this does not *actually* lead to a memory wasting as the resource will be shared between the fork and the original process. Furthermore, TCP workers are typically rare and short-lived so this leak isn't anything we are too worried about.
 
