@@ -6,7 +6,7 @@ This guide is IPv4 only. You need to adjust for IPv6 accordingly.
 
 ### Enable advanced settings
 
-Some of the the following settings might be visible only if advanced settings are enabled. Therefore, "View" has to be changed to advanced by clicking on "Standard" in the lower left corner.
+Some of the following settings might be visible only if advanced settings are enabled. Therefore, "View" has to be changed to advanced by clicking on "Standard" in the lower left corner.
 
 ![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-advanced.png)
 
@@ -21,7 +21,7 @@ Client -> Pi-hole -> Upstream DNS Server
 
 > Note:
 The Fritz!Box itself will use whatever is configured in Internet/Account Information/DNS server (see below).
-The Fritz!Box can be Pi-hole's upstream DNS server, as long Pi-hole itself is not the upstream server of the Fritz!Box. This would  cause a DNS loop.
+The Fritz!Box can be Pi-hole's upstream DNS server, as long Pi-hole itself is not the upstream server of the Fritz!Box. This would cause a DNS loop.
 
 To set it up, enter Pi-hole's IP as "Local DNS server" in
 
@@ -70,7 +70,7 @@ The Fritz!Box always sets its own IP as DNS server for the guest network. To fil
 
 ## Hostnames instead of IP addresses in Pi-hole's web interface - Conditional forwarding
 
-In case the Fritz!Box is used as DHCP server, client's hostames are registered only there.  By default, Pi-hole tries to resolve the IP addresses of the clients back into host names. Therefore, the requests must reach the Fritz!Box.
+In case the Fritz!Box is used as DHCP server, client's hostnames are registered only there.  By default, Pi-hole tries to resolve the IP addresses of the clients back into host names. Therefore, the requests must reach the Fritz!Box.
 There are two ways to do this:
 
 * The Fritz!Box is the upstream DNS server of the Pi-hole. This means that all queries end up with the Fritz!Box anyway, which can send the host names back to Pi-hole.
@@ -85,4 +85,3 @@ The following settings must be made:
     * **Local domain name (optional):** Fritz!Box uses **fritz.box**
 
 ![Screenshot der Conditional Forwarding Einstellungen](../images/conditional-forwarding.png)
-

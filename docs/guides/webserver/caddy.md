@@ -53,7 +53,7 @@ myawesomesite.com {
 }
 ```
 
-Additionally you can make pihole reacheable via a subdomain and optionally can you enable Zstandard and Gzip compression as follows:
+Additionally you can make pihole reachable via a subdomain and optionally can you enable Zstandard and Gzip compression as follows:
 
 ```
 pihole.myawesomesite.com {

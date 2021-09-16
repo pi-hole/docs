@@ -20,7 +20,7 @@ This information may also be queried using `dig +short chaos txt cachesize.bind`
 
 The cache size is set in `/etc/dnsmasq.d/01-pihole.conf`. However, note that this setting does not survive Pi-hole updates. If you want to change the cache size permanently, add a setting
 
-``` plain
+```plain
 CACHE_SIZE=12345
 ```
 

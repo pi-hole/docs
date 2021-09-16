@@ -26,7 +26,7 @@ The first command is to be preferred as it ensures that the DNS cache itself rem
 
 To ease the usage of regular expression filters in *FTL*DNS, we offer a regex debugging mode. Set
 
-``` plain
+```plain
 DEBUG_REGEX=true
 ```
 

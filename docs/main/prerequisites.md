@@ -66,7 +66,7 @@ Due to the complexity of different ways of setting an IP address across differen
 
 !!! info
     The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
-    The use of pihole-FTL  on ports _67_ or _547_ is optional, but required if you use the DHCP functions of Pi-hole.
+    The use of pihole-FTL on ports _67_ or _547_ is optional, but required if you use the DHCP functions of Pi-hole.
 
 ### Firewalls
 

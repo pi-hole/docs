@@ -91,7 +91,7 @@ This sets the cost of an insertion to two, a deletion to one, a substitution to 
 
 Example 2: `{+2-5#6, 2i + 1d + 2s < 5 }`
 
-This sets the cost of an insertion to two, a deletion to one, a substitution to two, and the maximum cost to five. Furthermore, it allows only up to 2 insertions (coming at a total cost of 4), five deletions and up to 6 substitutions. As six substitutions would come at a cost of `6*2 = 12`, exeeding the total allowed costs of 5, they cannot all be realized.
+This sets the cost of an insertion to two, a deletion to one, a substitution to two, and the maximum cost to five. Furthermore, it allows only up to 2 insertions (coming at a total cost of 4), five deletions and up to 6 substitutions. As six substitutions would come at a cost of `6*2 = 12`, exceeding the total allowed costs of 5, they cannot all be realized.
 
 
 {!abbreviations.md!}

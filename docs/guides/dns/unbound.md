@@ -169,7 +169,7 @@ It instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 12
 That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured.
 If you configured `/etc/dhcpcd.conf` with a `static domain_name_servers=` line, these DNS server(s) will be ignored/overruled by this service.
 
-To check if this service is enabled for your distribution, run below one and take note of the the `Active` line.
+To check if this service is enabled for your distribution, run below one and take note of the `Active` line.
 It will show either `active` or `inactive` or it might not even be installed resulting in a `could not be found` message:
 
 ```bash

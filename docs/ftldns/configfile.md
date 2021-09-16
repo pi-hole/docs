@@ -70,7 +70,7 @@ This is following the recommendation on [https://support.mozilla.org/en-US/kb/co
 
 #### `MAXLOGAGE=24.0` {#maxlogage data-toc-label='Max Log Age'}
 
-Up to how many hours of queries should be imported from the database and logs? Values greater than the hard-coded maximum of 24h need a locally compiled  `FTL` with a changed compile-time value.
+Up to how many hours of queries should be imported from the database and logs? Values greater than the hard-coded maximum of 24h need a locally compiled `FTL` with a changed compile-time value.
 
 #### `PRIVACYLEVEL=0|1|2|3` {#privacylevel data-toc-label='Privacy Level'}
 
@@ -83,7 +83,7 @@ Should `FTL` ignore queries coming from the local machine?
 
 #### `AAAA_QUERY_ANALYSIS=yes|no` {#aaaa_query_analysis data-toc-label='AAAA Query Analysis'}
 
-Should FTL analyze `AAAA` queries? The DNS server will handle `AAAA` queries the same way, reglardless of this setting. All this does is ignoring `AAAA` queries when computing the statistics of Pi-hole. This setting is considered obsolete and will be removed in a future version.
+Should FTL analyze `AAAA` queries? The DNS server will handle `AAAA` queries the same way, regardless of this setting. All this does is ignoring `AAAA` queries when computing the statistics of Pi-hole. This setting is considered obsolete and will be removed in a future version.
 
 #### `ANALYZE_ONLY_A_AND_AAAA=false|true` {#analyze_only_a_and_aaaa data-toc-label='Analyze A and AAAA Only'}
 
@@ -160,7 +160,7 @@ With this option, you can change how (and if) hourly PTR requests are made to ch
 - `REFRESH_HOSTNAMES=ALL` - Do the hourly PTR lookups for all addresses
    This is the same as what we're doing with FTL v5.3(.1). This can create a lot of PTR queries for those with many IPv6 addresses in their networks.
 - `REFRESH_HOSTNAMES=UNKNOWN` - Only resolve unknown hostnames
-   Already existing hostnames are never refreshedi, i.e., there will be no PTR queries made for clients where hostnames are known. This also means that known hostnames will not be updated once known.
+   Already existing hostnames are never refreshed, i.e., there will be no PTR queries made for clients where hostnames are known. This also means that known hostnames will not be updated once known.
 - `REFRESH_HOSTNAMES=NONE` - Don't do any hourly PTR lookups
    This means we look host names up exactly once (when we first see a client) and never again. You may miss future changes of host names.
 

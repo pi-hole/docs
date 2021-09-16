@@ -6,19 +6,19 @@ You can amend the regular expressions by special keywords added at the end to fi
 
 Example:
 
-``` plain
+```plain
 abc;querytype=AAAA
 ```
 
 will block
 
-``` bash
+```bash
 dig AAAA abc
 ```
 
 but not
 
-``` bash
+```bash
 dig A abc
 ```
 
@@ -27,15 +27,15 @@ This allows you to do query type based black-/whitelisting.
 Some user-provided examples are:
 
 - `.*;querytype=!A`
-  
+
     A regex blacklist entry for blocking `AAAA` (in fact, everything else than `A`, call it "anti-`A`") requests for all clients assigned to the same group. This has been mentioned to be benefitial for devices like Chromecast. You may want to fine-tune this further to specific domains.
 
 - `.*;querytype=PTR`
-  
+
     A regex whitelist entry used to permit `PTR` lookups with the above "anti-`A`" regex
 
 - `.*;querytype=ANY`
-  
+
     A regex blacklist entry to block `ANY` request network wide.
 
 ## Invert matching
@@ -44,13 +44,13 @@ Sometimes, it may be useful to be able to invert a regular expression altogether
 
 For instance,
 
-``` plain
+```plain
 ^abc$;querytype=AAAA;invert
 ```
 
 will not block `abc` with type `AAAA` (but everything else) for the clients assigned to the same groups. This inversion is independent for the query type, e.g.
 
-``` plain
+```plain
 ^abc$;invert
 ```
 
@@ -74,21 +74,21 @@ Only one option should be specified. An exception to this rule are the last two 
 
 - IPv4 only:
 
-  ``` plain
+  ```plain
   myregex;reply=1.2.3.4
   ```
 
   will result in `A 1.2.3.4` and `AAAA ::`
 - IPv6 only:
 
-  ``` plain
+  ```plain
   myregex;reply=fe80::1234
   ```
 
   will result in `A 0.0.0.0` and `AAAA fe80:1234`
 - IPv4 and IPv6:
 
-  ``` plain
+  ```plain
   myregex;reply=1.2.3.4;reply=fe80::1234
   ```
 
@@ -96,15 +96,15 @@ Only one option should be specified. An exception to this rule are the last two 
 
 ## Comments
 
-You can specify comments withing your regex using the syntax
+You can specify comments within your regex using the syntax
 
-``` plain
+```plain
 (?#some comment here)
 ```
 
 The comment can contain any characters except for a closing parenthesis `)` (for the sole reason being the terminating element). The text in the comment is completely ignored by the regex parser and it used solely for readability purposes.
 
-``` plain
+```plain
 $ pihole-FTL regex-test "doubleclick.net" "(^|\.)doubleclick\.(?#TODO: We need to maybe support more than just .net here)net$"
 
 FTL Regex test:
@@ -124,17 +124,17 @@ A back reference is a backslash followed by a single non-zero decimal digit `d`.
 
 Example:
 
-``` plain
+```plain
 "cat.foo.dog---cat%dog!foo" is matched by "(cat)\.(foo)\.(dog)---\1%\3!\2"
 ```
 
 Another (more complex example is):
 
-``` plain
+```plain
 (1234|4321)\.(foo)\.(dog)--\1
 ```
 
-``` plain
+```plain
    MATCH: 1234.foo.dog--1234
    MATCH: 4321.foo.dog--4321
 NO MATCH: 1234.foo.dog--4321
@@ -142,7 +142,7 @@ NO MATCH: 1234.foo.dog--4321
 
 Mind that the last line gives no match as `\1` matches **exactly** the same sequence the first character group matched. And `4321` is not the same as `1234` even when both are valid replies for `(1234|4321)` Back references are not defined for POSIX EREs (for BREs they are, surprisingly enough). We add them to ERE in the BRE style.
 
-``` plain
+```plain
 $ pihole-FTL regex-test "someverylongandmaybecomplexthing.foo.dog--someverylongandmaybecomplexthing" "(someverylongandmaybecomplexthing|somelesscomplexitem)\.(foo)\.(dog)--\1"
 
 FTL Regex test:
@@ -176,7 +176,7 @@ A bracket expression specifies a set of characters by enclosing a nonempty list 
     - `[:upper:]` upper case letters (FTL matches case-insensitive by default)
     - `[:xdigit:]` hexadecimal digits
 
-Furthermore, there are two shortcurts for some character classes:
+Furthermore, there are two shortcuts for some character classes:
 
 - `\d` - Digit character (equivalent to `[[:digit:]]`)
 - `\D` - Non-digit character (equivalent to `[^[:digit:]]`)

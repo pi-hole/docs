@@ -111,13 +111,13 @@ wg genkey | tee server.key | wg pubkey > server.pub
 
 Create a config file
 
-``` bash
+```bash
 sudo nano /etc/wireguard/wg0.conf
 ```
 
 and put the following into it:
 
-``` plain
+```plain
 [Interface]
 Address = 10.100.0.1/24, fd08:4711::1/64
 ListenPort = 47111
@@ -125,7 +125,7 @@ ListenPort = 47111
 
 Then run
 
-``` bash
+```bash
 echo "PrivateKey = $(cat server.key)" >> /etc/wireguard/wg0.conf
 exit # Exit the sudo session
 ```
@@ -177,7 +177,7 @@ You can either use the methods the corresponding providers recommend or use exis
 
 Register your server `wg0` as:
 
-``` bash
+```bash
 sudo systemctl enable wg-quick@wg0.service
 sudo systemctl daemon-reload
 sudo systemctl start wg-quick@wg0
@@ -189,14 +189,14 @@ If successful, you should not see any output.
 ??? warning "Error: RTNETLINK answers: Operation not supported"
     In case you get an error like
 
-    ``` plain
+    ```plain
     RTNETLINK answers: Operation not supported
     Unable to access interface: Protocol not supported
     ```
 
     you should check that the WireGuard kernel module is loaded with the command below:
 
-    ``` bash
+    ```bash
     sudo modprobe wireguard
     ```
 
@@ -205,7 +205,7 @@ If successful, you should not see any output.
 ??? warning "Error: RTNETLINK answers: File exists"
     In case you get an error like
 
-    ``` plain
+    ```plain
     RTNETLINK answers: File exists
     ```
 
@@ -217,13 +217,13 @@ If successful, you should not see any output.
 
 With the following command, you can check if your `wireguard` server is running:
 
-``` bash
+```bash
 sudo wg
 ```
 
 The output should look like the following:
 
-``` plain
+```plain
 interface: wg0
   public key: XYZ123456ABC=   ⬅ Your public key will be different
   private key: (hidden)

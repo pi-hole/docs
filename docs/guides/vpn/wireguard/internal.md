@@ -4,7 +4,7 @@
 
 Enable IP forwarding on your server by removing the comments in front of
 
-``` plain
+```plain
 net.ipv4.ip_forward = 1
 net.ipv6.conf.all.forwarding = 1
 ```
@@ -13,13 +13,13 @@ in the file `/etc/sysctl.d/99-sysctl.conf`
 
 Then apply the new option with the command below.
 
-``` bash
+```bash
 sudo sysctl -p
 ```
 
 If you see the options repeated like
 
-``` plain
+```plain
 net.ipv4.ip_forward = 1
 net.ipv6.conf.all.forwarding = 1
 ```
@@ -49,7 +49,7 @@ The rules will then be cleared once the tunnel is down.
 
 <!-- markdownlint-disable code-block-style -->
 ??? info "Exemplary server config file with this change"
-    ``` plain
+    ```plain
     [Interface]
     PrivateKey = [your server's private key]
     Address = [Wireguard-internal IPs of the server, e.g. 10.100.0.1/24, fd08:4711::1/64]
@@ -73,7 +73,7 @@ The rules will then be cleared once the tunnel is down.
 
 In our standard configuration, we have configured the clients in such a way that they can only speak to the server. Add the network range of your local network in CIDR notation (e.g., `192.168.2.1 - 192.168.2.254` -> `192.168.2.0/24`) in the `[Peers]` section of all clients you want to have this feature:
 
-``` plain
+```plain
 [Peer]
 AllowedIPs = 10.0.0.0/24, fd08:4711::/64, 192.168.2.0/24
 ```
@@ -82,7 +82,7 @@ It is possible to add this only for a few clients, leaving the others isolated t
 
 <!-- markdownlint-disable code-block-style -->
 ??? info "Exemplary client config file with this change"
-    ``` plain
+    ```plain
     [Interface]
     PrivateKey = [your client's private key]
     Address = [Wireguard-internal IPs of your client, e.g. 10.100.0.2/32, fd08:4711::2/128]
