@@ -23,7 +23,7 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 
 - [Lifehacker: Turn A Raspberry Pi Into An Ad Blocker With A Single Command](https://www.lifehacker.com.au/2015/02/turn-a-raspberry-pi-into-an-ad-blocker-with-a-single-command/) _Feb 17, 2015_
 - [MakeUseOf: Adblock Everywhere: The Raspberry Pi-Hole Way](https://www.makeuseof.com/tag/adblock-everywhere-raspberry-pi-hole-way/) _Mar 25, 2015_
-- [Catchpoint: Ad-Blocking on Apple iOS9: Valuing the End User Experience](http://blog.catchpoint.com/2015/09/14/ad-blocking-apple/) _Sept 14, 2015_
+- [Catchpoint: Ad-Blocking on Apple iOS9: Valuing the End User Experience](https://www.catchpoint.com/blog/ad-block-ios-impact) _Sept 14, 2015_
 - [Adafruit: Pi-hole is a black hole for internet ads](https://blog.adafruit.com/2016/03/04/pi-hole-is-a-black-hole-for-internet-ads-piday-raspberrypi-raspberry_pi/) _Mar 4, 2016_
 - [Devacron: OrangePi Zero as an Ad-Block server with Pi-Hole](https://www.devacron.com/orangepi-zero-as-an-ad-block-server-with-pi-hole/) _Dec 3, 2016_
 - [Linux Pro: The Hole Truth](https://www.linuxpromagazine.com/Issues/2017/200/The-sysadmin-s-daily-grind-Pi-hole) _2017_
