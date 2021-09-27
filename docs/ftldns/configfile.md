@@ -74,6 +74,13 @@ Despite `REFUSE` sounding similar to `DROP`, it turned out that many clients wil
 Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox automatic DNS-over-HTTP?
 This is following the recommendation on [https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https](https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https)
 
+
+#### `BLOCK_TTL=2` (PR [#1173](https://github.com/pi-hole/FTL/pull/1173)) {#block_ttl data-toc-label='Blocked domains lifetime'}
+
+FTL's internal TTL to be handed out for blocked queries. This settings allows users to select a value different from the `dnsmasq` config option `local-ttl`. This seems useful in context of locally used hostnames that are known to stay constant over long times (printers, etc.).
+
+Note that large values may render whitelisting ineffective due to client-side caching of blocked queries.
+
 ---
 
 ### Statistics settings
