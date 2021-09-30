@@ -58,7 +58,7 @@ This applies to the following cases:
 
 `FTL` determines the address of the interface a query arrived on. We then use this IP address when replying to queries with an `AAAA` record (IPv6 address). This setting can be used to ensure a fixed, rather than the dynamically obtained, address is used. See [`REPLY_ADDR4`](#reply_addr4) for details about when this setting is used.
 
-#### `REPLY_WHEN_BUSY=DROP|ALLOW|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156)) {#reply_when_busy data-toc-label='Database busy reply'}
+#### `REPLY_WHEN_BUSY=ALLOW|DROP|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156)) {#reply_when_busy data-toc-label='Database busy reply'}
 
 When the gravity database is locked/busy, how should Pi-hole handle queries?
 
