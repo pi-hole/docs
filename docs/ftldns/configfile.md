@@ -34,7 +34,18 @@ This feature has been requested and discussed on [Discourse](https://discourse.p
 Control FTL's query rate-limiting. Rate-limited queries are answered with a `REFUSED` reply and not further processed by FTL.
 
 The default settings for FTL's rate-limiting are to permit no more than `1000` queries in `60` seconds. Both numbers can be customized independently.
-It is important to note that rate-limiting is happening on a *per-client* basis. Other clients can continue to use FTL while rate-limited clients are short-circuited at the same time.
+It is important to note that rate-limiting is happening on a *per-client* basis. Other clients can continu
+**How does this PR accomplish the above?:**
+*A detailed description (such as a changelog) and screenshots (if necessary) of the implemented fix*
+
+
+**What documentation changes (if any) are needed to support this PR?:**
+*A detailed list of any necessary changes*
+
+
+---
+* You must follow the template instructions. Failure to do so will result in your pull request being closed.
+* Please respect that Pi-hole is developed by volunteers, who can only reply in their spare time.e to use FTL while rate-limited clients are short-circuited at the same time.
 
 For this setting, both numbers, the maximum number of queries within a given time, **and** the length of the time interval (seconds) have to be specified. For instance, if you want to set a rate limit of 1 query per hour, the option should look like `RATE_LIMIT=1/3600`.
 
@@ -59,12 +70,12 @@ When the gravity database is locked/busy, how should Pi-hole handle queries?
 
 Despite `REFUSE` sounding similar to `DROP`, it turned out that many clients will just immediately retry, causing up to several thousands of queries per second. This does not happen in `DROP` mode.
 
-#### `MOZILLA_CANARY=true|false` (PR [#1171](https://github.com/pi-hole/FTL/pull/1171)) {#mozilla_canary data-toc-label='Mozilla canary domain handling'}
+#### `MOZILLA_CANARY=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#mozilla_canary data-toc-label='Mozilla canary domain handling'}
 
 Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox automatic DNS-over-HTTP?
 This is following the recommendation on [https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https](https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https)
 
-#### `BLOCK_ICLOUD_PR=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#icloud_private_relay data-toc-label='iCloud Private Relay domain handling'}
+#### `BLOCK_ICLOUD_PR=true|false` (PR [#1171](https://github.com/pi-hole/FTL/pull/1171)) {#icloud_private_relay data-toc-label='iCloud Private Relay domain handling'}
 
 Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `mask.icloud.com` and `mask-h2.icloud.com` to disable Apple's iCloud Private Relay to prevent Apple devices from bypassing Pi-hole?
 This is following the recommendation on [https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay](https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay)
