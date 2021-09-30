@@ -59,10 +59,15 @@ When the gravity database is locked/busy, how should Pi-hole handle queries?
 
 Despite `REFUSE` sounding similar to `DROP`, it turned out that many clients will just immediately retry, causing up to several thousands of queries per second. This does not happen in `DROP` mode.
 
-#### `MOZILLA_CANARY=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#mozilla_canary data-toc-label='Mozilla canary domain handling'}
+#### `MOZILLA_CANARY=true|false` (PR [#1171](https://github.com/pi-hole/FTL/pull/1171)) {#mozilla_canary data-toc-label='Mozilla canary domain handling'}
 
 Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox automatic DNS-over-HTTP?
 This is following the recommendation on [https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https](https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https)
+
+#### `BLOCK_ICLOUD_PR=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#icloud_private_relay data-toc-label='iCloud Private Relay domain handling'}
+
+Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `mask.icloud.com` and `mask-h2.icloud.com` to disable Apple's iCloud Private Relay to prevent Apple devices from bypassing Pi-hole?
+This is following the recommendation on [https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay](https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay)
 
 ---
 
