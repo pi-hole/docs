@@ -31,7 +31,7 @@ Possibly the simplest way to get DHCP working with Docker Pi-hole is to use [hos
 
 A [Macvlan network](https://docs.docker.com/network/macvlan/) is the most advanced option since it requires more network knowledge and setup. This mode is similar to host network mode but instead of borrowing the IP of your docker host computer it grabs a new IP address off your LAN network.
 
-Having the container get its own IP not only solves the broadcast problem but avoids port conflicts you might have on devices such as NAS devices with web interfaces. Tony Lawrence detailed macvlan setup for Pi-hole first in the second part of his great blog series about [Running Pi-hole on Synology Docker](http://tonylawrence.com/posts/unix/synology/running-pihole-inside-docker/), check it out here: [Free your Synology ports with Macvlan](http://tonylawrence.com/posts/unix/synology/free-your-synology-ports/)
+Having the container get its own IP not only solves the broadcast problem but avoids port conflicts you might have on devices such as NAS devices with web interfaces. Tony Lawrence detailed macvlan setup for Pi-hole first in the second part of his great blog series about [Running Pi-hole on Synology Docker](https://tonylawrence.com/posts/unix/synology/running-pihole-inside-docker/), check it out here: [Free your Synology ports with Macvlan](https://tonylawrence.com/posts/unix/synology/free-your-synology-ports/)
 
 ### Docker Pi-hole with a bridge networking
 
@@ -41,7 +41,7 @@ If you want to use docker's bridged network mode then you need to run a DHCP rel
 
 Although uncommon, if your router is an advanced enough router it may support a DHCP relay. Try googling for your router manufacturer + DHCP relay or looking in your router's configuration around the DHCP settings or advanced areas.
 
-If your router doesn't support it, you can run a software/container based DHCP relay on your LAN instead. The author of dnsmasq made a very tiny simple one called [DHCP-helper](http://thekelleys.org.uk/dhcp-helper/READ-ME). [DerFetzer](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038) kindly shared his great setup of a DHCP-helper container on the Pi-hole Discourse forums.
+If your router doesn't support it, you can run a software/container based DHCP relay on your LAN instead. The author of dnsmasq made a very tiny simple one called [DHCP-helper](https://thekelleys.org.uk/dhcp-helper/READ-ME). [DerFetzer](https://discourse.pi-hole.net/t/dhcp-with-docker-compose-and-bridge-networking/17038) kindly shared his great setup of a DHCP-helper container on the Pi-hole Discourse forums.
 
 ### Warning about the Default bridge network
 
