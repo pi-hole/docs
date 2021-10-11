@@ -124,6 +124,7 @@ nav:
     - 'DHCP': docker/DHCP.md
   - 'Contributing':
     - 'Contributing on GitHub': guides/github/contributing.md
+    - 'Developer Certificate of Origin (DCO)': guides/github/dco.md
     - 'How to sign-off commits': guides/github/how-to-signoff.md
     - 'How to fork and rebase': guides/github/how-to-fork-rebase.md
   - 'Guides':
