@@ -237,8 +237,8 @@ Assign this domain to group 2
 Client        | Group membership | Domain | Blocked
 ------------- | ----- | ------ | -------
 *all other*   |   Default   | doubleclick.net | Yes
-192.168.0.101 |   Group 1   | doubleclick.net | **No**
-192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
+192.168.0.101 |   Group 1   | doubleclick.net | Yes
+192.168.0.102 |   Group 2 + Default   | doubleclick.net | **No**
 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
 
 Client 2 got the whitelist entry explicitly assigned to. Accordingly, client 2 does not get the domain blocked whereas all remaining clients still see this domain as blocked.
