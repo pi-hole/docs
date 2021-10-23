@@ -33,7 +33,7 @@ eingetragen werden.
 
 ![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-dhcp-de.png)
 
->Hinweis:
+!!! warning
 Clients bemerken Änderungen an den DHCP Einstellungen erst, wenn der DHCP Lease erneuert wird. Der einfachste Weg dies zu erzwingen ist ein Unterbrechen und Wiederherstellen der Netzwerkverbindung.
 
 Nun sollten einzelne Clients in Pi-hole Dashboard auftrauchen.
