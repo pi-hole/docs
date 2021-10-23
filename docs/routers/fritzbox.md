@@ -31,8 +31,8 @@ Home Network/Network/Network Settings/IP Adresses/IPv4 Configuration/Home Networ
 
 ![Screenshot of Fritz!Box DHCP Settings](../images/fritzbox-dhcp.png)
 
->Note:
-Clients will notice changes in DHCP settings only after they acquired a new DHCP lease. The easiest way to force a renewal is to dis/reconnect the client from the network.
+!!! warning
+    Clients will notice changes in DHCP settings only after they acquired a new DHCP lease. The easiest way to force a renewal is to dis/reconnect the client from the network.
 
 Now you should see individual clients in Pi-hole's web dashboard.
 
