@@ -17,6 +17,7 @@ theme:
     code: 'Roboto Mono'
   features:
     - navigation.top
+    - navigation.instant
     - search.suggest
     - search.highlight
     - search.share
