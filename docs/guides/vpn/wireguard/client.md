@@ -84,7 +84,6 @@ After a restart, the server file should look like:
 [Interface]
 Address = 10.100.0.1/24, fd08::1/128
 ListenPort = 47111
-SaveConfig = true
 PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
 
 [Peer]
