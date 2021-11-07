@@ -5,35 +5,62 @@ Adding clients is really simple and easy. The process for setting up a client is
 For each new client, the following steps must be taken. For the sake of simplicity, we will create the config file on the server itself. This, however, means that you need to transfer the config file *securely* to your server as it contains the private key of your client. An alternative way of doing this is to generate the configuration locally on your client and add the necessary lines to your server's configuration.
 
 <!-- markdownlint-disable code-block-style -->
-??? info "All commands described below at once"
+??? info "Script to generate clients automatically"
+    Script content:
+
+    ```bash
+    #!/bin/bash
+    ipv4="$1$4"
+    ipv6="$2$4"
+    target="$3"
+    name="$5"
+
+    wg genkey | tee "${name}.key" | wg pubkey > "${name}.pub"
+    wg genpsk > "${name}.psk"
+
+    echo "# $name" >> /etc/wireguard/wg0.conf
+    echo "[Peer]" >> /etc/wireguard/wg0.conf
+    echo "PublicKey = $(cat "${name}.pub")" >> /etc/wireguard/wg0.conf
+    echo "PresharedKey = $(cat "${name}.psk")" >> /etc/wireguard/wg0.conf
+    echo "AllowedIPs = $ipv4/32, $ipv6/128" >> /etc/wireguard/wg0.conf
+    echo "" >> /etc/wireguard/wg0.conf
+
+    echo "[Interface]" > "${name}.conf"
+    echo "Address = $ipv4/32, $ipv6/128" >> "${name}.conf"
+    echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
+    echo "" >> "${name}.conf"
+    echo "[Peer]" >> "${name}.conf"
+    echo "PublicKey = $(cat server.pub)" >> "${name}.conf"
+    echo "PresharedKey = $(cat "${name}.psk")" >> "${name}.conf"
+    echo "Endpoint = $target" >> "${name}.conf"
+    echo "AllowedIPs = ${1}0/24, ${3}/64" >> "${name}.conf"
+    echo "PersistentKeepalive = 25" >> "${name}.conf"
+
+    # Print QR code scanable by the Wireguard mobile app on screen
+    qrencode -t ansiutf8 < "${name}.conf"
+
+    systemctl restart wg-quick@wg0
+    ```
+
+    Run the script like
+
     ```bash
     sudo -i
     cd /etc/wireguard
     umask 077
 
-    name="client_name"
-
-    wg genkey | tee "${name}.key" | wg pubkey > "${name}.pub"
-    wg genpsk > "${name}.psk"
-
-    echo "[Peer]" >> /etc/wireguard/wg0.conf
-    echo "PublicKey = $(cat "${name}.pub")" >> /etc/wireguard/wg0.conf
-    echo "PresharedKey = $(cat "${name}.psk")" >> /etc/wireguard/wg0.conf
-    echo "AllowedIPs = 10.100.0.2/32, fd08:4711::2/128" >> /etc/wireguard/wg0.conf
-
-    systemctl restart wg-quick@wg0
-
-    echo "[Interface]" > "${name}.conf"
-    echo "Address = 10.100.0.2/32, fd08:4711::2/128" >> "${name}.conf" # May need editing
-    echo "DNS = 10.100.0.1" >> "${name}.conf"                          # Your Pi-hole's IP
-    echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
-    echo "PublicKey = $(cat server.pub)" >> "${name}.conf"
-    echo "PresharedKey = $(cat "${name}.psk")" >> "${name}.conf"
-
-    qrencode -t ansiutf8 -r "${name}.conf"
+    bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 2 "annas-android"
+    bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 3 "peters-laptop"
 
     exit
     ```
+
+    to generate two clients:
+
+    - `annas-android` with addresses `10.100.0.2` and `fd08:4711::2`
+    - `peters-laptop` with addresses `10.100.0.3` and `fd08:4711::3`
+
+    connecting to the server running at `my_server_domain:47111`
 <!-- markdownlint-disable code-block-style -->
 
 ## Key generation
