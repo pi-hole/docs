@@ -12,6 +12,8 @@ For each new client, the following steps must be taken. For the sake of simplici
     #!/bin/bash
     ipv4="$1$4"
     ipv6="$2$4"
+    serv4="${1}1"
+    serv6="${2}1"
     target="$3"
     name="$5"
 
@@ -33,7 +35,8 @@ For each new client, the following steps must be taken. For the sake of simplici
     echo "PublicKey = $(cat server.pub)" >> "${name}.conf"
     echo "PresharedKey = $(cat "${name}.psk")" >> "${name}.conf"
     echo "Endpoint = $target" >> "${name}.conf"
-    echo "AllowedIPs = ${1}0/24, ${3}/64" >> "${name}.conf"
+    echo "AllowedIPs = ${serv4}/32, ${serv6}/128" >> "${name}.conf" # clients isolated from one another
+    # echo "AllowedIPs = ${1}0/24, ${2}/64" >> "${name}.conf" # clients can see each other
     echo "PersistentKeepalive = 25" >> "${name}.conf"
 
     # Print QR code scanable by the Wireguard mobile app on screen
@@ -160,7 +163,7 @@ Next, add your server as peer for this client:
 
 ```plain
 [Peer]
-AllowedIPs = 10.100.0.0/24, fd08::/64
+AllowedIPs = 10.100.0.1/32, fd08::1/128
 Endpoint = [your public IP or domain]:47111
 PersistentKeepalive = 25
 ```
