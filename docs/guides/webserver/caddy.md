@@ -62,7 +62,7 @@ pihole.myawesomesite.com {
 }
 ```
 
-Finally, run `sudo systemctl caddy reload` to reload Caddy with the new configuration.
+Finally, run `sudo systemctl reload caddy` to reload Caddy with the new configuration.
 
 ### Caddyfile (for Caddy v1)
 
