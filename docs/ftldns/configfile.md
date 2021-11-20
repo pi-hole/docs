@@ -142,7 +142,10 @@ Controls whether and how FTL will reply with for address for which a local inter
 
 - `PI.HOLE` (the default) respond with `pi.hole`
 - `HOSTNAME` serve the machine's global hostname
+- `HOSTNAMEFQDN` serve the machine's global hostname as fully qualified domain by adding the local suffix. See note below.
 - `NONE` Pi-hole will **not** respond automatically on PTR requests to local interface addresses. Ensure `pi.hole` and/or hostname records exist elsewhere.
+
+Note about `HOSTNAMEFQDN`: If no local suffix has been defined, FTL appends the local domain `.no_fqdn_available`. In this case you should either add `domain=whatever.com` to a custom config file inside `/etc/dnsmasq.d/` (to set `whatever.com` as local domain) or use `domain=#` which will try to derive the local domain from `/etc/resolv.conf` (or whatever is set with `resolv-file`, when multiple `search` directives exist, the first one is used).
 
 #### `DELAY_STARTUP=0` (PR [#716](https://github.com/pi-hole/FTL/pull/716)) {#delay_startup data-toc-label='Delay resolver startup'}
 
