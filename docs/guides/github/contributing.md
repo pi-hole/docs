@@ -1,31 +1,37 @@
-Pi-hole enforces the Developer Certificate of Origin (DCO) on Pull Requests. It requires all commit messages to contain the Signed-off-by line with an email address that matches the commit author and the name on your GitHub account.
+Please read and understand the contribution guide before creating an issue or pull request.
 
-The Developer Certificate of Origin (DCO) is a lightweight way for contributors to certify that they wrote or otherwise have the right to submit the code they are contributing to the project. Here is the full text of the DCO, reformatted for readability:
+## Etiquette
 
-> By making a contribution to this project, I certify that:
->
-> 1. The contribution was created in whole or in part by me and I have the right to submit it under the open source license indicated in the file; or
->
-> 2. The contribution is based upon previous work that, to the best of my knowledge, is covered under an > appropriate open source license and I have the right under that license to submit that work with modifications, whether created in whole or in part by me, under the same open source license (unless I am permitted to submit under a different license), as indicated in the file; or
->
-> 3. The contribution was provided directly to me by some other person who certified (a), (b) or (c) and I have not modified it.
->
-> 4. I understand and agree that this project and the contribution are public and that a record of the contribution (including all personal information I submit with it, including my sign-off) is maintained indefinitely and may be redistributed consistent with this project or the open source license(s) involved.
+- Our goal for Pi-hole is **stability before features**. This means we focus on squashing critical bugs before adding new features. Often, we can do both in tandem, but bugs will take priority over a new feature.
+- Pi-hole is open source and [powered by donations](https://pi-hole.net/donate/) , and as such, we give our **free time** to build, maintain, and **provide user support** for this project. It would be extremely unfair for us to suffer abuse or anger for our hard work, so please take a moment to consider that.
+- Please be considerate towards the developers and other users when raising issues or presenting pull requests.
+- Respect our decision(s), and do not be upset or abusive if your submission is not used
 
-Contributors *sign-off* that they adhere to these requirements by adding a Signed-off-by line to commit messages. See [this guide for how to sign-off correctly](./how-to-signoff.md).
+## Viability
 
-#### DCO Failures
+When requesting or submitting new features, first consider whether it might be useful to others. Open source projects are used by many people, who may have entirely different needs to your own. Think about whether or not your feature is likely to be used by other users of the project.
 
-The Pi-hole project uses a DCO bot for all GitHub pulls to verify that each commit is signed off. When you create your pull request, it will automatically be verified by this bot. An example of what to expect is below.
+## Procedure
 
-![Screenshot](../../images/github-commit-bots-expanded.png)
+### Before filing an issue:
 
-If your Pull Request fails the DCO check, it's necessary to fix the entire commit history in the PR. Although this is a situation we'd like to avoid the best practice is to squash the commit history to a single commit, append the DCO sign-off as described above or interactively in the rebase comment editing process, and force push. For example, if you have 2 commits in your history (Note the ~2):
+- Attempt to replicate and document the problem, to ensure that it wasn't a coincidental incident.
+- Check to make sure your feature suggestion isn't already present within the project.
+- Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
+- Check the pull requests tab to ensure that the feature isn't already in progress.
 
-```bash
-git rebase --interactive HEAD~2
-(interactive squash + DCO append)
-git push origin --force
-```
+### Before submitting a pull request:
 
-Note, that in general rewriting history in this way is something that can cause issues with the review process and this should only be done to correct a DCO mistake.
+- Check the codebase to ensure that your feature doesn't already exist.
+- Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
+- Read and understand the [DCO guidelines](./dco.md)  for the project.
+
+### Technical Requirements
+
+- Submit Pull Requests to the **development branch only**.
+- Before Submitting your Pull Request, merge `development` with your new branch and fix any conflicts. (Make sure you don't break anything in development!)
+- Please use the [Google Style Guide for Shell](https://google.github.io/styleguide/shellguide.html)  for your code submission styles.
+- Commit Unix line endings.
+- Please use the Pi-hole brand: **Pi-hole** (Take a special look at the capitalized 'P' and a low 'h' with a hyphen)
+- For Beginners: see here [how to forking and clone from GitHub](./how-to-fork-rebase.md)
+- (Optional fun) keep to the theme of Star Trek/black holes/gravity.
