@@ -111,6 +111,7 @@ nav:
     - 'Signals': 'ftldns/signals.md'
     - 'Compatibility': ftldns/compatibility.md
     - 'Install from source': ftldns/compile.md
+    - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
     - 'Debugging FTLDNS':
       - 'gdb': ftldns/debugging.md
       - 'valgrind': ftldns/valgrind.md
