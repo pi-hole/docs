@@ -82,7 +82,16 @@
     }
     ```
 
-7. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+7. Edit /etc/nginx/nginx.conf to contain the following in the http section: 
+    ```bash
+    gzip            on;
+    gzip_min_length 1000;
+    gzip_proxied    expired no-cache no-store private auth;
+    gzip_types      text/plain application/xml application/json application/javascript application/octet-stream text/css;
+    include /etc/nginx/conf.d/*.conf;
+    ```
+
+9. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
 
     ```bash
     htpasswd -c /etc/nginx/.htpasswd exampleuser
