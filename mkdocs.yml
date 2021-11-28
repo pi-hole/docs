@@ -91,7 +91,7 @@ nav:
     - 'Updating': main/update.md
     - 'Uninstalling': main/uninstall.md
   - 'Pi-hole Core':
-    - 'The <samp>pihole</samp> command': core/pihole-command.md
+    - 'The &nbsp<samp>pihole</samp>&nbsp command': core/pihole-command.md
   - 'Databases':
     - 'Overview': database/index.md
     - 'Query database': database/ftl.md
