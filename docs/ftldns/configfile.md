@@ -136,7 +136,7 @@ Should `FTL` try to resolve IPv6 addresses to hostnames?
 
 Should `FTL` try to resolve IPv4 addresses to hostnames?
 
-#### `PIHOLE_PTR=PI.HOLE|HOSTNAME|NONE` (PR [#1111](https://github.com/pi-hole/FTL/pull/1111), [#1164](https://github.com/pi-hole/FTL/pull/1164)) {#pihole_ptr data-toc-label='Pi-hole PTR'}
+#### `PIHOLE_PTR=PI.HOLE|HOSTNAME|HOSTNAMEFQDN|NONE` (PR [#1111](https://github.com/pi-hole/FTL/pull/1111), [#1164](https://github.com/pi-hole/FTL/pull/1164)) {#pihole_ptr data-toc-label='Pi-hole PTR'}
 
 Controls whether and how FTL will reply with for address for which a local interface exists. Valid options are:
 
