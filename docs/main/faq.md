@@ -49,9 +49,9 @@ During a gravity update, Pi-hole complains about some invalid Internationalized 
 
 **Solution:**
 
-Internationalizing Domain Names in Applications (IDNA) was conceived to allow client-side use of language-specific characters in domain names without requiring any existing infrastructure (DNS servers, mall servers, etc., including associated protocols) to change. But, the corresponding original [RFC 3490](https://tools.ietf.org/html/rfc3490) clearly states that IDNA is employed at application level, not on the server side.
-Hence, DNS servers never see any IDN domain name, which means DNS records do not store IDN domain names at all, only their [Punycode](https://en.wikipedia.org/wiki/Punycode)  representations.
+Ask the list maintainer to convert the IDNs to their punycode representation.
 
-Therefore, ask the list maintainer to convert the IDNs to their punycode representation.
+Internationalizing Domain Names in Applications (IDNA) was conceived to allow client-side use of language-specific characters in domain names without requiring any existing infrastructure (DNS servers, mall servers, etc., including associated protocols) to change. Accordingly, the corresponding original [RFC 3490](https://tools.ietf.org/html/rfc3490) clearly states that IDNA is employed at application level, not on the server side.
+Hence, DNS servers never see any IDN domain name, which means DNS records do not store IDN domain names at all, only their [Punycode](https://en.wikipedia.org/wiki/Punycode)  representations.
 
 {!abbreviations.md!}
