@@ -20,7 +20,7 @@ Lookup for an A record in the cache returned no result.
 
 ## `HOSTNAME` is a CNAME, not giving it to the DHCP lease of `ADDRESS`
 
-A hostname claimed by a DHCP client is a known CNAME. `dnsmasq` des
+A hostname claimed by a DHCP client is a known CNAME. `dnsmasq` does not allow the DHCP clients to take this name.
 
 ## not giving name `HOSTNAME` to the DHCP lease of `ADDRESS` because the name exists in `SOURCE` with address `CACHE_ADDR`
 
@@ -48,7 +48,7 @@ DHCP options specified more than once are ignored. The corresponding option ID i
 
 ## `HOSTNAME` has more than one address in hostsfile, using `ADDRESS` for DHCP
 
-Some people like to keep all static IP addresses in `/etc/hosts`. `dnsmasq` goes through `/etc/hosts` and sets static addresses for any DHCP config records which don't have an address and whose name matches qhere `dnsmasq` maintains the invariant that any IP address can appear in at least one DHCP host.
+Some people like to keep all static IP addresses in `/etc/hosts`. `dnsmasq` goes through `/etc/hosts` and sets static addresses for any DHCP config records which don't have an address and whose name matches where `dnsmasq` maintains the invariant that any IP address can appear in at least one DHCP host.
 
 ## duplicate IP address `ADDRESS` (`HOSTNAME`) in dhcp-config directive
 
@@ -56,7 +56,7 @@ As the warning says.
 
 ## cache size greater than 10000 may cause performance issues, and is unlikely to be useful.
 
-This causes the cache to consume a lot on memory and slows down cache lookups. As expiring cache entries naturally make room for new records, a large cache does not give any advantages beyond a certain level. This level is typically not very high. Try reducing the cache. Watch out for cache-evictions. If they are zweo over a long time, your cache is larger than what you need.
+This causes the cache to consume a lot on memory and slows down cache lookups. As expiring cache entries naturally make room for new records, a large cache does not give any advantages beyond a certain level. This level is typically not very high. Try reducing the cache. Watch out for cache-evictions. If they are zero over a long time, your cache is larger than what you need.
 
 ## warning: failed to change owner of `PIDFILE`: `MSG`
 
@@ -78,11 +78,11 @@ This points to a conflicting configuration that may not behave as expected. Remo
 
 Only local names can be answered as no `server=...` lines are defined.
 
-## warning: `TFTP_PREFIX` inaccessible
+## warning: `PATH` inaccessible
 
 The TFTP prefix (set by `tftp-prefix`) is inaccessible or not a directory.
 
-## warning: TFTP directory %s inaccessible
+## warning: TFTP directory `PATH` inaccessible
 
 One of the defined TFTP prefix (comma-separated arguments of `tftp-prefix`) is inaccessible or not a directory.
 
@@ -124,7 +124,7 @@ Upstream at address `ADDRESS` is missing the `RA` (recursion available) bit. Thi
 
 ## reducing DNS packet size for nameserver `ADDRESS` to `SAFE_PKTSZ`
 
-When receiving anwers from upstream only with a smaller maximum DNS packet size, `dnsmasq` remembers this decision and makes it permanent in the current session.
+When receiving answers from upstream only with a smaller maximum DNS packet size, `dnsmasq` remembers this decision and makes it permanent in the current session.
 
 ## Ignoring query from non-local network
 
@@ -220,7 +220,7 @@ Use less DHCP options as the space for options is limited and cannot be extended
 
 ## cannot send RFC3925 option: too many options for enterprise number `NUMBER`
 
-A maximum packet length of 250 bytes has to be ensured for `dhcp-option = vi-encap:13,17,.......` configurations.
+A maximum packet length of 250 bytes has to be ensured for `dhcp-option = vi-encap:13,17,...` configurations.
 
 ## no address range available for DHCPv6 request from relay at `ADDRESS`
 
