@@ -1,5 +1,5 @@
 markdown-include==0.6.0
 mkdocs==1.2.3
-mkdocs-git-revision-date-localized-plugin==0.10.3
+mkdocs-git-revision-date-localized-plugin==0.11
 mkdocs-material==8.0.3
 mkdocs-redirects==1.0.3
