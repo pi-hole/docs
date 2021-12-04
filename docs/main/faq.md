@@ -39,12 +39,12 @@ sudo apt-get update --allow-releaseinfo-change
 During a gravity update, Pi-hole complains about some invalid Internationalized Domain Names (IDN) domains
 
 ```bash
-      Sample of invalid domains:
-      - test.中国
-      - test.рф
-      - test.भारत
-      - e-geräteundhaus.com
-      - rëddït.com
+Sample of invalid domains:
+- test.中国
+- test.рф
+- test.भारत
+- e-geräteundhaus.com
+- rëddït.com
 ```
 
 **Solution:**
