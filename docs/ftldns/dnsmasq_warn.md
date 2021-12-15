@@ -1,7 +1,7 @@
 # Known `dnsmasq` warnings
 
 Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the Pi-hole diagnosis system.
-
+<!-- markdownlint-disable MD046 -->
 !!! warning "ignoring zone transfer request from `ADDRESS`"
 
     Zone transfer requests (AXFR) are refused *unless* `auth-sec-servers` or `auth-peers` is set. The address requesting the AXFR is logged.
