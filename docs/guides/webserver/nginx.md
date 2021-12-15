@@ -91,13 +91,13 @@
     include /etc/nginx/conf.d/*.conf;
     ```
 
-9. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+8. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
 
     ```bash
     htpasswd -c /etc/nginx/.htpasswd exampleuser
     ```
 
-8. Change ownership of the html directory to nginx user
+9. Change ownership of the html directory to nginx user
 
     ```bash
     chown -R www-data:www-data /var/www/html
