@@ -82,7 +82,7 @@
     }
     ```
 
-7. Edit /etc/nginx/nginx.conf to contain the following in the http section: 
+7. Edit `/etc/nginx/nginx.conf` to contain the following in the http section:
     ```bash
     gzip            on;
     gzip_min_length 1000;
@@ -103,25 +103,25 @@
     chown -R www-data:www-data /var/www/html
     ```
 
-9. Make sure the html directory is writable
+10. Make sure the html directory is writable
 
     ```bash
     chmod -R 755 /var/www/html
     ```
 
-10. Grant the admin panel access to the gravity database
+11. Grant the admin panel access to the gravity database
 
     ```bash
     usermod -aG pihole www-data
     ```
 
-11. Start php7.3-fpm daemon
+12. Start php7.3-fpm daemon
 
     ```bash
     service php7.3-fpm start
     ```
 
-12. Start nginx web server
+13. Start nginx web server
 
     ```bash
     service nginx start
