@@ -83,6 +83,7 @@
     ```
 
 7. Edit `/etc/nginx/nginx.conf` to contain the following in the http section:
+
     ```bash
     gzip            on;
     gzip_min_length 1000;
