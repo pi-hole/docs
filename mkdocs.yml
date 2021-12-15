@@ -173,6 +173,7 @@ nav:
   - 'Router setup':
     - 'Fritz!Box (EN)': routers/fritzbox.md
     - 'Fritz!Box (DE)': routers/fritzbox-de.md
+  - 'FAQ': main/faq.md
   - 'Community Projects': main/projects.md
 
 extra:
