@@ -14,7 +14,6 @@
 
 .md-typeset code,
 .md-typeset pre {
-    white-space: pre-wrap;
     color: var(--code-color);
 }
 
