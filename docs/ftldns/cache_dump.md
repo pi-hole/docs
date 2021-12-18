@@ -6,7 +6,7 @@ The `dnsmasq` core embedded into `pihole-FTL` prints a dump of the current cache
 sudo killall -USR1 pihole-FTL
 ```
 
-Such a crash dump looks like
+Such a cache dump looks like
 
 ``` plain
 cache size 10000, 0/20984 cache insertions re-used unexpired cache entries.
