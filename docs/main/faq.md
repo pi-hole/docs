@@ -54,4 +54,32 @@ Ask the list maintainer to convert the IDNs to their punycode representation.
 Internationalizing Domain Names in Applications (IDNA) was conceived to allow client-side use of language-specific characters in domain names without requiring any existing infrastructure (DNS servers, mall servers, etc., including associated protocols) to change. Accordingly, the corresponding original [RFC 3490](https://tools.ietf.org/html/rfc3490) clearly states that IDNA is employed at application level, not on the server side.
 Hence, DNS servers never see any IDN domain name, which means DNS records do not store IDN domain names at all, only their [Punycode](https://en.wikipedia.org/wiki/Punycode)  representations.
 
+### While loading data from the long-term database you encountered an error
+
+If requesting a lot of data from the long-term database you get this error
+
+```code
+An unknown error occurred while loading the data.
+Check the server's log files (/var/log/lighttpd/error.log when you're using the default Pi-hole web server) for details. You may need to increase the memory available for Pi-hole in case you requested a lot of data.
+```
+
+**Solution:**
+
+Increase PHP's memory and restart the server.
+
+Replace `*` with your installed PHP version (e.g. `.../php/7.3/cgi/...`)
+
+```bash
+sudo nano /etc/php/*/cgi/php.ini
+[..]
+; Maximum amount of memory a script may consume (128MB)
+; http://php.net/memory-limit
+memory_limit = 128M
+[..]
+```
+
+```bash
+sudo service lighttpd restart
+```
+
 {!abbreviations.md!}
