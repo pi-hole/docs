@@ -154,6 +154,14 @@ dig sigok.verteiltesysteme.net @127.0.0.1 -p 5335
 
 The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
 
+### Set the `unbound` service to start at boot
+
+Without this, you'll have to manually start unbound every time the host machine starts up.
+
+```bash
+sudo systemctl enable unbound
+```
+
 ### Configure Pi-hole
 
 Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
