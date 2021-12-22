@@ -1,42 +1,68 @@
 # Interface binding behavior
 
-## Interface listening settings
+Pi-hole offers three choices for interface on its dashboard:
 
-Pi-hole offers three choices for interface listening behavior on its dashboard:
+![Available interface settings](/images/interface-settings.png)
 
-![Available interface listening behavior settings](/images/interface-listening.png)
+By default, FTL binds the wildcard address. It does this for all options except *Bind only on interface `enp2s0`*. Your Pi-hole then discards requests that it shouldn't reply to. This has the big advantage of working even when interfaces come and go and change address (this happens way more often than one would think).
 
-### Listen on all interfaces
+# Recommended setting
 
-This setting accepts DNS queries only from hosts whose address is on a local subnet, i.e. a subnet for which an interface exists on the server. It is intended to be set as a default on installation, to allow unconfigured installations to be useful but also safe from being used for DNS amplification attacks if (accidentally) running public.
+## Allow only local requests {#local}
 
-The `dnsmasq` option `local-service` is used.
+This setting accepts DNS queries only from hosts whose address is on a local subnet, i.e., a subnet for which an interface exists on the server. It is intended to be set as a default on installation, to allow unconfigured installations to be useful but also safe from being used for DNS amplification attacks if (accidentally) running public.
 
-### Listen only on interface `eth0`
+The `dnsmasq` option
 
-Listen only on the specified interface. The loopback (`lo`) interface is automatically added to the list of interfaces to use when this option is used. When the optional settings `bind-interfaces` or `bind-dynamic` are in effect, IP alias interface labels (e.g. `eth1:0`) are checked, rather than interface names.
+``` plain
+local-service
+```
 
-In the degenerate case when an interface has one address, this amounts to the same thing but when an interface has multiple addresses it allows control over which of those addresses are accepted. The same effect is achievable in default mode by using `listen-address`.
+is used.
 
-The `dnsmasq` option `interface=eth0` is used (the interface may be different).
+# Potentially dangerous options
 
-### Listen on all interfaces, permit all origins
+## Respond only on interface `enp2s0` {#single}
 
-We intentionally add this option to disable any possible `local-service` settings from other files. This truly allows any traffic to be replied to and a dangerous thing to do. You should always ask yourself if the first option doesn't work for you as well.
+Respond only to queries arriving on the specified interface.
+The loopback (`lo`) interface is automatically added to the list of interfaces to use when this option is used.
 
-The `dnsmasq` option `except-interface=nonexisting` is used.
+The `dnsmasq` option
 
-## Technical details
+``` plain
+interface=enp2s0
+```
 
-By default, FTL binds the wildcard address, even when it is listening on only some interfaces. It then discards requests that it shouldn't reply to. This has the big advantage of working even when interfaces come and go and change address (this happens way more often than one would think).
+is used (the interface may be different).
 
-If this is not what you want, you can add the option
+## Bind only on interface `enp2s0` {#bind}
 
-```plain
+As said above, the default is to bind to the wildcard address, discarding requests that we shouldn't reply to.
+If this is not what you want, you can use this option as it forces FTL to really bind only the interfaces it is listening on. Note that this may result in issues when the interface may go down (cable unplugged, etc.).
+
+About the only time when this is useful is when running another nameserver on the same port on the same machine. This may also happen if you run a virtualization API such as `libvirt`.
+
+When this option is used, IP alias interface labels (e.g. `enp2s0:0`) are checked rather than interface names.
+
+The `dnsmasq` options
+
+``` plain
+interface=enp2s0
 bind-interfaces
 ```
 
-to some file like `/etc/dnsmasq.d/99-user.conf` and see [the comment above](#listen-only-on-interface-eth0). This config forces FTL to really bind only the interfaces it is listening on.
-About the only time when this is useful is when running another nameserver on the same port on the same machine.
+are used (the interface may be different).
+
+## Permit all origins {#all}
+
+This truly allows any traffic to be replied to and is a dangerous thing to do as your Pi-hole could become an [open resolver](https://serverfault.com/questions/573465/what-is-an-open-dns-resolver-and-how-can-i-protect-my-server-from-being-misused). You should always ask yourself if the first option doesn't work for you as well.
+
+The `dnsmasq` option
+
+``` plain
+except-interface=nonexisting
+```
+
+is used. We add this option to disable any possible `local-service` settings in other config files.
 
 {!abbreviations.md!}
