@@ -67,7 +67,8 @@ Check the server's log files (/var/log/lighttpd/error.log when you're using the 
 
 Increase PHP's memory and restart the server.
 
-Replace `*` with your installed PHP version (e.g. `.../php/7.3/cgi/...`)
+Replace `*` with your installed PHP version (e.g. `.../php/7.3/cgi/...`) to edit the file. Increase the `memory_limit`. You can use common abbreviation (M= megabyte, G= gigabyte). The amount of memory needed depends on many factors, e.g. availabe system RAM, other processes running on your device, the amount of data you want to process. Do not assign all availabe memory as this can freeze your system. One approache would be to double the limit and check if it might be already sufficient to retrieve the data. If not, add another 128M. 
+Please consider the possibility that your system does not have enought memory at all to load all the needed data.
 
 ```bash
 sudo nano /etc/php/*/cgi/php.ini
