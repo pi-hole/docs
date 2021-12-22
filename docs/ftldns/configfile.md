@@ -197,6 +197,24 @@ With this option, you can change how (and if) hourly PTR requests are made to ch
 
 This setting can be used to disable ARP cache processing. When disabled, client identification and the network table will stop working reliably.
 
+#### `CHECK_LOAD=true|false` (PR [#1249](https://github.com/pi-hole/FTL/pull/1249)) {#check_load data-toc-label='Check system load'}
+
+Pi-hole is very lightweight on resources. Nevertheless, this does not mean that you should run Pi-hole on a server that is otherwise extremely busy as queuing on the system can lead to unecessary delays in DNS operation as the system becomes less and less usable as the system load increases because all resources are permanently in use. To account for this, FTL regularly checks the system load. To bring this to your attention, FTL warns about excessive load when the 15 minute system load average exceeds the number of cores.
+
+This check can be disabled with this setting.
+
+#### `CHECK_SHMEM=90` (PR [#1249](https://github.com/pi-hole/FTL/pull/1249)) {#check_shmem data-toc-label='Check shared-memory limits'}
+
+FTL stores history in shared memory to allow inter-process communication with forked dedicated TCP workers. If FTL runs out of memory, it cannot continue to work as queries cannot be analyzed any further. Hence, FTL checks if enough shared memory is available on your system and warns you if this is not the case.
+
+By default, FTL warns if the shared-memory usage exceeds 90%. You can set any integer limit between `0` to `100` (interpreted as percentages) where `0` means that checking of shared-memory usage is disabled.
+
+#### `CHECK_DISK=90` (PR [#1249](https://github.com/pi-hole/FTL/pull/1249)) {#check_disk data-toc-label='Check disk space'}
+
+FTL stores its long-term history in a database file on disk (see [here](../database/index.md)). Furthermore, FTL stores log files (see, e.g., [here](#file_LOGFILE)).
+
+By default, FTL warns if usage of the disk holding any crutial file exceeds 90%. You can set any integer limit between `0` to `100` (interpreted as percentages) where `0` means that checking of disk usage is disabled.
+
 ---
 
 ### Long-term database settings
