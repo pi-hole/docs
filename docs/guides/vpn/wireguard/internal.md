@@ -67,7 +67,7 @@ The rules will then be cleared once the tunnel is down.
     # maybe more [Peer] sections for more clients
     ```
 
-    The important change is the extra PostUp` and `PostDown` in the `[Interface]` section.
+    The important change is the extra `PostUp` and `PostDown` in the `[Interface]` section.
 <!-- markdownlint-enable code-block-style -->
 ## Allow clients to access other devices
 
