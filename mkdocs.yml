@@ -112,6 +112,7 @@ nav:
     - 'Compatibility': ftldns/compatibility.md
     - 'Install from source': ftldns/compile.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
+    - 'Cache dump': ftldns/cache_dump.md
     - 'Debugging FTLDNS':
       - 'gdb': ftldns/debugging.md
       - 'valgrind': ftldns/valgrind.md
