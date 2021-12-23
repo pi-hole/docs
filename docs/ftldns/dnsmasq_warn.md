@@ -132,7 +132,11 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
 !!! warning "Maximum number of concurrent DNS queries reached (max: `NUMBER`)"
 
-    The configured maximum number of concurrent DNS queries has been reached. The system is either very busy at the moment or not receiving queries from the configured upstream. Check your connectivity or the upstream DNS server status. The warning can also be printed when being spammed with an excessive amount of duplicates. It is printed at most once every five seconds.
+    The configured maximum number of concurrent DNS queries for a given server is reached. The system is either very busy at the moment or not receiving queries from the configured upstream. Check your connectivity or the upstream DNS server status.
+
+    The warning can also be printed when being spammed with an excessive amount of duplicates or when the upstream server never replies for specific domains. Check your logs and try to identify similarities between the query directly preceding this warning and earlier queries in `/var/log/pihole.log`. Try to find out if your upstream does maybe never reply to specific domains and fix this.
+
+    This warning is printed at most once every five seconds (per upstream server) to help mitigate unlimited log file growth.
 
 !!! warning "Maximum number of concurrent DNS queries to `DOMAIN` reached (max: `NUMBER`)"
 
@@ -198,17 +202,25 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
     No DHCP context has been configured for this interface. Check your DHCP settings.
 
+    This warning is expected during debug log generation as Pi-hole is trying to request a DHCP lease on all available interfaces. We do this to test that the server replies properly.
+
+    When an interface does not have a DHCP configuration (such as the loopback interface `lo`, or other special interfaces such as `docker0`), this warning is printed. You can safely ignore it when it happens only during DHCP testing, e.g., during Pi-hole debug log generation. If it happens often, you can use the option `no-dhcp-interface=IF_NAME` (insert the interface name here) to specifically disable DHCP on this interface.
+
 !!! warning "disabling DHCP static address `ADDRESS` for `HOSTNAME`"
 
     Static DHCP leases are disabled when sending a DHCPDECLINE packet.
 
 !!! warning "not using configured address `ADDRESS` because it is leased to `MAC`"
 
-    DHCPDISCOVER: Not handing out configured address because it is already actively used to anohter device with hardware address `MAC`.
+    Not handing out configured address because it is already actively used to another device with hardware address `MAC`.
 
 !!! warning "not using configured address `ADDRESS` because it is in use by the server or relay"
 
     Handing out addresses used by known critical infrastructure (like the DHCP server or a relay) is prevented to avoid IP address duplication issues.
+
+    This can happen when you have configured a static address assignment for the IP address of your Pi-hole. As this could result in an IP address conflict, Pi-hole offers a different free address from your configured DHCP pool. As this means Pi-hole behaves differently than you configured it to, it issues a warning.
+
+    The solution would be to either remove the static reservation for the Pi-hole itself (see `ADDRESS` in the warning) or simply accept this warning as it should only happen during debug log generation. When this warning appears outside of a running DHCP test, check that your Pi-hole is indeed using a static address.
 
 !!! warning "not using configured address `ADDRESS` because it was previously declined"
 
@@ -229,6 +241,8 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 !!! warning "no address range available for DHCPv6 request via `IF_NAME`"
 
     No DHCPv6 context has been configured for this interface. Check your DHCPv6 settings.
+
+    If you do not have an upstreams IPv6 connection (use, e.g., [test-ipv6.com](https://test-ipv6.com/) for testing), Pi-hole does not have any address prefix it could use to build DHCPv6 addresses causing this warning on every DHCPv6 request. The solution will be to disable DHCPv6 in your Pi-hole.
 
 !!! warning "disabling DHCP static address `ADDRESS` for `TIME`"
 
