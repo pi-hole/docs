@@ -124,11 +124,22 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
 !!! warning "reducing DNS packet size for nameserver `ADDRESS` to `SAFE_PKTSZ`"
 
-    When receiving answers from upstream only with a smaller maximum DNS packet size, `dnsmasq` remembers this decision and makes it permanent in the current session.
+    When receiving answers from upstream only with a smaller maximum DNS packet size, `dnsmasq` warns about this and remembers this decision per server for some time (defaulting to 60 seconds).
+
+    If you see this message continuously, you are affected by some unusual truncation on the path from your Pi-hole to the configured upstream server.
+    You can get rid of the warning by adding a config file like `/etc/dnsmasq.d/99-edns.conf` and adding
+
+    ``` plain
+    edns-packet-max=1280
+    ```
+
+    After running `pihole restartdns` your Pi-hole will not even try larger packet sizes (the default is 4096).
 
 !!! warning "Ignoring query from non-local network"
 
-    `dnsmasq` can be configured to only accept queries from at-most-one-hop-away addresses using the option `local-service`. Other queries are discarded in this case. This is ment to be a safe default to keep otherwise unconfigured installations safe. Note that `local-service` is ignored if *any* access-control config is in place (`interface`, `except-interface`, `listen-address` or `auth-server`).
+    `dnsmasq` can be configured to only accept queries from at-most-one-hop-away addresses using the option `local-service`. Other queries are discarded in this case.
+
+    This is ment to be a safe default to keep otherwise unconfigured installations safe. Note that `local-service` is ignored if *any* access-control config is in place (`interface`, `except-interface`, `listen-address` or `auth-server`).
 
 !!! warning "Maximum number of concurrent DNS queries reached (max: `NUMBER`)"
 
