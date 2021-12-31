@@ -46,18 +46,13 @@ PostDown = iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "**Important:** Debian Bullseye (Debian 11) and Raspian 11"
-    Debian Bullseye doesn't include iptables per default and uses nftables. The iptables commands can be easily implemented since the package will automatically translate and import them to nftables. First you need to install iptables:
-    ```bash
-    sudo apt install iptables
-    ```
+    Debian Bullseye doesn't include iptables per default and uses nftables.
 
     After that you have to set following rules for PostUP and PostDown:
     ```bash
-    PostUp = iptables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-    PostDown = nft flush ruleset
+    PostUp = nft add table ip wireguard; nft add chain ip wireguard wireguard_chain {type nat hook postrouting priority srcnat\; policy accept\;}; nft add rule ip wireguard wireguard_chain oifname "eth0" counter packets 0 bytes 0 masquerade; nft add table ip6 wireguard; nft add chain ip6 wireguard wireguard_chain {type nat hook postrouting priority srcnat\; policy accept\;}; nft add rule ip6 wireguard wireguard_chain oifname "eth0" counter packets 0 bytes 0 masquerade
+    PostDown = nft delete table ip wireguard; nft delete table ip6 wireguard
     ```
-
-    **Be careful with the PostDown command since it will flush all rules!** 
 <!-- markdownlint-enable code-block-style -->
 
 `PostUp` and `PostDown` defines steps to be run after the interface is turned on or off, respectively. In this case, iptables is used to set Linux IP masquerade rules to allow all the clients to share the server’s IPv4 and IPv6 address.
