@@ -29,7 +29,7 @@ pihole -g -r recreate
 Force Pi-hole to run the recovery process even when no damage is detected.
 Run:
 
- ```bash
+```bash
 pihole -g -r recover force
 ```
 
