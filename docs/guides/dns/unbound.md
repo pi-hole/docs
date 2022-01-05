@@ -112,8 +112,21 @@ server:
     use-caps-for-id: no
 
     # Reduce EDNS reassembly buffer size.
-    # Suggested by the unbound man page to reduce fragmentation reassembly problems
-    edns-buffer-size: 1472
+    # IP fragmentation is unreliable on the Internet today, and can cause
+    # transmission failures when large DNS messages are sent via UDP. Even
+    # when fragmentation does work, it may not be secure; it is theoretically
+    # possible to spoof parts of a fragmented DNS message, without easy
+    # detection at the receiving end. Recently, there was an excellent study
+    # >>> Defragmenting DNS - Determining the optimal maximum UDP response size for DNS <<<
+    # by Axel Koolhaas, and Tjeerd Slokker (https://indico.dns-oarc.net/event/36/contributions/776/)
+    # in collaboration with NLnet Labs explored DNS using real world data from the
+    # the RIPE Atlas probes and the researchers suggested different values for
+    # IPv4 and IPv6 and in different scenarios. They advise that servers should
+    # be configured to limit DNS messages sent over UDP to a size that will not
+    # trigger fragmentation on typical network links. DNS servers can switch
+    # from UDP to TCP when a DNS response is too big to fit in this limited
+    # buffer size. This value has also been suggested in DNS Flag Day 2020.
+    edns-buffer-size: 1232
 
     # Perform prefetching of close to expired message cache entries
     # This only applies to domains that have been frequently queried
@@ -142,6 +155,14 @@ dig pi-hole.net @127.0.0.1 -p 5335
 ```
 
 The first query may be quite slow, but subsequent queries, also to other domains under the same TLD, should be fairly quick.
+
+You should also consider adding
+
+``` plain
+edns-packet-max=1232
+```
+
+to a config file like `/etc/dnsmasq.d/99-edns.conf` to signal FTL to adhere to this limit.
 
 ### Test validation
 

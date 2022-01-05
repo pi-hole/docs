@@ -130,10 +130,10 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
     You can get rid of the warning by adding a config file like `/etc/dnsmasq.d/99-edns.conf` and adding
 
     ``` plain
-    edns-packet-max=1280
+    edns-packet-max=1232
     ```
 
-    After running `pihole restartdns` your Pi-hole will not even try larger packet sizes (the default is 4096).
+    After running `pihole restartdns` your Pi-hole will not even try larger packet sizes (the default is 4096). Check out our [unbound guide](../guides/dns/unbound.md) for a comment about the particular value of `1232`.
 
 !!! warning "Ignoring query from non-local network"
 
