@@ -41,7 +41,7 @@ PostDown = iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w
 !!! warning "**Important:** Substitute interface"
     **Without the correct interface name, this will not work!**
 
-    Substitute `eth0` in the preceding lines to match the Internet-facing interface. This may be `ens2p0` or similar on more recent Ubuntu versions (check, e.g., `ip a` for details about your local interfaces).
+    Substitute `eth0` in the preceding lines to match the Internet-facing interface. This may be `enp2s0` or similar on more recent Ubuntu versions (check, e.g., `ip a` for details about your local interfaces).
 <!-- markdownlint-enable code-block-style -->
 
 <!-- markdownlint-disable code-block-style -->
