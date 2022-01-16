@@ -51,6 +51,8 @@ Label | Type | Allowed to by empty | Content
 `forward` | text | Yes | Forward destination used for this query (only set if `status == 2`)
 `additional_info` | blob | Yes | Data-dependent content, see below
 
+The `queries` `VIEW` is dynamically generated from the data actually stored in the tables `queries_storage` and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `queries_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
+
 #### Data-dependent `additional_info` field
 
 The content and type of the `additional_info` row depends on the status of the given query.
@@ -130,6 +132,45 @@ ID | Status | | Details
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
+
+### Linking tables
+
+The `queries` `VIEW` reads repeating properties from linked tables to reduce both database size and search complexity. These linking tables, `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` all have a similar structure:
+
+#### `domain_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`domain` | text | No | Domain name
+
+#### `client_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`ip` | text | No | Client IP address
+`name` | text | Yes | Client host name
+
+#### `forward_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`forward` | text | No | Upstream server identifier (`<ipaddr>#<port>`)
+
+#### `addinfo_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`type` | integer | No | Type of the `content` field
+`content` | blob | No | Type-dependent content
+
+Valid `type` IDs are currently
+
+- `ADDINFO_CNAME_DOMAIN = 1` if `content` is a CNAME pointer, and
+- `ADDINFO_REGEX_ID = 2` if `content` is an integer ID pointing to a regular expression in `gravity.db`
 
 ### Example for interaction with the long-term query database
 
