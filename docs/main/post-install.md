@@ -6,4 +6,17 @@ If your router does not support setting the DNS server, you can [use Pi-hole's b
 
 As a last resort, you can always manually set each device to use Pi-hole as their DNS server.
 
+## Make your Pi-hole host use Pi-hole
+
+As described [here](https://docs.pi-hole.net/main/prerequisites/#ip-addressing) your Pi-hole host device should use a static IP address. Pi-hole won't be used by the host automatically after installation. However, you can make the host use Pi-hole as upstream DNS server.
+
+!!! warning
+    If your Pi-hole host is using Pi-hole as upstream DNS server and Pi-hole fails, your host looses DNS resolution. This can prevent successful repair attempts, e.g. by `pihole -r` as it needs a working internet connection.
+
+  If your OS uses `dhcpcd` for network configuration, you can add to your `/etc/dhcpcd.conf`
+
+```code
+static domain_name_servers=127.0.0.1
+```
+
 {!abbreviations.md!}
