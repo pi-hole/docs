@@ -77,7 +77,7 @@ Because Pi-hole was designed to work inside a local network, the following rules
 
 #### IPTables
 
-IPTables uses two sets of tables. One set is for IPv4 chains, and the second is for IPv6 chains. If only IPv4 blocking is used for the Pi-hole installation, only apply the rules for IP4Tables. Full Stack (IPv4 and IPv6) require both sets of rules to be applied. *Note: These examples insert the rules at the front of the chain. Please see your distribution's documentation for the exact proper command to use.*
+IPTables uses two sets of tables. One set is for IPv4 chains, and the second is for IPv6 chains. If only IPv4 blocking is used for the Pi-hole installation, only apply the rules for IP4Tables. Full Stack (IPv4 and IPv6) require both sets of rules to be applied. _Note: These examples insert the rules at the front of the chain. Please see your distribution's documentation for the exact proper command to use._
 
 IPTables (IPv4)
 

@@ -65,7 +65,7 @@ Please make sure you fork the repo and change the clone URL in the example below
     - One-shot run:
 
     ```bash
-    docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it nikolaik/python-nodejs:python3.7-nodejs12 \
+    docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it nikolaik/python-nodejs:python3.7-nodejs16 \
       sh -c "pip install --user -r requirements.txt && \
       /root/.local/bin/mkdocs build && \
       npm ci && \

@@ -155,4 +155,12 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
     cache-inserted: 15529
     ```
 
+- `>dns-port`: Get DNS port FTL is listening on
+
+    ```text
+    53
+    ```
+
+Note that the port can also be `0` if someone decides to disable the DNS server part of Pi-hole
+
 {!abbreviations.md!}
