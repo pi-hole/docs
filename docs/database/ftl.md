@@ -36,7 +36,7 @@ will create `/home/pi/pihole-FTL.db.backup` which is a copy of your long-term da
 
 ---
 
-The long-term database contains three tables:
+The long-term database contains several tables:
 
 ### Query Table
 
