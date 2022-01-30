@@ -113,7 +113,7 @@ nav:
     - 'Install from source': ftldns/compile.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
     - 'Cache dump': ftldns/cache_dump.md
-    - 'internal pcap packet dump': ftldns/package_dump.md
+    - 'Packet dump': ftldns/package_dump.md
     - 'Debugging FTLDNS':
       - 'gdb': ftldns/debugging.md
       - 'valgrind': ftldns/valgrind.md
