@@ -42,23 +42,29 @@ For this setting, both numbers, the maximum number of queries within a given tim
 
 Rate-limiting may be disabled altogether by setting `RATE_LIMIT=0/0` (this results in the same behavior as before FTL v5.7).
 
-#### `REPLY_ADDR4=` (unset by default, PR [#965](https://github.com/pi-hole/FTL/pull/965)) {#reply_addr4 data-toc-label='Force A reply'}
+#### `LOCAL_IPV4=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#local_ipv4 data-toc-label='Force local A reply'}
 
-`FTL` determines the address of the interface a query arrived on. We then use this IP address when replying to queries with an `A` record (IPv4 address). This setting can be used to ensure a fixed, rather than the dynamically obtained, address is used.
+By default, `FTL` determines the address of the interface a query arrived on and uses this address for replying to `A` queries with the most suitable address for the requesting client. This setting can be used to use a fixed, rather than the dynamically obtained, address when Pi-hole responds to the following names:
 
-This applies to the following cases:
+- `pi.hole`
+- `<the device's hostname>`
+- `pi.hole.<local domain>`
+- `<the device's hostname>.<local domain>`
+
+#### `LOCAL_IPV6=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#local_ipv6 data-toc-label='Force local AAAA reply'}
+
+Used to overwrite the IP address for local `AAAA` queries. See [`LOCAL_IPV4`](#local_ipv4) for details when this setting is used.
+
+#### `BLOCK_IPV4=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#block_ipv4 data-toc-label='Force blocked A reply'}
+
+By default, `FTL` determines the address of the interface a query arrived on and uses this address for replying to `A` queries with the most suitable address for the requesting client. This setting can be used to use a fixed, rather than the dynamically obtained, address when Pi-hole responds in the following cases:
 
 - `IP` blocking mode is used and this query is to be blocked
 - A regular expression with the [`;reply=IP` regex extension](../regex/pi-hole.md#specify-reply-type) is used
-- Pi-hole responds to one of the following names
-    - `pi.hole`
-    - `<the device's hostname>`
-    - `pi.hole.<local domain>`
-    - `<the device's hostname>.<local domain>`
 
-#### `REPLY_ADDR6=` (unset by default, PR [#965](https://github.com/pi-hole/FTL/pull/965)) {#reply_addr6 data-toc-label='Force AAAA reply'}
+#### `BLOCK_IPV6=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#block_ipv6 data-toc-label='Force blocked AAAA reply'}
 
-`FTL` determines the address of the interface a query arrived on. We then use this IP address when replying to queries with an `AAAA` record (IPv6 address). This setting can be used to ensure a fixed, rather than the dynamically obtained, address is used. See [`REPLY_ADDR4`](#reply_addr4) for details about when this setting is used.
+Used to overwrite the IP address for blocked `AAAA` queries. See [`BLOCK_IPV4`](#block_ipv4) for details when this setting is used.
 
 #### `REPLY_WHEN_BUSY=ALLOW|DROP|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156)) {#reply_when_busy data-toc-label='Database busy reply'}
 
@@ -376,5 +382,20 @@ Should FTL translate its own stack addresses into code lines during the bug back
 #### `DEBUG_EXTRA=false|true` (PR [#994](https://github.com/pi-hole/FTL/pull/994)) {#debug_extra data-toc-label='Misc.'}
 
 Temporary flag that may print additional information. This debug flag is meant to be used whenever needed for temporary investigations. The logged content may change without further notice at any time.
+
+### Deprecated options
+
+#### `REPLY_ADDR4=` (unset by default, PR [#965](https://github.com/pi-hole/FTL/pull/965)) {#reply_addr4 data-toc-label='Force A reply'}
+
+*This option is deprecated and may be removed in future versions, please use `BLOCK_IPV4` and `LOCAL_IPV4` instead*
+
+If neither `BLOCK_IPV4` nor `LOCAL_IPV4` are set, this setting use used to set both of them. If any of the two is set, this setting is ignored altogether.
+
+#### `REPLY_ADDR6=` (unset by default, PR [#965](https://github.com/pi-hole/FTL/pull/965)) {#reply_addr6 data-toc-label='Force AAAA reply'}
+
+*This option is deprecated and may be removed in future versions, please use `BLOCK_IPV6` and `LOCAL_IPV6` instead*
+
+If neither `BLOCK_IPV4` nor `LOCAL_IPV4` are set, this setting use used to set both of them. If any of the two is set, this setting is ignored altogether.
+
 
 {!abbreviations.md!}
