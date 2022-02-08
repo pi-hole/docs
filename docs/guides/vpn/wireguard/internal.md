@@ -100,7 +100,7 @@ It is possible to add this only for a few clients, leaving the others isolated t
     DNS = 10.100.0.1
 
     [Peer]
-    AllowedIPs = 10.100.0.0/24, fd08::/64, 192.168.2.0/24
+    AllowedIPs = 10.100.0.0/24, fd08:4711::/64, 192.168.2.0/24
     Endpoint = [your server's public IP or domain]:47111
     PublicKey = [public key of the server]
     PresharedKey = [pre-shared key of this client]
