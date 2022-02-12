@@ -389,13 +389,13 @@ Temporary flag that may print additional information. This debug flag is meant t
 
 *This option is deprecated and may be removed in future versions, please use `BLOCK_IPV4` and `LOCAL_IPV4` instead*
 
-If neither `BLOCK_IPV4` nor `LOCAL_IPV4` are set, this setting use used to set both of them. If any of the two is set, this setting is ignored altogether.
+If neither `BLOCK_IPV4` nor `LOCAL_IPV4` are set, this setting is used to set both of them. If either of the two is set, this setting is ignored altogether.
 
 #### `REPLY_ADDR6=` (unset by default, PR [#965](https://github.com/pi-hole/FTL/pull/965)) {#reply_addr6 data-toc-label='Force AAAA reply'}
 
 *This option is deprecated and may be removed in future versions, please use `BLOCK_IPV6` and `LOCAL_IPV6` instead*
 
-If neither `BLOCK_IPV4` nor `LOCAL_IPV4` are set, this setting use used to set both of them. If any of the two is set, this setting is ignored altogether.
+If neither `BLOCK_IPV6` nor `LOCAL_IPV6` are set, this setting is used to set both of them. If either of the two is set, this setting is ignored altogether.
 
 
 {!abbreviations.md!}
