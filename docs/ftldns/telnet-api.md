@@ -161,7 +161,7 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
     53
     ```
 
-- `>maxlogage`: Get timespan of the statistics shown on the dashboard
+- `>maxlogage`: Get timespan of the statistics shown on the dashboard (in seconds)
 
     ```text
     86400
