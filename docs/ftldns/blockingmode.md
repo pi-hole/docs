@@ -47,7 +47,7 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 BLOCKINGMODE=IP-NODATA-AAAA
 ```
 
-Blocked queries will be answered with the local IPv4 addresses of your Pi-hole (as configured in your `setupVars.conf` file). Blocked AAAA queries will be answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address
+Blocked queries will be answered with the local IPv4 addresses of your Pi-hole (see [BLOCK_IP4](configfile.md#block_ipv4) for additional options). Blocked AAAA queries will be answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address
 
 ```
 ;; QUESTION SECTION:
@@ -78,7 +78,7 @@ doubleclick.net.        2       IN      A       192.168.2.11
 BLOCKINGMODE=IP
 ```
 
-Blocked queries will be answered with the local IP addresses of your Pi-hole (as configured in your `setupVars.conf` file)
+Blocked queries will be answered with the local IP addresses of your Pi-hole (see [BLOCK_IP4](configfile.md#block_ipv4) and  [BLOCK_IP6](configfile.md#block_ipv6) for additional options)
 
 ```
 ;; QUESTION SECTION:
