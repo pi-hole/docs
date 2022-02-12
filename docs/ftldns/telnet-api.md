@@ -161,6 +161,12 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
     53
     ```
 
+- `>maxlogage`: Get timespan of the statistics shown on the dashboard (in seconds)
+
+    ```text
+    86400
+    ```
+
 Note that the port can also be `0` if someone decides to disable the DNS server part of Pi-hole
 
 {!abbreviations.md!}
