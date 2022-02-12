@@ -112,7 +112,7 @@ After a restart, the server file should look like:
 
 ```plain
 [Interface]
-Address = 10.100.0.1/24, fd08::1/128
+Address = 10.100.0.1/24, fd08:4711::1/128
 ListenPort = 47111
 PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
 
@@ -140,7 +140,7 @@ interface: wg0
 
 peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be different
   preshared key: (hidden)
-  allowed ips: 10.100.0.2/32, fd08::2/128
+  allowed ips: 10.100.0.2/32, fd08:4711::2/128
 ```
 
 ## Create client configuration
@@ -163,7 +163,7 @@ Next, add your server as peer for this client:
 
 ```plain
 [Peer]
-AllowedIPs = 10.100.0.1/32, fd08::1/128
+AllowedIPs = 10.100.0.1/32, fd08:4711::1/128
 Endpoint = [your public IP or domain]:47111
 PersistentKeepalive = 25
 ```

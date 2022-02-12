@@ -108,16 +108,18 @@ nav:
     - 'DNS cache': ftldns/dns-cache.md
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
-    - 'Telnet API': ftldns/telnet-api.md
-    - 'Signals': 'ftldns/signals.md'
     - 'Compatibility': ftldns/compatibility.md
-    - 'Install from source': ftldns/compile.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
-    - 'Cache dump': ftldns/cache_dump.md
-    - 'Debugging FTLDNS':
-      - 'gdb': ftldns/debugging.md
-      - 'valgrind': ftldns/valgrind.md
-    - 'In-depth manual': ftldns/in-depth.md
+    - 'Advanced':
+        - 'Install from source': ftldns/compile.md
+        - 'Telnet API': ftldns/telnet-api.md
+        - 'Signals': 'ftldns/signals.md'
+        - 'Cache dump': ftldns/cache_dump.md
+        - 'Packet dump': ftldns/package_dump.md
+        - 'Debugging':
+            - 'gdb': ftldns/debugging.md
+            - 'valgrind': ftldns/valgrind.md
+        - 'In-depth manual': ftldns/in-depth.md
   - 'RegEx blocking':
     - "Overview": regex/overview.md
     - "Testing": regex/testmode.md
