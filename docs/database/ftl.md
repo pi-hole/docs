@@ -36,7 +36,7 @@ will create `/home/pi/pihole-FTL.db.backup` which is a copy of your long-term da
 
 ---
 
-The long-term database contains three tables:
+The long-term database contains several tables:
 
 ### Query Table
 
@@ -50,6 +50,11 @@ Label | Type | Allowed to by empty | Content
 `client` | text | No | Requesting client (IP address)
 `forward` | text | Yes | Forward destination used for this query (only set if `status == 2`)
 `additional_info` | blob | Yes | Data-dependent content, see below
+`reply_type` | integer | Yes | Type of the reply for this query  (see [Supported reply types](ftl.md#supported-reply-types))
+`reply_time` | real | Yes | Seconds it took until the final reply was received
+`dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](ftl.md#dnssec-status))
+
+The `queries` `VIEW` is dynamically generated from the data actually stored in the tables `queries_storage` and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `queries_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
 
 #### Data-dependent `additional_info` field
 
@@ -106,11 +111,6 @@ ID | Resource Record (a.k.a. query type)
 15 | `SVCB`
 16 | `HTTPS`
 
-
-<!-- ID | 1 | 2 | 3 | 4 | 5 | 6 | 7 -->
-<!-- -- | -- | -- | -- | -- | -- | -- | -- -->
-<!-- Query | A | AAAA | ANY | SRV | SOA | PTR | TXT -->
-
 ### Supported status types
 
 ID | Status | | Details
@@ -130,6 +130,74 @@ ID | Status | | Details
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
+
+### Supported reply types
+
+ID | Reply type is
+--- | ---
+0 | *unknown* (no reply so far)
+1 | `NODATA`
+2 | `NXDOMAIN`
+3 | `CNAME`
+4 | a valid `IP` record
+5 | `DOMAIN`
+6 | `RRNAME`
+7 | `SERVFAIL`
+8 | `REFUSED`
+9 | `NOTIMP`
+10 | `OTHER`
+11 | `DNSSEC`
+12 | `NONE` (query was dropped intentionally)
+13 | `BLOB` (binary data)
+
+### DNSSEC status
+
+ID | DNSSEC status is
+--- | ---
+0 | *unknown*
+1 | `SECURE`
+2 | `INSECURE`
+3 | `BOGUS`
+4 | `ABANDONED`
+
+### Linking tables
+
+The `queries` `VIEW` reads repeating properties from linked tables to reduce both database size and search complexity. These linking tables, `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` all have a similar structure:
+
+#### `domain_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`domain` | text | No | Domain name
+
+#### `client_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`ip` | text | No | Client IP address
+`name` | text | Yes | Client host name
+
+#### `forward_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`forward` | text | No | Upstream server identifier (`<ipaddr>#<port>`)
+
+#### `addinfo_by_id`
+
+Label | Type | Allowed to by empty | Content
+--- | --- | --- | ---
+`id` | integer | No | ID of the entry. Used by `query_storage`
+`type` | integer | No | Type of the `content` field
+`content` | blob | No | Type-dependent content
+
+Valid `type` IDs are currently
+
+- `ADDINFO_CNAME_DOMAIN = 1` if `content` is a CNAME pointer, and
+- `ADDINFO_REGEX_ID = 2` if `content` is an integer ID pointing to a regular expression in `gravity.db`
 
 ### Example for interaction with the long-term query database
 
