@@ -75,7 +75,7 @@ You need to increase PHP's memory and restart the server.
 
 The amount of memory needed depends on many factors:
 
-- availabe system RAM,
+- available system RAM,
 - other processes running on your device,
 - the amount of data you want to process.
 
@@ -83,7 +83,7 @@ One aproach would be to increase the limit by 128M and check if it was enough to
 If not, add another 128M, check again. If not, add another 128M, check again, until you find the best value.
 
 _Note:_
-Do not assign all availabe memory as this can freeze your system.
+Do not assign all available memory as this can freeze your system.
 Please consider the possibility that your system does not have enough memory at all to load all the needed data.
 
 _Steps to increase `memory_limit`:_
