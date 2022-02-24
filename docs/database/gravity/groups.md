@@ -28,7 +28,7 @@ Group `Default` (`group_id` `0`) is special as it is automatically assigned to d
 
 ## Effect of group management
 
-The great flexibility to manage domains in no, one, or multiple groups may result in unexpected behavior when, e.g., the domains are enabled in some but disabled in other groups. For the sake of convenience, we describe the possible configurations and whether *FTL*DNS uses these domains (✔) or not (✘) in such cases.
+The great flexibility to manage domains in zero, one, or multiple groups may result in unexpected behavior when, e.g., the domains are enabled in some but disabled in other groups. For the sake of convenience, we describe the possible configurations and whether *FTL*DNS uses these domains (✔) or not (✘) in such cases.
 
 - Domain disabled: ✘<br>Note that the domain is never imported by *FTL*DNS, even if it is contained in an enabled group.
 
