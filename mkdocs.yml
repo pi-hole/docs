@@ -183,7 +183,7 @@ nav:
 
 extra:
   social:
-    - icon: fontawesome/solid/globe-americas
+    - icon: fontawesome/solid/earth-americas
       link: https://pi-hole.net/
       name: Website
     - icon: fontawesome/brands/github
