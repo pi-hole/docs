@@ -27,14 +27,13 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 
 ### Advantages
 
-- The client does not even try to establish a connection for the requested website
 - Speedup and less traffic
-- Solves potential HTTPS timeouts as requests are never performed
 - No need to run a web server on your Pi-hole (reduces complexity when running other web services on the same machine)
 
 ### Disadvantage
 
 - Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
+- Some networking stacks and applications might treat 0.0.0.0 as if it was 127.0.0.1 and try to connect to a local webserver if one's running; causing various connectivity issues
 
 ## Pi-hole's IP (IPv6 NODATA) blocking
 
