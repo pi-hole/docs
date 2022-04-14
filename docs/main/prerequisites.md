@@ -56,9 +56,8 @@ The following operating systems are **officially** supported:
       https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/
 ```
 
-    You can disable this check by setting an environment variable named `PIHOLE_SKIP_OS_CHECK` to `true`, however Pi-hole may have issues installing.
+You can disable this check by setting an environment variable named `PIHOLE_SKIP_OS_CHECK` to `true`, however Pi-hole may have issues installing.
     If you choose to use this environment variable, please use the [Community Help](https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/36) topic on Discourse to troubleshoot any installation issues you may (or may not!) have.
-
 
 <!-- markdownlint-enable code-block-style -->
 
