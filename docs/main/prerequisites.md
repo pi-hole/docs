@@ -36,11 +36,28 @@ The following operating systems are **officially** supported:
 
     It is possible that Pi-hole will install and run on variants of the above, but we cannot test them all. If you are using an operating system not on this list you may see the following message:
 
-    ![non-supported OS warning](../images/OSWarning.png)
+    ```bash
+    [✗] Unsupported OS detected: Debian 16
+      If you are seeing this message and you do have a supported OS, please contact support.
+
+      https://docs.pi-hole.net/main/prerequesites/#supported-operating-systems
+
+      If you wish to attempt to continue anyway, you can try one of the following commands to skip this check:
+
+      e.g: If you are seeing this message on a fresh install, you can run:
+             curl -sSL https://install.pi-hole.net | sudo PIHOLE_SKIP_OS_CHECK=true bash
+
+           If you are seeing this message after having run pihole -up:
+             sudo PIHOLE_SKIP_OS_CHECK=true pihole -r
+           (In this case, your previous run of pihole -up will have already updated the local repository)
+
+      It is possible that the installation will still fail at this stage due to an unsupported configuration.
+      If that is the case, you can feel free to ask the community on Discourse with the Community Help category:
+      https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/
+    ```
 
     You can disable this check by setting an environment variable named `PIHOLE_SKIP_OS_CHECK` to `true`, however Pi-hole may have issues installing.
     If you choose to use this environment variable, please use the [Community Help](https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/36) topic on Discourse to troubleshoot any installation issues you may (or may not!) have.
-
 
 <!-- markdownlint-enable code-block-style -->
 
