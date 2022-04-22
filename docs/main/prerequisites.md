@@ -40,7 +40,7 @@ The following operating systems are **officially** supported:
     [✗] Unsupported OS detected: Debian 16
       If you are seeing this message and you do have a supported OS, please contact support.
 
-      https://docs.pi-hole.net/main/prerequesites/#supported-operating-systems
+      https://docs.pi-hole.net/main/prerequisites/#supported-operating-systems
 
       If you wish to attempt to continue anyway, you can try one of the following commands to skip this check:
 

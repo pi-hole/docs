@@ -139,7 +139,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
     `dnsmasq` can be configured to only accept queries from at-most-one-hop-away addresses using the option `local-service`. Other queries are discarded in this case.
 
-    This is ment to be a safe default to keep otherwise unconfigured installations safe. Note that `local-service` is ignored if *any* access-control config is in place (`interface`, `except-interface`, `listen-address` or `auth-server`).
+    This is meant to be a safe default to keep otherwise unconfigured installations safe. Note that `local-service` is ignored if *any* access-control config is in place (`interface`, `except-interface`, `listen-address` or `auth-server`).
 
 !!! warning "Maximum number of concurrent DNS queries reached (max: `NUMBER`)"
 
@@ -167,7 +167,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
 !!! warning "overflow: `NUMBER` log entries lost"
 
-    When using asynchroneous logging and the disk is too slow, we can loose log lines during busy times. This can be avoided by decreasing the system load or switching to synchroneous logging. Note that synchroneous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
+    When using asynchronous logging and the disk is too slow, we can loose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
 
 !!! warning "failed to create listening socket for `ADDRESS`: `MSG`"
 
