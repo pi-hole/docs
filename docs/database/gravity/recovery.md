@@ -1,4 +1,4 @@
-If the `gravity.db` database has been damaged, Pi-hole offers two build-in attemps to repair the database.
+If the `gravity.db` database has been damaged, Pi-hole offers two built-in methods to repair the database.
 
 ## Recover
 
