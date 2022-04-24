@@ -130,8 +130,8 @@ ID | Status | | Details
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
-15 | Blocked | ❌ | Blocked (database is busy)<br> How these queries are handled can be [configured](ftldns/configfile/#reply_when_busy)
-16 | Blocked | ❌ | Blocked (special domain)<br>*E.g. Mozilla's canary domain and Apple's Private Relay domains* <br> Handling can be [configured](ftldns/configfile/)
+15 | Blocked | ❌ | Blocked (database is busy)<br> How these queries are handled can be [configured](../ftldns/configfile.md#reply_when_busy)
+16 | Blocked | ❌ | Blocked (special domain)<br>*E.g. Mozilla's canary domain and Apple's Private Relay domains* <br> Handling can be [configured](../ftldns/configfile.md)
 
 ### Supported reply types
 
