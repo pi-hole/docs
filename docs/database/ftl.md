@@ -130,6 +130,8 @@ ID | Status | | Details
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
+15 | Blocked | ❌ | Blocked (database is busy)
+16 | Blocked | ❌ | Blocked (special domain)
 
 ### Supported reply types
 
