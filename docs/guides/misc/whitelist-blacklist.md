@@ -18,7 +18,7 @@ Each script accepts the following parameters:
 
 Domains passed are parsed by the script to ensure they are valid domains. If a domain is invalid it will be ignored.
 
-Whitelisted/Blacklisted domains are associated with the Default Group within Group Management. If the domain should be associated with other groups, these will need to be selected in **Group Management > Domains** within the Pi-Hole web frontend.
+By default, Whitelisted/Blacklisted domains are associated with the Default Group only. If the domain should be associated with other groups, these will need to be selected in **Group Management > Domains** within the Pi-Hole web frontend.
 
 #### Example `pihole -w` usages
 
