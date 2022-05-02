@@ -76,7 +76,7 @@ cat.com.                90      IN      A       18.118.230.25
 ;; Time 2022-05-02 14:10:03 AEST
 ;; From 127.0.0.1@5348(UDP) in 1360.5 ms
 ```
-### setup Pihole to use `knot-resolver`
+### setup Pi-hole to use `knot-resolver`
 Select settings menu sidebar, select DNS tab, enter `127.0.0.1#5335` into Upstream DNS Server, check the box and click on save.
 
 ![Upstream DNS Servers Configuration](/images/RecursiveResolver.png)
