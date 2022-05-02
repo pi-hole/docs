@@ -29,6 +29,7 @@ For each new client, the following steps must be taken. For the sake of simplici
 
     echo "[Interface]" > "${name}.conf"
     echo "Address = $ipv4/32, $ipv6/128" >> "${name}.conf"
+    echo "DNS = ${serv4}, ${serv6}" >> "${name}.conf" #Specifying DNS Server
     echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
     echo "" >> "${name}.conf"
     echo "[Peer]" >> "${name}.conf"
