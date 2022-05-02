@@ -138,6 +138,7 @@ nav:
       - 'unbound': guides/dns/unbound.md
       - 'cloudflared (DoH)': guides/dns/cloudflared.md
       - 'Upstream DNS Providers': guides/dns/upstream-dns-providers.md
+      - 'knot-resolver DNS over TLS': guides/dns/knot-resolver-upstream-encryption.md
     - 'VPN':
       - 'WireGuard':
         - 'Overview': guides/vpn/wireguard/overview.md
