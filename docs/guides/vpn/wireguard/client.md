@@ -10,6 +10,8 @@ For each new client, the following steps must be taken. For the sake of simplici
 
     ```bash
     #!/bin/bash
+    umask 077
+
     ipv4="$1$4"
     ipv6="$2$4"
     serv4="${1}1"
@@ -51,7 +53,6 @@ For each new client, the following steps must be taken. For the sake of simplici
     ```bash
     sudo -i
     cd /etc/wireguard
-    umask 077
 
     bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 2 "annas-android"
     bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 3 "peters-laptop"
