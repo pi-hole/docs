@@ -51,11 +51,12 @@ For each new client, the following steps must be taken. For the sake of simplici
     Run the script like
 
     ```bash
+    chmod +x /path/to/script.sh
     sudo -i
     cd /etc/wireguard
 
-    bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 2 "annas-android"
-    bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 3 "peters-laptop"
+    /path/to/script.sh "10.100.0." "fd08:4711::" "my_server_domain:47111" 2 "annas-android"
+    /path/to/script.sh "10.100.0." "fd08:4711::" "my_server_domain:47111" 3 "peters-laptop"
 
     exit
     ```
