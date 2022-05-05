@@ -2,7 +2,7 @@ site_name: 'Pi-hole documentation'
 site_url: 'https://docs.pi-hole.net/'
 repo_url: 'https://github.com/pi-hole/pi-hole'
 edit_uri: '../docs/blob/master/docs/'
-copyright: 'Copyright &copy; 2021 Pi-hole LLC'
+copyright: 'Copyright &copy; 2022 Pi-hole LLC'
 remote_branch: gh-pages
 theme:
   name: 'material'
