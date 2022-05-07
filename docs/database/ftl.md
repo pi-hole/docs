@@ -54,7 +54,7 @@ Label | Type | Allowed to by empty | Content
 `reply_time` | real | Yes | Seconds it took until the final reply was received
 `dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](ftl.md#dnssec-status))
 
-The `queries` `VIEW` is dynamically generated from the data actually stored in the tables `queries_storage` and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `queries_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
+The `queries` `VIEW` is dynamically generated from the data actually stored in the tables `query_storage` and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `query_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
 
 #### Data-dependent `additional_info` field
 
