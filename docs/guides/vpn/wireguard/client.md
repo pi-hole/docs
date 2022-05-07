@@ -9,7 +9,7 @@ For each new client, the following steps must be taken. For the sake of simplici
     Script content:
 
     ```bash
-    #!/bin/bash
+    #! /usr/bin/env bash
     umask 077
 
     ipv4="$1$4"
