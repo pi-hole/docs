@@ -1,6 +1,10 @@
 ## Knot-resolver forward queries with DNS over TLS easy way
 
+<<<<<<< HEAD
 This guide is based on the from the official `knot-resolver` documentation and setup is on Raspberry OS base on Debian.
+=======
+This guide is based on the from the official `knot-resolver` documentation and setup is on Debian.
+>>>>>>> 29dbecfd52026b3605e1b508cc6edb28bc0631a9
 
 This guide is to setup the `knot-resolver` as a DNS forwarder and send queries to upstream DNS server only.
 
@@ -18,8 +22,13 @@ $ sudo apt install -y knot-resolver
 
 - Set `knot-resolver` to listen for incoming queries from localhost only and on a different port.
 - Uncomment to disable IPv6 queries only if no ipv6 connectivity.
+<<<<<<< HEAD
 - Default cache size is fit for home and small networks. 
 - Change the IP and hostname to your desire DNS server of choice, check the upstream DNS providers in the guides. `knot-resolver` automatically use the system's certificates.
+=======
+- Cache size for small networks do need to be change.
+- Change the IP and hostname to your desire DNS server oc choice, check the upstream DNS providers in the guides. `knot-resolver` automatically use the system's certificates.
+>>>>>>> 29dbecfd52026b3605e1b508cc6edb28bc0631a9
 - for more advance configuration and information check the check `knot-resolver` documentation.
 
 `/etc/knot-resolver/kresd.conf`:
@@ -50,6 +59,7 @@ policy.add(policy.all(policy.TLS_FORWARD({
 })))
 ```
 
+<<<<<<< HEAD
 ### Setup DNS cache to RAM instead of disk (Optional)
 
 Setup RAM storage for DNS cache and stop writing to SD card or thumb flash drive. 
@@ -69,6 +79,9 @@ cache.size = cache.fssize() - 10*MB
 ```
 
 ### Start-up the systemd service
+=======
+### Startup the systemd service
+>>>>>>> 29dbecfd52026b3605e1b508cc6edb28bc0631a9
 
 knot-resolver service won't run on and enabled on reboot by default.  
 Run the service:
