@@ -6,10 +6,10 @@ If you'd like to use [Caddy](https://caddyserver.com/) as your main web server w
 
 ## Modifying lighttpd configuration
 
-First, change the listen port in this file: `/etc/lighttpd/lighttpd.conf:`
+First, change the listen port in this file: `/etc/lighttpd/external.conf:`
 
 ```lighttpd
-server.port = 1080
+server.port := 1080
 ```
 
 In this case, port 1080 was chosen at random. You can use a custom port.
