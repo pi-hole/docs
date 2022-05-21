@@ -1,8 +1,8 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with `7.0`.**
-- The `php7.3-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
+- **Replace `7.4` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 11) replace `7.4` with `7.0`.**
+- The `php74-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
 
@@ -15,7 +15,7 @@
 2. Install necessary packages
 
     ```bash
-    apt-get -y install nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
+    apt-get -y install nginx php7.4-fpm php7.4-cgi php7.4-xml php7.4-sqlite3 php7.4-intl apache2-utils
     ```
 
 3. Disable lighttpd at startup
@@ -24,10 +24,10 @@
     systemctl disable lighttpd
     ```
 
-4. Enable php7.3-fpm at startup
+4. Enable php7.4-fpm at startup
 
     ```bash
-    systemctl enable php7.3-fpm
+    systemctl enable php7.4-fpm
     ```
 
 5. Enable nginx at startup
@@ -57,7 +57,7 @@
         location ~ \.php$ {
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
-            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+            fastcgi_pass unix:/run/php/php7.4-fpm.sock;
             fastcgi_param FQDN true;
             auth_basic "Restricted"; # For Basic Auth
             auth_basic_user_file /etc/nginx/.htpasswd; # For Basic Auth
@@ -106,10 +106,10 @@
     usermod -aG pihole www-data
     ```
 
-11. Start php7.3-fpm daemon
+11. Start php7.4-fpm daemon
 
     ```bash
-    service php7.3-fpm start
+    service php7.4-fpm start
     ```
 
 12. Start nginx web server
