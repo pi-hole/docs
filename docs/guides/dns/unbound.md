@@ -234,6 +234,7 @@ sudo rm /etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
 ```
 
 Restart unbound:
+
 ```bash
 sudo service unbound restart
 ```
