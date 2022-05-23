@@ -183,7 +183,7 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 
 (don't forget to hit Return or click on `Save`)
 
-### Disable `resolvconf` for `unbound` (optional)
+### Disable `resolvconf` for `unbound` (optional / recommended for Bullseye)
 
 The `unbound` package can come with a systemd service called `unbound-resolvconf.service` and default enabled.
 It instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`.
@@ -217,6 +217,25 @@ And check with below one if IP(s) on the `nameserver` line(s) reflects the ones 
 
 ```bash
 cat /etc/resolv.conf
+```
+
+The following steps may also be necessary if `/etc/unbound/unbound.conf.d/resolvconf_resolvers.conf` is already present on the system.
+
+Edit file `/etc/resolvconf.conf` and comment out the last line which should read:
+
+```bash
+#unbound_conf=/etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
+```
+
+Delete the unwanted unbound configuration file:
+
+```bash
+sudo rm /etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
+```
+
+Restart unbound:
+```bash
+sudo service unbound restart
 ```
 
 ### Add logging to unbound
