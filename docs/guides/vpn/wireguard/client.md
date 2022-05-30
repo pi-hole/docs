@@ -9,7 +9,9 @@ For each new client, the following steps must be taken. For the sake of simplici
     Script content:
 
     ```bash
-    #!/bin/bash
+    #! /usr/bin/env bash
+    umask 077
+
     ipv4="$1$4"
     ipv6="$2$4"
     serv4="${1}1"
@@ -29,6 +31,7 @@ For each new client, the following steps must be taken. For the sake of simplici
 
     echo "[Interface]" > "${name}.conf"
     echo "Address = $ipv4/32, $ipv6/128" >> "${name}.conf"
+    echo "DNS = ${serv4}, ${serv6}" >> "${name}.conf" #Specifying DNS Server
     echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
     echo "" >> "${name}.conf"
     echo "[Peer]" >> "${name}.conf"
@@ -48,12 +51,12 @@ For each new client, the following steps must be taken. For the sake of simplici
     Run the script like
 
     ```bash
+    chmod +x /path/to/script.sh
     sudo -i
     cd /etc/wireguard
-    umask 077
 
-    bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 2 "annas-android"
-    bash "10.100.0." "fd08:4711::" "my_server_domain:47111" 3 "peters-laptop"
+    /path/to/script.sh "10.100.0." "fd08:4711::" "my_server_domain:47111" 2 "annas-android"
+    /path/to/script.sh "10.100.0." "fd08:4711::" "my_server_domain:47111" 3 "peters-laptop"
 
     exit
     ```
