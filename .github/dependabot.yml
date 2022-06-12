@@ -8,6 +8,8 @@ updates:
       time: "10:00"
     open-pull-requests-limit: 10
     versioning-strategy: increase
+    reviewers:
+      - "pi-hole/docs-maintainers"
   - package-ecosystem: pip
     directory: "/"
     schedule:
@@ -18,9 +20,13 @@ updates:
     allow:
       - dependency-type: direct
       - dependency-type: indirect
+    reviewers:
+      - "pi-hole/docs-maintainers"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: weekly
       day: saturday
       time: "10:00"
+    reviewers:
+      - "pi-hole/docs-maintainers"
