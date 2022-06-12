@@ -156,9 +156,9 @@ Controls whether and how FTL will reply with for address for which a local inter
 
 Note about `HOSTNAMEFQDN`: If no local suffix has been defined, FTL appends the local domain `.no_fqdn_available`. In this case you should either add `domain=whatever.com` to a custom config file inside `/etc/dnsmasq.d/` (to set `whatever.com` as local domain) or use `domain=#` which will try to derive the local domain from `/etc/resolv.conf` (or whatever is set with `resolv-file`, when multiple `search` directives exist, the first one is used).
 
-#### `DELAY_STARTUP=0` (PR [#716](https://github.com/pi-hole/FTL/pull/716)) {#delay_startup data-toc-label='Delay resolver startup'}
+#### `DELAY_STARTUP=0` (PR [#716](https://github.com/pi-hole/FTL/pull/716), PR [1349](https://github.com/pi-hole/FTL/pull/1349)) {#delay_startup data-toc-label='Delay resolver startup'}
 
-In certain configurations, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This is typically found when network interfaces appear only late during system startup and the interface startup priorities are configured incorrectly. This setting takes any integer value between 0 and 300 seconds.
+During startup, in some configurations, network interfaces appear only late during system startup and are not ready when FTL tries to bind to them. Therefore, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This setting takes any integer value between 0 and 300 seconds. To prevent delayed startup while the system is already runnung and FTL is restarted, the delay only takes place within the first 60 seconds (hard-coded) after booting.
 
 #### `NICE=-10` (PR [#798](https://github.com/pi-hole/FTL/pull/798)) {#nice data-toc-label='Set niceness'}
 
