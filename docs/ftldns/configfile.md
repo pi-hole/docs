@@ -158,7 +158,7 @@ Note about `HOSTNAMEFQDN`: If no local suffix has been defined, FTL appends the 
 
 #### `DELAY_STARTUP=0` (PR [#716](https://github.com/pi-hole/FTL/pull/716), PR [1349](https://github.com/pi-hole/FTL/pull/1349)) {#delay_startup data-toc-label='Delay resolver startup'}
 
-During startup, in some configurations, network interfaces appear only late during system startup and are not ready when FTL tries to bind to them. Therefore, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This setting takes any integer value between 0 and 300 seconds. To prevent delayed startup while the system is already runnung and FTL is restarted, the delay only takes place within the first 60 seconds (hard-coded) after booting.
+During startup, in some configurations, network interfaces appear only late during system startup and are not ready when FTL tries to bind to them. Therefore, you may want FTL to wait a given amount of time before trying to start the DNS revolver. This setting takes any integer value between 0 and 300 seconds. To prevent delayed startup while the system is already running and FTL is restarted, the delay only takes place within the first 60 seconds (hard-coded) after booting.
 
 #### `NICE=-10` (PR [#798](https://github.com/pi-hole/FTL/pull/798)) {#nice data-toc-label='Set niceness'}
 
