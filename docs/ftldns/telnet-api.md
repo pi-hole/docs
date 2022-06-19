@@ -167,6 +167,14 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
     86400
     ```
 
-Note that the port can also be `0` if someone decides to disable the DNS server part of Pi-hole
+    Note that the port can also be `0` if someone decides to disable the DNS server part of Pi-hole
+
+- `>gateway`: Get the IP of the gateway of the default route and the corresponding interface
+
+    ```text
+    192.168.0.1 enp2s0
+    ```
+
+    Note that if no non-default route could be found, `0.0.0.0` and an empty interface string is returned
 
 {!abbreviations.md!}
