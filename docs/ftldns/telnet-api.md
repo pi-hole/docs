@@ -4,6 +4,8 @@ Connect via e.g. `telnet 127.0.0.1 4711` or use `echo ">command" | nc 127.0.0.1 
 
 Closes the connection to the client
 
+---
+
 #### `>stats` {data-toc-label='stats'}
 
 Get current statistics
@@ -21,6 +23,8 @@ unique_clients 9
 status enabled
 ```
 
+---
+
 #### `>overTime` {data-toc-label='overTime'}
 
 Get over time data (10 min intervals)
@@ -34,6 +38,8 @@ Get over time data (10 min intervals)
 1525549500 143 0
 [...]
 ```
+
+---
 
 #### `>top-domains` {data-toc-label='top-domains'}
 
@@ -51,6 +57,8 @@ Get top domains
 
 Variant: `>top-domains (15)` to show (up to) 15 entries
 
+---
+
 #### `>top-ads` {data-toc-label='top-ads'}
 
 Get top ad domains
@@ -67,7 +75,9 @@ Get top ad domains
 
 Variant: `>top-ads (14)` to show (up to) 14 entries
 
-#### `top-clients` {data-toc-label='top-clients'}
+---
+
+#### `>top-clients` {data-toc-label='top-clients'}
 
 Get recently active top clients (IP addresses + hostnames (if available))
 
@@ -78,6 +88,8 @@ Get recently active top clients (IP addresses + hostnames (if available))
 ```
 
 Variant: `>top-clients (9)` to show (up to) 9 client entries or `>top-clients withzero (15)` to show (up to) 15 clients even if they have not been active recently (see PR #124 for further details)
+
+---
 
 #### `>forward-dest` {data-toc-label='forward-dest'}
 
@@ -90,6 +102,8 @@ Get forward destinations (IP addresses + hostnames (if available)) along with th
 ```
 
 Variant: `>forward-dest unsorted` to show forward destinations in unsorted order (equivalent to using `>forward-names`)
+
+---
 
 #### `>querytypes` {data-toc-label='querytypes'}
 
@@ -104,6 +118,8 @@ SOA: 0.05
 PTR: 0.54
 TXT: 0.00
 ```
+
+---
 
 #### `>getallqueries` {data-toc-label='getallqueries'}
 
@@ -124,6 +140,8 @@ Get all queries that FTL has in memory
 
 Variants: `>getallqueries (37)` show (up to) 37 latest entries, `>getallqueries-time 1483964295 1483964312` gets all queries that FTL has in its database in a limited time interval, `>getallqueries-time 1483964295 1483964312 (17)` show matches in the (up to) 17 latest entries, `>getallqueries-domain www.google.com` gets all queries that FTL has in its database for a specific domain name, `>getallqueries-client 2.3.4.5` : gets all queries that FTL has in its database for a specific client name *or* IP
 
+---
+
 #### `>recentBlocked` {data-toc-label='recentBlocked'}
 
 Get most recently pi-holed domain name
@@ -134,6 +152,8 @@ www.googleadservices.com
 
 Variant: `>recentBlocked (4)` show the four most recent blocked domains
 
+---
+
 #### `>clientID` {data-toc-label='clientID'}
 
 Get ID of currently connected client
@@ -141,6 +161,8 @@ Get ID of currently connected client
 ```text
 6
 ```
+
+---
 
 #### `>version` {data-toc-label='version'}
 
@@ -154,6 +176,8 @@ hash 106498d
 date 2017-03-26 13:10:43 +0200
 ```
 
+---
+
 #### `>dbstats` {data-toc-label='dbstats'}
 
 Get some statistics about `FTL`'s' long-term storage database (this request may take some time for processing in case of a large database file)
@@ -163,6 +187,8 @@ queries in database: 2700304
 database filesize: 199.20 MB
 SQLite version: 3.23.1
 ```
+
+---
 
 #### `>domain pi-hole.net` {data-toc-label='domain'}
 
@@ -175,6 +201,8 @@ Blocked: 0
 Wildcard blocked: false
 ```
 
+---
+
 #### `>cacheinfo` {data-toc-label='cacheinfo'}
 
 Get DNS server cache size and usage information
@@ -184,6 +212,8 @@ cache-size: 500000
 cache-live-freed: 0
 cache-inserted: 15529
 ```
+
+---
 
 #### `>dns-port` {data-toc-label='dns-port'}
 
@@ -195,6 +225,8 @@ Get DNS port FTL is listening on
 
 Note that the port can also be `0` if someone decides to disable the DNS server part of Pi-hole
 
+---
+
 #### `>maxlogage` {data-toc-label='maxlogage'}
 
 Get timespan of the statistics shown on the dashboard (in seconds)
@@ -202,6 +234,8 @@ Get timespan of the statistics shown on the dashboard (in seconds)
 ```text
 86400
 ```
+
+---
 
 #### `>gateway` {data-toc-label='gateway'}
 
