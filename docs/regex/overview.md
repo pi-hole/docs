@@ -32,7 +32,7 @@ DEBUG_REGEX=true
 
 in your `/etc/pihole/pihole-FTL.conf` and restart `pihole-FTL` to enable or disable this mode.
 
-Once the debugging mode is enabled, each match will be logged to `/var/log/pihole/pihole-FTL.log` in the following format:
+Once the debugging mode is enabled, each match will be logged to `/var/log/pihole/FTL.log` in the following format:
 
 ```text
 [2018-07-17 17:40:51.304] Regex blacklist (DB ID 15) >> MATCH: "whatever.twitter.com" vs. "((^)|(\.))twitter\."
