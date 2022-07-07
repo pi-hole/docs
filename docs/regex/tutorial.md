@@ -119,7 +119,7 @@ Blocks domains containing only numbers (no letters) and ending in `.com` or `.ed
 ### Block domains without subdomains
 
 ```
-^[a-z0-9]+([\-]{1}[a-z0-9]+)*\.[a-z]{2,7}$
+^[a-z0-9]+([-]{1}[a-z0-9]+)*\.[a-z]{2,7}$
 ```
 
 A domain name shall not start or end with a dash but can contain any number of them. It must be followed by a TLD (we assume a valid TLD length of two to seven characters)
