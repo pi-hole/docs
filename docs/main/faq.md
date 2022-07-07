@@ -61,7 +61,7 @@ If requesting a lot of data from the long-term database you get this error
 ```code
 An unknown error occurred while loading the data.
 
-Check the server's log files (/var/log/lighttpd/error.log) for details.
+Check the server's log files (/var/log/lighttpd/error-pihole.log) for details.
 
 You may need to increase PHP memory limit.
 
