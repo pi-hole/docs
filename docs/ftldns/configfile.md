@@ -67,7 +67,7 @@ By default, `FTL` determines the address of the interface a query arrived on and
 
 Used to overwrite the IP address for blocked `AAAA` queries. See [`BLOCK_IPV4`](#block_ipv4) for details when this setting is used.
 
-#### `REPLY_WHEN_BUSY=ALLOW|DROP|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156)) {#reply_when_busy data-toc-label='Database busy reply'}
+#### `REPLY_WHEN_BUSY=DROP|ALLOW|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156) & PR [#1341](https://github.com/pi-hole/FTL/pull/1341)) {#reply_when_busy data-toc-label='Database busy reply'}
 
 When the gravity database is locked/busy, how should Pi-hole handle queries?
 
