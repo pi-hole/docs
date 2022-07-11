@@ -39,7 +39,7 @@ The default settings for FTL's rate-limiting are to permit no more than `1000` q
 It is important to note that rate-limiting is happening on a *per-client* basis. Other clients can continue to use FTL while rate-limited clients are short-circuited at the same time.
 
 For this setting, both numbers, the maximum number of queries within a given time, **and** the length of the time interval (seconds) have to be specified. For instance, if you want to set a rate limit of 1 query per hour, the option should look like `RATE_LIMIT=1/3600`.
-The time interval is relative to when FTL has finished starting (start of the daemon + possible delay by DELAY_STARTUP)  then it will advance in steps of the rate-limiting interval. If a client reaches the maximum number of queries it will be blocked until **the end of the current interval**. This will be logged to `/var/log/pihole-FTL.log`, e.g. `Rate-limiting 10.0.1.39 for at least 44 seconds`. If the client continues to send queries while being blocked already and this number of queries during the blocking exceeds the limit the client will continue to be blocked **until the end of the next interval** (`pihole-FTL.log` will contain lines like `Still rate-limiting 10.0.1.39 as it made additional 5007 queries`).  As soon as the client requests less than the set limit, it will be unblocked (`Ending rate-limitation of 10.0.1.39`).
+The time interval is relative to when FTL has finished starting (start of the daemon + possible delay by DELAY_STARTUP)  then it will advance in steps of the rate-limiting interval. If a client reaches the maximum number of queries it will be blocked until **the end of the current interval**. This will be logged to `/var/log/pihole/FTL.log`, e.g. `Rate-limiting 10.0.1.39 for at least 44 seconds`. If the client continues to send queries while being blocked already and this number of queries during the blocking exceeds the limit the client will continue to be blocked **until the end of the next interval** (`FTL.log` will contain lines like `Still rate-limiting 10.0.1.39 as it made additional 5007 queries`).  As soon as the client requests less than the set limit, it will be unblocked (`Ending rate-limitation of 10.0.1.39`).
 
 Rate-limiting may be disabled altogether by setting `RATE_LIMIT=0/0` (this results in the same behavior as before FTL v5.7).
 
@@ -250,7 +250,7 @@ Specify the path and filename of FTL's SQLite3 long-term database. Setting this 
 
 ### File options
 
-#### `LOGFILE=/var/log/pihole-FTL.log` {#file_LOGFILE data-toc-label='Log file'}
+#### `LOGFILE=/var/log/pihole/FTL.log` {#file_LOGFILE data-toc-label='Log file'}
 
 The location of FTL's log file. If you want to move the log file to a different place, also consider [this FAQ article](https://discourse.pi-hole.net/t/moving-the-pi-hole-log-to-another-location-device/2041).
 
@@ -324,7 +324,7 @@ Print information about ARP table processing: How long did parsing take, whether
 
 #### `DEBUG_REGEX=false|true` {#debug_regex data-toc-label='Regular expressions'}
 
-Controls if *FTL*DNS should print extended details about regex matching into `pihole-FTL.log`.
+Controls if *FTL*DNS should print extended details about regex matching into `FTL.log`.
 
 **[More details](../regex/overview.md)**
 

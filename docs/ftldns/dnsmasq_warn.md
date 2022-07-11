@@ -1,6 +1,6 @@
 # Known `dnsmasq` warnings
 
-Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the Pi-hole diagnosis system.
+Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) and the Pi-hole diagnosis system.
 <!-- markdownlint-disable MD046 -->
 !!! warning "ignoring zone transfer request from `ADDRESS`"
 
@@ -145,7 +145,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
     The configured maximum number of concurrent DNS queries for a given server is reached. The system is either very busy at the moment or not receiving queries from the configured upstream. Check your connectivity or the upstream DNS server status.
 
-    The warning can also be printed when being spammed with an excessive amount of duplicates or when the upstream server never replies for specific domains. Check your logs and try to identify similarities between the query directly preceding this warning and earlier queries in `/var/log/pihole.log`. Try to find out if your upstream does maybe never reply to specific domains and fix this.
+    The warning can also be printed when being spammed with an excessive amount of duplicates or when the upstream server never replies for specific domains. Check your logs and try to identify similarities between the query directly preceding this warning and earlier queries in `/var/log/pihole/pihole.log`. Try to find out if your upstream does maybe never reply to specific domains and fix this.
 
     This warning is printed at most once every five seconds (per upstream server) to help mitigate unlimited log file growth.
 
