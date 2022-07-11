@@ -247,4 +247,31 @@ Get the IP of the gateway of the default route and the corresponding interface
 
 Note that if no non-default route could be found, `0.0.0.0` and an empty interface string is returned
 
+---
+
+#### `>interfaces` {data-toc-label='interfaces'}
+
+Get extended information of the interfaces of th Pi-hole device
+
+```text
+eth0 UP 1000 2.2GB 5.6GB 10.0.1.5 fd00:e57b:XXXX:210e:1a1,2a01:XXXX:c15b,fe80::2e5c:XXXX:4060
+wlan0 DOWN -1 0.0B 0.0B - -
+docker0 UP 10000 837.6MB 300.7MB 172.17.0.1,169.254.241.237 -
+lo UP -1 48.0MB 48.0MB 127.0.0.1 -
+wg0 UP -1 1.0GB 141.2MB 10.0.40.1 -
+sum UP 0 4.2GB 6.1GB - -
+```
+
+Column definitions are:
+
+1. Interface name
+2. UP/DOWN status
+3. Link speed in MBit/s (-1 means "Not available" (like link down) or "Not applicable" (like virtual interface))
+4. TX bytes
+5. RX bytes
+6. Associated IPv4 addresses
+7. Associated IPv6 addresses
+
+The default interface (the one connected to the gateway) will always be the first. The sum will always be the last one - even if you have (for whatever reason) an interface called sum. Regarding the link speed: It won't work for most WiFi interfaces as the speed is not known at the kernel level. Instead, the drivers manage them dynamically depending on package loss, signal strength, etc. - in this case, you'll see link speed -1 as well
+
 {!abbreviations.md!}
