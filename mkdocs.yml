@@ -230,3 +230,5 @@ plugins:
         'ftldns/regex/index.md': regex/overview.md
         'ftldns/regex/overview.md': regex/overview.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
+        'database/gravity/example.md': group_management/example.md
+
