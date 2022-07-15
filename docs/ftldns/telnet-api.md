@@ -138,7 +138,13 @@ Get all queries that FTL has in memory
 1525554586 AAAA github.com 192.168.2.100 2 0 1 18
 ```
 
-Variants: `>getallqueries (37)` show (up to) 37 latest entries, `>getallqueries-time 1483964295 1483964312` gets all queries that FTL has in its database in a limited time interval, `>getallqueries-time 1483964295 1483964312 (17)` show matches in the (up to) 17 latest entries, `>getallqueries-domain www.google.com` gets all queries that FTL has in its database for a specific domain name, `>getallqueries-client 2.3.4.5` : gets all queries that FTL has in its database for a specific client name *or* IP
+Variants:
+
+- `>getallqueries (37)` show (up to) 37 latest entries,
+- `>getallqueries-time 1483964295 1483964312` gets all queries that FTL has in its database in a limited time interval,
+- `>getallqueries-time 1483964295 1483964312 (17)` show matches in the (up to) 17 latest entries,
+- `>getallqueries-domain www.google.com` gets all queries that FTL has in its database for a specific domain name,
+- `>getallqueries-client 2.3.4.5`: gets all queries that FTL has in its database for a specific client name *or* IP
 
 ---
 
