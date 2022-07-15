@@ -125,7 +125,7 @@ TXT: 0.00
 
 Get all queries that FTL has in memory
 
- ```text
+```text
 1525554586 A fonts.googleapis.com 192.168.2.100 3 0 4 6
 1525554586 AAAA fonts.googleapis.com 192.168.2.100 3 0 4 5
 1525554586 A www.mkdocs.org 192.168.2.100 3 0 4 7
