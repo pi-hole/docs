@@ -98,7 +98,6 @@ nav:
     - 'Domain database':
       - 'Overview': database/gravity/index.md
       - 'Group management': database/gravity/groups.md
-      - 'Examples': database/gravity/example.md
       - 'Database recovery': database/gravity/recovery.md
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
@@ -120,6 +119,9 @@ nav:
             - 'gdb': ftldns/debugging.md
             - 'valgrind': ftldns/valgrind.md
         - 'In-depth manual': ftldns/in-depth.md
+  - 'Group management':
+    - 'Overview': group_management/groups.md
+    - 'Examples': group_management/example.md
   - 'RegEx blocking':
     - "Overview": regex/overview.md
     - "Testing": regex/testmode.md
@@ -228,3 +230,5 @@ plugins:
         'ftldns/regex/index.md': regex/overview.md
         'ftldns/regex/overview.md': regex/overview.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
+        'database/gravity/example.md': group_management/example.md
+
