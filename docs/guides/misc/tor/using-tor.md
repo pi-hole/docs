@@ -4,7 +4,7 @@ To enhance your privacy you might want to route all or part of your Browser Traf
 
 ### Tor Browser
 
-The easiest and most reliable solution would be to use the [Tor Browser](https://www.torproject.org/download/). Though that won't use your Pi-hole DNS Server out of the box. You can, however, disable `Proxy DNS when using SOCKS v5` in Tor Browsers Preferences -> Advanced -> Network -> Settings and [make sure](#make-sure-it-works) to point your system to use Pi-hole with DNS over Tor activated.
+The easiest and most reliable solution would be to use the [Tor Browser](https://www.torproject.org/download/). Though that won't use your Pi-hole DNS Server out of the box. You can, however, disable `Proxy DNS when using SOCKS v5` in Tor Browsers Preferences -> Advanced -> Network -> Settings and make sure to point your system to use Pi-hole with DNS over Tor activated.
 
 ### Your Browser
 
@@ -22,7 +22,7 @@ Restart Tor
 sudo service tor restart
 ```
 
-Point your browser to use your Pi-hole IP or Hostname (e.g. `pi.hole`) and `Port 9050` as Socks5 Proxy. Do not enable `Proxy DNS when using SOCKS v5` and [make sure](#make-sure-it-works) to point your system to use Pi-hole with DNS over Tor activated.
+Point your browser to use your Pi-hole IP or Hostname (e.g. `pi.hole`) and `Port 9050` as Socks5 Proxy. Do not enable `Proxy DNS when using SOCKS v5` and make sure to point your system to use Pi-hole with DNS over Tor activated.
 
 * For Chrome you can either use e.g. the [Proxy SwitchyOmega Extension](https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif) or start Chrome with [command-line parameters](https://www.chromium.org/developers/design-documents/network-stack/socks-proxy).
 

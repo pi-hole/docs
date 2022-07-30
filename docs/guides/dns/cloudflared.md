@@ -1,4 +1,4 @@
-### Why use DNS-Over-HTTPS?
+### Why use DNS-Over-HTTPS? [^guide]
 
 DNS-Over-HTTPS is a protocol for performing DNS lookups via the same protocol you use to browse the web securely: **HTTPS**.
 
@@ -264,4 +264,4 @@ sudo systemctl daemon-reload
 
 After the above, don't forget to change the DNS back to something else in Pi-hole's DNS settings!
 
-[^guide]: Based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
+[^guide]: Guide based on [this guide by Ben Dews | bendews.com](https://bendews.com/posts/implement-dns-over-https/)
