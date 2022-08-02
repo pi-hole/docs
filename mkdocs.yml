@@ -177,9 +177,10 @@ nav:
       - 'Caddy': guides/webserver/caddy.md
       - 'Traefik (not in Docker)': guides/webserver/traefik-nodocker.md
   - 'Router setup':
+    - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
     - 'Fritz!Box (DE)': routers/fritzbox-de.md
-    - 'ASUS router': routers/asus.md
+    - 'Ubiquiti USG': routers/ubiquiti-usg.md
   - 'FAQ': main/faq.md
   - 'Community Projects': main/projects.md
 
