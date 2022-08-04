@@ -199,7 +199,7 @@ That's it.
 You can now copy the configuration file to your client (if you created the config on the server). If the client is a mobile device such as a phone, `qrencode` can be used to generate a scanable QR code:
 
 ```bash
-sudo qrencode -t ansiutf8 -r "/etc/wireguard/${name}.conf"
+sudo qrencode -t ansiutf8 < "/etc/wireguard/${name}.conf"
 ```
 
 (you may need to install `qrencode` using `sudo apt-get install qrencode`)
