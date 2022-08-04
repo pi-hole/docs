@@ -32,15 +32,15 @@ Choosing this option will have DNS queries taking the following path:
 
 Go to **Settings** --> **Networks** and click on the Network line that you want to modify:
 
-![Screenshot of USG LAN](../images/usg-lan.png)
+![Screenshot of USG LAN](../images/routers/usg-lan.png)
 
 Under **DHCP**, in the DHCP Server Management section click "Show options" to reveal the **DHCP DNS Server** section. Check the **Enable** box and enter your Raspi's IPv4 address here.
 
-![Screenshot of USG LAN DHCP settings](../images/usg-lan-dhcp.png)
+![Screenshot of USG LAN DHCP settings](../images/routers/usg-lan-dhcp.png)
 
 Scroll down to **IPv6**, and under the **DHCPv6/RDNSS DNS Control** section, uncheck **Auto** if it's enabled and enter Raspi's IPv6 address here. Click **Apply Changes** to have the settings persistently saved.
 
-![Screenshot of USG LAN DHCPv6 settings](../images/usg-lan-dhcpv6.png)
+![Screenshot of USG LAN DHCPv6 settings](../images/routers/usg-lan-dhcpv6.png)
 
 All client devices on your network should now automatically be configured with a single IPv4 and single IPv6 address for DNS resolution. If you don't see your client devices update quickly enough, you *can* toggle Wi-Fi off/on or disconnect the Ethernet cable for a couple of seconds and then reconnect it.
 
@@ -57,8 +57,8 @@ If you'd rather have your USG forward all DNS traffic to Pi-hole, you can comple
 
 Log into your Unifi Cloud Key. Go to **Settings** -> **Internet**. Click on the WAN line that appears.
 
-![Screenshot of USG WAN](../images/usg-wan.png)
+![Screenshot of USG WAN](../images/routers/usg-wan.png)
 
 Under **Advanced**, in the DNS Server section uncheck the Auto box and add your Raspi's IPv4 address. This allows your USG to use Pi-hole for all DNS lookups. Click **Apply Changes** to have the settings persistently saved.
 
-![Screenshot of USG WAN Advanced settings](../images/usg-wan-advanced.png)
+![Screenshot of USG WAN Advanced settings](../images/routers/usg-wan-advanced.png)
