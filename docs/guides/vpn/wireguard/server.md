@@ -40,13 +40,13 @@ If there is no `wireguard` package available for your system, you can follow the
 
     ### Install the toolchain
 
-    === "Raspberry Pi"
+    - Raspberry Pi
 
         ```bash
         sudo apt install -y raspberrypi-kernel-headers libelf-dev build-essential pkg-config git
         ```
 
-    === "Linux"
+    - Linux
 
         ```bash
         sudo apt install -y linux-headers-$(uname -r) libelf-dev build-essential libmnl-dev git
