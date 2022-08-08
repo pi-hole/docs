@@ -8,7 +8,7 @@ Diese Anleitung wurde für IPv4 geschrieben und muss für IPv6 Netwerke entsprec
 
 Einige dieser Einstellungen sind nur sichtbar, wenn voher die Ansicht auf "Erweitert" gesetzt wurde. Diese wird durch Umschalten (Klick) auf "Standard" am unteren linken Bildrand aktiviert.
 
-![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-advanced-de.png)
+![Screenshot der Fritz!Box DHCP Einstellungen](../images/routers/fritzbox-advanced-de.png)
 
 ## Pi-hole als DNS Server via DHCP an Clients verteilen (LAN Seite)
 
@@ -31,7 +31,7 @@ Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Heimnetz
 
 eingetragen werden.
 
-![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-dhcp-de.png)
+![Screenshot der Fritz!Box DHCP Einstellungen](../images/routers/fritzbox-dhcp-de.png)
 
 !!! warning
     Clients bemerken Änderungen an den DHCP Einstellungen erst, wenn der DHCP Lease erneuert wird. Der einfachste Weg dies zu erzwingen ist ein Unterbrechen und Wiederherstellen der Netzwerkverbindung.
@@ -54,7 +54,7 @@ Internet/Zugangsdaten/DNS-Server
 
 eingetragen werden.
 
-![Screenshot der Fritz!Box WAN DNS Konfiguration](../images/fritzbox-wan-dns-de.png)
+![Screenshot der Fritz!Box WAN DNS Konfiguration](../images/routers/fritzbox-wan-dns-de.png)
 
 !!! warning
     Die Fritz!Box darf mit dieser Konfiguration nicht als Upstream DNS Server im Pi-hole eingestellt werden. Dies würde zu einem DNS Loop führen, da Pi-hole dann die Anfragen an die Fritz!Box senden würde, welche sie wiederum an Pi-hole senden würde.
@@ -89,4 +89,4 @@ Folgende Einstellungen müssen dafür vorgenommen werden:
     * **IP address of your DHCP server (router):** IP-Adresse der Fritz!Box selbst, Standard ist **192.168.178.1**
     * **Local domain name (optional):** Name der lokalen Domän, für die Fritz!Box **fritz.box**
 
-![Screenshot der Conditional Forwarding Einstellungen](../images/conditional-forwarding.png)
+![Screenshot der Conditional Forwarding Einstellungen](../images/routers/conditional-forwarding.png)
