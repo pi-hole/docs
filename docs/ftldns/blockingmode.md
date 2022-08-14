@@ -33,7 +33,7 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 ### Disadvantage
 
 - Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
-- Some networking stacks and applications might treat 0.0.0.0 as if it was 127.0.0.1 and try to connect to a local webserver if one's running; causing various connectivity issues
+- Some networking stacks and applications might treat `0.0.0.0` as if it was `127.0.0.1` and try to connect to a local webserver if one's running; possibly causing connectivity issues
 
 ## Pi-hole's IP (IPv6 NODATA) blocking
 
