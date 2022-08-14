@@ -28,6 +28,7 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 ### Advantages
 
 - Speedup and less traffic
+- Solves potential HTTPS timeouts as requests may never be performed (depending on your system)
 - No need to run a web server on your Pi-hole (reduces complexity when running other web services on the same machine)
 
 ### Disadvantage
