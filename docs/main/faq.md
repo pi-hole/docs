@@ -14,7 +14,7 @@ nskywzjbpj
 
 **Solution:**
 
-This happens when using Chrome-based browsers. Chrome tries to find out if someone is messing up with the DNS (i.e. wildcard DNS servers to catch all domains). Chrome does this by issuing DNS requests to randomly generated domain names with bewteen 7 and 15 characters
+This happens when using Chrome-based browsers. Chrome tries to find out if someone is messing up with the DNS (i.e. wildcard DNS servers to catch all domains). Chrome does this by issuing DNS requests to randomly generated domain names with between 7 and 15 characters
 
 In a normal setup this results in a “No such name” response from your DNS server. If the DNS server you use has a wildcard setup, each of these requests will result in a response (which is normally even the same) so Chrome knows that there is someone messing around with DNS responses.
 
@@ -61,7 +61,7 @@ If requesting a lot of data from the long-term database you get this error
 ```code
 An unknown error occurred while loading the data.
 
-Check the server's log files (/var/log/lighttpd/error.log) for details.
+Check the server's log files (/var/log/lighttpd/error-pihole.log) for details.
 
 You may need to increase PHP memory limit.
 
@@ -79,7 +79,7 @@ The amount of memory needed depends on many factors:
 - other processes running on your device,
 - the amount of data you want to process.
 
-One aproach would be to increase the limit by 128M and check if it was enough to retrieve the data.
+One approach would be to increase the limit by 128M and check if it was enough to retrieve the data.
 If not, add another 128M, check again. If not, add another 128M, check again, until you find the best value.
 
 _Note:_

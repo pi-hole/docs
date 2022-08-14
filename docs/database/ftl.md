@@ -54,7 +54,7 @@ Label | Type | Allowed to by empty | Content
 `reply_time` | real | Yes | Seconds it took until the final reply was received
 `dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](ftl.md#dnssec-status))
 
-The `queries` `VIEW` is dynamically generated from the data actually stored in the tables `queries_storage` and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `queries_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
+The `queries` `VIEW` is dynamically generated from the data actually stored in the `query_storage` table and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `query_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
 
 #### Data-dependent `additional_info` field
 
@@ -130,6 +130,8 @@ ID | Status | | Details
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
+15 | Blocked | ❌ | Blocked (database is busy)<br> How these queries are handled can be [configured](../ftldns/configfile.md#reply_when_busy)
+16 | Blocked | ❌ | Blocked (special domain)<br>*E.g. Mozilla's canary domain and Apple's Private Relay domains* <br> Handling can be [configured](../ftldns/configfile.md)
 
 ### Supported reply types
 

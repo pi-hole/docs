@@ -2,7 +2,7 @@ site_name: 'Pi-hole documentation'
 site_url: 'https://docs.pi-hole.net/'
 repo_url: 'https://github.com/pi-hole/pi-hole'
 edit_uri: '../docs/blob/master/docs/'
-copyright: 'Copyright &copy; 2021 Pi-hole LLC'
+copyright: 
 remote_branch: gh-pages
 theme:
   name: 'material'
@@ -66,7 +66,8 @@ markdown_extensions:
   - pymdownx.details
   # Tabbed provides a syntax to easily add tabbed Markdown content.
   # https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
   - footnotes
   # Adds the ability to define abbreviations
@@ -98,7 +99,6 @@ nav:
     - 'Domain database':
       - 'Overview': database/gravity/index.md
       - 'Group management': database/gravity/groups.md
-      - 'Examples': database/gravity/example.md
       - 'Database recovery': database/gravity/recovery.md
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
@@ -120,6 +120,9 @@ nav:
             - 'gdb': ftldns/debugging.md
             - 'valgrind': ftldns/valgrind.md
         - 'In-depth manual': ftldns/in-depth.md
+  - 'Group management':
+    - 'Overview': group_management/groups.md
+    - 'Examples': group_management/example.md
   - 'RegEx blocking':
     - "Overview": regex/overview.md
     - "Testing": regex/testmode.md
@@ -175,9 +178,10 @@ nav:
       - 'Caddy': guides/webserver/caddy.md
       - 'Traefik (not in Docker)': guides/webserver/traefik-nodocker.md
   - 'Router setup':
+    - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
     - 'Fritz!Box (DE)': routers/fritzbox-de.md
-    - 'ASUS router': routers/asus.md
+    - 'Ubiquiti USG': routers/ubiquiti-usg.md
   - 'FAQ': main/faq.md
   - 'Community Projects': main/projects.md
 
@@ -228,3 +232,5 @@ plugins:
         'ftldns/regex/index.md': regex/overview.md
         'ftldns/regex/overview.md': regex/overview.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
+        'database/gravity/example.md': group_management/example.md
+

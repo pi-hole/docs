@@ -14,6 +14,14 @@ server.port = 1080
 
 In this case, port 1080 was chosen at random. You can use a custom port.
 
+BUT ANY CHANGES MADE TO THIS FILE WILL BE LOST ON THE NEXT PI-HOLE UPDATE.
+
+So if you want a permanent method of changing the lighttpd port and your lighttpd version >= 1.4.46, you can overwrite the port in: `/etc/lighttpd/external.conf` (note the different syntax!):
+
+```lighttpd
+server.port := 1080
+```
+
 Next, restart the lighttpd server with either of these commands:
 
 ```bash

@@ -1,6 +1,6 @@
 # Known `dnsmasq` warnings
 
-Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the Pi-hole diagnosis system.
+Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) and the Pi-hole diagnosis system.
 <!-- markdownlint-disable MD046 -->
 !!! warning "ignoring zone transfer request from `ADDRESS`"
 
@@ -139,13 +139,13 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
     `dnsmasq` can be configured to only accept queries from at-most-one-hop-away addresses using the option `local-service`. Other queries are discarded in this case.
 
-    This is ment to be a safe default to keep otherwise unconfigured installations safe. Note that `local-service` is ignored if *any* access-control config is in place (`interface`, `except-interface`, `listen-address` or `auth-server`).
+    This is meant to be a safe default to keep otherwise unconfigured installations safe. Note that `local-service` is ignored if *any* access-control config is in place (`interface`, `except-interface`, `listen-address` or `auth-server`).
 
 !!! warning "Maximum number of concurrent DNS queries reached (max: `NUMBER`)"
 
     The configured maximum number of concurrent DNS queries for a given server is reached. The system is either very busy at the moment or not receiving queries from the configured upstream. Check your connectivity or the upstream DNS server status.
 
-    The warning can also be printed when being spammed with an excessive amount of duplicates or when the upstream server never replies for specific domains. Check your logs and try to identify similarities between the query directly preceding this warning and earlier queries in `/var/log/pihole.log`. Try to find out if your upstream does maybe never reply to specific domains and fix this.
+    The warning can also be printed when being spammed with an excessive amount of duplicates or when the upstream server never replies for specific domains. Check your logs and try to identify similarities between the query directly preceding this warning and earlier queries in `/var/log/pihole/pihole.log`. Try to find out if your upstream does maybe never reply to specific domains and fix this.
 
     This warning is printed at most once every five seconds (per upstream server) to help mitigate unlimited log file growth.
 
@@ -167,7 +167,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
 !!! warning "overflow: `NUMBER` log entries lost"
 
-    When using asynchroneous logging and the disk is too slow, we can loose log lines during busy times. This can be avoided by decreasing the system load or switching to synchroneous logging. Note that synchroneous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
+    When using asynchronous logging and the disk is too slow, we can loose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
 
 !!! warning "failed to create listening socket for `ADDRESS`: `MSG`"
 
@@ -177,7 +177,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole.log`) and the P
 
     Same as above but for a port rather than an address.
 
-!!! warning "LOUD WARNING: listening on `ADDRESSS` may accept requests via interfaces other than `IFNAME`"
+!!! warning "LOUD WARNING: listening on `ADDRESS` may accept requests via interfaces other than `IFNAME`"
 
     When using `bind-interfaces`, the only access control is the addresses `dnsmasq` is listening on. There's nothing to avoid a query to the address of an internal interface arriving via an external interface where we don't want to accept queries, except that in the usual case the addresses of internal interfaces are RFC1918. When `bind-interfaces` in use, and we listen on an address that looks like it's probably globally routeable, this warning is printed.
 

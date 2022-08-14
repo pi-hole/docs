@@ -15,7 +15,7 @@ This is less convenient, so many users will simply decide to install Pi-hole and
 First, download the OpenVPN installer; make it executable, and then run it:
 
 ```bash
-wget https://git.io/vpn -O openvpn-install.sh
+wget https://github.com/Nyr/openvpn-install/raw/master/openvpn-install.sh
 chmod 755 openvpn-install.sh
 ./openvpn-install.sh
 ```

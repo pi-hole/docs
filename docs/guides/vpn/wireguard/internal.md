@@ -47,6 +47,7 @@ PostDown = iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w
 <!-- markdownlint-disable code-block-style -->
 !!! warning "**Important:** Debian Bullseye (Debian 11) and Raspian 11"
     Debian Bullseye doesn't include iptables per default and uses nftables.
+    (you may need to install `nftables` using `sudo apt-get install nftables`)
 
     We have to set following rules for PostUP and PostDown:
     ```bash

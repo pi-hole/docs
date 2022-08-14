@@ -31,6 +31,9 @@ Label | Type | Uniqueness enforced | Content
 `date_modified` | integer | No | Timestamp when domain was last modified, automatically updated when a record is changed
 `comment` | text | No | Optional field for arbitrary user comments
 `date_updated` | integer | No | Timestamp when this list has last been updated (`pihole -g` does **not** update this timestamp when the downloaded list did not change since the last `pihole -g` run)
+`number` | integer | No | Number of domains on this list
+`invalid_domains` | integer | No | Number of invalid domains on this list
+`status` | integer | No | `1` = List download was successful, `2` = List unchanged upstream, Pi-hole used a local copy, `3` = List unavailable, Pi-hole used a local copy, `4` = List unavailable, there is no local copy of this list available on your Pi-hole
 
 ## Gravity Table (`gravity`)
 

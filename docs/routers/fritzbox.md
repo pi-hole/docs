@@ -8,7 +8,7 @@ This guide is IPv4 only. You need to adjust for IPv6 accordingly.
 
 Some of the following settings might be visible only if advanced settings are enabled. Therefore, "View" has to be changed to advanced by clicking on "Standard" in the lower left corner.
 
-![Screenshot der Fritz!Box DHCP Einstellungen](../images/fritzbox-advanced.png)
+![Screenshot der Fritz!Box DHCP Einstellungen](../images/routers/fritzbox-advanced.png)
 
 ## Distribute Pi-hole as DNS server via DHCP
 
@@ -26,10 +26,10 @@ The Fritz!Box can be Pi-hole's upstream DNS server, as long Pi-hole itself is no
 To set it up, enter Pi-hole's IP as "Local DNS server" in
 
 ```bash
-Home Network/Network/Network Settings/IP Adresses/IPv4 Configuration/Home Network
+Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Home Network
 ```
 
-![Screenshot of Fritz!Box DHCP Settings](../images/fritzbox-dhcp.png)
+![Screenshot of Fritz!Box DHCP Settings](../images/routers/fritzbox-dhcp.png)
 
 !!! warning
     Clients will notice changes in DHCP settings only after they acquired a new DHCP lease. The easiest way to force a renewal is to dis/reconnect the client from the network.
@@ -51,7 +51,7 @@ To set it up, enter Pi-hole's IP as "Preferred DNSv4 server" **and** "Alternativ
 Internet/Account Information/DNS server
 ```
 
-![Screenshot of Fritz!Box WAN DNS Configuration](../images/fritzbox-wan-dns.png)
+![Screenshot of Fritz!Box WAN DNS Configuration](../images/routers/fritzbox-wan-dns.png)
 
 !!! warning
     Don't set the Fritz!Box as upstream DNS server for Pi-hole if using this configuration! This will lead to a DNS loop as the Pi-hole will send the queries to the Fritz!Box which in turn will send them to Pi-hole.
@@ -63,7 +63,7 @@ If only this configuration is used, you won't see individual clients in Pi-hole'
 There is no option to set the DNS server for the guest network in
 
 ```bash
-Home Network/Network/Network Settings/IP Adresses/IPv4 Configuration/Guest Network
+Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Guest Network
 ```
 
 The Fritz!Box always sets its own IP as DNS server for the guest network. To filter its traffic, you have to setup Pi-hole as upstream DNS server for your Fritz!Box. As there is no other option, all DNS requests from your guest network will appear as coming from your Fritz!Box. Individual filtering per client within the guest network is therefore not possible.
@@ -84,4 +84,4 @@ The following settings must be made:
     * **IP address of your DHCP server (router):** IP of the Fritz!Box, standard is **192.168.178.1**
     * **Local domain name (optional):** Fritz!Box uses **fritz.box**
 
-![Screenshot der Conditional Forwarding Einstellungen](../images/conditional-forwarding.png)
+![Screenshot der Conditional Forwarding Einstellungen](../images/routers/conditional-forwarding.png)
