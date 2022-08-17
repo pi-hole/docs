@@ -32,14 +32,7 @@ Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture,
 - Solves potential HTTPS timeouts as requests are never performed
 - No need to run a web server on your Pi-hole (reduces complexity when running other web services on the same machine)
 
-### Disadvantage
-
-- Blocking page cannot be shown and whitelisting has to be performed from the dashboard or CLI
-
 ## Pi-hole's IP (IPv6 NODATA) blocking
-
-!!! warning
-    The block page can only be displayed for unencrypted `http` connections. Since the majority of web pages today are accessed over encrypted `https` connections, no block page will be displayed. This option may be removed in the future.
 
 `/etc/pihole/pihole-FTL.conf` setting:
 
@@ -59,18 +52,13 @@ doubleclick.net.        2       IN      A       192.168.2.11
 
 ### Advantage
 
-- Shows a blocking page from which blocked domains can be whitelisted
 - Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
 
 ### Disadvantages
 
-- Requires a web server to run on your Pi-hole
 - May cause time-outs for HTTPS content even with properly configured firewall rules
 
 ## Pi-hole's full IP blocking
-
-!!! warning
-    The block page can only be displayed for unencrypted `http` connections. Since the majority of web pages today are accessed over encrypted `https` connections, no block page will be displayed. This option may be removed in the future.
 
 `/etc/pihole/pihole-FTL.conf` setting:
 
@@ -89,13 +77,8 @@ doubleclick.net.        2       IN      A       192.168.2.11
 doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:4242
 ```
 
-### Advantage
-
-- Shows a blocking page from which blocked domains can be whitelisted
-
 ### Disadvantages
 
-- Requires a web server to run on your Pi-hole
 - May cause time-outs for HTTPS content even with properly configured firewall rules
 - May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
 
