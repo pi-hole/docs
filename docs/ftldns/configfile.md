@@ -53,7 +53,7 @@ By default, `FTL` determines the address of the interface a query arrived on and
 - `<the device's hostname>.<local domain>`
 
 #### `LOCAL_IPV6=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#local_ipv6 data-toc-label='Force local AAAA reply'}
-
+<!-- markdownlint-disable-next-line MD051 -->
 Used to overwrite the IP address for local `AAAA` queries. See [`LOCAL_IPV4`](#local_ipv4) for details when this setting is used.
 
 #### `BLOCK_IPV4=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#block_ipv4 data-toc-label='Force blocked A reply'}
@@ -64,7 +64,7 @@ By default, `FTL` determines the address of the interface a query arrived on and
 - A regular expression with the [`;reply=IP` regex extension](../regex/pi-hole.md#specify-reply-type) is used
 
 #### `BLOCK_IPV6=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#block_ipv6 data-toc-label='Force blocked AAAA reply'}
-
+<!-- markdownlint-disable-next-line MD051 -->
 Used to overwrite the IP address for blocked `AAAA` queries. See [`BLOCK_IPV4`](#block_ipv4) for details when this setting is used.
 
 #### `REPLY_WHEN_BUSY=DROP|ALLOW|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156) & PR [#1341](https://github.com/pi-hole/FTL/pull/1341)) {#reply_when_busy data-toc-label='Database busy reply'}
@@ -219,7 +219,7 @@ FTL stores history in shared memory to allow inter-process communication with fo
 By default, FTL warns if the shared-memory usage exceeds 90%. You can set any integer limit between `0` to `100` (interpreted as percentages) where `0` means that checking of shared-memory usage is disabled.
 
 #### `CHECK_DISK=90` (PR [#1249](https://github.com/pi-hole/FTL/pull/1249)) {#check_disk data-toc-label='Check disk space'}
-
+<!-- markdownlint-disable-next-line MD051 -->
 FTL stores its long-term history in a database file on disk (see [here](../database/index.md)). Furthermore, FTL stores log files (see, e.g., [here](#file_LOGFILE)).
 
 By default, FTL warns if usage of the disk holding any crucial file exceeds 90%. You can set any integer limit between `0` to `100` (interpreted as percentages) where `0` means that checking of disk usage is disabled.

@@ -30,7 +30,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 [Version](#version) | `pihole version`
 [Uninstall](#uninstall) | `pihole uninstall`
 [Status](#status) | `pihole status`
-[Enable & Disable](#enable-disable) | `pihole enable`
+[Enable & Disable](#enable-&-disable) | `pihole enable` <!-- markdownlint-disable-line MD051 -->
 [Restart DNS](#restart-dns) | `pihole restartdns`
 [Checkout](#checkout) | `pihole checkout`
 
@@ -269,7 +269,6 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
 [Password](#password) | `pihole -a password`
 [Teleport](#teleport) | `pihole -a -t`
 [Temperature Unit](#temperature-unit) | `pihole -a celsius`, `pihole -a fahrenheit`, `pihole -a kelvin`
-[Host Record](#host-record) | `pihole -a hostrecord`
 [Email Address](#email-address) | `pihole -a email`
 [Interface](#interface) | `pihole -a interface`
 

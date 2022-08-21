@@ -196,7 +196,7 @@ Client        | Group membership | Domain | Blocked
 192.168.0.102 |   Group 2 + Default   | doubleclick.net | **No**
 192.168.0.103 |   Group 3 + Default   | doubleclick.net | **No**
 
-Client `192.168.0.101` is not whitelisting this domain as we removed the default assignment through group 0 above. All remaining clients are linked through the default group to this domain and see it as being whitelisted. Note that this is completely analog to [step 1](#step-1_1) of [example 3](#example-3-blacklisting).
+Client `192.168.0.101` is not whitelisting this domain as we removed the default assignment through group 0 above. All remaining clients are linked through the default group to this domain and see it as being whitelisted. Note that this is completely analog to step 1 of [example 3](#example-3-blacklisting).
 
 ### Step 2
 
