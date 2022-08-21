@@ -17,19 +17,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.0.2
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v4.2.0
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
           architecture: "x64"
           cache: pip
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v3.4.1
         with:
           node-version: "${{ env.NODE }}"
           cache: npm

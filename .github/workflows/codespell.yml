@@ -10,10 +10,10 @@ jobs:
     steps:
     -
       name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3.0.2
     -
       name: Spell-Checking
       uses: codespell-project/actions-codespell@master
       with:
         ignore_words_file: .codespellignore
-        skip: ./docs/routers/fritzbox-de.md,./mkdocs.yml
+        skip: ./docs/routers/fritzbox-de.md,./mkdocs.yml,./package.json,./package-lock.json,./.markdownlint.json,./requirements.txt

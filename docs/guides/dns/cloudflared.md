@@ -41,7 +41,7 @@ Here we are downloading the precompiled binary and copying it to the `/usr/local
 
 ```bash
 wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
-sudo cp ./cloudflared-linux-arm /usr/local/bin/cloudflared
+sudo mv -f ./cloudflared-linux-arm /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
@@ -52,7 +52,7 @@ Note: Users [have reported](https://github.com/cloudflare/cloudflared/issues/38)
 
 ```bash
 wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64
-sudo cp ./cloudflared-linux-arm64 /usr/local/bin/cloudflared
+sudo mv -f ./cloudflared-linux-arm64 /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
@@ -211,7 +211,7 @@ If you configured `cloudflared` manually (by writing a systemd unit yourself), t
 ```bash
 wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm
 sudo systemctl stop cloudflared
-sudo cp ./cloudflared-linux-arm /usr/local/bin/cloudflared
+sudo mv -f ./cloudflared-linux-arm /usr/local/bin/cloudflared
 sudo chmod +x /usr/local/bin/cloudflared
 sudo systemctl start cloudflared
 cloudflared -v

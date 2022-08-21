@@ -28,7 +28,7 @@ Some user-provided examples are:
 
 - `.*;querytype=!A`
 
-    A regex blacklist entry for blocking `AAAA` (in fact, everything else than `A`, call it "anti-`A`") requests for all clients assigned to the same group. This has been mentioned to be benefitial for devices like Chromecast. You may want to fine-tune this further to specific domains.
+    A regex blacklist entry for blocking `AAAA` (in fact, everything else than `A`, call it "anti-`A`") requests for all clients assigned to the same group. This has been mentioned to be beneficial for devices like Chromecast. You may want to fine-tune this further to specific domains.
 
 - `.*;querytype=PTR`
 
