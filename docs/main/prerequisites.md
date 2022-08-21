@@ -84,8 +84,12 @@ Due to the complexity of different ways of setting an IP address across differen
 
 <!-- markdownlint-disable code-block-style -->
 <!-- markdownlint-disable no-trailing-spaces -->
+!!! info "Optional ports"
+    The use of lighttpd on port *80* is optional if you decide not to install the Web dashboard during installation.
+    The use of pihole-FTL on ports *67* or *547* is optional, but required if you use the DHCP functions of Pi-hole.
+
 !!! warning "Firewall configuration"
-    ***Never*** open the ports listed above to the Internet. They ***will*** lead to creating an [open resolver](http://openresolverproject.org/). Open resolvers are almost always a severe danger both for you and other users of the Internet. There is a lot that can go wrong and could make you becoming part of a botnet (more precisely a DNS amplification attack participant) very easily. When you need to use your Pi-hole from the Internet (whilst travelling, etc.), you ***must*** set up a VPN to do so (see, e.g., [our OpenVPN guide](../../guides/vpn/overview) on how to do this). This will give you safe and secure access for your Pi-hole from everywhere. This cannot be stressed enough.
+    ***Never*** open the ports listed above to the Internet as this will lead to creating an [open resolver](http://openresolverproject.org/). Open resolvers are a severe danger both for you and other users of the Internet. There is a lot that can go wrong and could make you becoming part of a DNS amplification attack very easily. When you need to use your Pi-hole from the Internet (whilst travelling, etc.), you **must** set up a VPN to do so (see, e.g., [our Wireguard guide](../guides/vpn/wireguard/overview.md) on how to do this). This will give you safe and secure access for your Pi-hole from everywhere. This cannot be stressed enough.
 
 !!! info "Random UDP ports"
     Note that Pi-hole uses, by default, *random* UDP ports to send outbound DNS queries from, and listen for their replies on. This makes Pi-hole more secure against DNS spoofing attacks and follows the recommendations from [RFC 5452](https://tools.ietf.org/html/rfc5452#section-4.5) *Measures for Making DNS More Resilient against Forged Answers*, Section 4.5:
@@ -99,10 +103,6 @@ Due to the complexity of different ways of setting an IP address across differen
 <!-- markdownlint-enable code-block-style -->
 <!-- markdownlint-enable no-trailing-spaces -->
 
-!!! info "Optional ports"
-    The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
-    The use of pihole-FTL on ports _67_ or _547_ is optional, but required if you use the DHCP functions of Pi-hole.
-
 ### Firewalls
 
 Below are some examples of firewall rules that will need to be set on your Pi-hole server in order to use the functions available. These are only shown as guides, the actual commands used will be found with your distribution's documentation.
@@ -112,7 +112,7 @@ Because Pi-hole was designed to work inside a local network, the following rules
 
 #### IPTables
 
-IPTables uses two sets of tables. One set is for IPv4 chains, and the second is for IPv6 chains. If only IPv4 blocking is used for the Pi-hole installation, only apply the rules for IP4Tables. Full Stack (IPv4 and IPv6) require both sets of rules to be applied. _Note: These examples insert the rules at the front of the chain. Please see your distribution's documentation for the exact proper command to use._
+IPTables uses two sets of tables. One set is for IPv4 chains, and the second is for IPv6 chains. If only IPv4 blocking is used for the Pi-hole installation, only apply the rules for IP4Tables. Full Stack (IPv4 and IPv6) require both sets of rules to be applied. *Note: These examples insert the rules at the front of the chain. Please see your distribution's documentation for the exact proper command to use.*
 
 IPTables (IPv4)
 
