@@ -83,13 +83,12 @@ Due to the complexity of different ways of setting an IP address across differen
 | pihole-FTL          | 4711    | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
 
 <!-- markdownlint-disable code-block-style -->
-<!-- markdownlint-disable no-trailing-spaces -->
 !!! info "Optional ports"
     The use of lighttpd on port *80* is optional if you decide not to install the Web dashboard during installation.
     The use of pihole-FTL on ports *67* or *547* is optional, but required if you use the DHCP functions of Pi-hole.
 
 !!! warning "Firewall configuration"
-    ***Never*** open the ports listed above to the Internet as this will lead to creating an [open resolver](http://openresolverproject.org/). Open resolvers are a severe danger both for you and other users of the Internet. There is a lot that can go wrong and could make you becoming part of a DNS amplification attack very easily. When you need to use your Pi-hole from the Internet (whilst travelling, etc.), you **must** set up a VPN to do so (see, e.g., [our Wireguard guide](../guides/vpn/wireguard/overview.md) on how to do this). This will give you safe and secure access for your Pi-hole from everywhere. This cannot be stressed enough.
+    ***Never*** open the ports listed above to the Internet as this will lead to creating an [open resolver](http://openresolverproject.org/). Open resolvers are a severe danger both for you and other users of the Internet. There is a lot that can go wrong and could make you becoming part of a [DNS amplification attack](https://www.cloudflare.com/learning/ddos/dns-amplification-ddos-attack/) very easily. When you need to use your Pi-hole from the Internet (whilst travelling, etc.), you **must** set up a VPN to do so (see, e.g., [our Wireguard guide](../guides/vpn/wireguard/overview.md) on how to do this). This will give you safe and secure access for your Pi-hole from everywhere. This cannot be stressed enough.
 
 !!! info "Random UDP ports"
     Note that Pi-hole uses, by default, *random* UDP ports to send outbound DNS queries from, and listen for their replies on. This makes Pi-hole more secure against DNS spoofing attacks and follows the recommendations from [RFC 5452](https://tools.ietf.org/html/rfc5452#section-4.5) *Measures for Making DNS More Resilient against Forged Answers*, Section 4.5:
@@ -98,10 +97,8 @@ Due to the complexity of different ways of setting an IP address across differen
     > If multiple ports are used for sending queries, this enlarges the effective ID space by a factor equal to the number of ports used.
     >
     > [...]
-    
     By default, FTL chooses a random source port in the range of 1,024 - 65,535 (= 64,512 possibilities) to maxime resilience against forged DNS answers.
 <!-- markdownlint-enable code-block-style -->
-<!-- markdownlint-enable no-trailing-spaces -->
 
 ### Firewalls
 
