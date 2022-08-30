@@ -11,6 +11,8 @@ Pi-hole is very lightweight and does not require much processing power
 - Min. 2GB free space, 4GB recommended
 - 512MB RAM
 
+!!! info A Pi-hole branded kit, including everything you need to get started, can be purchased from The Pi Hut, [here](https://thepihut.com/products/official-pi-hole-raspberry-pi-4-kit).
+
 Despite the name, you are not limited to running Pi-hole on a Raspberry Pi.
 Any hardware that runs one of the supported operating systems will do!
 
