@@ -312,16 +312,6 @@ Example Usage   | [`pihole -a -c`](https://discourse.pi-hole.net/t/the-pihole-co
 
 Set the specified temperature unit as the preferred type. This preference will affect the Web Interface, as well as Chronometer.
 
-### Email Address
-
-| | |
- -------------- | --------------
-Help Command    | N/A
-Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
-Example Usage   | `pihole -a email admin@domain.com`
-
-Set an administrative contact address for the Block Page. This will create a hyperlink on the Block Page to the specified email address.
-
 ### Interface
 
 | | |
