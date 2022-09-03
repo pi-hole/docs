@@ -269,7 +269,6 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
 [Password](#password) | `pihole -a password`
 [Teleport](#teleport) | `pihole -a -t`
 [Temperature Unit](#temperature-unit) | `pihole -a celsius`, `pihole -a fahrenheit`, `pihole -a kelvin`
-[Email Address](#email-address) | `pihole -a email`
 [Interface](#interface) | `pihole -a interface`
 
 ### Web Script
