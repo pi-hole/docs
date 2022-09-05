@@ -25,14 +25,14 @@ doubleclick.net.        2       IN      A       0.0.0.0
 doubleclick.net.        2       IN      AAAA    ::
 ```
 
-### Advantages
+**Advantages:**
 
 * Clients should not even try to establish a connection for the requested website/address
 * Reduces overall traffic
 * Solves potential HTTPS timeouts, as requests are never performed
 * No need to run a web server on your Pi-hole for a block page. This should reduce complexity when running other web services on the same machine
 
-### Disadvantages
+**Disadvantages:**
 
 * Clients may not handle the unspecified address properly and attempt to connect to the address anyways
 
@@ -50,23 +50,17 @@ Assuming your Pi-hole server is at `192.168.1.42`, then a blocked query would lo
 doubleclick.net.        2       IN      A       192.168.1.42
 ```
 
-### Advantage
+**Advantages:**
 
 * Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
 
-### Disadvantages
+**Disadvantages:**
 
 * May cause time-outs for HTTPS content even with properly configured firewall rules
 
 ## Pi-hole's full IP blocking
 
 In `IP` mode, blocked queries will be answered with the local IP addresses of your Pi-hole (see [BLOCK_IP4](configfile.md#block_ipv4) and [BLOCK_IP6](configfile.md#block_ipv6) for additional options). To set this mode explicitly, set `BLOCKINGMODE=IP` in `/etc/pihole/pihole-FTL.conf`.
-
-`/etc/pihole/pihole-FTL.conf` setting:
-
-```
-BLOCKINGMODE=IP
-```
 
 A blocked query would look like the following:
 
@@ -79,11 +73,11 @@ doubleclick.net.        2       IN      A       192.168.2.11
 doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:4242
 ```
 
-### Advantage
+**Advantage:**
 
 * Handles both IPv4 and IPv6 queries with a reply
 
-### Disadvantages
+**Disadvantages:**
 
 * May cause time-outs for HTTPS content even with properly configured firewall rules
 * May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
@@ -99,9 +93,7 @@ A blocked query would look like the following:
 ;doubleclick.net.               IN      ANY
 ```
 
-### Advantages & Disadvantages
-
-This mode is similar to `NULL` blocking, but experiments suggest that clients may try to resolve blocked domains more often compared to `NULL` blocking.
+**Advantages & Disadvantages:** This mode is similar to `NULL` blocking, but experiments suggest that clients may try to resolve blocked domains more often compared to `NULL` blocking.
 
 ## Pi-hole's NODATA blocking
 
@@ -114,8 +106,6 @@ A blocked query would look like the following:
 ;doubleclick.net.               IN      ANY
 ```
 
-### Advantages & Disadvantages
-
-This mode is similar to `NXDOMAIN` blocking. Clients might have a better acceptance of `NODATA` replies compared to `NXDOMAIN` replies.
+**Advantages & Disadvantages:** This mode is similar to `NXDOMAIN` blocking. Clients might have a better acceptance of `NODATA` replies compared to `NXDOMAIN` replies.
 
 {!abbreviations.md!}
