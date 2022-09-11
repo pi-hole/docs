@@ -1,16 +1,20 @@
-Pi-hole *FTL*DNS supports two different methods for blocking queries. Both have their advantages and drawbacks. They are summarized on this page. The blocking mode can be configured in `/etc/pihole/pihole-FTL.conf`.
+Pi-hole *FTL*DNS currently supports the following modes for blocking queries:
 
-This setting can be updated by sending `SIGHUP` to `pihole-FTL` (`sudo killall -SIGHUP pihole-FTL`).
+* NULL (default and recommended)
+* IP-NODATA-AAAA
+* IP
+* NXDOMAIN
+* NODATA
 
-## Pi-hole's unspecified IP blocking (default)
+Each mode has their advantages and drawbacks which will be discussed in detail below.
 
-`/etc/pihole/pihole-FTL.conf` setting:
+Note: In order to configure a blocking mode, you must edit the *FTL*DNS configuration file (`/etc/pihole/pihole-FTL.conf`). Once you've made any changes to the blocking mode, you must restart Pi-hole with `pihole restartdns`.
 
-```
-BLOCKINGMODE=NULL
-```
+## Pi-hole's unspecified IP or NULL blocking mode
 
-Blocked queries will be answered with the unspecified address
+In `NULL` mode, which is both the default and recommended mode for Pi-hole *FTL*DNS, blocked queries will be answered with the "unspecified address" (`0.0.0.0` or `::`). The "unspecified address" is a reserved IP address specified by [RFC 3513 - Internet Protocol Version 6 (IPv6) Addressing Architecture, section 2.5.2](https://tools.ietf.org/html/rfc3513#section-2.5.2). If no mode is explicitly defined in the configuration file, Pi-hole will default to this mode. To set this mode explicitly, set `BLOCKINGMODE=NULL` in `/etc/pihole/pihole-FTL.conf`.
+
+A blocked query would look like the following:
 
 ```
 ;; QUESTION SECTION:
@@ -21,52 +25,44 @@ doubleclick.net.        2       IN      A       0.0.0.0
 doubleclick.net.        2       IN      AAAA    ::
 ```
 
-**This blocking mode is the Pi-hole developers' recommendation.**
+**Advantages:**
 
-Following [RFC 3513, Internet Protocol Version 6 (IPv6) Addressing Architecture, section 2.5.2](https://tools.ietf.org/html/rfc3513#section-2.5.2), the address `0:0:0:0:0:0:0:0` (or `::` for short) is the unspecified address. It must never be assigned to any node and indicates the absence of an address. Following [RFC1122, section 3.2](https://tools.ietf.org/html/rfc1122#section-3.2), the address `0.0.0.0` can be understood as the IPv4 equivalent of `::`.
+* Clients should not even try to establish a connection for the requested website/address
+* Reduces overall traffic
+* Solves potential HTTPS timeouts, as requests are never performed
+* No need to run a web server on your Pi-hole for a block page. This should reduce complexity when running other web services on the same machine
 
-### Advantages
+**Disadvantages:**
 
-- The client does not even try to establish a connection for the requested website
-- Speedup and less traffic
-- Solves potential HTTPS timeouts as requests are never performed
-- No need to run a web server on your Pi-hole (reduces complexity when running other web services on the same machine)
+* Clients may not handle the unspecified address properly and attempt to connect to the address anyways
 
-## Pi-hole's IP (IPv6 NODATA) blocking
+## Pi-hole's IP (IPv6 NODATA) blocking mode
 
-`/etc/pihole/pihole-FTL.conf` setting:
+In `IP-NODATA-AAAA` mode, blocked queries will be answered with the local IPv4 addresses of your Pi-hole (see [BLOCK_IP4](configfile.md#block_ipv4) for additional options). Blocked AAAA queries will be answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address. To set this mode explicitly, set `BLOCKINGMODE=IP-NODATA-AAAA` in `/etc/pihole/pihole-FTL.conf`.
 
-```
-BLOCKINGMODE=IP-NODATA-AAAA
-```
-
-Blocked queries will be answered with the local IPv4 addresses of your Pi-hole (see [BLOCK_IP4](configfile.md#block_ipv4) for additional options). Blocked AAAA queries will be answered with `NODATA-IPV6` and clients will only try to reach your Pi-hole over its static IPv4 address
+Assuming your Pi-hole server is at `192.168.1.42`, then a blocked query would look like the following:
 
 ```
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 
 ;; ANSWER SECTION:
-doubleclick.net.        2       IN      A       192.168.2.11
+doubleclick.net.        2       IN      A       192.168.1.42
 ```
 
-### Advantage
+**Advantages:**
 
-- Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
+* Serves IPv4-only replies and hence mitigates issues with rotating IPv6 prefixes
 
-### Disadvantages
+**Disadvantages:**
 
-- May cause time-outs for HTTPS content even with properly configured firewall rules
+* May cause time-outs for HTTPS content even with properly configured firewall rules
 
-## Pi-hole's full IP blocking
+## Pi-hole's full IP blocking mode
 
-`/etc/pihole/pihole-FTL.conf` setting:
+In `IP` mode, blocked queries will be answered with the local IP addresses of your Pi-hole (see [BLOCK_IP4](configfile.md#block_ipv4) and [BLOCK_IP6](configfile.md#block_ipv6) for additional options). To set this mode explicitly, set `BLOCKINGMODE=IP` in `/etc/pihole/pihole-FTL.conf`.
 
-```
-BLOCKINGMODE=IP
-```
-
-Blocked queries will be answered with the local IP addresses of your Pi-hole (see [BLOCK_IP4](configfile.md#block_ipv4) and  [BLOCK_IP6](configfile.md#block_ipv6) for additional options)
+A blocked query would look like the following:
 
 ```
 ;; QUESTION SECTION:
@@ -77,47 +73,39 @@ doubleclick.net.        2       IN      A       192.168.2.11
 doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:4242
 ```
 
-### Disadvantages
+**Advantage:**
 
-- May cause time-outs for HTTPS content even with properly configured firewall rules
-- May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
+* Handles both IPv4 and IPv6 queries with a reply
 
-## Pi-hole's NXDOMAIN blocking
+**Disadvantages:**
 
-`/etc/pihole/pihole-FTL.conf` setting:
+* May cause time-outs for HTTPS content even with properly configured firewall rules
+* May cause problems with alternating prefixes on IPv6 addresses (see `IP-AAAA-NODATA`)
 
-```
-BLOCKINGMODE=NXDOMAIN
-```
+## Pi-hole's NXDOMAIN blocking mode
 
-Blocked queries will be answered with an empty response (no answer section) and status `NXDOMAIN` (*no such domain*)
+In `NXDOMAIN` mode, blocked queries will be answered with an empty response (i.e., there won't be an *answer* section) and status `NXDOMAIN`. A `NXDOMAIN` response should indicate that there is *no such domain* to the client making the query. To set this mode explicitly, set `BLOCKINGMODE=NXDOMAIN` in `/etc/pihole/pihole-FTL.conf`.
 
-```
-;; QUESTION SECTION:
-;doubleclick.net.               IN      ANY
-```
-
-### Advantages & Disadvantages
-
-Similar to `NULL` blocking, but experiments suggest that clients may try to resolve blocked domains more often compared to `NULL` blocking.
-
-## Pi-hole's NODATA blocking
-
-`/etc/pihole/pihole-FTL.conf` setting:
-
-```
-BLOCKINGMODE=NODATA
-```
-
-Blocked queries will be answered with an empty response (no answer section) and status `NODATA` (domain exists but there is no record for the requested query type)
+A blocked query would look like the following:
 
 ```
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 ```
 
-### Advantages & Disadvantages
+**Advantages & Disadvantages:** This mode is similar to `NULL` blocking mode, but experiments suggest that clients may try to resolve blocked domains more often compared to `NULL` blocking.
 
-Similar to `NXDOMAIN` blocking. Clients might have a better acceptance of `NODATA` replies compared to `NXDOMAIN` replies.
+## Pi-hole's NODATA blocking mode
+
+In `NODATA` mode, blocked queries will be answered with an empty response (no answer section) and status `NODATA`. A `NODATA` response indicates that the domain exists, but there is no record for the requested query type. To set this mode explicitly, set `BLOCKINGMODE=NODATA` in `/etc/pihole/pihole-FTL.conf`.
+
+A blocked query would look like the following:
+
+```
+;; QUESTION SECTION:
+;doubleclick.net.               IN      ANY
+```
+
+**Advantages & Disadvantages:** This mode is similar to `NXDOMAIN` blocking mode. Clients might have a better acceptance of `NODATA` replies compared to `NXDOMAIN` replies.
 
 {!abbreviations.md!}
