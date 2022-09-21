@@ -396,7 +396,7 @@ If neither `BLOCK_IPV6` nor `LOCAL_IPV6` are set, this setting is used to set bo
 
 #### `PORTFILE=/run/pihole-FTL.port` {#file_PORTFILE data-toc-label='Port file'}
 
-*This option is deprecated as FTL does not write any port file anymore. Plesase parse pihole-FTL.conf if you need to check if a custom API port is set.*
+*This option is deprecated as FTL does not write any port file anymore. Please parse `pihole-FTL.conf` if you need to check if a custom API port is set.*
 
 The file containing the port FTL's API is listening on.
 
