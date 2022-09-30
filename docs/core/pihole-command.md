@@ -16,7 +16,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Feature | Invocation |
  -------------- | --------------
 [Core](#core-script) | `pihole`
-[Whitelisting, Blacklisting and Regex](#whitelisting-blacklisting-and-regex) | `pihole -w`, `pihole -b`, `pihole -regex`, `pihole -wild`
+[Whitelisting, Blacklisting and Regex](#whitelisting-blacklisting-and-regex) | `pihole -w`, `pihole -b`, `pihole --regex`, `pihole --wild`
 [Debugger](#debugger) | `pihole debug`
 [Log Flush](#log-flush) | `pihole flush`
 [Reconfigure](#reconfigure) | `pihole reconfigure`
@@ -48,9 +48,9 @@ The core script of Pi-hole provides the ability to tie many DNS related function
 
 | | |
  -------------- | --------------
-Help Command    | `pihole -w --help`, `pihole -b --help`, `pihole -regex --help`, `pihole -wild --help`
+Help Command    | `pihole -w --help`, `pihole -b --help`, `pihole --regex --help`, `pihole --wild --help`
 Script Location | [`/opt/pihole/list.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/list.sh)
-Example Usage   | [`pihole -regex '^example.com$' '.*\.example2.net'`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#white-black-list)
+Example Usage   | [`pihole --regex '^example.com$' '.*\.example2.net'`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#white-black-list)
 
 Administrators need to be able to manually add and remove domains for various purposes, and these commands serve that purpose.
 
@@ -58,7 +58,7 @@ See [Regex Blocking](../regex/overview.md) for more information about using Rege
 
 **Basic Script Process**:
 
-* Each domain is validated using regex (except when using `-regex`), to ensure invalid domains and IDNs are not added
+* Each domain is validated using regex (except when using `--regex`), to ensure invalid domains and IDNs are not added
 * A domain gets added to or removed from the `domainlist` table in [`/etc/pihole/gravity.db`](../database/gravity/index.md)
 * The DNS server is then reloaded
 
