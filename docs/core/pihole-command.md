@@ -16,7 +16,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Feature | Invocation |
  -------------- | --------------
 [Core](#core-script) | `pihole`
-[Whitelisting, Blacklisting and Regex](#whitelisting-blacklisting-and-regex) | `pihole -w`, `pihole -b`, `pihole -regex`, `pihole --wild`
+[Whitelisting, Blacklisting and Regex](#whitelisting-blacklisting-and-regex) | `pihole -w`, `pihole -b`, `pihole --regex`, `pihole --wild`
 [Debugger](#debugger) | `pihole debug`
 [Log Flush](#log-flush) | `pihole flush`
 [Reconfigure](#reconfigure) | `pihole reconfigure`
