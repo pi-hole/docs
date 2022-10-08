@@ -58,19 +58,15 @@ The `queries` `VIEW` is dynamically generated from the data actually stored in t
 
 #### Data-dependent `additional_info` field
 
-The content and type of the `additional_info` row depends on the status of the given query.
+The content and type of the `additional_info` row depends on the status of the given query. For many queries, this field is empty. You should, however, not rely on this field being empty as we may add content of any type for other status types in future releases.
 
 ##### Query blocked due to a CNAME inspection (status 9, 10, 11) {#additional_info_cname data-toc-label='Blocked CNAME'}
 
 If a query was blocked due to a CNAME inspection (status 9, 10, 11), this field contains the domain which was the reason for blocking the entire CNAME chain (text).
 
-##### Query blocked due to a REGEX filter (status 4) {#additional_info_regex data-toc-label='Regular expression'}
+##### Query influenced by a black- or whitelist entry {#additional_info_list data-toc-label='domainlist_id'}
 
-If a query was blocked due to a regex rule (status 4), this field contains the ID of the blacklist regex responsible for blocking this domain (integer).
-
-##### Other
-
-For any other query status, this field is empty. You should, however, not rely on this field being empty as we may add content of any type for other status types in future releases.
+If a query was influenced by a black- or whitelist entry, this field contains the ID of the corresponding entry in the [`domainlist`](gravity/index.md#domain-tables-domainlist) table.
 
 ### Counters table
 
@@ -198,8 +194,8 @@ Label | Type | Allowed to by empty | Content
 
 Valid `type` IDs are currently
 
-- `ADDINFO_CNAME_DOMAIN = 1` if `content` is a CNAME pointer, and
-- `ADDINFO_REGEX_ID = 2` if `content` is an integer ID pointing to a regular expression in `gravity.db`
+- `ADDINFO_CNAME_DOMAIN = 1` - `content` is a string (the related CNAME)
+- `ADDINFO_DOMAIN_ID = 2` - `content` is an integer (ID pointing to a domain in the [`domainlist` table](gravity/index.md#domain-tables-domainlist))
 
 ### Example for interaction with the long-term query database
 
