@@ -8,7 +8,7 @@ As a last resort, you can manually set each device to use Pi-hole as its DNS ser
 
 ## Making your Pi-hole host use Pi-hole
 
-Pi-hole will not be used by the host automatically after installation. To have the host resolve though Pi-hole and your configured blocking lists, you can make the host use Pi-hole as upstream DNS server:
+Pi-hole will not be used by the host automatically after installation. To have the host resolve through Pi-hole and your configured blocking lists, you can make the host use Pi-hole as upstream DNS server:
 
 !!! warning
     If your Pi-hole host is using Pi-hole as upstream DNS server and Pi-hole fails, your host loses DNS resolution. This can prevent successful repair attempts, e.g. by `pihole -r` as it needs a working internet connection.
