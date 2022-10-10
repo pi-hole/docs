@@ -258,10 +258,6 @@ The location of FTL's log file. If you want to move the log file to a different 
 
 The file which contains the PID of FTL's main process.
 
-#### `PORTFILE=/run/pihole-FTL.port` {#file_PORTFILE data-toc-label='Port file'}
-
-The file containing the port FTL's API is listening on.
-
 #### `SOCKETFILE=/run/pihole/FTL.sock` {#file_SOCKETFILE data-toc-label='Socket file'}
 
 The file containing the socket FTL's API is listening on.
@@ -397,6 +393,12 @@ If neither `BLOCK_IPV4` nor `LOCAL_IPV4` are set, this setting is used to set bo
 *This option is deprecated and may be removed in future versions, please use `BLOCK_IPV6` and `LOCAL_IPV6` instead*
 
 If neither `BLOCK_IPV6` nor `LOCAL_IPV6` are set, this setting is used to set both of them. If either of the two is set, this setting is ignored altogether.
+
+#### `PORTFILE=/run/pihole-FTL.port` {#file_PORTFILE data-toc-label='Port file'}
+
+*This option is deprecated as FTL does not write any port file anymore. Please parse `pihole-FTL.conf` if you need to check if a custom API port is set.*
+
+The file containing the port FTL's API is listening on.
 
 
 {!abbreviations.md!}
