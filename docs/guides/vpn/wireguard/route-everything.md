@@ -11,7 +11,9 @@ Rerouting the Internet traffic through your Pi-hole will furthermore cause all o
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "Ensure you're already forwarding traffic"
-    The following assumes you have already prepared your Pi-hole for [IP forwarding](internal.md#enable-ip-forwarding-on-the-server) and [enabled NAT](internal.md#enable-nat-on-the-server). If this is not the case, follow the steps over there before continuing here.
+    The following assumes you have already prepared your Pi-hole for [IP forwarding](internal.md#enable-ip-forwarding-on-the-server) and [enabled NAT](internal.md#enable-nat-on-the-server). If this is not the case, follow the steps [over there](internal.md) before continuing here.
+
+    **If you haven't done this, your clients will apparently have no Internet connection whilst local connections may still work.** This is a hard to debug situation so please ensure you have everything set up to avoid hours of troubleshooting.
 <!-- markdownlint-enable code-block-style -->
 
 To route all traffic through the tunnel to a specific peer, add the default route (`0.0.0.0/0` for IPv4 and `::/0`for IPv6) to `AllowedIPs` in the `[Peer]` section of your clients's WireGuard config files:
