@@ -23,9 +23,9 @@ sudo dnf install gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel x
 Compile and install a recent version using:
 
 ```bash
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.7.2.tar.gz
-tar -xzf nettle-3.7.2.tar.gz
-cd nettle-3.7.2
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.8.1.tar.gz
+tar -xzf nettle-3.8.1.tar.gz
+cd nettle-3.8.1
 ./configure --libdir=/usr/local/lib
 make -j $(nproc)
 sudo make install
