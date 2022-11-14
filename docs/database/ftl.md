@@ -114,7 +114,7 @@ ID | Status | | Details
 0 | Unknown | ❔ | Unknown status (not yet known)
 1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)
 2 | Allowed | ✅ | Forwarded
-3 | Allowed | ✅ | Known, replied to from cache
+3 | Allowed | ✅ | Replied from cache
 4 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#regex-table-regex) filter
 5 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#blacklist-table-blacklist)
 6 | Blocked | ❌ | By upstream server (known blocking page IP address)
@@ -128,6 +128,7 @@ ID | Status | | Details
 14 | Allowed | ✅ | Already forwarded, not forwarding again
 15 | Blocked | ❌ | Blocked (database is busy)<br> How these queries are handled can be [configured](../ftldns/configfile.md#reply_when_busy)
 16 | Blocked | ❌ | Blocked (special domain)<br>*E.g. Mozilla's canary domain and Apple's Private Relay domains* <br> Handling can be [configured](../ftldns/configfile.md)
+17 | Allowed | ✅⌛ | Replied from *stale* cache
 
 ### Supported reply types
 
