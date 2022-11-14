@@ -169,8 +169,8 @@ to a config file like `/etc/dnsmasq.d/99-edns.conf` to signal FTL to adhere to t
 You can test DNSSEC validation using
 
 ```bash
-dig sigfail.verteiltesysteme.net @127.0.0.1 -p 5335
-dig sigok.verteiltesysteme.net @127.0.0.1 -p 5335
+dig fail01.dnssec.works @127.0.0.1 -p 5335
+dig dnssec.works @127.0.0.1 -p 5335
 ```
 
 The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
