@@ -17,7 +17,7 @@ Example: We want to resolve `pi-hole.net`. On behalf of the client, the recursiv
 
 In only a few simple steps, we will describe how to set up your own recursive DNS server. It will run on the same device you're already using for your Pi-hole. There are no additional hardware requirements.
 
-This guide assumes a fairly recent Debian/Ubuntu-based system and will use the maintainer provided packages for installation to make it an incredibly simple process. It assumes only a very basic knowledge of how DNS work.
+This guide assumes a fairly recent Debian/Ubuntu-based system and will use the maintainer provided packages for installation to make it an incredibly simple process. It assumes only a very basic knowledge of how DNS works.
 
 A *standard* Pi-hole installation will do it as follows:
 
