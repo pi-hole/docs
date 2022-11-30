@@ -1,6 +1,6 @@
 ## Cache dump interpretation
 
-The `dnsmasq` core embedded into `pihole-FTL` prints a dump of the current cache content into the mail log file (default location `/var/log/pihole/pihole.log`) when receiving `SIGUSR1`, e.g. by
+The `dnsmasq` core embedded into `pihole-FTL` prints a dump of the current cache content into the main log file (default location `/var/log/pihole/pihole.log`) when receiving `SIGUSR1`, e.g. by
 
 ``` bash
 sudo killall -USR1 pihole-FTL
