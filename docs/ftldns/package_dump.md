@@ -30,5 +30,3 @@ If you just want to record everything and later filter this in Wireshark you can
 dumpfile=/etc/pihole/dump.pcap
 dumpmask=0x00ff
 ```
-
-{!abbreviations.md!}

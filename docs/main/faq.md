@@ -105,5 +105,3 @@ Restart the web server:
 ```bash
 sudo service lighttpd restart
 ```
-
-{!abbreviations.md!}

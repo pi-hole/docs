@@ -140,5 +140,3 @@ Expression | Meaning | Example
 `[^]`| Negation | `[^0-9]` matches any character *except* `0` to `9`
 `{ }` | Matches a specified number of occurrences of the previous  | `[0-9]{3}` matches any three-digit number like `315` but not `31`;<br>`[0-9]{2,4}` matches two- to four-digit numbers like `12`, `123`, and `1234` but not `1` or `12345`;<br>`[0-9]{2,}` matches any number with two or more digits like `1234567`, `123456789`, but not `1`
 `\` | Used to escape a special character not inside `[]` | `google\.com` matches `google.com`
-
-{!abbreviations.md!}

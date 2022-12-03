@@ -108,4 +108,3 @@ A blocked query would look like the following:
 
 **Advantages & Disadvantages:** This mode is similar to `NXDOMAIN` blocking mode. Clients might have a better acceptance of `NODATA` replies compared to `NXDOMAIN` replies.
 
-{!abbreviations.md!}

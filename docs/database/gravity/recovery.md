@@ -32,5 +32,3 @@ Run:
 ```bash
 pihole -g -r recover force
 ```
-
- {!abbreviations.md!}

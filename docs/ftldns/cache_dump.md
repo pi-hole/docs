@@ -194,5 +194,3 @@ _sip._tcp.pcscf2.ims.telekom.d 100 10 5062 pspcscfhost2.ims.telekom.de  VF      
 ```
 
 The `address` field lists the priority (`100` in the example), the weight (`10`), and the SRV port (`5062`), followed by the target (`pspcscfhost2.ims.telekom.de`).
-
-{!abbreviations.md!}

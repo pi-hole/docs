@@ -74,5 +74,3 @@ Re-resolve all clients and forward destination hostnames. This forces refreshing
 ## Real-time signal 5 (SIG39)
 
 Re-parse ARP/neighbour-cache now to update the Network table now
-
-{!abbreviations.md!}

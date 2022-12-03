@@ -20,5 +20,3 @@ We tested *FTL*DNS on the following devices:
 <!-- |  |  |  |  |  | -->
 
 Devices we do not officially support include MIPS and `armv5` (or lower) devices. You may, however, be successful with building binaries yourself from the source code, but we do not provide pre-built binaries for these targets.
-
-{!abbreviations.md!}

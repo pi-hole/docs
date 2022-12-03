@@ -40,5 +40,3 @@ We specifically add the following capabilities to `pihole-FTL`:
 - `CAP_NET_ADMIN`: modify routing tables and other network-related operations (to allow for handling DHCP requests)
 
 Users that cannot use Linux capabilities for various reasons (lacking kernel or file system support) can modify the startup scripts of `pihole-FTL` to ensure the daemon is started as `root`. However, be aware that you do so on your own risk (although we don't expect problems to arise).
-
-{!abbreviations.md!}

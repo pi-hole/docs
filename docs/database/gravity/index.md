@@ -80,5 +80,3 @@ Label | Type | Uniqueness enforced | Content
 `id` | integer | Yes | Unique ID for database operations
 `domain` | text | Yes | Domain
 `date_added` | integer | No | Unix timestamp when domain was added
-
-{!abbreviations.md!}

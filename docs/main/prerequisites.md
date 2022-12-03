@@ -150,5 +150,3 @@ IPv6 (include above IPv4 rules):
 ```bash
 ufw allow 546:547/udp
 ```
-
-{!abbreviations.md!}

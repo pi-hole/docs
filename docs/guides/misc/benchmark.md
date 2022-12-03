@@ -46,5 +46,3 @@ time dig -f domains.list +noall +answer > /dev/null
 ```
 
 for mass querying the domains from your list. This will show you how much time it takes to query the number of domains you extracted from the database.
-
-{!abbreviations.md!}
