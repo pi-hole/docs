@@ -1,7 +1,7 @@
 ---
 title: Overview of Pi-hole
 description: Brief overview of Pi-hole
-last_updated: Thur May 02 01:00:00 2019 UTC
+ᴴₒᴴₒᴴₒ: true
 ---
 
 <p class="text-center">
