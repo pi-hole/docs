@@ -36,7 +36,7 @@ eingetragen werden.
 !!! warning
     Clients bemerken Änderungen an den DHCP Einstellungen erst, wenn der DHCP Lease erneuert wird. Der einfachste Weg dies zu erzwingen ist ein Unterbrechen und Wiederherstellen der Netzwerkverbindung.
 
-Nun sollten einzelne Clients in Pi-hole Dashboard auftauchen.
+Nun sollten einzelne Clients im Pi-hole Dashboard auftauchen.
 
 ## Pi-hole als Upstream DNS Server der Fritz!Box (WAN  Seite)
 
