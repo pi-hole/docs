@@ -1,7 +1,6 @@
 ---
 title: Overview of Pi-hole
 description: Brief overview of Pi-hole
-last_updated: Thur May 02 01:00:00 2019 UTC
 ---
 
 <p class="text-center">
@@ -57,5 +56,3 @@ We welcome _everyone_ to contribute to issue reports, suggest new features, and 
 If you have something to add - anything from a typo through to a whole new feature, we're happy to check it out! Just make sure to fill out our template when submitting your request; the questions that it asks will help the volunteers quickly understand what you're aiming to achieve.
 
 You'll find that the [install script](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) and the [debug script](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeDebug.sh) have an abundance of comments, which will help you better understand how Pi-hole works. They're also a valuable resource to those who want to learn how to write scripts or code a program! We encourage anyone who likes to tinker to read through it, and submit a pull request for us to review.
-
-{!abbreviations.md!}

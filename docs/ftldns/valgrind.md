@@ -217,5 +217,3 @@ As forking relies on [copy-on-write](https://en.wikipedia.org/wiki/Copy-on-write
     ==2681688==    by 0x4AF1292: clone (clone.S:95)
     ```
 <!-- markdownlint-enable code-block-style -->
-
-{!abbreviations.md!}

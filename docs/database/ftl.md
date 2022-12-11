@@ -215,5 +215,3 @@ posteo.de|130243
 ```
 
 showing the domain and the number of times it was found in the long-term database. Note that such a request might take a very long time for computation as the entire history of queries has to be processed for this.
-
-{!abbreviations.md!}

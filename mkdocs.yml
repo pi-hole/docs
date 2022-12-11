@@ -43,13 +43,20 @@ theme:
 
 markdown_extensions:
   # Code highlighting in ``` ``` blocks
-  - codehilite:
-      guess_lang: true
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight
+  - pymdownx.highlight:
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
   # Table of Contents
+  # https://python-markdown.github.io/extensions/toc/
   - toc:
       permalink: true
   # block-styled side content
+  # https://squidfunk.github.io/mkdocs-material/reference/admonitions/
   - admonition
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#details
+  - pymdownx.details
+
   # linkifies URL and email links without having to wrap them in Markdown syntax. Also, allows shortens repository issue, pull request, and commit links.
   - pymdownx.magiclink
   # Task lists (https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/)
@@ -62,22 +69,21 @@ markdown_extensions:
   # This extension is a convenience extension which includes many pymdownx extensions
   # (https://facelessuser.github.io/pymdown-extensions/extensions/extra/)
   - pymdownx.extra
-  # (https://facelessuser.github.io/pymdown-extensions/extensions/details/)
-  - pymdownx.details
+
   # Tabbed provides a syntax to easily add tabbed Markdown content.
   # https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/
   - pymdownx.tabbed:
       alternate_style: true
-  # Adds syntax for defining footnotes in Markdown documents (https://python-markdown.github.io/extensions/footnotes/)
+  # Adds syntax for defining footnotes in Markdown documents (https://squidfunk.github.io/mkdocs-material/reference/footnotes/)
   - footnotes
-  # Adds the ability to define abbreviations
+  # Adds the ability to define abbreviations (https://squidfunk.github.io/mkdocs-material/reference/tooltips/)
   - abbr
-  # Include files in other documents like {!some/dir/in/docs/filename.md!}
-  - markdown_include.include:
-      base_path: docs
-  # Metadata support in pages
-  # (https://squidfunk.github.io/mkdocs-material/extensions/metadata/)
-  - meta
+  - attr_list
+  - pymdownx.snippets:
+      # auto_append abbreviations.md to every file
+      # https://squidfunk.github.io/mkdocs-material/reference/tooltips/#adding-a-glossary
+      auto_append:
+        - docs/abbreviations.md
 
 nav:
   - Overview: index.md

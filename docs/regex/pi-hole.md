@@ -180,5 +180,3 @@ Furthermore, there are two shortcuts for some character classes:
 
 - `\d` - Digit character (equivalent to `[[:digit:]]`)
 - `\D` - Non-digit character (equivalent to `[^[:digit:]]`)
-
-{!abbreviations.md!}

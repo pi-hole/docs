@@ -45,5 +45,3 @@ AllowedIPs = 0.0.0.0/0, ::/0
 <!-- markdownlint-enable code-block-style -->
 
 That's all you need to do. You should use an online check (e.g. www.wieistmeineip.de) to check if your IP changed to the public IP address of your WireGuard server after this change. It is possible to add this change only for a few clients, leaving the others without a full tunnel for all traffic (e.g., where this is not necessary or not desired).
-
-{!abbreviations.md!}

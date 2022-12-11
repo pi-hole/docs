@@ -279,5 +279,3 @@ Column definitions are:
 7. Associated IPv6 addresses
 
 The default interface (the one connected to the gateway) will always be the first. The sum will always be the last one - even if you have (for whatever reason) an interface called sum. Regarding the link speed: It won't work for most WiFi interfaces as the speed is not known at the kernel level. Instead, the drivers manage them dynamically depending on package loss, signal strength, etc. - in this case, you'll see link speed -1 as well
-
-{!abbreviations.md!}

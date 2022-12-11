@@ -4,5 +4,3 @@ Details concerning the databases, their contained tables and exemplary SQL comma
 
 - [Query database `/etc/pihole/pihole-FTL.db`](ftl.md)
 - [Domain database `/etc/pihole/gravity.db`](gravity/index.md)
-
-{!abbreviations.md!}

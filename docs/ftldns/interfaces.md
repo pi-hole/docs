@@ -64,5 +64,3 @@ except-interface=nonexisting
 ```
 
 is used. We add this option to disable any possible `local-service` settings in other config files.
-
-{!abbreviations.md!}

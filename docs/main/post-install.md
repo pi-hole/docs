@@ -18,5 +18,3 @@ Pi-hole will not be used by the host automatically after installation. To have t
 ```code
 static domain_name_servers=127.0.0.1
 ```
-
-{!abbreviations.md!}

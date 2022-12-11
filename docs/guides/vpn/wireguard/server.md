@@ -237,5 +237,3 @@ Your public key will be different from ours. This is expected (you just created 
 On your [Settings page (tab DNS)](http://pi.hole/admin/settings.php?tab=dns), ensure you set the listing mode of your Pi-hole to one of the `Listen of all interfaces` settings. The top one is preferred as it adds a bit of additional safety. Your WireGuard peers/clients will be correctly recognized as being only one hop away.
 
 You can now continue to add clients.
-
-{!abbreviations.md!}

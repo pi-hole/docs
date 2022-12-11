@@ -26,5 +26,3 @@ Via this VPN, you can:
 - reroute your entire Internet traffic through your Pi-hole (*optional*)
 
 from everywhere around the globe.
-
-{!abbreviations.md!}
