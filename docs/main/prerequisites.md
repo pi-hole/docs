@@ -66,7 +66,7 @@ The following operating systems are **officially** supported:
 
 ### IP Addressing
 
-Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine). Users may run into issues because **we currently install `dhcpcd5`, which may conflict with other running network managers** such as `dhclient`, `dhcpcd`, `networkmanager`, and `systemd-networkd`.
+Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).
 
 As part of our install process, **we append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address**, so take note of this before installing.
 
