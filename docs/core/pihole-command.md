@@ -295,11 +295,11 @@ Set the Web Interface password. Password can be entered as an option (e.g: `piho
 
 | | |
  -------------- | --------------
-Help Command    | N/A
-Script Location | N/A
+Help Command    | `pihole -a -t -h`
+Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
 Example Usage   | `pihole -a -t`
 
-Create a configuration backup. The backup will be created in the directory from which the command is run. The backup can be imported using the Settings > Teleport page.
+Create a configuration backup. The backup will be created in the directory from which the command is run. The backup can be imported using the Settings > Teleport page, or directly using this script (e.g. `pihole -a -t -r myname.tar.gz`).
 
 ### Temperature Unit
 
