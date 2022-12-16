@@ -114,7 +114,6 @@ nav:
     - 'DNS cache': ftldns/dns-cache.md
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
-    - 'Compatibility': ftldns/compatibility.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
     - 'Advanced':
         - 'Install from source': ftldns/compile.md
@@ -239,4 +238,3 @@ plugins:
         'ftldns/regex/overview.md': regex/overview.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
         'database/gravity/example.md': group_management/example.md
-
