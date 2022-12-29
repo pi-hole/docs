@@ -14,7 +14,8 @@ Edit `/etc/tor/torrc` on your Pi-hole as root, include the following line at the
 SocksPort 0.0.0.0:9050
 ```
 
-**Note:** You should make sure that only your LAN devices are able to access your Pi-hole on port 9050.
+!!! note
+    You should make sure that only your LAN devices are able to access your Pi-hole on port 9050.
 
 Restart Tor
 

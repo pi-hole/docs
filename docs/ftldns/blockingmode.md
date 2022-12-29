@@ -8,7 +8,8 @@ Pi-hole *FTL*DNS currently supports the following modes for blocking queries:
 
 Each mode has their advantages and drawbacks which will be discussed in detail below.
 
-Note: In order to configure a blocking mode, you must edit the *FTL*DNS configuration file (`/etc/pihole/pihole-FTL.conf`). Once you've made any changes to the blocking mode, you must restart Pi-hole with `pihole restartdns`.
+!!! note
+    In order to configure a blocking mode, you must edit the *FTL*DNS configuration file (`/etc/pihole/pihole-FTL.conf`). Once you've made any changes to the blocking mode, you must restart Pi-hole with `pihole restartdns`.
 
 ## Pi-hole's unspecified IP or NULL blocking mode
 

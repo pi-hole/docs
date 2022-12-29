@@ -1,7 +1,7 @@
 This guide was developed using a Ubiquiti Cloud Key v2 with UniFi Network v7.1.61. Following the first method below will have you adding your Pi-hole as a DNS server for all devices on your LAN. Following the second method below will have DNS queries route through your USG and then to your Pi-hole. Either option is valid, depending on your specific requirements, but it is recommended to choose one or the other - not both.
 
-> Note:
-While this guide attempts to cover both IPv4 and IPv6, your mileage may vary.
+!!! note
+    While this guide attempts to cover both IPv4 and IPv6, your mileage may vary.
 
 ### Grab your IPv4 and IPv6 address from your Raspi
 

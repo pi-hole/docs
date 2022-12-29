@@ -1,8 +1,8 @@
 This guide was developed using FRITZ!OS 07.21 but should work for others too. It aims to line out a few basic principles to have a seamless DNS experience with Pi-hole and Fritz!Boxes.
 
-> Note:
-There is no single way to do it right. Choose the one best fitting your needs.
-This guide is IPv4 only. You need to adjust for IPv6 accordingly.
+!!! note
+    There is no single way to do it right. Choose the one best fitting your needs.
+    This guide is IPv4 only. You need to adjust for IPv6 accordingly.
 
 ### Enable advanced settings
 
@@ -19,9 +19,9 @@ DNS queries take the following path
 Client -> Pi-hole -> Upstream DNS Server
 ```
 
-> Note:
-The Fritz!Box itself will use whatever is configured in Internet/Account Information/DNS server (see below).
-The Fritz!Box can be Pi-hole's upstream DNS server, as long Pi-hole itself is not the upstream server of the Fritz!Box. This would cause a DNS loop.
+!!! note
+    The Fritz!Box itself will use whatever is configured in Internet/Account Information/DNS server (see below).
+    The Fritz!Box can be Pi-hole's upstream DNS server, as long Pi-hole itself is not the upstream server of the Fritz!Box. This would cause a DNS loop.
 
 To set it up, enter Pi-hole's IP as "Local DNS server" in
 
