@@ -14,7 +14,7 @@ Some of the following settings might be visible only if advanced settings are en
 Using this configuration, all clients will get Pi-hole's IP offered as DNS server when they request a DHCP lease from your Fritz!Box.
 DNS queries take the following path
 
-```bash
+``` plain
 Client -> Pi-hole -> Upstream DNS Server
 ```
 
@@ -24,7 +24,7 @@ Client -> Pi-hole -> Upstream DNS Server
 
 To set it up, enter Pi-hole's IP as "Local DNS server" in
 
-```bash
+``` plain
 Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Home Network
 ```
 
@@ -40,13 +40,13 @@ Now you should see individual clients in Pi-hole's web dashboard.
 
 With this configuration, Pi-hole is also used by the Fritz!Box itself as an upstream DNS server. DNS queries take the following path
 
-```bash
+``` plain
 (Clients) -> Fritz!Box -> Pi-hole -> Upstream DNS Server
 ```
 
 To set it up, enter Pi-hole's IP as "Preferred DNSv4 server" **and** "Alternative DNSv4 server" in
 
-```bash
+``` plain
 Internet/Account Information/DNS server
 ```
 
@@ -61,7 +61,7 @@ If only this configuration is used, you won't see individual clients in Pi-hole'
 
 There is no option to set the DNS server for the guest network in
 
-```bash
+``` plain
 Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Guest Network
 ```
 
@@ -89,74 +89,36 @@ The following settings must be made:
 
 Using this configuration, your Fritz!Box will offer Pi-hole's IPv6 as local DNS server to its clients via DHCPv6 as well as Router Advertisement (RA/RDNSS, SLAAC).
 
-### Stable IPv6 address for your Pi-hole
+### Enable ULA addresses
 
-The following section will help you picking a suitable IPv6 address of your Pi-hole.
-To show all IPv6 addresses currently in use by your main network interface, open a terminal, substitute `eth0` with your main interface name (or omit) and execute the command
-
-```bash
-ip -6 address show eth0
-```
-
-The output should look like this but with different addresses
-
-```bash
-$ ip -6 address show eth0
-2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    inet6 fd6f:95dc:3a80:e9b1:503e:b05a:21dc:cf0c/64 scope global temporary dynamic
-       valid_lft 7159sec preferred_lft 3559sec
-    inet6 fd6f:95dc:3a80:e9b1:4bc3:7bff:fe67:c175/64 scope global dynamic mngtmpaddr noprefixroute
-       valid_lft 7159sec preferred_lft 3559sec
-    inet6 2001:db8::1c5e:22fe:490c:1c31/64 scope global temporary dynamic
-       valid_lft 7159sec preferred_lft 3559sec
-    inet6 2001:db8::4bc3:7bff:fe67:c175/64 scope global dynamic mngtmpaddr noprefixroute
-       valid_lft 7159sec preferred_lft 3559sec
-    inet6 fe80::4bc3:7bff:fe67:c175/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
-```
-
-When picking an IPv6 address from that list:
-
-* avoid global unicast addresses (GUA) (range `2000::/3`)  
-  Your ISP controls your GUA IPv6 prefix it, so it may change, either regularly or on router restarts.
-  In this example, don't use the third and fourth address, starting with `2001:`
-* avoid Privacy Extension (RFC 4941) addresses which are marked with `temporary`  
-  The interface identifier portion of an IPv6 address is designed to change regularly, on some systems as often as every hour.
-  In this example, avoid the first and the third address.
-* prefer unique local addresses (ULA) (range `fd00::/8`) over the link-local address (range `fe80::/10`)  
-  You can control the ULA prefix and it is static. The later is only valid on a link and cannot be routed.
-  This can be fine for simple home networks, but will break once packets are routed (like Docker, some WiFi access points, L3 switches, ...).
-
-In this example, these two addresses are usable; `fd6f:95dc:3a80:e9b1:4bc3:7bff:fe67:c175` and `fe80::4bc3:7bff:fe67:c175` (with care).
-
-If your FritzBox doesn't issue an IPv6 ULA prefix yet, refer to the following step which helps you configure an ULA prefix.
-
-### (Optional) Enable ULA addresses
-
-Unique local addresses (ULA) are local IPv6 addresses which are not routed on the internet. They are comparable to the IPv4 private network ranges.
+Unique local addresses (ULA) are local IPv6 addresses which are not routed on the internet. They are comparable to the IPv4 private network ranges (such as `192.168.x.y`).
 
 To enable ULA addresses, select "Always assign unique local addresses (ULA)" in
 
-```bash
+``` plain
 Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/Unique Local Addresses
 ```
 
 > Note:
 It is recommended to change the ULA prefix in order to prevent collisions with other networks.
-You should generate the first 40 bits according to RFC4193 or use a simple online generator, like [unique-local-ipv6.com](https://www.unique-local-ipv6.com/).
-The remaining 16 bits are the subnet id and are free to choose.  
+You should generate the first 40 bits according to RFC4193 or use a simple online generator, like [unique-local-ipv6.com](https://www.unique-local-ipv6.com/). The remaining 16 bits are the subnet id and are free to choose.
 Select "Set ULA prefix manually" and enter a custom prefix.
 
 ![Screenshot of Fritz!Box IPv6 Addresses Settings](../images/routers/fritzbox-ipv6-1.png)
 
-To obtain the new address, reconnect or reboot your Pi-hole server.
-Go back to the [previous step](#stable-ipv6-address-for-your-pi-hole) to display your newly created ULA address.
+To obtain the new address, reconnect or reboot your Pi-hole server. The obtained ULA address of your Pi-hole can be seen when running the command
+
+``` bash
+ip address | grep "inet6 fd"
+```
+
+on your Pi-hole. This address will be used in the following section.
 
 ### Distribute Pi-hole as DNS server
 
 It is now possible to enter Pi-hole's stable IPv6 address as "Local DNSv6 server" in
 
-```bash
+``` plain
 Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/DNSv6 Server in the Home Network
 ```
 
