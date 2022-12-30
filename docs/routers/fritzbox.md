@@ -99,10 +99,10 @@ To enable ULA addresses, select "Always assign unique local addresses (ULA)" in
 Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/Unique Local Addresses
 ```
 
-> Note:
-It is recommended to change the ULA prefix in order to prevent collisions with other networks.
-You should generate the first 40 bits according to RFC4193 or use a simple online generator, like [unique-local-ipv6.com](https://www.unique-local-ipv6.com/). The remaining 16 bits are the subnet id and are free to choose.
-Select "Set ULA prefix manually" and enter a custom prefix.
+!!! note
+    It is recommended to change the ULA prefix in order to prevent collisions with other networks.
+    You should generate the first 40 bits according to RFC4193 or use a simple online generator, like [unique-local-ipv6.com](https://www.unique-local-ipv6.com/). The remaining 16 bits are the subnet id and are free to choose.
+    Select "Set ULA prefix manually" and enter a custom prefix.
 
 ![Screenshot of Fritz!Box IPv6 Addresses Settings](../images/routers/fritzbox-ipv6-1.png)
 
@@ -122,7 +122,7 @@ It is now possible to enter Pi-hole's stable IPv6 address as "Local DNSv6 server
 Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/DNSv6 Server in the Home Network
 ```
 
-> Note:
-It is recommended to select "Also announce DNSv6 server via router advertisement (RFC 5006)".
+!!! note
+    It is recommended to select "Also announce DNSv6 server via router advertisement (RFC 5006)".
 
 ![Screenshot of Fritz!Box IPv6 Addresses Settings](../images/routers/fritzbox-ipv6-2.png)
