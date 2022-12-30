@@ -15,7 +15,7 @@ Einige dieser Einstellungen sind nur sichtbar, wenn vorher die Ansicht auf "Erwe
 Mit dieser Konfiguration wird allen Clients die IP des Pi-hole als DNS Server angeboten, wenn sie einen DHCP Lease von der Fritz!Box anfordern.
 DNS Anfragen nehmen folgenden Weg
 
-```bash
+``` plain
 Client -> Pi-hole -> Upstream DNS Server
 ```
 
@@ -25,7 +25,7 @@ Client -> Pi-hole -> Upstream DNS Server
 
 Um diese Konfiguration zu nutzen, muss die IP des Pi-hole als "Lokaler DNS-Server" in
 
-```bash
+``` plain
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Heimnetz
 ```
 
@@ -42,13 +42,13 @@ Nun sollten einzelne Clients im Pi-hole Dashboard auftauchen.
 
 Mit dieser Konfiguration wird Pi-hole  auch von der Fritz!Box selbst als Upstream DNS Server genutzt. DNS Anfragen nehmen folgenden Weg
 
-```bash
+``` plain
 (Clients) -> Fritz!Box -> Pi-hole -> Upstream DNS Server
 ```
 
 Zum Einstellen muss die IP des Pi-hole als "Bevorzugter DNSv4-Server" **und** "Alternativer DNSv4-Server" in
 
-```bash
+``` plain
 Internet/Zugangsdaten/DNS-Server
 ```
 
@@ -65,7 +65,7 @@ Wird ausschließlich diese Konfiguration genutzt, sind im Pi-hole Dashboard kein
 
 Es gibt in der Fritz!Box keine Möglichkeit unter
 
-```bash
+``` plain
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Gastnetz
 ```
 
@@ -90,3 +90,82 @@ Folgende Einstellungen müssen dafür vorgenommen werden:
     * **Local domain name (optional):** Name der lokalen Domän, für die Fritz!Box **fritz.box**
 
 ![Screenshot der Conditional Forwarding Einstellungen](../images/routers/conditional-forwarding.png)
+
+## Optional: Erhöhung der Priorität von DNS Anfragen
+
+Bei ausgelasteter Internetverbindung werden DNS-Anfragen u.U. stark verzögert bearbeitet. Dies kann in der Fritz!Box durch Hinterlegen von DNS als priorisierter Echtzeitanwendung vermieden werden. Falls nicht bereits geschehen, fügen Sie hierfür zunächst "`DNS`" als neuen Answendungstyp unter
+
+``` plain
+Internet/Filter/Listen -> Netzwerkanwendungen -> Netzwerkanwendung hinzufügen
+```
+
+mit den Eigenschaften
+
+``` plain
+Netzwerkanwendung: DNS
+Protokoll: UDP
+Quellport: beliebig
+Zielport: 53
+```
+
+sowie
+
+``` plain
+Netzwerkanwendung: DNS
+Protokoll: TCP
+Quellport: beliebig
+Zielport: 53
+```
+
+hinzu.
+
+Dieser Eintrag kann dann unter
+
+``` plain
+Internet/Filter/Priorisierung -> Echtzeitanwendungen -> Neue Regel
+```
+
+hinzugefügt werden. Wählen Sie nun ihr Pi-hole aus. Sollten Sie sich unsicher sein, kann hier auch "`Alle Geräte`" ausgewählt werden. Unter "`Netzwerkanwendung`" wählen Sie den soeben angelegten Eintrag "`DNS`" aus.
+
+## Optional: DNS Anfragen nur vom Pi-hole erlauben
+
+Nach der Konfiguration des Pi-holes als DNS Server des Netzwerks ist die Einrichtung abgeschlossen. Es bleibt jedoch weiterhin das Risiko einer Umgehung des Pi-holes bestehen - Netzwerkgeräte können sich direkt mit anderen, frei verfügbaren, DNS Servers im Internet verbinden. Dies kann durch eine geeignete Fiterregel jedoch einfach verhindert werden.
+
+!!! warning
+    Einige Geräte oder Programme nutzen fest hinterlegte DNS Server und funktionieren ggfs. nicht mehr ordnungsgemäß falls sie diesen DNS Server nicht erreichen können. Fall solch ein Verhalten auftritt, können Sie dieses Gerät von der Filterregel ausnehmen.
+Insofern nicht bereits vorhanden, legen Sie unter
+
+``` plain
+Internet/Filter/Zugangsprofile -> Zugangsprofile verwalten und optimal nutzen
+```
+
+zwei Zugangsprofile an (z.B. "`Standard`" und "`Unbeschränkt`"). Im Profil "`Standard`" fügen Sie unter
+
+``` plain
+Erweiterte Einstellungen -> Gesperrte Netzwerkanwendungen
+```
+
+die [angelegte Netzwerkanwendung "`DNS`"](/routers/fritzbox-de/#optional-erhohung-der-prioritat-von-dns-anfragen) hinzu.
+Im Profil "`Unbeschränkt`" darf "`DNS`" *nicht* als gesperrt hinterlegt werden.
+
+Nun werden die Zugangsprofile unter
+
+``` plain
+Internet/Filter/Kindersicherung -> Zugangsprofile ändern (am Ende der Seite)
+```
+
+so konfiguriert, dass *sämtliche* Geräte *außer* dem Pi-hole (inkl. "`Alle anderen Geräte`") dem Zugangsprofil "`Standard`" (DNS wird blockiert) zugewiesen werden. Das Pi-hole selbst wird dem Zugangsprofil ("`Unbeschränkt`") zugeordnet um weiterhin DNS Anfragen absetzen zu können. Die Regel wird unmittelbar nach dem Speichern aktiv.
+
+Die neue Filterregel kann z.B. durch den Aufruf von
+
+``` bash
+dig google.com @8.8.8.8 +short
+```
+
+auf dem Pi-Hole und auf einem beliebigen anderen Gerät im Netzwerk getestet werden. Während die Abfrage auf dem Pi-hole wie erwartet eine IP-Adresse zurückgeben sollte, sollte auf allen anderen Geräten eine Fehlermeldung wie
+
+``` plain
+;; communications error to 8.8.8.8#53: host unreachable
+```
+
+angezeigt werden. Dies belegt, dass DNS-Bypassing nun von der Fritz!Box blockiert wird.

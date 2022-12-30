@@ -15,7 +15,7 @@ Some of the following settings might be visible only if advanced settings are en
 Using this configuration, all clients will get Pi-hole's IP offered as DNS server when they request a DHCP lease from your Fritz!Box.
 DNS queries take the following path
 
-```bash
+``` plain
 Client -> Pi-hole -> Upstream DNS Server
 ```
 
@@ -25,7 +25,7 @@ Client -> Pi-hole -> Upstream DNS Server
 
 To set it up, enter Pi-hole's IP as "Local DNS server" in
 
-```bash
+``` plain
 Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Home Network
 ```
 
@@ -41,13 +41,13 @@ Now you should see individual clients in Pi-hole's web dashboard.
 
 With this configuration, Pi-hole is also used by the Fritz!Box itself as an upstream DNS server. DNS queries take the following path
 
-```bash
+``` plain
 (Clients) -> Fritz!Box -> Pi-hole -> Upstream DNS Server
 ```
 
 To set it up, enter Pi-hole's IP as "Preferred DNSv4 server" **and** "Alternative DNSv4 server" in
 
-```bash
+``` plain
 Internet/Account Information/DNS server
 ```
 
@@ -62,7 +62,7 @@ If only this configuration is used, you won't see individual clients in Pi-hole'
 
 There is no option to set the DNS server for the guest network in
 
-```bash
+``` plain
 Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Guest Network
 ```
 
@@ -85,3 +85,81 @@ The following settings must be made:
     * **Local domain name (optional):** Fritz!Box uses **fritz.box**
 
 ![Screenshot der Conditional Forwarding Einstellungen](../images/routers/conditional-forwarding.png)
+
+## Optional: Increasing the priority of DNS requests
+
+When the Internet connection is busy, DNS queries may only be processed with a long delay. This can be avoided in the Fritz!Box by adding DNS as a prioritized real-time application. If you have not already done so, first add "`DNS`" as a new application type under
+
+``` plain
+Internet/Filter/Lists -> Network Applications -> Add Network Application
+```
+
+with the properties
+
+``` plain
+Network application: DNS
+Protocol: UDP
+Source port: any
+Destination port: 53
+```
+
+and
+
+``` plain
+Network application: DNS
+Protocol: TCP
+Source port: any
+Destination port: 53
+```
+
+
+This entry can then be added under
+
+``` plain
+Internet/Filter/Prioritization -> Real-time applications -> New rule
+```
+
+Select your Pi-hole as the device to which the rule should apply. If you are unsure, "`All devices`" may also be useful selection here. As "`Network Application`" select the "`DNS`" entry you just created.
+
+## Optional: Allow DNS queries only from the Pi-hole
+
+After configuring the Pi-hole as the network's DNS server, the setup is complete. However, there is still a risk of clients trying to bypass your Pi-hole as network devices can connect directly to other, freely available, DNS servers on the Internet. However, this can be easily prevented by a suitable filter rule.
+
+!!! warning
+    Some devices or applications use hard-coded DNS servers and may not work as expected if they can't  reach the desired DNS server. If you observe such behavior, you can easily remove the affected device from this filter.
+
+If not already present, create two access profiles (e.g. "`Standard`" and "`Unrestricted`") under
+
+``` plain
+Internet/Filters/Access Profiles -> Manage and Optimize Access Profiles
+```
+
+In the profile "`Standard`" add the network application "`DNS`" ([created above](/routers/fritzbox/#optional-increasing-the-priority-of-dns-requests)) under:
+
+``` plain
+Advanced settings -> Locked network applications
+```
+
+In the profile "`Unrestricted`" "`DNS`" must *not* be set as blocked.
+
+Now the access profiles under
+
+``` plain
+Internet/Filters/Parental Control -> Change Access Profiles (at the bottom of the page)
+```
+
+are configured such that *all* devices *except* the Pi-hole (including "`All other devices`") are assigned to the access profile "`Standard`" (DNS is blocked). The Pi-hole itself is assigned to the access profile "Unrestricted" to be able to send DNS queries. The rule becomes active immediately after saving.
+
+You can easily test whether this is working by trying
+
+``` bash
+dig google.com @8.8.8.8 +short
+```
+
+once on your Pi-hole and once on any other device in your network. While the query on your Pi-hole should return an IP address as expected, you should see an error such as
+
+``` plain
+;; communications error to 8.8.8.8#53: host unreachable
+```
+
+on any other device verifying that DNS-bypassing is now blocked by our Fritz!Box.
