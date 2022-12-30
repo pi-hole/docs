@@ -16,7 +16,8 @@ Restart Tor with: `sudo service tor restart`
 
 Change your Pi-hole upstream DNS server to use `127.0.10.1` in the Pi-hole WebGUI (Settings) under "Upstream DNS Servers" and click "Save".
 
-**Note:** It's currently not possible to change the Upstream DNS Server directly in the `/etc/pihole/setupVars.conf` file, the Pi-hole DNS Server won't pick up the change.
+!!! note
+    It's currently not possible to change the Upstream DNS Server directly in the `/etc/pihole/setupVars.conf` file, the Pi-hole DNS Server won't pick up the change.
 
 If you want a recognizable hostname for the Tor DNS in your Pi-hole GUI statistics, edit `/etc/hosts` as root, include the following line at the end and save the changes
 

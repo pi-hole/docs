@@ -35,7 +35,8 @@ This is not recommended, but here are some things you can do:
     sudo service tor restart
     ```
 
-**Note:** Using this approach you put a strain on Tor Relays in the selected countries only and increase your security vulnerability. It's not nice and not recommended. Also, be aware that this change also affects which Exit Nodes are used if you route your browser traffic over the Pi-hole host Tor SocksPort.
+!!! note
+    Using this approach you put a strain on Tor Relays in the selected countries only and increase your security vulnerability. It's not nice and not recommended. Also, be aware that this change also affects which Exit Nodes are used if you route your browser traffic over the Pi-hole host Tor SocksPort.
 
 ##### Solution 2 - Only use specific Exit Nodes
 
@@ -57,9 +58,11 @@ This is not recommended, but here are some things you can do:
 
 6. If DNS requests stop resolving at all, you might need to repeat this procedure because the Relays you chose might've gone down.
 
-**Note:** Using this approach you put a strain on single Tor Relays and increase your security vulnerability. It's not nice and not recommended. Also, be aware that this change also affects which Exit Nodes are used if you route your browser traffic over the Pi-hole host Tor SocksPort.
+!!! note
+    Using this approach you put a strain on single Tor Relays and increase your security vulnerability. It's not nice and not recommended. Also, be aware that this change also affects which Exit Nodes are used if you route your browser traffic over the Pi-hole host Tor SocksPort.
 
-**Hint:** You can combine both Solutions and have country codes and fingerprints as `ExitNodes`.
+!!! info
+    You can combine both Solutions and have country codes and fingerprints as `ExitNodes`.
 
 #### IPv6
 

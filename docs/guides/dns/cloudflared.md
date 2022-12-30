@@ -13,7 +13,8 @@ Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/ann
 
 In the following sections, we will be covering how to install and configure this tool on `Pi-hole`.
 
-**Note:** The `cloudflared` binary will work with other DoH providers (for example, you could use `https://8.8.8.8/dns-query` for Google's DNS-Over-HTTPS service).
+!!! info
+    The `cloudflared` binary will work with other DoH providers (for example, you could use `https://8.8.8.8/dns-query` for Google's DNS-Over-HTTPS service).
 
 ### Installing `cloudflared`
 
@@ -46,7 +47,8 @@ sudo chmod +x /usr/local/bin/cloudflared
 cloudflared -v
 ```
 
-Note: Users [have reported](https://github.com/cloudflare/cloudflared/issues/38) that the current version of cloudflared produces a segmentation fault error on Raspberry Pi Zero W, Model 1B and 2B. Currently, there is [no known workaround](https://github.com/pi-hole/docs/issues/710).
+!!! info
+  Users [have reported](https://github.com/cloudflare/cloudflared/issues/38) that the current version of cloudflared produces a segmentation fault error on Raspberry Pi Zero W, Model 1B and 2B. Currently, there is [no known workaround](https://github.com/pi-hole/docs/issues/710).
 
 #### arm64 architecture (64-bit Raspberry Pi)
 

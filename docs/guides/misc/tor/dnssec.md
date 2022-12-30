@@ -8,7 +8,8 @@ To re-run the above test, you also need to:
 1. Flush the DNS cache of your OS (Windows: `ipconfig /flushdns`)
 2. Restart browser or clear browser cache
 
-    Note: Flushing Browser/DNS Cache here means restarting Pi-hole (DNS Server), restarting the browser and ideally opening the site in private/incognito mode.
+    !!! note
+        Flushing Browser/DNS Cache here means restarting Pi-hole (DNS Server), restarting the browser and ideally opening the site in private/incognito mode.
 
 #### Alternatives
 

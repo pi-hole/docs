@@ -1,8 +1,8 @@
 Diese Anleitung soll die grundlegenden Prinzipien für ein reibungsloses Zusammenspiel zwischen Fritz!Box und Pi-hole verdeutlichen. Sie wurde für FRITZ!OS 07.21 geschrieben, sollte jedoch auch mit anderen Firmware-Versionen funktionieren.
 
-> Hinweis:
-Es gibt nicht nur **die eine Art**, ein funktionierendes DNS-System aufzusetzen.  Konfiguriert euer Netzwerk nach euren Bedürfnissen.
-Diese Anleitung wurde für IPv4 geschrieben und muss für IPv6 Netzwerke entsprechend angepasst werden.
+!!! note "Hinweis"
+    Es gibt nicht nur **die eine Art**, ein funktionierendes DNS-System aufzusetzen.  Konfiguriert euer Netzwerk nach euren Bedürfnissen.
+    Diese Anleitung wurde für IPv4 geschrieben und muss für IPv6 Netzwerke entsprechend angepasst werden.
 
 ### Erweiterte Ansicht aktivieren
 
@@ -19,9 +19,9 @@ DNS Anfragen nehmen folgenden Weg
 Client -> Pi-hole -> Upstream DNS Server
 ```
 
-> Hinweis:
-Die Fritz!Box selbst wird den unter Internet/Zugangsdaten/DNS-Server eingestellten DNS Server nutzen (siehe unten).
-Die Fritz!Box kann der Upstream Server von Pi-hole sein, solange Pi-hole nicht der Upstream Server der Fritz!Box ist. Dies würde zu einem DNS Loop führen.
+!!! note "Hinweis"
+    Die Fritz!Box selbst wird den unter Internet/Zugangsdaten/DNS-Server eingestellten DNS Server nutzen (siehe unten).
+    Die Fritz!Box kann der Upstream Server von Pi-hole sein, solange Pi-hole nicht der Upstream Server der Fritz!Box ist. Dies würde zu einem DNS Loop führen.
 
 Um diese Konfiguration zu nutzen, muss die IP des Pi-hole als "Lokaler DNS-Server" in
 
@@ -33,7 +33,7 @@ eingetragen werden.
 
 ![Screenshot der Fritz!Box DHCP Einstellungen](../images/routers/fritzbox-dhcp-de.png)
 
-!!! warning
+!!! warning "Warnung"
     Clients bemerken Änderungen an den DHCP Einstellungen erst, wenn der DHCP Lease erneuert wird. Der einfachste Weg dies zu erzwingen ist ein Unterbrechen und Wiederherstellen der Netzwerkverbindung.
 
 Nun sollten einzelne Clients im Pi-hole Dashboard auftauchen.
@@ -56,7 +56,7 @@ eingetragen werden.
 
 ![Screenshot der Fritz!Box WAN DNS Konfiguration](../images/routers/fritzbox-wan-dns-de.png)
 
-!!! warning
+!!! warning "Warnung"
     Die Fritz!Box darf mit dieser Konfiguration nicht als Upstream DNS Server im Pi-hole eingestellt werden. Dies würde zu einem DNS Loop führen, da Pi-hole dann die Anfragen an die Fritz!Box senden würde, welche sie wiederum an Pi-hole senden würde.
 
 Wird ausschließlich diese Konfiguration genutzt, sind im Pi-hole Dashboard keine individuellen Clients sichtbar. Für Pi-hole scheinen alle Anfragen von der Fritz!Box zu kommen. Dadurch können nicht alle Funktionen von Pi-hole genutzt werden, z.B. die Möglichkeit, Clients individuell zu filtern (Group Management). Wenn dies gewünscht ist, muss Pi-hole (zusätzlich) als DNS Server via DHCP an die Clients verteilt werden (siehe oben).
@@ -80,7 +80,7 @@ Dafür gibt es zwei Wege:
 
 * Die Fritz!Box ist der Upstream DNS Server des Pi-holes. Damit landen alle Anfragen sowieso bei der Fritz!Box, welche die Hostnamen an Pi-hole zurücksenden kann.
 
-!!! warning
+!!! warning "Warnung"
     Die Fritz!Box darf nur der Upstream DNS Server des Pi-hole sein, wenn dieser nicht gleichzeitig der Upstream DNS Server der Fritz!Box ist. Dies würde zu einem DNS Loop führen.
 
 * Es werden nur die Anfragen an die Fritz!Box gesendet, welche versuchen im lokalen Netzwerk IP-Adressen wieder Hostnamen zuzuordnen. Alle anderen Anfragen werden an den Upstream DNS Server des Pi-Hole gesendet. Dafür ist die Option *Conditional forwarding* zuständig.
