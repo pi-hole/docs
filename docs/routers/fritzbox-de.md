@@ -111,8 +111,8 @@ Zielport: 53
 sowie
 
 ``` plain
-Netzwerkanwendung: TCP
-Protokoll: UDP
+Netzwerkanwendung: DNS
+Protokoll: TCP
 Quellport: beliebig
 Zielport: 53
 ```
@@ -132,7 +132,7 @@ hinzugefügt werden. Wählen Sie nun ihr Pi-hole aus. Sollten Sie sich unsicher 
 Nach der Konfiguration des Pi-holes als DNS Server des Netzwerks ist die Einrichtung abgeschlossen. Es bleibt jedoch weiterhin das Risiko einer Umgehung des Pi-holes bestehen - Netzwerkgeräte können sich direkt mit anderen, frei verfügbaren, DNS Servers im Internet verbinden. Dies kann durch eine geeignete Fiterregel jedoch einfach verhindert werden.
 
 !!! warning
-    Einige Geräte oder Programme nutzen fest hinterlegte DNS Server und funktionieren ggfs. nicht mehr ordnungsgemäß falls sie diesen DNS Server nicht erreichen können. Fall solch ein Verhalten auftritt, können Sie dieses Gerät von der Filterregel ausnehmen ausnehmen.
+    Einige Geräte oder Programme nutzen fest hinterlegte DNS Server und funktionieren ggfs. nicht mehr ordnungsgemäß falls sie diesen DNS Server nicht erreichen können. Fall solch ein Verhalten auftritt, können Sie dieses Gerät von der Filterregel ausnehmen.
 Insofern nicht bereits vorhanden, legen Sie unter
 
 ``` plain
@@ -145,7 +145,7 @@ zwei Zugangsprofile an (z.B. "`Standard`" und "`Unbeschränkt`"). Im Profil "`St
 Erweiterte Einstellungen -> Gesperrte Netzwerkanwendungen
 ```
 
-die wie unter `Optional: Erhöhung der Priorität von DNS Anfragen` beschrieben angelegte Netzwerkanwendung "`DNS`" hinzu.
+die [angelegte Netzwerkanwendung "`DNS`"](/routers/fritzbox-de/#optional-erhohung-der-prioritat-von-dns-anfragen) hinzu.
 Im Profil "`Unbeschränkt`" darf "`DNS`" *nicht* als gesperrt hinterlegt werden.
 
 Nun werden die Zugangsprofile unter
