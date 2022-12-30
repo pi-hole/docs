@@ -125,12 +125,14 @@ Dieser Eintrag kann dann unter
 Internet/Filter/Priorisierung -> Echtzeitanwendungen -> Neue Regel
 ```
 
-hinzugefügt werden. Da sämtliche Einstellungen über das Pi-hole gehen, wählen Sie dieses als Gerät aus, für das die Regel gelten soll. Sollten Sie sich unsicher sein, kann hier auch "`Alle Geräte`" ausgewählt werden. Unter "`Netzwerkanwendung`" wählen Sie den soeben angelegten Eintrag "`DNS`" aus.
+hinzugefügt werden. Wählen Sie nun ihr Pi-hole aus. Sollten Sie sich unsicher sein, kann hier auch "`Alle Geräte`" ausgewählt werden. Unter "`Netzwerkanwendung`" wählen Sie den soeben angelegten Eintrag "`DNS`" aus.
 
 ## Optional: DNS Anfragen nur vom Pi-hole erlauben
 
 Nach der Konfiguration des Pi-holes als DNS Server des Netzwerks ist die Einrichtung abgeschlossen. Es bleibt jedoch weiterhin das Risiko einer Umgehung des Pi-holes bestehen - Netzwerkgeräte können sich direkt mit anderen, frei verfügbaren, DNS Servers im Internet verbinden. Dies kann durch eine geeignete Fiterregel jedoch einfach verhindert werden.
 
+!!! warning
+    Einige Geräte oder Programme nutzen fest hinterlegte DNS Server und funktionieren ggfs. nicht mehr ordnungsgemäß falls sie diesen DNS Server nicht erreichen können. Fall solch ein Verhalten auftritt, können Sie dieses Gerät von der Filterregel ausnehmen ausnehmen.
 Insofern nicht bereits vorhanden, legen Sie unter
 
 ``` plain
@@ -143,7 +145,7 @@ zwei Zugangsprofile an (z.B. "`Standard`" und "`Unbeschränkt`"). Im Profil "`St
 Erweiterte Einstellungen -> Gesperrte Netzwerkanwendungen
 ```
 
-die oben angelegte Netzwerkanwendung "`DNS`" hinzu.
+die wie unter `Optional: Erhöhung der Priorität von DNS Anfragen` beschrieben angelegte Netzwerkanwendung "`DNS`" hinzu.
 Im Profil "`Unbeschränkt`" darf "`DNS`" *nicht* als gesperrt hinterlegt werden.
 
 Nun werden die Zugangsprofile unter

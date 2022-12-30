@@ -112,7 +112,6 @@ Source port: any
 Destination port: 53
 ```
 
-should be added.
 
 This entry can then be added under
 
@@ -120,11 +119,14 @@ This entry can then be added under
 Internet/Filter/Prioritization -> Real-time applications -> New rule
 ```
 
-Since all settings go through the Pi-hole, select this as the device to which the rule should apply. If you are unsure, "`All devices`" may also be useful selection here. As "`Network Application`" select the entry you just created "`DNS`".
+Select your Pi-hole as the device to which the rule should apply. If you are unsure, "`All devices`" may also be useful selection here. As "`Network Application`" select the "`DNS`" entry you just created.
 
 ## Optional: Allow DNS queries only from the Pi-hole
 
 After configuring the Pi-hole as the network's DNS server, the setup is complete. However, there is still a risk of clients trying to bypass your Pi-hole as network devices can connect directly to other, freely available, DNS servers on the Internet. However, this can be easily prevented by a suitable filter rule.
+
+!!! warning
+    Some devices or applications use hard-coded DNS servers and may not work as expected if they can't be reached. If you observe such behavior, you can easily remove the affected device from this filter.
 
 If not already present, create two access profiles (e.g. "`Standard`" and "`Unrestricted`") under
 
@@ -132,7 +134,7 @@ If not already present, create two access profiles (e.g. "`Standard`" and "`Unre
 Internet/Filters/Access Profiles -> Manage and Optimize Access Profiles
 ```
 
-In the profile "`Standard`" add the network application "`DNS`" created above under:
+In the profile "`Standard`" add the network application "`DNS`" (created above in `Optional: Increasing the priority of DNS requests`) under:
 
 ``` plain
 Advanced settings -> Locked network applications
