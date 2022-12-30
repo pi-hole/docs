@@ -2,7 +2,6 @@ Diese Anleitung soll die grundlegenden Prinzipien für ein reibungsloses Zusamme
 
 !!! note "Hinweis"
     Es gibt nicht nur **die eine Art**, ein funktionierendes DNS-System aufzusetzen.  Konfiguriert euer Netzwerk nach euren Bedürfnissen.
-    Diese Anleitung wurde für IPv4 geschrieben und muss für IPv6 Netzwerke entsprechend angepasst werden.
 
 ### Erweiterte Ansicht aktivieren
 
@@ -90,6 +89,50 @@ Folgende Einstellungen müssen dafür vorgenommen werden:
     * **Local domain name (optional):** Name der lokalen Domän, für die Fritz!Box **fritz.box**
 
 ![Screenshot der Conditional Forwarding Einstellungen](../images/routers/conditional-forwarding.png)
+
+## Pi-hole als DNS Server via IPv6
+
+Mit dieser Konfiguration bekommen alle Clients die IPv6 von Pi-hole als DNS-Server über DHCPv6 und Router Advertisement (RA/RDNSS, SLAAC) angeboten, wenn sie mit Ihrer Fritz!Box verbunden sind.
+
+### ULA Adressraum aktivieren
+
+Unique Local Addresses (ULAs) sind lokale IPv6-Adressen, die nicht über das Internet geroutet werden. Sie sind vergleichbar mit den privaten IPv4-Netzbereichen (`192.168.x.y`).
+
+Zum aktivieren, wähle "Unique Local Addresses (ULA) immer zuweisen" aus in
+
+``` plain
+Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv6-Konfiguration/Unique Local Addresses
+```
+
+!!! note "Hinweis"
+    Es wird empfohlen, das ULA-Präfix zu ändern, um Kollisionen mit anderen Netzen zu vermeiden.
+    Die ersten 40 Bits sollten gemäß RFC4193 oder durch einen einfachen Online-Generator, wie [unique-local-ipv6.com](https://www.unique-local-ipv6.com/), erzeugt werden. Die restlichen 16 Bits sind die Subnetz-ID und können frei gewählt werden.
+    Nach dem Auswählen von "ULA-Präfix manuell festlegen" kann man sein eigenes Präfix einstellen.
+
+![Screenshot der Fritz!Box IPv6 Adressen Einstellungen](../images/routers/fritzbox-ipv6-1-de.png)
+
+Damit das Pi-hole eine ULA-Adresse erhält, muss der Pi-hole Server kurz vom Netzwerk getrennt werden oder neu gestartet werden. Die erhaltene Adresse kann man dann auf dem Pi-hole mit dem Befehl
+
+``` bash
+ip address | grep "inet6 fd"
+```
+
+erhalten. Diese Adresse wird im folgenden Abschnitt verwendet.
+
+### Pi-hole als DNS Server verteilen
+
+Nun kann die IPv6 Adresse des Pi-hole als "Lokaler DNSv6-Server" in
+
+``` plain
+Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv6-Konfiguration/DNSv6-Server im Heimnetz
+```
+
+eingetragen werden.
+
+!!! note "Hinweis"
+    Es ist empfehlenswert "DNSv6-Server auch über Router Advertisement bekanntgeben (RFC 5006)" auszuwählen.
+
+![Screenshot der Fritz!Box IPv6 Adressen Einstellungen](../images/routers/fritzbox-ipv6-2-de.png)
 
 ## Optional: Erhöhung der Priorität von DNS Anfragen
 

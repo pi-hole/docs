@@ -2,7 +2,6 @@ This guide was developed using FRITZ!OS 07.21 but should work for others too. It
 
 !!! note
     There is no single way to do it right. Choose the one best fitting your needs.
-    This guide is IPv4 only. You need to adjust for IPv6 accordingly.
 
 ### Enable advanced settings
 
@@ -85,6 +84,48 @@ The following settings must be made:
     * **Local domain name (optional):** Fritz!Box uses **fritz.box**
 
 ![Screenshot der Conditional Forwarding Einstellungen](../images/routers/conditional-forwarding.png)
+
+## Distribute Pi-hole as DNS server via IPv6
+
+Using this configuration, your Fritz!Box will offer Pi-hole's IPv6 as local DNS server to its clients via DHCPv6 as well as Router Advertisement (RA/RDNSS, SLAAC).
+
+### Enable ULA addresses
+
+Unique local addresses (ULA) are local IPv6 addresses which are not routed on the internet. They are comparable to the IPv4 private network ranges (such as `192.168.x.y`).
+
+To enable ULA addresses, select "Always assign unique local addresses (ULA)" in
+
+``` plain
+Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/Unique Local Addresses
+```
+
+!!! note
+    It is recommended to change the ULA prefix in order to prevent collisions with other networks.
+    You should generate the first 40 bits according to RFC4193 or use a simple online generator, like [unique-local-ipv6.com](https://www.unique-local-ipv6.com/). The remaining 16 bits are the subnet id and are free to choose.
+    Select "Set ULA prefix manually" and enter a custom prefix.
+
+![Screenshot of Fritz!Box IPv6 Addresses Settings](../images/routers/fritzbox-ipv6-1.png)
+
+To obtain the new address, reconnect or reboot your Pi-hole server. The obtained ULA address of your Pi-hole can be seen when running the command
+
+``` bash
+ip address | grep "inet6 fd"
+```
+
+on your Pi-hole. This address will be used in the following section.
+
+### Distribute Pi-hole as DNS server
+
+It is now possible to enter Pi-hole's stable IPv6 address as "Local DNSv6 server" in
+
+``` plain
+Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/DNSv6 Server in the Home Network
+```
+
+!!! note
+    It is recommended to select "Also announce DNSv6 server via router advertisement (RFC 5006)".
+
+![Screenshot of Fritz!Box IPv6 Addresses Settings](../images/routers/fritzbox-ipv6-2.png)
 
 ## Optional: Increasing the priority of DNS requests
 
