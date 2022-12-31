@@ -6,7 +6,9 @@ Occasionally, debugging may require us to run `pihole-FTL` in `valgrind`. We als
 
 ## `memcheck`
 
-The arguably most often used tool in `valgrind` is `memcheck`. Note: When running FTL in Memcheck, it runs about 10-30x slower than normal. Especially the initial import of queries from the database is largely slowed down as SQLite3 frequently allocates and releases heap memory.
+The arguably most often used tool in `valgrind` is `memcheck`.
+!!! info
+    When running FTL in Memcheck, it runs about 10-30x slower than normal. Especially the initial import of queries from the database is largely slowed down as SQLite3 frequently allocates and releases heap memory.
 
 Memcheck is a memory error detector. It can detect the following problems that are common in C and C++ programs.
 

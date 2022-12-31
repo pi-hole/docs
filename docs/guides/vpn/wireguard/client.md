@@ -45,7 +45,7 @@ For each new client, the following steps must be taken. For the sake of simplici
     # Print QR code scanable by the Wireguard mobile app on screen
     qrencode -t ansiutf8 < "${name}.conf"
 
-    systemctl restart wg-quick@wg0
+    wg syncconf wg0 <(wg-quick strip wg0)
     ```
 
     Run the script like
@@ -105,11 +105,13 @@ echo "AllowedIPs = 10.100.0.2/32, fd08:4711::2/128" >> /etc/wireguard/wg0.conf
     Make sure to increment the IP address for any further client! We add the first client with the IP addresses `10.100.0.2` and `fd08:4711::2/128` in this example (`10.100.0.1` and `fd08:4711::1/128` are the server)
 <!-- markdownlint-disable code-block-style -->
 
-Restart your server to load the new client config:
+Reload your server config to add the new client:
 
 ```bash
-systemctl restart wg-quick@wg0
+wg syncconf wg0 <(wg-quick strip wg0)
 ```
+
+This command reads back the existing configuration first and only makes changes that are explicitly different between the configuration file and the current configuration of the interface. This is somewhat less efficient than simply restarting the interface (`systemctl restart wg-quick@wg0`) but has the benefit of *not disrupting currently connected peers*.
 
 After a restart, the server file should look like:
 

@@ -17,12 +17,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.1.0
+      - uses: actions/checkout@v3.2.0
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4.3.1
+        uses: actions/setup-python@v4.4.0
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
           architecture: "x64"
