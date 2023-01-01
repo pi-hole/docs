@@ -232,7 +232,7 @@ interface: wg0
 
 Your public key will be different from ours. This is expected (you just created your own key above).
 
-## Set your Pi-hole to listen on all interfaces
+## Set your Pi-hole to allow only local requests
 
 On your [Settings page (tab DNS)](http://pi.hole/admin/settings.php?tab=dns), ensure you select the appropriate listening mode of your Pi-hole. `Allow only local requests` is preferred as it adds a bit of additional safety. Your WireGuard peers/clients will be correctly recognized as being only one hop away.
 
