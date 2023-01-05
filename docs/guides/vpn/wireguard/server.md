@@ -236,4 +236,4 @@ Your public key will be different from ours. This is expected (you just created 
 
 On your [Settings page (tab DNS)](http://pi.hole/admin/settings.php?tab=dns), ensure you select the appropriate listening mode of your Pi-hole. `Allow only local requests` is preferred as it adds a bit of additional safety. Your WireGuard peers/clients will be correctly recognized as being only one hop away.
 
-You can now continue to add clients.
+You can now continue to [add clients](https://docs.pi-hole.net/guides/vpn/wireguard/client/).
