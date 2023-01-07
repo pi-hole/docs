@@ -68,8 +68,6 @@ The following operating systems are **officially** supported:
 
 Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).
 
-On systems that have `dhcpcd5` already installed (e.g Raspberry Pi OS) there is an option in the install process to append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address. This is an entirely optional step, and offered as a way to lower the barrier to entry for those that may not be familiar with linux systems, such as those first starting out on a Raspberry Pi.
-
 ### Ports
 
 | Service             | Port         | Protocol | Notes               |
