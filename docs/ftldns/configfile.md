@@ -1,7 +1,7 @@
 You can create a file `/etc/pihole/pihole-FTL.conf` that will be read by *FTL*DNS on startup.
 
 !!! info
-   Comments need to start with `#;` to avoid issues with PHP and `bash` reading this file. (See [https://github.com/pi-hole/pi-hole/pull/4081](https://github.com/pi-hole/pi-hole/pull/4081)  for more details)
+    Comments need to start with `#;` to avoid issues with PHP and `bash` reading this file. (See [https://github.com/pi-hole/pi-hole/pull/4081](https://github.com/pi-hole/pi-hole/pull/4081)  for more details)
 
 Possible settings (**the option shown first is the default**):
 
