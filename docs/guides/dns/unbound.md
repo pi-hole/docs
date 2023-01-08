@@ -271,11 +271,27 @@ sudo touch /var/log/unbound/unbound.log
 sudo chown unbound /var/log/unbound/unbound.log
 ```
 
-Third, restart unbound:
+On modern Debian/Ubuntu-based Linux systems, you'll also have to add an AppArmor exception for this new file so `unbound` can write into it.
+
+Create (or edit if existing) the file `/etc/apparmor.d/local/usr.sbin.unbound` and append
+
+``` plain
+/var/log/unbound/unbound.log rw,
+```
+
+to the end (make sure this value is the same as above). Then reload AppArmor using
+
+``` bash
+sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
+sudo service unbound restart
+```
+
+Lastly, restart unbound:
 
 ```
 sudo service unbound restart
 ```
+
 
 ### Uninstall `unbound`
 
