@@ -44,13 +44,13 @@ They'll automatically be re-added when using `sudo service pihole-FTL start` nex
 We suggest the following one-liner to run `pihole-FTL` in `memcheck`:
 
 ```
-sudo rm /dev/shm/FTL-*; sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes -s /usr/bin/pihole-FTL &> valgrind.log
+sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s /usr/bin/pihole-FTL
 ```
 
 If you compile FTL from source, use
 
 ```
-sudo rm /dev/shm/FTL-*; ./build.sh && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes -s ./pihole-FTL &> valgrind.log
+./build.sh && sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s ./pihole-FTL
 ```
 
 The used options are:
