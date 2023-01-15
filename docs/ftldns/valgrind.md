@@ -44,13 +44,27 @@ They'll automatically be re-added when using `sudo service pihole-FTL start` nex
 We suggest the following one-liner to run `pihole-FTL` in `memcheck`:
 
 ```
-sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s /usr/bin/pihole-FTL
+sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL
+sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s /usr/bin/pihole-FTL
 ```
 
 If you compile FTL from source, use
 
 ```
-./build.sh && sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s ./pihole-FTL
+sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL
+./build.sh && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s ./pihole-FTL
+```
+
+The most useful information (about which memory is *possibly* and which is *definitely* lost) is written to `valgrind.log` at the end of the analysis. Terminate FTL by running:
+
+```bash
+sudo kill -TERM $(cat /var/run/pihole-FTL.pid)
+```
+
+and immediately restart it (and fix permissions) using
+
+```bash
+sudo service pihole-FTL start
 ```
 
 The used options are:
