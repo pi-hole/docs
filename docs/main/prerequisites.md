@@ -30,7 +30,7 @@ The following operating systems are **officially** supported:
 | Raspberry Pi OS <br>(formerly Raspbian)     | Buster / Bullseye | ARM                 |
 | Ubuntu       | 20.x / 22.x     | ARM / x86_64        |
 | Debian       | 10 / 11          | ARM / x86_64 / i386 |
-| Fedora       | 35 / 36 / 37     | ARM / x86_64        |
+| Fedora       | 36 / 37     | ARM / x86_64        |
 | CentOS Stream | 8 / 9            | x86_64              |
 
 <!-- markdownlint-disable code-block-style -->
