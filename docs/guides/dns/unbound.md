@@ -219,7 +219,7 @@ sudo systemctl stop unbound-resolvconf.service
 Disable the file resolvconf_resolvers.conf from being generated when resolvconf is invoked elsewhere.
 
 ```bash
-sudo cat /etc/resolvconf.conf  | sed -E 's/^unbound_conf=(.*)/#unbound_conf=\1/' > /etc/resolvconf.conf
+sudo sed -Ei 's/^unbound_conf=/#unbound_conf=/' /etc/resolvconf.conf
 sudo rm /etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
 ```
 
