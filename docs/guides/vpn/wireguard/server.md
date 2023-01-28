@@ -15,7 +15,7 @@ Installing everything we will need for a `wireguard` connections is as simple as
 sudo apt-get install wireguard wireguard-tools
 ```
 
-For Ubuntu 18.04 and lower, you need to do some extra steps:
+For Ubuntu 18.04 and before, you need to do some extra steps:
 
 ```bash
 sudo add-apt-repository ppa:wireguard/wireguard
