@@ -21,3 +21,4 @@ last_updated: Sun Sep 06 14:28:14 2020 UTC
 - [Pi-hole Visualizer](https://www.reddit.com/r/pihole/comments/82ikgb/pihole_visualizer_update/)
 - [Enable/Disable Pi-Hole from your iPhone Home Screen](https://codeopolis.com/posts/how-to-control-pi-hole-from-your-iphone/)
 - [Pi-hole Shortcuts: Native macOS client](https://github.com/dotWee/macOS-PiholeShortcuts)
+- [Discord Pi-hole Bot: Bot for easy Pi-hole server management and stats through discord](https://github.com/josephistired/Discord-Pi-hole-Bot)
