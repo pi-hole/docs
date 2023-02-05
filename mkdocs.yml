@@ -187,6 +187,7 @@ nav:
     - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
     - 'Fritz!Box (DE)': routers/fritzbox-de.md
+    - 'TP-Link': routers/tp-link.md
     - 'Ubiquiti USG': routers/ubiquiti-usg.md
   - 'FAQ': main/faq.md
   - 'Community Projects': main/projects.md
