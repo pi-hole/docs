@@ -54,7 +54,7 @@ PostDown = iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w
 !!! warning "**Important:** Substitute interface"
     **Without the correct interface name, this will not work!**
 
-    Substitute `eth0` in the preceding lines to match the Internet-facing interface. This may be `enp2s0` or similar on more recent Ubuntu versions (check, e.g., `ip a` for details about your local interfaces). If you are unsure, you can use `ip a` to find the correct interface name. The interface name is the one that is connected to the Internet.
+    Substitute `eth0` in the preceding lines to match the Internet-facing interface. This may be `enp2s0` or similar on more recent Ubuntu versions. If you are unsure, you can use `ip a` to find the correct interface name. The interface name is the one that is connected to the Internet.
 
     If you are using the `nftables` method, you do not need to specify the interface name in the `PostUp` and `PostDown` lines.
 <!-- markdownlint-enable code-block-style -->
@@ -70,8 +70,8 @@ The rules will then be cleared once the tunnel is down.
     Address = [Wireguard-internal IPs of the server, e.g. 10.100.0.1/24, fd08:4711::1/64]
     ListenPort = 47111
 
-    PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp2s0 -j MASQUERADE
-    PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp2s0 -j MASQUERADE
+    PostUp = nft add table ip wireguard; nft add chain ip wireguard wireguard_chain {type nat hook postrouting priority srcnat\; policy accept\;}; nft add rule ip wireguard wireguard_chain counter packets 0 bytes 0 masquerade; nft add table ip6 wireguard; nft add chain ip6 wireguard wireguard_chain {type nat hook postrouting priority srcnat\; policy accept\;}; nft add rule ip6 wireguard wireguard_chain counter packets 0 bytes 0 masquerade
+    PostDown = nft delete table ip wireguard; nft delete table ip6 wireguard
 
     # Android phone
     [Peer]
