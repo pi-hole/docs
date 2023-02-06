@@ -2,7 +2,7 @@
 
 ## Only match specific query types
 
-You can amend the regular expressions by special keywords added at the end to fine-tine regular expressions to match only specific [query types](../database/ftl.md#supported-query-types).
+You can amend the regular expressions by special keywords added at the end to fine-tine regular expressions to match only specific [query types](../database/ftl.md#supported-query-types). In contrast to the description of `OTHER` as being deprecated for storing queries in the database, it is still supported for regular expressions and will match all queries that are not *explicitly* covered by the other query types (see also example below).
 
 Example:
 
@@ -37,6 +37,12 @@ Some user-provided examples are:
 - `.*;querytype=ANY`
 
     A regex blacklist entry to block `ANY` request network wide.
+
+- `.*;querytype=OTHER`
+
+    A regex blacklist entry to block `OTHER` request network wide. This rule will match, for instance, proprietary DNS requests using custom query types in the reserved range or queries for seldom used DNS record types like `IXFR` or `AXFR`.
+
+Note that multiple (comma-separated) query types can be specified at the same time, e.g., `.*;querytype=A,AAAA` will match both `A` and `AAAA` requests. In a similar fashion, an inverted (`!` modifier) list, e.g., `.*;querytype=!A,AAAA` will match everything *except* `A` and `AAAA` requests.
 
 ## Invert matching
 

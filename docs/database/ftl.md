@@ -103,9 +103,11 @@ ID | Resource Record (a.k.a. query type)
 11 | `RRSIG`
 12 | `DNSKEY`
 13 | `NS`
-14 | `OTHER` (any query type not covered elsewhere)
+14 | `OTHER` (any query type not covered elsewhere, but see note below)
 15 | `SVCB`
 16 | `HTTPS`
+
+Any other query type will be stored with an offset of 100, i.e., `TYPE66` will be stored as `166` in the database (see [pi-hole/FTL #1013](https://github.com/pi-hole/FTL/pull/1013)). This is done to allow for future extensions of the query type list without having to change the database schema. The `OTHER` query type is deprecated since Pi-hole FTL v5.4 (released Jan 2021) and not used anymore. It is kept for backwards compatibility. Note that `OTHER` is still used for the [regex extension `querytype=`](../regex/pi-hole.md#querytype) filter and used for all queries not covered by the above list.
 
 ### Supported status types
 
