@@ -65,8 +65,6 @@ You can find all `cloudflared` binary releases on <https://github.com/cloudflare
 
 ### Configuring `cloudflared` to run on startup
 
-#### Manual way
-
 Create a `cloudflared` user to run the daemon:
 
 ```bash
