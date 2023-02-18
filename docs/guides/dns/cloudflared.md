@@ -125,46 +125,6 @@ sudo systemctl start cloudflared
 sudo systemctl status cloudflared
 ```
 
-#### Automatic way
-
-<!-- markdownlint-disable code-block-style -->
-!!! warning
-    Keep in mind that this will install `cloudflared` as root.
-<!-- markdownlint-enable code-block-style -->
-
-Proceed to create a configuration file for `cloudflared` in `/etc/cloudflared` named `config.yml`:
-
-```bash
-sudo mkdir /etc/cloudflared/
-sudo nano /etc/cloudflared/config.yml
-```
-
-Copy the following configuration:
-
-```yaml
-proxy-dns: true
-proxy-dns-port: 5053
-proxy-dns-upstream:
-  - https://1.1.1.1/dns-query
-  - https://1.0.0.1/dns-query
-  # Uncomment the following if you also want to use IPv6 for external DOH lookups
-  #- https://[2606:4700:4700::1111]/dns-query
-  #- https://[2606:4700:4700::1001]/dns-query
-```
-
-Now install the service via `cloudflared`'s [service command](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#service-command):
-
-```bash
-sudo cloudflared service install --legacy
-```
-
-Start the `systemd` service and check its status:
-
-```bash
-sudo systemctl start cloudflared
-sudo systemctl status cloudflared
-```
-
 Now test that it is working! Run the following `dig` command, a response should be returned similar to the one below:
 
 ```text
