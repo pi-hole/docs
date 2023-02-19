@@ -48,7 +48,7 @@ cloudflared -v
 ```
 
 !!! info
-  Users [have reported](https://github.com/cloudflare/cloudflared/issues/38) that the current version of cloudflared produces a segmentation fault error on Raspberry Pi Zero W, Model 1B and 2B. Currently, there is [no known workaround](https://github.com/pi-hole/docs/issues/710).
+    Users [have reported](https://github.com/cloudflare/cloudflared/issues/38) that the current version of cloudflared produces a segmentation fault error on Raspberry Pi Zero W, Model 1B and 2B. Currently, there is [no known workaround](https://github.com/pi-hole/docs/issues/710).
 
 #### arm64 architecture (64-bit Raspberry Pi)
 
