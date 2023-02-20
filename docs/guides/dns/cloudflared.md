@@ -241,7 +241,7 @@ sudo chown root:root /etc/cron.weekly/cloudflared-updater
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning
-    Make sure to add shebang `#!/bin/bash` in the beginning of the file.
+    Make sure to add shebang `#!/bin/bash` in the beginning of  `/etc/cron.weekly/cloudflared-updater`.
     Otherwise, the command would not executed.
 <!-- markdownlint-enable code-block-style -->
 
