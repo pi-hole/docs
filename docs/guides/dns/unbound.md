@@ -183,9 +183,9 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 
 (don't forget to hit Return or click on `Save`)
 
-### Disable `resolvconf.conf` entry for `unbound` (Required for Debian Bullsye+ releases)
+### Disable `resolvconf.conf` entry for `unbound` (Required for Debian Bullseye+ releases)
 
-Debian Bullsye+ releases auto-install a package called [`openresolv`](https://wiki.archlinux.org/title/Openresolv) with a certain configuration that will cause unexpected behaviour for pihole and unbound. The effect is that the `unbound-resolvconf.service` instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`. That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured. You need to edit the configuration file and disable the service to work-around the misconfiguration.
+Debian Bullseye+ releases auto-install a package called [`openresolv`](https://wiki.archlinux.org/title/Openresolv) with a certain configuration that will cause unexpected behaviour for pihole and unbound. The effect is that the `unbound-resolvconf.service` instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`. That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured. You need to edit the configuration file and disable the service to work-around the misconfiguration.
 
 #### Step 1 - Disable the Service
 
@@ -195,7 +195,7 @@ To check if this service is enabled for your distribution, run below one. It wil
 systemctl is-active unbound-resolvconf.service
 ```
 
-To disable the service, run the two statements below:
+To disable the service, run the statement below:
 
 ```bash
 sudo systemctl disable --now unbound-resolvconf.service
