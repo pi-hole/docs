@@ -185,56 +185,30 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 
 ### Disable `resolvconf.conf` entry for `unbound` (Required for Debian Bullsye+ releases)
 
-Recent Debian-based OS releases auto-install a package called [`openresolv`](https://wiki.archlinux.org/title/Openresolv), which will cause unexpected behaviour for pihole and unbound. Openresolv's service/config instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`. That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured. You need to remove openresolv, or  edit the configuration file and disable the service to work-around the misconfiguration.
+Debian Bullsye+ releases auto-install a package called [`openresolv`](https://wiki.archlinux.org/title/Openresolv) with a certain configuration that will cause unexpected behaviour for pihole and unbound. The effect is that the `unbound-resolvconf.service` instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`. That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured. You need to edit the configuration file and disable the service to work-around the misconfiguration.
 
-#### Option 1 - Remove openresolv
+#### Step 1 - Disable the Service
 
-If you are sure you don't need the features of openresolv, then removal of the package is the simplest option.
+To check if this service is enabled for your distribution, run below one. It will show either `active` or `inactive` or it might not even be installed resulting in a `could not be found` message:
 
 ```bash
-sudo apt purge openresolv
+systemctl is-active unbound-resolvconf.service
 ```
 
-#### Option 2 - Step 1 - Disable the Service
-
-openresolv has a systemd service called `unbound-resolvconf.service.`
-To check if this service is enabled for your distribution, run below one and take note of the `Active` line.
-It will show either `active` or `inactive` or it might not even be installed resulting in a `could not be found` message:
+To disable the service, run the two statements below:
 
 ```bash
-sudo systemctl status unbound-resolvconf.service
-```
-
-To disable the service if so desire, run the two statements below:
-
-```bash
-sudo systemctl disable unbound-resolvconf.service
-sudo systemctl stop unbound-resolvconf.service
-
+sudo systemctl disable --now unbound-resolvconf.service
 ```
 
 
-#### Option 2 - Step 2 - Disable the file resolvconf_resolvers.conf
+#### Step 2 - Disable the file resolvconf_resolvers.conf
 
 Disable the file resolvconf_resolvers.conf from being generated when resolvconf is invoked elsewhere.
 
 ```bash
 sudo sed -Ei 's/^unbound_conf=/#unbound_conf=/' /etc/resolvconf.conf
 sudo rm /etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
-```
-
-### Alternative Solution - Step 1
-
-To have the `domain_name_servers=` in the file `/etc/dhcpcd.conf` activated/propagate, run below one:
-
-```bash
-sudo systemctl restart dhcpcd
-```
-
-And check with below one if IP(s) on the `nameserver` line(s) reflects the ones in the `/etc/dhcpcd.conf` file:
-
-```bash
-cat /etc/resolv.conf
 ```
 
 ### Add logging to unbound
