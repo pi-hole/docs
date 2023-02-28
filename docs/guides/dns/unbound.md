@@ -211,6 +211,12 @@ sudo sed -Ei 's/^unbound_conf=/#unbound_conf=/' /etc/resolvconf.conf
 sudo rm /etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
 ```
 
+Restart `unbound`.
+
+```bash
+sudo service unbound restart
+```
+
 ### Add logging to unbound
 
 !!! warning
