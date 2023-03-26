@@ -1,11 +1,11 @@
 **This is an unsupported configuration created by the community**
 
-A lot of the Exit Nodes configure their DNS Server to support DNSSEC. You can [test here](https://dnssec.vs.uni-due.de/) whether DNSSEC is enabled for your current DNS Servers.
+A lot of the Exit Nodes configure their DNS Server to support DNSSEC. You can [test here](https://wander.science/projects/dns/dnssec-resolver-test/) whether DNSSEC is enabled for your current DNS Servers.
 If you want to test again by refreshing the site, please be aware of the notes on the site:
 
 To re-run the above test, you also need to:
 
-1. Flush the DNS cache of your OS (Windows: `ipconfig /flushdns`)
+1. Wait for 60s or flush the DNS cache of your OS manually (Windows: `ipconfig /flushdns`)
 2. Restart browser or clear browser cache
 
     !!! note
