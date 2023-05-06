@@ -11,55 +11,59 @@
 1. Have a Traefik v2 Docker container running where it can access port 80 of the Pi-hole server.
 
 1. The following Traefik static config (passed as `command` arguments to the Traefik container in docker-compose.yml):
-```
-- "--providers.docker=true"
-- "--providers.docker.network=traefik-net"  # replace with your configured Docker network name
-- "--entrypoints.web.address=:80"
-- "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-- "--entrypoints.websecure.address=:443"
-- "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
-- "--certificatesresolvers.letsencrypt.acme.email=your-email@example.com"
-- "--certificatesresolvers.letsencrypt.acme.storage=acme.json"
-- "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
-```
 
-3. The next step has 2 scenarios:
+      ```
+      - "--providers.docker=true"
+      - "--providers.docker.network=traefik-net"  # replace with your configured Docker network name
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.email=your-email@example.com"
+      - "--certificatesresolvers.letsencrypt.acme.storage=acme.json"
+      - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+      ```
 
-- If Pi-hole is running in a container on the same Docker host as Traefik, put the following `labels` in your Pi-hole container's config in docker-compose.yml:
-```
-- "traefik.http.routers.pihole.rule=Host(`pihole.domain.tld`)"
-- "traefik.http.routers.pihole.entrypoints=websecure"
-- "traefik.http.routers.pihole.tls=true"
-- "traefik.http.routers.pihole.tls.certresolver=letsencrypt"
-- "traefik.http.routers.pihole.tls.domains[0].main=pihole.domain.tld"
-- "traefik.http.routers.pihole.tls.domains[0].sans=pihole.domain.tld"
-- "traefik.http.services.pihole.loadbalancer.server.port=80"
-```
-   
-- If Pi-hole is running on a different host, you need to provide the Pi-hole (dynamic) config via a `traefik.yml` file to Traefik. This is best done by bind mounting the local directory containing this file to the `/etc/traefik` directory within the container:
-```
-# Traefik container config:
-volumes:
-  - './traefik/fileproviders:/etc/traefik'
-```
-```
-# traefik.yml dynamic config for Pi-hole:
-http:
-  routers:
-    pihole:
-      rule: Host(`pihole.domain.tld`)
-      entrypoints: websecure
-      tls:
-        certresolver: letsencrypt
-        domains:
-          - main: pihole.domain.tld
-            sans:
-              - pihole.domain.tld
-  services:
-    pihole:
-      loadbalancer:
-        servers:
-          - url: "http://pihole.domain.tld/"
- ```
+1. The next step has 2 scenarios:
 
-4. Restart the Traefik and Pi-hole containers, then you should be able to access your pihole via `https://pihole.domain.tld/`
+   - If Pi-hole is running in a container on the same Docker host as Traefik, put the following `labels` in your Pi-hole container's config in docker-compose.yml:
+
+      ```
+      - "traefik.http.routers.pihole.rule=Host(`pihole.domain.tld`)"
+      - "traefik.http.routers.pihole.entrypoints=websecure"
+      - "traefik.http.routers.pihole.tls=true"
+      - "traefik.http.routers.pihole.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.pihole.tls.domains[0].main=pihole.domain.tld"
+      - "traefik.http.routers.pihole.tls.domains[0].sans=pihole.domain.tld"
+      - "traefik.http.services.pihole.loadbalancer.server.port=80"
+      ```
+
+   - If Pi-hole is running on a different host, you need to provide the Pi-hole (dynamic) config via a `traefik.yml` file to Traefik. This is best done by bind mounting the local directory containing this file to the `/etc/traefik` directory within the container:
+
+      ```
+      # Traefik container config:
+      volumes:
+        - './traefik/fileproviders:/etc/traefik'
+      ```
+
+      ```
+      # traefik.yml dynamic config for Pi-hole:
+      http:
+        routers:
+          pihole:
+            rule: Host(`pihole.domain.tld`)
+            entrypoints: websecure
+            tls:
+              certresolver: letsencrypt
+              domains:
+                - main: pihole.domain.tld
+                  sans:
+                    - pihole.domain.tld
+        services:
+          pihole:
+            loadbalancer:
+              servers:
+                - url: "http://pihole.domain.tld/"
+       ```
+
+1. Restart the Traefik and Pi-hole containers, then you should be able to access your pihole via `https://pihole.domain.tld/`
