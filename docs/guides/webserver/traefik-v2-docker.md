@@ -1,7 +1,7 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- This describes how to use Traefik v2 in a Docker container (via docker-compose.yml) to serve the Pi-hole web admin interface via https and includes a permenent http -> https redirect.
+- This describes how to use [Traefik](https://doc.traefik.io/traefik/) v2 in a Docker container (via docker-compose.yml) to serve the Pi-hole web admin interface via https and includes a permenent http -> https redirect.
 - This does not describe how to proxy DNS or DHCP requests to Pi-hole, which is not recommended.
 - For ACME challenges, the Traefik container may need to be able to resolve the desired Pi-hole hostname without relying on Pi-hole to do so. Provide this via the `extra_hosts` parameter in your Traefik container's config in docker-compose.yml if needed.
 - For LetsEncrypt to work Traefik must be reachable on port 80 and 443 from the Internet and have `domain.tld` pointed at its external address.
