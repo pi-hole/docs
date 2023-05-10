@@ -182,7 +182,8 @@ nav:
     - 'Web server':
       - 'NGINX': guides/webserver/nginx.md
       - 'Caddy': guides/webserver/caddy.md
-      - 'Traefik (not in Docker)': guides/webserver/traefik-nodocker.md
+      - 'Traefik v1 (not in Docker)': guides/webserver/traefik-nodocker.md
+      - 'Traefik v2 (with Docker)': guides/webserver/traefik-v2-docker.md
   - 'Router setup':
     - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
