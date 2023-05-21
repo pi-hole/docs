@@ -16,7 +16,7 @@ How should `FTL` reply to blocked queries?<br>
 
 #### `CNAME_DEEP_INSPECT=true|false` (PR [#663](https://github.com/pi-hole/FTL/pull/663)) {#cname_deep_inspect data-toc-label='Deep CNAME inspection'}
 
-Use this option to disable deep CNAME inspection. This might be beneficial for very low-end devices
+Use this option to disable deep CNAME inspection. This might be beneficial for very low-end devices.
 
 #### `BLOCK_ESNI=true|false` (PR [#733](https://github.com/pi-hole/FTL/pull/733)) {#block_esni data-toc-label='ESNI blocking'}
 
@@ -30,7 +30,7 @@ According to the IEFT draft (link above), we can easily restore `piselserv-tls`'
 Should we overwrite the query source when client information is provided through EDNS0 client subnet (ECS) information?
 This allows Pi-hole to obtain client IPs even if they are hidden behind the NAT of a router.
 
-This feature has been requested and discussed on [Discourse](https://discourse.pi-hole.net/t/support-for-add-subnet-option-from-dnsmasq-ecs-edns0-client-subnet/35940) where further information how to use it can be found.
+This feature has been requested and discussed on [Discourse](https://discourse.pi-hole.net/t/support-for-add-subnet-option-from-dnsmasq-ecs-edns0-client-subnet/35940), where further information on how to use it can be found.
 
 #### `RATE_LIMIT=1000/60` (PR [#1052](https://github.com/pi-hole/FTL/pull/1052)) {#rate_limit data-toc-label='Query rate limiting'}
 
@@ -55,7 +55,7 @@ By default, `FTL` determines the address of the interface a query arrived on and
 
 #### `LOCAL_IPV6=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#local_ipv6 data-toc-label='Force local AAAA reply'}
 <!-- markdownlint-disable-next-line MD051 -->
-Used to overwrite the IP address for local `AAAA` queries. See [`LOCAL_IPV4`](#local_ipv4) for details when this setting is used.
+Used to overwrite the IP address for local `AAAA` queries. See [`LOCAL_IPV4`](#local_ipv4) for details on when this setting is used.
 
 #### `BLOCK_IPV4=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#block_ipv4 data-toc-label='Force blocked A reply'}
 
@@ -66,7 +66,7 @@ By default, `FTL` determines the address of the interface a query arrived on and
 
 #### `BLOCK_IPV6=` (unset by default, PR [#1293](https://github.com/pi-hole/FTL/pull/1293)) {#block_ipv6 data-toc-label='Force blocked AAAA reply'}
 <!-- markdownlint-disable-next-line MD051 -->
-Used to overwrite the IP address for blocked `AAAA` queries. See [`BLOCK_IPV4`](#block_ipv4) for details when this setting is used.
+Used to overwrite the IP address for blocked `AAAA` queries. See [`BLOCK_IPV4`](#block_ipv4) for details on when this setting is used.
 
 #### `REPLY_WHEN_BUSY=DROP|ALLOW|BLOCK|REFUSE` (PR [#1156](https://github.com/pi-hole/FTL/pull/1156) & PR [#1341](https://github.com/pi-hole/FTL/pull/1341)) {#reply_when_busy data-toc-label='Database busy reply'}
 
@@ -81,19 +81,19 @@ Despite `REFUSE` sounding similar to `DROP`, it turned out that many clients wil
 
 #### `MOZILLA_CANARY=true|false` (PR [#1148](https://github.com/pi-hole/FTL/pull/1148)) {#mozilla_canary data-toc-label='Mozilla canary domain handling'}
 
-Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox automatic DNS-over-HTTP?
+Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `use-application-dns.net` to disable Firefox's automatic DNS-over-HTTP?
 This is following the recommendation on [https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https](https://support.mozilla.org/en-US/kb/configuring-networks-disable-dns-over-https)
 
 
 #### `BLOCK_TTL=2` (PR [#1173](https://github.com/pi-hole/FTL/pull/1173)) {#block_ttl data-toc-label='Blocked domains lifetime'}
 
-FTL's internal TTL to be handed out for blocked queries. This settings allows users to select a value different from the `dnsmasq` config option `local-ttl`. This seems useful in context of locally used hostnames that are known to stay constant over long times (printers, etc.).
+FTL's internal TTL to be handed out for blocked queries. This setting allows users to select a value different from the `dnsmasq` config option `local-ttl`. This seems useful in context of locally used hostnames that are known to stay constant over long times (printers, etc.).
 
 Note that large values may render whitelisting ineffective due to client-side caching of blocked queries.
 
 #### `BLOCK_ICLOUD_PR=true|false` (PR [#1171](https://github.com/pi-hole/FTL/pull/1171)) {#icloud_private_relay data-toc-label='iCloud Private Relay domain handling'}
 
-Should Pi-hole always replies with `NXDOMAIN` to `A` and `AAAA` queries of `mask.icloud.com` and `mask-h2.icloud.com` to disable Apple's iCloud Private Relay to prevent Apple devices from bypassing Pi-hole?
+Should Pi-hole always reply with `NXDOMAIN` to `A` and `AAAA` queries of `mask.icloud.com` and `mask-h2.icloud.com` to disable Apple's iCloud Private Relay to prevent Apple devices from bypassing Pi-hole?
 This is following the recommendation on [https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay](https://developer.apple.com/support/prepare-your-network-for-icloud-private-relay)
 
 ---
