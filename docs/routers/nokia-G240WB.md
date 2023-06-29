@@ -1,8 +1,8 @@
 This guide was developed using a `Nokia G-240W-B` router (software version 3FE47969AGCA21). It should work for other models in the `G` series.
 
 !!! note
-There is no single way to do it right. Choose the one best suited for you.
-This guide is `IPv4` and `IPv6` compatible, but it is not mandatory to use `IPv6`.
+    There is no single way to do it right. Choose the one best suited for you.
+    This guide is `IPv4` and `IPv6` compatible, but it is not mandatory to use `IPv6`.
 
 ### Prerequisites
 
@@ -15,16 +15,16 @@ SSH into your `Raspberry Pi`. A quick `ifconfig eth0` (substituting `eth0` for t
 
 ```bash
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.1.10  netmask 255.255.255.0  broadcast 192.168.1.255
-        inet6 2806:103e:1f:2ace:22a1:de1d:e1bf:30dc  prefixlen 64  scopeid 0x0<global>
-        inet6 2806:103e:1f:2ace:7d21:7337:7817:2fb2  prefixlen 128  scopeid 0x0<global>
-        inet6 fe80::e6f3:5490:577e:4fed  prefixlen 64  scopeid 0x20<link>
-        inet6 fe80::192:168:1:10  prefixlen 64  scopeid 0x20<link>
-        ether e4:5f:01:cd:8e:e1  txqueuelen 1000  (Ethernet)
-        RX packets 4342  bytes 704995 (688.4 KiB)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 3376  bytes 661707 (646.1 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+    inet 192.168.1.10  netmask 255.255.255.0  broadcast 192.168.1.255
+    inet6 2806:103e:1f:2ace:22a1:de1d:e1bf:30dc  prefixlen 64  scopeid0x0<global>
+    inet6 2806:103e:1f:2ace:7d21:7337:7817:2fb2  prefixlen 128  scopeid0x0<global>
+    inet6 fe80::e6f3:5490:577e:4fed  prefixlen 64  scopeid 0x20<link>
+    inet6 fe80::192:168:1:10  prefixlen 64  scopeid 0x20<link>
+    ether e4:5f:01:cd:8e:e1  txqueuelen 1000  (Ethernet)
+    RX packets 4342  bytes 704995 (688.4 KiB)
+    RX errors 0  dropped 0  overruns 0  frame 0
+    TX packets 3376  bytes 661707 (646.1 KiB)
+    TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
 The relevant lines here are `inet 192.168.1.10  netmask 255.255.255.0` and `inet6 fe80::192:168:1:10 prefixlen 64`
