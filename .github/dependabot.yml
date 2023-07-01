@@ -10,6 +10,10 @@ updates:
     versioning-strategy: increase
     reviewers:
       - "pi-hole/docs-maintainers"
+    groups:
+      npm-dependencies:
+        patterns:
+          - "*"
   - package-ecosystem: pip
     directory: "/"
     schedule:
@@ -22,6 +26,10 @@ updates:
       - dependency-type: indirect
     reviewers:
       - "pi-hole/docs-maintainers"
+    groups:
+      pip-dependencies:
+        patterns:
+          - "*"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -30,3 +38,7 @@ updates:
       time: "10:00"
     reviewers:
       - "pi-hole/docs-maintainers"
+    groups:
+      github_action-dependencies:
+        patterns:
+          - "*"
