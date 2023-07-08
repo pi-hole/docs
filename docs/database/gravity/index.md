@@ -70,13 +70,3 @@ This allows to specify "broad clients" such as
 CIDR notation can be used for IPv6 subnets as well. The IPv6 block `2001:db8::/48` represents all IPv6 addresses from `2001:db8:0:0:0:0:0:0` to `2001:db8:0:ffff:ffff:ffff:ffff:ffff` (1,208,925,819,614,629,174,706,176 = roughly one heptillion devices).
 
 Note that Pi-hole's implementation is more generic than what is written on the linked Wikipedia article as you can use *any* CIDR block (not only multiples of 4).
-
-## Audit Table (`domain_audit`)
-
-The `domain_audit` table contains domains that have been audited by the user on the web interface.
-
-Label | Type | Uniqueness enforced | Content
------ | ---- | ------------------- | --------
-`id` | integer | Yes | Unique ID for database operations
-`domain` | text | Yes | Domain
-`date_added` | integer | No | Unix timestamp when domain was added

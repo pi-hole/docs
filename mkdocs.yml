@@ -234,7 +234,6 @@ plugins:
       redirect_maps:
         'ftldns/database.md': database/index.md
         'ftldns/regex/index.md': ftldns/regex/overview.md
-        'ftldns/dns-cache/index.md': api/dns/cache.md
         'main/presentations.md': index.md
         'main/prerequesites.md': main/prerequisites.md
         'guides/unbound.md': guides/dns/unbound.md
