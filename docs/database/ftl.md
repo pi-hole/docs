@@ -160,6 +160,7 @@ ID | DNSSEC status is
 2 | `INSECURE`
 3 | `BOGUS`
 4 | `ABANDONED`
+5 | `TRUNCATED`
 
 ### Linking tables
 
