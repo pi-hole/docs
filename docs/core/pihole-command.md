@@ -7,7 +7,6 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Index | Invocation |
  -------------- | --------------
 [Core Script](#pi-hole-core) | `pihole`
-[Web Script](#pi-hole-web) | `pihole -a`
 
 ---
 
@@ -21,7 +20,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 [Log Flush](#log-flush) | `pihole flush`
 [Reconfigure](#reconfigure) | `pihole reconfigure`
 [Tail](#tail) | `pihole tail`
-[Admin](#admin) | `pihole -a`
+[Set password](#password) | `pihole setpassword`
 [Chronometer](#chronometer) | `pihole chronometer`
 [Gravity](#gravity) | `pihole updateGravity`
 [Logging](#logging) | `pihole logging`
@@ -109,15 +108,6 @@ Example Usage   | [`pihole tail`](https://discourse.pi-hole.net/t/the-pihole-com
 
 Since Pi-hole will log DNS queries by default, using this command to watch the log in real-time can be useful for debugging a problematic site, or even just for sheer curiosities sake.
 
-### Admin
-
-| | |
- -------------- | --------------
-Help Command    | `pihole -a --help`
-Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
-Example Usage   | `pihole -a -p secretpassword`
-
-Detailed information on this is [found here](#web-script).
 
 ### Chronometer
 
@@ -261,35 +251,15 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
 
 ---
 
-## Pi-hole Web
-
-| Feature | Invocation |
- -------------- | --------------
-[Web Script](#web-script) | `pihole -a`
-[Password](#password) | `pihole -a password`
-[Teleport](#teleport) | `pihole -a -t`
-[Temperature Unit](#temperature-unit) | `pihole -a celsius`, `pihole -a fahrenheit`, `pihole -a kelvin`
-[Interface](#interface) | `pihole -a interface`
-
-### Web Script
-
-| | |
- -------------- | --------------
-Help Command    | `pihole -a --help`
-Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
-Example Usage   | `pihole -a -p secretpassword`
-
-Set options for the Web Interface. This script is used to tie in all Web Interface features which are not already covered by the [Core Script](#core-script).
-
 ### Password
 
 | | |
  -------------- | --------------
 Help Command    | N/A
-Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
-Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#web-password)
+Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole)
+Example Usage   | `pihole setpassword`
 
-Set the Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on the screen (e.g: `pihole -a -p`).
+Set the Web Interface an API password. Password can be entered as an option (e.g: `pihole setpassword secretpassword`), or separately as to not display on the screen (e.g: `pihole setpassword`).
 
 ### Teleport
 
@@ -300,23 +270,3 @@ Script Location | N/A
 Example Usage   | `pihole -a -t`
 
 Create a configuration backup. The backup will be created in the directory from which the command is run. The backup can be imported using the Settings > Teleport page.
-
-### Temperature Unit
-
-| | |
- -------------- | --------------
-Help Command    | N/A
-Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
-Example Usage   | [`pihole -a -c`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#temp-unit)
-
-Set the specified temperature unit as the preferred type. This preference will affect the Web Interface, as well as Chronometer.
-
-### Interface
-
-| | |
- -------------- | --------------
-Help Command    | `pihole -a interface --help`
-Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh)
-Example Usage   | [`pihole -a interface local`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#interface)
-
-Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [Wireguard](../guides/vpn/wireguard/overview.md) to grant your mobile devices access to the Pi-hole.
