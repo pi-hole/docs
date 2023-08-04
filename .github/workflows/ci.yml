@@ -22,14 +22,14 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4.6.1
+        uses: actions/setup-python@v4.7.0
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
           architecture: "x64"
           cache: pip
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@v3.7.0
         with:
           node-version: "${{ env.NODE }}"
           cache: npm
