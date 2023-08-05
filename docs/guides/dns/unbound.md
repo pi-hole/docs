@@ -233,13 +233,14 @@ Level 4 gives  algorithm  level  information
 Level 5 logs client identification for cache misses
 ```
 
-First, specify the log file and the verbosity level in the `server` part of
+First, specify the log file, human-readable timestamps and the verbosity level in the `server` part of
 `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 
 ```yaml
 server:
     # If no logfile is specified, syslog is used
     logfile: "/var/log/unbound/unbound.log"
+    log-time-ascii: yes
     verbosity: 1
 ```
 
