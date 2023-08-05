@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.3
       - uses: editorconfig-checker/action-editorconfig-checker@main
-      - run: editorconfig-checker --exclude MathJax-es5
+      - run: editorconfig-checker

@@ -11,7 +11,7 @@ The form of replies to successful requests strongly depends on the selected endp
 <!-- markdownlint-disable code-block-style -->
 ???+ success "Example reply: Success"
 
-    Ressource: `GET /api/dns/blocking`
+    Resource: `GET /api/dns/blocking`
 
     Response code: `HTTP/1.1 200 OK`
 
@@ -29,11 +29,11 @@ The form of replies to successful requests strongly depends on the selected endp
 
     Depending on the particular endpoint
 
-In contrast, errors have a uniform style to ease their programatic treatment:
+In contrast, errors have a uniform style to ease their programmatic treatment:
 
 ???+ failure "Example reply: Error (unauthorized access)"
 
-    Ressource: `GET /api/domains`
+    Resource: `GET /api/domains`
 
     Response code: `HTTP/1.1 401 Unauthorized`
 
