@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "linkinator": "^5.0.2",
-    "markdownlint-cli2": "0.8.1"
+    "markdownlint-cli2": "0.9.2"
   }
 }
