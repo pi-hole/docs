@@ -6,6 +6,7 @@ updates:
       interval: weekly
       day: saturday
       time: "10:00"
+    target-branch: master
     open-pull-requests-limit: 10
     versioning-strategy: increase
     reviewers:
@@ -16,6 +17,7 @@ updates:
       interval: weekly
       day: saturday
       time: "10:00"
+    target-branch: master
     open-pull-requests-limit: 10
     allow:
       - dependency-type: direct
@@ -30,3 +32,41 @@ updates:
       time: "10:00"
     reviewers:
       - "pi-hole/docs-maintainers"
+    target-branch: master
+
+# As above, but for development-v6
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "10:00"
+    target-branch: release/v6.0
+    open-pull-requests-limit: 10
+    versioning-strategy: increase
+    reviewers:
+      - "pi-hole/docs-maintainers"
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "10:00"
+    target-branch: release/v6.0
+    open-pull-requests-limit: 10
+    allow:
+      - dependency-type: direct
+      - dependency-type: indirect
+    reviewers:
+      - "pi-hole/docs-maintainers"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "10:00"
+    reviewers:
+      - "pi-hole/docs-maintainers"
+    target-branch: release/v6.0
