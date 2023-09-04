@@ -2,7 +2,7 @@
 
 - **This is an unsupported configuration created by the community**
 - Replace the PHP version in the instructions below with the version installed/available in your OS and version.
-  - **Tip:** Run `sudo apt list | grep php[0-9]` to see the version available in your repo. Add the `--installed` flag after `list` to see what's currently installed.
+    - **Tip:** Run `sudo apt list | grep php[0-9]` to see the version available in your repo. Add the `--installed` flag after `list` to see what's currently installed.
 - The `php8.2-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
