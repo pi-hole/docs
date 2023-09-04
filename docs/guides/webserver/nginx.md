@@ -11,32 +11,32 @@
     systemctl stop lighttpd
     ```
 
-2. Install necessary packages
+1. Install necessary packages
 
     ```bash
     apt-get -y install nginx php-fpm php-cgi php-xml php-sqlite3 php-intl apache2-utils
     ```
 
-3. Disable lighttpd at startup
+1. Disable lighttpd at startup
 
     ```bash
     systemctl disable lighttpd
     ```
 
-4. Enable php8.2-fpm at startup
+1. Enable php8.2-fpm at startup
     *Note:* The name of this service includes the version of `php-fpm` installed. To find yours, run `sudo apt list --installed | grep php.*fpm`
 
     ```bash
     systemctl enable php8.2-fpm
     ```
 
-6. Enable nginx at startup
+1. Enable nginx at startup
 
     ```bash
     systemctl enable nginx
     ```
 
-7. Edit `/etc/nginx/sites-available/default` to:
+1. Edit `/etc/nginx/sites-available/default` to:
 
     ```nginx
     server {
@@ -82,37 +82,37 @@
     }
     ```
 
-8. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+1. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
 
     ```bash
     htpasswd -c /etc/nginx/.htpasswd exampleuser
     ```
 
-9. Change ownership of the html directory to nginx user
+1. Change ownership of the html directory to nginx user
 
     ```bash
     chown -R www-data:www-data /var/www/html
     ```
 
-10. Make sure the html directory is writable
+1. Make sure the html directory is writable
 
     ```bash
     chmod -R 755 /var/www/html
     ```
 
-11. Grant the admin panel access to the gravity database
+1. Grant the admin panel access to the gravity database
 
     ```bash
     usermod -aG pihole www-data
     ```
 
-12. Start php8.2-fpm daemon
+1. Start php8.2-fpm daemon
 
     ```bash
     systemctl restart php8.2-fpm
     ```
 
-13. Start nginx web server
+1. Start nginx web server
 
     ```bash
     systemct restart nginx
