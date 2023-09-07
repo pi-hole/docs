@@ -171,6 +171,7 @@ nav:
         - 'Optional: Dynamic DNS': guides/vpn/openvpn/dynDNS.md
         - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
     - 'Misc':
+      - 'Unattended installation': guides/misc/unattended-install.md
       - 'Benchmarking': guides/misc/benchmark.md
       - 'Tor & Pi-hole':
         - 'Overview': guides/misc/tor/overview.md
