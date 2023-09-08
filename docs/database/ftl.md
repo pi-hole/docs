@@ -53,6 +53,7 @@ Label | Type | Allowed to by empty | Content
 `reply_type` | integer | Yes | Type of the reply for this query  (see [Supported reply types](ftl.md#supported-reply-types))
 `reply_time` | real | Yes | Seconds it took until the final reply was received
 `dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](ftl.md#dnssec-status))
+`regex_id` | integer | Yes | ID of the regex filter that matched this query (only set if blocked by a regex filter)
 
 The `queries` `VIEW` is dynamically generated from the data actually stored in the `query_storage` table and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `query_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
 
