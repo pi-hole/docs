@@ -39,6 +39,8 @@ OpenDNS also provides the OpenDNS FamilyShield (free)- option. The service block
 
 - 208.67.222.123
 - 208.67.220.123
+- 2620:119:35::123 (IPv6)
+- 2620:119:53::123 (IPv6)
 
 [More information on OpenDNS FamilyShield](https://www.opendns.com/setupguide/#familyshield) + [OpenDNS FamilyShield introduction Blog](https://umbrella.cisco.com/blog/introducing-familyshield-parental-controls)
 
