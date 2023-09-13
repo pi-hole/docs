@@ -196,19 +196,6 @@ SQLite version: 3.23.1
 
 ---
 
-#### `>domain pi-hole.net` {data-toc-label='domain'}
-
-Get detailed information about domain (if available)
-
-```text
-Domain "pi-hole.net", ID: 254
-Total: 179
-Blocked: 0
-Wildcard blocked: false
-```
-
----
-
 #### `>cacheinfo` {data-toc-label='cacheinfo'}
 
 Get DNS server cache size and usage information
