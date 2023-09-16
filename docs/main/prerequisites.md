@@ -115,6 +115,30 @@ ip6tables -I INPUT -p udp -m udp --sport 546:547 --dport 546:547 -j ACCEPT
 ip6tables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
 
+#### Nftables (
+
+nftables is the successor of iptables. _Note: Please see your distribution's documentation for the exact proper command to use._
+
+IPv4:
+
+```bash
+nft insert rule ip filter INPUT ip saddr 192.168.0.0/16 tcp dport 80 counter accept
+nft insert rule ip filter INPUT ip saddr 127.0.0.0/8 tcp dport 53 counter accept
+nft insert rule ip filter INPUT ip saddr 127.0.0.0/8 udp dport 53 counter accept
+nft insert rule ip filter INPUT ip saddr 192.168.0.0/16 tcp dport 53 counter accept
+nft insert rule ip filter INPUT ip saddr 192.168.0.0/16 udp dport 53 counter accept
+nft insert rule ip filter INPUT udp sport 67-68 udp dport 67-68 counter accept
+nft insert rule ip filter INPUT iifname "lo" tcp dport 4711 counter accept
+nft insert rule ip filter INPUT ct state related,established counter accept
+```
+
+IPv6:
+
+```bash
+nft insert rule ip filter INPUT udp sport 546-547 udp dport 546-547 counter accept
+nft insert rule ip filter INPUT ct state related,established counter accept
+```
+
 #### FirewallD
 
 Using the `--permanent` argument will ensure the firewall rules persist reboots. If only IPv4 blocking is used for the Pi-hole installation, the `dhcpv6` service can be removed from the commands below. Create a new zone for the local interface (`lo`) for the pihole-FTL ports to ensure the API is only accessible locally. Finally `--reload` to have the new firewall configuration take effect immediately.
