@@ -41,5 +41,5 @@
 *[TTL]: Time-To-Live is a mechanism that limits the lifespan or lifetime of data in a computer or network
 *[NAT]: Network address translation
 *[UTF-8]: 8-bit Unicode Transformation Format - a character encoding format capable of encoding all known 1,112,064 valid Unicode characters
-*[URL]: Uniform Ressource Locator, commonly known as "web address"
+*[URL]: Uniform Resource Locator, commonly known as "web address"
 *[REST]: Representational State Transfer - a software architecture for distributed systems like the World Wide Web (WWW)
