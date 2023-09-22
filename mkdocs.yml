@@ -143,7 +143,6 @@ nav:
         - 'Debugging':
             - 'gdb': ftldns/debugging.md
             - 'valgrind': ftldns/valgrind.md
-        - 'In-depth manual': ftldns/in-depth.md
   - 'Group management':
     - 'Overview': group_management/groups.md
     - 'Examples': group_management/example.md
@@ -153,9 +152,6 @@ nav:
     - "Tutorial": regex/tutorial.md
     - "Pi-hole extensions": regex/pi-hole.md
     - "Approximate matching": regex/approximate.md
-    - 'Install from source': ftldns/compile.md
-    - 'Debugging FTLDNS': ftldns/debugging.md
-    - 'In-depth manual': ftldns/in-depth.md
   - 'Docker':
     - 'DHCP': docker/DHCP.md
   - 'Contributing':

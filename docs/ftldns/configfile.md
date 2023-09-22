@@ -325,9 +325,9 @@ Controls if *FTL*DNS should print extended details about regex matching into `FT
 
 **[More details](../regex/overview.md)**
 
-#### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet'}
+#### `DEBUG_API=false|true` {#debug_api data-toc-label='API'}
 
-Print extra debugging information during telnet API calls. Currently only used to send extra information when getting all queries.
+Print extra debugging information during API calls.
 
 #### `DEBUG_OVERTIME=false|true` {#debug_overtime data-toc-label='Over Time Data'}
 
