@@ -100,10 +100,6 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 
-extra_javascript:
-  - MathJax-es5/config.js
-  - MathJax-es5/tex-chtml.js
-
 nav:
   - Overview: index.md
   - 'About Pi-hole':
