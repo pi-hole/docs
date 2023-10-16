@@ -27,9 +27,9 @@ sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libi
 Compile and install a recent version using:
 
 ```bash
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.9.tar.gz
-tar -xzf nettle-3.9.tar.gz
-cd nettle-3.9
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.9.1.tar.gz
+tar -xzf nettle-3.9.1.tar.gz
+cd nettle-3.9.1
 ./configure --libdir=/usr/local/lib --enable-static --disable-shared --disable-openssl --disable-mini-gmp -disable-gcov --disable-documentation
 make -j $(nproc)
 sudo make install
