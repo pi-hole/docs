@@ -44,9 +44,9 @@ Since Ubuntu 20.04, you need to specify the library directory explicitly. Otherw
 Compile and install a recent version using:
 
 ```bash
-wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v3.4.1.tar.gz -O mbedtls-3.4.1.tar.gz
-tar -xzf mbedtls-3.4.1.tar.gz
-cd mbedtls-3.4.1
+wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v3.5.0.tar.gz -O mbedtls-3.5.0.tar.gz
+tar -xzf mbedtls-3.5.0.tar.gz
+cd mbedtls-3.5.0
 sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' include/mbedtls/mbedtls_config.h
 sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' include/mbedtls/mbedtls_config.h
 make -j $(nproc)
