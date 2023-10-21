@@ -107,6 +107,10 @@ Finally, restart *FTL*DNS to use the new binary:
 sudo service pihole-FTL restart
 ```
 
+## Caution
+
+Once your homebrew `pihole-FTL` binary is built and installed, do not run `pihole -up` or `pihole checkout`. These commands might overwrite your local `pihole-FTL` binary with Pi-hole's pre-compiled binaries.
+
 # Use containerized build environment
 
 While most people think of [Docker](https://www.docker.com/) as a deployment environment, it's also a wonderful tool to create and maintain build environments. Pi-hole provides `ftl-build` containers composed of everything needed to build FTL for various architectures on your `x86_64` hosts. Check out [Docker Hub `pi-hole/ftl-build`](https://hub.docker.com/r/pihole/ftl-build/tags) for the available build containers as well as the [Releases overview](https://github.com/pi-hole/docker-base-images/releases/) for a detailed changelog.
