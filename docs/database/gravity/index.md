@@ -29,7 +29,7 @@ Label | Type | Uniqueness enforced | Content
 `date_modified` | integer | No | Timestamp when domain was last modified, automatically updated when a record is changed
 `comment` | text | No | Optional field for arbitrary user comments, only field that is allowed to be `NULL`
 
-## Adlist Table (`adlist`)
+## List Table (`adlist`)
 
 The `adlist` table contains all sources for domains to be collected by `pihole -g`. Just like the other tables, it has a few extra fields to store metadata related to a given source.
 
@@ -48,7 +48,7 @@ Label | Type | Uniqueness enforced | Content
 
 ## Gravity Tables (`gravity` and `antigravity`)
 
-The `gravity` and `antigravity` table consists of the domains that have been processed by Pi-hole's `gravity` (`pihole -g`) command. The domains in this list are the collection of domains sourced from the configured sources (see the [`adlist` table](index.md#adlist-table-adlist)).
+The `gravity` and `antigravity` table consists of the domains that have been processed by Pi-hole's `gravity` (`pihole -g`) command. The domains in this list are the collection of domains sourced from the configured sources (see the [List Table (`adlist`)](index.md#list-table-adlist)).
 
 During each run of `pihole -g`, these tables are flushed and completely rebuilt from the newly obtained set of domains to be blocked or allowed.
 
@@ -57,7 +57,7 @@ Label | Type | Content
 `domain` | text | Domain compiled from subscribed list referenced by `adlist_id`
 `adlist_id` | integer | ID associated to subscribed list in table `adlist`
 
-Uniqueness is enforced on pairs of (`domain`, `adlist_id`) in both tables. In other words: domains can be added multiple times, however, only when they are referencing different adlists as their origins.
+Uniqueness is enforced on pairs of (`domain`, `adlist_id`) in both tables. In other words: domains can be added multiple times, however, only when they are referencing different lists as their origins.
 
 ## Client table (`client`)
 
