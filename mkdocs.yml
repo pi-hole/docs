@@ -123,6 +123,7 @@ nav:
       - 'Database recovery': database/gravity/recovery.md
   - 'Pi-hole API':
     - 'Overview': api/index.md
+    - 'Authentication': api/auth.md
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
