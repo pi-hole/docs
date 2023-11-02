@@ -26,6 +26,36 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
         print(response.text)
         ```
 
+    === "Javascript (plain)"
+
+        ``` javascript
+        var data = JSON.stringify({"password":"your-password"});
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+          }
+        });
+        ```
+
+    === "Javascript (jQuery)"
+
+        ``` javascript
+        $.ajax({
+          url: "https://pi.hole/admin/api/auth",
+          type: "POST",
+          data: JSON.stringify({"password":"your-password"}),
+          dataType: "json",
+          contentType: "application/json"
+        }).done(function(data) {
+          console.log(data);
+        }).fail(function(xhr, status, error) {
+          console.log(error);
+        });
+        ```
+        ```
+
     **Parameters**
 
     Specify either your password or an application password as `password` in the payload.
@@ -103,6 +133,43 @@ Note that when using cookie-based authentication, you will also need to send a `
         print(response.text)
         ```
 
+    === "Javascript (plain)"
+
+        ``` javascript
+        var data = null;
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+          }
+        });
+
+        xhr.open("GET", "https://pi.hole/api/dns/blocking?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=");
+        xhr.setRequestHeader("X-FTL-CSRF", "Ux87YTIiMOf/GKCefVIOMw=");
+        xhr.send(data);
+        ```
+
+    === "Javascript (jQuery)"
+
+        ``` javascript
+        $.ajax({
+          url: "https://pi.hole/api/dns/blocking",
+          type: "GET",
+          data: null,
+          dataType: "json",
+          contentType: "application/json",
+          headers: {
+            "X-FTL-SID": "vFA+EP4MQ5JJvJg+3Q2Jnw=",
+            "X-FTL-CSRF": "Ux87YTIiMOf/GKCefVIOMw="
+          }
+        }).done(function(data) {
+          console.log(data);
+        }).fail(function(xhr, status, error) {
+          console.log(error);
+        });
+        ```
+
     **Parameters**
 
     Specify the SID in one of the four ways described above.
@@ -137,6 +204,35 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
         response = requests.request("POST", url, json=payload, verify=False)
 
         print(response.text)
+        ```
+
+    === "Javascript (plain)"
+
+        ``` javascript
+        var data = JSON.stringify({"password":"your-password", "totp":"123456"});
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+          }
+        });
+        ```
+
+    === "Javascript (jQuery)"
+
+        ``` javascript
+        $.ajax({
+          url: "https://pi.hole/admin/api/auth",
+          type: "POST",
+          data: JSON.stringify({"password":"your-password", "totp":"123456"}),
+          dataType: "json",
+          contentType: "application/json"
+        }).done(function(data) {
+          console.log(data);
+        }).fail(function(xhr, status, error) {
+          console.log(error);
+        });
         ```
 
     **Parameters**
@@ -215,6 +311,41 @@ To end your session before the SID expires, you can send a `DELETE` request to t
         response = requests.request("DELETE", url, headers=headers, data=payload, verify=False)
 
         print(response.text)
+        ```
+
+    === "Javascript (plain)"
+
+        ``` javascript
+        var data = null;
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+          }
+        });
+
+        xhr.open("DELETE", "https://pi.hole/admin/api/auth?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=");
+        xhr.send(data);
+        ```
+
+    === "Javascript (jQuery)"
+
+        ``` javascript
+        $.ajax({
+          url: "https://pi.hole/admin/api/auth",
+          type: "DELETE",
+          data: null,
+          dataType: "json",
+          contentType: "application/json",
+          headers: {
+            "X-FTL-SID": "vFA+EP4MQ5JJvJg+3Q2Jnw="
+          }
+        }).done(function(data) {
+          console.log(data);
+        }).fail(function(xhr, status, error) {
+          console.log(error);
+        });
         ```
 
     **Parameters**
