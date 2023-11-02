@@ -7,7 +7,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
 <!-- markdownlint-disable code-block-style -->
 ???+ example "Authentication with password"
 
-    === "cURL"
+    === "bash / cURL"
 
         ``` bash
         curl -k -X POST "https://pi.hole/admin/api/auth" --data '{"password":"your-password"}'
@@ -54,6 +54,42 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
           console.log(error);
         });
         ```
+
+    === "C"
+
+        ``` c
+        #include <stdio.h>
+        #include <stdlib.h>
+        #include <curl/curl.h>
+
+        int main(void)
+        {
+          CURL *curl;
+          CURLcode res;
+
+          curl_global_init(CURL_GLOBAL_ALL);
+
+          curl = curl_easy_init();
+          if(curl) {
+            curl_easy_setopt(curl, CURLOPT_URL, "https://pi.hole/admin/api/auth");
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"password\":\"your-password\"}");
+            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
+            curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
+            curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
+
+            struct curl_slist *headers = NULL;
+            headers = curl_slist_append(headers, "Content-Type: application/json");
+            curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+            res = curl_easy_perform(curl);
+
+            curl_easy_cleanup(curl);
+          }
+
+          curl_global_cleanup();
+
+          return 0;
+        }
         ```
 
     **Parameters**
@@ -108,7 +144,7 @@ Note that when using cookie-based authentication, you will also need to send a `
 
 ???+ example "Authentication with SID"
 
-    === "cURL"
+    === "bash / cURL"
 
         ``` bash
         # Example: Authentication with SID in the request URI
@@ -184,7 +220,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
 
 ???+ example "Authentication with 2FA"
 
-    === "cURL"
+    === "bash / cURL"
 
         ``` bash
         curl -k -X POST "https://pi.hole/admin/api/auth" --data '{"password":"your-password", "totp":"123456"}'
@@ -289,7 +325,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
 
 ???+ example "Logout"
 
-    === "cURL"
+    === "bash / cURL"
 
         ``` bash
         # Example: Logout with SID in the request URI
