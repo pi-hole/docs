@@ -11,6 +11,7 @@ This is a collection of questions that were asked repeatedly on discourse or git
 - [In which order are locally defined DNS records used?](#in-which-order-are-locally-defined-dns-records-used)
 
 ### Odd random character queries in Pi-hole's query logs
+[Back to top](#index)
 
 You see three queries containing only random strings, sometimes with the local domain suffix, like
 
