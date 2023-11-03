@@ -2,7 +2,7 @@
 
 Authentication is required for most API endpoints. The Pi-hole API uses a session-based authentication system. This means that you will not be able to use a static token to authenticate your requests. Instead, you will be given a session ID (SID) that you will have to use. If you didn't set a password for your Pi-hole, you don't have to authenticate your requests.
 
-To get a session ID, you will have to send a `POST` request to the `/api/auth` endpoint with a payload either containing your password. Note that is also possible to use an application password instead of your regular password, e.g., if you don't want to put your password in your scripts or if you have 2FA enabled for your regular password. Application passwords can be generated in the web interface on the settings page.
+To get a session ID, you will have to send a `POST` request to the `/api/auth` endpoint with a payload containing your password. Note that is also possible to use an application password instead of your regular password, e.g., if you don't want to put your password in your scripts or if you have 2FA enabled for your regular password. One application password can be generated in the web interface on the settings page.
 
 <!-- markdownlint-disable code-block-style -->
 ???+ example "Authentication with password"
@@ -128,7 +128,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
     }
     ```
 
-On success, this will return a JSON object containing the session ID (SID) and the time until your session expires (in seconds).
+On success, this will return a JSON object containing the session ID (SID) and the time until your session expires (validity in seconds).
 You can use this SID from this point to authenticate your requests to the API.
 
 ## Use the SID to access API endpoints
