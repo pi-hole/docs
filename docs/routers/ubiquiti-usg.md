@@ -53,7 +53,7 @@ If you'd rather have your USG forward all DNS traffic to Pi-hole, you can comple
 ```
 
 !!! warning
-    Keep in mind that if you are using your USG's IP address as an upstream resolver for your Pi-hole together with this configureation, ***this will cause a resolver loop***. Make sure to have another upstream DNS server(s) set in your Pi-hole's configuration, or use Pi-hole as [your own recursive DNS server with Unbound](https://docs.pi-hole.net/guides/dns/unbound/?h=unbound#configure-unbound).
+    Keep in mind that if you are using your USG's IP address as an upstream resolver for your Pi-hole together with this configuration, ***this will cause a resolver loop***. Make sure to have another upstream DNS server(s) set in your Pi-hole's configuration, or use Pi-hole as [your own recursive DNS server with Unbound](https://docs.pi-hole.net/guides/dns/unbound/?h=unbound#configure-unbound).
 
 Log into your Unifi Cloud Key. Go to **Settings** -> **Internet**. Click on the WAN line that appears.
 
