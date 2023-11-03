@@ -4,11 +4,11 @@ This is a collection of questions that were asked repeatedly on discourse or git
 
 ### Index
 
-[Odd random character queries in Pi-hole's query logs](#odd-random-character-queries-in-pi-holes-query-logs)
-[Pi-hole update fails due to repository changed it's 'Suite' value](#pi-hole-update-fails-due-to-repository-changed-its-suite-value)
-[Pi-hole's gravity complains about invalid IDN domains](#pi-holes-gravity-complains-about-invalid-idn-domains)
-[Error while loading data from the long-term database](#error-while-loading-data-from-the-long-term-database)
-[In which order are locally defined DNS records used?](#in-which-order-are-locally-defined-dns-records-used)
+- [Odd random character queries in Pi-hole's query logs](#odd-random-character-queries-in-pi-holes-query-logs)
+- [Pi-hole update fails due to repository changed it's 'Suite' value](#pi-hole-update-fails-due-to-repository-changed-its-suite-value)
+- [Pi-hole's gravity complains about invalid IDN domains](#pi-holes-gravity-complains-about-invalid-idn-domains)
+- [Error while loading data from the long-term database](#error-while-loading-data-from-the-long-term-database)
+- [In which order are locally defined DNS records used?](#in-which-order-are-locally-defined-dns-records-used)
 
 ### Odd random character queries in Pi-hole's query logs
 
