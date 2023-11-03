@@ -28,7 +28,7 @@ In a normal setup this results in a “No such name” response from your DNS se
 
 Link to [Chromium's source code](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/chrome/browser/intranet_redirect_detector.cc#132) explaining the function.
 
-[Back to top](#index)
+[Back to top](#frequently-asked-questions)
 
 ### Pi-hole update fails due to repository changed it's 'Suite' value
 
@@ -44,7 +44,7 @@ Repository 'http://archive.raspberrypi.org/debian buster InRelease' changed its 
 sudo apt-get update --allow-releaseinfo-change
 ```
 
-[Back to top](#index)
+[Back to top](#frequently-asked-questions)
 
 ### Pi-hole's gravity complains about invalid IDN domains
 
@@ -66,7 +66,7 @@ Ask the list maintainer to convert the IDNs to their punycode representation.
 Internationalizing Domain Names in Applications (IDNA) was conceived to allow client-side use of language-specific characters in domain names without requiring any existing infrastructure (DNS servers, mall servers, etc., including associated protocols) to change. Accordingly, the corresponding original [RFC 3490](https://tools.ietf.org/html/rfc3490) clearly states that IDNA is employed at application level, not on the server side.
 Hence, DNS servers never see any IDN domain name, which means DNS records do not store IDN domain names at all, only their [Punycode](https://en.wikipedia.org/wiki/Punycode)  representations.
 
-[Back to top](#index)
+[Back to top](#frequently-asked-questions)
 
 ### Error while loading data from the long-term database
 
@@ -120,7 +120,7 @@ Restart the web server:
 sudo service lighttpd restart
 ```
 
-[Back to top](#index)
+[Back to top](#frequently-asked-questions)
 
 ### In which order are locally defined DNS records used?
 
@@ -135,4 +135,4 @@ The order of locally defined DNS records is:
 
 Only the first record will trigger an address-to-name association.
 
-[Back to top](#index)
+[Back to top](#frequently-asked-questions)
