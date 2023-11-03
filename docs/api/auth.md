@@ -135,7 +135,7 @@ You can use this SID from this point to authenticate your requests to the API.
 
 Once you have a valid SID, you can use it to authenticate your requests. You can do this in four different ways:
 
-1. In the request URI: `http://pi.hole/admin/api.php?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=`
+1. In the request URI: `http://pi.hole/admin/api/info/version?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=`
 2. In the payload of your request: `{"sid":"vFA+EP4MQ5JJvJg+3Q2Jnw="}`
 3. In the `X-FTL-SID` header: `X-FTL-SID: vFA+EP4MQ5JJvJg+3Q2Jnw=`
 4. In the `sid` cookie: `Cookie: sid=vFA+EP4MQ5JJvJg+3Q2Jnw=`
