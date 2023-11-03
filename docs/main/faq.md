@@ -2,6 +2,11 @@
 
 This is a collection of questions that were asked repeatedly on discourse or github.
 
+[Odd random character queries in Pi-hole's query logs](#odd-random-character-queries-in-pi-holes-query-logs)
+
+[In which order are locally defined DNS records used?](#in-which-order-are-locally-defined-dns-records-used)
+
+
 ### Odd random character queries in Pi-hole's query logs
 
 You see three queries containing only random strings, sometimes with the local domain suffix, like
@@ -105,3 +110,16 @@ Restart the web server:
 ```bash
 sudo service lighttpd restart
 ```
+
+### In which order are locally defined DNS records used?
+
+**Answer:**
+
+The order of locally defined DNS records is:
+
+1. The device's host name and `pi.hole`
+2. Configured in a config file in `/etc/dnsmasq.d/`
+3. Read from `/etc/hosts`
+4. Read from the "Local (custom) DNS" list (stored in `/etc/pihole/custom.list`)
+
+Only the first record will trigger an address-to-name association.
