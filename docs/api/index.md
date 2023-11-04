@@ -1,8 +1,16 @@
-# API Reference
+# API Reference: Overview
 
 The Pi-hole API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts and returns reliable UTF-8 [JavaScript Object Notation (JSON)-encoded](http://www.json.org/) data for all API responses, and uses standard HTTP response codes and verbs.
 
-Most (but not all) endpoints require authentication. API endpoints requiring authentication will fail with code `401 Unauthorized` if no key is supplied.
+Most (but not all) endpoints require authentication. API endpoints requiring authentication will fail with code `401 Unauthorized` if no key is supplied. See [API Reference: Authentication](auth.md) for details.
+
+## Accessing the API documentation
+
+The entire API is documented at http://pi.hole/api/docs and self-hosted by your Pi-hole to match 100% the API versions your local Pi-hole has. Using this locally served API documentation is preferred. In case you don't have Pi-hole installed yet, you can also check out the documentation for all branches online, e.g., [Pi-hole API documentation](https://ftl.pi-hole.net/development-v6/docs/) (branch `development-v6`). Similarly, you can check out the documentation for a specific other branches by replacing `development-v6` with the corresponding branch name. <!-- markdownlint-disable-line no-bare-urls -->
+
+## API endpoints
+
+An overview of all available endpoints is available at the API documentation page. The endpoints are grouped by their functionality.
 
 ## JSON response
 
@@ -28,9 +36,11 @@ The form of replies to successful requests strongly depends on the selected endp
     **Fields**
 
     Depending on the particular endpoint
+<!-- markdownlint-enable code-block-style -->
 
-In contrast, errors have a uniform style to ease their programmatic treatment:
+In contrast, errors have a uniform, predictable style to ease their programmatic treatment:
 
+<!-- markdownlint-disable code-block-style -->
 ???+ failure "Example reply: Error (unauthorized access)"
 
     Resource: `GET /api/domains`
@@ -42,7 +52,7 @@ In contrast, errors have a uniform style to ease their programmatic treatment:
         "error": {
             "key": "unauthorized",
             "message": "Unauthorized",
-            "data": null
+            "hint": null
         }
     }
     ```
@@ -87,21 +97,21 @@ In contrast, errors have a uniform style to ease their programmatic treatment:
 
             Possible reason: The required field `domain` is missing in the payload
 
-    ??? info "Additional data (`"data": [object|null]`)"
+    ??? info "Additional data (`"hint": [object|string|null]`)"
 
-        The field `data` may contain a JSON object. Its content depends on the error itself and may contain further details such as the interpreted user data. If no additional data is available for this endpoint, `null` is returned instead of an object.
+        The field `hint` may contain a JSON object or string. Its content depends on the error itself and may contain further details such as the interpreted user data. If no additional hint is available for this endpoint, `null` is returned.
 
-        Examples for a failed request with `data` being set is (domain is already on this list):
+        Examples for a failed request with `hint` being set is (domain is already on this list):
 
         ``` json
         {
             "error":  {
-                "key":  "database_error",
-                "message":  "Could not add to gravity database",
-                "data": {
+                "key": "database_error",
+                "message": "Could not add to gravity database",
+                "hint": {
                     "argument": "abc.com",
-                    "enabled":  true,
-                    "sql_msg":  "UNIQUE constraint failed: domainlist.domain, domainlist.type"
+                    "enabled": true,
+                    "sql_msg": "UNIQUE constraint failed: domainlist.domain, domainlist.type"
                 }
             }
         }
@@ -116,13 +126,14 @@ Pi-hole's API uses the methods like this:
 
 Method   | Description
 ---------|------------
-`GET`    | **Read** from resource. The resource may not exist.
-`POST`   | **Create** resources
-`PUT`    | **Create or Replace** a resource. This method is commonly used to *update* entries.
+`GET`    | **Read** from resource
+`POST`   | **Create** a resource
+`PATCH`  | **Update** existing resource
+`PUT`    | **Create or Replace** a resource
 `DELETE` | **Delete** existing resource
 
 <!-- markdownlint-disable code-block-style -->
-??? info "Summarized details from [RFC 2616, Scn. 9](https://tools.ietf.org/html/rfc2616#section-9) (`GET/POST/PUT/DELETE`)"
+??? info "Summarized details from [RFC 2616, Scn. 9](https://tools.ietf.org/html/rfc2616#section-9) (`GET/POST/PUT/DELETE`) and [RFC 2068, Scn. 19.6.1.1](https://datatracker.ietf.org/doc/html/rfc2068#section-19.6.1.1) (`PATCH`)"
     ### `GET`
 
     The `GET` method means retrieve whatever information (in the form of an entity) that is identified by the URI.
@@ -145,6 +156,10 @@ Method   | Description
     ### `PUT`
 
     Use `PUT` primarily to **update existing records** (if the resource does not exist, the API will typically create a new record for it). If a new record has been added at the given URI, or an existing resource is modified, either the `200 (OK)` or `204 (No Content)` response codes are sent to indicate successful completion of the request.
+
+    ### `PATCH`
+
+    The `PATCH` method is similar to `PUT` except that the entity contains a list of differences between the original version of the resource identified by the Request-URI and the desired content of the resource after the `PATCH`` action has been applied. The list of differences is in a format defined by the media type of the entity (e.g., "application/diff") and MUST include sufficient information to allow the server to recreate the changes necessary to convert the original version of the resource to the desired version.
 
     ### `DELETE`
 
