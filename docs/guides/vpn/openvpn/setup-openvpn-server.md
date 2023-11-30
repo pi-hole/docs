@@ -1,3 +1,5 @@
+{!guides/vpn/openvpn/deprecation_notice.md!}
+
 ### Change OpenVPN's resolvers
 
 First, find the IP of your `tun0` interface:

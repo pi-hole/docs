@@ -1,3 +1,5 @@
+{!guides/vpn/openvpn/deprecation_notice.md!}
+
 - Install the official OpenVPN App from the [App Store](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
 
 - Log into your OpenVPN server and use the road warrior installer to create a new certificate for your device:

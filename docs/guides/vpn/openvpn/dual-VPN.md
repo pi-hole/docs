@@ -1,3 +1,5 @@
+{!guides/vpn/openvpn/deprecation_notice.md!}
+
 ### Dual VPN Setup - Separate DNS and VPN Traffic
 
 In order to separate VPN traffic from DNS queries, you will need to run two VPN servers. One server routes the normal user traffic and the second routes only DNS requests. This can be done with two OpenVPN configurations.
