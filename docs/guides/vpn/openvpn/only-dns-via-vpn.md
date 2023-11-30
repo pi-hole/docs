@@ -1,3 +1,5 @@
+{!guides/vpn/openvpn/deprecation_notice.md!}
+
 ### Optional: Only route DNS via VPN
 
 With this setup, you will force connected clients to use **only the DNS provided by the VPN connection, i.e. the Pi-hole.**  Do this only if you **don't** want to tunnel all traffic from the client through the VPN, but only its DNS queries.

@@ -1,3 +1,5 @@
+{!guides/vpn/openvpn/deprecation_notice.md!}
+
 ### CRL expired
 
 OpenVPN 2.4 and newer check the validity of the Certificate Revocation List (CRL). This can result in a sudden malfunction of `openvpn` after an update even though no configuration files have changed. This error manifests in the following, not very helpful, error on the client's side:
