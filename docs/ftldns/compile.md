@@ -12,13 +12,13 @@ Install them by running the following command in a terminal:
 ### Debian / Ubuntu / Raspbian
 
 ```bash
-sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn11-dev libreadline-dev xxd
+sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn2-dev libunistring-dev libreadline-dev xxd
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel xxd
+sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn2-devel libunistring-devel readline-devel xxd
 ```
 
 ## Compile `libnettle` from source
