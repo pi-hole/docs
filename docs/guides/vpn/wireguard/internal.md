@@ -26,7 +26,25 @@ net.ipv6.conf.all.forwarding = 1
 
 they were enabled successfully.
 
-A properly configured firewall is ***highly*** recommended for any Internet-facing device. Configuring a firewall (`iptables`, `ufw`, etc.) is not part of this guide.
+A properly configured firewall is ***highly*** recommended for any Internet-facing device. A complete configuration of a firewall (`iptables`, `ufw`, etc.) is not part of this guide.
+
+## Open and close a route from the Wireguard server to the client
+
+<!-- markdownlint-disable code-block-style -->
+!!! warning "**Important:** Substitute interface"
+    **Without the correct interface name, this will not work!**
+
+    Substitute `eth0` in the commands below to enable the NAT to match the Internet-facing interface. This may be `enp2s0` or similar on more recent Ubuntu versions. If you are unsure, you can use `ip a` to find the correct interface name. The interface name is the one that is connected to the Internet.
+
+    If you are using the `nftables` method to enable NAT, you do not need to specify the interface name for the `PostUp` and `Post Down` lines.
+<!-- markdownlint-enable code-block-style -->
+
+The following example can open and close a route for the Wireguard interface in a `ufw` firewall of the WireGuard device. On your server, add the following to the `[INTERFACE]` section of your `/etc/wireguard/wg0.conf`:
+
+```bash
+PostUp = ufw route allow in on eth0 out on wg0
+PreDown = ufw route delete allow in on eth0 out on wg0
+```
 
 ## Enable NAT on the server
 
@@ -50,17 +68,7 @@ PostUp = iptables -w -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -
 PostDown = iptables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -w -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 ```
 
-<!-- markdownlint-disable code-block-style -->
-!!! warning "**Important:** Substitute interface"
-    **Without the correct interface name, this will not work!**
-
-    Substitute `eth0` in the preceding lines to match the Internet-facing interface. This may be `enp2s0` or similar on more recent Ubuntu versions. If you are unsure, you can use `ip a` to find the correct interface name. The interface name is the one that is connected to the Internet.
-
-    If you are using the `nftables` method, you do not need to specify the interface name in the `PostUp` and `PostDown` lines.
-<!-- markdownlint-enable code-block-style -->
-
-`PostUp` and `PostDown` defines steps to be run after the interface is turned on or off, respectively. In this case, iptables is used to set Linux IP masquerade rules to allow all the clients to share the server’s IPv4 and IPv6 address.
-The rules will then be cleared once the tunnel is down.
+`PostUp`, `PreDown`  and `PostDown` defines steps to be run after the interface is turned on or off, respectively. In this case, the rules are used to set Linux IP masquerade rules to allow all the clients to share the server’s IPv4 and IPv6 address. The rules will then be cleared once the tunnel is down.
 
 <!-- markdownlint-disable code-block-style -->
 ??? info "Exemplary server config file with this change"
@@ -70,7 +78,9 @@ The rules will then be cleared once the tunnel is down.
     Address = [Wireguard-internal IPs of the server, e.g. 10.100.0.1/24, fd08:4711::1/64]
     ListenPort = 47111
 
+    PostUp = ufw route allow in on eth0 out on wg0
     PostUp = nft add table ip wireguard; nft add chain ip wireguard wireguard_chain {type nat hook postrouting priority srcnat\; policy accept\;}; nft add rule ip wireguard wireguard_chain counter packets 0 bytes 0 masquerade; nft add table ip6 wireguard; nft add chain ip6 wireguard wireguard_chain {type nat hook postrouting priority srcnat\; policy accept\;}; nft add rule ip6 wireguard wireguard_chain counter packets 0 bytes 0 masquerade
+    PreDown = ufw route delete allow in on eth0 out on wg0
     PostDown = nft delete table ip wireguard; nft delete table ip6 wireguard
 
     # Android phone
@@ -82,7 +92,7 @@ The rules will then be cleared once the tunnel is down.
     # maybe more [Peer] sections for more clients
     ```
 
-    The important change is the extra `PostUp` and `PostDown` in the `[Interface]` section.
+    The important change is the extra `PostUp`, `PreDown` and `PostDown` portions in the `[Interface]` section.
 <!-- markdownlint-enable code-block-style -->
 ## Allow clients to access other devices
 

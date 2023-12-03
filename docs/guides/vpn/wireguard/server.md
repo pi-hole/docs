@@ -134,11 +134,10 @@ to copy the server's private key into your config file.
 
 ## Forward port on your router
 
-If the server is behind a device, e.g., a router that is doing NAT, be sure to forward the specified port on which WireGuard will be running (for this example, `47111/UDP`) from the router to the WireGuard server.
+If the server is behind a device, e.g., a router with a firewall that is doing NAT, be sure to forward the specified port on which WireGuard will be running (for this example, `47111/UDP`) from the router to the WireGuard server. A proper port forwarding rule would act on UDP packets destined for the device's public IP address on the WireGuard port and forward them to the IP address of the WireGuard server, such as the Pi-hole's IP address when WireGuard is running on the Pi-hole device.
 
 ??? info "NAT: Network address translation"
-    Network address translation modifies network packages. Incoming connection requests have their destination address rewritten to a different one.
-    NAT involves more than just changing the IP addresses. For instance, when mapping address `1.2.3.4` to `5.6.7.8`, there is no need to add a rule to do the reverse translation. A `netfilter` system called `conntrack` recognizes packets that are replies to an existing connection. Each connection has its own NAT state attached to it. The reverse translation is done automatically.
+    Network address translation modifies network packages. Incoming connection requests have their destination address rewritten to a different one. NAT involves more than just changing the IP addresses. For instance, when mapping address `1.2.3.4` to `5.6.7.8`, there is no need to add a rule to do the reverse translation. A `netfilter` system called `conntrack` recognizes packets that are replies to an existing connection. Each connection has its own NAT state attached to it. The reverse translation is done automatically.
 
 ## Set up a domain name for your router
 
@@ -172,6 +171,19 @@ There are many excellent guides and a lot of services offer this for free (with 
 <!-- markdownlint-enable code-block-style -->
 
 You can either use the methods the corresponding providers recommend or use existing DynDNS solutions inbuilt in your router (if available). Most providers are compatible with, e.g., the popular Fritz!Box routers ([EN](https://en.avm.de/service/fritzbox/fritzbox-4040/knowledge-base/publication/show/30_Setting-up-dynamic-DNS-in-the-FRITZ-Box/) / [DE](https://avm.de/service/fritzbox/fritzbox-7590/wissensdatenbank/publication/show/30_Dynamic-DNS-in-FRITZ-Box-einrichten/)).
+
+## Update `unbound`
+
+If your Pi-hole setup uses a public upstream DNS server, such as OpenDNS, Cloudfare, or Google DNS, no modifications are needed and you may skip to starting the server.
+
+But if you are using `unbound` to provide a recursive DNS server solution based on the Pi-hole's DNS guide, it may be necessary to modify the `unbound` configuration file to allow `unbound` to respond to local DNS requests. To do so, add a line `access-control: [local network subnet] allow` into `unbound`'s pi-hole.conf file and restarting unbound. For example, if your local network subnet hosting the Pi-hole device is 192.168.1.0/24:
+
+```bash
+sudo -i
+echo "access-control: 192.168.1.0/24 allow" >> /etc/unbound/unbound.conf.d/pi-hole.conf
+systemctl restart unbound
+exit
+```
 
 ## Start the server
 
