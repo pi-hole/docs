@@ -10,7 +10,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
     === "bash / cURL"
 
         ``` bash
-        curl -k -X POST "https://pi.hole/admin/api/auth" --data '{"password":"your-password"}'
+        curl -k -X POST "https://pi.hole/api/auth" --data '{"password":"your-password"}'
         ```
 
     === "Python 3"
@@ -18,7 +18,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
         ``` python
         import requests
 
-        url = "https://pi.hole/admin/api/auth"
+        url = "https://pi.hole/api/auth"
         payload = {"password": "your-password"}
 
         response = requests.request("POST", url, json=payload, verify=False)
@@ -43,7 +43,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
 
         ``` javascript
         $.ajax({
-          url: "https://pi.hole/admin/api/auth",
+          url: "https://pi.hole/api/auth",
           type: "POST",
           data: JSON.stringify({"password":"your-password"}),
           dataType: "json",
@@ -71,7 +71,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
 
           curl = curl_easy_init();
           if(curl) {
-            curl_easy_setopt(curl, CURLOPT_URL, "https://pi.hole/admin/api/auth");
+            curl_easy_setopt(curl, CURLOPT_URL, "https://pi.hole/api/auth");
             curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "{\"password\":\"your-password\"}");
             curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
             curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
@@ -135,7 +135,7 @@ You can use this SID from this point to authenticate your requests to the API.
 
 Once you have a valid SID, you can use it to authenticate your requests. You can do this in four different ways:
 
-1. In the request URI: `http://pi.hole/admin/api/info/version?sid=9N80JpYyHRBX4c5RW95%2Fyg%3D` (your SID needs to be URL-encoded)
+1. In the request URI: `http://pi.hole/api/info/version?sid=9N80JpYyHRBX4c5RW95%2Fyg%3D` (your SID needs to be URL-encoded)
 2. In the payload of your request: `{"sid":"vFA+EP4MQ5JJvJg+3Q2Jnw="}`
 3. In the `X-FTL-SID` header: `X-FTL-SID: vFA+EP4MQ5JJvJg+3Q2Jnw=`
 4. In the `sid` cookie: `Cookie: sid=vFA+EP4MQ5JJvJg+3Q2Jnw=`
@@ -223,7 +223,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
     === "bash / cURL"
 
         ``` bash
-        curl -k -X POST "https://pi.hole/admin/api/auth" --data '{"password":"your-password", "totp":"123456"}'
+        curl -k -X POST "https://pi.hole/api/auth" --data '{"password":"your-password", "totp":"123456"}'
         ```
 
     === "Python 3"
@@ -231,7 +231,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
         ``` python
         import requests
 
-        url = "https://pi.hole/admin/api/auth"
+        url = "https://pi.hole/api/auth"
         payload = {
           "password": "your-password",
           "totp": 123456
@@ -259,7 +259,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
 
         ``` javascript
         $.ajax({
-          url: "https://pi.hole/admin/api/auth",
+          url: "https://pi.hole/api/auth",
           type: "POST",
           data: JSON.stringify({"password":"your-password", "totp":"123456"}),
           dataType: "json",
@@ -329,7 +329,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
 
         ``` bash
         # Example: Logout with SID in the request URI
-        curl -k -X DELETE "https://pi.hole/admin/api/auth?sid=vFA+EP4MQ5JJvJg+3Q2Jnw="
+        curl -k -X DELETE "https://pi.hole/api/auth?sid=vFA+EP4MQ5JJvJg+3Q2Jnw="
         ```
 
     === "Python 3"
@@ -338,7 +338,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
         # Example: Logout with SID in the request header
         import requests
 
-        url = "https://pi.hole/admin/api/auth"
+        url = "https://pi.hole/api/auth"
         payload = {}
         headers = {
           "X-FTL-SID": "vFA+EP4MQ5JJvJg+3Q2Jnw="
@@ -361,7 +361,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
           }
         });
 
-        xhr.open("DELETE", "https://pi.hole/admin/api/auth?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=");
+        xhr.open("DELETE", "https://pi.hole/api/auth?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=");
         xhr.send(data);
         ```
 
@@ -369,7 +369,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
 
         ``` javascript
         $.ajax({
-          url: "https://pi.hole/admin/api/auth",
+          url: "https://pi.hole/api/auth",
           type: "DELETE",
           data: null,
           dataType: "json",
