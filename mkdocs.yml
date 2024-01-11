@@ -150,6 +150,7 @@ nav:
       - 'unbound': guides/dns/unbound.md
       - 'cloudflared (DoH)': guides/dns/cloudflared.md
       - 'Upstream DNS Providers': guides/dns/upstream-dns-providers.md
+      - 'dnsproxy (DoH)': guides/dns/dnsproxy-doh.md
     - 'VPN':
       - 'WireGuard':
         - 'Overview': guides/vpn/wireguard/overview.md
