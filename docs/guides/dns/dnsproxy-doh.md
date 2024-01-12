@@ -12,7 +12,7 @@ But should work on any Linux distributionm, maybe with some minor changes.
 
 You just need to download it from the [releases page](https://github.com/AdguardTeam/dnsproxy/releases). Choose your architecture and download the binary.
 
-For this guide we will use the `dnsproxy-linux-amd64-v0.61.1.tar.gz` binary available at https://github.com/AdguardTeam/dnsproxy/releases/download/v0.61.1/dnsproxy-linux-amd64-v0.61.1.tar.gz
+For this guide we will use the `dnsproxy-linux-amd64-v0.61.1.tar.gz` binary available at `https://github.com/AdguardTeam/dnsproxy/releases/download/v0.61.1/dnsproxy-linux-amd64-v0.61.1.tar.gz`
 
 
 ```bash
@@ -26,23 +26,32 @@ mv linux-amd64/dnsproxy ./
 ### Configuring `dnsproxy` to run on startup
 
 1. Copy the `dnsproxy` binary to `/usr/bin`:
+
     ```bash
     sudo cp ./dnsproxy /usr/bin/
     ```
+
 2. Create a `dnsproxy` user to run the daemon:
+
     ```bash
     sudo useradd -s /usr/sbin/nologin -r -M dnsproxy
     ```
+
 3. Allow the `dnsproxy` user to run the `dnsproxy` binary:
+
     ```bash
     sudo chown dnsproxy:dnsproxy /usr/bin/dnsproxy
     ```
+
 4. Create a service file for `dnsproxy`:
+
     ```bash
     sudo nano /etc/systemd/system/dnsproxy.service
     ```
+
     And copy the following into `/etc/systemd/system/dnsproxy.service`.
     This will control the running of the service and allow it to run on startup:
+
     ```ini
     [Unit]
     Description=DNS Proxy over HTTPS
@@ -59,13 +68,17 @@ mv linux-amd64/dnsproxy ./
     [Install]
     WantedBy=multi-user.target
     ```
+
 5. Enable the `systemd` service to run on startup, then start the service and check its status:
+
     ```bash
     sudo systemctl enable dnsproxy
     sudo systemctl start dnsproxy
     sudo systemctl status dnsproxy
     ```
+
 6. Now test that it is working! Run the following `dig` command, a response should be returned similar to the one below:
+
     ```bash
     $ dig @127.0.0.1 -p 5353 example.com
 
@@ -79,10 +92,10 @@ mv linux-amd64/dnsproxy ./
     ;; OPT PSEUDOSECTION:
     ; EDNS: version: 0, flags:; udp: 1232
     ;; QUESTION SECTION:
-    ;example.com.			IN	A
+    ;example.com.            IN    A
 
     ;; ANSWER SECTION:
-    example.com.		79150	IN	A	93.184.216.34
+    example.com.        79150    IN    A    93.184.216.34
 
     ;; Query time: 20 msec
     ;; SERVER: 127.0.0.1#5353(127.0.0.1) (UDP)
