@@ -78,13 +78,13 @@ Example | Interpretation
 ## Alternations (`|`)
 
 Alternations can be used as an "or" operator in regular expressions.
-
+<!-- markdownlint-disable MD056 -->
 Example | Interpretation
 --- | ---
 `(abc)|(def)` | matches `abc` *and* `def`
 `domain(a|b)\.com` | matches `domaina.com` and `domainb.com` but not `domain.com` or `domainx.com`
 `domain(a|b)*\.com` | matches `domain.com`, `domainaaaa.com` `domainbbb.com` but not `domainab.com` (any number of `a` or `b` in between `domain` and `.com`)
-
+<!-- markdownlint-enable MD056 -->
 ## Character classes (`[:class:]`)
 
 In addition to character groups, there are also some special character classes available, such as
@@ -125,7 +125,7 @@ Blocks domains containing only numbers (no letters) and ending in `.com` or `.ed
 A domain name shall not start or end with a dash but can contain any number of them. It must be followed by a TLD (we assume a valid TLD length of two to seven characters)
 
 # Cheatsheet
-
+<!-- markdownlint-disable MD056 -->
 Expression | Meaning | Example
 ------------ | ------------- | -----------
 `^`  | Beginning of string | `^client` matches strings that begin with `client`, such as `client.server.com` but not `more.client.server.com` (exception: within a character range (`[]`) `^` means negation)
@@ -140,3 +140,4 @@ Expression | Meaning | Example
 `[^]`| Negation | `[^0-9]` matches any character *except* `0` to `9`
 `{ }` | Matches a specified number of occurrences of the previous  | `[0-9]{3}` matches any three-digit number like `315` but not `31`;<br>`[0-9]{2,4}` matches two- to four-digit numbers like `12`, `123`, and `1234` but not `1` or `12345`;<br>`[0-9]{2,}` matches any number with two or more digits like `1234567`, `123456789`, but not `1`
 `\` | Used to escape a special character not inside `[]` | `google\.com` matches `google.com`
+<!-- markdownlint-enable MD056 -->
