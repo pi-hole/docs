@@ -22,7 +22,7 @@
     "test": "npm run markdownlint && npm run linkinator"
   },
   "devDependencies": {
-    "linkinator": "^6.0.3",
-    "markdownlint-cli2": "0.11.0"
+    "linkinator": "^6.0.4",
+    "markdownlint-cli2": "0.12.0"
   }
 }
