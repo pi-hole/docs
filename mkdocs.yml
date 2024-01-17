@@ -124,6 +124,7 @@ nav:
   - 'Pi-hole API':
     - 'Overview': api/index.md
     - 'Authentication': api/auth.md
+    - 'TLS/SSL': api/tls.md
   - 'FTLDNS':
     - 'Overview': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
