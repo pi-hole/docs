@@ -8,7 +8,7 @@ This sets up PiHole as your global DNS server. Unless manually configured otherw
 
 1. In PiHole, navigate to `Settings -> DNS` and ensure you have at least one external upstream DNS server enabled.
 
-   **Do not use your OPNsense IP address as this will cause a circular dependancy.**
+   **Do not use your OPNsense IP address as this will cause a circular dependency.**
 
 2. In OPNsense navigate to `Settings -> General -> Networking`.
 3. Under DNS Servers, enter the IPv4 address of your PiHole server, and set the gateway to your WAN interface.
