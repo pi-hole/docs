@@ -12,7 +12,7 @@ It is also possible to add the CA to your operating system's certificate store. 
 
 Note that you have to add the **CA** certificate (e.g., `/etc/pihole/tls_ca.crt`) and not the server certificate (e.g., `/etc/pihole/tls.pem`).
 
-It is worth noting that the certificate is only valid for the domain that you had configured during certificate creation. If you access the Pi-hole web interface using a different domain, you will get a warning. This is because the certificate does not match the domain. You can either add the certificate for the other domain as well or you can create a new certificate for the other domain.
+It is worth noting that the certificate is only valid for the domain that you had configured during certificate creation. If you access the Pi-hole web interface using a different domain, you will get a warning. This is because the certificate does not match the domain. You can either add the certificate for the other domain as well or you can create a new certificate for the other domain. You can easily create a new certificate by removing the old certificate and restarting `pihole-FTL` (e.g., `sudo rm /etc/pihole/tls* && sudo service pihole-FTL restart`). This will create a new certificate for the domain configured in `/etc/pihole/pihole.toml` (setting `webserver.domain`).
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "Security warning"
