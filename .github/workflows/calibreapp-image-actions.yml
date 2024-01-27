@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3.6.0
+        uses: actions/checkout@v4.1.1
 
       - name: Compress Images
         uses: calibreapp/image-actions@1.1.0 # TODO: if they start using a tag like v1, switch to that
