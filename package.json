@@ -19,10 +19,11 @@
     "build": "mkdocs build --clean",
     "markdownlint": "markdownlint-cli2 \"**/*.md\" \"!**/node_modules/**\"",
     "linkinator": "npm run build && linkinator site --recurse --silent --skip \"^(?!http://localhost)\"",
-    "test": "npm run markdownlint && npm run linkinator"
+    "test": "npm run markdownlint && npm run linkinator",
+    "serve": "mkdocs serve --dev-addr 0.0.0.0:8000"
   },
   "devDependencies": {
     "linkinator": "^6.0.4",
-    "markdownlint-cli2": "0.12.1"
+    "markdownlint-cli2": "^0.12.0"
   }
 }
