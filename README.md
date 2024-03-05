@@ -15,10 +15,12 @@ This repository is the source for the official [Pi-hole documentation](https://d
 ### How to Contribute
 
 **Adding a New Link to the Navigation Panel:**
+
 - Edit the `mkdocs.yml` file at the root of the repository.
 - Follow the guide for building the navbar on the [MkDocs Wiki](https://www.mkdocs.org/user-guide/configuration/#nav).
 
 **Adding a New Document or Guide:**
+
 1. Navigate to the appropriate directory (e.g., guides are in `docs/guides`).
 2. Create a new file with a URL-friendly filename (e.g., `url-friendly.md`).
 3. Use Markdown to edit your document. There are many resources available online for Markdown syntax.
@@ -28,6 +30,7 @@ This repository is the source for the official [Pi-hole documentation](https://d
 It's advised to review your changes locally before committing. Use the `mkdocs serve` command to live preview your changes on your local machine.
 
 **General Steps:**
+
 1. Fork the repository into your own Github account.
 2. Clone your fork and navigate into it. You need only do this once:
 
@@ -70,6 +73,6 @@ docker run -v $(pwd):/opt/app/ -w /opt/app/ -p 8000:8000 \
   /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
 ```
 
-After running the above, your changes will be accessible through your favorite browser at http://localhost:8000.
+After running the above, your changes will be accessible through your favorite browser at <http://localhost:8000>.
 
 [![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://www.netlify.com/)
