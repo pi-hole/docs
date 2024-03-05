@@ -71,3 +71,5 @@ docker run -v $(pwd):/opt/app/ -w /opt/app/ -p 8000:8000 \
 ```
 
 After running the above, your changes will be accessible through your favorite browser at http://localhost:8000.
+
+[![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-bg.svg)](https://www.netlify.com/)
