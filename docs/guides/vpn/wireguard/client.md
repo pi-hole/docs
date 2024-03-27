@@ -93,17 +93,18 @@ wg genpsk > "${name}.psk"
 
 Add the new client by running the command:
 
+<!-- markdownlint-disable code-block-style -->
+!!! info "Client IP address"
+    Make sure to increment the IP address for each additional client! The command below adds the first client with the IP addresses `10.100.0.2` and `fd08:4711::2/128` (`10.100.0.1` and `fd08:4711::1/128` are the server)
+    The next client could use `10.100.0.3` and `fd08:4711::3/128`
+<!-- markdownlint-disable code-block-style -->
+
 ```bash
 echo "[Peer]" >> /etc/wireguard/wg0.conf
 echo "PublicKey = $(cat "${name}.pub")" >> /etc/wireguard/wg0.conf
 echo "PresharedKey = $(cat "${name}.psk")" >> /etc/wireguard/wg0.conf
 echo "AllowedIPs = 10.100.0.2/32, fd08:4711::2/128" >> /etc/wireguard/wg0.conf
 ```
-
-<!-- markdownlint-disable code-block-style -->
-!!! info "Client IP address"
-    Make sure to increment the IP address for any further client! We add the first client with the IP addresses `10.100.0.2` and `fd08:4711::2/128` in this example (`10.100.0.1` and `fd08:4711::1/128` are the server)
-<!-- markdownlint-disable code-block-style -->
 
 Reload your server config to add the new client:
 
@@ -166,11 +167,11 @@ echo "PrivateKey = $(cat "${name}.key")" >> "${name}.conf"
 
 Next, add your server as peer for this client:
 
-```plain
-[Peer]
-AllowedIPs = 10.100.0.1/32, fd08:4711::1/128
-Endpoint = [your public IP or domain]:47111
-PersistentKeepalive = 25
+```bash
+echo "[Peer]" > "${name}.conf"
+echo "AllowedIPs = 10.100.0.1/32, fd08:4711::1/128" >> "${name}.conf"
+echo "Endpoint = [your public IP or domain]:47111" >> "${name}.conf" # Edit to add your Internet facing device
+echo "PersistentKeepalive = 25" >> "${name}.conf"
 ```
 
 Then add the public key of the server as well as the PSK for this connection:
@@ -178,7 +179,7 @@ Then add the public key of the server as well as the PSK for this connection:
 ```bash
 echo "PublicKey = $(cat server.pub)" >> "${name}.conf"
 echo "PresharedKey = $(cat "${name}.psk")" >> "${name}.conf"
-exit
+# exit here if not using qrencode to copy the client config to the client
 ```
 
 That's it.
@@ -201,12 +202,15 @@ That's it.
 You can now copy the configuration file to your client (if you created the config on the server). If the client is a mobile device such as a phone, `qrencode` can be used to generate a scanable QR code:
 
 ```bash
-sudo qrencode -t ansiutf8 < "/etc/wireguard/${name}.conf"
+qrencode -t ansiutf8 < "/etc/wireguard/${name}.conf"
+exit
 ```
 
 (you may need to install `qrencode` using `sudo apt-get install qrencode`)
 
 You can directly scan this QR code with the official WireGuard app after clicking on the blue plus symbol in the lower right corner.
+
+The `exit` command will clear the variable `${name}`. But you can run `sudo qrencode -t ansiutf8 < "/etc/wireguard/[client_name].conf"` at any time to display the QR code for a particular `client_name`.
 
 ## Connect to your WireGuard VPN
 
