@@ -37,7 +37,7 @@ if your lighttpd is throwing the following error:
 network.c.369) can't bind to socket: [::]:80: Permission denied
 ```
 
-please check file `/etc/lighttpd/lighttpd.conf` 
+please check file `/etc/lighttpd/lighttpd.conf`
 
 ```lighttpd
 include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
