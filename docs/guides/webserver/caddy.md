@@ -7,20 +7,16 @@ If you'd like to use [Caddy](https://caddyserver.com/) as your main web server w
 
 ## Modifying lighttpd configuration
 
-First, change the listen port in this file: `/etc/lighttpd/lighttpd.conf:`
-
-```lighttpd
-server.port = 1080
-```
-
-In this case, port 1080 was chosen at random. You can use a custom port.
-
-BUT ANY CHANGES MADE TO THIS FILE WILL BE LOST ON THE NEXT PI-HOLE UPDATE.
-
-So if you want a permanent method of changing the lighttpd port and your lighttpd version >= 1.4.46, you can overwrite the port in: `/etc/lighttpd/external.conf` (note the different syntax!):
+create your config file: `/etc/lighttpd/conf-available/04-caddy.conf` with the following content
 
 ```lighttpd
 server.port := 1080
+```
+
+link it to `/etc/lighttpd/conf-enabled` folder
+
+```bash
+> ln -s /etc/lighttpd/conf-available/04-caddy.conf /etc/lighttpd/conf-enabled/04-caddy.conf
 ```
 
 Next, restart the lighttpd server with either of these commands:
@@ -33,6 +29,38 @@ or
 
 ```bash
 sudo service lighttpd restart
+```
+
+if your lighttpd is throwing the following error:
+
+```
+network.c.369) can't bind to socket: [::]:80: Permission denied
+```
+
+please check file `/etc/lighttpd/lighttpd.conf` 
+
+```lighttpd.conf
+include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
+```
+is executed before the line:
+```lighttpd.conf
+include "/etc/lighttpd/conf-enabled/*.conf"
+```
+
+Update `lighttpd.conf` from:
+
+```lighttpd.conf
+# default listening port for IPv6 falls back to the IPv4 port
+include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
+include_shell "/usr/share/lighttpd/create-mime.conf.pl"
+include "/etc/lighttpd/conf-enabled/*.conf"
+```
+to:
+```
+include_shell "/usr/share/lighttpd/create-mime.conf.pl"
+include "/etc/lighttpd/conf-enabled/*.conf"
+# default listening port for IPv6 falls back to the IPv4 port
+include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
 ```
 
 ## Installing Caddy
