@@ -39,24 +39,28 @@ network.c.369) can't bind to socket: [::]:80: Permission denied
 
 please check file `/etc/lighttpd/lighttpd.conf` 
 
-```lighttpd.conf
+```lighttpd
 include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
 ```
+
 is executed before the line:
-```lighttpd.conf
+
+```lighttpd
 include "/etc/lighttpd/conf-enabled/*.conf"
 ```
 
 Update `lighttpd.conf` from:
 
-```lighttpd.conf
+```lighttpd
 # default listening port for IPv6 falls back to the IPv4 port
 include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port
 include_shell "/usr/share/lighttpd/create-mime.conf.pl"
 include "/etc/lighttpd/conf-enabled/*.conf"
 ```
+
 to:
-```
+
+```lighttpd
 include_shell "/usr/share/lighttpd/create-mime.conf.pl"
 include "/etc/lighttpd/conf-enabled/*.conf"
 # default listening port for IPv6 falls back to the IPv4 port
