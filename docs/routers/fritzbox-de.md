@@ -134,7 +134,7 @@ eingetragen werden.
 
 ![Screenshot der Fritz!Box IPv6 Adressen Einstellungen](../images/routers/fritzbox-ipv6-2-de.png)
 
-## Optional: Erhöhung der Priorität von DNS Anfragen
+## Optional: Erhöhung der Priorität von DNS Anfragen {#optional-erhohung-der-prioritat-von-dns-anfragen}
 
 Bei ausgelasteter Internetverbindung werden DNS-Anfragen u.U. stark verzögert bearbeitet. Dies kann in der Fritz!Box durch Hinterlegen von DNS als priorisierter Echtzeitanwendung vermieden werden. Falls nicht bereits geschehen, fügen Sie hierfür zunächst "`DNS`" als neuen Answendungstyp unter
 
@@ -188,7 +188,7 @@ zwei Zugangsprofile an (z.B. "`Standard`" und "`Unbeschränkt`"). Im Profil "`St
 Erweiterte Einstellungen -> Gesperrte Netzwerkanwendungen
 ```
 
-die [angelegte Netzwerkanwendung "`DNS`"](/routers/fritzbox-de/#optional-erhohung-der-prioritat-von-dns-anfragen) hinzu.
+die [angelegte Netzwerkanwendung "`DNS`"](#optional-erhohung-der-prioritat-von-dns-anfragen) hinzu.
 Im Profil "`Unbeschränkt`" darf "`DNS`" *nicht* als gesperrt hinterlegt werden.
 
 Nun werden die Zugangsprofile unter

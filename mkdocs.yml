@@ -4,6 +4,9 @@ repo_url: 'https://github.com/pi-hole/pi-hole'
 edit_uri: '../docs/blob/master/docs/'
 copyright:
 remote_branch: gh-pages
+validation:
+  links:
+    anchors: warn
 theme:
   name: 'material'
   custom_dir: overrides
