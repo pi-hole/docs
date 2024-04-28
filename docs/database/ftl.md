@@ -108,24 +108,24 @@ ID | Resource Record (a.k.a. query type)
 15 | `SVCB`
 16 | `HTTPS`
 
-Any other query type will be stored with an offset of 100, i.e., `TYPE66` will be stored as `166` in the database (see [pi-hole/FTL #1013](https://github.com/pi-hole/FTL/pull/1013)). This is done to allow for future extensions of the query type list without having to change the database schema. The `OTHER` query type is deprecated since Pi-hole FTL v5.4 (released Jan 2021) and not used anymore. It is kept for backwards compatibility. Note that `OTHER` is still used for the [regex extension `querytype=`](../regex/pi-hole.md#querytype) filter and used for all queries not covered by the above list.
+Any other query type will be stored with an offset of 100, i.e., `TYPE66` will be stored as `166` in the database (see [pi-hole/FTL #1013](https://github.com/pi-hole/FTL/pull/1013)). This is done to allow for future extensions of the query type list without having to change the database schema. The `OTHER` query type is deprecated since Pi-hole FTL v5.4 (released Jan 2021) and not used anymore. It is kept for backwards compatibility. Note that `OTHER` is still used for the [regex extension `querytype=`](../regex/pi-hole.md#only-match-specific-query-types) filter and used for all queries not covered by the above list.
 
 ### Supported status types
 
 ID | Status | | Details
 --- | --- | --- | ---
 0 | Unknown | ❔ | Unknown status (not yet known)
-1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)
+1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)
 2 | Allowed | ✅ | Forwarded
 3 | Allowed | ✅ | Replied from cache
-4 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#regex-table-regex) filter
-5 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#blacklist-table-blacklist)
+4 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter
+5 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#domain-tables-domainlist)
 6 | Blocked | ❌ | By upstream server (known blocking page IP address)
 7 | Blocked | ❌ | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | ❌ | By upstream server (`NXDOMAIN` with `RA` bit unset)
-9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)<br>*Blocked during deep CNAME inspection*
-10 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#regex-table-regex) filter<br>*Blocked during deep CNAME inspection*
-11 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#blacklist-table-blacklist)<br>*Blocked during deep CNAME inspection*
+9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)<br>*Blocked during deep CNAME inspection*
+10 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
+11 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
