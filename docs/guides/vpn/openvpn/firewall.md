@@ -1,3 +1,5 @@
+{!guides/vpn/openvpn/deprecation_notice.md!}
+
 ### (optional) Secure the server with firewall rules (`iptables`)
 
 **If you are behind a NAT and not running the Pi-hole on a cloud server, you do not need to issue the IPTABLES commands below as the firewall rules are already handled by the RoadWarrior installer, but you will need to portforward whatever port you chose in the setup from your public ip to your device using your router.**

@@ -83,6 +83,9 @@ markdown_extensions:
   # Adds the ability to define abbreviations (https://squidfunk.github.io/mkdocs-material/reference/tooltips/)
   - abbr
   - attr_list
+  # Include files in other documents like {!some/dir/in/docs/filename.md!}
+  - markdown_include.include:
+      base_path: docs
   - pymdownx.snippets:
       # auto_append abbreviations.md to every file
       # https://squidfunk.github.io/mkdocs-material/reference/tooltips/#adding-a-glossary

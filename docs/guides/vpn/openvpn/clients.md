@@ -1,3 +1,5 @@
+{!guides/vpn/openvpn/deprecation_notice.md!}
+
 ## Create a client config file (`.ovpn`)
 
 Now that the server is configured, you'll want to connect some clients so you can make use of your Pi-hole wherever you are. Doing so requires the use of a certificate. You generate these and the resulting `.ovpn` file by running the installer and choosing `1) Add a new user` for each client that will connect to the VPN.
