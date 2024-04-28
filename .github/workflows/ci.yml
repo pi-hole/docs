@@ -41,7 +41,7 @@ jobs:
         run: npm ci
 
       - name: Build docs
-        run: mkdocs build
+        run: mkdocs build --strict
 
       - name: Test
         run: npm test
