@@ -114,7 +114,7 @@ Any other query type will be stored with an offset of 100, i.e., `TYPE66` will b
 ID | Status | | Details
 --- | --- | --- | ---
 0 | Unknown | ❔ | Unknown status (not yet known)
-1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)
+1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)
 2 | Allowed | ✅ | Forwarded
 3 | Allowed | ✅ | Replied from cache
 4 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter
@@ -122,7 +122,7 @@ ID | Status | | Details
 6 | Blocked | ❌ | By upstream server (known blocking page IP address)
 7 | Blocked | ❌ | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | ❌ | By upstream server (`NXDOMAIN` with `RA` bit unset)
-9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)<br>*Blocked during deep CNAME inspection*
+9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)<br>*Blocked during deep CNAME inspection*
 10 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
 11 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
 12 | Allowed | ✅ | Retried query
