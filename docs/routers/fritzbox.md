@@ -175,7 +175,7 @@ If not already present, create two access profiles (e.g. "`Standard`" and "`Unre
 Internet/Filters/Access Profiles -> Manage and Optimize Access Profiles
 ```
 
-In the profile "`Standard`" add the network application "`DNS`" ([created above](/routers/fritzbox/#optional-increasing-the-priority-of-dns-requests)) under:
+In the profile "`Standard`" add the network application "`DNS`" ([created above](#optional-increasing-the-priority-of-dns-requests)) under:
 
 ``` plain
 Advanced settings -> Locked network applications
