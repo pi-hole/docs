@@ -32,7 +32,7 @@ The following operating systems are **officially** supported:
 | Ubuntu       | 20.x / 22.x / 23.x / 24.x   | ARM / x86_64        |
 | Debian       | 10 / 11 / 12         | ARM / x86_64 / i386 |
 | Fedora       | 39 / 40     | ARM / x86_64        |
-| CentOS Stream | 8 / 9            | x86_64              |
+| CentOS Stream | 9            | x86_64              |
 
 <!-- markdownlint-disable code-block-style -->
 !!! info
