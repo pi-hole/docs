@@ -25,6 +25,7 @@ theme:
     - search.highlight
     - search.share
     - content.action.edit
+    - content.code.copy
   palette:
 
     # Light mode
@@ -48,7 +49,7 @@ theme:
 markdown_extensions:
   # Code highlighting in ``` ``` blocks
   # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight
-  - pymdownx.highlight:
+  - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.inlinehilite
   # Table of Contents
