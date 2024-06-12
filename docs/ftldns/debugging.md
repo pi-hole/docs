@@ -18,7 +18,7 @@ Once you are used to it, you can skip most of the steps. Debugging *FTL*DNS is q
 
 ## Start of debugging session
 
-1. Use `sudo gdb -p $(pidof pihole-FTL)` to attach the debugger to the already running `pihole-FTL` process
+1. Use `sudo gdb -p $(cat /run/pihole-FTL.pid)` to attach the debugger to the already running `pihole-FTL` process
 2. Once loading of the symbols has finished (the `(gdb)` input prompt is shown), enter `continue` to continue the operation of `pihole-FTL` inside the debugger. All debugger features are now available.
 3. When `pihole-FTL` has crashed, copy & paste the terminal output into a (new) issue. Also, type `backtrace` and include its output. We might ask for additional information in order to isolate your particular issue.
 
