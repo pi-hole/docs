@@ -83,6 +83,7 @@ Edit configuration file by copying the following in to `/etc/default/cloudflared
 # Commandline args for cloudflared, using Cloudflare DNS
 CLOUDFLARED_OPTS=--port 5053 --upstream https://cloudflare-dns.com/dns-query
 ```
+
 !!! info
     See the other available [Cloudflare endpoints](https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/#available-endpoints).
 
@@ -162,7 +163,7 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 
 ### Updating `cloudflared`
 
-The `cloudflared` tool will not receive updates through the package manager. However, you should keep the program update to date. You can either do this manually (e.g. by watching their [repo](https://github.com/cloudflare/cloudflared)), or via a cron script.
+The `cloudflared` tool will not receive updates through the package manager. However, you should keep the program update to date. You can either do this manually (e.g. by watching their [repo](https://github.com/cloudflare/cloudflared) for new releases), or via a cron script.
 
 The procedure for updating depends on how you configured the `cloudflared` binary.
 
