@@ -105,3 +105,16 @@ Restart the web server:
 ```bash
 sudo service lighttpd restart
 ```
+
+### In which order are locally defined DNS records used?
+
+**Answer:**
+
+The order of locally defined DNS records is:
+
+1. The device's host name and `pi.hole`
+2. Configured in a config file in `/etc/dnsmasq.d/`
+3. Read from `/etc/hosts`
+4. Read from the "Local (custom) DNS" list (stored in `/etc/pihole/custom.list`)
+
+Only the first record will trigger an address-to-name association.

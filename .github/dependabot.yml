@@ -47,8 +47,6 @@ updates:
     target-branch: master
 
 # As above, but for development-v6
-version: 2
-updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:

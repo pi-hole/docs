@@ -264,7 +264,7 @@ to the end (make sure this value is the same as above). Then reload AppArmor usi
 
 ``` bash
 sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
-sudo service unbound restart
+sudo service apparmor restart
 ```
 
 Lastly, restart unbound:
