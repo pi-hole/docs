@@ -1,6 +1,6 @@
 {!guides/vpn/openvpn/deprecation_notice.md!}
 
-This tutorial is tailored for setting up OpenVPN on a cloud-hosted virtual server (such as [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1)). If you wish to have this working on your home network, you will need to tailor Pi-hole to listen on `eth0` (or similar), which we explain in [this section of the tutorial](dual-operation.md).
+This tutorial is tailored for setting up OpenVPN on a cloud-hosted virtual server. If you wish to have this working on your home network, you will need to tailor Pi-hole to listen on `eth0` (or similar), which we explain in [this section of the tutorial](dual-operation.md).
 
 ### High-level Overview
 

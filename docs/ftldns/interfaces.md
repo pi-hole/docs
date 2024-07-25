@@ -2,7 +2,7 @@
 
 Pi-hole offers three choices for interface on its dashboard:
 
-![Available interface settings](/images/interface-settings.png)
+![Available interface settings](../images/interface-settings.png)
 
 By default, FTL binds the wildcard address. It does this for all options except *Bind only on interface `enp2s0`*. Your Pi-hole then discards requests that it shouldn't reply to. This has the big advantage of working even when interfaces come and go and change address (this happens way more often than one would think).
 

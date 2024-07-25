@@ -29,7 +29,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Version](#version) | `pihole version` |
 | [Uninstall](#uninstall) | `pihole uninstall` |
 | [Status](#status) | `pihole status` |
-| [Enable & Disable](#enable-&-disable) | `pihole enable` <!-- markdownlint-disable-line MD051 --> |
+| [Enable & Disable](#enable-disable) | `pihole enable` <!-- markdownlint-disable-line MD051 --> |
 | [Restart DNS](#restart-dns) | `pihole restartdns` |
 | [Checkout](#checkout) | `pihole checkout` |
 
