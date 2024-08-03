@@ -7,7 +7,6 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Index | Invocation |
 |  -------------- | -------------- |
 | [Core Script](#pi-hole-core) | `pihole` |
-| [Web Script](#pi-hole-web) | `pihole -a` |
 
 ---
 
@@ -21,7 +20,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Log Flush](#log-flush) | `pihole flush` |
 | [Reconfigure](#reconfigure) | `pihole reconfigure` |
 | [Tail](#tail) | `pihole tail` |
-| [Admin](#admin) | `pihole -a` |
+| [Set password](#password) | `pihole setpassword` |
 | [Gravity](#gravity) | `pihole updateGravity` |
 | [Logging](#logging) | `pihole logging` |
 | [Query](#query) | `pihole query` |
@@ -107,34 +106,6 @@ There are times where the administrator will need to repair or reconfigure the P
 | Example Usage   | [`pihole tail`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#tailing-the-log) |
 
 Since Pi-hole will log DNS queries by default, using this command to watch the log in real-time can be useful for debugging a problematic site, or even just for sheer curiosities sake.
-
-### Admin
-
-| | |
-| -------------- | -------------- |
-| Help Command    | `pihole -a --help` |
-| Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh) |
-| Example Usage   | `pihole -a -p secretpassword` |
-
-Detailed information on this is [found here](#web-script).
-
-### Chronometer
-
-| | |
-| -------------- | -------------- |
-| Help Command    | `pihole -c --help` |
-| Script Location | [`/opt/pihole/chronometer.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/chronometer.sh) |
-| Example Usage   | [`pihole -c -e`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#chronometer) |
-
-Chronometer is a console dashboard of real-time stats, which can be displayed via `ssh` or on an LCD screen attached directly to your hardware. The script is capable of detecting the size of your screen and adjusting output to try and best suit it.
-
-<a href="../chronometer.jpg">
-    <img srcset="../chronometer-thumb.jpg, ../chronometer-thumb@2x.jpg 2x" src="../chronometer-thumb.jpg" alt="Chronometer in action" width="450" height="600">
-</a>
-<br/>
-<sub>
-    <a href="https://www.reddit.com/r/pihole/comments/6ldjna/pihole_setup_went_so_well_at_home_for_the_1st/">Image courtesy of /u/super_nicktendo22</a>
-</sub>
 
 ### Gravity
 
@@ -260,62 +231,12 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
 
 ---
 
-## Pi-hole Web
-
-| Feature | Invocation |
-| -------------- | -------------- |
-| [Web Script](#web-script) | `pihole -a` |
-| [Password](#password) | `pihole -a password` |
-| [Teleport](#teleport) | `pihole -a -t` |
-| [Temperature Unit](#temperature-unit) | `pihole -a celsius`, `pihole -a fahrenheit`, `pihole -a kelvin` |
-| [Interface](#interface) | `pihole -a interface` |
-
-### Web Script
-
-| | |
-| -------------- | -------------- |
-| Help Command    | `pihole -a --help` |
-| Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh) |
-| Example Usage   | `pihole -a -p secretpassword` |
-
-Set options for the Web Interface. This script is used to tie in all Web Interface features which are not already covered by the [Core Script](#core-script).
-
 ### Password
 
 | | |
 | -------------- | -------------- |
 | Help Command    | N/A |
-| Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh) |
-| Example Usage   | [`pihole -a -p secretpassword`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#web-password) |
+| Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
+| Example Usage   | `pihole setpassword` |
 
-Set the Web Interface password. Password can be entered as an option (e.g: `pihole -a -p secretpassword`), or separately as to not display on the screen (e.g: `pihole -a -p`).
-
-### Teleport
-
-| | |
-| -------------- | -------------- |
-| Help Command    | N/A |
-| Script Location | N/A |
-| Example Usage   | `pihole -a -t` |
-
-Create a configuration backup. The backup will be created in the directory from which the command is run. The backup can be imported using the Settings > Teleport page.
-
-### Temperature Unit
-
-| | |
-| -------------- | -------------- |
-| Help Command    | N/A |
-| Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh) |
-| Example Usage   | [`pihole -a -c`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#temp-unit) |
-
-Set the specified temperature unit as the preferred type. This preference will affect the Web Interface, as well as Chronometer.
-
-### Interface
-
-| | |
-| -------------- | -------------- |
-| Help Command    | `pihole -a interface --help` |
-| Script Location | [`/opt/pihole/webpage.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/webpage.sh) |
-| Example Usage   | [`pihole -a interface local`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#interface) |
-
-Specify interface listening behavior for `pihole-FTL`. When using `pihole -a interface all`, please ensure you use a firewall to prevent your Pi-hole from becoming an unwitting host to [DNS amplification attackers](https://duckduckgo.com/?q=dns+amplification+attack). You may want to consider running [Wireguard](../guides/vpn/wireguard/overview.md) to grant your mobile devices access to the Pi-hole.
+Set the Web Interface an API password. Password can be entered as an option (e.g: `pihole setpassword secretpassword`), or separately as to not display on the screen (e.g: `pihole setpassword`).

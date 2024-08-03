@@ -53,6 +53,7 @@ Label | Type | Allowed to by empty | Content
 `reply_type` | integer | Yes | Type of the reply for this query  (see [Supported reply types](ftl.md#supported-reply-types))
 `reply_time` | real | Yes | Seconds it took until the final reply was received
 `dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](ftl.md#dnssec-status))
+`regex_id` | integer | Yes | ID of the regex filter that matched this query (only set if blocked by a regex filter)
 
 The `queries` `VIEW` is dynamically generated from the data actually stored in the `query_storage` table and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `query_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
 
@@ -114,7 +115,7 @@ Any other query type will be stored with an offset of 100, i.e., `TYPE66` will b
 ID | Status | | Details
 --- | --- | --- | ---
 0 | Unknown | ❔ | Unknown status (not yet known)
-1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)
+1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)
 2 | Allowed | ✅ | Forwarded
 3 | Allowed | ✅ | Replied from cache
 4 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter
@@ -122,7 +123,7 @@ ID | Status | | Details
 6 | Blocked | ❌ | By upstream server (known blocking page IP address)
 7 | Blocked | ❌ | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | ❌ | By upstream server (`NXDOMAIN` with `RA` bit unset)
-9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-table-gravity)<br>*Blocked during deep CNAME inspection*
+9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)<br>*Blocked during deep CNAME inspection*
 10 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
 11 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
 12 | Allowed | ✅ | Retried query
@@ -160,6 +161,7 @@ ID | DNSSEC status is
 2 | `INSECURE`
 3 | `BOGUS`
 4 | `ABANDONED`
+5 | `TRUNCATED`
 
 ### Linking tables
 
