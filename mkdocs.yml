@@ -158,6 +158,7 @@ nav:
     - "Pi-hole extensions": regex/pi-hole.md
     - "Approximate matching": regex/approximate.md
   - 'Docker':
+    - 'Building': docker/build-image.md
     - 'DHCP': docker/DHCP.md
   - 'Contributing':
     - 'Contributing on GitHub': guides/github/contributing.md
