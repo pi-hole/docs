@@ -66,7 +66,7 @@ git checkout fix/logRotate
 
 Unless otherwise named via the `-t` command, the script will build an image locally and tag it as `pihole`. You can reference this as a drop-in replacement for `pihole/pihole:latest` in your compose file or your run command:
 
-```yml
+```yaml
 services:
   pihole:
     container_name: pihole
