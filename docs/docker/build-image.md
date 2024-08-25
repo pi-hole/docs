@@ -21,12 +21,12 @@ Options:
   -c, --corebranch <branch>    Specify Core branch
   -w, --webbranch <branch>     Specify Web branch
   -p, --paddbranch <branch>    Specify PADD branch
-  -t, --tag <tag>              Specify Docker image tag (default: pihole)
+  -t, --tag <tag>              Specify Docker image tag (default: pihole:local)
   -l, --local                  Use locally built FTL binary (requires src/pihole-FTL file)
   use_cache                    Enable caching (by default --no-cache is used)
 
 If no options are specified, the following command will be executed:
-  docker buildx build src/. --tag pihole --load --no-cache
+  docker buildx build src/. --tag pihole:local --load --no-cache
 ```
 
 ## Example uses of the script
@@ -64,16 +64,16 @@ git checkout fix/logRotate
 
 ## Using the built image
 
-Unless otherwise named via the `-t` command, the script will build an image locally and tag it as `pihole`. You can reference this as a drop-in replacement for `pihole/pihole:latest` in your compose file or your run command:
+Unless otherwise named via the `-t` command, the script will build an image locally and tag it as `pihole:local`. You can reference this as a drop-in replacement for `pihole/pihole:latest` in your compose file or your run command:
 
 ```yaml
 services:
   pihole:
     container_name: pihole
-    image: pihole
+    image: pihole:local
 ...
 ```
 
 ```
-docker run [options] pihole
+docker run [options] pihole:local
 ```
