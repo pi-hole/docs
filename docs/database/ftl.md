@@ -132,6 +132,7 @@ ID | Status | | Details
 15 | Blocked | ❌ | Blocked (database is busy)<br> How these queries are handled can be [configured](../ftldns/configfile.md#reply_when_busy)
 16 | Blocked | ❌ | Blocked (special domain)<br>*E.g. Mozilla's canary domain and Apple's Private Relay domains* <br> Handling can be [configured](../ftldns/configfile.md)
 17 | Allowed | ✅⌛ | Replied from *stale* cache
+18 | Blocked | ❌ | By upstream server (EDE 15)
 
 ### Supported reply types
 
