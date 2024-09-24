@@ -25,7 +25,6 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Uninstall](#uninstall) | `pihole uninstall` |
 | [Status](#status) | `pihole status` |
 | [Enable & Disable](#enable-disable) | `pihole enable` <!-- markdownlint-disable-line MD051 --> |
-| [Restart DNS](#restart-dns) | `pihole restartdns` |
 | [Checkout](#checkout) | `pihole checkout` |
 
 ### Core Script
@@ -204,16 +203,6 @@ Display the running status of Pi-hole's DNS and blocking services.
 | Example Usage   | [`pihole disable 5m`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#toggle) |
 
 Toggle Pi-hole's ability to block unwanted domains. The disable option has the option to set a specified time before blocking is automatically re-enabled.
-
-### Restart DNS
-
-| | |
-| -------------- | -------------- |
-| Help Command    | N/A |
-| Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
-| Example Usage   | [`pihole restartdns`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#restartdns) |
-
-Restart Pi-hole's DNS service.
 
 ### Checkout
 
