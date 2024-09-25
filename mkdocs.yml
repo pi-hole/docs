@@ -115,6 +115,7 @@ nav:
     - 'Pi-hole Origins': main/origins.md
     - 'On the Web': main/coverage.md
   - 'Getting Started':
+    - 'Getting Started': main/index.md
     - 'Prerequisites': main/prerequisites.md
     - 'Installation': main/basic-install.md
     - 'Post-Install': main/post-install.md
