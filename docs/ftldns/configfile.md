@@ -323,7 +323,7 @@ Print information about ARP table processing: How long did parsing take, whether
 
 Controls if *FTL*DNS should print extended details about regex matching into `FTL.log`.
 
-**[More details](../regex/overview.md)**
+**[More details](../regex/index.md)**
 
 #### `DEBUG_API=false|true` {#debug_api data-toc-label='API'}
 
