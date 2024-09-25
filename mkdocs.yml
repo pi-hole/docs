@@ -172,7 +172,7 @@ nav:
       - 'Upstream DNS Providers': guides/dns/upstream-dns-providers.md
     - 'VPN':
       - 'WireGuard':
-        - 'Overview': guides/vpn/wireguard/overview.md
+        - 'Wireguard': guides/vpn/wireguard/index.md
         - 'Concept': guides/vpn/wireguard/concept.md
         - 'Install server': guides/vpn/wireguard/server.md
         - 'Add client(s)': guides/vpn/wireguard/client.md
@@ -181,7 +181,7 @@ nav:
           - 'Tunnel all Internet traffic': guides/vpn/wireguard/route-everything.md
         - 'Troubleshooting': guides/vpn/wireguard/faq.md
       - 'OpenVPN':
-        - 'Overview': guides/vpn/openvpn/overview.md
+        - 'OpenVPN': guides/vpn/openvpn/index.md
         - 'Installation': guides/vpn/openvpn/installation.md
         - 'Setup OpenVPN Server': guides/vpn/openvpn/setup-openvpn-server.md
         - 'Firewall Configuration': guides/vpn/openvpn/firewall.md
@@ -196,7 +196,7 @@ nav:
     - 'Misc':
       - 'Benchmarking': guides/misc/benchmark.md
       - 'Tor & Pi-hole':
-        - 'Overview': guides/misc/tor/overview.md
+        - 'Tor & Pi-hole': guides/misc/tor/index.md
         - 'Basic Setup': guides/misc/tor/setup.md
         - 'Using Tor': guides/misc/tor/using-tor.md
         - 'Performance and other issues': guides/misc/tor/performance-issues.md
@@ -241,7 +241,7 @@ plugins:
         'guides/unbound.md': guides/dns/unbound.md
         'guides/upstream-dns-providers.md': guides/dns/upstream-dns-providers.md
         'guides/dns-over-https.md': guides/dns/cloudflared.md
-        'guides/vpn/overview.md': guides/vpn/openvpn/overview.md
+        'guides/vpn/overview.md': guides/vpn/openvpn/index.md
         'guides/vpn/installation.md': guides/vpn/openvpn/installation.md
         'guides/vpn/setup-openvpn-server.md': guides/vpn/openvpn/setup-openvpn-server.md
         'guides/vpn/firewall.md': guides/vpn/openvpn/firewall.md
@@ -253,7 +253,7 @@ plugins:
         'guides/vpn/dynDNS.md': guides/vpn/openvpn/dynDNS.md
         'guides/vpn/troubleshooting.md': guides/vpn/openvpn/troubleshooting.md
         'guides/benchmark.md': guides/misc/benchmark.md
-        'guides/tor/overview.md': guides/misc/tor/overview.md
+        'guides/tor/overview.md': guides/misc/tor/index.md
         'guides/tor/setup.md': guides/misc/tor/setup.md
         'guides/tor/using-tor.md': guides/misc/tor/using-tor.md
         'guides/tor/performance-issues.md': guides/misc/tor/performance-issues.md
@@ -273,3 +273,6 @@ plugins:
         'database/gravity/groups.md': database/domain-database/groups.md
         'group_management/groups.md': group_management/index.md
         'regex/overview.md': regex/index.md
+        'guides/vpn/wireguard/overview.md': guides/vpn/wireguard/index.md
+        'guides/vpn/openvpn/overview.md': guides/vpn/openvpn/index.md
+        'guides/misc/tor/overview.md': guides/misc/tor/index.md
