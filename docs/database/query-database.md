@@ -44,15 +44,15 @@ Label | Type | Allowed to by empty | Content
 --- | --- | ---- | -----
 `id` | integer | No | autoincrement ID for the table, only used by SQLite3, not by *FTL*DNS
 `timestamp` | integer | No | Unix timestamp when this query arrived at *FTL*DNS (used as index)
-`type` | integer | No | Type of this query (see [Supported query types](ftl.md#supported-query-types))
-`status` | integer | No | How was this query handled by *FTL*DNS? (see [Supported status types](ftl.md#supported-status-types))
+`type` | integer | No | Type of this query (see [Supported query types](query-database.md#supported-query-types))
+`status` | integer | No | How was this query handled by *FTL*DNS? (see [Supported status types](query-database.md#supported-status-types))
 `domain` | text | No | Requested domain
 `client` | text | No | Requesting client (IP address)
 `forward` | text | Yes | Forward destination used for this query (only set if `status == 2`)
 `additional_info` | blob | Yes | Data-dependent content, see below
-`reply_type` | integer | Yes | Type of the reply for this query  (see [Supported reply types](ftl.md#supported-reply-types))
+`reply_type` | integer | Yes | Type of the reply for this query  (see [Supported reply types](query-database.md#supported-reply-types))
 `reply_time` | real | Yes | Seconds it took until the final reply was received
-`dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](ftl.md#dnssec-status))
+`dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](query-database.md#dnssec-status))
 `regex_id` | integer | Yes | ID of the regex filter that matched this query (only set if blocked by a regex filter)
 
 The `queries` `VIEW` is dynamically generated from the data actually stored in the `query_storage` table and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `query_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
@@ -67,7 +67,7 @@ If a query was blocked due to a CNAME inspection (status 9, 10, 11), this field 
 
 ##### Query influenced by a black- or whitelist entry {#additional_info_list data-toc-label='domainlist_id'}
 
-If a query was influenced by a black- or whitelist entry, this field contains the ID of the corresponding entry in the [`domainlist`](gravity/index.md#domain-tables-domainlist) table.
+If a query was influenced by a black- or whitelist entry, this field contains the ID of the corresponding entry in the [`domainlist`](domain-database/index.md#domain-tables-domainlist) table.
 
 ### Counters table
 
@@ -115,17 +115,17 @@ Any other query type will be stored with an offset of 100, i.e., `TYPE66` will b
 ID | Status | | Details
 --- | --- | --- | ---
 0 | Unknown | ❔ | Unknown status (not yet known)
-1 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)
+1 | Blocked | ❌ | Domain contained in [gravity database](domain-database/index.md#gravity-tables-gravity-and-antigravity)
 2 | Allowed | ✅ | Forwarded
 3 | Allowed | ✅ | Replied from cache
-4 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter
-5 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#domain-tables-domainlist)
+4 | Blocked | ❌ | Domain matched by a [regex blacklist](domain-database/index.md#domain-tables-domainlist) filter
+5 | Blocked | ❌ | Domain contained in [exact blacklist](domain-database/index.md#domain-tables-domainlist)
 6 | Blocked | ❌ | By upstream server (known blocking page IP address)
 7 | Blocked | ❌ | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | ❌ | By upstream server (`NXDOMAIN` with `RA` bit unset)
-9 | Blocked | ❌ | Domain contained in [gravity database](gravity/index.md#gravity-tables-gravity-and-antigravity)<br>*Blocked during deep CNAME inspection*
-10 | Blocked | ❌ | Domain matched by a [regex blacklist](gravity/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
-11 | Blocked | ❌ | Domain contained in [exact blacklist](gravity/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
+9 | Blocked | ❌ | Domain contained in [gravity database](domain-database/index.md#gravity-tables-gravity-and-antigravity)<br>*Blocked during deep CNAME inspection*
+10 | Blocked | ❌ | Domain matched by a [regex blacklist](domain-database/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
+11 | Blocked | ❌ | Domain contained in [exact blacklist](domain-database/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
@@ -201,7 +201,7 @@ Label | Type | Allowed to by empty | Content
 Valid `type` IDs are currently
 
 - `ADDINFO_CNAME_DOMAIN = 1` - `content` is a string (the related CNAME)
-- `ADDINFO_DOMAIN_ID = 2` - `content` is an integer (ID pointing to a domain in the [`domainlist` table](gravity/index.md#domain-tables-domainlist))
+- `ADDINFO_DOMAIN_ID = 2` - `content` is an integer (ID pointing to a domain in the [`domainlist` table](domain-database/index.md#domain-tables-domainlist))
 
 ### Example for interaction with the long-term query database
 

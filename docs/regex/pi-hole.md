@@ -2,7 +2,7 @@
 
 ## Only match specific query types
 
-You can amend the regular expressions by special keywords added at the end to fine-tine regular expressions to match only specific [query types](../database/ftl.md#supported-query-types). In contrast to the description of `OTHER` as being deprecated for storing queries in the database, it is still supported for regular expressions and will match all queries that are not *explicitly* covered by the other query types (see also example below).
+You can amend the regular expressions by special keywords added at the end to fine-tine regular expressions to match only specific [query types](../database/query-database.md#supported-query-types). In contrast to the description of `OTHER` as being deprecated for storing queries in the database, it is still supported for regular expressions and will match all queries that are not *explicitly* covered by the other query types (see also example below).
 
 Example:
 
