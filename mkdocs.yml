@@ -133,7 +133,7 @@ nav:
     - 'Authentication': api/auth.md
     - 'TLS/SSL': api/tls.md
   - 'FTLDNS':
-    - 'Overview': ftldns/index.md
+    - 'FTLDNS': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
     - 'Interfaces': ftldns/interfaces.md
     - 'DNS resolver': ftldns/dns-resolver.md
