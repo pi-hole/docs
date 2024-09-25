@@ -148,8 +148,8 @@ nav:
         - 'Debugging':
             - 'gdb': ftldns/debugging.md
             - 'valgrind': ftldns/valgrind.md
-  - 'Group management':
-    - 'Overview': group_management/groups.md
+  - 'Group Management':
+    - 'Group Management': group_management/index.md
     - 'Examples': group_management/example.md
   - 'RegEx blocking':
     - "Overview": regex/overview.md
@@ -271,3 +271,4 @@ plugins:
         'database/gravity/index.md': database/domain-database/index.md
         'database/gravity/recovery.md': database/domain-database/recovery.md
         'database/gravity/groups.md': database/domain-database/groups.md
+        'group_management/groups.md': group_management/index.md
