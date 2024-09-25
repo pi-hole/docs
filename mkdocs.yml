@@ -109,8 +109,8 @@ markdown_extensions:
       generic: true
 
 nav:
-  - Overview: index.md
   - 'About Pi-hole':
+    - 'About Pi-hole': index.md
     - 'Contact Us': main/contact.md
     - 'Pi-hole Origins': main/origins.md
     - 'On the Web': main/coverage.md
