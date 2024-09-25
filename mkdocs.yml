@@ -122,12 +122,12 @@ nav:
     - 'Uninstalling': main/uninstall.md
   - 'The &nbsp<samp>pihole</samp>&nbsp Command': main/pihole-command.md
   - 'Databases':
-    - 'Overview': database/index.md
-    - 'Query database': database/ftl.md
-    - 'Domain database':
-      - 'Overview': database/gravity/index.md
-      - 'Group management': database/gravity/groups.md
-      - 'Database recovery': database/gravity/recovery.md
+    - 'Databases': database/index.md
+    - 'Query Database': database/query-database.md
+    - 'Domain Database':
+      - 'Domain Database': database/domain-database/index.md
+      - 'Group Management': database/domain-database/groups.md
+      - 'Database Recovery': database/domain-database/recovery.md
   - 'Pi-hole API':
     - 'Overview': api/index.md
     - 'Authentication': api/auth.md
@@ -267,3 +267,7 @@ plugins:
         'ftldns/regex/tutorial.md': regex/tutorial.md
         'database/gravity/example.md': group_management/example.md
         'core/pihole-command.md': main/pihole-command.md
+        'database/ftl.md': database/query-database.md
+        'database/gravity/index.md': database/domain-database/index.md
+        'database/gravity/recovery.md': database/domain-database/recovery.md
+        'database/gravity/groups.md': database/domain-database/groups.md

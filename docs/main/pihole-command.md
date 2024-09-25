@@ -53,7 +53,7 @@ See [Regex Blocking](../regex/overview.md) for more information about using Rege
 **Basic Script Process**:
 
 * Each domain is validated using regex (except when using `--regex`), to ensure invalid domains and IDNs are not added
-* A domain gets added to or removed from the `domainlist` table in [`/etc/pihole/gravity.db`](../database/gravity/index.md)
+* A domain gets added to or removed from the `domainlist` table in [`/etc/pihole/gravity.db`](../database/domain-database/index.md)
 * The DNS server is then reloaded
 
 ### Debugger
@@ -116,11 +116,11 @@ Gravity is one of the most important scripts of Pi-hole. Its main purpose is to 
 **Basic Script Process**:
 
 * It will determine Internet connectivity, and give time for `pihole-FTL` to be resolvable on low-end systems if has just been restarted
-* It extracts all URLs and domains from the `adlists` table in [`/etc/pihole/gravity.db`](../database/gravity/index.md)
+* It extracts all URLs and domains from the `adlists` table in [`/etc/pihole/gravity.db`](../database/domain-database/index.md)
 * It runs through each URL, downloading it if necessary
     * `curl` checks the servers `Last-Modified` header to ensure it is getting a newer version
 * It will attempt to parse the file into a domains-only format if necessary
-* Lists are merged, comments removed, sorted uniquely and stored in the `gravity` table of [`/etc/pihole/gravity.db`](../database/gravity/index.md)
+* Lists are merged, comments removed, sorted uniquely and stored in the `gravity` table of [`/etc/pihole/gravity.db`](../database/domain-database/index.md)
 * Gravity cleans up temporary content and reloads the DNS server
 
 ### Logging
@@ -147,7 +147,7 @@ This command will query your whitelist, blacklist, wildcards and adlists for a s
 
 * User-specified options are handled
 * Using `idn`, it will convert [Internationalized domain names](https://en.wikipedia.org/wiki/Internationalized_domain_name) into [punycode](https://en.wikipedia.org/wiki/Punycode)
-* Database at [`/etc/pihole/gravity.db`](../database/gravity/index.md) is queried to return a list of adlists in which the queried domain exists.
+* Database at [`/etc/pihole/gravity.db`](../database/domain-database/index.md) is queried to return a list of adlists in which the queried domain exists.
 
 ### Update
 

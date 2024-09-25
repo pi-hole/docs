@@ -1,4 +1,6 @@
-## Group management
+---
+title: Group Management
+---
 
 Groups are defined in the `group` table and can have an optional description in addition to the mandatory name of the group.
 
