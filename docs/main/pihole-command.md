@@ -1,7 +1,3 @@
----
-title: The pihole command - Pi-hole documentation
----
-
 Pi-hole makes use of many commands, and here we will break down those required to administer the program via the command-line Interface.
 
 | Index | Invocation |
