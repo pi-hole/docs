@@ -159,6 +159,11 @@ nav:
     - "Pi-hole extensions": regex/pi-hole.md
     - "Approximate matching": regex/approximate.md
   - 'Docker':
+    - 'Docker': docker/index.md
+    - 'Configuration': docker/configuration.md
+    - 'Upgrading':
+      - 'Upgrading': docker/upgrading/index.md
+      - 'Upgrading from v5.x': docker/upgrading/v5-v6.md
     - 'Building': docker/build-image.md
     - 'DHCP': docker/DHCP.md
   - 'Contributing':

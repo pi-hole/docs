@@ -1,4 +1,4 @@
-In case you wish to customise the image, or perhaps check out a branch after being asked by a developer to do so, you can use the convenient `build.sh` script located in the root of the [docker-pi-hole repository](https://github.com/pi-hole/docker-pi-hole)
+In case you wish to customize the image, or perhaps check out a branch after being asked by a developer to do so, you can use the convenient `build.sh` script located in the root of the [docker-pi-hole repository](https://github.com/pi-hole/docker-pi-hole)
 
 ## Checking out the repository
 
