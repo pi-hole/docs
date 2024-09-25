@@ -200,7 +200,7 @@ sudo chown root:root /etc/cron.weekly/cloudflared-updater
 <!-- markdownlint-disable code-block-style -->
 !!! warning
     Make sure to add shebang `#!/bin/bash` in the beginning of  `/etc/cron.weekly/cloudflared-updater`.
-    Otherwise, the command would not executed.
+    Otherwise, the command will not be executed.
 <!-- markdownlint-enable code-block-style -->
 
 The system will now attempt to update the cloudflared binary automatically, once per week.
