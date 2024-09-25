@@ -162,7 +162,7 @@ nav:
     - 'Building': docker/build-image.md
     - 'DHCP': docker/DHCP.md
   - 'Contributing':
-    - 'Contributing on GitHub': guides/github/contributing.md
+    - 'Contributing': guides/github/index.md
     - 'Developer Certificate of Origin (DCO)': guides/github/dco.md
     - 'How to sign-off commits': guides/github/how-to-signoff.md
     - 'How to fork and rebase': guides/github/how-to-fork-rebase.md
@@ -277,3 +277,4 @@ plugins:
         'guides/vpn/wireguard/overview.md': guides/vpn/wireguard/index.md
         'guides/vpn/openvpn/overview.md': guides/vpn/openvpn/index.md
         'guides/misc/tor/overview.md': guides/misc/tor/index.md
+        'guides/github/contributing.md': guides/github/index.md
