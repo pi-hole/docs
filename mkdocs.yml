@@ -151,8 +151,8 @@ nav:
   - 'Group Management':
     - 'Group Management': group_management/index.md
     - 'Examples': group_management/example.md
-  - 'RegEx blocking':
-    - "Overview": regex/overview.md
+  - 'RegEx Blocking':
+    - "Regex Blocking": regex/index.md
     - "Testing": regex/testmode.md
     - "Tutorial": regex/tutorial.md
     - "Pi-hole extensions": regex/pi-hole.md
@@ -262,8 +262,8 @@ plugins:
         'guides/nginx-configuration.md': 'guides/webserver/nginx.md'
         'guides/caddy-configuration.md': 'guides/webserver/caddy.md'
         'guides/traefik-configuration-nodocker.md': 'guides/webserver/traefik-nodocker.md'
-        'ftldns/regex/index.md': regex/overview.md
-        'ftldns/regex/overview.md': regex/overview.md
+        'ftldns/regex/index.md': regex/index.md
+        'ftldns/regex/overview.md': regex/index.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
         'database/gravity/example.md': group_management/example.md
         'core/pihole-command.md': main/pihole-command.md
@@ -272,3 +272,4 @@ plugins:
         'database/gravity/recovery.md': database/domain-database/recovery.md
         'database/gravity/groups.md': database/domain-database/groups.md
         'group_management/groups.md': group_management/index.md
+        'regex/overview.md': regex/index.md
