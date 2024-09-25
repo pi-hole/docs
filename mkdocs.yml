@@ -129,7 +129,7 @@ nav:
       - 'Group Management': database/domain-database/groups.md
       - 'Database Recovery': database/domain-database/recovery.md
   - 'Pi-hole API':
-    - 'Overview': api/index.md
+    - 'Pi-hole API': api/index.md
     - 'Authentication': api/auth.md
     - 'TLS/SSL': api/tls.md
   - 'FTLDNS':
