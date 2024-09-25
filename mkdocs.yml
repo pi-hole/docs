@@ -120,8 +120,7 @@ nav:
     - 'Post-Install': main/post-install.md
     - 'Updating': main/update.md
     - 'Uninstalling': main/uninstall.md
-  - 'Pi-hole Core':
-    - 'The &nbsp<samp>pihole</samp>&nbsp command': core/pihole-command.md
+  - 'The &nbsp<samp>pihole</samp>&nbsp Command': main/pihole-command.md
   - 'Databases':
     - 'Overview': database/index.md
     - 'Query database': database/ftl.md
@@ -267,3 +266,4 @@ plugins:
         'ftldns/regex/overview.md': regex/overview.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
         'database/gravity/example.md': group_management/example.md
+        'core/pihole-command.md': main/pihole-command.md
