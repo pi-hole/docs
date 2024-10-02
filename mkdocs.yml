@@ -207,7 +207,7 @@ nav:
         - 'Using Tor': guides/misc/tor/using-tor.md
         - 'Performance and other issues': guides/misc/tor/performance-issues.md
         - 'Using DNSSEC': guides/misc/tor/dnssec.md
-      - 'Whitelist and Blacklist editing': guides/misc/whitelist-blacklist.md
+      - 'Allowlist and Denylist editing': guides/misc/allowlist-denylist.md
     - 'Web server':
       - 'NGINX': guides/webserver/nginx.md
       - 'Caddy': guides/webserver/caddy.md
@@ -264,7 +264,7 @@ plugins:
         'guides/tor/using-tor.md': guides/misc/tor/using-tor.md
         'guides/tor/performance-issues.md': guides/misc/tor/performance-issues.md
         'guides/tor/dnssec.md': guides/misc/tor/dnssec.md
-        'guides/whitelist-blacklist.md': guides/misc/whitelist-blacklist.md
+        'guides/whitelist-blacklist.md': guides/misc/allowlist-denylist.md
         'guides/nginx-configuration.md': 'guides/webserver/nginx.md'
         'guides/caddy-configuration.md': 'guides/webserver/caddy.md'
         'guides/traefik-configuration-nodocker.md': 'guides/webserver/traefik-nodocker.md'
@@ -283,3 +283,4 @@ plugins:
         'guides/vpn/openvpn/overview.md': guides/vpn/openvpn/index.md
         'guides/misc/tor/overview.md': guides/misc/tor/index.md
         'guides/github/contributing.md': guides/github/index.md
+        'guides/misc/whitelist-blacklist.md': guides/misc/allowlist-denylist.md
