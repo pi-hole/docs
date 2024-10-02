@@ -24,13 +24,7 @@ The first command is to be preferred as it ensures that the DNS cache itself rem
 
 ## Pi-hole Regex debugging mode
 
-To ease the usage of regular expression filters in *FTL*DNS, we offer a regex debugging mode. Set
-
-```plain
-DEBUG_REGEX=true
-```
-
-in your `/etc/pihole/pihole-FTL.conf` and restart `pihole-FTL` to enable or disable this mode.
+To ease the usage of regular expression filters in *FTL*DNS, we offer a regex debugging mode, run `pihole-FTL --config debug.regex true` to enable this mode.
 
 Once the debugging mode is enabled, each match will be logged to `/var/log/pihole/FTL.log` in the following format:
 

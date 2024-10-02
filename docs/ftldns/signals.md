@@ -20,9 +20,9 @@ When FTL receives a `SIGHUP`, it clears the entire DNS cache, and then
     **Note:** No other `dnsmasq` config files are re-read.
 
 - The FTL database connection (`/etc/pihole/pihole-FTL.db`) is re-opened.
-- The privacy level is re-read from `pihole-FTL.conf` (`PRIVACY_LEVEL`).
+- The privacy level is re-read from `pihole.toml` (`misc.privacylevel`).
 - The blocking status is re-read from `setupVars.conf` (`BLOCKING_ENABLED`).
-- The debug settings are re-read from `pihole-FTL.conf` (`DEBUG_*`).
+- The debug settings are re-read from `pihole.toml` (`debug.*`).
 - The gravity database connection (`/etc/pihole/gravity.db`) is re-opened.
 - The number of blocked domains is updated.
 - All regular expression (RegEx) filters in `gravity.db` are re-read and pre-compiled for fast execution later on.
@@ -49,7 +49,7 @@ This signal does:
 - The number of blocked domains is updated.
 - All regular expression (RegEx) filters in `gravity.db` are re-read and pre-compiled for fast execution later on.
 - The blocking cache (storing if a domain has already been analyzed and what the result was) is cleared.
-- The privacy level is re-read from `pihole-FTL.conf` (`PRIVACY_LEVEL`).
+- The privacy level is re-read from `pihole.toml` (`misc.privacylevel`).
 
 The most important difference to `SIGHUP` is that the DNS cache itself is **not** flushed. Merely the blocking cache (storing if a domain has already been analyzed and what the result was) is cleared.
 
