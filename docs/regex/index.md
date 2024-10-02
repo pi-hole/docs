@@ -16,9 +16,9 @@ There are two locations where regex filters are important:
 *FTL*DNS reads in regular expression filters from the two [`regex` database views](../database/domain-database/index.md).
 To tell *FTL*DNS to reload the list of regex filters, either:
 
-- Execute `pihole restartdns reload-lists` or
+- Execute `pihole reloadlists` or
 - Send `SIGHUP` to `pihole-FTL` (`sudo killall -SIGHUP pihole-FTL`) or
-- Restart the service (`sudo service pihole-FTL restart`)
+- Restart the service (`sudo service pihole-FTL restart` or `sudo systemctl restart pihole-FTL`)
 
 The first command is to be preferred as it ensures that the DNS cache itself remains intact. Hence, it is also the fastest of the available options.
 
