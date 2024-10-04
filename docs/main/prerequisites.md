@@ -28,7 +28,7 @@ The following operating systems are **officially** supported:
 | Distribution | Release          | Architecture        |
 | ------------ | ---------------- | ------------------- |
 | Raspberry Pi OS <br>(formerly Raspbian)     | Buster / Bullseye | ARM                 |
-| Armbian OS   | Any | ARM / x86_64 / riscv64           |
+| Armbian OS   | Any | ARM / riscv64           |
 | Ubuntu       | 20.x / 22.x / 23.x / 24.x   | ARM / x86_64        |
 | Debian       | 11 / 12         | ARM / x86_64 / i386 |
 | Fedora       | 39 / 40     | ARM / x86_64        |
