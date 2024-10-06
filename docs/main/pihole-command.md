@@ -11,7 +11,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Feature | Invocation  |
 | -------------- | -------------- |
 | [Core](#core-script) | `pihole` |
-| [Whitelisting, Blacklisting and Regex](#whitelisting-blacklisting-and-regex) | `pihole -w`, `pihole -b`, `pihole --regex`, `pihole --wild` |
+| [Allowlisting, Denylisting and Regex](#allowlisting-denylisting-and-regex) | `pihole allow`, `pihole deny`, `pihole --regex`, `pihole --wild` |
 | [Debugger](#debugger) | `pihole debug` |
 | [Log Flush](#log-flush) | `pihole flush` |
 | [Reconfigure](#reconfigure) | `pihole reconfigure` |
@@ -25,7 +25,6 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Uninstall](#uninstall) | `pihole uninstall` |
 | [Status](#status) | `pihole status` |
 | [Enable & Disable](#enable-disable) | `pihole enable` <!-- markdownlint-disable-line MD051 --> |
-| [Restart DNS](#restart-dns) | `pihole restartdns` |
 | [Checkout](#checkout) | `pihole checkout` |
 
 ### Core Script
@@ -38,11 +37,11 @@ Pi-hole makes use of many commands, and here we will break down those required t
 
 The core script of Pi-hole provides the ability to tie many DNS related functions into a simple and user-friendly management system, so that one may easily block unwanted content such as advertisements. For both the Command-line Interface (CLI) and Web Interface, we achieve this through the `pihole` command (this helps minimize code duplication, and allows users to read exactly what's happening using `bash` scripting). This "wrapper" elevates the current user (whether it be your own user account, or `www-data`) using `sudo`, but restricts the elevation to solely what can be called through the wrapper.
 
-### Whitelisting, Blacklisting and Regex
+### Allowlisting, Denylisting and Regex
 
 |  | |
 |  -------------- | -------------- |
-| Help Command    | `pihole -w --help`, `pihole -b --help`, `pihole --regex --help`, `pihole --wild --help` |
+| Help Command    | `pihole allow --help`, `pihole deny --help`, `pihole --regex --help`, `pihole --wild --help` |
 | Script Location | [`/opt/pihole/list.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/list.sh) |
 | Example Usage   | [`pihole --regex '^example.com$' '.*\.example2.net'`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#white-black-list) |
 
@@ -131,7 +130,7 @@ Gravity is one of the most important scripts of Pi-hole. Its main purpose is to 
 | Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
 | Example Usage   | [`pihole logging off`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#logging) |
 
-This command specifies whether the Pi-hole log should be used, by commenting out `log-queries` within `/etc/dnsmasq.d/01-pihole.conf` and flushing the log.
+This command specifies whether the Pi-hole log should be used.
 
 ### Query
 
@@ -204,16 +203,6 @@ Display the running status of Pi-hole's DNS and blocking services.
 | Example Usage   | [`pihole disable 5m`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#toggle) |
 
 Toggle Pi-hole's ability to block unwanted domains. The disable option has the option to set a specified time before blocking is automatically re-enabled.
-
-### Restart DNS
-
-| | |
-| -------------- | -------------- |
-| Help Command    | N/A |
-| Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
-| Example Usage   | [`pihole restartdns`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#restartdns) |
-
-Restart Pi-hole's DNS service.
 
 ### Checkout
 
