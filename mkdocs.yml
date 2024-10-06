@@ -179,6 +179,7 @@ nav:
         - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
     - 'Misc':
       - 'Benchmarking': guides/misc/benchmark.md
+      - 'VLANs': guides/misc/vlans.md
       - 'Tor & Pi-hole':
         - 'Overview': guides/misc/tor/overview.md
         - 'Basic Setup': guides/misc/tor/setup.md
