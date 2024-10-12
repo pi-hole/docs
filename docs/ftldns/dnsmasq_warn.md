@@ -133,7 +133,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
     edns-packet-max=1232
     ```
 
-    After running `pihole restartdns` your Pi-hole will not even try larger packet sizes (the default is 4096). Check out our [unbound guide](../guides/dns/unbound.md) for a comment about the particular value of `1232` or reference [this comment](https://discourse.pi-hole.net/t/dnsmasq-warn-reducing-dns-packet-size/51803/31) regarding the various allowed packet sizes for the various upstream DNS servers.
+    After restarting pihole-FTL it will not even try larger packet sizes (the default is 4096). Check out our [unbound guide](../guides/dns/unbound.md) for a comment about the particular value of `1232` or reference [this comment](https://discourse.pi-hole.net/t/dnsmasq-warn-reducing-dns-packet-size/51803/31) regarding the various allowed packet sizes for the various upstream DNS servers.
 
 !!! warning "Ignoring query from non-local network"
 

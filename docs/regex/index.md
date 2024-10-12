@@ -16,21 +16,15 @@ There are two locations where regex filters are important:
 *FTL*DNS reads in regular expression filters from the two [`regex` database views](../database/domain-database/index.md).
 To tell *FTL*DNS to reload the list of regex filters, either:
 
-- Execute `pihole restartdns reload-lists` or
+- Execute `pihole reloadlists` or
 - Send `SIGHUP` to `pihole-FTL` (`sudo killall -SIGHUP pihole-FTL`) or
-- Restart the service (`sudo service pihole-FTL restart`)
+- Restart the service (`sudo service pihole-FTL restart` or `sudo systemctl restart pihole-FTL`)
 
 The first command is to be preferred as it ensures that the DNS cache itself remains intact. Hence, it is also the fastest of the available options.
 
 ## Pi-hole Regex debugging mode
 
-To ease the usage of regular expression filters in *FTL*DNS, we offer a regex debugging mode. Set
-
-```plain
-DEBUG_REGEX=true
-```
-
-in your `/etc/pihole/pihole-FTL.conf` and restart `pihole-FTL` to enable or disable this mode.
+To ease the usage of regular expression filters in *FTL*DNS, we offer a regex debugging mode, run `pihole-FTL --config debug.regex true` to enable this mode.
 
 Once the debugging mode is enabled, each match will be logged to `/var/log/pihole/FTL.log` in the following format:
 

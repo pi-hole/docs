@@ -5,7 +5,7 @@ In this example, we describe how to set up a blocking rule for three specific cl
 Don't forget to run
 
 ```bash
-pihole restartdns reload-lists
+pihole reloadlists
 ```
 
 after your database modifications to have FTL flush its internal domain-blocking cache (separate from the DNS cache).

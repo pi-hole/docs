@@ -4,7 +4,7 @@ Most (but not all) endpoints require authentication. API endpoints requiring aut
 
 ## Accessing the API documentation
 
-The entire API is documented at http://pi.hole/api/docs and self-hosted by your Pi-hole to match 100% the API versions your local Pi-hole has. Using this locally served API documentation is preferred. In case you don't have Pi-hole installed yet, you can also check out the documentation for all branches online, e.g., [Pi-hole API documentation](https://ftl.pi-hole.net/development-v6/docs/) (branch `development-v6`). Similarly, you can check out the documentation for a specific other branches by replacing `development-v6` with the corresponding branch name. <!-- markdownlint-disable-line no-bare-urls -->
+The entire API is documented at http://pi.hole/api/docs and self-hosted by your Pi-hole to match 100% the API versions your local Pi-hole has. Using this locally served API documentation is preferred. In case you don't have Pi-hole installed yet, you can also check out the documentation for all branches online, e.g., [Pi-hole API documentation](https://ftl.pi-hole.net/master/docs/) (branch `master`). Similarly, you can check out the documentation for a specific other branches by replacing `master` with the corresponding branch name. <!-- markdownlint-disable-line no-bare-urls -->
 
 ## API endpoints
 

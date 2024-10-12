@@ -28,7 +28,7 @@ If you want a recognizable hostname for the Tor DNS in your Pi-hole GUI statisti
 Restart Pi-hole DNS Server for the `/etc/hosts` changes to take effect
 
 ```bash
-sudo pihole restartdns
+sudo service pihole-FTL restart
 ```
 
 ## Testing your configuration
