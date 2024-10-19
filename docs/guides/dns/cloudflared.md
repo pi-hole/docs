@@ -84,7 +84,7 @@ Edit configuration file by copying the following in to `/etc/default/cloudflared
 CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
 ```
 
-If you're running cloudflared on different host than pi-hole, you can add listening address to all IPs:
+If you're running cloudflared on different host than pi-hole, you can add listening address to all IPs (for security, change 0.0.0.0 to your machine's IP, e.g. 192.168.1.1):
 
 ```bash
 # Commandline args for cloudflared, using Cloudflare DNS
