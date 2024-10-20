@@ -84,8 +84,16 @@ Edit configuration file by copying the following in to `/etc/default/cloudflared
 CLOUDFLARED_OPTS=--port 5053 --upstream https://cloudflare-dns.com/dns-query
 ```
 
+
 !!! info
     See the other available [Cloudflare endpoints](https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/#available-endpoints).
+
+If you're running cloudflared on different host than pi-hole, you can add listening address to all IPs (for security, change 0.0.0.0 to your machine's IP, e.g. 192.168.1.1):
+
+```bash
+# Commandline args for cloudflared, using Cloudflare DNS
+CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query --address 0.0.0.0
+```
 
 Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user:
 
@@ -203,7 +211,7 @@ sudo chown root:root /etc/cron.weekly/cloudflared-updater
 <!-- markdownlint-disable code-block-style -->
 !!! warning
     Make sure to add shebang `#!/bin/bash` in the beginning of  `/etc/cron.weekly/cloudflared-updater`.
-    Otherwise, the command would not executed.
+    Otherwise, the command will not be executed.
 <!-- markdownlint-enable code-block-style -->
 
 The system will now attempt to update the cloudflared binary automatically, once per week.
