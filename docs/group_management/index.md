@@ -1,4 +1,4 @@
-Any blocklist or domain on the white-/black-/regex-lists can be managed through groups. This allows not only grouping them to highlight their relationship, but also enabling/disabling them together if one, for instance, wants to visit a specific service only temporarily.
+Any blocklist or domain on the allow-/deny-/regex-lists can be managed through groups. This allows not only grouping them to highlight their relationship, but also enabling/disabling them together if one, for instance, wants to visit a specific service only temporarily.
 
 Group `Default` (`group_id` `0`) is special as it is automatically assigned to domains and clients not being a member of other groups. Each newly added client or domain gets assigned to group zero when being added.
 

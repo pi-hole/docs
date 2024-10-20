@@ -82,7 +82,7 @@
     }
     ```
 
-7. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+7. Create a username for authentication for the admin
 
     ```bash
     htpasswd -c /etc/nginx/.htpasswd exampleuser

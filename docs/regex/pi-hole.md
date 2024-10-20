@@ -22,25 +22,25 @@ but not
 dig A abc
 ```
 
-This allows you to do query type based black-/whitelisting.
+This allows you to do query type based deny-/allowlisting.
 
 Some user-provided examples are:
 
 - `.*;querytype=!A`
 
-    A regex blacklist entry for blocking `AAAA` (in fact, everything else than `A`, call it "anti-`A`") requests for all clients assigned to the same group. This has been mentioned to be beneficial for devices like Chromecast. You may want to fine-tune this further to specific domains.
+    A regex denylist entry for blocking `AAAA` (in fact, everything else than `A`, call it "anti-`A`") requests for all clients assigned to the same group. This has been mentioned to be beneficial for devices like Chromecast. You may want to fine-tune this further to specific domains.
 
 - `.*;querytype=PTR`
 
-    A regex whitelist entry used to permit `PTR` lookups with the above "anti-`A`" regex
+    A regex allowlist entry used to permit `PTR` lookups with the above "anti-`A`" regex
 
 - `.*;querytype=ANY`
 
-    A regex blacklist entry to block `ANY` request network wide.
+    A regex denylist entry to block `ANY` request network wide.
 
 - `.*;querytype=OTHER`
 
-    A regex blacklist entry to block `OTHER` request network wide. This rule will match, for instance, proprietary DNS requests using custom query types in the reserved range or queries for seldom used DNS record types like `IXFR` or `AXFR`.
+    A regex denylist entry to block `OTHER` request network wide. This rule will match, for instance, proprietary DNS requests using custom query types in the reserved range or queries for seldom used DNS record types like `IXFR` or `AXFR`.
 
 Note that multiple (comma-separated) query types can be specified at the same time, e.g., `.*;querytype=A,AAAA` will match both `A` and `AAAA` requests. In a similar fashion, an inverted (`!` modifier) list, e.g., `.*;querytype=!A,AAAA` will match everything *except* `A` and `AAAA` requests.
 

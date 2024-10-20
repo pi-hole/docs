@@ -65,9 +65,9 @@ The content and type of the `additional_info` row depends on the status of the g
 
 If a query was blocked due to a CNAME inspection (status 9, 10, 11), this field contains the domain which was the reason for blocking the entire CNAME chain (text).
 
-##### Query influenced by a black- or whitelist entry {#additional_info_list data-toc-label='domainlist_id'}
+##### Query influenced by a deny or allowlist entry {#additional_info_list data-toc-label='domainlist_id'}
 
-If a query was influenced by a black- or whitelist entry, this field contains the ID of the corresponding entry in the [`domainlist`](domain-database/index.md#domain-tables-domainlist) table.
+If a query was influenced by a deny or allowlist entry, this field contains the ID of the corresponding entry in the [`domainlist`](domain-database/index.md#domain-tables-domainlist) table.
 
 ### Counters table
 
@@ -118,14 +118,14 @@ ID | Status | | Details
 1 | Blocked | ❌ | Domain contained in [gravity database](domain-database/index.md#gravity-tables-gravity-and-antigravity)
 2 | Allowed | ✅ | Forwarded
 3 | Allowed | ✅ | Replied from cache
-4 | Blocked | ❌ | Domain matched by a [regex blacklist](domain-database/index.md#domain-tables-domainlist) filter
-5 | Blocked | ❌ | Domain contained in [exact blacklist](domain-database/index.md#domain-tables-domainlist)
+4 | Blocked | ❌ | Domain matched by a [regex denylist](domain-database/index.md#domain-tables-domainlist) filter
+5 | Blocked | ❌ | Domain contained in [exact denylist](domain-database/index.md#domain-tables-domainlist)
 6 | Blocked | ❌ | By upstream server (known blocking page IP address)
 7 | Blocked | ❌ | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | ❌ | By upstream server (`NXDOMAIN` with `RA` bit unset)
 9 | Blocked | ❌ | Domain contained in [gravity database](domain-database/index.md#gravity-tables-gravity-and-antigravity)<br>*Blocked during deep CNAME inspection*
-10 | Blocked | ❌ | Domain matched by a [regex blacklist](domain-database/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
-11 | Blocked | ❌ | Domain contained in [exact blacklist](domain-database/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
+10 | Blocked | ❌ | Domain matched by a [regex denylist](domain-database/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
+11 | Blocked | ❌ | Domain contained in [exact denylist](domain-database/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
