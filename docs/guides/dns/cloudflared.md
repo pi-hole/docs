@@ -14,7 +14,7 @@ Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/ann
 In the following sections, we will be covering how to install and configure this tool on `Pi-hole`.
 
 !!! info
-    The `cloudflared` binary will also work with other DoH providers (for example, you could use `https://dns.google/dns-query` for [Google's DoH service](https://developers.google.com/speed/public-dns/docs/doh) or `https://dns.quad9.net/dns-query` for [Quad9's DoH service](https://quad9.net/service/service-addresses-and-features)).
+    The `cloudflared` binary will also work with other DoH providers (for example, [Google's DoH service](https://developers.google.com/speed/public-dns/docs/doh) or [Quad9's DoH service](https://quad9.net/service/service-addresses-and-features)).
 
 ### Installing `cloudflared`
 
