@@ -72,7 +72,7 @@ Valid options are:
 - `;reply=nxdomain` ("no such domain" will be provided, can cause unintended side-effects)
 - `;reply=refused` (the query will be refused)
 - `;reply=none` (the query will be silently dropped)
-- `;reply=ip` (the Pi-hole's IP address if not overwritten by configuration)
+- `;reply=ip` (the Pi-hole's IP address if not overwritten by configuration options: `reply.blocking.IPv4`/`reply.blocking.IPv6`)
 - `;reply=1.2.3.4` (any valid IPv4 address)
 - `;reply=fe80::1234` (any valid IPv6 address)
 

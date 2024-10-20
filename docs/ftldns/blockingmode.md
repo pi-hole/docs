@@ -60,6 +60,8 @@ doubleclick.net.        2       IN      A       192.168.1.42
 
 In `IP` mode, blocked queries will be answered with the local IP addresses of your Pi-hole. To set this mode explicitly, run `pihole-FTL --config dns.blocking.mode IP`.
 
+The IP that is returned is automatically determined by FTL, however it can also be set with `reply.blocking.IPv4` and `reply.blocking.IPv6` FTL options.
+
 A blocked query would look like the following:
 
 ```

@@ -11,7 +11,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | Feature | Invocation  |
 | -------------- | -------------- |
 | [Core](#core-script) | `pihole` |
-| [Allowlisting, Denylisting and Regex](#allowlisting-denylisting-and-regex) | `pihole allow`, `pihole deny`, `pihole --regex`, `pihole --wild` |
+| [Allowlisting, Denylisting and Regex](#allowlisting-denylisting-and-regex) | `pihole allow`, `pihole deny`, `pihole --regex`, `pihole --wild`, `pihole --allow-regex`, `pihole --allow-wild` |
 | [Debugger](#debugger) | `pihole debug` |
 | [Log Flush](#log-flush) | `pihole flush` |
 | [Reconfigure](#reconfigure) | `pihole reconfigure` |
@@ -41,7 +41,7 @@ The core script of Pi-hole provides the ability to tie many DNS related function
 
 |  | |
 |  -------------- | -------------- |
-| Help Command    | `pihole allow --help`, `pihole deny --help`, `pihole --regex --help`, `pihole --wild --help` |
+| Help Command    | `pihole allow --help`, `pihole deny --help`, `pihole --regex --help`, `pihole --wild --help`, `pihole --allow-regex --help`, `pihole --allow-wild --help` |
 | Script Location | [`/opt/pihole/list.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/list.sh) |
 | Example Usage   | [`pihole --regex '^example.com$' '.*\.example2.net'`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#white-black-list) |
 
