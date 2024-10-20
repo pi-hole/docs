@@ -51,6 +51,6 @@ For Windows:
 nslookup -server=<IPv4/6-dns-server-address> -q=<A/AAAA> api.mixpanel.com
 ```
 
-That should give you the Pi-hole IPv4 and/or IPv6 address as Answer and show up as "Pi-holed" in the WebGUI Query Log (assuming you have the default blocklist, otherwise replace `api.mixpanel.com` with any domain on your blocklist).
+That should give you the Pi-hole IPv4 and/or IPv6 address as Answer and show up as "Pi-holed" in the WebGUI Query Log (assuming you have the default subscribed list, otherwise replace `api.mixpanel.com` with any domain on your subscribed list).
 
 If any of the queries don't show up in the Query Log you should make sure to configure your Pi-hole/network setup properly ([this thread might help](https://www.reddit.com/r/pihole/comments/7e0jg9/dns_over_tor/dq4kkvg/)).

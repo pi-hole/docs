@@ -14,7 +14,7 @@ after your database modifications to have FTL flush its internal domain-blocking
 
 1. **Add three groups.**
 
-    The `Default` group has a special meaning and cannot be deleted. All domains, clients, and adlists without a specific group assignment are automatically managed through this group. Disabling this group will disable Pi-hole blocking for all unmanaged devices.
+    The `Default` group has a special meaning and cannot be deleted. All domains, clients, and subscribed lists without a specific group assignment are automatically managed through this group. Disabling this group will disable Pi-hole blocking for all unmanaged devices.
 
     ![Adding three groups](../images/group_management/example-groups.png)
 
@@ -70,13 +70,13 @@ Client        | Group membership | Domain | Blocked
 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
 
 
-All three clients got automatically assigned to the default (`Default`) group when they were added. The default group includes all adlists and list domains (if not already changed by the user). When we remove the default group for client `192.168.0.101`, we effectively remove all associations to any adlists and domains. This leaves this client completely unblocked.
+All three clients got automatically assigned to the default (`Default`) group when they were added. The default group includes all subscribed lists and list domains (if not already changed by the user). When we remove the default group for client `192.168.0.101`, we effectively remove all associations to any subscribed lists and domains. This leaves this client completely unblocked.
 
 ## Example 2: Blocklist management
 
-**Task:** Assign adlist with ID 1 to group 1 (in addition to the default assignment to group 0). This results in client `192.168.0.101` using *only this* adlist (we removed the default association in the last step).
+**Task:** Assign subscribed list with ID 1 to group 1 (in addition to the default assignment to group 0). This results in client `192.168.0.101` using *only this* subscribed list (we removed the default association in the last step).
 
-![Change blocklist group assignment - Overview](../images/group_management/example-adlists-1.png)
+![Change subscribed list group assignment - Overview](../images/group_management/example-adlists-1.png)
 
 ??? "Raw database instructions"
     ```sql
@@ -93,7 +93,7 @@ Client        | Group membership | Domain | Blocked
 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
 
 
-`192.168.0.101` gets `doubleclick.net` blocked as it uses an adlist including this domain. All other clients stay unchanged.
+`192.168.0.101` gets `doubleclick.net` blocked as it uses a subscribed list including this domain. All other clients stay unchanged.
 
 ## Example 3: Denylisting
 
