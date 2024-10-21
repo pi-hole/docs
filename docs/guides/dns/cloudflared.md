@@ -9,12 +9,12 @@ It is worth noting, however, that the upstream DNS-Over-HTTPS provider will stil
 
 ## Configuring DNS-Over-HTTPS
 
-Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/), Cloudflare implemented DNS-Over-HTTPS proxy functionality into one of their tools: [`cloudflared`](https://github.com/cloudflare/cloudflared).
+Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/) (and later [1.1.1.1 for Families](https://blog.cloudflare.com/introducing-1-1-1-1-for-families)) Cloudflare implemented DNS-Over-HTTPS proxy functionality into one of their tools: [`cloudflared`](https://github.com/cloudflare/cloudflared).
 
 In the following sections, we will be covering how to install and configure this tool on `Pi-hole`.
 
 !!! info
-    The `cloudflared` binary will work with other DoH providers (for example, you could use `https://8.8.8.8/dns-query` for Google's DNS-Over-HTTPS service).
+    The `cloudflared` binary will also work with other DoH providers (for example, [Google's DoH service](https://developers.google.com/speed/public-dns/docs/doh) or [Quad9's DoH service](https://quad9.net/service/service-addresses-and-features)).
 
 ### Installing `cloudflared`
 
@@ -81,8 +81,12 @@ Edit configuration file by copying the following in to `/etc/default/cloudflared
 
 ```bash
 # Commandline args for cloudflared, using Cloudflare DNS
-CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
+CLOUDFLARED_OPTS=--port 5053 --upstream https://cloudflare-dns.com/dns-query
 ```
+
+
+!!! info
+    See the other available [Cloudflare endpoints](https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/#available-endpoints).
 
 If you're running cloudflared on different host than pi-hole, you can add listening address to all IPs (for security, change 0.0.0.0 to your machine's IP, e.g. 192.168.1.1):
 
@@ -167,7 +171,7 @@ Finally, configure Pi-hole to use the local `cloudflared` service as the upstrea
 
 ### Updating `cloudflared`
 
-The `cloudflared` tool will not receive updates through the package manager. However, you should keep the program update to date. You can either do this manually, or via a cron script.
+The `cloudflared` tool will not receive updates through the package manager. However, you should keep the program update to date. You can either do this manually (e.g. by watching their [repo](https://github.com/cloudflare/cloudflared) for new releases), or via a cron script.
 
 The procedure for updating depends on how you configured the `cloudflared` binary.
 
