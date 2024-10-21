@@ -22,7 +22,7 @@ but not
 dig A abc
 ```
 
-This allows you to do query type based deny-/allowlisting.
+This allows you to do query type based denylisting and allowlisting.
 
 Some user-provided examples are:
 

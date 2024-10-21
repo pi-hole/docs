@@ -34,4 +34,4 @@ Once the debugging mode is enabled, each match will be logged to `/var/log/pihol
 
 The given DB ID corresponds to the ID of the corresponding row in the `domainlist` database table.
 
-Note that validation is only done on the first occurrence of a domain to increase the computational efficiency of *FTL*DNS. The result of this evaluation is stored in an internal DNS cache that is separate from `dnsmasq`'s own DNS cache. This allows us to only flush this special cache when modifying the deny and allowlists *without* having to flush the entire DNS cache collected so far.
+Note that validation is only done on the first occurrence of a domain to increase the computational efficiency of *FTL*DNS. The result of this evaluation is stored in an internal DNS cache that is separate from `dnsmasq`'s own DNS cache. This allows us to only flush this special cache when modifying the denylist or allowlist *without* having to flush the entire DNS cache collected so far.
