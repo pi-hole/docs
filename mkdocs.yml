@@ -260,9 +260,6 @@ plugins:
         'guides/tor/performance-issues.md': guides/misc/tor/performance-issues.md
         'guides/tor/dnssec.md': guides/misc/tor/dnssec.md
         'guides/whitelist-blacklist.md': guides/misc/allowlist-denylist.md
-        'guides/nginx-configuration.md': 'guides/webserver/nginx.md'
-        'guides/caddy-configuration.md': 'guides/webserver/caddy.md'
-        'guides/traefik-configuration-nodocker.md': 'guides/webserver/traefik-nodocker.md'
         'ftldns/regex/index.md': regex/index.md
         'ftldns/regex/overview.md': regex/index.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
