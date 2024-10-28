@@ -225,3 +225,24 @@ Switch Pi-hole subsystems to a different GitHub branch. An admin can specify rep
 | Example Usage   | `pihole setpassword` |
 
 Set the Web Interface an API password. Password can be entered as an option (e.g: `pihole setpassword secretpassword`), or separately as to not display on the screen (e.g: `pihole setpassword`).
+
+### Reload Lists
+
+| | |
+| -------------- | -------------- |
+| Help Command    | N/A |
+| Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
+| Example Usage   | `pihole reloadlists` |
+
+Reload DNS lists. Note: This will NOT re-read any *.conf files
+
+### Reload DNS
+
+| | |
+| -------------- | -------------- |
+| Help Command    | N/A |
+| Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
+| Example Usage   | `pihole reloaddns` |
+
+Flush and reload the pihole-FTL DNS cache. Note: This will NOT re-read any *.conf files
+
