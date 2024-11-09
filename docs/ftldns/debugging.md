@@ -1,5 +1,8 @@
 # Debugging FTLDNS using `gdb`
 
+`gdb` is a powerful debugger that can be used to analyze and help fixing issues in software. It is a command-line tool that can be used to inspect the state of a running process, set breakpoints, and step through the code. Furthermore, it can be used to investigate crashes and give access to the state of the program (e.g. precise locations and variable contents) at the time of the crash.
+This guide will show you how to use `gdb` to debug `pihole-FTL`.
+
 Once you are used to it, you can skip most of the steps. Debugging *FTL*DNS is quite easy. `pihole-FTL` has been designed so that a debugger can be attached to an already running process. This will give you insights into how software (not limited to `pihole-FTL`) works.
 
 <!-- markdownlint-disable code-block-style -->
