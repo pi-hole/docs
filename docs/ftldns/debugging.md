@@ -5,6 +5,9 @@ This guide will show you how to use `gdb` to debug `pihole-FTL`.
 
 Once you are used to it, you can skip most of the steps. Debugging *FTL*DNS is quite easy. `pihole-FTL` has been designed so that a debugger can be attached to an already running process. This will give you insights into how software (not limited to `pihole-FTL`) works.
 
+!!! note "Debugging parallelized applications"
+    There is one fundamental drawback when it comes to using `gdb` for debugging parallelized applications: `pihole-FTL` uses both threads and forks. When DNS queries are processed on dedicated (long-lived) TCP connections, `pihole-FTL` forks a new process to handle the query but `gdb` does not follow the forked process. This means that you will not be able to capture crashes that occur in forked processes. However, most crashes occur in the main process, so this limitation is not as severe as it might sound.
+
 <!-- markdownlint-disable code-block-style -->
 !!! info "When running Pi-hole in a Docker container"
     If you are running Pi-hole in a Docker container, you will need to perform all the steps described here *inside* the Docker container. You can use, e.g., `docker exec -it <container_name> /bin/bash` to get a shell inside the container.
