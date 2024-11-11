@@ -21,21 +21,19 @@ They are extracted into the list file as they are recorded in the database. Ther
 
 We suggest disabling both logging and the long-term database during the benchmark run as both the log file and the database would otherwise unnecessarily grow, several hundred megabytes may be possible. Not only would your statistics be distorted by the artificial mass querying, but the benchmark could also be negatively affected by the writing speed of your SD card.
 
-Logging can be disabled using `sudo pihole logging off`.
+Logging can be disabled using `pihole-FTL --config dns.queryLogging false`.
 
-The long-term database can be disabled by setting
-
-```
-DBFILE=
-```
-
-in `/etc/pihole/pihole-FTL.conf` and running `sudo pihole restartdns` (see also [here](../../ftldns/configfile.md/#dbfile)).
+The long-term database can be disabled running `pihole-FTL --config files.database ""`
 
 ### 2.2 Increase DNS cache size
 
 We also suggest increasing the DNS cache for benchmarking. The rather low value is fine for typical use cases. Domains will expire at some point and make room for new domains. As the benchmark will artificially increase the querying rate, there will be no time for the domains to expire naturally. This would dramatically hit the caching performance while you would never see such performance penalties in real use cases.
 
-Set `cache-size` to a rather high value (maybe 25,000 - by guess roughly one-eighth to one-fourth number of the domains you extracted from the database in step 1) in `/etc/dnsmasq.d/01-pihole.conf` and run `sudo pihole restartdns` afterward.
+Set the cache size to a rather high value (maybe 25,000 - by guess roughly one-eighth to one-fourth number of the domains you extracted from the database in step 1)
+
+```bash
+pihole-FTL --config dns.cache.size 25000
+```
 
 ## 3. Query domains from the list
 
