@@ -79,7 +79,7 @@ When set to `yes`, Memcheck keeps track of the origins of all uninitialised valu
 
 You can also combine `valgrind` with `gdb` to get both the memory error detection and the ability to step through the code after a crash (or other unexpected behaviour).
 
-1. Prepare `gdb` as described in [the `gdb` guide](debugging.md).
+1. Prepare `gdb` as described in [the `gdb` guide](gdb.md).
 2. Start `pihole-FTL` in `valgrind` as described above. The `--vgdb=full` option tells `valgrind` to start a GDB server.
 3. Once FTL has started, you can attach `gdb` to the running process using
 

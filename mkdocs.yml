@@ -147,7 +147,7 @@ nav:
         - 'Cache dump': ftldns/cache_dump.md
         - 'Packet dump': ftldns/package_dump.md
         - 'Debugging':
-            - 'gdb': ftldns/debugging.md
+            - 'gdb': ftldns/gdb.md
             - 'valgrind': ftldns/valgrind.md
   - 'Group Management':
     - 'Group Management': group_management/index.md
@@ -283,3 +283,4 @@ plugins:
         'guides/vpn/openvpn/overview.md': guides/vpn/openvpn/index.md
         'guides/misc/tor/overview.md': guides/misc/tor/index.md
         'guides/github/contributing.md': guides/github/index.md
+        'ftldns/debugging.md': ftldns/gdb.md
