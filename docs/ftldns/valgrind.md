@@ -75,6 +75,28 @@ The used options are:
 When set to `yes`, Memcheck keeps track of the origins of all uninitialised values. Then, when an uninitialised value error is reported, Memcheck will try to show the origin of the value.
 4. `vgdb=full` - The Valgrind core provides a built-in gdbserver implementation. This is useful when you want to investigate a crash that is not easily reproducible and memory errors are suspected to be the cause. This gdbserver allows the process running on Valgrind's synthetic CPU to be debugged remotely. GDB sends protocol query packets (such as "get register contents") to the Valgrind embedded gdbserver. The gdbserver executes the queries (for example, it will get the register values of the synthetic CPU) and gives the results back to GDB.
 
+<!-- markdownlint-disable code-block-style -->
+!!! info "When running Pi-hole in a Docker container"
+    If you are running Pi-hole in a Docker container, you will need to perform all the steps described here *inside* the Docker container. As the Docker container is dependent on the `pihole-FTL` process, you need to modify your `Dockerfile` to spawn shell inside the container instead of starting the `pihole-FTL` process directly. We also add a few extra settings here, see [the `gdb` guide](gdb.md) for more information about this:
+
+    ```yaml
+    services:
+      pihole:
+
+        # your other options ...
+
+        cap_add:
+          - # your other added capabilities ...
+          - SYS_PTRACE
+
+        security_opt:
+          - seccomp:unconfined
+
+        entrypoint: /bin/bash
+        tty: true
+    ```
+<!-- markdownlint-enable code-block-style -->
+
 ### Combining `valgrind` with `gdb`
 
 You can also combine `valgrind` with `gdb` to get both the memory error detection and the ability to step through the code after a crash (or other unexpected behaviour).
