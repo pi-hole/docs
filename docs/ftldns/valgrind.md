@@ -2,7 +2,7 @@
 
 Occasionally, debugging may require us to run `pihole-FTL` in `valgrind`. We also use it to measure performance and check that our memory layout is optimal (= minimal footprint).
 
-`Valgrind` is a flexible program for debugging and profiling Linux executables. It consists of a core, which provides a synthetic CPU in software, and a series of debugging and profiling tools.
+`Valgrind` is a flexible program for debugging and profiling Linux executables. It consists of a core, which provides a synthetic CPU in software, and a series of debugging and profiling tools. The use of a synthetic CPU allows Valgrind to run the client program in a completely controlled environment and, hence, track the behaviour of the program in a very detailed way. Unfortunately, this also means that the program runs *much* slower than usual.
 
 ## `memcheck`
 
