@@ -23,7 +23,7 @@ We suggest disabling both logging and the long-term database during the benchmar
 
 Logging can be disabled using `pihole-FTL --config dns.queryLogging false`.
 
-The long-term database can be disabled running `pihole-FTL --config files.database ""`
+The same effect can be achieved if you set `database.maxDBdays` to zero, running `pihole-FTL --config database.maxDBdays 0`. This will change the maximum number of days the database will keep to zero, resulting in no queries being stored.
 
 ### 2.2 Increase DNS cache size
 
