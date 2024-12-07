@@ -1,4 +1,6 @@
-## Group management
+---
+title: Group Management
+---
 
 Groups are defined in the `group` table and can have an optional description in addition to the mandatory name of the group.
 
@@ -12,7 +14,7 @@ Label | Type | Uniqueness enforced | Content
 Group management is implemented using so-called linking tables. Hence, it is possible to
 
 - associate domains (and clients!) with any number of groups,
-- manage adlists together with groups,
+- manage lists together with groups,
 - use the same groups for black- and whitelisted domains at the same time.
 
 The linking tables are particularly simple, as they only link group `id`s with list `id`s. As an example, we describe the `domainlist_by_group` table. The `adlist` and `client` linking tables are constructed similarly.

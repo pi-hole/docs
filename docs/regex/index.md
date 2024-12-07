@@ -13,7 +13,7 @@ There are two locations where regex filters are important:
 
 ## How to use regular expressions for filtering domains
 
-*FTL*DNS reads in regular expression filters from the two [`regex` database views](../database/gravity/index.md).
+*FTL*DNS reads in regular expression filters from the two [`regex` database views](../database/domain-database/index.md).
 To tell *FTL*DNS to reload the list of regex filters, either:
 
 - Execute `pihole restartdns reload-lists` or

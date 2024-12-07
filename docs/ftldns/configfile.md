@@ -323,11 +323,11 @@ Print information about ARP table processing: How long did parsing take, whether
 
 Controls if *FTL*DNS should print extended details about regex matching into `FTL.log`.
 
-**[More details](../regex/overview.md)**
+**[More details](../regex/index.md)**
 
-#### `DEBUG_API=false|true` {#debug_api data-toc-label='Telnet'}
+#### `DEBUG_API=false|true` {#debug_api data-toc-label='API'}
 
-Print extra debugging information during telnet API calls. Currently only used to send extra information when getting all queries.
+Print extra debugging information during API calls.
 
 #### `DEBUG_OVERTIME=false|true` {#debug_overtime data-toc-label='Over Time Data'}
 
