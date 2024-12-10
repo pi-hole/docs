@@ -54,58 +54,6 @@ Ask the list maintainer to convert the IDNs to their punycode representation.
 Internationalizing Domain Names in Applications (IDNA) was conceived to allow client-side use of language-specific characters in domain names without requiring any existing infrastructure (DNS servers, mall servers, etc., including associated protocols) to change. Accordingly, the corresponding original [RFC 3490](https://tools.ietf.org/html/rfc3490) clearly states that IDNA is employed at application level, not on the server side.
 Hence, DNS servers never see any IDN domain name, which means DNS records do not store IDN domain names at all, only their [Punycode](https://en.wikipedia.org/wiki/Punycode)  representations.
 
-### Error while loading data from the long-term database
-
-If requesting a lot of data from the long-term database you get this error
-
-```code
-An unknown error occurred while loading the data.
-
-Check the server's log files (/var/log/lighttpd/error-pihole.log) for details.
-
-You may need to increase PHP memory limit.
-
-You can find more info in pi-hole's FAQ:
-https://docs.pi-hole.net/main/faq/#error-while-loading-data-from-the-long-term-database
-```
-
-**Solution:**
-
-You need to increase PHP's memory and restart the server.
-
-The amount of memory needed depends on many factors:
-
-- available system RAM,
-- other processes running on your device,
-- the amount of data you want to process.
-
-One approach would be to increase the limit by 128M and check if it was enough to retrieve the data.
-If not, add another 128M, check again. If not, add another 128M, check again, until you find the best value.
-
-_Note:_
-Do not assign all available memory as this can freeze your system.
-Please consider the possibility that your system does not have enough memory at all to load all the needed data.
-
-_Steps to increase `memory_limit`:_
-
-Open or create `.user.ini` file:
-
-```bash
-sudo nano /var/www/html/.user.ini
-```
-
-Add (or change) the memory limit (common abbreviation M=megabyte, G=gigabyte):
-
-```ini
-memory_limit = 256M
-```
-
-Restart the web server:
-
-```bash
-sudo service lighttpd restart
-```
-
 ### In which order are locally defined DNS records used?
 
 **Answer:**

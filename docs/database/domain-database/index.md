@@ -10,14 +10,14 @@ Pi-hole uses the following priorities when deciding whether to block or allow a 
 
 1. Exact allowlist entries
 2. Regex allowlist entries
-3. Exact blocklist entries
+3. Exact denylist entries
 4. Subscribed allowlists
-5. Subscribed blocklists
-6. Regex blocklist entries
+5. Subscribed denylist
+6. Regex denylist entries
 
 ## Domain tables (`domainlist`)
 
-The database stores allow-, and blocklists which are directly relevant for Pi-hole's domain blocking behavior. The `domainlist` table contains all domains on the allow- and blocklists. It has a few extra fields to store data related to a given domain such as the `enabled` state, the dates when the domain was added and when it was last modified, and an optional comment.
+The database stores allow-, and denylists which are directly relevant for Pi-hole's domain blocking behavior. The `domainlist` table contains all domains on the allow- and denylists. It has a few extra fields to store data related to a given domain such as the `enabled` state, the dates when the domain was added and when it was last modified, and an optional comment.
 
 The date fields are defined as `INTEGER` fields as they expect numerical timestamps also known as *UNIX time*. The `date_added` and `date_modified` fields are initialized with the current timestamp converted to UNIX time. The `comment` field is optional and can be empty.
 
@@ -26,7 +26,7 @@ Pi-hole's *FTL*DNS reads the tables through the various view, omitting any disab
 Label | Type | Uniqueness enforced | Content
 ----- | ---- | ------------------- | --------
 `id` | integer | Yes | Unique ID for database operations
-`type` | integer | No | `0` = exact allowlist,<br> `1` = exact blocklist,<br> `2` = regex allowlist,<br> `3` = regex blocklist
+`type` | integer | No | `0` = exact allowlist,<br> `1` = exact denylist,<br> `2` = regex allowlist,<br> `3` = regex denylists
 `domain` | text | Yes | Domain
 `enabled` | boolean | No | Flag whether domain should be used by `pihole-FTL`<br>(`0` = disabled, `1` = enabled)
 `date_added` | integer | No | Timestamp when domain was added
