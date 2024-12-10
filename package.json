@@ -23,7 +23,7 @@
     "serve": "mkdocs serve --dev-addr 0.0.0.0:8000"
   },
   "devDependencies": {
-    "linkinator": "^6.1.1",
-    "markdownlint-cli2": "0.14.0"
+    "linkinator": "^6.1.2",
+    "markdownlint-cli2": "0.15.0"
   }
 }
