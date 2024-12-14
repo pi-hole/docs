@@ -13,4 +13,4 @@ To re-run the above test, you also need to:
 
 #### Alternatives
 
-* An alternative would be using [DNSCrypt](https://github.com/pi-hole/pi-hole/wiki/DNSCrypt), but this leaves you in a position where you have to trust the [DNSCrypt resolver](https://www.dnscrypt.org/dnscrypt-resolvers.html) since your IP is not anonymized - [unless you configure DNSCrypt to route over Tor](https://github.com/DNSCrypt/dnscrypt-proxy/issues/399#issuecomment-214329222).
+* An alternative would be using [DNSCrypt (Archive)](https://web.archive.org/web/20210907204828/https://github.com/pi-hole/pi-hole/wiki/DNSCrypt) or [DNSCrypt-2.0 (Archive)](https://web.archive.org/web/20220617185156/https://github.com/pi-hole/pi-hole/wiki/DNSCrypt-2.0), but this leaves you in a position where you have to trust the [DNSCrypt resolver](https://www.dnscrypt.org/dnscrypt-resolvers.html) since your IP is not anonymized - [unless you configure DNSCrypt to route over Tor](https://github.com/DNSCrypt/dnscrypt-proxy/issues/399#issuecomment-214329222).
