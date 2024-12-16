@@ -74,3 +74,11 @@ Re-resolve all clients and forward destination hostnames. This forces refreshing
 ## Real-time signal 5 (SIG39)
 
 Re-parse ARP/neighbour-cache now to update the Network table now
+
+## Real-time signal 6 (SIG40)
+
+Signal used internally to terminate the embedded `dnsmasq`. Please do not use this signal to prevent misbehaviour.
+
+## Real-time signal 7 (SIG41)
+
+Scan binary search lookup tables for hash collisions and report if any are found. This is a debugging signal and not meaningful production. Scanning the lookup tables is a time-consuming operation and may stall DNS resolution for a while on low-end devices.
