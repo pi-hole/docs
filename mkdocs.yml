@@ -200,6 +200,7 @@ nav:
         - 'Optional: Dynamic DNS': guides/vpn/openvpn/dynDNS.md
         - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
     - 'Misc':
+      - 'Home Assistant': guides/misc/homeassistant.md
       - 'Benchmarking': guides/misc/benchmark.md
       - 'Tor & Pi-hole':
         - 'Tor & Pi-hole': guides/misc/tor/index.md
