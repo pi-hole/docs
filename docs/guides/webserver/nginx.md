@@ -1,42 +1,36 @@
 ### Notes & Warnings
 
 - **This is an unsupported configuration created by the community**
-- **Replace `7.3` with the PHP version you installed, e.g. if you're using Raspbian Stretch (Debian 9) replace `7.3` with `7.0`.**
-- The `php7.3-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
+- **Replace `8.2` with the PHP version you installed, e.g. if you're using Raspbian Bullseye (Debian 11) replace `8.2` with `7.4`.**
+- The `php8.2-sqlite3` package must be installed otherwise Networking and Querying will throw an error that it can't access the database.
 
 ### Basic requirements
 
-1. Stop default lighttpd
+1. Stop and disable the default lighttpd web server
 
     ```bash
-    service lighttpd stop
+    systemctl disable --now lighttpd
     ```
 
-2. Install necessary packages
+2. Install the nginx package and ensure the necessary PHP packages are installed
 
     ```bash
-    apt-get -y install nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
+    apt-get -y install nginx php8.2-fpm php8.2-cgi php8.2-xml php8.2-sqlite3 php8.2-intl
     ```
 
-3. Disable lighttpd at startup
+3. Enable php8.2-fpm at startup and start the service
 
     ```bash
-    systemctl disable lighttpd
+    systemctl enable --now php8.2-fpm
     ```
 
-4. Enable php7.3-fpm at startup
+4. Enable nginx at startup and start the service
 
     ```bash
-    systemctl enable php7.3-fpm
+    systemctl enable --now nginx
     ```
 
-5. Enable nginx at startup
-
-    ```bash
-    systemctl enable nginx
-    ```
-
-6. Edit `/etc/nginx/sites-available/default` to:
+5. Replace the contents of `/etc/nginx/sites-available/default` with the following configuration. If necessary, adjust the PHP version number on the `fastcgi_pass` line to match your installation:
 
     ```nginx
     server {
@@ -45,7 +39,6 @@
 
         root /var/www/html;
         server_name _;
-        autoindex off;
 
         index pihole/index.php index.php index.html index.htm;
 
@@ -56,66 +49,28 @@
 
         location ~ \.php$ {
             include fastcgi_params;
+            fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+            fastcgi_param PATH_INFO $fastcgi_path_info;
             fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
-            fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+            fastcgi_pass unix:/run/php/php8.2-fpm.sock;
             fastcgi_param FQDN true;
-            auth_basic "Restricted"; # For Basic Auth
-            auth_basic_user_file /etc/nginx/.htpasswd; # For Basic Auth
         }
 
         location /*.js {
             index pihole/index.js;
-            auth_basic "Restricted"; # For Basic Auth
-            auth_basic_user_file /etc/nginx/.htpasswd; # For Basic Auth
         }
 
         location /admin {
             root /var/www/html;
             index index.php index.html index.htm;
-            auth_basic "Restricted"; # For Basic Auth
-            auth_basic_user_file /etc/nginx/.htpasswd; # For Basic Auth
-        }
-
-        location ~ /\.ht {
-            deny all;
         }
     }
     ```
 
-7. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+6. Restart the nginx web server
 
     ```bash
-    htpasswd -c /etc/nginx/.htpasswd exampleuser
-    ```
-
-8. Change ownership of the html directory to nginx user
-
-    ```bash
-    chown -R www-data:www-data /var/www/html
-    ```
-
-9. Make sure the html directory is writable
-
-    ```bash
-    chmod -R 755 /var/www/html
-    ```
-
-10. Grant the admin panel access to the gravity database
-
-    ```bash
-    usermod -aG pihole www-data
-    ```
-
-11. Start php7.3-fpm daemon
-
-    ```bash
-    service php7.3-fpm start
-    ```
-
-12. Start nginx web server
-
-    ```bash
-    service nginx start
+    systemctl restart nginx
     ```
 
 ### Optional configuration
