@@ -208,12 +208,7 @@ nav:
         - 'Using Tor': guides/misc/tor/using-tor.md
         - 'Performance and other issues': guides/misc/tor/performance-issues.md
         - 'Using DNSSEC': guides/misc/tor/dnssec.md
-      - 'Whitelist and Blacklist editing': guides/misc/whitelist-blacklist.md
-    - 'Web server':
-      - 'NGINX': guides/webserver/nginx.md
-      - 'Caddy': guides/webserver/caddy.md
-      - 'Traefik v1 (not in Docker)': guides/webserver/traefik-nodocker.md
-      - 'Traefik v2 (with Docker)': guides/webserver/traefik-v2-docker.md
+      - 'Allowlist and Denylist editing': guides/misc/allowlist-denylist.md
   - 'Router setup':
     - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
@@ -265,10 +260,7 @@ plugins:
         'guides/tor/using-tor.md': guides/misc/tor/using-tor.md
         'guides/tor/performance-issues.md': guides/misc/tor/performance-issues.md
         'guides/tor/dnssec.md': guides/misc/tor/dnssec.md
-        'guides/whitelist-blacklist.md': guides/misc/whitelist-blacklist.md
-        'guides/nginx-configuration.md': 'guides/webserver/nginx.md'
-        'guides/caddy-configuration.md': 'guides/webserver/caddy.md'
-        'guides/traefik-configuration-nodocker.md': 'guides/webserver/traefik-nodocker.md'
+        'guides/whitelist-blacklist.md': guides/misc/allowlist-denylist.md
         'ftldns/regex/index.md': regex/index.md
         'ftldns/regex/overview.md': regex/index.md
         'ftldns/regex/tutorial.md': regex/tutorial.md
@@ -284,4 +276,5 @@ plugins:
         'guides/vpn/openvpn/overview.md': guides/vpn/openvpn/index.md
         'guides/misc/tor/overview.md': guides/misc/tor/index.md
         'guides/github/contributing.md': guides/github/index.md
+        'guides/misc/whitelist-blacklist.md': guides/misc/allowlist-denylist.md
         'ftldns/debugging.md': ftldns/gdb.md

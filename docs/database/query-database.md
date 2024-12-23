@@ -1,13 +1,13 @@
 Pi-hole *FTL*DNS uses the well-known relational database management system SQLite3 as its long-term storage of query data. In contrast to many other database management solutions, *FTL*DNS does not need a server database engine as the database engine is directly embedded in *FTL*DNS. It seems an obvious choice as it is probably the most widely deployed database engine - it is used today by several widespread web browsers, operating systems, and embedded systems (such as mobile phones), among others. Hence, it is rich in supported platforms and offered features. SQLite implements most of the SQL-92 standard for SQL and can be used for high-level queries.
 
 The long-term query database was the first database that was added to the Pi-hole project.
-We update this database periodically and on the exit of *FTL*DNS (triggered e.g. by a `service pihole-FTL restart`). The updating frequency can be controlled by the parameter [`DBINTERVAL`](../ftldns/configfile.md#dbinterval) and defaults to once per minute. We think this interval is sufficient to protect against data losses due to power failure events. *FTL*DNS needs the database to populate its internal history of the most recent 24 hours. If the database is disabled, *FTL*DNS will show an empty query history after a restart.
+We update this database periodically and on the exit of *FTL*DNS (triggered e.g. by a `service pihole-FTL restart`). The updating frequency can be controlled by the parameter `database.DBinterval` and defaults to once per minute. We think this interval is sufficient to protect against data losses due to power failure events. *FTL*DNS needs the database to populate its internal history of the most recent 24 hours. If the database is disabled, *FTL*DNS will show an empty query history after a restart.
 
-The location of the database can be configured by the config parameter [`DBFILE`](../ftldns/configfile.md#dbfile). It defaults to `/etc/pihole/pihole-FTL.db`. If the given file does not exist, *FTL*DNS will create a new (empty) database file.
+The location of the database can be configured by the config parameter `files.database`. It defaults to `/etc/pihole/pihole-FTL.db`. If the given file does not exist, *FTL*DNS will create a new (empty) database file.
 
-Another way of controlling the size of the long-term database is by setting a maximum age for log queries to keep using the config parameter [`MAXDBDAYS`](../ftldns/configfile.md#maxdbdays). It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
+Another way of controlling the size of the long-term database is by setting a maximum age for log queries to keep using the config parameter `database.maxDBdays`. It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
 
-The config parameter [`DBIMPORT`](../ftldns/configfile.md#dbimport) controls whether `FTL` loads information from the database on startup. It needs to do this to populate the internal data structure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
+The config parameter `database.DBimport` controls whether `FTL` loads information from the database on startup. It needs to do this to populate the internal data structure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
 
 ---
 
@@ -65,9 +65,9 @@ The content and type of the `additional_info` row depends on the status of the g
 
 If a query was blocked due to a CNAME inspection (status 9, 10, 11), this field contains the domain which was the reason for blocking the entire CNAME chain (text).
 
-##### Query influenced by a black- or whitelist entry {#additional_info_list data-toc-label='domainlist_id'}
+##### Query influenced by a deny or allowlist entry {#additional_info_list data-toc-label='domainlist_id'}
 
-If a query was influenced by a black- or whitelist entry, this field contains the ID of the corresponding entry in the [`domainlist`](domain-database/index.md#domain-tables-domainlist) table.
+If a query was influenced by a deny or allowlist entry, this field contains the ID of the corresponding entry in the [`domainlist`](domain-database/index.md#domain-tables-domainlist) table.
 
 ### Counters table
 
@@ -118,18 +118,18 @@ ID | Status | | Details
 1 | Blocked | ❌ | Domain contained in [gravity database](domain-database/index.md#gravity-tables-gravity-and-antigravity)
 2 | Allowed | ✅ | Forwarded
 3 | Allowed | ✅ | Replied from cache
-4 | Blocked | ❌ | Domain matched by a [regex blacklist](domain-database/index.md#domain-tables-domainlist) filter
-5 | Blocked | ❌ | Domain contained in [exact blacklist](domain-database/index.md#domain-tables-domainlist)
+4 | Blocked | ❌ | Domain matched by a [regex denylist](domain-database/index.md#domain-tables-domainlist) filter
+5 | Blocked | ❌ | Domain contained in [exact denylist](domain-database/index.md#domain-tables-domainlist)
 6 | Blocked | ❌ | By upstream server (known blocking page IP address)
 7 | Blocked | ❌ | By upstream server (`0.0.0.0` or `::`)
 8 | Blocked | ❌ | By upstream server (`NXDOMAIN` with `RA` bit unset)
 9 | Blocked | ❌ | Domain contained in [gravity database](domain-database/index.md#gravity-tables-gravity-and-antigravity)<br>*Blocked during deep CNAME inspection*
-10 | Blocked | ❌ | Domain matched by a [regex blacklist](domain-database/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
-11 | Blocked | ❌ | Domain contained in [exact blacklist](domain-database/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
+10 | Blocked | ❌ | Domain matched by a [regex denylist](domain-database/index.md#domain-tables-domainlist) filter<br>*Blocked during deep CNAME inspection*
+11 | Blocked | ❌ | Domain contained in [exact denylist](domain-database/index.md#domain-tables-domainlist)<br>*Blocked during deep CNAME inspection*
 12 | Allowed | ✅ | Retried query
 13 | Allowed | ✅ | Retried but ignored query (this may happen during ongoing DNSSEC validation)
 14 | Allowed | ✅ | Already forwarded, not forwarding again
-15 | Blocked | ❌ | Blocked (database is busy)<br> How these queries are handled can be [configured](../ftldns/configfile.md#reply_when_busy)
+15 | Blocked | ❌ | Blocked (database is busy)<br> How these queries are handled can be configured (dns.replyWhenBusy)
 16 | Blocked | ❌ | Blocked (special domain)<br>*E.g. Mozilla's canary domain and Apple's Private Relay domains* <br> Handling can be [configured](../ftldns/configfile.md)
 17 | Allowed | ✅⌛ | Replied from *stale* cache
 18 | Blocked | ❌ | By upstream server (EDE 15)
