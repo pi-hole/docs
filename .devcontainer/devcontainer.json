@@ -1,0 +1,26 @@
+{
+  "name": "Pi-hole doc devcontainer",
+  "dockerFile": "Dockerfile",
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "sh .devcontainer/post-create.sh",
+    "customizations": {
+      // Configure properties specific to VS Code.
+        "vscode": {
+          "settings": {},
+          "extensions": [
+            "eamodio.gitlens",
+            "EditorConfig.EditorConfig",
+            "github.vscode-github-actions",
+            "DavidAnson.vscode-markdownlint"
+
+          ]
+        }
+    },
+  "containerEnv": {
+    "GIT_EDITOR": "nano"
+  },
+  "mounts": [
+    "type=bind,source=/home/${localEnv:USER}/.ssh,target=/home/node/.ssh,readonly"
+  ],
+  "forwardPorts": [8000]
+}

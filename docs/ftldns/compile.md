@@ -12,13 +12,13 @@ Install them by running the following command in a terminal:
 ### Debian / Ubuntu / Raspbian
 
 ```bash
-sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn11-dev libreadline-dev xxd
+sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn2-dev libunistring-dev libreadline-dev xxd
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel xxd
+sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn2-devel libunistring-devel readline-devel xxd
 ```
 
 ## Compile `libnettle` from source
@@ -27,15 +27,33 @@ sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libi
 Compile and install a recent version using:
 
 ```bash
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.8.1.tar.gz
-tar -xzf nettle-3.8.1.tar.gz
-cd nettle-3.8.1
-./configure --libdir=/usr/local/lib
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.9.1.tar.gz
+tar -xzf nettle-3.9.1.tar.gz
+cd nettle-3.9.1
+./configure --libdir=/usr/local/lib --enable-static --disable-shared --disable-openssl --disable-mini-gmp -disable-gcov --disable-documentation
 make -j $(nproc)
 sudo make install
 ```
 
 Since Ubuntu 20.04, you need to specify the library directory explicitly. Otherwise, the library will be installed in custom locations where it would not be found by `cmake`.
+
+## Compile `libmbedtls` from source
+
+*FTL*DNS uses another cryptographic library (`libmbedtls`) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols used for serving the web interface and the API over HTTPS.
+
+Compile and install a recent version using:
+
+```bash
+wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v3.5.0.tar.gz -O mbedtls-3.5.0.tar.gz
+tar -xzf mbedtls-3.5.0.tar.gz
+cd mbedtls-3.5.0
+sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' include/mbedtls/mbedtls_config.h
+sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' include/mbedtls/mbedtls_config.h
+make -j $(nproc)
+sudo make install
+```
+
+The `sed` commands are necessary to enable multi-threading support in `libmbedtls` as there is no `configure` script to do this for us (see also [here](https://github.com/Mbed-TLS/mbedtls#configuration)).
 
 ## Get the source
 
@@ -48,7 +66,7 @@ git clone https://github.com/pi-hole/FTL.git && cd FTL
 If you want to build another branch and not `master`, use checkout to get to this branch, like
 
 ```bash
-git checkout development
+git checkout development-v6
 ```
 
 ## Compile the source
@@ -88,6 +106,10 @@ Finally, restart *FTL*DNS to use the new binary:
 ```bash
 sudo service pihole-FTL restart
 ```
+
+## Caution
+
+Once your homebrew `pihole-FTL` binary is built and installed, do not run `pihole -up` or `pihole checkout`. These commands might overwrite your local `pihole-FTL` binary with Pi-hole's pre-compiled binaries.
 
 # Use containerized build environment
 
