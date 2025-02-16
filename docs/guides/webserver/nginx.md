@@ -82,37 +82,47 @@
     }
     ```
 
-7. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
+7. Edit `/etc/nginx/nginx.conf` to contain the following in the http section:
+
+    ```bash
+    gzip            on;
+    gzip_min_length 1000;
+    gzip_proxied    expired no-cache no-store private auth;
+    gzip_types      text/plain application/xml application/json application/javascript application/octet-stream text/css;
+    include /etc/nginx/conf.d/*.conf;
+    ```
+
+8. Create a username for authentication for the admin - we don't want other people in our network change our black and whitelist ;)
 
     ```bash
     htpasswd -c /etc/nginx/.htpasswd exampleuser
     ```
 
-8. Change ownership of the html directory to nginx user
+9. Change ownership of the html directory to nginx user
 
     ```bash
     chown -R www-data:www-data /var/www/html
     ```
 
-9. Make sure the html directory is writable
+10. Make sure the html directory is writable
 
     ```bash
     chmod -R 755 /var/www/html
     ```
 
-10. Grant the admin panel access to the gravity database
+11. Grant the admin panel access to the gravity database
 
     ```bash
     usermod -aG pihole www-data
     ```
 
-11. Start php7.3-fpm daemon
+12. Start php7.3-fpm daemon
 
     ```bash
     service php7.3-fpm start
     ```
 
-12. Start nginx web server
+13. Start nginx web server
 
     ```bash
     service nginx start
