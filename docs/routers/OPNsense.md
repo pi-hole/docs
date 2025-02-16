@@ -1,6 +1,6 @@
 This guide was developed using a OPNsense 25.1.1. Following the first method below will have you adding your Pi-hole as a DNS server for all devices on your LAN. Following the second method below will have DNS queries route through your OPNsense and then to your Pi-hole. Either option is valid, depending on your specific requirements, but it is recommended to choose one or the other - not both.
 
-There is also the different firewall rule options to prevent clients like Chromecasts of using their hardcoded 8.8.8.8 DNS servers and use your pihole Pi-hole instead.
+Optionally, there is also the possibility to block DNS traffic to other, non-Pi-hole DNS servers via firewall rules. This can be used to prevent clients like Chromecasts of using their hardcoded DNS servers.
 Beware: This tutorial does not explain on how to block DoH or DoT.
 
 ### Grab your IPv4 and IPv6 address from your Pi-hole
