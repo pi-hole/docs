@@ -96,4 +96,4 @@ It should look something like this:
 
 ![Screenshot of OPNsense Firewall rules](../images/routers/opnsense-firewall-rule.png)
 
-We don't need a rule to allow for example device 10.0.51.10 to reach our pihole at 10.0.51.2, since they are both on the same network, DNS request will not be routed through OPNsense. Instead the client 10.0.51.10 will directly contact Pi-hole for DNS requests.
+We don't need a rule to allow for example device 10.0.51.10 to reach our Pi-hole at 10.0.51.2, since they are both on the same network, DNS request will not be routed through OPNsense. Instead the client 10.0.51.10 will directly contact Pi-hole for DNS requests.
