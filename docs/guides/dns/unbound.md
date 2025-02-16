@@ -90,8 +90,8 @@ server:
     do-udp: yes
     do-tcp: yes
 
-    # May be set to no if you don't have IPv6 connectivity
-    do-ip6: yes
+    # May be set to yes if you have IPv6 connectivity
+    do-ip6: no
 
     # You want to leave this to no unless you have *native* IPv6. With 6to4 and
     # Terredo tunnels your web browser should favor IPv4 for the same reasons
