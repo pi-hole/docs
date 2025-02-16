@@ -27,7 +27,7 @@ Take note of the `inet` address, and the `inet6` address which starts with `fe` 
 Choosing this option will have DNS queries taking the following path:
 
 ```
-(Clients) -> Pi-hole -> Upstream DNS Server (or Unbound reverse DNS)
+(Clients) -> Pi-hole -> Upstream DNS Server
 ```
 
 #### IPv4
@@ -50,7 +50,7 @@ Now go to **Services** --> **Router Advertisement** and click on the interface t
 Under **DNS servers** enter your Pi-Holes IPv6 address into the first line.
 Leave the second line blank unless you have another Pi-hole host running.
 
-![Screenshot of OPNsense IPv6 RA Settings](../images/routers/opnsense-ipv6-manual-ra.png)
+![Screenshot of OPNsense IPv6 RA Settings](../images/routers/opensense-ra.png)
 
 Beware: Link local IPv6 are not reachable from other VLANs.
 
@@ -75,21 +75,24 @@ Doing so will have DNS queries taking the following path:
 4. Uncheck `Allow DNS server list to the overridden by DHCP/PPP on WAN`.
 5. Click Save.
 
+![Screenshot of OPNsense DNS WAN Settings](../images/routers/opnsense-dns-wan.png)
+
 ### Block other DNS servers (optional)
 
 Some clients have hardcoded DNS settings. To prevent them from circumventing our Pi-Hole, we can optionally block all DNS request that are not coming from our Pi-Hole.
 !!! warning
    If your device does not have any fallback from the hardcoded DNS settings, this could break its DNS.
 
-We first create an Alias for Pi-holes IPs.
+We first create an Alias for Pi-holes MAC address.
 Go to **Firewall** --> **Aliases** scroll down and click on the plus button to create a new alias.
-Give it a Name and add the IPv4 and IPv6 into the "Content" field and then click save.
+Give it a Name, select the type MAC address and enter the MAC address from Pi-Hole into the "Content" field and then click save.
+The MAC address of your device you can find out by looking at the line `ether` from our `ifconfig eth0` output we got earlier.
 
-![Screenshot of OPNsense Aliases](../images/routers/opnsene-alias.png)
+![Screenshot of OPNsense Aliases](../images/routers/opnsense-alias.png)
 
 Now go to **Firewall** --> **Rules** and click on the interface that you want to modify.
 
-We create one rule to allow Pi-hole to do DNS over IPv4 + IPv6.
+We create one rule to allow Pi-hole to do DNS.
 After that rule, we create a rule to reject ALL DNS. It is important that this reject rule is after the other rule.
 OPNsense does the first rule that matches, if we have our reject rule first, Pi-hole can not reach any DNS servers.
 It should look something like this:
