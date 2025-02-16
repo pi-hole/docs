@@ -25,14 +25,14 @@ Pi-hole is supported on distributions utilizing [systemd](https://systemd.io/) o
 
 The following operating systems are **officially** supported:
 
-| Distribution | Release          | Architecture        |
-| ------------ | ---------------- | ------------------- |
-| Raspberry Pi OS <br>(formerly Raspbian)     | Buster / Bullseye | ARM                 |
-| Armbian OS   | Any | ARM / x86_64 / riscv64           |
-| Ubuntu       | 20.x / 22.x / 23.x    | ARM / x86_64        |
-| Debian       | 10 / 11 / 12         | ARM / x86_64 / i386 |
-| Fedora       | 36 / 37 / 38     | ARM / x86_64        |
-| CentOS Stream | 8 / 9            | x86_64              |
+- Raspberry Pi OS (formerly Raspbian)
+- Armbian OS
+- Ubuntu
+- Debian
+- Fedora
+- CentOS Stream
+
+Pi-hole only supports actively maintained versions of these systems.
 
 <!-- markdownlint-disable code-block-style -->
 !!! info

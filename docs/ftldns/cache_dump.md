@@ -9,7 +9,7 @@ sudo killall -USR1 pihole-FTL
 Such a cache dump looks like
 
 ``` plain
-cache size 10000, 0/20984 cache insertions re-used unexpired cache entries.
+cache size 10000, 0/20984 cache insertions reused unexpired cache entries.
 queries forwarded 10247, queries answered locally 14713
 queries for authoritative zones 0
 pool memory in use 22272, max 24048, allocated 480000
@@ -80,7 +80,7 @@ where we stripped lines like `Dec 15 20:32:02 dnsmasq[4177892]:` for the sake of
 ### Cache metrics
 
 ``` plain
-cache size 10000, 0/20984 cache insertions re-used unexpired cache entries.
+cache size 10000, 0/20984 cache insertions reused unexpired cache entries.
 ```
 
 tells us that the cache size is 10000 (Pi-hole's default value). None of the 20984 cache insertions had to overwrite still valid cache lines. If this number is zero, your cache was sufficiently large at any time. If this number is notably larger than zero, you should consider increasing the cache size.

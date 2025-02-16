@@ -156,14 +156,6 @@ dig pi-hole.net @127.0.0.1 -p 5335
 
 The first query may be quite slow, but subsequent queries, also to other domains under the same TLD, should be fairly quick.
 
-You should also consider adding
-
-``` plain
-edns-packet-max=1232
-```
-
-to a config file like `/etc/dnsmasq.d/99-edns.conf` to signal FTL to adhere to this limit.
-
 ### Test validation
 
 You can test DNSSEC validation using
@@ -179,7 +171,7 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 
 Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
 
-![Upstream DNS Servers Configuration](/images/RecursiveResolver.png)
+![Upstream DNS Servers Configuration](../../images/RecursiveResolver.png)
 
 (don't forget to hit Return or click on `Save`)
 
@@ -222,16 +214,14 @@ sudo service unbound restart
 !!! warning
     It's not recommended to increase verbosity for daily use, as unbound logs a lot. But it might be helpful for debugging purposes.
 
-There are five levels of verbosity
+There are five levels of verbosity:
 
-```
-Level 0 means no verbosity, only errors
-Level 1 gives operational information
-Level 2 gives  detailed operational  information
-Level 3 gives query level information
-Level 4 gives  algorithm  level  information
-Level 5 logs client identification for cache misses
-```
+- Level 0 means no verbosity, only errors
+- Level 1 gives operational information
+- Level 2 gives detailed operational  information
+- Level 3 gives query level information
+- Level 4 gives algorithm level information
+- Level 5 logs client identification for cache misses
 
 First, specify the log file, human-readable timestamps and the verbosity level in the `server` part of
 `/etc/unbound/unbound.conf.d/pi-hole.conf`:
