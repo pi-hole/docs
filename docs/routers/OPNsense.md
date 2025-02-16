@@ -78,7 +78,8 @@ Doing so will have DNS queries taking the following path:
 ### Block other DNS servers (optional)
 
 Some clients have hardcoded DNS settings. To prevent them from circumventing our Pi-Hole, we can optionally block all DNS request that are not coming from our Pi-Hole.
-Warning, if your device does not have any fallback from the hardcoded DNS settings, this could break it from resolving.
+!!! warning
+   If your device does not have any fallback from the hardcoded DNS settings, this could break its DNS.
 
 We first create an Alias for Pi-holes IPs.
 Go to **Firewall** --> **Aliases** scroll down and click on the plus button to create a new alias.
