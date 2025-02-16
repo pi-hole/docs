@@ -88,7 +88,7 @@ Give it a Name and add the IPv4 and IPv6 into the "Content" field and then click
 
 Now go to **Firewall** --> **Rules** and click on the interface that you want to modify.
 
-We create one rule to allow pihole to do DNS over IPv4 + IPv6.
+We create one rule to allow Pi-hole to do DNS over IPv4 + IPv6.
 After that rule, we create a rule to reject ALL DNS. It is important that this reject rule is after the other rule.
 OPNsense does the first rule that matches, if we have our reject rule first, Pi-hole can not reach any DNS servers.
 It should look something like this:
