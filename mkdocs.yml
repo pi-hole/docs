@@ -214,6 +214,7 @@ nav:
     - 'Fritz!Box (EN)': routers/fritzbox.md
     - 'Fritz!Box (DE)': routers/fritzbox-de.md
     - 'Nokia G-240W-B': routers/nokia-G240WB.md
+    - 'OPNsense': routers/OPNsense.md
     - 'TP-Link': routers/tp-link.md
     - 'Ubiquiti USG': routers/ubiquiti-usg.md
   - 'FAQ': main/faq.md
