@@ -69,20 +69,17 @@ Pi-hole only supports actively maintained versions of these systems.
 
 Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).
 
-On systems that have `dhcpcd5` already installed (e.g Raspberry Pi OS) there is an option in the install process to append some lines to `/etc/dhcpcd.conf` in order to statically assign an IP address. This is an entirely optional step, and offered as a way to lower the barrier to entry for those that may not be familiar with linux systems, such as those first starting out on a Raspberry Pi.
-
 ### Ports
 
 | Service             | Port         | Protocol | Notes               |
 | --------------------|:-------------|:---------| --------------------|
-| pihole-FTL             | 53  (DNS)    | TCP/UDP  | If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries. |
-| pihole-FTL              | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
-| pihole-FTL              | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
-| lighttpd            | 80  (HTTP)   | TCP      | If you have another Web server already running, such as Apache, Pi-hole's Web server will not work. You can either disable the other Web server or change the port on which `lighttpd` listens, which allows you keep both Web servers running. |
+| pihole-FTL          | 53  (DNS)    | TCP/UDP  | If you happen to have another DNS server running, such as BIND, you will need to turn it off in order for Pi-hole to respond to DNS queries. |
+| pihole-FTL          | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
+| pihole-FTL          | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
+| pihole-FTL          | 80  (HTTP)<br/>443   (HTTPS)    | TCP      | If you have another webserver already listening on port `80`/`443`, then `pihole-FTL` will attempt to bind to `8080`/`8443` instead. If neither of these ports are available, `pihole-FTL`'s webserver will be unavailable until ports are configured manually (see configuration option `webserver.port`)  |
 | pihole-FTL          | 4711    | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
 
 !!! info
-    The use of lighttpd on port _80_ is optional if you decide not to install the Web dashboard during installation.
     The use of pihole-FTL on ports _67_ or _547_ is optional, but required if you use the DHCP functions of Pi-hole.
 
 ### Firewalls

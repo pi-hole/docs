@@ -20,9 +20,9 @@ When FTL receives a `SIGHUP`, it clears the entire DNS cache, and then
     **Note:** No other `dnsmasq` config files are re-read.
 
 - The FTL database connection (`/etc/pihole/pihole-FTL.db`) is re-opened.
-- The privacy level is re-read from `pihole-FTL.conf` (`PRIVACY_LEVEL`).
+- The privacy level is re-read from `pihole.toml` (`misc.privacylevel`).
 - The blocking status is re-read from `setupVars.conf` (`BLOCKING_ENABLED`).
-- The debug settings are re-read from `pihole-FTL.conf` (`DEBUG_*`).
+- The debug settings are re-read from `pihole.toml` (`debug.*`).
 - The gravity database connection (`/etc/pihole/gravity.db`) is re-opened.
 - The number of blocked domains is updated.
 - All regular expression (RegEx) filters in `gravity.db` are re-read and pre-compiled for fast execution later on.
@@ -49,7 +49,7 @@ This signal does:
 - The number of blocked domains is updated.
 - All regular expression (RegEx) filters in `gravity.db` are re-read and pre-compiled for fast execution later on.
 - The blocking cache (storing if a domain has already been analyzed and what the result was) is cleared.
-- The privacy level is re-read from `pihole-FTL.conf` (`PRIVACY_LEVEL`).
+- The privacy level is re-read from `pihole.toml` (`misc.privacylevel`).
 
 The most important difference to `SIGHUP` is that the DNS cache itself is **not** flushed. Merely the blocking cache (storing if a domain has already been analyzed and what the result was) is cleared.
 
@@ -74,3 +74,11 @@ Re-resolve all clients and forward destination hostnames. This forces refreshing
 ## Real-time signal 5 (SIG39)
 
 Re-parse ARP/neighbour-cache now to update the Network table now
+
+## Real-time signal 6 (SIG40)
+
+Signal used internally to terminate the embedded `dnsmasq`. Please do not use this signal to prevent misbehaviour.
+
+## Real-time signal 7 (SIG41)
+
+Scan binary search lookup tables for hash collisions and report if any are found. This is a debugging signal and not meaningful production. Scanning the lookup tables is a time-consuming operation and may stall DNS resolution for a while on low-end devices.

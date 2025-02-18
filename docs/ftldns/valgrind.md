@@ -2,7 +2,7 @@
 
 Occasionally, debugging may require us to run `pihole-FTL` in `valgrind`. We also use it to measure performance and check that our memory layout is optimal (= minimal footprint).
 
-`Valgrind` is a flexible program for debugging and profiling Linux executables. It consists of a core, which provides a synthetic CPU in software, and a series of debugging and profiling tools.
+`Valgrind` is a flexible program for debugging and profiling Linux executables. It consists of a core, which provides a synthetic CPU in software, and a series of debugging and profiling tools. The use of a synthetic CPU allows Valgrind to run the client program in a completely controlled environment and, hence, track the behaviour of the program in a very detailed way. Unfortunately, this also means that the program runs *much* slower than usual.
 
 ## `memcheck`
 
@@ -45,14 +45,14 @@ We suggest the following one-liner to run `pihole-FTL` in `memcheck`:
 
 ```
 sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL
-sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s /usr/bin/pihole-FTL
+sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --vgdb=full --log-file=valgrind.log -s /usr/bin/pihole-FTL
 ```
 
 If you compile FTL from source, use
 
 ```
-sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL
-./build.sh && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --log-file=valgrind.log -s ./pihole-FTL
+sudo service pihole-FTL stop
+./build.sh && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --vgdb=full --log-file=valgrind.log -s ./pihole-FTL
 ```
 
 The most useful information (about which memory is *possibly* and which is *definitely* lost) is written to `valgrind.log` at the end of the analysis. Terminate FTL by running:
@@ -73,6 +73,51 @@ The used options are:
 2. `leak-check=full` - When enabled, search for memory leaks when the client program finishes. Each individual leak will be shown in detail and/or counted as an error.
 3. `track-origins=yes` - Memcheck tracks the origin of uninitialised values. By default, it does not, which means that although it can tell you that an uninitialised value is being used in a dangerous way, it cannot tell you where the uninitialised value came from. This often makes it difficult to track down the root problem.
 When set to `yes`, Memcheck keeps track of the origins of all uninitialised values. Then, when an uninitialised value error is reported, Memcheck will try to show the origin of the value.
+4. `vgdb=full` - The Valgrind core provides a built-in gdbserver implementation. This is useful when you want to investigate a crash that is not easily reproducible and memory errors are suspected to be the cause. This gdbserver allows the process running on Valgrind's synthetic CPU to be debugged remotely. GDB sends protocol query packets (such as "get register contents") to the Valgrind embedded gdbserver. The gdbserver executes the queries (for example, it will get the register values of the synthetic CPU) and gives the results back to GDB.
+
+<!-- markdownlint-disable code-block-style -->
+!!! info "When running Pi-hole in a Docker container"
+    If you are running Pi-hole in a Docker container, you will need to perform all the steps described here *inside* the Docker container. As the Docker container is dependent on the `pihole-FTL` process, you need to modify your `Dockerfile` to spawn shell inside the container instead of starting the `pihole-FTL` process directly. We also add a few extra settings here, see [the `gdb` guide](gdb.md) for more information about this:
+
+    ```yaml
+    services:
+      pihole:
+
+        # your other options ...
+
+        cap_add:
+          - # your other added capabilities ...
+          - SYS_PTRACE
+
+        security_opt:
+          - seccomp:unconfined
+
+        entrypoint: /bin/bash
+        tty: true
+    ```
+<!-- markdownlint-enable code-block-style -->
+
+### Combining `valgrind` with `gdb`
+
+You can also combine `valgrind` with `gdb` to get both the memory error detection and the ability to step through the code after a crash (or other unexpected behaviour).
+
+1. Prepare `gdb` as described in [the `gdb` guide](gdb.md).
+2. Start `pihole-FTL` in `valgrind` as described above. The `--vgdb=full` option tells `valgrind` to start a GDB server.
+3. Once FTL has started, you can attach `gdb` to the running process using
+
+    ``` bash
+    sudo gdb /usr/bin/pihole-FTL
+    ```
+
+    and then at the `(gdb)` prompt,
+
+    ``` plain
+    target remote | vgdb
+    ```
+
+    to connect `gdb` to the "remote" `valgrind` process
+4. Don't forget to enter `continue` to continue the execution of `pihole-FTL` in `valgrind`
+5. At the time of a crash, you can step through the code, and investigate the state of the program as usual with `gdb`. Note that variables and functions may have different names than in the source code, as `valgrind` modifies the program with additional instrumentation code.
 
 ### False-positive memory issues
 
