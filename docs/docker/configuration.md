@@ -33,6 +33,8 @@ Given the below `toml` formatted example from `pihole.toml`, we can translate th
   dnssec = true
 ```
 
+Array type configs should be delimited with `;`
+
 !!! note
     All FTL settings that are set via environment variables effectively become read-only, meaning that you will not be able to change them via the web interface or CLI. This is to ensure a "single source of truth" on the config. If you later unset or remove an environment variable, then FTL will revert to the default value for that setting
 
