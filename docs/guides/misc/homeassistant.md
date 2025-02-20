@@ -113,7 +113,7 @@ Home Assistant is an open-source home automation platform. It is able to track a
      - trigger: event
        event_type: pi_hole_enable
      - entity_id: input_boolean.pihole_blocking
-       to: 'off'
+       to: 'on'
        trigger: state
      conditions: []
      actions:
