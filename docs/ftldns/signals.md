@@ -41,7 +41,7 @@ Real-time signal can always be executed relative to the first (= minimum) real-t
 sudo pkill -SIGRTMIN+0 pihole-FTL
 ```
 
-## Real-time signal 0 (SIG34)
+## Real-time signal 0
 
 This signal does:
 
@@ -55,30 +55,30 @@ The most important difference to `SIGHUP` is that the DNS cache itself is **not*
 
 This is the preferred signal to be used after manipulating the `gravity.db` database manually as it reloads only what is needed in this case.
 
-## Real-time signal 1 (SIG35)
+## Real-time signal 1
 
 *Reserved* - Currently ignored
 
-## Real-time signal 2 (SIG36)
+## Real-time signal 2
 
 *Reserved* - Used for internal signaling that a fork or thread crashed and needs to inform the main process to shut down, storing the last (valid) queries still into the long-term database.
 
-## Real-time signal 3 (SIG37)
+## Real-time signal 3
 
 Reimport alias-clients from the database and recompute affected client statistics.
 
-## Real-time signal 4 (SIG38)
+## Real-time signal 4
 
 Re-resolve all clients and forward destination hostnames. This forces refreshing hostnames as in that the usual "resolve only recently active clients" condition is ignored. The re-resolution adheres to the specified `REFRESH_HOSTNAMES` config option meaning that this option may not try to resolve all hostnames.
 
-## Real-time signal 5 (SIG39)
+## Real-time signal 5
 
 Re-parse ARP/neighbour-cache now to update the Network table now
 
-## Real-time signal 6 (SIG40)
+## Real-time signal 6
 
-Signal used internally to terminate the embedded `dnsmasq`. Please do not use this signal to prevent misbehaviour.
+*reserved* - Signal used internally to terminate the embedded `dnsmasq`. Please do not use this signal to prevent misbehaviour.
 
-## Real-time signal 7 (SIG41)
+## Real-time signal 7
 
 Scan binary search lookup tables for hash collisions and report if any are found. This is a debugging signal and not meaningful production. Scanning the lookup tables is a time-consuming operation and may stall DNS resolution for a while on low-end devices.
