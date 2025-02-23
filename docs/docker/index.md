@@ -24,18 +24,22 @@ services:
       TZ: 'Europe/London'
       # Set a password to access the web interface. Not setting one will result in a random password being assigned
       FTLCONF_webserver_api_password: 'correct horse battery staple'
-      # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'3
+      # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMode: 'all'
     # Volumes store your data between container upgrades
     volumes:
       # For persisting Pi-hole's databases and common configuration file
       - './etc-pihole:/etc/pihole'
-      # For persisting custom dnsmasq config files. Most will not need this, and can be safely removed/commented out
-      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+      # Uncomment the below if you have custom dnsmasq config files that you want to persist. Not needed for most starting fresh with Pi-hole v6. If you're upgrading from v5 you and have used this directory before, you should keep it enabled for the first v6 container start to allow for a complete migration. It can be removed afterwards. Needs environment variable FTLCONF_misc_etc_dnsmasq_d: 'true'
+      #- './etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
+      # See https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
       # Required if you are using Pi-hole as your DHCP server, else not needed
-      # See Note On Capabilities below
       - NET_ADMIN
+      # Required if you are using Pi-hole as your NTP client to be able to set the host's system time
+      - SYS_TIME
+      # Optional, if Pi-hole should get some more processing time
+      - SYS_NICE
     restart: unless-stopped
 ```
 
