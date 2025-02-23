@@ -85,3 +85,9 @@ Adding packages here is the same as running `apk add <package>` inside the conta
 #### `PH_VERBOSE` (Default: `0`)
 
 Setting this environment variable to `1` will set `-x`, making the scripts that run on container startup more verbose. Useful for debugging only.
+
+### Variable Formatting
+
+Environment variables may be set in the format given here, or they may be entirely uppercase in the conventional manner.
+
+For example, both `FTLCONF_dns_upstreams` and `FTLCONF_DNS_UPSTREAMS` are functionally equivalent when used as environment variables.
