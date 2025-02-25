@@ -85,3 +85,93 @@ Adding packages here is the same as running `apk add <package>` inside the conta
 #### `PH_VERBOSE` (Default: `0`)
 
 Setting this environment variable to `1` will set `-x`, making the scripts that run on container startup more verbose. Useful for debugging only.
+
+#### `WEBPASSWORD_FILE` (Default: unset)
+
+Set the web interface password using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) if using Compose or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/) if using Docker Swarm. If `FTLCONF_webserver_api_password` is set, `WEBPASSWORD_FILE` is ignored. If `FTLCONF_webserver_api_password` is empty, and `WEBPASSWORD_FILE` is set to a valid readable file path, then `FTLCONF_webserver_api_password` will be set to the contents of `WEBPASSWORD_FILE`.
+
+## Notes On Web Interface Password
+
+The web interface password can be set using the `FTLCONF_webserver_api_password` environment variable as documented above or using the `WEBPASSWORD_FILE` environment variable using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/).
+
+### `FTLCONF_webserver_api_password` Examples
+
+The `FTLCONF_webserver_api_password` variable can be set in a `docker run` command or as an environment attribute in a Docker Compose yaml file.
+
+#### Docker run example
+
+```bash
+docker run --name pihole -p 53:53/tcp -p 53:53/udp -p 80:80/tcp -p 443:443/tcp -e TZ=Europe/London -e FTLCONF_webserver_api_password="correct horse battery staple" -e FTLCONF_dns_listeningMode=all -v ./etc-pihole:/etc/pihole -v ./etc-dnsmasq.d:/etc/dnsmasq.d --cap-add NET_ADMIN --restart unless-stopped pihole/pihole:latest
+```
+
+#### Docker Compose examples
+
+Set using a text value.
+
+```yaml
+    ...
+    environment:
+      FTLCONF_webserver_api_password: 'correct horse battery staple'
+    ...
+```
+
+Set using an [environment variable](https://docs.docker.com/compose/how-tos/environment-variables/) called, for example, `ADMIN_PASSWORD`. The value of `ADMIN_PASSWORD` can be set in the shell of the `docker compose` command or in an `.env` file. See the link above for detailed information.
+
+```yaml
+    ...
+    environment:
+      FTLCONF_webserver_api_password: ${ADMIN_PASSWORD}
+    ...
+```
+
+Define ADMIN_PASSWORD in shell.
+
+```bash
+export ADMIN_PASSWORD=correct horse battery staple
+docker compose -f compose.yaml
+```
+
+Or define ADMIN_PASSWORD in `.env` file. The `.env` file is placed in the same directory where the Compose yaml file (e.g. `compose.yaml`) is located.
+
+```bash
+$ cat .env
+ADMIN_PASSWORD=correct horse battery staple
+$ docker compose -f compose.yaml
+```
+
+### `WEBPASSWORD_FILE` Example
+
+1. Create a text file called `pihole_password.txt` containing the password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
+
+  ```bash
+  $cat pihole_password.txt
+  correct horse battery staple
+  ```
+
+1. Amend compose yaml file with Docker Secrets attributes.
+
+```yaml
+---
+# define pihole service
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+
+    # lines deleted
+
+    environment:
+      WEBPASSWORD_file: pihole_webpasswd
+
+    # lines deleted
+
+    secrets:
+      - pihole_webpasswd
+    restart: unless-stopped
+
+# define pihole_webpasswd secret
+secrets:
+  pihole_webpasswd:
+    file: ./pihole_password.txt
+...
+```
