@@ -4,22 +4,6 @@ The recommended way to configure the Pi-hole docker container is by utilizing [e
 
 ## Environment Variables
 
-### Recommended Variables
-
-#### `TZ` (Default: `UTC`)
-
-Set your [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to make sure logs rotate at local midnight instead of at UTC midnight.
-
-#### `FTLCONF_webserver_api_password` (Default: `unset`)
-
-To set a specific password for the web interface, use the environment variable `FTLCONF_webserver_api_password` (per the quick-start example). If this variable is not detected, and you have not already set one previously inside the container via `pihole setpassword` or `pihole-FTL --config webserver.api.password`, then a random password will be assigned on startup, and will be printed to the log. You can find this password with the command `docker logs pihole | grep random password` on your host to find this password.
-
-#### `FTLCONF_dns_upstreams` (Default: `8.8.8.8;8.8.4.4`)
-
-- Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon
-- Supports non-standard ports with #[port number] e.g `127.0.0.1#5053;8.8.8.8;8.8.4.4`
-- Supports Docker service names and links instead of IPs e.g `upstream0;upstream1` where upstream0 and upstream1 are the service names of or links to docker services
-
 ### Configuring FTL Via The Environment
 
 While FTL's configuration file can be manually edited, set via the CLI (`pihole-FTL --config setting.name=value`), or set via the web interface - the recommended approach is to do this via environment variables
@@ -38,7 +22,6 @@ Array type configs should be delimited with `;`
 !!! note
     All FTL settings that are set via environment variables effectively become read-only, meaning that you will not be able to change them via the web interface or CLI. This is to ensure a "single source of truth" on the config. If you later unset or remove an environment variable, then FTL will revert to the default value for that setting
 
-
 An example of how some of these variables may look in your compose file
 
 ```yaml
@@ -50,6 +33,22 @@ An example of how some of these variables may look in your compose file
       FTLCONF_webserver_port: '8082,443s'
       FTLCONF_debug_api: 'true'
 ```
+
+### Recommended Variables
+
+#### `TZ` (Default: `UTC`)
+
+Set your [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to make sure logs rotate at local midnight instead of at UTC midnight.
+
+#### `FTLCONF_webserver_api_password` (Default: `unset`)
+
+To set a specific password for the web interface, use the environment variable `FTLCONF_webserver_api_password` (per the quick-start example). If this variable is not detected, and you have not already set one previously inside the container via `pihole setpassword` or `pihole-FTL --config webserver.api.password`, then a random password will be assigned on startup, and will be printed to the log. You can find this password with the command `docker logs pihole | grep random password` on your host to find this password. See [Notes On Web Interface Password](#notes-on-web-interface-password) below for usage examples.
+
+#### `FTLCONF_dns_upstreams` (Default: `8.8.8.8;8.8.4.4`)
+
+- Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon
+- Supports non-standard ports with #[port number] e.g `127.0.0.1#5053;8.8.8.8;8.8.4.4`
+- Supports Docker service names and links instead of IPs e.g `upstream0;upstream1` where upstream0 and upstream1 are the service names of or links to docker services
 
 ### Other Variables
 
@@ -85,3 +84,93 @@ Adding packages here is the same as running `apk add <package>` inside the conta
 #### `PH_VERBOSE` (Default: `0`)
 
 Setting this environment variable to `1` will set `-x`, making the scripts that run on container startup more verbose. Useful for debugging only.
+
+#### `WEBPASSWORD_FILE` (Default: unset)
+
+Set the web interface password using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) if using Compose or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/) if using Docker Swarm. If `FTLCONF_webserver_api_password` is set, `WEBPASSWORD_FILE` is ignored. If `FTLCONF_webserver_api_password` is empty, and `WEBPASSWORD_FILE` is set to a valid readable file path, then `FTLCONF_webserver_api_password` will be set to the contents of `WEBPASSWORD_FILE`. See [Notes On Web Interface Password](#notes-on-web-interface-password) below for usage examples.
+
+## Notes On Web Interface Password
+
+The web interface password can be set using the `FTLCONF_webserver_api_password` environment variable as documented above or using the `WEBPASSWORD_FILE` environment variable using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/).
+
+### `FTLCONF_webserver_api_password` Examples
+
+The `FTLCONF_webserver_api_password` variable can be set in a `docker run` command or as an environment attribute in a Docker Compose yaml file.
+
+#### Docker run example
+
+```bash
+docker run --name pihole -p 53:53/tcp -p 53:53/udp -p 80:80/tcp -p 443:443/tcp -e TZ=Europe/London -e FTLCONF_webserver_api_password="correct horse battery staple" -e FTLCONF_dns_listeningMode=all -v ./etc-pihole:/etc/pihole -v ./etc-dnsmasq.d:/etc/dnsmasq.d --cap-add NET_ADMIN --restart unless-stopped pihole/pihole:latest
+```
+
+#### Docker Compose examples
+
+Set using a text value.
+
+```yaml
+    ...
+    environment:
+      FTLCONF_webserver_api_password: 'correct horse battery staple'
+    ...
+```
+
+Set using an [environment variable](https://docs.docker.com/compose/how-tos/environment-variables/) called, for example, `ADMIN_PASSWORD`. The value of `ADMIN_PASSWORD` can be set in the shell of the `docker compose` command or in an `.env` file. See the link above for detailed information.
+
+```yaml
+    ...
+    environment:
+      FTLCONF_webserver_api_password: ${ADMIN_PASSWORD}
+    ...
+```
+
+Define ADMIN_PASSWORD in shell.
+
+```bash
+export ADMIN_PASSWORD=correct horse battery staple
+docker compose -f compose.yaml
+```
+
+Or define ADMIN_PASSWORD in `.env` file. The `.env` file is placed in the same directory where the Compose yaml file (e.g. `compose.yaml`) is located.
+
+```bash
+$ cat .env
+ADMIN_PASSWORD=correct horse battery staple
+$ docker compose -f compose.yaml
+```
+
+### `WEBPASSWORD_FILE` Example
+
+1. Create a text file called `pihole_password.txt` containing the password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
+
+  ```bash
+  $cat pihole_password.txt
+  correct horse battery staple
+  ```
+
+1. Amend compose yaml file with Docker Secrets attributes.
+
+```yaml
+---
+# define pihole service
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+
+    # lines deleted
+
+    environment:
+      WEBPASSWORD_file: pihole_webpasswd
+
+    # lines deleted
+
+    secrets:
+      - pihole_webpasswd
+    restart: unless-stopped
+
+# define pihole_webpasswd secret
+secrets:
+  pihole_webpasswd:
+    file: ./pihole_password.txt
+...
+```
