@@ -18,6 +18,8 @@ services:
       - "443:443/tcp"
       # Uncomment the below if using Pi-hole as your DHCP Server
       #- "67:67/udp"
+      # Uncomment the line below if you are using Pi-hole as your NTP server
+      #- "123:123/udp"
     environment:
       # Set the appropriate timezone for your location from
       # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones, e.g:
