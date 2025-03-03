@@ -137,6 +137,7 @@ nav:
     - 'FTLDNS': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
     - 'Interfaces': ftldns/interfaces.md
+    - 'DNS cache': ftldns/dns-cache.md
     - 'DNS resolver': ftldns/dns-resolver.md
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
