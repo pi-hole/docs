@@ -50,7 +50,7 @@ The number of cache entries that have expired. These queries may be served from 
 
 ### Immortal cache entries
 
-The number of cache entries that have been marked as immortal. These entries will never expire. As such, they are part of the active cache entries.
+The number of cache entries that have been marked as immortal. These entries will never expire. As such, they are part of the active cache entries. Examples of immortal cache entries are those coming from the local hosts file (e.g., `/etc/hosts`) and local DNS records.
 
 ### Pie chart
 
