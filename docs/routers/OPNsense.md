@@ -41,7 +41,6 @@ Leave the second line blank unless you have another Pi-hole host running.
 
 #### IPv6
 
-
 Go to **Interfaces** and click on the interface that you want to modify.
 Under **Manual configuration** check "Allow manual adjustment of DHCPv6 and Router Advertisements"
 
@@ -54,7 +53,6 @@ Leave the second line blank unless you have another Pi-hole host running.
 ![Screenshot of OPNsense IPv6 RA Settings](../images/routers/opensense-ra.png)
 
 Beware: Link local IPv6 are not reachable from other VLANs.
-
 
 All client devices on your network should now automatically be configured with a single IPv4 and single IPv6 address for DNS resolution. If you don't see your client devices update quickly enough, you *can* toggle Wi-Fi off/on or disconnect the Ethernet cable for a couple of seconds and then reconnect it.
 

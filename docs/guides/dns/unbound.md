@@ -193,7 +193,6 @@ To disable the service, run the statement below:
 sudo systemctl disable --now unbound-resolvconf.service
 ```
 
-
 #### Step 2 - Disable the file resolvconf_resolvers.conf
 
 Disable the file resolvconf_resolvers.conf from being generated when resolvconf is invoked elsewhere.
@@ -262,7 +261,6 @@ Lastly, restart unbound:
 ```bash
 sudo service unbound restart
 ```
-
 
 ### Uninstall `unbound`
 

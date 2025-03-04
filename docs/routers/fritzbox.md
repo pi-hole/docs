@@ -35,7 +35,6 @@ Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Home Netwo
 
 Now you should see individual clients in Pi-hole's web dashboard.
 
-
 ## Pi-hole as upstream DNS server for your Fritz!Box
 
 With this configuration, Pi-hole is also used by the Fritz!Box itself as an upstream DNS server. DNS queries take the following path
@@ -152,7 +151,6 @@ Protocol: TCP
 Source port: any
 Destination port: 53
 ```
-
 
 This entry can then be added under
 
