@@ -198,9 +198,9 @@ Display the running status of Pi-hole's DNS and blocking services.
 
 | | |
 | -------------- | -------------- |
-| Help Command    | `pihole disable --help` |
+| Help Command    | `pihole disable --help`/`pihole enable --help` |
 | Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
-| Example Usage   | [`pihole disable 5m`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#toggle) |
+| Example Usage   | [`pihole disable 5m`/`pihole enable`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#toggle) |
 
 Toggle Pi-hole's ability to block unwanted domains. The disable option has the option to set a specified time before blocking is automatically re-enabled.
 
