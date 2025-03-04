@@ -24,7 +24,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
         ```javascript
         var data = JSON.stringify({"password":"your-password"});
@@ -37,7 +37,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
         });
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
         ```javascript
         $.ajax({
@@ -167,7 +167,7 @@ Note that when using cookie-based authentication, you will also need to send a `
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
         ```javascript
         var data = null;
@@ -184,7 +184,7 @@ Note that when using cookie-based authentication, you will also need to send a `
         xhr.send(data);
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
         ```javascript
         $.ajax({
@@ -240,7 +240,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
         ```javascript
         var data = JSON.stringify({"password":"your-password", "totp":"123456"});
@@ -253,7 +253,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
         });
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
         ```javascript
         $.ajax({
@@ -347,7 +347,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
         ```javascript
         var data = null;
@@ -363,7 +363,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
         xhr.send(data);
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
         ```javascript
         $.ajax({
