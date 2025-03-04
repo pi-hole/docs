@@ -4,7 +4,7 @@ In case you wish to customize the image, or perhaps check out a branch after bei
 
 In order to build the image locally, you will first need a copy of the repository on your computer. The following commands will clone the repository from Github and then put you into the directory
 
-```
+```bash
 git clone https://github.com/pi-hole/docker-pi-hole
 cd docker-pi-hole
 git checkout development #NOTE: This step is only needed until V6 is released
@@ -14,7 +14,7 @@ All other commands following assume you have at least run the above steps.
 
 ## Build.sh
 
-```
+```text
 Usage: ./build.sh [-l] [-f <ftl_branch>] [-c <core_branch>] [-w <web_branch>] [-t <tag>] [use_cache]
 Options:
   -f, --ftlbranch <branch>     Specify FTL branch (cannot be used in conjunction with -l)
@@ -37,7 +37,7 @@ When contributing, it's always a good idea to test your changes before submittin
 
 There is also `./build-and-test.sh`, which can be used to verify the tests that are run on Github pass with your changes.
 
-```
+```bash
 git checkout -b myNewFeatureBranch
 #make some changes
 ./build.sh
@@ -51,13 +51,13 @@ Occasionally you may need to try an alternative branch of one of the components 
 
 - You have been asked by a developer to checkout the FTL branch `new/Sensors`. To do so
 
-```
+```bash
 ./build.sh -f new/Sensors
 ```
 
 - There is new docker-specific work being carried out on the branch `fix/logRotate` that you wish to test
 
-```
+```bash
 git checkout fix/logRotate
 ./build.sh
 ```
@@ -74,6 +74,6 @@ services:
 ...
 ```
 
-```
+```bash
 docker run [options] pihole:local
 ```

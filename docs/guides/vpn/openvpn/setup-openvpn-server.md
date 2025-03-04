@@ -24,7 +24,7 @@ vim /etc/openvpn/server/server.conf
 
 Set this line to use your Pi-hole's IP address, which you determined from the `ifconfig` command and comment out or remove the other line (if it exists):
 
-```
+```text
 push "dhcp-option DNS 10.8.0.1"
 #push "dhcp-option DNS 8.8.8.8"
 ```
@@ -35,7 +35,7 @@ It's [suggested to have Pi-hole be the only resolver](https://discourse.pi-hole.
 
 Furthermore, you might want to enable logging for your OpenVPN server. In this case, add the following lines to your server's config file:
 
-```
+```text
 log /var/log/openvpn.log
 verb 3
 ```

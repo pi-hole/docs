@@ -14,7 +14,7 @@ Some of the following settings might be visible only if advanced settings are en
 Using this configuration, all clients will get Pi-hole's IP offered as DNS server when they request a DHCP lease from your Fritz!Box.
 DNS queries take the following path
 
-``` plain
+```plain
 Client -> Pi-hole -> Upstream DNS Server
 ```
 
@@ -24,7 +24,7 @@ Client -> Pi-hole -> Upstream DNS Server
 
 To set it up, enter Pi-hole's IP as "Local DNS server" in
 
-``` plain
+```plain
 Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Home Network
 ```
 
@@ -40,13 +40,13 @@ Now you should see individual clients in Pi-hole's web dashboard.
 
 With this configuration, Pi-hole is also used by the Fritz!Box itself as an upstream DNS server. DNS queries take the following path
 
-``` plain
+```plain
 (Clients) -> Fritz!Box -> Pi-hole -> Upstream DNS Server
 ```
 
 To set it up, enter Pi-hole's IP as "Preferred DNSv4 server" **and** "Alternative DNSv4 server" in
 
-``` plain
+```plain
 Internet/Account Information/DNS server
 ```
 
@@ -61,7 +61,7 @@ If only this configuration is used, you won't see individual clients in Pi-hole'
 
 There is no option to set the DNS server for the guest network in
 
-``` plain
+```plain
 Home Network/Network/Network Settings/IP Addresses/IPv4 Configuration/Guest Network
 ```
 
@@ -95,7 +95,7 @@ Unique local addresses (ULA) are local IPv6 addresses which are not routed on th
 
 To enable ULA addresses, select "Always assign unique local addresses (ULA)" in
 
-``` plain
+```plain
 Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/Unique Local Addresses
 ```
 
@@ -108,7 +108,7 @@ Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/Unique Local A
 
 To obtain the new address, reconnect or reboot your Pi-hole server. The obtained ULA address of your Pi-hole can be seen when running the command
 
-``` bash
+```bash
 ip address | grep "inet6 fd"
 ```
 
@@ -118,7 +118,7 @@ on your Pi-hole. This address will be used in the following section.
 
 It is now possible to enter Pi-hole's stable IPv6 address as "Local DNSv6 server" in
 
-``` plain
+```plain
 Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/DNSv6 Server in the Home Network
 ```
 
@@ -131,13 +131,13 @@ Home Network/Network/Network Settings/IP Addresses/IPv6 Addresses/DNSv6 Server i
 
 When the Internet connection is busy, DNS queries may only be processed with a long delay. This can be avoided in the Fritz!Box by adding DNS as a prioritized real-time application. If you have not already done so, first add "`DNS`" as a new application type under
 
-``` plain
+```plain
 Internet/Filter/Lists -> Network Applications -> Add Network Application
 ```
 
 with the properties
 
-``` plain
+```plain
 Network application: DNS
 Protocol: UDP
 Source port: any
@@ -146,7 +146,7 @@ Destination port: 53
 
 and
 
-``` plain
+```plain
 Network application: DNS
 Protocol: TCP
 Source port: any
@@ -156,7 +156,7 @@ Destination port: 53
 
 This entry can then be added under
 
-``` plain
+```plain
 Internet/Filter/Prioritization -> Real-time applications -> New rule
 ```
 
@@ -171,13 +171,13 @@ After configuring the Pi-hole as the network's DNS server, the setup is complete
 
 If not already present, create two access profiles (e.g. "`Standard`" and "`Unrestricted`") under
 
-``` plain
+```plain
 Internet/Filters/Access Profiles -> Manage and Optimize Access Profiles
 ```
 
 In the profile "`Standard`" add the network application "`DNS`" ([created above](#optional-increasing-the-priority-of-dns-requests)) under:
 
-``` plain
+```plain
 Advanced settings -> Locked network applications
 ```
 
@@ -185,7 +185,7 @@ In the profile "`Unrestricted`" "`DNS`" must *not* be set as blocked.
 
 Now the access profiles under
 
-``` plain
+```plain
 Internet/Filters/Parental Control -> Change Access Profiles (at the bottom of the page)
 ```
 
@@ -193,13 +193,13 @@ are configured such that *all* devices *except* the Pi-hole (including "`All oth
 
 You can easily test whether this is working by trying
 
-``` bash
+```bash
 dig google.com @8.8.8.8 +short
 ```
 
 once on your Pi-hole and once on any other device in your network. While the query on your Pi-hole should return an IP address as expected, you should see an error such as
 
-``` plain
+```plain
 ;; communications error to 8.8.8.8#53: host unreachable
 ```
 

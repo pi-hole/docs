@@ -28,4 +28,3 @@ docker rm pihole
 docker pull pihole/pihole:latest
 docker run [ ... arguments (see Getting Started) ... ]
 ```
-

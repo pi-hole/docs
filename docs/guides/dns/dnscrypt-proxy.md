@@ -8,7 +8,7 @@ As an alternative tool to this end, consider [cloudflared](https://github.com/cl
 
 Raspberry Pi OS and Debian as well as Ubuntu come with packages for `dnscrypt-proxy`, which makes its installation a breeze:
 
-```shell
+```bash
 sudo apt update
 sudo apt install dnscrypt-proxy
 ```
@@ -21,7 +21,7 @@ To avoid conflicts with `FTLDNS`, edit `/usr/lib/systemd/system/dnscrypt-proxy.s
 
 The following settings in `/usr/lib/systemd/system/dnscrypt-proxy.socket`, let `dnscrypt-proxy` listen on localhost on port 5053:
 
-```
+```text
 ListenStream=127.0.0.1:5053
 ListenDatagram=127.0.0.1:5053
 ```
@@ -43,7 +43,7 @@ server_names = ['cloudflare-security']
 
 Run the following command to set the upstream DNS server of Pi-hole to your local `dnscrypt-proxy` instance:
 
-```shell
+```bash
 sudo pihole-FTL --config dns.upstreams '["127.0.0.1#5053"]'
 ```
 
@@ -51,7 +51,7 @@ sudo pihole-FTL --config dns.upstreams '["127.0.0.1#5053"]'
 
 Run the following commands to restart `dnscrypt-proxy` and `FTLDNS`:
 
-```shell
+```bash
 sudo systemctl restart dnscrypt-proxy.socket
 sudo systemctl restart dnscrypt-proxy.service
 sudo systemctl restart pihole-FTL.service
@@ -61,7 +61,7 @@ sudo systemctl restart pihole-FTL.service
 
 Run the following commands to review the status of each restarted service:
 
-```shell
+```bash
 sudo systemctl status dnscrypt-proxy.socket
 sudo systemctl status dnscrypt-proxy.service
 sudo systemctl status pihole-FTL.service
@@ -84,7 +84,7 @@ Optionally, confirm in the Pi-hole admin web interface that upstream DNS servers
 
 Since you installed `dnscrypt-proxy` via APT, updating `dnscrypt-proxy` is a matter of running the following commands:
 
-```shell
+```bash
 sudo apt update
 sudo apt upgrade
 ```
