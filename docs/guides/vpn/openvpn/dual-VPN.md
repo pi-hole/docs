@@ -26,19 +26,19 @@ Next, if needed, port forward the newly configured port from your router to your
 
 Your server line should look like this:
 
-```
+```text
 server 10.9.0.0 255.255.255.0
 ```
 
 Make sure that the DNS requests go through the instance of OpenVPN:
 
-```
+```text
 push "dhcp-option DNS 10.9.0.1"
 ```
 
 One other setting that we need to change is to comment out the `bypass-dhcp` instruction so that it looks like:
 
-```
+```text
 # push "redirect-gateway def1 bypass-dhcp"`.
 ```
 

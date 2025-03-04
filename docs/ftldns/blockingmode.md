@@ -14,7 +14,7 @@ In `NULL` mode, which is both the default and recommended mode for Pi-hole *FTL*
 
 A blocked query would look like the following:
 
-```
+```text
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 
@@ -40,7 +40,7 @@ In `IP-NODATA-AAAA` mode, blocked queries will be answered with the local IPv4 a
 
 Assuming your Pi-hole server is at `192.168.1.42`, then a blocked query would look like the following:
 
-```
+```text
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 
@@ -64,7 +64,7 @@ The IP that is returned is automatically determined by FTL, however it can also 
 
 A blocked query would look like the following:
 
-```
+```text
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 
@@ -88,7 +88,7 @@ In `NXDOMAIN` mode, blocked queries will be answered with an empty response (i.e
 
 A blocked query would look like the following:
 
-```
+```text
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 ```
@@ -101,10 +101,9 @@ In `NODATA` mode, blocked queries will be answered with an empty response (no an
 
 A blocked query would look like the following:
 
-```
+```text
 ;; QUESTION SECTION:
 ;doubleclick.net.               IN      ANY
 ```
 
 **Advantages & Disadvantages:** This mode is similar to `NXDOMAIN` blocking mode. Clients might have a better acceptance of `NODATA` replies compared to `NXDOMAIN` replies.
-

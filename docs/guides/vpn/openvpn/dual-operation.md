@@ -13,7 +13,7 @@ This setup assumes that your local network is in the range **192.168.2.0** (i.e.
 
 Edit your `/etc/openvpn/server/server.conf`:
 
-```
+```text
 push "route 192.168.2.0 255.255.255.0"
 push "dhcp-option DNS 192.168.2.123"
 ```

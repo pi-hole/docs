@@ -43,14 +43,14 @@ They'll automatically be re-added when using `sudo service pihole-FTL start` nex
 
 We suggest the following one-liner to run `pihole-FTL` in `memcheck`:
 
-```
+```bash
 sudo service pihole-FTL stop && sudo setcap -r /usr/bin/pihole-FTL
 sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --vgdb=full --log-file=valgrind.log -s /usr/bin/pihole-FTL
 ```
 
 If you compile FTL from source, use
 
-```
+```bash
 sudo service pihole-FTL stop
 ./build.sh && sudo valgrind --trace-children=yes --leak-check=full --track-origins=yes --vgdb=full --log-file=valgrind.log -s ./pihole-FTL
 ```
@@ -105,13 +105,13 @@ You can also combine `valgrind` with `gdb` to get both the memory error detectio
 2. Start `pihole-FTL` in `valgrind` as described above. The `--vgdb=full` option tells `valgrind` to start a GDB server.
 3. Once FTL has started, you can attach `gdb` to the running process using
 
-    ``` bash
+    ```bash
     sudo gdb /usr/bin/pihole-FTL
     ```
 
     and then at the `(gdb)` prompt,
 
-    ``` plain
+    ```plain
     target remote | vgdb
     ```
 

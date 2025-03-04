@@ -110,7 +110,7 @@ After going through our quick tutorial, we provide some more advanced examples s
 
 ## Block domain with only numbers
 
-```
+```text
 ^[0-9][^a-z]+\.((com)|(edu))$
 ```
 
@@ -118,7 +118,7 @@ Blocks domains containing only numbers (no letters) and ending in `.com` or `.ed
 
 ### Block domains without subdomains
 
-```
+```text
 ^[a-z0-9]+([-]{1}[a-z0-9]+)*\.[a-z]{2,7}$
 ```
 
