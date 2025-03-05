@@ -1,4 +1,4 @@
-[context.deploy-preview.environment]
+[build.environment]
     PYTHON_VERSION = "3.11"
     NODE_VERSION = "22"
     CI = "true"
