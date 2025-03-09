@@ -146,7 +146,7 @@ $ docker compose -f compose.yaml
 
 ### `WEBPASSWORD_FILE` Example
 
-1. Create a text file called `pihole_password.txt` containing the password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
+Create a text file called `pihole_password.txt` containing the password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
 
   ```bash
   $cat pihole_password.txt
