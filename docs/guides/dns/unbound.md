@@ -171,9 +171,9 @@ The first command should give a status report of `SERVFAIL` and no IP address. T
 
 Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
 
-![Upstream DNS Servers Configuration](../../images/RecursiveResolver.png)
+![unbound_custom_dns](https://github.com/user-attachments/assets/9ab1db66-a638-4157-9bd1-bb75e2ef2510)
 
-(don't forget to hit Return or click on `Save`)
+(don't forget to click on `Save & Apply`)
 
 ### Disable `resolvconf.conf` entry for `unbound` (Required for Debian Bullseye+ releases)
 
