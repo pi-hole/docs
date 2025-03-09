@@ -14,7 +14,7 @@ Einige dieser Einstellungen sind nur sichtbar, wenn vorher die Ansicht auf "Erwe
 Mit dieser Konfiguration wird allen Clients die IP des Pi-hole als DNS Server angeboten, wenn sie einen DHCP Lease von der Fritz!Box anfordern.
 DNS Anfragen nehmen folgenden Weg
 
-``` plain
+```plain
 Client -> Pi-hole -> Upstream DNS Server
 ```
 
@@ -24,7 +24,7 @@ Client -> Pi-hole -> Upstream DNS Server
 
 Um diese Konfiguration zu nutzen, muss die IP des Pi-hole als "Lokaler DNS-Server" in
 
-``` plain
+```plain
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Heimnetz
 ```
 
@@ -41,13 +41,13 @@ Nun sollten einzelne Clients im Pi-hole Dashboard auftauchen.
 
 Mit dieser Konfiguration wird Pi-hole  auch von der Fritz!Box selbst als Upstream DNS Server genutzt. DNS Anfragen nehmen folgenden Weg
 
-``` plain
+```plain
 (Clients) -> Fritz!Box -> Pi-hole -> Upstream DNS Server
 ```
 
 Zum Einstellen muss die IP des Pi-hole als "Bevorzugter DNSv4-Server" **und** "Alternativer DNSv4-Server" in
 
-``` plain
+```plain
 Internet/Zugangsdaten/DNS-Server
 ```
 
@@ -64,7 +64,7 @@ Wird ausschließlich diese Konfiguration genutzt, sind im Pi-hole Dashboard kein
 
 Es gibt in der Fritz!Box keine Möglichkeit unter
 
-``` plain
+```plain
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv4-Konfiguration/Gastnetz
 ```
 
@@ -100,7 +100,7 @@ Unique Local Addresses (ULAs) sind lokale IPv6-Adressen, die nicht über das Int
 
 Zum aktivieren, wähle "Unique Local Addresses (ULA) immer zuweisen" aus in
 
-``` plain
+```plain
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv6-Konfiguration/Unique Local Addresses
 ```
 
@@ -113,7 +113,7 @@ Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv6-Konfiguration/Unique Lo
 
 Damit das Pi-hole eine ULA-Adresse erhält, muss der Pi-hole Server kurz vom Netzwerk getrennt werden oder neu gestartet werden. Die erhaltene Adresse kann man dann auf dem Pi-hole mit dem Befehl
 
-``` bash
+```bash
 ip address | grep "inet6 fd"
 ```
 
@@ -123,7 +123,7 @@ erhalten. Diese Adresse wird im folgenden Abschnitt verwendet.
 
 Nun kann die IPv6 Adresse des Pi-hole als "Lokaler DNSv6-Server" in
 
-``` plain
+```plain
 Heimnetz/Netzwerk/Netzwerkeinstellungen/IP-Adressen/IPv6-Konfiguration/DNSv6-Server im Heimnetz
 ```
 
@@ -138,13 +138,13 @@ eingetragen werden.
 
 Bei ausgelasteter Internetverbindung werden DNS-Anfragen u.U. stark verzögert bearbeitet. Dies kann in der Fritz!Box durch Hinterlegen von DNS als priorisierter Echtzeitanwendung vermieden werden. Falls nicht bereits geschehen, fügen Sie hierfür zunächst "`DNS`" als neuen Answendungstyp unter
 
-``` plain
+```plain
 Internet/Filter/Listen -> Netzwerkanwendungen -> Netzwerkanwendung hinzufügen
 ```
 
 mit den Eigenschaften
 
-``` plain
+```plain
 Netzwerkanwendung: DNS
 Protokoll: UDP
 Quellport: beliebig
@@ -153,7 +153,7 @@ Zielport: 53
 
 sowie
 
-``` plain
+```plain
 Netzwerkanwendung: DNS
 Protokoll: TCP
 Quellport: beliebig
@@ -164,7 +164,7 @@ hinzu.
 
 Dieser Eintrag kann dann unter
 
-``` plain
+```plain
 Internet/Filter/Priorisierung -> Echtzeitanwendungen -> Neue Regel
 ```
 
@@ -178,13 +178,13 @@ Nach der Konfiguration des Pi-holes als DNS Server des Netzwerks ist die Einrich
     Einige Geräte oder Programme nutzen fest hinterlegte DNS Server und funktionieren ggfs. nicht mehr ordnungsgemäß falls sie diesen DNS Server nicht erreichen können. Fall solch ein Verhalten auftritt, können Sie dieses Gerät von der Filterregel ausnehmen.
 Insofern nicht bereits vorhanden, legen Sie unter
 
-``` plain
+```plain
 Internet/Filter/Zugangsprofile -> Zugangsprofile verwalten und optimal nutzen
 ```
 
 zwei Zugangsprofile an (z.B. "`Standard`" und "`Unbeschränkt`"). Im Profil "`Standard`" fügen Sie unter
 
-``` plain
+```plain
 Erweiterte Einstellungen -> Gesperrte Netzwerkanwendungen
 ```
 
@@ -193,7 +193,7 @@ Im Profil "`Unbeschränkt`" darf "`DNS`" *nicht* als gesperrt hinterlegt werden.
 
 Nun werden die Zugangsprofile unter
 
-``` plain
+```plain
 Internet/Filter/Kindersicherung -> Zugangsprofile ändern (am Ende der Seite)
 ```
 
@@ -201,13 +201,13 @@ so konfiguriert, dass *sämtliche* Geräte *außer* dem Pi-hole (inkl. "`Alle an
 
 Die neue Filterregel kann z.B. durch den Aufruf von
 
-``` bash
+```bash
 dig google.com @8.8.8.8 +short
 ```
 
 auf dem Pi-Hole und auf einem beliebigen anderen Gerät im Netzwerk getestet werden. Während die Abfrage auf dem Pi-hole wie erwartet eine IP-Adresse zurückgeben sollte, sollte auf allen anderen Geräten eine Fehlermeldung wie
 
-``` plain
+```plain
 ;; communications error to 8.8.8.8#53: host unreachable
 ```
 

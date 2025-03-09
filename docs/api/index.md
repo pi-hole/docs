@@ -21,7 +21,7 @@ The form of replies to successful requests strongly depends on the selected endp
 
     Response code: `HTTP/1.1 200 OK`
 
-    ``` json
+    ```json
     {
       "blocking": true
     }
@@ -45,7 +45,7 @@ In contrast, errors have a uniform, predictable style to ease their programmatic
 
     Response code: `HTTP/1.1 401 Unauthorized`
 
-    ``` json
+    ```json
     {
         "error": {
             "key": "unauthorized",
@@ -101,7 +101,7 @@ In contrast, errors have a uniform, predictable style to ease their programmatic
 
         Examples for a failed request with `hint` being set is (domain is already on this list):
 
-        ``` json
+        ```json
         {
             "error":  {
                 "key": "database_error",

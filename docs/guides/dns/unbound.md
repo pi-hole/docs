@@ -193,7 +193,6 @@ To disable the service, run the statement below:
 sudo systemctl disable --now unbound-resolvconf.service
 ```
 
-
 #### Step 2 - Disable the file resolvconf_resolvers.conf
 
 Disable the file resolvconf_resolvers.conf from being generated when resolvconf is invoked elsewhere.
@@ -236,7 +235,7 @@ server:
 
 Second, create log dir and file, set permissions:
 
-```
+```bash
 sudo mkdir -p /var/log/unbound
 sudo touch /var/log/unbound/unbound.log
 sudo chown unbound /var/log/unbound/unbound.log
@@ -246,23 +245,22 @@ On modern Debian/Ubuntu-based Linux systems, you'll also have to add an AppArmor
 
 Create (or edit if existing) the file `/etc/apparmor.d/local/usr.sbin.unbound` and append
 
-``` plain
+```plain
 /var/log/unbound/unbound.log rw,
 ```
 
 to the end (make sure this value is the same as above). Then reload AppArmor using
 
-``` bash
+```bash
 sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
 sudo service apparmor restart
 ```
 
 Lastly, restart unbound:
 
-```
+```bash
 sudo service unbound restart
 ```
-
 
 ### Uninstall `unbound`
 

@@ -8,7 +8,7 @@ Beware: This tutorial does not explain on how to block DoH or DoT.
 
 SSH into your Pi-hole. A quick `ifconfig eth0` (substituting `eth0` for the applicable network interface) will get you the address information:
 
-```
+```text
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         inet 10.0.51.2  netmask 255.255.255.0  broadcast 192.168.0.255
         inet6 2001:470:5:3::8ed  prefixlen 128  scopeid 0x0<global>
@@ -27,7 +27,7 @@ Take note of the `inet` address, and the `inet6` address which starts with `fe` 
 
 Choosing this option will have DNS queries taking the following path:
 
-```
+```text
 (Clients) -> Pi-hole -> Upstream DNS Server
 ```
 
@@ -40,7 +40,6 @@ Leave the second line blank unless you have another Pi-hole host running.
 ![Screenshot of OPNsense DHCPv4 Settings](../images/routers/opnsense-dhcpv4.png)
 
 #### IPv6
-
 
 Go to **Interfaces** and click on the interface that you want to modify.
 Under **Manual configuration** check "Allow manual adjustment of DHCPv6 and Router Advertisements"
@@ -55,7 +54,6 @@ Leave the second line blank unless you have another Pi-hole host running.
 
 Beware: Link local IPv6 are not reachable from other VLANs.
 
-
 All client devices on your network should now automatically be configured with a single IPv4 and single IPv6 address for DNS resolution. If you don't see your client devices update quickly enough, you *can* toggle Wi-Fi off/on or disconnect the Ethernet cable for a couple of seconds and then reconnect it.
 
 ### Method 2: Using your Pi-hole as DNS server for your OPNsense
@@ -63,7 +61,7 @@ All client devices on your network should now automatically be configured with a
 If you'd rather have your OPNsense forward all DNS traffic to Pi-hole, you can complete this *alternative* step.
 Doing so will have DNS queries taking the following path:
 
-```
+```text
 (Clients) -> OPNsense -> Pi-hole -> Upstream DNS Server
 ```
 

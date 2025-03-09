@@ -129,7 +129,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
     If you see this message continuously, you are affected by some unusual truncation on the path from your Pi-hole to the configured upstream server.
     You can get rid of the warning by adding a config file like `/etc/dnsmasq.d/99-edns.conf` and adding
 
-    ``` plain
+    ```plain
     edns-packet-max=1232
     ```
 

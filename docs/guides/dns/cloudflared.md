@@ -84,7 +84,6 @@ Edit configuration file by copying the following in to `/etc/default/cloudflared
 CLOUDFLARED_OPTS=--port 5053 --upstream https://cloudflare-dns.com/dns-query
 ```
 
-
 !!! info
     See the other available [Cloudflare endpoints](https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/#available-endpoints).
 

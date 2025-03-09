@@ -175,6 +175,7 @@ nav:
     - 'DNS':
       - 'unbound': guides/dns/unbound.md
       - 'cloudflared (DoH)': guides/dns/cloudflared.md
+      - 'dnscrypt-proxy (DoH)': guides/dns/dnscrypt-proxy.md
       - 'Upstream DNS Providers': guides/dns/upstream-dns-providers.md
     - 'VPN':
       - 'WireGuard':

@@ -89,6 +89,12 @@ Setting this environment variable to `1` will set `-x`, making the scripts that 
 
 Set the web interface password using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) if using Compose or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/) if using Docker Swarm. If `FTLCONF_webserver_api_password` is set, `WEBPASSWORD_FILE` is ignored. If `FTLCONF_webserver_api_password` is empty, and `WEBPASSWORD_FILE` is set to a valid readable file path, then `FTLCONF_webserver_api_password` will be set to the contents of `WEBPASSWORD_FILE`. See [Notes On Web Interface Password](#notes-on-web-interface-password) below for usage examples.
 
+### Variable Formatting
+
+Environment variables may be set in the format given here, or they may be entirely uppercase in the conventional manner.
+
+For example, both `FTLCONF_dns_upstreams` and `FTLCONF_DNS_UPSTREAMS` are functionally equivalent when used as environment variables.
+
 ## Notes On Web Interface Password
 
 The web interface password can be set using the `FTLCONF_webserver_api_password` environment variable as documented above or using the `WEBPASSWORD_FILE` environment variable using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/).

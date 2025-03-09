@@ -7,13 +7,13 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
 
     === "bash / cURL"
 
-        ``` bash
+        ```bash
         curl -k -X POST "https://pi.hole/api/auth" --data '{"password":"your-password"}'
         ```
 
     === "Python 3"
 
-        ``` python
+        ```python
         import requests
 
         url = "https://pi.hole/api/auth"
@@ -24,9 +24,9 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
-        ``` javascript
+        ```javascript
         var data = JSON.stringify({"password":"your-password"});
         var xhr = new XMLHttpRequest();
 
@@ -37,9 +37,9 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
         });
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
-        ``` javascript
+        ```javascript
         $.ajax({
           url: "https://pi.hole/api/auth",
           type: "POST",
@@ -55,7 +55,7 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
 
     === "C"
 
-        ``` c
+        ```c
         #include <stdio.h>
         #include <stdlib.h>
         #include <curl/curl.h>
@@ -144,14 +144,14 @@ Note that when using cookie-based authentication, you will also need to send a `
 
     === "bash / cURL"
 
-        ``` bash
+        ```bash
         # Example: Authentication with SID in the request URI
         curl -k -X GET "https://pi.hole/api/dns/blocking?sid=vFA+EP4MQ5JJvJg+3Q2Jnw="
         ```
 
     === "Python 3"
 
-        ``` python
+        ```python
         # Example: Authentication with SID in the request header
         import requests
 
@@ -167,9 +167,9 @@ Note that when using cookie-based authentication, you will also need to send a `
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
-        ``` javascript
+        ```javascript
         var data = null;
         var xhr = new XMLHttpRequest();
 
@@ -184,9 +184,9 @@ Note that when using cookie-based authentication, you will also need to send a `
         xhr.send(data);
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
-        ``` javascript
+        ```javascript
         $.ajax({
           url: "https://pi.hole/api/dns/blocking",
           type: "GET",
@@ -220,13 +220,13 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
 
     === "bash / cURL"
 
-        ``` bash
+        ```bash
         curl -k -X POST "https://pi.hole/api/auth" --data '{"password":"your-password", "totp":"123456"}'
         ```
 
     === "Python 3"
 
-        ``` python
+        ```python
         import requests
 
         url = "https://pi.hole/api/auth"
@@ -240,9 +240,9 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
-        ``` javascript
+        ```javascript
         var data = JSON.stringify({"password":"your-password", "totp":"123456"});
         var xhr = new XMLHttpRequest();
 
@@ -253,9 +253,9 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
         });
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
-        ``` javascript
+        ```javascript
         $.ajax({
           url: "https://pi.hole/api/auth",
           type: "POST",
@@ -302,7 +302,7 @@ In addition to the status code, the server will also return a JSON object with m
 
     or
 
-    ``` json
+    ```json
     {
       "error": {
         "key": "bad_request",
@@ -325,14 +325,14 @@ To end your session before the SID expires, you can send a `DELETE` request to t
 
     === "bash / cURL"
 
-        ``` bash
+        ```bash
         # Example: Logout with SID in the request URI
         curl -k -X DELETE "https://pi.hole/api/auth?sid=vFA+EP4MQ5JJvJg+3Q2Jnw="
         ```
 
     === "Python 3"
 
-        ``` python
+        ```python
         # Example: Logout with SID in the request header
         import requests
 
@@ -347,9 +347,9 @@ To end your session before the SID expires, you can send a `DELETE` request to t
         print(response.text)
         ```
 
-    === "Javascript (plain)"
+    === "JavaScript (plain)"
 
-        ``` javascript
+        ```javascript
         var data = null;
         var xhr = new XMLHttpRequest();
 
@@ -363,9 +363,9 @@ To end your session before the SID expires, you can send a `DELETE` request to t
         xhr.send(data);
         ```
 
-    === "Javascript (jQuery)"
+    === "JavaScript (jQuery)"
 
-        ``` javascript
+        ```javascript
         $.ajax({
           url: "https://pi.hole/api/auth",
           type: "DELETE",

@@ -8,7 +8,7 @@ sudo apt install tor
 
 Edit `/etc/tor/torrc` as root, include the following line at the end and save the changes
 
-```
+```text
 DNSPort 127.0.10.1:53
 ```
 
@@ -21,7 +21,7 @@ Change your Pi-hole upstream DNS server to use `127.0.10.1` in the Pi-hole WebGU
 
 If you want a recognizable hostname for the Tor DNS in your Pi-hole GUI statistics, edit `/etc/hosts` as root, include the following line at the end and save the changes
 
-```
+```text
 127.0.10.1     tor.dns.local
 ```
 
@@ -47,7 +47,7 @@ dig @<IPv4/6-dns-server-address> api.mixpanel.com <A/AAAA>
 
 For Windows:
 
-```shell
+```bash
 nslookup -server=<IPv4/6-dns-server-address> -q=<A/AAAA> api.mixpanel.com
 ```
 

@@ -18,6 +18,8 @@ services:
       - "443:443/tcp"
       # Uncomment the below if using Pi-hole as your DHCP Server
       #- "67:67/udp"
+      # Uncomment the line below if you are using Pi-hole as your NTP server
+      #- "123:123/udp"
     environment:
       # Set the appropriate timezone for your location from
       # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones, e.g:
@@ -47,7 +49,7 @@ Run `docker compose up -d` to build and start Pi-hole (on older systems, the syn
 
 The equivalent command for `docker run` would be:
 
-```
+```bash
 docker run --name pihole -p 53:53/tcp -p 53:53/udp -p 80:80/tcp -p 443:443/tcp -e TZ=Europe/London -e FTLCONF_webserver_api_password="correct horse battery staple" -e FTLCONF_dns_listeningMode=all -v ./etc-pihole:/etc/pihole -v ./etc-dnsmasq.d:/etc/dnsmasq.d --cap-add NET_ADMIN --restart unless-stopped pihole/pihole:latest
 ```
 

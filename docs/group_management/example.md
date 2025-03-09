@@ -69,7 +69,6 @@ Client        | Group membership | Domain | Blocked
 192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
 
-
 All three clients got automatically assigned to the default (`Default`) group when they were added. The default group includes all subscribed lists and list domains (if not already changed by the user). When we remove the default group for client `192.168.0.101`, we effectively remove all associations to any subscribed lists and domains. This leaves this client completely unblocked.
 
 ## Example 2: Blocklist management
@@ -91,7 +90,6 @@ Client        | Group membership | Domain | Blocked
 192.168.0.101 |   Group 1   | doubleclick.net | **Yes**
 192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
-
 
 `192.168.0.101` gets `doubleclick.net` blocked as it uses a subscribed list including this domain. All other clients stay unchanged.
 
@@ -120,7 +118,6 @@ Client        | Group membership | Domain | Blocked
 192.168.0.101 |   Group 1   | denylisted.com | No
 192.168.0.102 |   Group 2 + Default   | denylisted.com | **Yes**
 192.168.0.103 |   Group 3 + Default   | denylisted.com | **Yes**
-
 
 Note that Pi-hole is *not* blocking this domain for client `192.168.0.101` as we removed the default assignment through group 0 above. All remaining clients are linked through the Default group to this domain and see it as being blocked.
 
