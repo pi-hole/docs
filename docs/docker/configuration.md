@@ -180,3 +180,4 @@ secrets:
     file: ./pihole_password.txt
 ...
 ```
+
