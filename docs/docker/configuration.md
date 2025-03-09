@@ -153,7 +153,7 @@ $ docker compose -f compose.yaml
   correct horse battery staple
   ```
 
-1. Amend compose yaml file with Docker Secrets attributes.
+Amend compose yaml file with Docker Secrets attributes.
 
 ```yaml
 ---
