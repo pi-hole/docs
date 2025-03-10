@@ -86,14 +86,17 @@ The rules will then be cleared once the tunnel is down.
 <!-- markdownlint-enable code-block-style -->
 
 ### `ufw`
+
 If you are using UFW the above doesn't work and you will need to edit `/etc/ufw/before.rules`:
 
 Insert this into the before.rules file but **before** the FIRST commit line:
+
 ```bash
 # allow forwarding for trusted network
 -A ufw-before-forward -s 10.10.10.0/24 -j ACCEPT
 -A ufw-before-forward -d 10.10.10.0/24 -j ACCEPT
-``` 
+```
+
 For IPv6 you need to do the same but at `/etc/ufw/before6.rules`:
 
 Put the following near the bottom but **before** the first COMMIT line:
@@ -103,6 +106,7 @@ Put the following near the bottom but **before** the first COMMIT line:
 -A ufw6-before-forward -s fd08:4711::/64 -j ACCEPT
 -A ufw6-before-forward -d fd08:4711::/64 -j ACCEPT
 ```
+
 Restart ufw for the changes to take effect: `systemctl restart ufw`
 
 ## Allow clients to access other devices
