@@ -106,7 +106,7 @@ Character class | Equivalent | Pi-hole specific | Interpretation
 
 *) FTL matches case-insensitive by default as case does not matter in domain names
 
-Note that character classes are abbreviations, they need to be used in character groups, i.e., enclosed in `[]`. As such, the equivalent of `[0-9]` would be `[[:digit:]]`, *not* `[:digit:]`. It ia allowed to mix character classes with classical character groups. For example, `[a-z0-9]` is identical to `[a-z[:digit:]]`.
+Note that character classes are abbreviations, they need to be used in character groups, i.e., enclosed in `[]`. As such, the equivalent of `[0-9]` would be `[[:digit:]]`, *not* `[:digit:]`. It is allowed to mix character classes with classical character groups. For example, `[a-z0-9]` is identical to `[a-z[:digit:]]`.
 
 # Advanced examples
 
