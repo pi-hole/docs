@@ -48,3 +48,4 @@
 *[URL]: Uniform Resource Locator, commonly known as "web address"
 *[REST]: Representational State Transfer - a software architecture for distributed systems like the World Wide Web (WWW)
 *[XSS]: Cross-site scripting
+*[NTP]: Network Time Protocol is used to synchronize the clocks of computers over a network
