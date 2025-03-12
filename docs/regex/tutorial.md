@@ -89,20 +89,24 @@ Example | Interpretation
 
 In addition to character groups, there are also some special character classes available, such as
 
-Character class | Group equivalent | Pi-hole specific | Interpretation
+Character class | Equivalent | Pi-hole specific | Interpretation
 --------------- | ---------------- | ---------------- | ---------------
-`[:digit:]` | `[0-9]` | No | matches digits
-`[:lower:]` | `[a-z]` | No | matched lowercase letters(FTL matches case-insensitive by default)
-`[:upper:]` | `[A-Z]` | No | matched uppercase letters(FTL matches case-insensitive by default)
-`[:alpha:]` | `[A-Za-z]` | No | matches alphabetic characters
-`[:alnum:]` | `[A-Za-z0-9]` | No | matches alphabetic characters and digits
-`[:blank:]` | `[ \t]` | Yes | blank characters
-`[:cntrl:]` | N/A | Yes | control characters
-`[:graph:]` | N/A | Yes | all printable characters except space
-`[:print:]` | N/A | Yes | printable characters including space
-`[:punct:]` | N/A | Yes | printable characters not space or alphanumeric
-`[:space:]` | `[ \f\n\r\t\v]` | Yes | white-space characters
-`[:xdigit:]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
+`[[:digit:]]` | `[0-9]` | No | digits
+`[[:lower:]]` | `[a-z]` | No | lowercase letters*
+`[[:upper:]]` | `[A-Z]` | No | uppercase letters*
+`[[:alpha:]]` | `[A-Za-z]` | No | alphabetic characters*
+`[[:alnum:]]` | `[A-Za-z0-9]` | No | alphabetic characters* and digits
+`[[:blank:]]` | `[ \t]` | Yes | blank characters
+`[[:cntrl:]]` | N/A | Yes | control characters
+`[[:graph:]]` | N/A | Yes | all printable characters except space
+`[[:print:]]` | N/A | Yes | printable characters including space
+`[[:punct:]]` | N/A | Yes | printable characters not space or alphanumeric
+`[[:space:]]` | `[ \f\n\r\t\v]` | Yes | white-space characters
+`[[:xdigit:]]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
+
+*) FTL matches case-insensitive by default as case does not matter in domain names
+
+Note that character classes are abbreviations, they need to be used in character groups, i.e., enclosed in `[]`. As such, the equivalent of `[0-9]` would be `[[:digit:]]`, *not* `[:digit:]`. It is allowed to mix character classes with classical character groups. For example, `[a-z0-9]` is identical to `[a-z[:digit:]]`.
 
 # Advanced examples
 
