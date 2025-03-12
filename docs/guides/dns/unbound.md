@@ -173,7 +173,7 @@ Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0
 
 ![Upstream DNS Servers Configuration](../../images/RecursiveResolver.png)
 
-(don't forget to hit Return or click on `Save`)
+(don't forget to click on `Save & Apply`)
 
 ### Disable `resolvconf.conf` entry for `unbound` (Required for Debian Bullseye+ releases)
 
