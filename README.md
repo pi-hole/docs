@@ -41,6 +41,7 @@ Please make sure you fork the repo and change the clone URL in the example below
     source .venv/bin/activate
     pip3 install -r requirements.txt
     ```
+
     - Enter the virtual enviorment (if exited):
 
     ```bash
