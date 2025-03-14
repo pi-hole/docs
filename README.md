@@ -30,14 +30,22 @@ When working on this repo, it is advised that you review your changes locally be
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 
-- Linux Mint / Ubuntu 18.04 LTS / 19.10 / 20.04 LTS:
+- Linux Mint / Ubuntu 20.04 LTS / 23.10 and later:
     - Preparations (only required once):
 
     ```bash
     git clone https://github.com/YOUR-USERNAME/docs
     cd docs
-    sudo apt install python3-pip
+    sudo apt install python3-pip python3-venv
+    python3 -m venv .venv
+    source .venv/bin/activate
     pip3 install -r requirements.txt
+    ```
+
+    - Enter the virtual enviorment (if exited):
+
+    ```bash
+    source .venv/bin/activate
     ```
 
     - Running the docs server:
