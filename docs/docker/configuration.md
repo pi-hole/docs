@@ -166,7 +166,7 @@ services:
     # lines deleted
 
     environment:
-      WEBPASSWORD_file: pihole_webpasswd
+      WEBPASSWORD_FILE: pihole_webpasswd
 
     # lines deleted
 
