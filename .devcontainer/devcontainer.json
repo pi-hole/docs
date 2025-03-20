@@ -20,7 +20,7 @@
     "GIT_EDITOR": "nano"
   },
   "mounts": [
-    "type=bind,source=/home/${localEnv:USER}/.ssh,target=/home/node/.ssh,readonly"
+    "type=bind,source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,readonly"
   ],
   "forwardPorts": [8000]
 }
