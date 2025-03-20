@@ -45,8 +45,7 @@ Set your [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 To set a specific password for the web interface, use the environment variable `FTLCONF_webserver_api_password` (per the quick-start example). If this variable is not detected, and you have not already set one previously inside the container via `pihole setpassword` or `pihole-FTL --config webserver.api.password`, then a random password will be assigned on startup, and will be printed to the log. You can find this password with the command `docker logs pihole | grep random password` on your host to find this password. See [Notes On Web Interface Password](#notes-on-web-interface-password) below for usage examples.
 
 !!! note
-    To _explicitly_ set no password, set `FTLCONF_webserver_api_password: ''`
-
+    To _explicitly_ set no password, set `FTLCONF_webserver_api_password: ''`<br/><br/>
     Using `pihole setpassword` for the purpose of setting an empty password will not persist between container restarts
 
 #### `FTLCONF_dns_upstreams` (Default: `8.8.8.8;8.8.4.4`)
