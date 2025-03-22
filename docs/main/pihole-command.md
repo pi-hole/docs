@@ -16,6 +16,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Log Flush](#log-flush) | `pihole flush` |
 | [Reconfigure](#reconfigure) | `pihole reconfigure` |
 | [Tail](#tail) | `pihole tail` |
+| [PADD](#padd) | `pihole padd` |
 | [Set password](#password) | `pihole setpassword` |
 | [Gravity](#gravity) | `pihole updateGravity` |
 | [Logging](#logging) | `pihole logging` |
@@ -101,6 +102,16 @@ There are times where the administrator will need to repair or reconfigure the P
 | Example Usage   | [`pihole tail`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#tailing-the-log) |
 
 Since Pi-hole will log DNS queries by default, using this command to watch the log in real-time can be useful for debugging a problematic site, or even just for sheer curiosities sake.
+
+### PADD
+
+| | |
+| -------------- | -------------- |
+| Help Command    | `pihole -c --help` or `padd --help` |
+| Script Location | [`/usr/local/bin/padd`](https://github.com/pi-hole/PADD/blob/master/padd.sh) |
+| Example Usage   | [`pihole -c`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#chronometer)  or just `padd`|
+
+PADD (formerly Chronometer2) is a more expansive version of the original chronometer.sh that was included with Pi-Hole. PADD provides in-depth information about your Pi-hole.
 
 ### Gravity
 
