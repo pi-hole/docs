@@ -69,7 +69,7 @@ daemon_interval="300"
 
 ### Example: Strato DynDNS
 
-In the following, we give an example of how to set up `ddclient` using the German Internet hosting provider Strato. First, you need to create a subdomain. Then you need to enable DnyDNS for this domain:
+In the following, we give an example of how to set up `ddclient` using the German Internet hosting provider Strato. First, you need to create a subdomain. Then you need to enable DynDNS for this domain:
 
 ![](Strato-DynDNS-Domain.png)
 
