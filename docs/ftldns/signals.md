@@ -33,15 +33,13 @@ When FTL receives a `SIGHUP`, it clears the entire DNS cache, and then
 
 While `SIGHUP` updates/flushes almost everything, such a massive operation is often not necessary. Hence, we added several small real-time signals available for fine-grained control of what FTL does. When you see `SIGHUP` as a "big gun", the real-time signals are rather the "scalpel" to serve rather specific needs.
 
-Real-time signals are not guaranteed to have the same number on all operating systems. FTL will adapt accordingly. For the signals described below, we will always specify them with the real-time signal ID and the *typical* signal number in parentheses.
-
-Real-time signal can always be executed relative to the first (= minimum) real-time signal just like (for real-time signal 0):
+Real-time signals are not guaranteed to have the same number on all operating systems as the value of the constant `SIGRTMIN` may vary. For the signals described below, we recommend using the exact signal number described in the parentheses, e.g., real-time signal 0 (35) can be sent like:
 
 ```bash
-sudo pkill -SIGRTMIN+0 pihole-FTL
+sudo pkill -SIG35 pihole-FTL
 ```
 
-## Real-time signal 0
+## Real-time signal 0 (35)
 
 This signal does:
 
@@ -55,30 +53,30 @@ The most important difference to `SIGHUP` is that the DNS cache itself is **not*
 
 This is the preferred signal to be used after manipulating the `gravity.db` database manually as it reloads only what is needed in this case.
 
-## Real-time signal 1
+## Real-time signal 1 (36)
 
 *Reserved* - Currently ignored
 
-## Real-time signal 2
+## Real-time signal 2 (37)
 
 *Reserved* - Used for internal signaling that a fork or thread crashed and needs to inform the main process to shut down, storing the last (valid) queries still into the long-term database.
 
-## Real-time signal 3
+## Real-time signal 3 (38)
 
 Reimport alias-clients from the database and recompute affected client statistics.
 
-## Real-time signal 4
+## Real-time signal 4 (39)
 
 Re-resolve all clients and forward destination hostnames. This forces refreshing hostnames as in that the usual "resolve only recently active clients" condition is ignored. The re-resolution adheres to the specified `REFRESH_HOSTNAMES` config option meaning that this option may not try to resolve all hostnames.
 
-## Real-time signal 5
+## Real-time signal 5 (40)
 
 Re-parse ARP/neighbour-cache now to update the Network table now
 
-## Real-time signal 6
+## Real-time signal 6 (41)
 
 *reserved* - Signal used internally to terminate the embedded `dnsmasq`. Please do not use this signal to prevent misbehaviour.
 
-## Real-time signal 7
+## Real-time signal 7 (42)
 
 Scan binary search lookup tables for hash collisions and report if any are found. This is a debugging signal and not meaningful production. Scanning the lookup tables is a time-consuming operation and may stall DNS resolution for a while on low-end devices.
