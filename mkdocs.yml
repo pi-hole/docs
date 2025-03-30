@@ -223,6 +223,10 @@ nav:
   - 'FAQ': main/faq.md
   - 'Community Projects': main/projects.md
 
+not_in_nav: |
+  /abbreviations.md
+  /guides/vpn/openvpn/deprecation_notice.md
+
 extra:
   social:
     - icon: fontawesome/solid/earth-americas
