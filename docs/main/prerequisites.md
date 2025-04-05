@@ -77,7 +77,6 @@ Pi-hole needs a static IP address to properly function (a DHCP reservation is ju
 | pihole-FTL          | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
 | pihole-FTL          | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
 | pihole-FTL          | 80  (HTTP)<br/>443   (HTTPS)    | TCP      | If you have another webserver already listening on port `80`/`443`, then `pihole-FTL` will attempt to bind to `8080`/`8443` instead. If neither of these ports are available, `pihole-FTL`'s webserver will be unavailable until ports are configured manually (see configuration option `webserver.port`)  |
-| pihole-FTL          | 4711    | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
 | pihole-FTL          | 123 (NTP)    | UDP      | The NTP server is an optional feature that requires an additional port. |
 
 !!! info
@@ -105,7 +104,6 @@ iptables -I INPUT 1 -s 127.0.0.0/8 -p udp -m udp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -p udp --dport 67:68 --sport 67:68 -j ACCEPT
-iptables -I INPUT 1 -p tcp -m tcp --dport 4711 -i lo -j ACCEPT
 iptables -I INPUT 1 -p udp --dport 123 -j ACCEPT
 iptables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
@@ -125,7 +123,6 @@ Using the `--permanent` argument will ensure the firewall rules persist reboots.
 firewall-cmd --permanent --add-service=http --add-service=https --add-service=dns --add-service=dhcp --add-service=dhcpv6 --add-service=ntp
 firewall-cmd --permanent --new-zone=ftl
 firewall-cmd --permanent --zone=ftl --add-interface=lo
-firewall-cmd --permanent --zone=ftl --add-port=4711/tcp
 firewall-cmd --reload
 ```
 
