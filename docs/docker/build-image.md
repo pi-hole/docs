@@ -7,7 +7,6 @@ In order to build the image locally, you will first need a copy of the repositor
 ```bash
 git clone https://github.com/pi-hole/docker-pi-hole
 cd docker-pi-hole
-git checkout development #NOTE: This step is only needed until V6 is released
 ```
 
 All other commands following assume you have at least run the above steps.
@@ -17,12 +16,12 @@ All other commands following assume you have at least run the above steps.
 ```text
 Usage: ./build.sh [-l] [-f <ftl_branch>] [-c <core_branch>] [-w <web_branch>] [-t <tag>] [use_cache]
 Options:
-  -f, --ftlbranch <branch>     Specify FTL branch (cannot be used in conjunction with -l)
+  -f, --ftlbranch <branch>     Specify FTL branch
   -c, --corebranch <branch>    Specify Core branch
   -w, --webbranch <branch>     Specify Web branch
   -p, --paddbranch <branch>    Specify PADD branch
   -t, --tag <tag>              Specify Docker image tag (default: pihole:local)
-  -l, --local                  Use locally built FTL binary (requires src/pihole-FTL file)
+  -l, --local                  Clones the FTL repository and builds the binary locally
   use_cache                    Enable caching (by default --no-cache is used)
 
 If no options are specified, the following command will be executed:
@@ -47,15 +46,23 @@ git checkout -b myNewFeatureBranch
 
 Occasionally you may need to try an alternative branch of one of the components (`core`,`web`,`ftl`). On bare metal you would run, for example, `pihole checkout core branchName`, however in the Docker image we have disabled this command as it can cause unpredictable results.
 
-#### Examples
-
-- You have been asked by a developer to checkout the FTL branch `new/Sensors`. To do so
+#### Alternative FTL branch using remote binary
 
 ```bash
 ./build.sh -f new/Sensors
 ```
 
-- There is new docker-specific work being carried out on the branch `fix/logRotate` that you wish to test
+#### Alternative FTL branch with locally built binary
+
+In this case, the FTL binary is built as part of the image building process
+
+```bash
+./build.sh -l -f new/Sensors
+```
+
+### Docker Specific alternative branch
+
+For example, there is new docker-specific work being carried out on the branch `fix/logRotate` that you wish to test
 
 ```bash
 git checkout fix/logRotate
