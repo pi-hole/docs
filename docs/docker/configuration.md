@@ -157,7 +157,8 @@ Create a text file called `pihole_password.txt` containing the password in the s
   correct horse battery staple
   ```
 
-Amend compose yaml file with Docker Secrets attributes.
+Amend the Compose yaml file with Docker Secrets attributes.
+Set `FTLCONF_webserver_api_password` to an empty string (this is required).
 
 ```yaml
 ---
@@ -170,6 +171,7 @@ services:
     # lines deleted
 
     environment:
+      FTLCONF_webserver_api_password: ''
       WEBPASSWORD_FILE: pihole_webpasswd
 
     # lines deleted
@@ -184,4 +186,3 @@ secrets:
     file: ./pihole_password.txt
 ...
 ```
-
