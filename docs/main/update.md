@@ -11,4 +11,4 @@ Updating is as simple as running the following command:
 
 Please refer to the [Guide in the Docker Docs](../docker/upgrading/index.md)
 
-Release Notes for Docker specic changes can be found on [GitHub](https://github.com/pi-hole/docker-pi-hole/releases)
+Release Notes for Docker specific changes can be found on [GitHub](https://github.com/pi-hole/docker-pi-hole/releases)
