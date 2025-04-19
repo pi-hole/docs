@@ -1,6 +1,6 @@
 # Pi-hole regular expressions tutorial
 
-We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing rules to deny or allow domains (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
+We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing rules to deny or allow domains (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[]{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
 
 ## Anchors (`^` and `$`)
 
@@ -104,7 +104,7 @@ Character class | Equivalent | Pi-hole specific | Interpretation
 `[[:space:]]` | `[ \f\n\r\t\v]` | Yes | white-space characters
 `[[:xdigit:]]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
 
-*) FTL matches case-insensitive by default as case does not matter in domain names
+* FTL matches case-insensitive by default as case does not matter in domain names
 
 Note that character classes are abbreviations, they need to be used in character groups, i.e., enclosed in `[]`. As such, the equivalent of `[0-9]` would be `[[:digit:]]`, *not* `[:digit:]`. It is allowed to mix character classes with classical character groups. For example, `[a-z0-9]` is identical to `[a-z[:digit:]]`.
 
