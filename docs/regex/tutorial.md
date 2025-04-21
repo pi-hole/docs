@@ -92,10 +92,10 @@ In addition to character groups, there are also some special character classes a
 Character class | Equivalent | Pi-hole specific | Interpretation
 --------------- | ---------------- | ---------------- | ---------------
 `[[:digit:]]` | `[0-9]` | No | digits
-`[[:lower:]]` | `[a-z]` | No | lowercase letters*
-`[[:upper:]]` | `[A-Z]` | No | uppercase letters*
-`[[:alpha:]]` | `[A-Za-z]` | No | alphabetic characters*
-`[[:alnum:]]` | `[A-Za-z0-9]` | No | alphabetic characters* and digits
+`[[:lower:]]` | `[a-z]` | No | lowercase letters[^*]
+`[[:upper:]]` | `[A-Z]` | No | uppercase letters[^*]
+`[[:alpha:]]` | `[A-Za-z]` | No | alphabetic characters[^*]
+`[[:alnum:]]` | `[A-Za-z0-9]` | No | alphabetic characters[^*] and digits
 `[[:blank:]]` | `[ \t]` | Yes | blank characters
 `[[:cntrl:]]` | N/A | Yes | control characters
 `[[:graph:]]` | N/A | Yes | all printable characters except space
@@ -104,7 +104,7 @@ Character class | Equivalent | Pi-hole specific | Interpretation
 `[[:space:]]` | `[ \f\n\r\t\v]` | Yes | white-space characters
 `[[:xdigit:]]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
 
-\* FTL matches case-insensitive by default as case does not matter in domain names
+[^*]: FTL matches case-insensitive by default as case does not matter in domain names
 
 Note that character classes are abbreviations, they need to be used in character groups, i.e., enclosed in `[]`. As such, the equivalent of `[0-9]` would be `[[:digit:]]`, *not* `[:digit:]`. It is allowed to mix character classes with classical character groups. For example, `[a-z0-9]` is identical to `[a-z[:digit:]]`.
 
