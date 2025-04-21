@@ -117,12 +117,10 @@ ip6tables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
 #### FirewallD
 
-Using the `--permanent` argument will ensure the firewall rules persist reboots. If only IPv4 blocking is used for the Pi-hole installation, the `dhcpv6` service can be removed from the commands below. Create a new zone for the local interface (`lo`) for the pihole-FTL ports to ensure the API is only accessible locally. Finally `--reload` to have the new firewall configuration take effect immediately.
+Using the `--permanent` argument will ensure the firewall rules persist reboots. If only IPv4 blocking is used for the Pi-hole installation, the `dhcpv6` service can be removed from the commands below. Finally `--reload` to have the new firewall configuration take effect immediately.
 
 ```bash
 firewall-cmd --permanent --add-service=http --add-service=https --add-service=dns --add-service=dhcp --add-service=dhcpv6 --add-service=ntp
-firewall-cmd --permanent --new-zone=ftl
-firewall-cmd --permanent --zone=ftl --add-interface=lo
 firewall-cmd --reload
 ```
 
