@@ -1,7 +1,7 @@
 # OpenWrt
 
-Here's a short guide to configure Pi-hole as the DNS server for your OpenWrt router. 
-This guide was written for OpenWrt version 24.10 but the principle should hold for any earlier or later release although Web UI might look different. 
+Here's a short guide to configure Pi-hole as the DNS server for your OpenWrt router.
+This guide was written for OpenWrt version 24.10 but the principle should hold for any earlier or later release although Web UI might look different.
 
 ## Requirements
 
@@ -11,7 +11,7 @@ This guide was written for OpenWrt version 24.10 but the principle should hold f
 
 ## Configuration
 
-Ensure Pi-hole has a fixed IP. For example: `192.168.1.2`. 
+Ensure Pi-hole has a fixed IP. For example: `192.168.1.2`.
 
 ### Option 1: Tell DHCP clients to use Pi-hole (Recommended)
 
@@ -52,7 +52,7 @@ $ /etc/init.d/dnsmasq restart
 
 ### Restart Network Clients
 
-Reboot your devices or release/renew their DHCP leases so they pick up the new DNS server. 
+Reboot your devices or release/renew their DHCP leases so they pick up the new DNS server.
 
 ## Verification
 
@@ -69,4 +69,4 @@ Server:		192.168.1.2
 Address:	192.168.1.2#53
 ````
 
-Visit the Pi-hole dashboard at http://192.168.1.2/admin and check query log for activity. 
+Visit the Pi-hole dashboard at http://192.168.1.2/admin and check query log for activity.
