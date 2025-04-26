@@ -19,9 +19,7 @@ Ensure Pi-hole has a fixed IP. For example: `192.168.1.2`.
 
 For the selected interface, eg *lan*, click *Edit*. Then under *DHCP Server* > *Advanced settings* set *DHCP-Options*:
 
-```
-6,192.168.1.2
-```
+`6,192.168.1.2`
 
 *Meaning: 6 = DNS server, followed by IP.*
 
@@ -29,9 +27,11 @@ For the selected interface, eg *lan*, click *Edit*. Then under *DHCP Server* > *
 
 #### Terminal:
 
-    $ uci add_list dhcp.lan.dhcp_option='6,192.168.1.2'
-    $ uci commit dhcp
-    $ /etc/init.d/dnsmasq restart
+```shell
+$ uci add_list dhcp.lan.dhcp_option='6,192.168.1.2'
+$ uci commit dhcp
+$ /etc/init.d/dnsmasq restart
+```
 
 ### Option 2: Forward requests to Pi-hole
 *Note: This makes all requests look like they come from the router in Pi-hole.*
@@ -44,7 +44,7 @@ Add your Pi-hole IP under DNS forwards
 
 #### Terminal:
 
-```
+```shell
 $ uci add_list dhcp.@dnsmasq[0].server='192.168.1.2'
 $ uci commit dhcp
 $ /etc/init.d/dnsmasq restart
@@ -58,15 +58,11 @@ Reboot your devices or release/renew their DHCP leases so they pick up the new D
 
 On a client, run:
 
-```
+```shell
 $ nslookup example.com
-```
-
-Ensure the server address is your Pi-hole IP.
-
-```
 Server:		192.168.1.2
 Address:	192.168.1.2#53
-````
+```
+Ensure the server address is your Pi-hole IP.
 
 Visit the Pi-hole dashboard at http://192.168.1.2/admin and check query log for activity.
