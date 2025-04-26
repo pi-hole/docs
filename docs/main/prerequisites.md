@@ -44,6 +44,19 @@ Pi-hole only supports actively maintained versions of these systems.
 
 <!-- markdownlint-enable code-block-style -->
 
+### Binary architecture
+
+Core part of Pi-hole is the FTL binary which does all the DNS handling. It's provided pre-build for the following architectures
+
+- x86_64 (amd64 and i686)
+- armv6
+- armv7
+- armv8 (aarch64)
+- riscv64
+
+If you need another architecture, you need to compile [FTL from source](../ftldns/compile.md). To ease installation/upgrading you can set the
+flag `--skipFTL` to the installer and upgrade command to skip the FTL binary check. Note that you need to copy the self-build binary to `/usr/bin/pihole-FTL` before you run the installer the first time.
+
 ## IP Addressing
 
 Pi-hole needs a static IP address to properly function (a DHCP reservation is just fine).
