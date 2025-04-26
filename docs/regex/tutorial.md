@@ -104,6 +104,8 @@ Character class | Equivalent | Pi-hole specific | Interpretation
 `[[:space:]]` | `[ \f\n\r\t\v]` | Yes | white-space characters
 `[[:xdigit:]]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
 
+///Footnotes Go Here///
+
 [^*]: FTL matches case-insensitive by default as case does not matter in domain names
 
 Note that character classes are abbreviations, they need to be used in character groups, i.e., enclosed in `[]`. As such, the equivalent of `[0-9]` would be `[[:digit:]]`, *not* `[:digit:]`. It is allowed to mix character classes with classical character groups. For example, `[a-z0-9]` is identical to `[a-z[:digit:]]`.
