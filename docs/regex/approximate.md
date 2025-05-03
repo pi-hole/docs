@@ -44,8 +44,7 @@ Use `(something){#x}` to specify that the regex should still match when `x` char
 Example 1:
 
 - `oobargoobaploowap` is matched by `(foobar){#2}`
-
-    Hint: `goobap` is `foobar` with `f` substituted for `g` and `r` substituted for `p`
+    - Hint: `goobap` is `foobar` with `f` substituted for `g` and `r` substituted for `p`
 
 Example 2:
 
@@ -72,10 +71,9 @@ All rules from above can be combined, for example `{+2-5#6}` allows up to 2 inse
 Example:
 
 - `oobargoobploowap` is matched by `(foobar){+2#2~3}`
-
-    Hint: `goobaap` is `foobar` with
-            - 2 substitutions (`f` to `g` and `r` to `p`)
-            - 1 addition (`a` in `bar` to make `baap`)
+    - Hint: `goobaap` is `foobar` with
+        - 2 substitutions (`f` to `g` and `r` to `p`)
+        - 1 addition (`a` in `bar` to make `baap`)
 
 Specifying `~2` instead of `~3` will not match as there are 3 errors which need to be corrected in this example.
 
@@ -86,10 +84,14 @@ You can even weight the "costs" of insertions, deletions or substitutions. This 
 A *cost-equation* can be thought of as a mathematical equation where `i`, `d`, and `s` stand for the number of insertions, deletions, and substitutions respectively. The equation can have a multiplier for each of `i`, `d`, and `s`.
 The multiplier is the **cost of the error**, and the number after `<` is the maximum allowed total cost of a match. Spaces and pluses can be inserted to make the equation more readable. When specifying only a cost equation, adding a space after the opening `{` is **required**.
 
-Example 1: `{ 2i + 1d + 2s < 5 }`
+Example 1:
+
+- `{ 2i + 1d + 2s < 5 }`
 
 This sets the cost of an insertion to 2, a deletion to 1, a substitution to 2, and the maximum cost to 5.
 
-Example 2: `{ +2-5#6, 2i + 1d + 2s < 5 }`
+Example 2:
+
+- `{ +2-5#6, 2i + 1d + 2s < 5 }`
 
 This sets the cost of an insertion to 2, a deletion to 1, a substitution to 2, and the maximum cost to 5. Furthermore, it allows only up to 2 insertions (for a total cost of 4), up to 5 deletions, and up to 6 substitutions. As 6 substitutions would come at a cost of `6*2 = 12`, exceeding the total allowed costs of 5, they cannot all be performed.
