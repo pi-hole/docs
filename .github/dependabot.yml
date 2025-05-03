@@ -9,8 +9,6 @@ updates:
     target-branch: master
     open-pull-requests-limit: 10
     versioning-strategy: increase
-    reviewers:
-      - "pi-hole/docs-maintainers"
     groups:
       npm-dependencies:
         patterns:
@@ -26,8 +24,6 @@ updates:
     allow:
       - dependency-type: direct
       - dependency-type: indirect
-    reviewers:
-      - "pi-hole/docs-maintainers"
     groups:
       pip-dependencies:
         patterns:
@@ -38,8 +34,6 @@ updates:
       interval: weekly
       day: saturday
       time: "10:00"
-    reviewers:
-      - "pi-hole/docs-maintainers"
     groups:
       github_action-dependencies:
         patterns:
