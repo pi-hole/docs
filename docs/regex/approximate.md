@@ -58,7 +58,7 @@ The incorrect `t` in `ntt` is substituted. Note that substitutions are necessary
 
 - `doubleclick.nt` is **also** matched by `^doubleclick\.n(tt){+1-1}$`
 
-(the `t` is removed but nothing has to be added) but
+(the `t` is removed, but nothing has to be added) but
 
 - `doubleclick.nt` is **not** matched by `^doubleclick\.n(tt){#1}$`
 
