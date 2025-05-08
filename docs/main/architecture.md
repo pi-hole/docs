@@ -8,8 +8,8 @@ This document provides a comprehensive overview of the Pi-hole architecture insp
 - [Level 2: Container Diagram](#level-2-container-diagram)
 - [Level 3: Component Diagram](#level-3-component-diagram)
 - [Additional Diagrams](#additional-diagrams)
-  - [DNS Query Flow](#dns-query-flow)
-  - [Blocklist Update Process](#blocklist-update-process)
+    - [DNS Query Flow](#dns-query-flow)
+    - [Blocklist Update Process](#blocklist-update-process)
 
 ## Level 1: System Context
 
@@ -47,12 +47,19 @@ graph TB
 ```
 
 The System Context diagram shows:
+
 - **Network Users**: People using devices on the network protected by Pi-hole
+
 - **Pi-hole Administrator**: Person who configures and maintains the Pi-hole system
+
 - **Client Devices**: Computers, phones, smart TVs, and other devices on the network
+
 - **Network Router**: Directs network traffic and is configured to use Pi-hole as the DNS server
+
 - **Upstream DNS Servers**: External DNS servers that Pi-hole forwards allowed queries to
+
 - **Ad List Providers**: Sources of domain blocklists that Pi-hole downloads
+
 - **Internet**: The broader internet that devices access through Pi-hole's filtering
 
 ## Level 2: Container Diagram
@@ -114,11 +121,17 @@ flowchart TB
 ```
 
 The Container diagram shows:
+
 - **FTL DNS Service**: The core DNS service that processes queries and blocks ads
+
 - **Web Admin Interface**: The web-based dashboard for managing Pi-hole
+
 - **Command Line Interface**: The terminal-based interface for administration
+
 - **Gravity Updater**: The component that downloads and processes blocklists
+
 - **Databases**: The Gravity DB (for blocklists) and FTL DB (for statistics)
+
 - **Configuration Files**: Settings that control Pi-hole's behavior
 
 ## Level 3: Component Diagram
@@ -176,12 +189,19 @@ flowchart TB
 ```
 
 The Component diagram shows:
+
 - **DNS Resolver**: Handles incoming DNS queries and returns responses
+
 - **Query Analyzer**: Processes queries to determine if they should be blocked
+
 - **Blocking Engine**: Implements the blocking logic based on blocklists
+
 - **Cache Manager**: Manages the DNS cache for improved performance
+
 - **API Server**: Provides an HTTP API for the Web Admin Interface
+
 - **Telnet Server**: Provides a telnet interface for direct queries
+
 - **Statistics Collector**: Gathers and stores statistics about DNS queries
 
 
@@ -226,6 +246,7 @@ sequenceDiagram
 ```
 
 This sequence diagram shows:
+
 1. A client device sends a DNS query to the router
 2. The router forwards the query to Pi-hole's FTL service
 3. FTL checks if the domain is in its cache
@@ -277,6 +298,7 @@ flowchart TD
 ```
 
 This flowchart shows:
+
 1. The process starts with checking internet connectivity
 2. Blocklists are fetched from various sources
 3. Lists are processed, deduplicated, and filtered
