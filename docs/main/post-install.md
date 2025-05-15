@@ -21,7 +21,7 @@ static domain_name_servers=127.0.0.1
 
 ## Adding your local user to the 'pihole' group
 
-Since version 6 Pi-hole uses a new API for authentication. All CLI commands use this API instead of e.g. direct database manipulation. If a password is set for API access, the CLI commands also need to authenticate. To avoid entering the password everytime on CLI, Pi-hole allows users which are members of the 'pihole' group to authenicate without manually entering the password (this can be disabled with setting `webserver.api.cli_pw` to `false`.)
+Pi-hole v6 uses a new API for authentication. All CLI commands use this API instead of e.g. direct database manipulation. If a password is set for API access, the CLI commands also need to authenticate. To avoid entering the password everytime on CLI, Pi-hole allows users which are members of the 'pihole' group to authenicate without manually entering the password (this can be disabled by setting `webserver.api.cli_pw` to `false`.)
 To add your local user to the 'pihole' group use the following command
 
 For Debian/Ubuntu/Raspberry Pi OS/Armbian/Fedora/CentOS
