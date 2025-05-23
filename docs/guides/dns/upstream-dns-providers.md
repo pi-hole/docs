@@ -1,11 +1,10 @@
-The Pi-hole setup offers 10 options for an upstream DNS provider during the initial setup.
+The Pi-hole setup offers nine options for an upstream DNS provider during the initial setup.
 
 ```text
 Google
 OpenDNS
 Level3
 Comodo
-DNS.WATCH
 Quad9
 Quad9 (unfiltered)
 Quad9 (ECS)
@@ -63,17 +62,6 @@ SecureDNS references a real-time block list (RBL) of harmful websites (i.e. phis
 - 8.20.247.20
 
 [More information on Comodo Secure DNS](https://www.comodo.com/secure-dns/)
-
-### DNS.WATCH
-
-DNS.WATCH offers Fast, free and uncensored DNS resolution.
-
-- 84.200.69.80
-- 84.200.70.40
-- 2001:1608:10:25::1c04:b12f (IPv6)
-- 2001:1608:10:25::9249:d69b (IPv6)
-
-[More information on DNS.WATCH](https://dns.watch/)
 
 ### Quad9
 
