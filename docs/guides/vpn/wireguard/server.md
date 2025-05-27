@@ -164,7 +164,7 @@ There are many excellent guides and a lot of services offer this for free (with 
 
     - [noip.com](https://www.noip.com/support/knowledgebase/getting-started-with-no-ip-com/)
 
-        You can up to three hostnames like `myname.no-ip.org` for free. A disadvantage is that you have to confirm the domains at least every 30 days, otherwise they will be deleted.
+        You can register up to three hostnames like `myname.no-ip.org` for free. A disadvantage is that you have to confirm the domains at least every 30 days, otherwise they will be deleted.
 
     - [Dyn.com](https://account.dyn.com/)
 
