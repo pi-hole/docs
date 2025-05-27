@@ -101,7 +101,7 @@ umask 077
 
 ### Key generation
 
-Inhere, we generate a key-pair for the server:
+In here, we generate a key-pair for the server:
 
 ```bash
 wg genkey | tee server.key | wg pubkey > server.pub
