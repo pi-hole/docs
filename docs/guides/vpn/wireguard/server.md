@@ -9,7 +9,7 @@
 
 ## Installing the server components
 
-Installing everything we will need for a `wireguard` connections is as simple as running:
+Installing everything we will need for a `wireguard` connection is as simple as running:
 
 ```bash
 sudo apt-get install wireguard wireguard-tools
