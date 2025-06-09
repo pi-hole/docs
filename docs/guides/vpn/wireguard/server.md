@@ -9,7 +9,7 @@
 
 ## Installing the server components
 
-Installing everything we will need for a `wireguard` connections is as simple as running:
+Installing everything we will need for a `wireguard` connection is as simple as running:
 
 ```bash
 sudo apt-get install wireguard wireguard-tools
@@ -101,7 +101,7 @@ umask 077
 
 ### Key generation
 
-Inhere, we generate a key-pair for the server:
+In here, we generate a key-pair for the server:
 
 ```bash
 wg genkey | tee server.key | wg pubkey > server.pub
@@ -164,7 +164,7 @@ There are many excellent guides and a lot of services offer this for free (with 
 
     - [noip.com](https://www.noip.com/support/knowledgebase/getting-started-with-no-ip-com/)
 
-        You can up to three hostnames like `myname.no-ip.org` for free. A disadvantage is that you have to confirm the domains at least every 30 days, otherwise they will be deleted.
+        You can register up to three hostnames like `myname.no-ip.org` for free. A disadvantage is that you have to confirm the domains at least every 30 days, otherwise they will be deleted.
 
     - [Dyn.com](https://account.dyn.com/)
 
