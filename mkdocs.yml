@@ -213,6 +213,7 @@ nav:
         - 'Performance and other issues': guides/misc/tor/performance-issues.md
         - 'Using DNSSEC': guides/misc/tor/dnssec.md
       - 'Allowlist and Denylist editing': guides/misc/allowlist-denylist.md
+      - 'Network Time Protocol': guides/misc/ntp.md
   - 'Router setup':
     - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
@@ -223,6 +224,10 @@ nav:
     - 'Ubiquiti USG': routers/ubiquiti-usg.md
   - 'FAQ': main/faq.md
   - 'Community Projects': main/projects.md
+
+not_in_nav: |
+  /abbreviations.md
+  /guides/vpn/openvpn/deprecation_notice.md
 
 extra:
   social:
@@ -238,7 +243,8 @@ extra_css:
 
 plugins:
   - search
-  - git-revision-date-localized
+  - git-revision-date-localized:
+      fallback_to_build_date: true
   - redirects:
       redirect_maps:
         'ftldns/database.md': database/index.md

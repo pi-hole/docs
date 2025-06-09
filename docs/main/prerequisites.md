@@ -36,32 +36,10 @@ Pi-hole only supports actively maintained versions of these systems.
 
 <!-- markdownlint-disable code-block-style -->
 !!! info
-    One of the first tasks the install script has is to determine your Operating System's compatibility with Pi-hole
+    Pi-hole may be able to install and run on variants of the above, but we cannot test all of them.
+    It's possible that that the installation may still fail due to an unsupported configuration or specific OS version.
 
-    It is possible that Pi-hole will install and run on variants of the above, but we cannot test them all. If you are using an operating system not on this list you may see the following message:
-
-    ```bash
-    [✗] Unsupported OS detected: Debian 16
-      If you are seeing this message and you do have a supported OS, please contact support.
-
-      https://docs.pi-hole.net/main/prerequisites/#supported-operating-systems
-
-      If you wish to attempt to continue anyway, you can try one of the following commands to skip this check:
-
-      e.g: If you are seeing this message on a fresh install, you can run:
-             curl -sSL https://install.pi-hole.net | sudo PIHOLE_SKIP_OS_CHECK=true bash
-
-           If you are seeing this message after having run pihole -up:
-             sudo PIHOLE_SKIP_OS_CHECK=true pihole -r
-           (In this case, your previous run of pihole -up will have already updated the local repository)
-
-      It is possible that the installation will still fail at this stage due to an unsupported configuration.
-      If that is the case, you can feel free to ask the community on Discourse with the Community Help category:
-      https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/
-    ```
-
-    You can disable this check by setting an environment variable named `PIHOLE_SKIP_OS_CHECK` to `true`, however Pi-hole may have issues installing.
-    If you choose to use this environment variable, please use the [Community Help](https://discourse.pi-hole.net/c/bugs-problems-issues/community-help/36) topic on Discourse to troubleshoot any installation issues you may (or may not!) have.
+    Also, if you are using an operating system not on this list Pi-hole may not work.
 
 <!-- markdownlint-enable code-block-style -->
 
@@ -77,7 +55,6 @@ Pi-hole needs a static IP address to properly function (a DHCP reservation is ju
 | pihole-FTL          | 67  (DHCP)   | IPv4 UDP | The DHCP server is an optional feature that requires additional ports. |
 | pihole-FTL          | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
 | pihole-FTL          | 80  (HTTP)<br/>443   (HTTPS)    | TCP      | If you have another webserver already listening on port `80`/`443`, then `pihole-FTL` will attempt to bind to `8080`/`8443` instead. If neither of these ports are available, `pihole-FTL`'s webserver will be unavailable until ports are configured manually (see configuration option `webserver.port`)  |
-| pihole-FTL          | 4711    | TCP      | FTL is our API engine and uses port 4711 on the localhost interface. This port should not be accessible from any other interface.|
 | pihole-FTL          | 123 (NTP)    | UDP      | The NTP server is an optional feature that requires an additional port. |
 
 !!! info
@@ -105,7 +82,6 @@ iptables -I INPUT 1 -s 127.0.0.0/8 -p udp -m udp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p tcp -m tcp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -s 192.168.0.0/16 -p udp -m udp --dport 53 -j ACCEPT
 iptables -I INPUT 1 -p udp --dport 67:68 --sport 67:68 -j ACCEPT
-iptables -I INPUT 1 -p tcp -m tcp --dport 4711 -i lo -j ACCEPT
 iptables -I INPUT 1 -p udp --dport 123 -j ACCEPT
 iptables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ```
@@ -119,13 +95,10 @@ ip6tables -I INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
 #### FirewallD
 
-Using the `--permanent` argument will ensure the firewall rules persist reboots. If only IPv4 blocking is used for the Pi-hole installation, the `dhcpv6` service can be removed from the commands below. Create a new zone for the local interface (`lo`) for the pihole-FTL ports to ensure the API is only accessible locally. Finally `--reload` to have the new firewall configuration take effect immediately.
+Using the `--permanent` argument will ensure the firewall rules persist reboots. If only IPv4 blocking is used for the Pi-hole installation, the `dhcpv6` service can be removed from the commands below. Finally `--reload` to have the new firewall configuration take effect immediately.
 
 ```bash
 firewall-cmd --permanent --add-service=http --add-service=https --add-service=dns --add-service=dhcp --add-service=dhcpv6 --add-service=ntp
-firewall-cmd --permanent --new-zone=ftl
-firewall-cmd --permanent --zone=ftl --add-interface=lo
-firewall-cmd --permanent --zone=ftl --add-port=4711/tcp
 firewall-cmd --reload
 ```
 

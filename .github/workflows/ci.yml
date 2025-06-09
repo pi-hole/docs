@@ -17,19 +17,21 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - name: Clone repository
+        uses: actions/checkout@v4.2.2
         with:
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5.4.0
+        uses: actions/setup-python@v5.6.0
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
           architecture: "x64"
           cache: pip
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4.2.0
+        uses: actions/setup-node@v4.4.0
         with:
           node-version: "${{ env.NODE }}"
           cache: npm
@@ -40,8 +42,5 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Build docs
-        run: mkdocs build --strict
-
-      - name: Test
+      - name: Build and test
         run: npm test
