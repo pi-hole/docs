@@ -172,7 +172,7 @@ dig bogus.nlnetlabs.nl @127.0.0.1 -p 5335
 dig +ad cloudflare.com @127.0.0.1 -p 5335
 ```
 
-The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address in addition to a `ad` in the `flags:` section.
+The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address in addition to a `ad` in the `flags:` section. The `ad` signifies (Authentic Data), indicating the DNS response has been authenticated and validated using DNSSEC.
 
 ### Configure Pi-hole
 
