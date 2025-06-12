@@ -168,11 +168,11 @@ The first query may be quite slow, but subsequent queries, also to other domains
 You can test DNSSEC validation using
 
 ```bash
-dig fail01.dnssec.works @127.0.0.1 -p 5335
-dig dnssec.works @127.0.0.1 -p 5335
+dig bogus.nlnetlabs.nl @127.0.0.1 -p 5335
+dig +ad cloudflare.com @127.0.0.1 -p 5335
 ```
 
-The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
+The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address in addition to a 'ad' in the 'flags:'.
 
 ### Configure Pi-hole
 
