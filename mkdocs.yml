@@ -142,6 +142,7 @@ nav:
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
+    - 'Webserver': ftldns/webserver.md
     - 'Advanced':
         - 'Install from source': ftldns/compile.md
         - 'Signals': 'ftldns/signals.md'
@@ -246,7 +247,6 @@ plugins:
   - redirects:
       redirect_maps:
         'ftldns/database.md': database/index.md
-        'ftldns/regex/index.md': ftldns/regex/overview.md
         'main/presentations.md': index.md
         'main/prerequesites.md': main/prerequisites.md
         'guides/unbound.md': guides/dns/unbound.md
