@@ -150,14 +150,34 @@ $ docker compose -f compose.yaml
 
 ### `WEBPASSWORD_FILE` Example
 
-Create a text file called `pihole_password.txt` containing the password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
+This example takes advantage of Docker Secrets ([Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/)
+or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/)) which sets
+strict permissions for the secrets file in the container. The secrets file **must**
+share the user and group IDs (UID and GID) that the pihole executables have in the
+container. By default, this a UID and GID of 1000 but can be changed with the optional
+[PIHOLE_UID and PIHOLE_GID variables](https://github.com/pi-hole/docker-pi-hole/tree/development#optional-variables).
+
+Create a text file called, for example, `pihole_password.txt` containing the
+password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
 
   ```bash
-  $cat pihole_password.txt
+  $ cat pihole_password.txt
   correct horse battery staple
   ```
 
-Amend compose yaml file with Docker Secrets attributes.
+Set the permissions on the Docker host for `pihole_password.txt` (using the
+default UID and GID of 1000 in this example). Note that these permissions
+could make this file unreadable on the host. These permissions are used in
+the container.
+
+  ```bash
+  sudo chown 1000:1000 pihole_password.txt
+  sudo chmod 0400 pihole_password.txt
+  ```
+
+Amend compose yaml file with Docker Secrets attributes. The `/run/secrets/`
+path is automatically prepended to `pihole_password.txt` during the Pi-Hole container
+initialization process.
 
 ```yaml
 ---
@@ -184,4 +204,3 @@ secrets:
     file: ./pihole_password.txt
 ...
 ```
-
