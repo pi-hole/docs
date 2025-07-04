@@ -51,6 +51,9 @@ Scroll down to **IPv6**, and under the **DHCPv6/RDNSS DNS Control** section, unc
 
 All client devices on your network should now automatically be configured with a single IPv4 and single IPv6 address for DNS resolution. If you don't see your client devices update quickly enough, you *can* toggle Wi-Fi off/on or disconnect the Ethernet cable for a couple of seconds and then reconnect it.
 
+!!! note
+    The default pi-hole behavior (local requests), doesn't work if you have multiple VLANs. You should switch to another [interface](../ftldns/interfaces.md).
+
 ### Method 2: Using your Pi-hole as a resolve for your USG
 
 If you'd rather have your USG forward all DNS traffic to Pi-hole, you can complete this *alternative* step. Doing so will have DNS queries taking the following path:
@@ -66,6 +69,6 @@ Log into your Unifi Cloud Key. Go to **Settings** -> **Internet**. Click on the 
 
 ![Screenshot of USG WAN](../images/routers/usg-wan.png)
 
-Under **Advanced**, in the DNS Server section uncheck the Auto box and add your Raspi's IPv4 address. This allows your USG to use Pi-hole for all DNS lookups. Click **Apply Changes** to have the settings persistently saved.
+Toggle **Advanced** to "Manual". In the DNS Server section uncheck the Auto box and add your Raspi's IPv4 address. This allows your USG to use Pi-hole for all DNS lookups. Click **Apply Changes** to have the settings persistently saved.
 
 ![Screenshot of USG WAN Advanced settings](../images/routers/usg-wan-advanced.png)
