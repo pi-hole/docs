@@ -34,9 +34,16 @@ Go to **Settings** --> **Networks** and click on the Network line that you want 
 
 ![Screenshot of USG LAN](../images/routers/usg-lan.png)
 
-Under **DHCP**, in the DHCP Server Management section click "Show options" to reveal the **DHCP DNS Server** section. Check the **Enable** box and enter your Raspi's IPv4 address here.
+Make sure you are in the IPv4 section of the settings (indicated at the top):
 
-![Screenshot of USG LAN DHCP settings](../images/routers/usg-lan-dhcp.png)
+![Screenshot of USG LAN protocol switch](../images/routers/usg-lan-protocol.png)
+
+Toggle **Advanced** to "Manual" and scroll down to the DNS server section. Uncheck the **Auto** box and enter your Raspi's IPv4 address here.
+
+![Screenshot of USG LAN DNS settings](../images/routers/usg-lan-dns.png)
+
+!!! note
+    This part of the tutorial hasn't been updated to the most recent version. You have to switch to the IPv6 section and can enter a DNS server there.
 
 Scroll down to **IPv6**, and under the **DHCPv6/RDNSS DNS Control** section, uncheck **Auto** if it's enabled and enter Raspi's IPv6 address here. Click **Apply Changes** to have the settings persistently saved.
 
