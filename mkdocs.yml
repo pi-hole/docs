@@ -89,6 +89,8 @@ markdown_extensions:
   - markdown_include.include:
       base_path: docs
   - pymdownx.snippets:
+      # allow include external URL content
+      url_download: true
       # auto_append abbreviations.md to every file
       # https://squidfunk.github.io/mkdocs-material/reference/tooltips/#adding-a-glossary
       auto_append:
