@@ -170,7 +170,7 @@ Check Pi-hole Core, Web Interface and FTL repositories to determine what upgrade
 | --------------- | --------------- |
 | Help Command    | `pihole version` |
 | Script Location | [`/opt/pihole/version.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/version.sh) |
-| Example Usage   | `pihole -v -c` |
+| Example Usage   | `pihole -v` |
 
 Shows installed versions of Pi-hole, Web Interface & FTL. It also provides options to configure which details will be printed, such as the current version, latest version, hash and subsystem.
 
