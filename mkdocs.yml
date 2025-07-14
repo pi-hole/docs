@@ -168,6 +168,7 @@ nav:
       - 'Upgrading from v5.x': docker/upgrading/v5-v6.md
     - 'Building': docker/build-image.md
     - 'DHCP': docker/DHCP.md
+    - 'Tips and Tricks': docker/tips-and-tricks.md
   - 'Contributing':
     - 'Contributing': guides/github/index.md
     - 'Developer Certificate of Origin (DCO)': guides/github/dco.md
