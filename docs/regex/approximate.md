@@ -1,6 +1,6 @@
 # Approximative matching
 
-You may or not be know `agrep`. It is basically a "forgiving" `grep` and is, for instance, used for searching through (offline) dictionaries. It is tolerant against errors (up to degree you specify). It may be beneficial is you want to match against domains where you don't really know the pattern. It is just an idea, we will have to see if it is actually useful.
+You may or not know `agrep`. It is basically a "forgiving" `grep` and is, for instance, used for searching through (offline) dictionaries. It is tolerant against errors (up to degree you specify). It may be beneficial is you want to match against domains where you don't really know the pattern. It is just an idea, we will have to see if it is actually useful.
 
 This is a somewhat complicated topic, we'll approach it by examples as it is very complicated to get the head around it by just listening to the specifications.
 
