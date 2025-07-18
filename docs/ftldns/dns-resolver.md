@@ -20,7 +20,7 @@ Users can configure the size of the resolver's name cache. The default is 150 na
 
 #### Improve detection algorithm for determining the "best" forward destination
 
-The DNS forward destination determination algorithm in *FTL*DNS's is modified to be much less restrictive than the original algorithm in `dnsmasq`. We keep using the fastest responding server now for 1000 queries or 10 minutes (whatever happens earlier) instead of 50 queries or 10 seconds (default values in `dnsmasq`).
+The DNS forward destination determination algorithm in *FTL*DNS is modified to be much less restrictive than the original algorithm in `dnsmasq`. We keep using the fastest responding server now for 1000 queries or 10 minutes (whatever happens earlier) instead of 50 queries or 10 seconds (default values in `dnsmasq`).
 We keep the exceptions, i.e., we try all possible forward destinations if `SERVFAIL` or `REFUSED` is received or if a timeout occurs.
 Overall, this change has proven to greatly reduce the number of actually performed queries in typical Pi-hole environments. It may even be understood as being preferential in terms of privacy (as we send queries much less often to all servers).
 This has been implemented in commit [d1c163e](https://github.com/pi-hole/FTL/commit/d1c163e499a5cd9f311610e9da1e9365bbf81e89).

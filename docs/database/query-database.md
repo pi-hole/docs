@@ -40,7 +40,7 @@ The long-term database contains several tables:
 
 ### Query Table
 
-Label | Type | Allowed to by empty | Content
+Label | Type | Allowed to be empty | Content
 --- | --- | ---- | -----
 `id` | integer | No | autoincrement ID for the table, only used by SQLite3, not by *FTL*DNS
 `timestamp` | integer | No | Unix timestamp when this query arrived at *FTL*DNS (used as index)
@@ -73,7 +73,7 @@ If a query was influenced by a deny or allowlist entry, this field contains the 
 
 This table contains counter values integrated over the entire lifetime of the table
 
-Label | Type | Allowed to by empty | Content
+Label | Type | Allowed to be empty | Content
 --- | --- | ---- | -----
 `id` | integer | No | ID for the table used to select a counter (see below)
 `value` | integer | No | Value of a given counter
@@ -170,14 +170,14 @@ The `queries` `VIEW` reads repeating properties from linked tables to reduce bot
 
 #### `domain_by_id`
 
-Label | Type | Allowed to by empty | Content
+Label | Type | Allowed to be empty | Content
 --- | --- | --- | ---
 `id` | integer | No | ID of the entry. Used by `query_storage`
 `domain` | text | No | Domain name
 
 #### `client_by_id`
 
-Label | Type | Allowed to by empty | Content
+Label | Type | Allowed to be empty | Content
 --- | --- | --- | ---
 `id` | integer | No | ID of the entry. Used by `query_storage`
 `ip` | text | No | Client IP address
@@ -185,14 +185,14 @@ Label | Type | Allowed to by empty | Content
 
 #### `forward_by_id`
 
-Label | Type | Allowed to by empty | Content
+Label | Type | Allowed to be empty | Content
 --- | --- | --- | ---
 `id` | integer | No | ID of the entry. Used by `query_storage`
 `forward` | text | No | Upstream server identifier (`<ipaddr>#<port>`)
 
 #### `addinfo_by_id`
 
-Label | Type | Allowed to by empty | Content
+Label | Type | Allowed to be empty | Content
 --- | --- | --- | ---
 `id` | integer | No | ID of the entry. Used by `query_storage`
 `type` | integer | No | Type of the `content` field
@@ -205,7 +205,7 @@ Valid `type` IDs are currently
 
 ### Example for interaction with the long-term query database
 
-In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queries domains for all time, you could use
+In addition to the interactions the Pi-hole database API offers, you can also run your own SQL commands against the database. If you want to obtain the three most queried domains for all time, you could use
 
 ```bash
 sqlite3 "/etc/pihole/pihole-FTL.db" "SELECT domain,count(domain) FROM queries WHERE (STATUS == 2 OR STATUS == 3) GROUP BY domain ORDER BY count(domain) DESC LIMIT 3"

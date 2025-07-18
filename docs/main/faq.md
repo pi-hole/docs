@@ -20,7 +20,7 @@ In a normal setup this results in a “No such name” response from your DNS se
 
 Link to [Chromium's source code](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/chrome/browser/intranet_redirect_detector.cc#132) explaining the function.
 
-### Pi-hole update fails due to repository changed it's 'Suite' value
+### Pi-hole update fails due to repository changed its 'Suite' value
 
 This happens after a manual OS upgrade to the next major version on deb based systems. A typical message is
 

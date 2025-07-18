@@ -69,7 +69,7 @@ Before | After
 ![Android Firefox Untrusted](../images/api/android-pihole-untrusted.png) | ![Android Firefox Trusted](../images/api/android-pihole-trusted.png)
 ![Android Chrome Untrusted](../images/api/android-chrome-untrusted.png) | ![Android Chrome Trusted](../images/api/android-chrome-trusted.png)
 
-1. Go to you device's settings
+1. Go to your device's settings
 2. Navigate to "System Security" or "Security & location" (depending on your device)
 3. Navigate to "Credential storage" or similar (depending on your device)
 

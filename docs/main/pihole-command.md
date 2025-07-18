@@ -117,7 +117,7 @@ Gravity is one of the most important scripts of Pi-hole. Its main purpose is to 
 * It will determine Internet connectivity, and give time for `pihole-FTL` to be resolvable on low-end systems if has just been restarted
 * It extracts all URLs and domains from the `adlists` table in [`/etc/pihole/gravity.db`](../database/domain-database/index.md)
 * It runs through each URL, downloading it if necessary
-    * `curl` checks the servers `Last-Modified` header to ensure it is getting a newer version
+    * `curl` checks the server's `Last-Modified` header to ensure it is getting a newer version
 * It will attempt to parse the file into a domains-only format if necessary
 * Lists are merged, comments removed, sorted uniquely and stored in the `gravity` table of [`/etc/pihole/gravity.db`](../database/domain-database/index.md)
 * Gravity cleans up temporary content and reloads the DNS server

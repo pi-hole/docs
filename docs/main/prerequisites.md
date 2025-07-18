@@ -37,7 +37,7 @@ Pi-hole only supports actively maintained versions of these systems.
 <!-- markdownlint-disable code-block-style -->
 !!! info
     Pi-hole may be able to install and run on variants of the above, but we cannot test all of them.
-    It's possible that that the installation may still fail due to an unsupported configuration or specific OS version.
+    It's possible that the installation may still fail due to an unsupported configuration or specific OS version.
 
     Also, if you are using an operating system not on this list Pi-hole may not work.
 
@@ -104,7 +104,7 @@ firewall-cmd --reload
 
 #### ufw
 
-ufw stores all rules persistent, so you just need to execute the commands below.
+ufw stores all rules persistently, so you just need to execute the commands below.
 
 IPv4:
 
