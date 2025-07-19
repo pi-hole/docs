@@ -15,7 +15,7 @@
 
 If a DNS name exists in the cache, but its time-to-live (TTL) has expired only recently, the data will be used anyway (a refreshing from upstream is triggered). This can improve DNS query delays especially over unreliable or slow Internet connections. This feature comes at the expense of possibly sometimes returning out-of-date data and less efficient cache utilization, since old data cannot be flushed when its TTL expires, so the cache becomes mostly least-recently-used. To mitigate issues caused by massively outdated DNS replies, the maximum overaging of cached records is limited. We strongly recommend staying below 86400 (1 day) with this option. The default value of `dns.cache.optimizer` is one hour (`3600` seconds) which was carefully tested to provide a good balance between cache efficiency and query performance without having otherwise adverse effects. Our investigations revealed, that there has always been a grace time larger than an hour in addition to the TTL of DNS records, so this value should be safe for any practical use cases.
 
-## Cacheing of queries blocked upstream (`dns.cache.upstreamBlockedTTL`)
+## Caching of queries blocked upstream (`dns.cache.upstreamBlockedTTL`)
 
 This setting allows you to specify the TTL used for queries blocked upstream. Once the TTL expires, the query will be forwarded to the upstream server again to check if the block is still valid. Defaults to caching for one day (86400 seconds). Setting `dns.cache.upstreamBlockedTTL` to zero disables caching of queries blocked upstream.
 

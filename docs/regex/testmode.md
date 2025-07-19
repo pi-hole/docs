@@ -6,7 +6,7 @@ In order to ease regex development, we added a regex test mode to `pihole-FTL` w
 pihole-FTL regex-test doubleclick.net
 ```
 
-(test `doubleclick.net` against all regexs in the gravity database), or
+(test `doubleclick.net` against all regexes in the gravity database), or
 
 ```bash
 pihole-FTL regex-test doubleclick.net "(^|\.)double"

@@ -142,6 +142,7 @@ nav:
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
+    - 'Webserver': ftldns/webserver.md
     - 'Advanced':
         - 'Install from source': ftldns/compile.md
         - 'Signals': 'ftldns/signals.md'
@@ -167,6 +168,7 @@ nav:
       - 'Upgrading from v5.x': docker/upgrading/v5-v6.md
     - 'Building': docker/build-image.md
     - 'DHCP': docker/DHCP.md
+    - 'Tips and Tricks': docker/tips-and-tricks.md
   - 'Contributing':
     - 'Contributing': guides/github/index.md
     - 'Developer Certificate of Origin (DCO)': guides/github/dco.md
@@ -246,7 +248,6 @@ plugins:
   - redirects:
       redirect_maps:
         'ftldns/database.md': database/index.md
-        'ftldns/regex/index.md': ftldns/regex/overview.md
         'main/presentations.md': index.md
         'main/prerequesites.md': main/prerequisites.md
         'guides/unbound.md': guides/dns/unbound.md
