@@ -167,7 +167,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
 
 !!! warning "overflow: `NUMBER` log entries lost"
 
-    When using asynchronous logging and the disk is too slow, we can loose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
+    When using asynchronous logging and the disk is too slow, we can lose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
 
 !!! warning "failed to create listening socket for `ADDRESS`: `MSG`"
 
