@@ -33,7 +33,16 @@ When FTL receives a `SIGHUP`, it clears the entire DNS cache, and then
 
 While `SIGHUP` updates/flushes almost everything, such a massive operation is often not necessary. Hence, we added several small real-time signals available for fine-grained control of what FTL does. When you see `SIGHUP` as a "big gun", the real-time signals are rather the "scalpel" to serve rather specific needs.
 
-Real-time signals are not guaranteed to have the same number on all operating systems as the value of the constant `SIGRTMIN` may vary. For the signals described below, we recommend using the exact signal number described in the parentheses, e.g., real-time signal 0 (35) can be sent like:
+<!-- markdownlint-disable code-block-style -->
+!!! warning "Real-time signals vary"
+    Real-time signals are not guaranteed to have the same number on all operating systems as the value of the constant `SIGRTMIN` may vary.
+    You can check the value on your system with
+
+    ```bash
+    pihole-FTL sigrtmin
+    ```
+<!-- markdownlint-enable code-block-style -->
+For the signals described below, we recommend using the exact signal number described in the parentheses, e.g., real-time signal 0 (assuming `RTMIN=35`) can be sent like:
 
 ```bash
 sudo pkill -SIG35 pihole-FTL
