@@ -54,7 +54,7 @@ Core part of Pi-hole is the FTL binary which does all the DNS handling. It's pro
 - riscv64
 
 If you need another architecture, you need to compile [FTL from source](../ftldns/compile.md). To ease installation/upgrading you can set the
-environment variable `PIHOLE_SKIP_FTL_CHECK = true` in the same way as `PIHOLE_SKIP_OS_CHECK` for an unsupported OS (see above). Note that you need to copy the self-build binary to `/usr/bin/pihole-FTL` before you run the installer the first time.
+flag `--skipFTL` to the installer and upgrade command to skip the FTL binary check. Note that you need to copy the self-build binary to `/usr/bin/pihole-FTL` before you run the installer the first time.
 
 
 ### IP Addressing
