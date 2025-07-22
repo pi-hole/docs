@@ -41,6 +41,8 @@ While `SIGHUP` updates/flushes almost everything, such a massive operation is of
     ```bash
     pihole-FTL sigrtmin
     ```
+
+    If the output differs on your system, you need to adapt the numerical values in the remainder of this page.
 <!-- markdownlint-enable code-block-style -->
 For the signals described below, we recommend using the exact signal number described in the parentheses, e.g., real-time signal 0 (assuming `RTMIN=35`) can be sent like:
 
