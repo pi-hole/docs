@@ -8,7 +8,7 @@ The standard Pi-hole customization abilities apply to this docker, but with dock
 ## Upgrading / Repairing
 
 !!! Note
-    The normal Pi-hole functions to upgrade (`pihole -up`) or repair (`pihole -r`) are disabled within the docker container. New images will be released, and you can upgrade by replacing your old container with a fresh upgraded image, which is more in line with the 'docker way'. Long-living docker containers are not the docker way since they aim to be portable and reproducible, why not re-create them often! Just to prove you can.
+    The normal Pi-hole functions to upgrade (`pihole -up`) or repair (`pihole -r`) are disabled within the docker container. New images will be released, and you can upgrade by replacing your old container with a fresh upgraded image, which is more in line with the 'docker way'. Long-living docker containers are not the docker way since they aim to be portable and reproducible, why not re-create them often!
 
 ### Docker Compose
 
