@@ -14,7 +14,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Allowlisting, Denylisting and Regex](#allowlisting-denylisting-and-regex) | `pihole allow`, `pihole deny`, `pihole --regex`, `pihole --wild`, `pihole --allow-regex`, `pihole --allow-wild` |
 | [Debugger](#debugger) | `pihole debug` |
 | [Log Flush](#log-flush) | `pihole flush` |
-| [Reconfigure](#reconfigure) | `pihole reconfigure` |
+| [Repair](#repair) | `pihole repair` |
 | [Tail](#tail) | `pihole tail` |
 | [Set password](#password) | `pihole setpassword` |
 | [Gravity](#gravity) | `pihole updateGravity` |
@@ -75,22 +75,19 @@ The Pi-hole debugger will attempt to diagnose any issues, and link to an FAQ wit
 
 When invoked manually, this command will allow you to empty Pi-hole's log, which is located at `/var/log/pihole/pihole.log`. The command also serves to rotate the log daily, if the `logrotate` application is installed.
 
-### Reconfigure
+### Repair
 
 | | |
 | -------------- | -------------- |
 | Help Command    | N/A |
 | Script Location | [`/etc/.pihole/automated install/basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) |
-| Example Usage   | `pihole reconfigure` |
+| Example Usage   | `pihole repair` |
 
-There are times where the administrator will need to repair or reconfigure the Pi-hole installation, which is performed via this command.
+There are times where the administrator will need to repair the Pi-hole installation, which is performed via this command.
 
 **Basic Script Process**:
 
-* [`basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) will be run
-    * **Reconfigure** will run through the first-time installation prompts, asking for upstream DNS provider, IP protocols, etc
-    * **Repair** will retain your existing settings and will attempt to repair any scripts or dependencies as necessary
-* The rest of `basic-install.sh` will then run as appropriate
+* [`basic-install.sh`](https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh) will be run with **Repair** option, which will retain your existing settings and will attempt to repair any scripts or dependencies as necessary. The rest of `basic-install.sh` will then run as appropriate.
 
 ### Tail
 
