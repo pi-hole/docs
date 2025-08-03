@@ -2,7 +2,7 @@ Before installing Pi-hole, you need to make sure your system meets the [prerequi
 
 After the installation is complete, check the [Post-Install steps](post-install.md) to make sure your network is using Pi-hole.
 
-With the [`pihole` command](pihole-command.md), you can manually run Pi-hole commands, including [update Pi-hole](update.md).
+With the [`pihole` command](pihole-command.md), you can manually run Pi-hole commands, including [a command which updates Pi-hole](update.md).
 
 Alternatively, you can also use the [web interface](https://github.com/pi-hole/web/) to run and configure your Pi-hole.
 
