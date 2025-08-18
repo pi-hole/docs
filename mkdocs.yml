@@ -203,6 +203,9 @@ nav:
         - 'Optional: Full and DNS-only': guides/vpn/openvpn/dual-VPN.md
         - 'Optional: Dynamic DNS': guides/vpn/openvpn/dynDNS.md
         - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
+    - 'TLS/SSL':
+      - 'Creating Your Own Self-Signed SSL Certificates': guides/ssl/self-signed.md
+      - 'Automating Certificate Renewal': guides/ssl/automatic-renewal.md
     - 'Misc':
       - 'Home Assistant': guides/misc/homeassistant.md
       - 'Benchmarking': guides/misc/benchmark.md
