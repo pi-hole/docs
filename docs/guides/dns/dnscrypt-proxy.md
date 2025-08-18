@@ -6,14 +6,14 @@ As an alternative tool to this end, consider [cloudflared](https://github.com/cl
 
 ### Installing `dnscrypt-proxy`
 
-Under Debian 13 `Trixie` and Ubuntu 25 `Plucky Puffin` official packages are available and therefore can be installed with the following commands:
+Under Debian 13 `Trixie` and Ubuntu 25 `Plucky Puffin` and later, official packages are available and therefore can be installed with the following commands:
 
 ```bash
 sudo apt update
 sudo apt install dnscrypt-proxy
 ```
 
-However for those using older versions of Debian, Ubuntu or Raspberry Pi OS, [instructions for installation](https://github.com/DNSCrypt/dnscrypt-proxy/wiki/Installation-linux#installation-on-linux-overview) can be found on the official wiki for `dnscrypt-proxy`.
+However for those using distributions which don't provide an official package, [instructions for installation](https://github.com/DNSCrypt/dnscrypt-proxy/wiki/Installation-linux#installation-on-linux-overview) can be found on the official wiki for `dnscrypt-proxy`, which provides agnostic support for installation without using a package manager.
 
 ### Configuring `dnscrypt-proxy`
 
