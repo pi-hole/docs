@@ -269,6 +269,54 @@ Lastly, restart unbound:
 sudo service unbound restart
 ```
 
+### Common Issues & Troubleshooting
+
+#### Fix `so-rcvbuf` warning in unbound
+
+The configuration in `/etc/unbound/unbound.conf.d/pi-hole.conf` sets the **socket receive buffer size** for incoming DNS queries to a higher-than-default value in order to handle high query rates:
+
+```bash
+so-rcvbuf: 1m
+```
+
+As a result, you may see this warning in unbound logs:
+
+```bash
+so-rcvbuf 1048576 was not granted. Got 425984. To fix: start with root permissions(linux) or sysctl bigger net.core.rmem_max(linux) or kern.ipc.maxsockbuf(bsd) values.
+```
+
+To fix it:
+
+1. Check the current limit. This will show something like `net.core.rmem_max = 425984`:
+
+    ```bash
+    sudo sysctl net.core.rmem_max
+    ```
+
+2. Temporarily increase the limit to match unbound's request:
+
+    ```bash
+    sudo sysctl -w net.core.rmem_max=1048576
+    ```
+
+3. Make it permanent. Edit `/etc/sysctl.conf` and add or edit the line:
+
+    ```bash
+    net.core.rmem_max=1048576
+    ```
+
+4. Save and apply:
+
+    ```bash
+    sudo sysctl -p
+    ```
+
+5. Restart unbound:
+
+    ```bash
+    sudo service unbound restart
+    ```
+
 ### Uninstall `unbound`
 
 To remove `unbound` from your system run
