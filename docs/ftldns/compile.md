@@ -27,9 +27,9 @@ sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libi
 Compile and install a recent version using:
 
 ```bash
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.9.1.tar.gz
-tar -xzf nettle-3.9.1.tar.gz
-cd nettle-3.9.1
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.10.2.tar.gz
+tar -xzf nettle-3.10.2.tar.gz
+cd nettle-3.10.2
 ./configure --libdir=/usr/local/lib --enable-static --disable-shared --disable-openssl --disable-mini-gmp -disable-gcov --disable-documentation
 make -j $(nproc)
 sudo make install
@@ -44,9 +44,9 @@ Since Ubuntu 20.04, you need to specify the library directory explicitly. Otherw
 Compile and install a recent version using:
 
 ```bash
-wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v3.5.0.tar.gz -O mbedtls-3.5.0.tar.gz
-tar -xzf mbedtls-3.5.0.tar.gz
-cd mbedtls-3.5.0
+wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v3.6.4.tar.gz -O mbedtls-3.6.4.tar.gz
+tar -xzf mbedtls-3.6.4.tar.gz
+cd mbedtls-3.6.4
 sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' include/mbedtls/mbedtls_config.h
 sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' include/mbedtls/mbedtls_config.h
 make -j $(nproc)
@@ -66,7 +66,7 @@ git clone https://github.com/pi-hole/FTL.git && cd FTL
 If you want to build another branch and not `master`, use checkout to get to this branch, like
 
 ```bash
-git checkout development-v6
+git checkout development
 ```
 
 ## Compile the source
