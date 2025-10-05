@@ -17,7 +17,7 @@ sudo dnf install openssl -y                      # For Fedora
 This guide assumes:
 
 - `openssl` is installed on the same machine that Pi-hole is installed on, but this is not a requirement -
-`openssl` can be installed on a machine that is not running Pi-hole; `tls.pem` just needs to be copied to `/etc/pihole` on the target mahcine running Pi-hole.
+`openssl` can be installed on a machine that is not running Pi-hole; `tls.pem` just needs to be copied to `/etc/pihole` on the target machine running Pi-hole.
 - All shell commands are executed from the home directory (e.g., `/home/your_user` or `~/`).
 
 ---
@@ -63,7 +63,7 @@ The **CA key** (homelabCA.key) and **CA certificate** (homelabCA.crt) is now rea
 touch cert.cnf && nano cert.cnf
 ```
 
-Use the attached [cert.cnf](https://gist.github.com/kaczmar2/e1b5eb635c1a1e792faf36508c5698ee#file-cert-cnf) file as a template:
+Add the following content to `~/crt/cert.cnf`:
 
 ```ini
 # Country Name (C)
@@ -194,7 +194,7 @@ mkdir -p ~/crt && cd ~/crt
 touch cert.cnf && nano cert.cnf
 ```
 
-Use the attached [cert.cnf](https://gist.github.com/kaczmar2/e1b5eb635c1a1e792faf36508c5698ee#file-cert-cnf) file as a template:
+Add the following content to `~/crt/cert.cnf`:
 
 ```ini
 # Country Name (C)
