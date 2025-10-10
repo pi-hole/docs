@@ -60,11 +60,11 @@ To set a specific password for the web interface, use the environment variable `
 
 Whether or not to output the FTL log when running the container. Can be disabled by setting the value to 0
 
-#### `PIHOLE_UID` (Default: `100`)
+#### `PIHOLE_UID` (Default: `1000`)
 
 Overrides image's default pihole user id to match a host user id
 
-#### `PIHOLE_GID` (Default: `100`)
+#### `PIHOLE_GID` (Default: `1000`)
 
 Overrides image's default pihole group id to match a host group id
 
