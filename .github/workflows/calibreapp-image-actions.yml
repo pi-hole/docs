@@ -23,4 +23,4 @@ jobs:
       - name: Compress Images
         uses: calibreapp/image-actions@1.4.1 # TODO: if they start using a tag like v1, switch to that
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
