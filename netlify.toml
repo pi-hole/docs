@@ -4,8 +4,8 @@ publish = "site/"
 command = "mkdocs build --clean --strict"
 
 [build.environment]
-    PYTHON_VERSION = "3.11"
-    NODE_VERSION = "22"
+    PYTHON_VERSION = "3.14"
+    NODE_VERSION = "24"
     CI = "true"
     DISABLE_OPENCOLLECTIVE = "true"
     OPENCOLLECTIVE_HIDE = "true"

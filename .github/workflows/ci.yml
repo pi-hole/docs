@@ -10,8 +10,8 @@ on:
 
 env:
   FORCE_COLOR: 2
-  NODE: 22
-  PYTHON_VERSION: "3.11"
+  NODE: 24
+  PYTHON_VERSION: "3.14"
 
 jobs:
   test:
@@ -24,14 +24,14 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5.6.0
+        uses: actions/setup-python@v6.0.0
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
           architecture: "x64"
           cache: pip
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4.4.0
+        uses: actions/setup-node@v5.0.0
         with:
           node-version: "${{ env.NODE }}"
           cache: npm
