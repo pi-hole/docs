@@ -21,6 +21,6 @@ jobs:
           persist-credentials: false
 
       - name: Compress Images
-        uses: calibreapp/image-actions@1.1.0 # TODO: if they start using a tag like v1, switch to that
+        uses: calibreapp/image-actions@1.4.1 # TODO: if they start using a tag like v1, switch to that
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
