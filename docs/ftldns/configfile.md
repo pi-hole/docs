@@ -1299,7 +1299,7 @@ true or false
 Custom IPv6 address for IP blocking mode
 
 **Allowed values are:**
-Avalid IPv6 address or empty string (`""`)
+A valid IPv6 address or empty string (`""`)
 
 **Default value:** `""`
 
