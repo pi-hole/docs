@@ -14,4 +14,4 @@ pihole-FTL regex-test doubleclick.net "(^|\.)double"
 
 (test `doubleclick.net` against the CLI-provided regex `(^|\.)double`.
 
-You do NOT need to be `sudo` for this, any arbitrary user should be able to run this command. The test returns `0` on match and `1` on no match and errors, hence, it may be used for scripting.
+You do NOT need to be `sudo` for this, any arbitrary user should be able to run this command. The test returns `0` on match, `1` on errors and `2` on no match, hence, it may be used for scripting.
