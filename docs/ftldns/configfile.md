@@ -1299,7 +1299,7 @@ true or false
 Custom IPv6 address for IP blocking mode
 
 **Allowed values are:**
-Avalid IPv6 address or empty string (`""`)
+A valid IPv6 address or empty string (`""`)
 
 **Default value:** `""`
 
@@ -3822,6 +3822,35 @@ true or false
     ```yaml
     environment:
       FTLCONF_misc_normalizeCPU: true
+    ```
+
+### `hide_dnsmasq_warn`
+
+Should FTL hide warnings coming from dnsmasq?
+
+By default, FTL reports warnings coming from the embedded dnsmasq DNS server to the
+FTL log file. These warnings can be useful to identify misconfigurations or problems
+with the DNS server. However, some warnings may be harmless and can be ignored in
+certain setups. Enabling this setting will hide all dnsmasq warnings.
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [misc]
+      hide_dnsmasq_warn = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config misc.hide_dnsmasq_warn=false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_misc_hide_dnsmasq_warn: false
     ```
 
 
