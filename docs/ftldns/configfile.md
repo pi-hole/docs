@@ -771,7 +771,7 @@ Any valid domain
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.domain_name: 'lan'
+      FTLCONF_dns_domain_name: 'lan'
     ```
 
 ### `local`
@@ -802,7 +802,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.domain_local: true
+      FTLCONF_dns_domain_local: true
     ```
 
 
@@ -834,7 +834,7 @@ A positive integer value
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.cache_size: 10000
+      FTLCONF_dns_cache_size: 10000
     ```
 
 ### `optimizer`
@@ -871,7 +871,7 @@ A positive integer value in seconds, or any negative to disable this feature
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.cache_optimizer: 3600
+      FTLCONF_dns_cache_optimizer: 3600
     ```
 
 ### `upstreamBlockedTTL`
@@ -899,7 +899,7 @@ blocked queries
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.cache_upstreamBlockedTTL: 86400
+      FTLCONF_dns_cache_upstreamBlockedTTL: 86400
     ```
 
 
@@ -926,7 +926,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.blocking_active: true
+      FTLCONF_dns_blocking_active: true
     ```
 
 ### `mode`
@@ -977,7 +977,7 @@ exists, but there is no record for the requested query type.
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.blocking_mode: 'NULL'
+      FTLCONF_dns_blocking_mode: 'NULL'
     ```
 
 ### `edns`
@@ -1010,7 +1010,7 @@ and a text message describing the reason for the block
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.blocking_edns: 'TEXT'
+      FTLCONF_dns_blocking_edns: 'TEXT'
     ```
 
 
@@ -1041,7 +1041,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.specialDomains_mozillaCanary: true
+      FTLCONF_dns_specialDomains_mozillaCanary: true
     ```
 
 ### `iCloudPrivateRelay`
@@ -1070,7 +1070,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.specialDomains_iCloudPrivateRelay: true
+      FTLCONF_dns_specialDomains_iCloudPrivateRelay: true
     ```
 
 ### `designatedResolver`
@@ -1097,7 +1097,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.specialDomains_designatedResolver: true
+      FTLCONF_dns_specialDomains_designatedResolver: true
     ```
 
 
@@ -1134,7 +1134,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.host_force4: false
+      FTLCONF_dns_reply_host_force4: false
     ```
 
 ### `IPv4`
@@ -1158,7 +1158,7 @@ A valid IPv4 address or empty string (`""`)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.host_IPv4: ''
+      FTLCONF_dns_reply_host_IPv4: ''
     ```
 
 ### `force6`
@@ -1183,7 +1183,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.host_force6: false
+      FTLCONF_dns_reply_host_force6: false
     ```
 
 ### `IPv6`
@@ -1207,7 +1207,7 @@ A valid IPv6 address or empty string (`""`)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.host_IPv6: ''
+      FTLCONF_dns_reply_host_IPv6: ''
     ```
 
 
@@ -1242,7 +1242,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.blocking_force4: false
+      FTLCONF_dns_reply_blocking_force4: false
     ```
 
 ### `IPv4`
@@ -1266,7 +1266,7 @@ A valid IPv4 address or empty string (`""`)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.blocking_IPv4: ''
+      FTLCONF_dns_reply_blocking_IPv4: ''
     ```
 
 ### `force6`
@@ -1291,7 +1291,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.blocking_force6: false
+      FTLCONF_dns_reply_blocking_force6: false
     ```
 
 ### `IPv6`
@@ -1315,7 +1315,7 @@ Avalid IPv6 address or empty string (`""`)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.reply.blocking_IPv6: ''
+      FTLCONF_dns_reply_blocking_IPv6: ''
     ```
 
 
@@ -1368,7 +1368,7 @@ A positive integer value
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.rateLimit_count: 1000
+      FTLCONF_dns_rateLimit_count: 1000
     ```
 
 ### `interval`
@@ -1392,7 +1392,7 @@ A positive integer value in seconds
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns.rateLimit_interval: 60
+      FTLCONF_dns_rateLimit_interval: 60
     ```
 
 
@@ -1754,7 +1754,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.ipv4_active: true
+      FTLCONF_ntp_ipv4_active: true
     ```
 
 ### `address`
@@ -1778,7 +1778,7 @@ A valid IPv4 address, or empty string (`""`). For wildcard (0.0.0.0)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.ipv4_address: ''
+      FTLCONF_ntp_ipv4_address: ''
     ```
 
 
@@ -1805,7 +1805,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.ipv6_active: true
+      FTLCONF_ntp_ipv6_active: true
     ```
 
 ### `address`
@@ -1829,7 +1829,7 @@ A valid IPv6 address, or empty string (`""`). For wildcard (::)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.ipv6_address: ''
+      FTLCONF_ntp_ipv6_address: ''
     ```
 
 
@@ -1856,7 +1856,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.sync_active: true
+      FTLCONF_ntp_sync_active: true
     ```
 
 ### `server`
@@ -1882,7 +1882,7 @@ A valid NTP upstream server
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.sync_server: 'pool.ntp.org'
+      FTLCONF_ntp_sync_server: 'pool.ntp.org'
     ```
 
 ### `interval`
@@ -1906,7 +1906,7 @@ A positive integer value in seconds
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.sync_interval: 3600
+      FTLCONF_ntp_sync_interval: 3600
     ```
 
 ### `count`
@@ -1930,7 +1930,7 @@ A positive integer value
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.sync_count: 8
+      FTLCONF_ntp_sync_count: 8
     ```
 
 
@@ -1957,7 +1957,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.sync.rtc_set: false
+      FTLCONF_ntp_sync_rtc_set: false
     ```
 
 ### `device`
@@ -1983,7 +1983,7 @@ A valid RTC device path, or empty string (`""`) for auto-discovery
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.sync.rtc_device: ''
+      FTLCONF_ntp_sync_rtc_device: ''
     ```
 
 ### `utc`
@@ -2007,7 +2007,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp.sync.rtc_utc: true
+      FTLCONF_ntp_sync_rtc_utc: true
     ```
 
 
@@ -2268,7 +2268,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_database.network_parseARPcache: true
+      FTLCONF_database_network_parseARPcache: true
     ```
 
 ### `expire`
@@ -2294,7 +2294,7 @@ A positive integer value in days
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_database.network_expire: 91
+      FTLCONF_database_network_expire: 91
     ```
 
 
@@ -2633,7 +2633,7 @@ A positive integer value in seconds
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.session_timeout: 1800
+      FTLCONF_webserver_session_timeout: 1800
     ```
 
 ### `restore`
@@ -2660,7 +2660,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.session_restore: true
+      FTLCONF_webserver_session_restore: true
     ```
 
 
@@ -2696,7 +2696,7 @@ A valid TLS certificate file (`*.pem`)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.tls_cert: '/etc/pihole/tls.pem'
+      FTLCONF_webserver_tls_cert: '/etc/pihole/tls.pem'
     ```
 
 ### `validity`
@@ -2729,7 +2729,7 @@ roughly 30 years for the certificate.
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.tls_validity: 47
+      FTLCONF_webserver_tls_validity: 47
     ```
 
 
@@ -2756,7 +2756,7 @@ A valid path
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.paths_webroot: '/var/www/html'
+      FTLCONF_webserver_paths_webroot: '/var/www/html'
     ```
 
 ### `webhome`
@@ -2780,7 +2780,7 @@ A valid subpath, both slashes are needed!
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.paths_webhome: '/admin/'
+      FTLCONF_webserver_paths_webhome: '/admin/'
     ```
 
 ### `prefix`
@@ -2816,7 +2816,7 @@ A valid URL prefix or empty
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.paths_prefix: ''
+      FTLCONF_webserver_paths_prefix: ''
     ```
 
 
@@ -2843,7 +2843,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.interface_boxed: true
+      FTLCONF_webserver_interface_boxed: true
     ```
 
 ### `theme`
@@ -2887,7 +2887,7 @@ Star Trek LCARS
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.interface_theme: 'default-auto'
+      FTLCONF_webserver_interface_theme: 'default-auto'
     ```
 
 
@@ -2919,7 +2919,7 @@ A positive integer value
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_max_sessions: 16
+      FTLCONF_webserver_api_max_sessions: 16
     ```
 
 ### `prettyJSON`
@@ -2943,7 +2943,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_prettyJSON: false
+      FTLCONF_webserver_api_prettyJSON: false
     ```
 
 ### `pwhash`
@@ -2967,7 +2967,7 @@ A valid Pi-hole password hash
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_pwhash: ''
+      FTLCONF_webserver_api_pwhash: ''
     ```
 
 ### `totp_secret`
@@ -2993,7 +2993,7 @@ A valid TOTP secret (20 Bytes in Base32 encoding)
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_totp_secret: ''
+      FTLCONF_webserver_api_totp_secret: ''
     ```
 
 ### `app_pwhash`
@@ -3028,7 +3028,7 @@ A valid Pi-hole password hash
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_app_pwhash: ''
+      FTLCONF_webserver_api_app_pwhash: ''
     ```
 
 ### `app_sudo`
@@ -3057,7 +3057,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_app_sudo: false
+      FTLCONF_webserver_api_app_sudo: false
     ```
 
 ### `cli_pw`
@@ -3087,7 +3087,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_cli_pw: true
+      FTLCONF_webserver_api_cli_pw: true
     ```
 
 ### `excludeClients`
@@ -3118,7 +3118,7 @@ An array of regular expressions describing clients
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_excludeClients: []
+      FTLCONF_webserver_api_excludeClients: []
     ```
 
 ### `excludeDomains`
@@ -3148,7 +3148,7 @@ An array of regular expressions describing domains
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_excludeDomains: []
+      FTLCONF_webserver_api_excludeDomains: []
     ```
 
 ### `maxHistory`
@@ -3173,7 +3173,7 @@ A positive integer value in seconds up to 86400
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_maxHistory: 86400
+      FTLCONF_webserver_api_maxHistory: 86400
     ```
 
 ### `maxClients`
@@ -3202,7 +3202,7 @@ A positive integer value
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_maxClients: 10
+      FTLCONF_webserver_api_maxClients: 10
     ```
 
 ### `client_history_global_max`
@@ -3229,7 +3229,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_client_history_global_max: true
+      FTLCONF_webserver_api_client_history_global_max: true
     ```
 
 ### `allow_destructive`
@@ -3253,7 +3253,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api_allow_destructive: true
+      FTLCONF_webserver_api_allow_destructive: true
     ```
 
 
@@ -3281,7 +3281,7 @@ A positive floating point value in the unit defined below
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api.temp_limit: 60.000000
+      FTLCONF_webserver_api_temp_limit: 60.000000
     ```
 
 ### `unit`
@@ -3313,7 +3313,7 @@ Kelvin
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver.api.temp_unit: 'C'
+      FTLCONF_webserver_api_temp_unit: 'C'
     ```
 
 
@@ -3494,7 +3494,7 @@ any writable file
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_files.log_ftl: '/var/log/pihole/FTL.log'
+      FTLCONF_files_log_ftl: '/var/log/pihole/FTL.log'
     ```
 
 ### `dnsmasq`
@@ -3518,7 +3518,7 @@ Any writable file
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_files.log_dnsmasq: '/var/log/pihole/pihole.log'
+      FTLCONF_files_log_dnsmasq: '/var/log/pihole/pihole.log'
     ```
 
 ### `webserver`
@@ -3542,7 +3542,7 @@ Any writable file
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_files.log_webserver: '/var/log/pihole/webserver.log'
+      FTLCONF_files_log_webserver: '/var/log/pihole/webserver.log'
     ```
 
 
@@ -3856,7 +3856,7 @@ true or false
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_misc.check_load: true
+      FTLCONF_misc_check_load: true
     ```
 
 ### `shmem`
@@ -3886,7 +3886,7 @@ A positive integer value between 0 and 100
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_misc.check_shmem: 90
+      FTLCONF_misc_check_shmem: 90
     ```
 
 ### `disk`
@@ -3913,7 +3913,7 @@ A positive integer value between 0 and 100
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_misc.check_disk: 90
+      FTLCONF_misc_check_disk: 90
     ```
 
 
