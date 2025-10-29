@@ -25,12 +25,13 @@ Pi-hole is supported on distributions utilizing [systemd](https://systemd.io/) o
 
 The following operating systems are **officially** supported:
 
-- Raspberry Pi OS (formerly Raspbian)
+- Alpine
 - Armbian OS
-- Ubuntu
 - Debian
-- Fedora
 - CentOS Stream
+- Fedora
+- Raspberry Pi OS (formerly Raspbian)
+- Ubuntu
 
 Pi-hole only supports actively maintained versions of these systems.
 
