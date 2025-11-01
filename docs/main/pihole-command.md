@@ -14,6 +14,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Allowlisting, Denylisting and Regex](#allowlisting-denylisting-and-regex) | `pihole allow`, `pihole deny`, `pihole --regex`, `pihole --wild`, `pihole --allow-regex`, `pihole --allow-wild` |
 | [Debugger](#debugger) | `pihole debug` |
 | [Log Flush](#log-flush) | `pihole flush` |
+| [Network Flush](#network-flush) | `pihole networkflush` |
 | [Repair](#repair) | `pihole repair` |
 | [Tail](#tail) | `pihole tail` |
 | [Set password](#password) | `pihole setpassword` |
@@ -74,6 +75,16 @@ The Pi-hole debugger will attempt to diagnose any issues, and link to an FAQ wit
 | Example Usage   | [`pihole flush`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#flushing-the-log) |
 
 When invoked manually, this command will allow you to empty Pi-hole's log, which is located at `/var/log/pihole/pihole.log`. The command also serves to rotate the log daily, if the `logrotate` application is installed.
+
+### Network Flush
+
+| | |
+| -------------- | -------------- |
+| Help Command    | N/A |
+| Script Location | [`/opt/pihole/piholeNetworkFlush.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeNetworkFlush.sh) |
+| Example Usage   | [`pihole networkflush --arp`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#flushing-the-log) |
+
+This command empties Pi-hole's network table. If the optional `--arp` is given, the ARP table will also be cleared.
 
 ### Repair
 
