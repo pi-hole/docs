@@ -23,9 +23,9 @@ It is worth noting that the certificate is only valid for the domain that you ha
 
 ### Firefox (tested with Firefox 121.0)
 
-Before | After
-:-----:|:-----:
-![Firefox Untrusted](../images/api/firefox-pihole-untrusted.png) | ![Firefox Trusted](../images/api/firefox-pihole-trusted.png)
+| Before | After |
+| :-----: | :-----: |
+| ![Firefox Untrusted](../images/api/firefox-pihole-untrusted.png) | ![Firefox Trusted](../images/api/firefox-pihole-trusted.png) |
 
 1. Open the settings page of Firefox at [about:preferences#privacy](about:preferences#privacy)
 2. Search for "Certificates"
@@ -44,9 +44,9 @@ If the last step did not work, make sure that you have generated the certificate
 
 ### Chrome (tested with Chrome 120.0)
 
-Before | After
-:-----:|:-----:
-![Chrome Untrusted](../images/api/chrome-pihole-untrusted.png) | ![Chrome Trusted](../images/api/chrome-pihole-trusted.png)
+| Before | After |
+| :-----: | :-----: |
+| ![Chrome Untrusted](../images/api/chrome-pihole-untrusted.png) | ![Chrome Trusted](../images/api/chrome-pihole-trusted.png) |
 
 1. Open the settings page of Chrome at [chrome://settings/privacy](chrome://settings/privacy)
 2. Navigate to "Manage certificates" in the "Security" submenu of "Privacy and security" or use the search bar
@@ -64,10 +64,10 @@ If the last step did not work, see the remark below the Firefox instructions abo
 
 ### Android (tested with Android 11 and Firefox Mobile 121.1.0)
 
-Before | After
-:-----:|:-----:
-![Android Firefox Untrusted](../images/api/android-pihole-untrusted.png) | ![Android Firefox Trusted](../images/api/android-pihole-trusted.png)
-![Android Chrome Untrusted](../images/api/android-chrome-untrusted.png) | ![Android Chrome Trusted](../images/api/android-chrome-trusted.png)
+| Before | After |
+| :-----: | :-----: |
+| ![Android Firefox Untrusted](../images/api/android-pihole-untrusted.png) | ![Android Firefox Trusted](../images/api/android-pihole-trusted.png) |
+| ![Android Chrome Untrusted](../images/api/android-chrome-untrusted.png) | ![Android Chrome Trusted](../images/api/android-chrome-trusted.png) |
 
 1. Go to your device's settings
 2. Navigate to "System Security" or "Security & location" (depending on your device)

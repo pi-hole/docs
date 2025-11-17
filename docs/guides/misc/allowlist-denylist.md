@@ -11,7 +11,7 @@ Each script accepts the following parameters:
 | Parameter  | Description                                                                                      |
 |------------|--------------------------------------------------------------------------------------------------|
 | `[domain]` | Fully qualified domain name you wish to add or remove. You can pass any number of domains.       |
-| `remove`   | Removal mode. Domains will be removed from the list, rather than added          |
+| `remove`   | Removal mode. Domains will be removed from the list, rather than added                           |
 | `-q`       | Quiet mode. Console output is minimal. Useful for calling from another script (see `gravity.sh`) |
 
 Domains passed are parsed by the script to ensure they are valid domains. If a domain is invalid it will be ignored.

@@ -4,7 +4,8 @@ RUN apk add --no-cache \
     git \
     nano \
     openssh \
-    py3-pip
+    py3-pip \
+    tzdata
 
 ENV USER node
 USER ${USER}

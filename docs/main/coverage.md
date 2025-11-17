@@ -4,7 +4,7 @@ description: Sites and articles about Pi-hole
 last_updated: Sun Jan 13 19:20:35 2019 UTC
 ---
 
-### YouTube/Twit/Video
+## YouTube/Twit/Video
 
 - [Security Now Netcast: Pi-hole](https://www.youtube.com/watch?v=p7-osq_y8i8&t=100m26s) _Oct 13, 2015_
 - [TekThing: Raspberry Pi-Hole Makes Ads Disappear!](https://www.youtube.com/watch?v=8Co59HU2gY0&t=2m) _Dec 18, 2015_
@@ -15,11 +15,11 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 - [Know How 355: Killing ads with a Raspberry Pi-Hole!](https://www.twit.tv/shows/know-how/episodes/355) _Nov 9, 2017_
 - [Linus Tech Tips: Block EVERY Online Ad with THIS](https://www.youtube.com/watch?v=KBXTnrD_Zs4) _Aug 28, 2019_
 
-### Podcasts
+## Podcasts
 
 - [MacObserver Podcast 585](https://www.macobserver.com/tmo/podcast/macgeekgab-585) _Dec 27, 2015_
 
-### Blogs
+## Blogs
 
 - [Lifehacker: Turn A Raspberry Pi Into An Ad Blocker With A Single Command](https://www.lifehacker.com.au/2015/02/turn-a-raspberry-pi-into-an-ad-blocker-with-a-single-command/) _Feb 17, 2015_
 - [MakeUseOf: Adblock Everywhere: The Raspberry Pi-Hole Way](https://www.makeuseof.com/tag/adblock-everywhere-raspberry-pi-hole-way/) _Mar 25, 2015_
