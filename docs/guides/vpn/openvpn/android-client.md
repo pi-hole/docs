@@ -1,4 +1,6 @@
-{!guides/vpn/openvpn/deprecation_notice.md!}
+--8<--
+docs/guides/vpn/openvpn/deprecation_notice.md
+--8<--
 
 - Install the official OpenVPN App from the [App Store](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
 
