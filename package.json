@@ -16,12 +16,12 @@
   },
   "homepage": "https://docs.pi-hole.net/",
   "scripts": {
-    "build": "mkdocs build --clean --strict",
+    "build": "zensical build --clean --strict",
     "markdownlint": "markdownlint-cli2 \"**/*.md\" \"!**/node_modules/**\"",
     "linkinator": "linkinator site --recurse --silent --skip \"^(?!http://localhost)\"",
     "pretest": "npm run build",
     "test": "npm run markdownlint && npm run linkinator",
-    "serve": "mkdocs serve --dev-addr 0.0.0.0:8000",
+    "serve": "zensical serve --dev-addr 0.0.0.0:8000",
     "start": "npm run serve"
   },
   "devDependencies": {
