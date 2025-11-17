@@ -200,4 +200,3 @@ Code | Description | Interpretation
 
 We recommend writing code that gracefully handles all possible API exceptions. The Pi-hole API is designed to support this by standardized error messages and human-readable hints for errors.
 
-{!abbreviations.md!}
