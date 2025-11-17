@@ -10,6 +10,6 @@ RUN apk add --no-cache \
 ENV USER node
 USER ${USER}
 
-# python packages (as mkdocs) are installed in the user's home directory
+# python packages (as zensical) are installed in the user's home directory
 # but we need them to be accessible from ${PATH}
 ENV PATH="${PATH}:/home/${USER}/.local/bin"
