@@ -94,8 +94,6 @@ markdown_extensions:
       auto_append:
         - docs/abbreviations.md
   # Include files in other documents like {!some/dir/in/docs/filename.md!}
-  - markdown_include.include:
-      base_path: docs
   # Metadata support in pages
   # (https://squidfunk.github.io/mkdocs-material/extensions/metadata/)
   - meta
