@@ -1,4 +1,6 @@
-{!guides/vpn/openvpn/deprecation_notice.md!}
+--8<--
+docs/guides/vpn/openvpn/deprecation_notice.md
+--8<--
 
 If you operate your Pi-hole + OpenVPN at home, you are likely sitting behind a NAT / dynamically changing IP address. In this case, you should set up a dynamic DNS record, which allows you to reach your server. You can exchange the address that has been configured during the setup of OpenVPN like this:
 
