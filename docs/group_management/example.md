@@ -62,12 +62,12 @@ after your database modifications to have FTL flush its internal domain-blocking
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | doubleclick.net | Yes
-192.168.0.101 |   Group 1   | doubleclick.net | **No**
-192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
-192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
+| Client        | Group membership      | Domain          | Blocked |
+| ------------- | -----                 | ------          | ------- |
+| *all other*   |   Default             | doubleclick.net | Yes     |
+| 192.168.0.101 |   Group 1             | doubleclick.net | **No**  |
+| 192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes     |
+| 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes     |
 
 All three clients got automatically assigned to the default (`Default`) group when they were added. The default group includes all subscribed lists and list domains (if not already changed by the user). When we remove the default group for client `192.168.0.101`, we effectively remove all associations to any subscribed lists and domains. This leaves this client completely unblocked.
 
@@ -84,12 +84,12 @@ All three clients got automatically assigned to the default (`Default`) group wh
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | doubleclick.net | Yes
-192.168.0.101 |   Group 1   | doubleclick.net | **Yes**
-192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes
-192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
+| Client        | Group membership      | Domain          | Blocked |
+| ------------- | -----                 | ------          | ------- |
+| *all other*   |   Default             | doubleclick.net | Yes     |
+| 192.168.0.101 |   Group 1             | doubleclick.net | **Yes** |
+| 192.168.0.102 |   Group 2 + Default   | doubleclick.net | Yes     |
+| 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes     |
 
 `192.168.0.101` gets `doubleclick.net` blocked as it uses a subscribed list including this domain. All other clients stay unchanged.
 
@@ -112,12 +112,12 @@ Add the domain to be blocked
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | denylisted.com | **Yes**
-192.168.0.101 |   Group 1   | denylisted.com | No
-192.168.0.102 |   Group 2 + Default   | denylisted.com | **Yes**
-192.168.0.103 |   Group 3 + Default   | denylisted.com | **Yes**
+| Client        | Group membership      | Domain         | Blocked |
+| ------------- | -----                 | ------         | ------- |
+| *all other*   |   Default             | denylisted.com | **Yes** |
+| 192.168.0.101 |   Group 1             | denylisted.com | No      |
+| 192.168.0.102 |   Group 2 + Default   | denylisted.com | **Yes** |
+| 192.168.0.103 |   Group 3 + Default   | denylisted.com | **Yes** |
 
 Note that Pi-hole is *not* blocking this domain for client `192.168.0.101` as we removed the default assignment through group 0 above. All remaining clients are linked through the Default group to this domain and see it as being blocked.
 
@@ -135,12 +135,12 @@ Assign this domain to group 1
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | denylisted.com | Yes
-192.168.0.101 |   Group 1   | denylisted.com | **Yes**
-192.168.0.102 |   Group 2 + Default   | denylisted.com | Yes
-192.168.0.103 |   Group 3 + Default   | denylisted.com | Yes
+| Client        | Group membership      | Domain         | Blocked |
+| ------------- | -----                 | ------         | ------- |
+| *all other*   |   Default             | denylisted.com | Yes     |
+| 192.168.0.101 |   Group 1             | denylisted.com | **Yes** |
+| 192.168.0.102 |   Group 2 + Default   | denylisted.com | Yes     |
+| 192.168.0.103 |   Group 3 + Default   | denylisted.com | Yes     |
 
 All clients see this domain as being blocked: Client 1 due to a direct assignment through group 1, all remaining clients through the default group 0 (unchanged).
 
@@ -158,12 +158,12 @@ Remove default assignment to all clients not belonging to a group
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | denylisted.com | **No**
-192.168.0.101 |   Group 1   | denylisted.com | Yes
-192.168.0.102 |   Group 2 + Default   | denylisted.com | **No**
-192.168.0.103 |   Group 3 + Default   | denylisted.com | **No**
+| Client        | Group membership      | Domain         | Blocked |
+| ------------- | -----                 | ------         | ------- |
+| *all other*   |   Default             | denylisted.com | **No**  |
+| 192.168.0.101 |   Group 1             | denylisted.com | Yes     |
+| 192.168.0.102 |   Group 2 + Default   | denylisted.com | **No**  |
+| 192.168.0.103 |   Group 3 + Default   | denylisted.com | **No**  |
 
 While client 1 keeps its explicit assignment through group 1, the remaining clients lost their unassignments when we removed group 0 from the assignment.
 
@@ -186,12 +186,12 @@ Add the domain to be allowlisted
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | doubleclick.net | **No**
-192.168.0.101 |   Group 1   | doubleclick.net | Yes
-192.168.0.102 |   Group 2 + Default   | doubleclick.net | **No**
-192.168.0.103 |   Group 3 + Default   | doubleclick.net | **No**
+| Client        | Group membership      | Domain          | Blocked |
+| ------------- | -----                 | ------          | ------- |
+| *all other*   |   Default             | doubleclick.net | **No**  |
+| 192.168.0.101 |   Group 1             | doubleclick.net | Yes     |
+| 192.168.0.102 |   Group 2 + Default   | doubleclick.net | **No**  |
+| 192.168.0.103 |   Group 3 + Default   | doubleclick.net | **No**  |
 
 Client `192.168.0.101` is not allowlisting this domain as we removed the default assignment through group 0 above. All remaining clients are linked through the default group to this domain and see it as being allowlisted. Note that this is completely analog to step 1 of [example 3](#example-3-denylisting).
 
@@ -208,12 +208,12 @@ Remove default group assignment
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | doubleclick.net | **Yes**
-192.168.0.101 |   Group 1   | doubleclick.net | Yes
-192.168.0.102 |   Group 2 + Default   | doubleclick.net | **Yes**
-192.168.0.103 |   Group 3 + Default   | doubleclick.net | **Yes**
+| Client        | Group membership      | Domain          | Blocked |
+| ------------- | -----                 | ------          | ------- |
+| *all other*   |   Default             | doubleclick.net | **Yes** |
+| 192.168.0.101 |   Group 1             | doubleclick.net | Yes     |
+| 192.168.0.102 |   Group 2 + Default   | doubleclick.net | **Yes** |
+| 192.168.0.103 |   Group 3 + Default   | doubleclick.net | **Yes** |
 
 Requests from all clients are blocked as the new allowlist entry is not associated with any group and, hence, is not used by any client.
 
@@ -231,11 +231,11 @@ Assign this domain to group 2
 
 **Result**
 
-Client        | Group membership | Domain | Blocked
-------------- | ----- | ------ | -------
-*all other*   |   Default   | doubleclick.net | Yes
-192.168.0.101 |   Group 1   | doubleclick.net | Yes
-192.168.0.102 |   Group 2 + Default   | doubleclick.net | **No**
-192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes
+| Client        | Group membership      | Domain          | Blocked |
+| ------------- | -----                 | ------          | ------- |
+| *all other*   |   Default             | doubleclick.net | Yes     |
+| 192.168.0.101 |   Group 1             | doubleclick.net | Yes     |
+| 192.168.0.102 |   Group 2 + Default   | doubleclick.net | **No**  |
+| 192.168.0.103 |   Group 3 + Default   | doubleclick.net | Yes     |
 
 Client 2 got the allowlist entry explicitly assigned to. Accordingly, client 2 does not get the domain blocked whereas all remaining clients still see this domain as blocked.
