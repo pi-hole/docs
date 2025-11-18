@@ -15,6 +15,9 @@ trim_trailing_whitespace = true
 [*.yml]
 tab_width = 2
 
+[*.toml]
+tab_width = 2
+
 [*.md]
 tab_width = 4
 trim_trailing_whitespace = false
