@@ -187,7 +187,7 @@ features = [
     #"content.code.annotate",
     "content.code.copy",
     #"content.code.select",
-    #"content.footnote.tooltips",
+    "content.footnote.tooltips",
     "content.tabs.link",
     #"content.tooltips",
     # "header.autohide",
@@ -203,9 +203,9 @@ features = [
     #"navigation.tabs",
     #"navigation.tabs.sticky",
     "navigation.top",
-    #"navigation.tracking",
+    "navigation.tracking",
     "search.highlight",
-    # "toc.follow",
+    "toc.follow",
     #"toc.integrate",
 ]
 
