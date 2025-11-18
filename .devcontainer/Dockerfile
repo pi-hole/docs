@@ -7,7 +7,7 @@ RUN apk add --no-cache \
     py3-pip \
     tzdata
 
-ENV USER node
+ENV USER=node
 USER ${USER}
 
 # python packages (as zensical) are installed in the user's home directory
