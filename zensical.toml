@@ -94,6 +94,7 @@ code = "Roboto Mono"
 [project.markdown_extensions.attr_list]
 [project.markdown_extensions.footnotes]
 [project.markdown_extensions.toc]
+title = "Table of contents"
 permalink = "true"
 permalink_title = "Anchor link to this section"
 
