@@ -1,9 +1,3 @@
----
-title: Pi-hole News and Blogs
-description: Sites and articles about Pi-hole
-last_updated: Sun Jan 13 19:20:35 2019 UTC
----
-
 ## YouTube/Twit/Video
 
 - [Security Now Netcast: Pi-hole](https://www.youtube.com/watch?v=p7-osq_y8i8&t=100m26s) _Oct 13, 2015_
