@@ -221,7 +221,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
     === "bash / cURL"
 
         ```bash
-        curl -k -X POST "https://pi.hole/api/auth" --data '{"password":"your-password", "totp":"123456"}'
+        curl -k -X POST "https://pi.hole/api/auth" --data '{"password":"your-password", "totp":123456}'
         ```
 
     === "Python 3"
@@ -243,7 +243,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
     === "JavaScript (plain)"
 
         ```javascript
-        var data = JSON.stringify({"password":"your-password", "totp":"123456"});
+        var data = JSON.stringify({"password":"your-password", "totp":123456});
         var xhr = new XMLHttpRequest();
 
         xhr.addEventListener("readystatechange", function () {
@@ -259,7 +259,7 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
         $.ajax({
           url: "https://pi.hole/api/auth",
           type: "POST",
-          data: JSON.stringify({"password":"your-password", "totp":"123456"}),
+          data: JSON.stringify({"password":"your-password", "totp":123456}),
           dataType: "json",
           contentType: "application/json"
         }).done(function(data) {
