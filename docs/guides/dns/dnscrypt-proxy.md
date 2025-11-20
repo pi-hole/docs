@@ -2,8 +2,6 @@
 
 To utilize DNS-Over-HTTPS (DoH) or other encrypted DNS protocols with Pi-hole, preventing man-in-the-middle attacks between Pi-hole and upstream DNS servers, the following sections explain how to install the flexible and stable [dnscrypt-proxy](https://github.com/DNSCrypt/dnscrypt-proxy) tool.
 
-As an alternative tool to this end, consider [cloudflared](https://github.com/cloudflare/cloudflared), for which a [guide](cloudflared.md) exists as well.
-
 ### Installing `dnscrypt-proxy`
 
 Under Debian 13 `Trixie` and Ubuntu 25 `Plucky Puffin` and later, official packages are available and therefore can be installed with the following commands:

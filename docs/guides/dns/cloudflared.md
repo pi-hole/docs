@@ -1,3 +1,14 @@
+<!-- markdownlint-disable code-block-style -->
+!!! Warning
+    As of November 2025 the proxy-dns feature that this guide relies upon is [deprecated by cloudflare](https://developers.cloudflare.com/changelog/2025-11-11-cloudflared-proxy-dns/).
+
+    Current installations will continue to work and are supported for 12 months after their release date. However, if cloudflared is updated after the 2nd of February 2026 it will no longer function as per this guide.
+
+    New installations via this method are not recommended.
+
+    Uninstallation instructions are available below.
+<!-- markdownlint-enable code-block-style -->
+
 ### Why use DNS-Over-HTTPS? [^guide]
 
 DNS-Over-HTTPS is a protocol for performing DNS lookups via the same protocol you use to browse the web securely: **HTTPS**.
