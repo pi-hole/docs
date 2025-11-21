@@ -46,7 +46,7 @@ Pi-hole only supports actively maintained versions of these systems.
 
 ### Binary architecture
 
-Core part of Pi-hole is the FTL binary which does all the DNS handling. It's provided pre-build for the following architectures
+The binary `pihole-FTL`, which is the resolver at the heart of Pi-hole, is pre-built for the following architectures:
 
 - x86_64 (amd64 and i686)
 - armv6
@@ -54,7 +54,7 @@ Core part of Pi-hole is the FTL binary which does all the DNS handling. It's pro
 - armv8 (aarch64)
 - riscv64
 
-If you need another architecture, you need to compile [FTL from source](../ftldns/compile.md) yourself.
+For other architectures, you will need to compile [FTL from source](../ftldns/compile.md) yourself.
 
 ## IP Addressing
 
