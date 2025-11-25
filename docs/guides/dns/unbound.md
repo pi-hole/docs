@@ -77,6 +77,7 @@ Highlights:
 - Apply a few security and privacy tricks
 
 `/etc/unbound/unbound.conf.d/pi-hole.conf`:
+(Note that for some Red Hat based distros including CentOS up to v10, the path for the `pi-hole.conf` file may be `/etc/unbound/conf.d/pi-hole.conf`)
 
 ```yaml
 server:
@@ -269,6 +270,27 @@ Lastly, restart unbound:
 sudo service unbound restart
 ```
 
+### Verifying that Pi-hole is querying unbound as its upstream
+
+Query a dns using `dig`:
+
+```bash
+dig en.wikipedia.org @127.0.0.1
+```
+
+Then view Pi-hole's log file, follow a query seeing it sent to and receiving a reply from 127.0.0.1#5335 such as below:
+
+```bash
+sudo tail /var/log/pihole/pihole.log
+
+Nov 24 11:57:47 dnsmasq[973]: query[A] en.wikipedia.org from 127.0.0.1
+Nov 24 11:57:47 dnsmasq[973]: forwarded en.wikipedia.org to 127.0.0.1#5335
+Nov 24 11:57:47 dnsmasq[973]: reply en.wikipedia.org is <CNAME>
+Nov 24 11:57:47 dnsmasq[973]: reply dyna.wikimedia.org is 103.102.166.224
+```
+
+If you see the reply to queries from 127.0.0.1#5335, then Pi-hole is using unbound as its upstream.
+
 ### Common Issues & Troubleshooting
 
 #### Fix `so-rcvbuf` warning in unbound
@@ -299,13 +321,21 @@ To fix it:
     sudo sysctl -w net.core.rmem_max=1048576
     ```
 
-3. Make it permanent. Edit `/etc/sysctl.conf` and add or edit the line:
+3. Make it permanent. Edit `/etc/sysctl.d/99-unbound.conf` (or on old systems eg Debian ≤ 12 edit `/etc/sysctl.conf`) and add or edit the line:
 
     ```bash
     net.core.rmem_max=1048576
     ```
 
 4. Save and apply:
+
+    On up to date systems (eg Debian 13)
+
+    ```bash
+    sudo systemctl restart systemd-sysctl
+    ```
+
+    Older systems (eg Debian ≤ 12)
 
     ```bash
     sudo sysctl -p
