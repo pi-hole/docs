@@ -37,5 +37,8 @@
   "MD046": {
     "style": "fenced"
   },
-  "MD059": false
+  "MD059": false,
+  "MD060": {
+    "style": "any"
+  }
 }

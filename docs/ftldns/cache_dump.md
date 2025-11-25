@@ -115,28 +115,28 @@ Self-explanatory: Queries sent, retried, and failed to the individual upstream s
 
 The first character of the flags describes the query type:
 
-Character | Record type
-----------|------------
-`4` | `A` (IPv4 address)
-`6` | `AAAA` (IPv6 address)
-`C` | `CNAME`
-`V` | `SRV`
-`S` | `DS`
-`K` | `DNSKEY`
-`(empty)` | something else
+| Character | Record type |
+| ---------- | ------------ |
+| `4` | `A` (IPv4 address) |
+| `6` | `AAAA` (IPv6 address) |
+| `C` | `CNAME` |
+| `V` | `SRV` |
+| `S` | `DS` |
+| `K` | `DNSKEY` |
+| `(empty)` | something else |
 
 The rest of the flags can be almost any combination of the following bits:
 
-Bit | Interpretation
--------|---------------
-`F` | Forward entry (domain-to-address record)
-`R` | Reverse entry (address-to-domain, typically combined with `D` or `H`)
-`I` | Immortal cache entry (no expiry, typically from local configuration)
-`D` | DHCP-provided record
-`N` | Negative record (This record does not exist)
-`X` | NXDOMAIN (No record exists at all for this domain)
-`H` | From HOSTS file (always combined with `I`)
-`V` | DNSSEC verified
+| Bit | Interpretation |
+| ------- | --------------- |
+| `F` | Forward entry (domain-to-address record) |
+| `R` | Reverse entry (address-to-domain, typically combined with `D` or `H`) |
+| `I` | Immortal cache entry (no expiry, typically from local configuration) |
+| `D` | DHCP-provided record |
+| `N` | Negative record (This record does not exist) |
+| `X` | NXDOMAIN (No record exists at all for this domain) |
+| `H` | From HOSTS file (always combined with `I`) |
+| `V` | DNSSEC verified |
 
 The `V` flag in negative DS records has a different meaning. Only validated `DS` records are every cached, and the `V` bit is used to store information about the presence of an `NS` record for the domain, i.e., if there's a zone cut at that point.
 
