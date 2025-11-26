@@ -76,7 +76,6 @@ Highlights:
 - Verify DNSSEC signatures, discarding BOGUS domains
 - Apply a few security and privacy tricks
 
-`/etc/unbound/unbound.conf.d/pi-hole.conf`:
 (Note that for some Red Hat based distros including CentOS up to v10, the path for the `pi-hole.conf` file may be `/etc/unbound/conf.d/pi-hole.conf`)
 
 ```yaml title="/etc/unbound/unbound.conf.d/pi-hole.conf"
