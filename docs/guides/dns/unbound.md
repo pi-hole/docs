@@ -79,7 +79,7 @@ Highlights:
 `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 (Note that for some Red Hat based distros including CentOS up to v10, the path for the `pi-hole.conf` file may be `/etc/unbound/conf.d/pi-hole.conf`)
 
-```yaml
+```yaml title="/etc/unbound/unbound.conf.d/pi-hole.conf"
 server:
     # If no logfile is specified, syslog is used
     # logfile: "/var/log/unbound/unbound.log"
