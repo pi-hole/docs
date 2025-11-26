@@ -80,9 +80,9 @@ When invoked manually, this command will allow you to empty Pi-hole's log, which
 
 | | |
 | -------------- | -------------- |
-| Help Command    | N/A |
+| Help Command | N/A |
 | Script Location | [`/opt/pihole/piholeNetworkFlush.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeNetworkFlush.sh) |
-| Example Usage   | [`pihole networkflush --arp`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#flushing-the-log) |
+| Example Usage | [`pihole networkflush --arp`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#flushing-the-log) |
 
 This command empties Pi-hole's network table. If the optional `--arp` is given, the ARP table will also be cleared.
 
