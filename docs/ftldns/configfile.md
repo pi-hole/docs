@@ -4676,6 +4676,30 @@ true or false
       FTLCONF_debug_netlink: false
     ```
 
+### `timing`
+
+Print timing information from various parts of FTL
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [debug]
+      timing = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config debug.timing=false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_debug_timing: false
+    ```
+
 ### `all`
 
 Set all debug flags at once. This is a convenience option to enable all debug flags
