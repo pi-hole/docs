@@ -214,6 +214,8 @@ nav:
         - 'Using DNSSEC': guides/misc/tor/dnssec.md
       - 'Allowlist and Denylist editing': guides/misc/allowlist-denylist.md
       - 'Network Time Protocol': guides/misc/ntp.md
+    - 'SSL':
+      - 'Alpine': guides/ssl/alpine.md
   - 'Router setup':
     - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
