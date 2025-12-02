@@ -177,7 +177,7 @@ Once you have a valid SID, you can use it to authenticate your requests. You can
 
         xhr.addEventListener("readystatechange", function () {
           if (this.readyState === this.DONE) {
-            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
           }
         });
 
@@ -360,7 +360,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
 
         xhr.addEventListener("readystatechange", function () {
           if (this.readyState === this.DONE) {
-            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
           }
         });
 
