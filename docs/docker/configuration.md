@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD051 -->
 # Configuration
 
 The recommended way to configure the Pi-hole docker container is by utilizing [environment variables](https://docs.docker.com/compose/how-tos/environment-variables/), however if you are persisting your `/etc/pihole` directory, you choose instead to set them via the web interface, or by directly editing `pihole.toml`
@@ -99,7 +100,7 @@ Environment variables may be set in the format given here, or they may be entire
 
 For example, both `FTLCONF_dns_upstreams` and `FTLCONF_DNS_UPSTREAMS` are functionally equivalent when used as environment variables.
 
-## Notes On Web Interface Password
+## Notes On Web Interface Password {: #notes-on-web-interface-password }
 
 The web interface password can be set using the `FTLCONF_webserver_api_password` environment variable as documented above or using the `WEBPASSWORD_FILE` environment variable using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/).
 
@@ -148,7 +149,7 @@ ADMIN_PASSWORD=correct horse battery staple
 $ docker compose -f compose.yaml
 ```
 
-### `WEBPASSWORD_FILE` Example
+### `WEBPASSWORD_FILE` Example {: #webpassword_file-example }
 
 Create a text file called `pihole_password.txt` containing the password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
 
@@ -184,4 +185,62 @@ secrets:
     file: ./pihole_password.txt
 ...
 ```
+
+## Configuration Reference
+
+### Recommended Environment Variables
+
+| Variable | Default | Value | Description |
+| :--- | :--- | :--- | :--- |
+| `TZ` | UTC | `<Timezone>` | Set your [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to make sure logs rotate at local midnight instead of at UTC midnight. |
+| `FTLCONF_webserver_api_password` | random | `<Admin password>` | <http://pi.hole/admin> password.<br>Run `docker logs pihole \| grep random` to find your random password. |
+| `FTLCONF_dns_upstreams` | `8.8.8.8;8.8.4.4` | IPs delimited by `;` | Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon.<br><br>Supports non-standard ports with: `#[port number]`, e.g `127.0.0.1#5053;8.8.8.8;8.8.4.4`.<br><br>Supports [Docker service names and links](https://docs.docker.com/compose/networking/) instead of IPs, e.g `upstream0,upstream1` where `upstream0` and `upstream1` are the service names of or links to docker services.<br><br>**Note:** The existence of this environment variable assumes this as the _sole_ management of upstream DNS. Upstream DNS added via the web interface will be overwritten on container restart/recreation. |
+
+### Optional Variables
+
+| Variable | Default | Value | Description |
+| :--- | :--- | :--- | :--- |
+| `TAIL_FTL_LOG` | `1` | `<0\|1>` | Whether or not to output the FTL log when running the container. Can be disabled by setting the value to 0. |
+| `FTLCONF_[SETTING]` | unset | As per documentation | Customize pihole.toml with settings described in the [API Documentation](https://docs.pi-hole.net/api).<br><br>Replace `.` with `_`, e.g for `dns.dnssec=true` use `FTLCONF_dns_dnssec: 'true'`.<br/>Array type configs should be delimited with `;`. |
+| `PIHOLE_UID` | `1000` | Number | Overrides image's default pihole user id to match a host user id.<br/>**IMPORTANT**: id must not already be in use inside the container! |
+| `PIHOLE_GID` | `1000` | Number | Overrides image's default pihole group id to match a host group id.<br/>**IMPORTANT**: id must not already be in use inside the container! |
+| `WEBPASSWORD_FILE` | unset | `<Docker secret file>` | Set an Admin password using Docker secrets with [Swarm](https://docs.docker.com/engine/swarm/secrets/) or [Compose](https://docs.docker.com/compose/how-tos/use-secrets/). If `FTLCONF_webserver_api_password` is set, `WEBPASSWORD_FILE` is ignored. If `FTLCONF_webserver_api_password` is empty, and `WEBPASSWORD_FILE` is set to a valid readable file, then `FTLCONF_webserver_api_password` will be set to the contents of `WEBPASSWORD_FILE`. See [WEBPASSWORD_FILE Example](#webpassword_file-example) for additional information. |
+
+### Advanced Variables
+
+| Variable | Default | Value | Description |
+| :--- | :--- | :--- | :--- |
+| `FTL_CMD` | `no-daemon` | `no-daemon -- <dnsmasq option>` | Customize dnsmasq startup options. e.g. `no-daemon -- --dns-forward-max 300` to increase max. number of concurrent dns queries on high load setups. |
+| `DNSMASQ_USER` | unset | `<pihole\|root>` | Allows changing the user that FTLDNS runs as. Default: `pihole`, some systems such as Synology NAS may require you to change this to `root`.<br><br>(See [#963](https://github.com/pi-hole/docker-pi-hole/issues/963)) |
+| `ADDITIONAL_PACKAGES` | unset | Space separated list of APKs | HERE BE DRAGONS. Mostly for development purposes, this just makes it easier for those of us that always like to have whatever additional tools we need inside the container for debugging. |
+| `FTLCONF_misc_etc_dnsmasq_d` | false | `true\|false` | Load custom user configuration files from `/etc/dnsmasq.d/` |
+
+### Docker Arguments
+
+Here is a rundown of other arguments for your docker-compose / docker run.
+
+| Docker Arguments | Description |
+| :--- | :--- |
+| `-p <port>:<port>` **Recommended** | Ports to expose (53, 80, 443, 67), the bare minimum ports required for Pi-holes HTTP, HTTPS and DNS services. |
+| `--restart=unless-stopped`<br/> **Recommended** | Automatically (re)start your Pi-hole on boot or in the event of a crash. |
+| `-v $(pwd)/etc-pihole:/etc/pihole`<br/> **Recommended** | Volumes for your Pi-hole configs help persist changes across docker image updates. |
+| `--net=host`<br/> _Optional_ | Alternative to `-p <port>:<port>` arguments (Cannot be used at same time as `-p`) if you don't run any other web application. DHCP runs best with `--net=host`, otherwise your router must support dhcp-relay settings. |
+| `--cap-add=NET_ADMIN`<br/> _Recommended_ | Commonly added capability for DHCP, see [Note on Capabilities](#note-on-capabilities) below for other capabilities. |
+| `--dns=n.n.n.n`<br/> _Optional_ | Explicitly set container's DNS server. It is **_not recommended_** to set this to `localhost`/`127.0.0.1`. |
+| `--env-file .env` <br/> _Optional_ | File to store environment variables for docker replacing `-e key=value` settings. Here for convenience. |
+
+## Note on Capabilities {: #note-on-capabilities }
+
+Pi-hole's DNS core (FTL) expects to have the following capabilities available:
+
+- `CAP_NET_BIND_SERVICE`: Allows FTLDNS binding to TCP/UDP sockets below 1024 (specifically DNS service on port 53)
+- `CAP_NET_RAW`: use raw and packet sockets (needed for handling DHCPv6 requests, and verifying that an IP is not in use before leasing it)
+- `CAP_NET_ADMIN`: modify routing tables and other network-related operations (in particular inserting an entry in the neighbor table to answer DHCP requests using unicast packets)
+- `CAP_SYS_NICE`: FTL sets itself as an important process to get some more processing time if the latter is running low
+- `CAP_CHOWN`: we need to be able to change ownership of log files and databases in case FTL is started as a different user than `pihole`
+- `CAP_SYS_TIME`: FTL needs to be able to set the system time to update it using the Network Time Protocol (NTP) in the background
+
+This image automatically grants those capabilities, if available, to the FTLDNS process, even when run as non-root.\
+By default, docker does not include the `NET_ADMIN` capability for non-privileged containers, and it is recommended to explicitly add it to the container using `--cap-add=NET_ADMIN`.\
+However, if DHCP and IPv6 Router Advertisements are not in use, it should be safe to skip it. For the most paranoid, it should even be possible to explicitly drop the `NET_RAW` capability to prevent FTLDNS from automatically gaining it.
 
