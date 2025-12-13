@@ -66,6 +66,4 @@ Release notes will always contain full details of changes in the container, incl
 | :--- | :--- |
 | `latest` | Always the latest release |
 | `2022.04.0` | Date-based release |
-| `2022.04.1` | Second release in a given month |
-| `*beta` | Early beta releases of upcoming versions - here be dragons |
 | `nightly` | Built and pushed whenever there are changes on the `development` branch and additionally produced by the scheduled nightly job. These are the most experimental development images and may change frequently |
