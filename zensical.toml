@@ -1,0 +1,277 @@
+# ----------------------------------------------------------------------------
+# Global options section
+# ----------------------------------------------------------------------------
+
+[project]
+site_name = "Pi-hole documentation"
+site_url = "https://docs.pi-hole.net/"
+site_description = "A black hole for Internet advertisements"
+site_author = "Pi-hole Team"
+repo_url = "https://github.com/pi-hole/pi-hole"
+
+edit_uri = "../docs/blob/master/docs/"
+
+docs_dir = "docs"
+
+# This is overwritten by orverrides/partials/copyright.html
+# see https://zensical.org/docs/customization/?h=over#overriding-partials
+copyright = ""
+
+extra_css = ["extra.css"]
+#extra_javascript = ["assets/javascript/extra.js"]
+
+# ----------------------------------------------------------------------------
+# Navigation section
+# ----------------------------------------------------------------------------
+
+ nav = [
+  {"About Pi-hole" = [
+      {"About Pi-hole" = "index.md"},
+      {"Getting in touch" = "main/contact.md"},
+      {"Pi-hole Origins" = "main/origins.md"},
+      {"On the Web" = "main/coverage.md"}
+  ]},
+  {"Getting Started" = [
+    {"Getting Started" = "main/index.md"},
+    {"Prerequisites" = "main/prerequisites.md"},
+    {"Installation" = "main/basic-install.md"},
+    {"Post-Install" = "main/post-install.md"},
+    {"Updating" = "main/update.md"},
+    {"Uninstalling" = "main/uninstall.md"}
+  ]},
+  {"The &nbsp<samp>pihole</samp>&nbsp Command" = "main/pihole-command.md"},
+  {"Databases" = [
+    {"Databases" = "database/index.md"},
+    {"Query Database" = "database/query-database.md"},
+    {"Domain Database" = [
+      {"Domain Database" = "database/domain-database/index.md"},
+      {"Group Management" = "database/domain-database/groups.md"},
+      {"Database Recovery" = "database/domain-database/recovery.md"}
+    ]},
+  ]},
+  {"Pi-hole API" = [
+    {"Pi-hole API" = "api/index.md"},
+    {"Authentication" = "api/auth.md"},
+    {"TLS/SSL" = "api/tls.md"}
+  ]},
+  {"FTLDNS" = [
+    {"FTLDNS" = "ftldns/index.md"},
+    {"Configuration" = "ftldns/configfile.md"},
+    {"Interfaces" = "ftldns/interfaces.md"},
+    {"DNS cache" = "ftldns/dns-cache.md"},
+    {"DNS resolver" = "ftldns/dns-resolver.md"},
+    {"Blocking mode" = "ftldns/blockingmode.md"},
+    {"Privacy levels" = "ftldns/privacylevels.md"},
+    {"dnsmasq warnings" = "ftldns/dnsmasq_warn.md"},
+    {"Webserver" = "ftldns/webserver.md"},
+    {"Advanced" = [
+      {"Install from source" = "ftldns/compile.md"},
+      {"Signals" = "ftldns/signals.md"},
+      {"Cache dump" = "ftldns/cache_dump.md"},
+      {"Packet dump" = "ftldns/package_dump.md"},
+      {"Debugging" = [
+        {"gdb" = "ftldns/gdb.md"},
+        {"valgrind" = "ftldns/valgrind.md"},
+      ]},
+    ]},
+  ]},
+  {"Group Management" = [
+    {"Group Management" = "group_management/index.md"},
+    {"Examples" = "group_management/example.md"}
+  ]},
+  {"RegEx Blocking" = [
+    {"Regex Blocking" = "regex/index.md"},
+    {"Testing" = "regex/testmode.md"},
+    {"Tutorial" = "regex/tutorial.md"},
+    {"Pi-hole extensions" = "regex/pi-hole.md"},
+    {"Approximate matching" = "regex/approximate.md"}
+  ]},
+  {"Docker" = [
+    {"Docker" = "docker/index.md"},
+    {"Configuration" = "docker/configuration.md"},
+    {"Upgrading" = [
+      {"Upgrading" = "docker/upgrading/index.md"},
+      {"Upgrading from v5.x" = "docker/upgrading/v5-v6.md"}
+    ]},
+    {"Building" = "docker/build-image.md"},
+    {"DHCP" = "docker/DHCP.md"},
+    {"Tips and Tricks" = "docker/tips-and-tricks.md"},
+  ]},
+  {"Contributing" = [
+    {"Contributing" = "guides/github/index.md"},
+    {"Developer Certificate of Origin (DCO)" = "guides/github/dco.md"},
+    {"How to sign-off commits" = "guides/github/how-to-signoff.md"},
+    {"How to fork and rebase" = "guides/github/how-to-fork-rebase.md"}
+  ]},
+  {"Guides" = [
+    {"DNS" = [
+      {"unbound" = "guides/dns/unbound.md"},
+      {"cloudflared (DoH)" = "guides/dns/cloudflared.md"},
+      {"dnscrypt-proxy (DoH)" = "guides/dns/dnscrypt-proxy.md"},
+      {"Upstream DNS Providers" = "guides/dns/upstream-dns-providers.md"}
+    ]},
+    {"VPN" = [
+      {"WireGuard" = [
+        {"Wireguard" = "guides/vpn/wireguard/index.md"},
+        {"Concept" = "guides/vpn/wireguard/concept.md"},
+        {"Install server" = "guides/vpn/wireguard/server.md"},
+        {"Add client(s)" = "guides/vpn/wireguard/client.md"},
+        {"Optional extra features" = [
+          {"Make local devices accessible" = "guides/vpn/wireguard/internal.md"},
+          {"Tunnel all Internet traffic" = "guides/vpn/wireguard/route-everything.md"}
+        ]},
+        {"Troubleshooting" = "guides/vpn/wireguard/faq.md"}
+      ]},
+      {"OpenVPN" = [
+        {"OpenVPN" = "guides/vpn/openvpn/index.md"},
+        {"Installation" = "guides/vpn/openvpn/installation.md"},
+        {"Setup OpenVPN Server" = "guides/vpn/openvpn/setup-openvpn-server.md"},
+        {"Firewall Configuration" = "guides/vpn/openvpn/firewall.md"},
+        {"Connecting clients" = [
+          {"General" = "guides/vpn/openvpn/clients.md"},
+          {"Android" = "guides/vpn/openvpn/android-client.md"}
+        ]},
+        {"Optional: Only route DNS via VPN" = "guides/vpn/openvpn/only-dns-via-vpn.md"},
+        {"Optional: Dual operation: LAN & VPN at the same time" = "guides/vpn/openvpn/dual-operation.md"},
+        {"Optional: Full and DNS-only" = "guides/vpn/openvpn/dual-VPN.md"},
+        {"Optional: Dynamic DNS" = "guides/vpn/openvpn/dynDNS.md"},
+        {"Troubleshooting" = "guides/vpn/openvpn/troubleshooting.md"}
+      ]}
+    ]},
+    {"Misc" = [
+      {"Home Assistant" = "guides/misc/homeassistant.md"},
+      {"Benchmarking" = "guides/misc/benchmark.md"},
+      {"Tor & Pi-hole" = [
+        {"Tor & Pi-hole" = "guides/misc/tor/index.md"},
+        {"Basic Setup" = "guides/misc/tor/setup.md"},
+        {"Using Tor" = "guides/misc/tor/using-tor.md"},
+        {"Performance and other issues" = "guides/misc/tor/performance-issues.md"},
+        {"Using DNSSEC" = "guides/misc/tor/dnssec.md"},
+      ]},
+      {"Allowlist and Denylist editing" = "guides/misc/allowlist-denylist.md"},
+      {"Network Time Protocol" = "guides/misc/ntp.md"}
+    ]}
+  ]},
+  {"Router setup" = [
+    {"ASUS router" = "routers/asus.md"},
+    {"Fritz!Box (EN)" = "routers/fritzbox.md"},
+    {"Fritz!Box (DE)" = "routers/fritzbox-de.md"},
+    {"Nokia G-240W-B" = "routers/nokia-G240WB.md"},
+    {"OPNsense" = "routers/OPNsense.md"},
+    {"TP-Link" = "routers/tp-link.md"},
+    {"Ubiquiti USG" = "routers/ubiquiti-usg.md"}
+  ]},
+  {"FAQ" = "main/faq.md"},
+  {"Community Projects" = "main/projects.md"}
+ ]
+
+# ----------------------------------------------------------------------------
+# Section for configuring theme options
+# ----------------------------------------------------------------------------
+[project.theme]
+
+# change this to "classic" to use the traditional Material for MkDocs look.
+variant = "modern"
+
+custom_dir = "overrides"
+favicon = "images/favicon.ico"
+logo = "images/logo.svg"
+language = "en"
+
+# Zensical provides a number of feature toggles that change the behavior
+# of the documentation site.
+features = [
+    #"announce.dismiss",
+    "content.action.edit",
+    #"content.action.view",
+    #"content.code.annotate",
+    "content.code.copy",
+    #"content.code.select",
+    "content.footnote.tooltips",
+    "content.tabs.link",
+    #"content.tooltips",
+    # "header.autohide",
+    # "navigation.expand",
+    #"navigation.footer",
+    "navigation.indexes",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    #"navigation.instant.progress",
+    #"navigation.path",
+    #"navigation.prune",
+    #"navigation.sections",
+    #"navigation.tabs",
+    #"navigation.tabs.sticky",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    "toc.follow",
+    #"toc.integrate",
+]
+
+# Palette toggle for light mode
+[[project.theme.palette]]
+scheme = "default"
+media = "(prefers-color-scheme: light)"
+palette.primary = "indigo"
+palette.accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+# Palette toggle for dark mode
+[[project.theme.palette]]
+scheme = "slate"
+media = "(prefers-color-scheme: dark)"
+palette.primary = "indigo"
+palette.accent = "indigo"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.theme.font]
+text = "Source Sans Pro"
+code = "Roboto Mono"
+
+# ----------------------------------------------------------------------------
+# Section for markdown extensions
+# ----------------------------------------------------------------------------
+
+[project.markdown_extensions.abbr]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.toc]
+title = "Table of contents"
+permalink = "true"
+permalink_title = "Anchor link to this section"
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.superfences]
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+
+[project.markdown_extensions.pymdownx.inlinehilite]
+
+[project.markdown_extensions.pymdownx.snippets]
+auto_append = ["docs/abbreviations.md"]
+
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = "true"
+
+[project.markdown_extensions.pymdownx.tilde]
+
+# ----------------------------------------------------------------------------
+# Section for configuring extra options
+# ----------------------------------------------------------------------------
+
+[[project.extra.social]]
+icon = "fontawesome/solid/earth-americas"
+link = "https://pi-hole.net/"
+name = "Website"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/pi-hole"
+name = "GitHub"
