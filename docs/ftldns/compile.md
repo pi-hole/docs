@@ -44,15 +44,14 @@ FTL uses another cryptographic library (`libmbedtls`) containing cryptographic p
 Compile and install a recent version using:
 
 ```bash
-wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v4.0.0.tar.bz2 -O mbedtls-4.0.0.tar.bz2
+wget https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-4.0.0/mbedtls-4.0.0.tar.bz2 -O mbedtls-4.0.0.tar.bz2
 tar -xjf mbedtls-4.0.0.tar.bz2
 cd mbedtls-4.0.0
 sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' include/mbedtls/mbedtls_config.h
 sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' include/mbedtls/mbedtls_config.h
 cmake -S . -B build -DCMAKE_C_FLAGS="-fomit-frame-pointer"
 cmake --build build -j $(nproc)
-cmake --install build
-sudo make install
+sudo cmake --install build
 ```
 
 The `sed` commands are necessary to enable multi-threading support in `libmbedtls` as there is no `configure` script to do this for us (see also [here](https://github.com/Mbed-TLS/mbedtls#configuration)).
