@@ -1,4 +1,4 @@
-We pre-compile *FTL*DNS for you to save you the trouble of compiling anything yourself. However, sometimes you may want to make your own modifications. To test them, you have to compile *FTL*DNS from source. Luckily, you don't have to be a programmer to build *FTL*DNS from source and install it on your system; you only have to know the basics we provide in here. With just a few commands, you can build *FTL*DNS from source like a pro.
+We pre-compile FTL for you to save you the trouble of compiling anything yourself. However, sometimes you may want to make your own modifications. To test them, you have to compile FTL from source. Luckily, you don't have to be a programmer to build FTL from source and install it on your system; you only have to know the basics we provide in here. With just a few commands, you can build FTL from source like a pro.
 
 # Install native build environment
 
@@ -23,7 +23,7 @@ sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libi
 
 ## Compile `libnettle` from source
 
-*FTL*DNS uses a cryptographic library (`libnettle`) for handling DNSSEC signatures.
+FTL uses a cryptographic library (`libnettle`) for handling DNSSEC signatures.
 Compile and install a recent version using:
 
 ```bash
@@ -39,25 +39,26 @@ Since Ubuntu 20.04, you need to specify the library directory explicitly. Otherw
 
 ## Compile `libmbedtls` from source
 
-*FTL*DNS uses another cryptographic library (`libmbedtls`) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols used for serving the web interface and the API over HTTPS.
+FTL uses another cryptographic library (`libmbedtls`) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols used for serving the web interface and the API over HTTPS.
 
 Compile and install a recent version using:
 
 ```bash
-wget https://github.com/Mbed-TLS/mbedtls/archive/refs/tags/v3.6.4.tar.gz -O mbedtls-3.6.4.tar.gz
-tar -xzf mbedtls-3.6.4.tar.gz
-cd mbedtls-3.6.4
+wget https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-4.0.0/mbedtls-4.0.0.tar.bz2 -O mbedtls-4.0.0.tar.bz2
+tar -xjf mbedtls-4.0.0.tar.bz2
+cd mbedtls-4.0.0
 sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' include/mbedtls/mbedtls_config.h
 sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' include/mbedtls/mbedtls_config.h
-make -j $(nproc)
-sudo make install
+cmake -S . -B build -DCMAKE_C_FLAGS="-fomit-frame-pointer"
+cmake --build build -j $(nproc)
+sudo cmake --install build
 ```
 
 The `sed` commands are necessary to enable multi-threading support in `libmbedtls` as there is no `configure` script to do this for us (see also [here](https://github.com/Mbed-TLS/mbedtls#configuration)).
 
 ## Get the source
 
-Now, clone the *FTL*DNS repo (or your own fork) to get the source code of *FTL*DNS:
+Now, clone the FTL repo (or your own fork) to get the source code of FTL:
 
 ```bash
 git clone https://github.com/pi-hole/FTL.git && cd FTL
@@ -71,7 +72,7 @@ git checkout development
 
 ## Compile the source
 
-*FTL*DNS can now be compiled using either the build script
+FTL can now be compiled using either the build script
 
 ```bash
 ./build.sh
@@ -101,7 +102,7 @@ or
 cd cmake && sudo make install
 ```
 
-Finally, restart *FTL*DNS to use the new binary:
+Finally, restart FTL to use the new binary:
 
 ```bash
 sudo service pihole-FTL restart
