@@ -2507,7 +2507,7 @@ An array of HTTP headers
 ```toml
   [
     "X-DNS-Prefetch-Control: off",
-    "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
+    "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
@@ -2520,7 +2520,7 @@ An array of HTTP headers
     [webserver]
       headers = [
         "X-DNS-Prefetch-Control: off",
-        "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
+        "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
         "X-Frame-Options: DENY",
         "X-XSS-Protection: 0",
         "X-Content-Type-Options: nosniff",
@@ -2529,14 +2529,14 @@ An array of HTTP headers
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'self';style-src'self''unsafe-inline';img-src'self'data:;","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
+    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src 'none';connect-src 'self';font-src 'self';frame-ancestors 'none';img-src 'self';manifest-src 'self';script-src 'self';style-src 'self' 'unsafe-inline'","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
       FTLCONF_webserver_headers: |-
         X-DNS-Prefetch-Control: off
-        Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;
+        Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';
         X-Frame-Options: DENY
         X-XSS-Protection: 0
         X-Content-Type-Options: nosniff
