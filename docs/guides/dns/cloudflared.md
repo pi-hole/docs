@@ -240,6 +240,7 @@ sudo deluser cloudflared
 sudo rm /etc/default/cloudflared
 sudo rm /etc/systemd/system/cloudflared.service
 sudo rm /usr/local/bin/cloudflared
+sudo rm -r /etc/cron.weekly/cloudflared-updater
 ```
 
 #### If installed with `cloudflare service install`
