@@ -25,7 +25,7 @@ cp /usr/lib/systemd/system/dnscrypt-proxy.socket /etc/systemd/system/
 
 Edit `/etc/systemd/system/dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
 
-The following settings in `/usr/lib/systemd/system/dnscrypt-proxy.socket`, let `dnscrypt-proxy` listen on localhost on port 5053:
+The following settings in `/etc/systemd/system/dnscrypt-proxy.socket`, let `dnscrypt-proxy` listen on localhost on port 5053:
 
 ```text
 ListenStream=127.0.0.1:5053
