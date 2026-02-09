@@ -17,7 +17,13 @@ However for those using distributions which don't provide an official package, [
 
 By default, `FTLDNS` listens on the standard DNS port 53.
 
-To avoid conflicts with `FTLDNS`, edit `/usr/lib/systemd/system/dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
+To avoid conflicts with `FTLDNS`, run the following command to copy the DNSCrypt Systemd unit to the Systemd directory that takes higher priority and will not be affected by package updates:
+
+```bash
+cp /usr/lib/systemd/system/dnscrypt-proxy.socket /etc/systemd/system/
+```
+
+Edit `/etc/systemd/system/dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
 
 The following settings in `/usr/lib/systemd/system/dnscrypt-proxy.socket`, let `dnscrypt-proxy` listen on localhost on port 5053:
 
