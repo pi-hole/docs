@@ -17,14 +17,34 @@ However for those using distributions which don't provide an official package, [
 
 By default, `FTLDNS` listens on the standard DNS port 53.
 
-To avoid conflicts with `FTLDNS`, edit `/usr/lib/systemd/system/dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
+To avoid conflicts with `FTLDNS`, add a Systemd override file with `sudo systemctl edit dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
 
-The following settings in `/usr/lib/systemd/system/dnscrypt-proxy.socket`, let `dnscrypt-proxy` listen on localhost on port 5053:
+You will be greeted with an empty override file:
 
 ```text
+### Editing /etc/systemd/system/dnscrypt-proxy.socket.d/override.conf
+### Anything between here and the comment below will become the contents of the drop-in file
+
+
+### Edits below this comment will be discarded
+```
+
+In the new Systemd override file, unset the old values first and let `dnscrypt-proxy` listen on localhost on port 5053:
+
+```text
+### Editing /etc/systemd/system/dnscrypt-proxy.socket.d/override.conf
+### Anything between here and the comment below will become the contents of the drop-in file
+
+[Socket]
+ListenStream=
+ListenDatagram=
 ListenStream=127.0.0.1:5053
 ListenDatagram=127.0.0.1:5053
+
+### Edits below this comment will be discarded
 ```
+Make sure you placed the edits between the second comment line and the third comment line of the Systemd override file.
+
 
 If you have `cloudflared` installed, you may uninstall it, as `dnscrypt-proxy` will replace it, or choose a unique port for `dnscrypt-proxy`.
 
