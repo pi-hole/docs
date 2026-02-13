@@ -245,6 +245,7 @@ plugins:
   - search
   - git-revision-date-localized:
       fallback_to_build_date: true
+      enable_parallel_processing: false
   - redirects:
       redirect_maps:
         'ftldns/database.md': database/index.md
