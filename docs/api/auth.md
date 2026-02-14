@@ -388,7 +388,7 @@ To end your session before the SID expires, you can send a `DELETE` request to t
 
 ???+ success "Success response"
 
-    Response code: `HTTP/1.1 410 - Gone`
+    Response code: `HTTP/1.1 204 - No Content`
 
     No content
 
