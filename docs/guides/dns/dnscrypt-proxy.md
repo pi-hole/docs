@@ -44,7 +44,6 @@ ListenDatagram=127.0.0.1:5053
 ### Edits below this comment will be discarded
 ```
 
-Make sure you placed the edits between the second comment line and the third comment line of the Systemd override file.
 
 
 If you have `cloudflared` installed, you may uninstall it, as `dnscrypt-proxy` will replace it, or choose a unique port for `dnscrypt-proxy`.
