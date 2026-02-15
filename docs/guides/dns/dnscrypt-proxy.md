@@ -44,8 +44,6 @@ ListenDatagram=127.0.0.1:5053
 ### Edits below this comment will be discarded
 ```
 
-
-
 If you have `cloudflared` installed, you may uninstall it, as `dnscrypt-proxy` will replace it, or choose a unique port for `dnscrypt-proxy`.
 
 Also edit `/etc/dnscrypt-proxy/dnscrypt-proxy.toml`, updating the following settings:
