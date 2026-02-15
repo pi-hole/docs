@@ -17,7 +17,7 @@ However for those using distributions which don't provide an official package, [
 
 By default, `FTLDNS` listens on the standard DNS port 53.
 
-To avoid conflicts with `FTLDNS`, add a Systemd override file with `sudo systemctl edit dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
+To avoid conflicts with `FTLDNS`, add a systemd override file with `sudo systemctl edit dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
 
 You will be greeted with an empty override file:
 
