@@ -29,7 +29,7 @@ You will be greeted with an empty override file:
 ### Edits below this comment will be discarded
 ```
 
-In the new Systemd override file, unset the old values first and let `dnscrypt-proxy` listen on localhost on port 5053:
+In the new systemd override file, unset the old values first and let `dnscrypt-proxy` listen on localhost on port 5053:
 
 ```text
 ### Editing /etc/systemd/system/dnscrypt-proxy.socket.d/override.conf
