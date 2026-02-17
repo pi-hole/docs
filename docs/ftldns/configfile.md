@@ -908,6 +908,32 @@ blocked queries
       FTLCONF_dns_cache_upstreamBlockedTTL: 86400
     ```
 
+### `rrtype`
+
+This is dnsmasq's --cache-rr option, which allows you to define which DNS record
+types should be cached by PiHole. This option can take a comma-separated list of
+RR-types as input. The default value ANY caches all record types.
+
+**Allowed values are:**
+Valid DNS record types in the following form: `<rrtype>``[,<rrtype>...]`
+
+**Default value:** `"ANY"`
+
+=== "TOML"
+    ```toml
+    [dns.cache]
+      rrtype = "ANY"
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config dns.cache.rrtype "ANY"
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_dns_cache_rrtype: 'ANY'
+    ```
+
 
 ## `[dns.blocking]`
 
@@ -2252,6 +2278,37 @@ true or false
       FTLCONF_database_useWAL: true
     ```
 
+### `forceDisk`
+
+Should FTL force the use of disk storage for the history database? By default, FTL
+uses an in-memory database for much improved performance when browsing the history
+from the dashboard. However, on systems with very limited RAM and only occasional
+usage of the web interface, it may be useful to force the use of disk storage
+instead of holding everything in memory.
+
+Note that using disk storage *will* reduce performance, especially on systems with
+slow storage media (e.g., SD cards).
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [database]
+      forceDisk = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config database.forceDisk false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_database_forceDisk: false
+    ```
+
 
 ## `[database.network]`
 
@@ -2507,7 +2564,7 @@ An array of HTTP headers
 ```toml
   [
     "X-DNS-Prefetch-Control: off",
-    "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
+    "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
@@ -2520,7 +2577,7 @@ An array of HTTP headers
     [webserver]
       headers = [
         "X-DNS-Prefetch-Control: off",
-        "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
+        "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
         "X-Frame-Options: DENY",
         "X-XSS-Protection: 0",
         "X-Content-Type-Options: nosniff",
@@ -2529,14 +2586,14 @@ An array of HTTP headers
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'self';style-src'self''unsafe-inline';img-src'self'data:;","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
+    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'none';connect-src'self';font-src'self';frame-ancestors'none';img-src'self';manifest-src'self';script-src'self';style-src'self''unsafe-inline'","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
       FTLCONF_webserver_headers: |-
         X-DNS-Prefetch-Control: off
-        Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;
+        Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline
         X-Frame-Options: DENY
         X-XSS-Protection: 0
         X-Content-Type-Options: nosniff
@@ -3381,6 +3438,31 @@ Any FTL database
       FTLCONF_files_database: '/etc/pihole/pihole-FTL.db'
     ```
 
+### `tmp_db`
+
+The location of FTL's short-term temporary database (only used when
+database.forceDisk is true)
+
+**Allowed values are:**
+Any FTL database
+
+**Default value:** `"/etc/pihole/pihole-tmp.db"`
+
+=== "TOML"
+    ```toml
+    [files]
+      tmp_db = "/etc/pihole/pihole-tmp.db"
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config files.tmp_db "/etc/pihole/pihole-tmp.db"
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_files_tmp_db: '/etc/pihole/pihole-tmp.db'
+    ```
+
 ### `gravity`
 
 The location of Pi-hole's gravity database
@@ -3872,6 +3954,37 @@ true or false
     ```yaml
     environment:
       FTLCONF_misc_hide_dnsmasq_warn: false
+    ```
+
+### `hide_connection_error`
+
+Should FTL hide network connection errors?
+
+By default, FTL reports network connection errors (e.g., Connection prematurely
+closed by remote server) to the FTL log file. These warnings can be useful to
+identify intermittent network problems or general problem with upstream servers.
+However, in some setups, these warnings may be expected (e.g. due to low-quality
+Internet connectivity) and cannot be fixed. Enabling this setting will hide all
+connection warnings.
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [misc]
+      hide_connection_error = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config misc.hide_connection_error false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_misc_hide_connection_error: false
     ```
 
 
