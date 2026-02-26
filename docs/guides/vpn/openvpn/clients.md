@@ -1,4 +1,6 @@
-{!guides/vpn/openvpn/deprecation_notice.md!}
+--8<--
+docs/guides/vpn/openvpn/deprecation_notice.md
+--8<--
 
 ## Create a client config file (`.ovpn`)
 

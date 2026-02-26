@@ -1,4 +1,6 @@
-{!guides/vpn/openvpn/deprecation_notice.md!}
+--8<--
+docs/guides/vpn/openvpn/deprecation_notice.md
+--8<--
 
 This tutorial is tailored for setting up OpenVPN on a cloud-hosted virtual server. If you wish to have this working on your home network, you will need to tailor Pi-hole to listen on `eth0` (or similar), which we explain in [this section of the tutorial](dual-operation.md).
 
