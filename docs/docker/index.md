@@ -53,20 +53,17 @@ The equivalent command for `docker run` would be:
 docker run --name pihole -p 53:53/tcp -p 53:53/udp -p 80:80/tcp -p 443:443/tcp -e TZ=Europe/London -e FTLCONF_webserver_api_password="correct horse battery staple" -e FTLCONF_dns_listeningMode=all -v ./etc-pihole:/etc/pihole -v ./etc-dnsmasq.d:/etc/dnsmasq.d --cap-add NET_ADMIN --restart unless-stopped pihole/pihole:latest
 ```
 
-## Note On Capabilities
 
-[FTLDNS](https://docs.pi-hole.net/ftldns/) expects to have the following capabilities available:
+## Docker tags and versioning
 
-- `CAP_NET_BIND_SERVICE`: Allows FTLDNS binding to TCP/UDP sockets below 1024 (specifically DNS service on port 53)
-- `CAP_NET_RAW`: use raw and packet sockets (needed for handling DHCPv6 requests, and verifying that an IP is not in use before leasing it)
-- `CAP_NET_ADMIN`: modify routing tables and other network-related operations (in particular inserting an entry in the neighbor table to answer DHCP requests using unicast packets)
-- `CAP_SYS_NICE`: FTL sets itself as an important process to get some more processing time if the latter is running low
-- `CAP_CHOWN`: we need to be able to change ownership of log files and databases in case FTL is started as a different user than `pihole`
-- `CAP_SYS_TIME`: FTL needs to be able to set the system time to update it using the Network Time Protocol (NTP) in the background
+The primary docker tags are explained in the following table.  [Click here to see the full list of tags](https://hub.docker.com/r/pihole/pihole/tags). See [GitHub Release notes](https://github.com/pi-hole/docker-pi-hole/releases) to see the specific version of Pi-hole Core, Web, and FTL included in the release.
 
-!!! info
-    This image automatically grants those capabilities, if available, to the FTLDNS process, even when run as non-root.
+The Date-based (including incremented "Patch" versions) do not relate to any kind of semantic version number, rather a date is used to differentiate between the new version and the old version, nothing more.
 
-By default, docker does not include the `NET_ADMIN` capability for non-privileged containers, and it is recommended to explicitly add it to the container using `--cap-add=NET_ADMIN`.
+Release notes will always contain full details of changes in the container, including changes to core Pi-hole components.
 
-However, if DHCP and IPv6 Router Advertisements are not in use, it should be safe to skip it. For the most paranoid, it should even be possible to explicitly drop the `NET_RAW` capability to prevent FTLDNS from automatically gaining it.
+| tag | description |
+| :--- | :--- |
+| `latest` | Always the latest release |
+| `2022.04.0` | Date-based release |
+| `nightly` | Built and pushed whenever there are changes on the `development` branch and additionally produced by the scheduled nightly job. These are the most experimental development images and may change frequently |
