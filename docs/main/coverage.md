@@ -32,3 +32,4 @@ last_updated: Sun Jan 13 19:20:35 2019 UTC
 - [Bloomberg: Inside the Brotherhood of the Ad Blockers](https://www.bloomberg.com/news/features/2018-05-10/inside-the-brotherhood-of-pi-hole-ad-blockers) _May 10, 2018_
 - [How a Single Raspberry PI made my Home Network Faster](https://brianchristner.io/how-a-single-raspberry-pi-made-my-home-network-faster/) _March 1, 2019_
 - [Coding Horror: An Exercise Program for the Fat Web](https://blog.codinghorror.com/an-exercise-program-for-the-fat-web/) _May 30, 2019_
+- [How to Self-Host Pi-hole with Docker Compose](https://selfhosting.sh/apps/pi-hole/) - Docker Compose setup guide covering installation, custom DNS, DHCP configuration, and ad list management.
