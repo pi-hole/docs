@@ -2,8 +2,6 @@
 
 To utilize DNS-Over-HTTPS (DoH) or other encrypted DNS protocols with Pi-hole, preventing man-in-the-middle attacks between Pi-hole and upstream DNS servers, the following sections explain how to install the flexible and stable [dnscrypt-proxy](https://github.com/DNSCrypt/dnscrypt-proxy) tool.
 
-As an alternative tool to this end, consider [cloudflared](https://github.com/cloudflare/cloudflared), for which a [guide](cloudflared.md) exists as well.
-
 ### Installing `dnscrypt-proxy`
 
 Under Debian 13 `Trixie` and Ubuntu 25 `Plucky Puffin` and later, official packages are available and therefore can be installed with the following commands:
@@ -19,13 +17,31 @@ However for those using distributions which don't provide an official package, [
 
 By default, `FTLDNS` listens on the standard DNS port 53.
 
-To avoid conflicts with `FTLDNS`, edit `/usr/lib/systemd/system/dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
+To avoid conflicts with `FTLDNS`, add a systemd override file with `sudo systemctl edit dnscrypt-proxy.socket`, ensuring `dnscrypt-proxy` listens on a port that is not in use by other services.
 
-The following settings in `/usr/lib/systemd/system/dnscrypt-proxy.socket`, let `dnscrypt-proxy` listen on localhost on port 5053:
+You will be greeted with an empty override file:
 
 ```text
+### Editing /etc/systemd/system/dnscrypt-proxy.socket.d/override.conf
+### Anything between here and the comment below will become the contents of the drop-in file
+
+
+### Edits below this comment will be discarded
+```
+
+In the new systemd override file, unset the old values first and let `dnscrypt-proxy` listen on localhost on port 5053:
+
+```text
+### Editing /etc/systemd/system/dnscrypt-proxy.socket.d/override.conf
+### Anything between here and the comment below will become the contents of the drop-in file
+
+[Socket]
+ListenStream=
+ListenDatagram=
 ListenStream=127.0.0.1:5053
 ListenDatagram=127.0.0.1:5053
+
+### Edits below this comment will be discarded
 ```
 
 If you have `cloudflared` installed, you may uninstall it, as `dnscrypt-proxy` will replace it, or choose a unique port for `dnscrypt-proxy`.
