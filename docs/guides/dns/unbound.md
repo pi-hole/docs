@@ -50,6 +50,48 @@ You can easily imagine even longer chains for subdomains as the query process co
 - Drawback: Traversing the path may be slow, especially for the first time you visit a website - while the bigger DNS providers always have answers for commonly used domains in their cache, you will have to traverse the path if you visit a page for the first time. The first request to a formerly unknown TLD may take up to a second (or even more if you're also using DNSSEC). Subsequent requests to domains under the same TLD usually complete in `< 0.1s`.
 Fortunately, both your Pi-hole as well as your recursive server will be configured for efficient caching to minimize the number of queries that will actually have to be performed.
 
+### Recommended: Test access to root servers
+
+Some ISPs intercept and redirect outbound DNS traffic on port 53 to their own resolvers, without any indication that this is happening. Security or parental filtering software, including the firmware on many consumer-grade and home routers may do the same. Either of these will prevent `unbound` from reaching the root servers directly, and likely cause it to fail in ways that can be difficult to diagnose.
+
+Before proceeding, it is worth confirming that your device can definitively reach a root server. The following tests use `a.root-servers.net` at `198.41.0.4`, and should be run on the system upon which you intend to install unbound.
+
+1. **Test UDP reachability and check for interception.** Query `a.root-servers.net` directly for the root name servers, without requesting recursion:
+
+    ```bash
+    dig @198.41.0.4 . NS +norec +time=3
+    ```
+
+    Check the `flags:` line in the response. If you are talking directly to a root server, the response will include `aa` (*Authoritative Answer*) which confirms the server is authoritative for the root zone and simultaneously the `ra` (*Recursion Available*) flag will be **absent**, as root servers do not offer recursion.
+
+    e.g. `;; flags: qr aa; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 27`
+
+    If your DNS traffic is being intercepted, the `ra` flag will be **present** and `aa` will most likely be absent, as an ISP resolver or proxy is answering instead of the root server.
+
+    e.g. `;; flags: qr ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 0`
+
+2. **Test TCP reachability.** `unbound` relies on TCP/53 for large DNSSEC responses and for retries:
+
+    ```bash
+    dig @198.41.0.4 . NS +norec +tcp +time=3
+    ```
+
+    Some CG-NAT implementations pass UDP DNS traffic unscathed while silently dropping TCP DNS traffic. If step 1 succeeded but this command times out then this will likely cause cryptic `unbound` failures on your network when larger DNS requests are required. If you are reaching the root server, the `flags:` line will be structurally identical to the previous step.
+
+3. **Confirm server identity via the `CHAOS` class.** Root servers respond to `CHAOS` (`CH`) class queries with unique identifiers. Most ISP interception proxies do not handle `CHAOS` queries:
+
+    ```bash
+    dig @198.41.0.4 version.bind CH TXT +time=3
+    ```
+
+    If you are connecting to the root server directly, the response will be a `TXT` record containing `ATLAS`.
+
+    e.g. `version.bind.   0    CH    TXT    "ATLAS"`
+
+    If your traffic is being intercepted then this command will return a string othert that `ATLAS` or could time out or return `SERVFAIL`. This can happen even if the previous tests appeared to succeed, as  proxies generally handle standard query classes correctly. If the first two tests succeed but this one fails then be aware that your DNS traffic is being proxied, including an understanding that DNS reliability and privacy of **any** unencrypted DNS queries may be effected.
+
+If any of these tests fail, it is not recommended to proceed with installation of unbound as a local recursive resolver before investigating the source of failure (e.g. ISP redirection or proxying of DNS queries, CG-NAT blocking of TCP DNS traffic or security/parental filtering on router) and its successful remediation.
+
 ## Setting up Pi-hole as a recursive DNS server solution
 
 We will use [`unbound`](https://github.com/NLnetLabs/unbound), a secure open-source recursive DNS server primarily developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
