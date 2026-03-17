@@ -53,16 +53,19 @@ Array of IP addresses and/or hostnames, optionally with a port (#...)
 === "TOML"
     ```toml
     [dns]
-      upstreams = []
+      upstreams = [ "8.8.8.8", "127.0.0.1#5335", "docker-resolver" ]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dns.upstreams []
+    sudo pihole-FTL --config dns.upstreams '[ "8.8.8.8", "127.0.0.1#5335", "docker-resolver" ]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns_upstreams: []
+      FTLCONF_dns_upstreams: |-
+        8.8.8.8
+        127.0.0.1#5335
+        docker-resolver
     ```
 
 ### `CNAMEdeepInspect`
@@ -353,16 +356,18 @@ Array of custom DNS records each one in HOSTS form: `"IP HOSTNAME [HOSTNAME ...]
 === "TOML"
     ```toml
     [dns]
-      hosts = []
+      hosts = [ "127.0.0.1 mylocal", "192.168.0.1 therouter" ]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dns.hosts []
+    sudo pihole-FTL --config dns.hosts '[ "127.0.0.1 mylocal", "192.168.0.1 therouter" ]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns_hosts: []
+      FTLCONF_dns_hosts: |-
+        127.0.0.1 mylocal
+        192.168.0.1 therouter
     ```
 
 ### `domainNeeded`
@@ -506,16 +511,16 @@ A string in the format
 === "TOML"
     ```toml
     [dns]
-      hostRecord = ""
+      hostRecord = "laptop,laptop.lan,192.168.0.1,1234::100"
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dns.hostRecord ""
+    sudo pihole-FTL --config dns.hostRecord "laptop,laptop.lan,192.168.0.1,1234::100"
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns_hostRecord: ''
+      FTLCONF_dns_hostRecord: 'laptop,laptop.lan,192.168.0.1,1234::100'
     ```
 
 ### `listeningMode`
@@ -617,7 +622,7 @@ Array of CNAMEs, each one in the following form: `"<cname>,<target>[,<TTL>]"`
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dns.cnameRecords []
+    sudo pihole-FTL --config dns.cnameRecords '[]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
@@ -715,16 +720,17 @@ want here.
 === "TOML"
     ```toml
     [dns]
-      revServers = []
+      revServers = [ "true,192.168.0.0/24,192.168.0.1,fritz.box" ]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dns.revServers []
+    sudo pihole-FTL --config dns.revServers '[ "true,192.168.0.0/24,192.168.0.1,fritz.box" ]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dns_revServers: []
+      FTLCONF_dns_revServers: |-
+        true,192.168.0.0/24,192.168.0.1,fritz.box
     ```
 
 
@@ -900,6 +906,32 @@ blocked queries
     ```yaml
     environment:
       FTLCONF_dns_cache_upstreamBlockedTTL: 86400
+    ```
+
+### `rrtype`
+
+This is dnsmasq's --cache-rr option, which allows you to define which DNS record
+types should be cached by PiHole. This option can take a comma-separated list of
+RR-types as input. The default value ANY caches all record types.
+
+**Allowed values are:**
+Valid DNS record types in the following form: `<rrtype>``[,<rrtype>...]`
+
+**Default value:** `"ANY"`
+
+=== "TOML"
+    ```toml
+    [dns.cache]
+      rrtype = "ANY"
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config dns.cache.rrtype "ANY"
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_dns_cache_rrtype: 'ANY'
     ```
 
 
@@ -1436,16 +1468,16 @@ A valid IPv4 address, or empty string (`""`)
 === "TOML"
     ```toml
     [dhcp]
-      start = ""
+      start = "192.168.0.10"
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dhcp.start ""
+    sudo pihole-FTL --config dhcp.start "192.168.0.10"
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dhcp_start: ''
+      FTLCONF_dhcp_start: '192.168.0.10'
     ```
 
 ### `end`
@@ -1462,16 +1494,16 @@ A valid IPv4 address, or empty string (`""`)
 === "TOML"
     ```toml
     [dhcp]
-      end = ""
+      end = "192.168.0.250"
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dhcp.end ""
+    sudo pihole-FTL --config dhcp.end "192.168.0.250"
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dhcp_end: ''
+      FTLCONF_dhcp_end: '192.168.0.250'
     ```
 
 ### `router`
@@ -1489,16 +1521,16 @@ A valid IPv4 address, or empty string (`""`)
 === "TOML"
     ```toml
     [dhcp]
-      router = ""
+      router = "192.168.0.1"
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dhcp.router ""
+    sudo pihole-FTL --config dhcp.router "192.168.0.1"
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dhcp_router: ''
+      FTLCONF_dhcp_router: '192.168.0.1'
     ```
 
 ### `netmask`
@@ -1522,16 +1554,16 @@ Any valid netmask, or an empty string (`""`) for auto-discovery
 === "TOML"
     ```toml
     [dhcp]
-      netmask = ""
+      netmask = "255.255.255.0"
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dhcp.netmask ""
+    sudo pihole-FTL --config dhcp.netmask "255.255.255.0"
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dhcp_netmask: ''
+      FTLCONF_dhcp_netmask: '255.255.255.0'
     ```
 
 ### `leaseTime`
@@ -1718,16 +1750,19 @@ Array of static leases each one in the following form:
 === "TOML"
     ```toml
     [dhcp]
-      hosts = []
+      hosts = [ "00:20:e0:3b:13:af,192.168.0.123,laptop,24h",
+    "00:20:e0:ab:cd:ef,192.168.0.124,desktop,24h"]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config dhcp.hosts []
+    sudo pihole-FTL --config dhcp.hosts '["00:20:e0:3b:13:af,192.168.0.123,laptop,24h","00:20:e0:ab:cd:ef,192.168.0.124,desktop,24h"]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_dhcp_hosts: []
+      FTLCONF_dhcp_hosts: |-
+        00:20:e0:3b:13:af,192.168.0.123,laptop,24h
+        00:20:e0:ab:cd:ef,192.168.0.124,desktop,24h
     ```
 
 
@@ -1974,16 +2009,16 @@ A valid RTC device path, or empty string (`""`) for auto-discovery
 === "TOML"
     ```toml
     [ntp.sync.rtc]
-      device = ""
+      device = "/dev/rtc0"
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config ntp.sync.rtc.device ""
+    sudo pihole-FTL --config ntp.sync.rtc.device "/dev/rtc0"
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_ntp_sync_rtc_device: ''
+      FTLCONF_ntp_sync_rtc_device: '/dev/rtc0'
     ```
 
 ### `utc`
@@ -2243,6 +2278,37 @@ true or false
       FTLCONF_database_useWAL: true
     ```
 
+### `forceDisk`
+
+Should FTL force the use of disk storage for the history database? By default, FTL
+uses an in-memory database for much improved performance when browsing the history
+from the dashboard. However, on systems with very limited RAM and only occasional
+usage of the web interface, it may be useful to force the use of disk storage
+instead of holding everything in memory.
+
+Note that using disk storage *will* reduce performance, especially on systems with
+slow storage media (e.g., SD cards).
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [database]
+      forceDisk = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config database.forceDisk false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_database_forceDisk: false
+    ```
+
 
 ## `[database.network]`
 
@@ -2498,7 +2564,7 @@ An array of HTTP headers
 ```toml
   [
     "X-DNS-Prefetch-Control: off",
-    "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
+    "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
@@ -2511,7 +2577,7 @@ An array of HTTP headers
     [webserver]
       headers = [
         "X-DNS-Prefetch-Control: off",
-        "Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;",
+        "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
         "X-Frame-Options: DENY",
         "X-XSS-Protection: 0",
         "X-Content-Type-Options: nosniff",
@@ -2520,20 +2586,18 @@ An array of HTTP headers
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'self';style-src'self''unsafe-inline';img-src'self'data:;","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
+    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'none';connect-src'self';font-src'self';frame-ancestors'none';img-src'self';manifest-src'self';script-src'self';style-src'self''unsafe-inline'","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver_headers: |
-        [
-          'X-DNS-Prefetch-Control: off',
-          'Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;',
-          'X-Frame-Options: DENY',
-          'X-XSS-Protection: 0',
-          'X-Content-Type-Options: nosniff',
-          'Referrer-Policy: strict-origin-when-cross-origin'
-        ]
+      FTLCONF_webserver_headers: |-
+        X-DNS-Prefetch-Control: off
+        Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline
+        X-Frame-Options: DENY
+        X-XSS-Protection: 0
+        X-Content-Type-Options: nosniff
+        Referrer-Policy: strict-origin-when-cross-origin
     ```
 
 ### `serve_all`
@@ -2587,16 +2651,18 @@ An array of valid CivetWeb options
 === "TOML"
     ```toml
     [webserver]
-      advancedOpts = []
+      advancedOpts = [ "ssl_protocol_version=4", "ssl_cipher_list=AES128:!MD5" ]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.advancedOpts []
+    sudo pihole-FTL --config webserver.advancedOpts '[ "ssl_protocol_version=4", "ssl_cipher_list=AES128:!MD5" ]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver_advancedOpts: []
+      FTLCONF_webserver_advancedOpts: |-
+        ssl_protocol_version=4
+        ssl_cipher_list=AES128:!MD5
     ```
 
 
@@ -3109,16 +3175,19 @@ An array of regular expressions describing clients
 === "TOML"
     ```toml
     [webserver.api]
-      excludeClients = []
+      excludeClients = [ "^192\\.168\\.2\\.56$", "^fe80::341:[0-9a-f]*$", "^localhost$" ]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.api.excludeClients []
+    sudo pihole-FTL --config webserver.api.excludeClients '[ "^192\\.168\\.2\\.56$", "^fe80::341:[0-9a-f]*$", "^localhost$" ]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver_api_excludeClients: []
+      FTLCONF_webserver_api_excludeClients: |-
+        ^192\\.168\\.2\\.56$
+        ^fe80::341:[0-9a-f]*$
+        ^localhost$
     ```
 
 ### `excludeDomains`
@@ -3139,16 +3208,18 @@ An array of regular expressions describing domains
 === "TOML"
     ```toml
     [webserver.api]
-      excludeDomains = []
+      excludeDomains = [ "(^|\\.)\\.google\\.de$", "\\.pi-hole\\.net$" ]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.api.excludeDomains []
+    sudo pihole-FTL --config webserver.api.excludeDomains '[ "(^|\\.)\\.google\\.de$", "\\.pi-hole\\.net$" ]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_webserver_api_excludeDomains: []
+      FTLCONF_webserver_api_excludeDomains: |-
+        (^|\\.)\\.google\\.de$
+        \\.pi-hole\\.net$
     ```
 
 ### `maxHistory`
@@ -3365,6 +3436,31 @@ Any FTL database
     ```yaml
     environment:
       FTLCONF_files_database: '/etc/pihole/pihole-FTL.db'
+    ```
+
+### `tmp_db`
+
+The location of FTL's short-term temporary database (only used when
+database.forceDisk is true)
+
+**Allowed values are:**
+Any FTL database
+
+**Default value:** `"/etc/pihole/pihole-tmp.db"`
+
+=== "TOML"
+    ```toml
+    [files]
+      tmp_db = "/etc/pihole/pihole-tmp.db"
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config files.tmp_db "/etc/pihole/pihole-tmp.db"
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_files_tmp_db: '/etc/pihole/pihole-tmp.db'
     ```
 
 ### `gravity`
@@ -3715,6 +3811,9 @@ from working.
 
 Use this option with extra care.
 
+**Example:** `[ "address=/example.com/192.168.0.1", "address=/example.org/192.168.0.2",
+"address=/example.net/192.168.0.3" ]`
+
 **Allowed values are:**
 Array of valid dnsmasq config line options
 
@@ -3723,16 +3822,20 @@ Array of valid dnsmasq config line options
 === "TOML"
     ```toml
     [misc]
-      dnsmasq_lines = []
+      dnsmasq_lines = [ "address=/example.com/192.168.0.1", "address=/example.org/192.168.0.2",
+    "address=/example.net/192.168.0.3" ]
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config misc.dnsmasq_lines []
+    sudo pihole-FTL --config misc.dnsmasq_lines '["address=/example.com/192.168.0.1","address=/example.org/192.168.0.2","address=/example.net/192.168.0.3"]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
-      FTLCONF_misc_dnsmasq_lines: []
+      FTLCONF_misc_dnsmasq_lines: |-
+        address=/example.com/192.168.0.1
+        address=/example.org/192.168.0.2
+        address=/example.net/192.168.0.3
     ```
 
 ### `extraLogging`
@@ -3851,6 +3954,37 @@ true or false
     ```yaml
     environment:
       FTLCONF_misc_hide_dnsmasq_warn: false
+    ```
+
+### `hide_connection_error`
+
+Should FTL hide network connection errors?
+
+By default, FTL reports network connection errors (e.g., Connection prematurely
+closed by remote server) to the FTL log file. These warnings can be useful to
+identify intermittent network problems or general problem with upstream servers.
+However, in some setups, these warnings may be expected (e.g. due to low-quality
+Internet connectivity) and cannot be fixed. Enabling this setting will hide all
+connection warnings.
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [misc]
+      hide_connection_error = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config misc.hide_connection_error false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_misc_hide_connection_error: false
     ```
 
 
@@ -4066,7 +4200,7 @@ true or false
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config debug.flags alse
+    sudo pihole-FTL --config debug.flags false
     ```
 === "Environment (Docker Compose)"
     ```yaml

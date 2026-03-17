@@ -21,7 +21,7 @@ When FTL receives a `SIGHUP`, it clears the entire DNS cache, and then
 
 - The FTL database connection (`/etc/pihole/pihole-FTL.db`) is re-opened.
 - The privacy level is re-read from `pihole.toml` (`misc.privacylevel`).
-- The blocking status is re-read from `setupVars.conf` (`BLOCKING_ENABLED`).
+- The blocking status is re-read from `pihole.toml` (`dns.blocking.active`).
 - The debug settings are re-read from `pihole.toml` (`debug.*`).
 - The gravity database connection (`/etc/pihole/gravity.db`) is re-opened.
 - The number of blocked domains is updated.
