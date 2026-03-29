@@ -7,7 +7,6 @@ In order to build the image locally, you will first need a copy of the repositor
 ```bash
 git clone https://github.com/pi-hole/docker-pi-hole
 cd docker-pi-hole
-git checkout development #NOTE: This step is only needed until V6 is released
 ```
 
 All other commands following assume you have at least run the above steps.
