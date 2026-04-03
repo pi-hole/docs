@@ -2096,6 +2096,38 @@ true or false
       FTLCONF_resolver_resolveIPv6: true
     ```
 
+### `macNames`
+
+Control whether FTL should attempt to obtain client names from the network table by
+MAC address.
+
+This can provide hostnames for devices that do not have a hostname or have multiple
+IP addresses (e.g. IPv4 and IPv6).
+However, MAC-derived names can be ambiguous (e.g., when a MAC appears for multiple
+IPs due to a router/NAT or MAC reuse), which may lead to incorrect hostnames being
+shown. Disabling this option can prevent such issues but may lead to more clients
+without hostnames.
+
+**Allowed values are:**
+true or false
+
+**Default value:** `true`
+
+=== "TOML"
+    ```toml
+    [resolver]
+      macNames = true
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config resolver.macNames true
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_resolver_macNames: true
+    ```
+
 ### `networkNames`
 
 Control whether FTL should use the fallback option to try to obtain client names from
@@ -2564,7 +2596,7 @@ An array of HTTP headers
 ```toml
   [
     "X-DNS-Prefetch-Control: off",
-    "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
+    "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'",
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
@@ -2577,7 +2609,7 @@ An array of HTTP headers
     [webserver]
       headers = [
         "X-DNS-Prefetch-Control: off",
-        "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
+        "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'",
         "X-Frame-Options: DENY",
         "X-XSS-Protection: 0",
         "X-Content-Type-Options: nosniff",
@@ -2586,14 +2618,14 @@ An array of HTTP headers
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'none';connect-src'self';font-src'self';frame-ancestors'none';img-src'self';manifest-src'self';script-src'self';style-src'self''unsafe-inline'","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
+    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'none';connect-src'self';font-src'self';frame-ancestors'none';img-src'self';manifest-src'self';script-src'self';style-src'self''unsafe-inline';form-action'self'","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
       FTLCONF_webserver_headers: |-
         X-DNS-Prefetch-Control: off
-        Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline
+        Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self
         X-Frame-Options: DENY
         X-XSS-Protection: 0
         X-Content-Type-Options: nosniff
@@ -3038,9 +3070,10 @@ A valid Pi-hole password hash
 
 ### `totp_secret`
 
-Pi-hole 2FA TOTP secret. When set to something different than `""`, 2FA authentication
-will be enforced for the API and the web interface. This setting is write-only, you
-can not read the secret back.
+Pi-hole 2FA TOTP secret. When set to something different than an empty string, 2FA
+authentication will be enforced for the API and the web interface. This setting is
+write-only, the secret itself cannot be read back, but the CLI will show `"********"`
+to indicate that 2FA is configured.
 
 **Allowed values are:**
 A valid TOTP secret (20 Bytes in Base32 encoding)
