@@ -95,18 +95,23 @@ true or false
 
 ### `blockESNI`
 
-Should `_esni.` subdomains be blocked by default? Encrypted Server Name Indication
-(ESNI) is certainly a good step into the right direction to enhance privacy on the
-web. It prevents on-path observers, including ISPs, coffee shop owners and
-firewalls, from intercepting the TLS Server Name Indication (SNI) extension by
-encrypting it. This prevents the SNI from being used to determine which websites
-users are visiting.
+Should `_esni.` subdomains of blocked domains also be blocked by default? Encrypted
+Server Name Indication (ESNI) is certainly a good step into the right direction to
+enhance privacy on the web. It prevents on-path observers, including ISPs, coffee
+shop owners and firewalls, from intercepting the TLS Server Name Indication (SNI)
+extension by encrypting it. This prevents the SNI from being used to determine which
+websites users are visiting.
 
 ESNI will obviously cause issues for pixelserv-tls which will be unable to generate
-matching certificates on-the-fly when it cannot read the SNI. Cloudflare and Firefox
-are already enabling ESNI. According to the IETF draft (link above), we can easily
-restore pixelserv-tls's operation by replying NXDOMAIN to `_esni.` subdomains of
-blocked domains as this mimics a `"not configured for this domain"` behavior.
+matching certificates on-the-fly when it cannot read the SNI. According to the IETF
+draft (link above), we can easily restore pixelserv-tls's operation by replying
+NXDOMAIN to `_esni.` subdomains of blocked domains as this mimics a `"not configured
+for this domain"` behavior.
+
+ESNI is mostly obsolete. It was previously rolled out by Cloudflare and Firefox, but
+they, as well as almost every client and server, are now using Encrypted Client
+Hello (ECH) instead of ESNI. ECH is served via the HTTPS record on the same RRname,
+so it will automatically be blocked.
 
 **Allowed values are:**
 true or false
@@ -3422,30 +3427,6 @@ Kelvin
 
 
 ## `[files]`
-
-### `pid`
-
-The file which contains the PID of FTL's main process.
-
-**Allowed values are:**
-Any writable file
-
-**Default value:** `"/run/pihole-FTL.pid"`
-
-=== "TOML"
-    ```toml
-    [files]
-      pid = "/run/pihole-FTL.pid"
-    ```
-=== "CLI"
-    ```shell
-    sudo pihole-FTL --config files.pid "/run/pihole-FTL.pid"
-    ```
-=== "Environment (Docker Compose)"
-    ```yaml
-    environment:
-      FTLCONF_files_pid: '/run/pihole-FTL.pid'
-    ```
 
 ### `database`
 
