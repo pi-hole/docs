@@ -59,7 +59,7 @@ An example of how some of these variables may look in your compose file
 | :--- | :--- |
 | `TZ` | Set your [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to make sure logs rotate at local midnight instead of at UTC midnight. |
 | `FTLCONF_webserver_api_password` | To set a specific password for the web interface (per the quick-start example).<br><br>If this variable is not detected, and you have not already set one previously inside the container via `pihole setpassword` or `pihole-FTL --config webserver.api.password`, then a random password will be assigned on startup, and will be printed to the log.<br><br>You can find this password by running `docker logs pihole` and looking for "random password". See [Setting the Web Interface Password](#setting-the-web-interface-password) below for usage examples. |
-| `FTLCONF_dns_upstreams` | Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon<br><br>Supports non-standard ports with #[port number] e.g `127.0.0.1#5053;8.8.8.8;8.8.4.4`<br><br>Supports [Docker service names and links](https://docs.docker.com/compose/networking/) instead of IPs e.g `upstream0;upstream1` where upstream0 and upstream1 are the service names of or links to docker services |
+| `FTLCONF_dns_upstreams` | Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon<br><br>Supports non-standard ports with #\[port\] number e.g `127.0.0.1#5053;8.8.8.8;8.8.4.4`<br><br>Supports [Docker service names and links](https://docs.docker.com/compose/networking/) instead of IPs e.g `upstream0;upstream1` where upstream0 and upstream1 are the service names of or links to docker services |
 
 
 ## Setting the Web Interface Password {: #setting-the-web-interface-password }
