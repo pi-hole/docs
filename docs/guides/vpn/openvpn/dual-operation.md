@@ -1,4 +1,6 @@
-{!guides/vpn/openvpn/deprecation_notice.md!}
+--8<--
+docs/guides/vpn/openvpn/deprecation_notice.md
+--8<--
 
 **Up until now, this wiki has been about a server set up on a cloud host, available on the public Internet. This section is aimed at a server set up in a private network like on a Raspberry Pi.**
 
