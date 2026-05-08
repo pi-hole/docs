@@ -30,7 +30,7 @@ When working on this repo, it is advised that you review your changes locally be
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 
-- Linux Mint / Ubuntu 20.04 LTS / 23.10 and later:
+- Debian (12, 13 and later) / Linux Mint / Ubuntu (20.04 LTS, 23.10 and later):
     - Preparations (only required once):
 
     ```bash
@@ -42,16 +42,22 @@ Please make sure you fork the repo and change the clone URL in the example below
     pip3 install -r requirements.txt
     ```
 
-    - Enter the virtual environment (if exited):
-
-    ```bash
-    source .venv/bin/activate
-    ```
-
     - Running the docs server:
 
     ```bash
     mkdocs serve --dev-addr 0.0.0.0:8000
+    ```
+
+    - Once terminated, to exit the virtual environment:
+
+    ```bash
+    deactivate
+    ```
+
+    - Enter the virtual environment (if exited):
+
+    ```bash
+    source .venv/bin/activate
     ```
 
 - Fedora Linux instructions (tested on Fedora Linux 28):
