@@ -26,7 +26,7 @@ To add a new document or guide.
 
 ### Testing your changes
 
-When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
+When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve --livereload` command can be used to live preview your changes (as you type) on your local machine.
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 
@@ -45,7 +45,7 @@ Please make sure you fork the repo and change the clone URL in the example below
     - Running the docs server:
 
     ```bash
-    mkdocs serve --dev-addr 0.0.0.0:8000
+    mkdocs serve --livereload --dev-addr 0.0.0.0:8000
     ```
 
     - Once terminated, to exit the virtual environment:
@@ -72,7 +72,7 @@ Please make sure you fork the repo and change the clone URL in the example below
     - Running the docs server:
 
     ```bash
-    mkdocs serve --dev-addr 0.0.0.0:8000
+    mkdocs serve --livereload --dev-addr 0.0.0.0:8000
     ```
 
 - Docker instructions:
@@ -84,7 +84,7 @@ Please make sure you fork the repo and change the clone URL in the example below
       /root/.local/bin/mkdocs build && \
       npm ci && \
       npm test && \
-      /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
+      /root/.local/bin/mkdocs serve --livereload --dev-addr 0.0.0.0:8000"
     ```
 
 After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
