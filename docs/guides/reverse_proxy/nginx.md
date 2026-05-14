@@ -38,7 +38,7 @@ In this guide, we will use **8053** as the internal port for Pi-hole, while `Ngi
 | **Localhost only (127.0.0.1)** | Pi-hole FTL | HTTP | `8053` |
 
 <!-- markdownlint-disable code-block-style -->
-!!! info "SSL Certificates"
+!!! info "SSL/TLS Certificates"
     Do not use Pi-hole's internal certificates for the web server. `Nginx` Nginx is not notified when Pi-hole renews its certificates on disk, it will continue to serve the old (expired) ones.
 
     `Nginx` requires a restart or reload to apply updated certificates, a process that is not handled automatically. Managing this would require cumbersome scripts and timers; therefore, it is highly recommended to generate certificates independently using dedicated tools like **Certbot** or similar, which can use hooks to reload `Nginx` seamlessly upon renewal.
@@ -46,26 +46,20 @@ In this guide, we will use **8053** as the internal port for Pi-hole, while `Ngi
 
 <!-- markdownlint-disable code-block-style -->
 !!! security "Security Note"
-    Since `Nginx` will handle SSL termination and encryption for external traffic, we will not connect to Pi-hole's native SSL for the internal connection. This simplifies the communication between `Nginx` and Pi-hole (localhost), as encryption is not strictly required for traffic that never leaves the machine.
+    Since `Nginx` will handle SSL/TLS termination and encryption for external traffic, we will not connect to Pi-hole's native SSL/TLS for the internal connection. This simplifies the communication between `Nginx` and Pi-hole (localhost), as encryption is not strictly required for traffic that never leaves the machine.
 
     By binding the Pi-hole dashboard to `127.0.0.1` only, it is no longer exposed to your entire network. Only `Nginx` (running on the same machine) can "talk" to it. This effectively creates a "security air-lock."
 <!-- markdownlint-enable code-block-style -->
 
 ### Update Pi-hole's Configs
 
-You must instruct Pi-hole to stop listening on port 80, 443 or any other ports and switch to our (arbitrary choosen) port **8053**. Additionally, for sake of security, we will restrict via built-in [Access Control List (ACL)](/ftldns/configfile/?h=acl#acl) its web interface to listen only on the local interface (`127.0.0.1`), ensuring it is only accessible via the `Nginx` proxy.
+You must instruct Pi-hole to stop listening on port 80, 443 or any other ports and switch to our (arbitrary choosen) port **8053**. Additionally, for sake of security, we will restrict its web interface to listen only on the local interface (`127.0.0.1`), ensuring it is only accessible via the `Nginx` proxy.
 
-You can apply these changes using the `pihole-FTL` command line configuration tool:
+You can apply the change using the `pihole-FTL` command line configuration tool:
 
 ```bash
 # Binding to localhost's custom port only
 sudo pihole-FTL --config webserver.port "127.0.0.1:8053"
-
-# Configure the webserver Access Control List (ACL) to allow access only from localhost (IPv4 only)
-sudo pihole-FTL --config webserver.acl "+127.0.0.1"
-
-# Restart the service to refresh all configurations
-sudo systemctl restart pihole-FTL.service
 ```
 
 
@@ -83,18 +77,18 @@ Before proceeding with the configuration, please keep in mind the following work
 
 This section is intended for users who do not have `Nginx` installed yet or wish to start with a fresh configuration dedicated to Pi-hole.
 
-1. **Install Nginx:**
+1. **Install Nginx**
 
     ```bash
     sudo apt update
     sudo apt install -y nginx nginx-extras
     ```
 
-2. **Clean up default configurations and restart:**
-    Before proceeding adding the Pi-hole dedicated configuration, it is recommended to remove the default *"Welcome to Nginx"* site to avoid potential/hypothetical conflicts.
+2. **Clean up default configurations and restart**
+
+    Before proceeding adding the Pi-hole dedicated configurations, it is recommended to remove or at least deactivate, according to your distribution configuration, the default *"Welcome to Nginx"* site to avoid potential/hypothetical conflicts.
 
     ```bash
-    sudo rm /etc/nginx/sites-enabled/default
     sudo systemctl restart nginx.service
     ```
 
@@ -107,13 +101,15 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
 !!! info "Scope"
     This redirect applies only to the **external/exposed** ports. Internal communication between `Nginx` and Pi-hole remains on port `8053` and is unaffected by this rule.
 
-1. **Create the redirect file configuration:**
+1. **Create the redirect file configuration**
+
+    Place the following file in your Nginx configuration path (e.g., `/etc/nginx/conf.d/` or `/etc/nginx/sites-available/` depending on your distribution configuration).
 
     ```bash
-    sudo nano /etc/nginx/sites-available/pihole_v6_http_redirect
+    sudo nano pihole_v6_http_redirect.conf
     ```
 
-2. **Copy and paste the following server block:**
+2. **Copy and paste the following server block**
 
     ```nginx
     # ------------------------------------------------------------
@@ -122,23 +118,19 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
 
     # HTTP Server (Port 8080)
     server {
-    listen 8080; # IPv4
-    listen [::]:8080; # Comment if you don't want IPv6
+        listen 8080; # IPv4
+        listen [::]:8080; # Comment if you don't want IPv6
 
-    server_name _; # Or your domain/IP
+        server_name _; # Or your domain/IP
 
-    # Redirect all HTTP requests to HTTPS
-    return 301 https://$host:453$request_uri;
+        # Redirect all HTTP requests to HTTPS
+        return 301 https://$host:453$request_uri;
     }
     ```
 
-3. **Enable the redirect:**
+3. **Enable, test and restart `Nginx`**
 
-    ```bash
-    sudo ln -s /etc/nginx/sites-available/pihole_v6_http_redirect /etc/nginx/sites-enabled/
-    ```
-
-4. **Test and reload Nginx:**
+    Once the `pihole_v6_http_redirect.conf` file is saved and enabled, verify configurations and restart the service:
 
     ```bash
     sudo nginx -t
@@ -147,23 +139,23 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
 
 !!! tip "Firewall Reminder"
     If you are using a firewall (like `ufw`), be sure to allow traffic on port **8080** or the redirection won't work:
-    `sudo ufw allow 8080`
+    `sudo ufw allow 8080/tcp`
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "Connection Refused / Unable to Connect"
-    At this stage of the guide, if your browser successfully redirects you to the HTTPS port but then shows **"Unable to Connect"**, don't panic. This occurs because the `Nginx` HTTP redirection is active, but the bridge to the backend isn't configured yet.
+    At this stage of the guide, if your browser successfully redirects you to the HTTPS port but then shows **"Unable to Connect"**, don't panic. This occurs because the `Nginx` HTTP redirection is active, but the HTTPS Proxy and the relative bridge to the backend isn't configured yet.
 
     You must now proceed to the next step: [Configure the HTTPS Proxy ](#configure-the-https-proxy).
 <!-- markdownlint-enable code-block-style -->
 
 ### Configure the HTTPS Proxy
 
-1. **Generate the required Pi-hole SSL files**
+1. **Generate the required Pi-hole SSL/TLS files**
 
-    We generate the private key and a Certificate Signing Request (CSR). In real world, we should send the generated CSR to the CA for the signing, getting back the Certificate; in this guide (with command #4) we directly self-sign them, or in a Private PKI environments, we autonomusly sign it with the Private CA.
+    We generate the private key and a Certificate Signing Request (CSR). In real world, we should send the generated CSR to the CA for the signing, getting back the Certificate; in this guide (at command #4) we directly self-sign them, or in a Private PKI environments, we autonomusly sign it with the Private CA.
 
     ```bash
-    # 1. Prepare the Nginx SSL Directory
+    # 1. Prepare the Nginx SSL/TLS Directory
     sudo mkdir -p /etc/nginx/ssl
 
     # 2. Generate Pi-hole private key (using NIST P-521 curve)
@@ -197,13 +189,15 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
     sudo openssl x509 -text -noout -in /etc/nginx/ssl/pihole.crt
     ```
 
-2. **Create the proxy file configuration:**
+2. **Create the proxy file configuration**
+
+    Place the following file in your `Nginx` configuration path (e.g., `/etc/nginx/conf.d/` or `/etc/nginx/sites-available/` depending on your distribution configuration).
 
     ```bash
-    sudo nano /etc/nginx/sites-available/pihole_v6
+    sudo nano pihole_v6.conf
     ```
 
-3. **Copy and paste the following server block:**
+3. **Copy and paste the following server block**
 
     ```nginx
     # ------------------------------------------------------------
@@ -241,15 +235,9 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
         # Restricted HTTP Methods: Allow only methods mentioned in API docs
         # and block everything else (e.g., TRACE, CONNECT);
         # this prevents potential exploit attempts using uncommon request methods.
-        if ($request_method !~ ^(GET|POST|PATCH|PUT|DELETE)$ ) { return 405; }
+        if ($request_method !~ ^(GET|HEAD|POST|PATCH|PUT|DELETE)$ ) { return 405; }
         # HSTS (ngx_http_headers_module is required) (63072000 seconds)
         add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
-        # Security Headers: Protect against Clickjacking
-        add_header X-Frame-Options "SAMEORIGIN";
-        # Security Headers: Protect against XSS (Cross-Site Scripting)
-        add_header X-XSS-Protection "1; mode=block";
-        # Security Headers: Protect against MIME-sniffing
-        add_header X-Content-Type-Options "nosniff";
 
         # --- ERROR RESOLUTION: 413 & 414 ---
         # Fixes 413 (Request Entity Too Large)
@@ -263,7 +251,7 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
         # Basic Auth
         #auth_basic "Restricted";
         #auth_basic_user_file /etc/nginx/.htpasswdpihole;
-        # SSL/TLS 
+        # mTLS 
         #ssl_client_certificate /etc/nginx/ssl/CertificateAuthority.pem;
         #ssl_verify_client on;
 
@@ -297,17 +285,18 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
     }
     ```
 
-4. **Enable the proxy, test and restart `Nginx`:**
+4. **Enable, test and restart `Nginx`**
+
+    Once the `pihole_v6.conf` file is saved and enabled, verify configurations and restart the service:
 
     ```bash
-    sudo ln -s /etc/nginx/sites-available/pihole_v6 /etc/nginx/sites-enabled/
     sudo nginx -t
-    sudo systemctl restart nginx
+    sudo systemctl restart nginx.service
     ```
 
 !!! tip "Firewall Reminder"
     If you are using a firewall (like `ufw`), be sure to allow traffic on port **453** or the redirection won't work:
-    `sudo ufw allow 453`
+    `sudo ufw allow 453/tcp`
 
 #### Understanding the Configuration
 
@@ -344,12 +333,10 @@ The `$request_method` filtering in the configuration above is strictly aligned w
 
 ##### Security Headers
 
-These headers add a layer of protection by instructing the user's browser how to handle the site's content securely:
+These header can add a layer of protection by instructing the user's browser how to handle the site's content securely:
 
 - **Strict-Transport-Security:** Forces the browser to communicate with the server exclusively over HTTPS. By setting a `max-age` (in this case, 2 years), it ensures that even if you try to access the site via HTTP, the browser will automatically redirect to the secure version before any data is sent. The `includeSubDomains` flag extends this protection to all related subdomains.
-- **X-Frame-Options:** Prevents the Pi-hole interface from being loaded inside an `<iframe>` on external sites. This protects users from **Clickjacking** attacks, where an attacker might overlay an invisible frame to trick you into clicking buttons on your dashboard without your knowledge.
-- **X-XSS-Protection :** Enables the anti-XSS (Cross-Site Scripting) filter built into most modern browsers. If a malicious script injection is detected, the browser will block the entire page from loading rather than attempting to "sanitize" it.
-- **X-Content-Type-Options:** Prevents browsers from bypassing the declared MIME type (MIME-sniffing) to guess the file content. This stops attacks where a harmless-looking text or image file is interpreted and executed as a malicious script (JavaScript).
+- **Pi-hole defaults:** Pi-hole already handles specific headers; it is better to avoid overriding them in `Nginx` as well. You can check the Pi-hole configuration via command line: `pihole-FTL --config webserver.headers`
 
 !!! info "Implementation Note"
     It is important to note that since `Nginx` acts as the entry point, these security headers are sent directly to the end-user's browser, providing a robust shield managed entirely by the web server.
@@ -480,7 +467,7 @@ For further details, please refer to the [official Nginx documentation](https://
 !!! info "Educational Note"
     In the following steps we show how to create a **Minimal Private CA certificate** for testing purposes. In a production environment, you might use a certificate from a Trusted Public CA or a secure established private PKI.
 
-1. **Prepare the Nginx SSL Directory**
+1. **Prepare the Nginx SSL/TLS Directory**
     First, create a dedicated folder to store the CA certificate that `Nginx` will use to verify clients.
 
     ```bash
@@ -509,7 +496,7 @@ For further details, please refer to the [official Nginx documentation](https://
     ```
 
 3. **Generate the Client Certificate**
-    We generate the private key for the user and a Certificate Signing Request (CSR). In real world, we should send the generated CSR to the CA for the signing, getting back the Certificate; in this guide (at point 3), and in Private PKI environments, we autonomusly sign it with our Private CA.
+    We generate the private key for the user and a Certificate Signing Request (CSR). In real world, we should send the generated CSR to the CA for the signing, getting back the Certificate; in this guide (at command #3), and in Private PKI environments, we autonomusly sign it with our Private CA.
 
     ```bash
     # 1. Generate Client private key (using NIST P-521 curve)
@@ -615,5 +602,5 @@ If you experience **414 (Request-URI Too Large)** errors, see blank logs, or get
 ### Common Issues
 
 - **Port Mismatch:** If `Nginx` returns a `502 Bad Gateway`, double-check that `pihole-FTL` is actually listening on port `8053` (the default port for v6 web interface).
-- **Permission Denied during Authentication:** Ensure `Nginx` has the necessary permissions to read your `.htpasswdpihole` file and/or SSL certificates; read step-by-step guide [here](#additional-pre-authentication)
+- **Permission Denied during Authentication:** Ensure `Nginx` has the necessary permissions to read your `.htpasswdpihole` file and/or SSL/TLS certificates; read step-by-step guide [here](#additional-pre-authentication)
 - **Redirect Loops:** If you use a custom `server_name`, ensure your internal DNS doesn't create a loop between the proxy and the upstream.
