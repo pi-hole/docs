@@ -236,7 +236,7 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
         # and block everything else (e.g., TRACE, CONNECT);
         # this prevents potential exploit attempts using uncommon request methods.
         if ($request_method !~ ^(GET|HEAD|POST|PATCH|PUT|DELETE)$ ) { return 405; }
-        # HSTS (ngx_http_headers_module is required) (63072000 seconds)
+        # HSTS (ngx_http_headers_module is required) is remembered for 63072000 seconds (2 years)
         add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
 
         # --- ERROR RESOLUTION: 413 & 414 ---
