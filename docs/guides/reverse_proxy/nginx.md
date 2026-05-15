@@ -237,7 +237,7 @@ In this example, we will use port **8080** as the external HTTP to avoid possibl
         # this prevents potential exploit attempts using uncommon request methods.
         if ($request_method !~ ^(GET|HEAD|POST|PATCH|PUT|DELETE)$ ) { return 405; }
         # HSTS (ngx_http_headers_module is required) is remembered for 63072000 seconds (2 years)
-        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
+        add_header Strict-Transport-Security "max-age=63072000" always;
 
         # --- ERROR RESOLUTION: 413 & 414 ---
         # Fixes 413 (Request Entity Too Large)
@@ -335,7 +335,7 @@ The `$request_method` filtering in the configuration above is strictly aligned w
 
 These header can add a layer of protection by instructing the user's browser how to handle the site's content securely:
 
-- **Strict-Transport-Security:** Forces the browser to communicate with the server exclusively over HTTPS. By setting a `max-age` (in this case, 2 years), it ensures that even if you try to access the site via HTTP, the browser will automatically redirect to the secure version before any data is sent. The `includeSubDomains` flag extends this protection to all related subdomains.
+- **Strict-Transport-Security:** Forces the browser to communicate with the server exclusively over HTTPS. By setting a `max-age` (in this case, 2 years), it ensures that even if you try to access the site via HTTP, the browser will automatically redirect to the secure version before any data is sent.
 - **Pi-hole defaults:** Pi-hole already handles specific headers; it is better to avoid overriding them in `Nginx` as well. You can check the Pi-hole configuration via command line: `pihole-FTL --config webserver.headers`
 
 !!! info "Implementation Note"
