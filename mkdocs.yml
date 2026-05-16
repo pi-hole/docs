@@ -180,6 +180,7 @@ nav:
       - 'cloudflared (DoH)': guides/dns/cloudflared.md
       - 'dnscrypt-proxy (DoH)': guides/dns/dnscrypt-proxy.md
       - 'Upstream DNS Providers': guides/dns/upstream-dns-providers.md
+      - 'dnsproxy (DoH)': guides/dns/dnsproxy-doh.md
     - 'VPN':
       - 'WireGuard':
         - 'Wireguard': guides/vpn/wireguard/index.md
