@@ -1,9 +1,3 @@
----
-title: Community Projects
-description: Things built with Pi-hole
-last_updated: Sun Sep 06 14:28:14 2020 UTC
----
-
 - [The Big Blocklist Collection](https://firebog.net/)
 - [Pi-Hole in the cloud](https://blog.codybunch.com/2015/07/28/Pi-Hole-in-the-cloud/)
 - [Minibian Pi-hole](https://munkjensen.net/wiki/index.php/See_my_Pi-Hole#Minibian_Pi-hole)
