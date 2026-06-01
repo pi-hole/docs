@@ -101,7 +101,8 @@ extra_css = ["extra.css"]
     {"Contributing" = "guides/github/index.md"},
     {"Developer Certificate of Origin (DCO)" = "guides/github/dco.md"},
     {"How to sign-off commits" = "guides/github/how-to-signoff.md"},
-    {"How to fork and rebase" = "guides/github/how-to-fork-rebase.md"}
+    {"How to fork and rebase" = "guides/github/how-to-fork-rebase.md"},
+    {"How to sign commits" = "guides/github/sign.md" }
   ]},
   {"Guides" = [
     {"DNS" = [
