@@ -200,8 +200,11 @@ Label | Type | Allowed to be empty | Content
 
 Valid `type` IDs are currently
 
-- `ADDINFO_CNAME_DOMAIN = 1` - `content` is a string (the related CNAME)
-- `ADDINFO_DOMAIN_ID = 2` - `content` is an integer (ID pointing to a domain in the [`domainlist` table](domain-database/index.md#domain-tables-domainlist))
+- `ADDINFO_CNAME_DOMAIN = 1`; `content` is a string (the related CNAME)
+- `ADDINFO_LIST_ID = 2`; `content` is an integer (ID pointing to a domain in the [`domainlist` table](domain-database/index.md#domain-tables-domainlist) or an adlist in the [`adlist` table](domain-database/index.md#list-table-adlist))
+    - `>= 0` domainlist ID
+    - `-1` not set
+    - `-2` adlist ID `0`, `-3` adlist ID `1`, `-4` adlist ID `2`,...
 
 ### Example for interaction with the long-term query database
 
