@@ -1,9 +1,3 @@
----
-title: Prerequisites
-description: Operating system and network requirements
-last_updated: May 25 2020
----
-
 ## Hardware
 
 Pi-hole is very lightweight and does not require much processing power
