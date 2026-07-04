@@ -255,7 +255,7 @@ plugins:
         'guides/unbound.md': guides/dns/unbound.md
         'guides/upstream-dns-providers.md': guides/dns/upstream-dns-providers.md
         'guides/dns-over-https.md': guides/dns/cloudflared.md
-        'guides/vpn/overview.md': guides/vpn/openvpn/index.md
+        'guides/vpn/overview.md': guides/vpn/wireguard/index.md
         'guides/vpn/installation.md': guides/vpn/openvpn/installation.md
         'guides/vpn/setup-openvpn-server.md': guides/vpn/openvpn/setup-openvpn-server.md
         'guides/vpn/firewall.md': guides/vpn/openvpn/firewall.md
