@@ -2777,7 +2777,7 @@ All directories along the path must be readable and accessible by the user runni
 FTL (typically 'pihole'). This option is only required when at least one of
 webserver.port is TLS. The file must be in PEM format, and it must have both,
 private key and certificate (the `*.pem` file created must contain a 'CERTIFICATE'
-section as well as a 'RSA PRIVATE KEY' section).
+section as well as a 'PRIVATE KEY' section).
 
 The `*.pem` file can be created using `cp server.crt server.pem && cat server.key >>
 server.pem` if you have these files instead
@@ -4846,6 +4846,33 @@ true or false
     ```yaml
     environment:
       FTLCONF_debug_timing: false
+    ```
+
+### `performance`
+
+Log gravity lookup and FTL DNS cache performance statistics every 5 minutes. For each
+operation type (gravity, antigravity, denylist, allowlist), reports the call count,
+average and maximum latency, and percentage of slow queries (>1 ms). Also reports
+the FTL cache hit/miss ratio, indicating how often gravity.db is queried at all.
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [debug]
+      performance = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config debug.performance false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_debug_performance: false
     ```
 
 ### `all`
