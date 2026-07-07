@@ -80,3 +80,27 @@ Re-parse ARP/neighbour-cache now to update the Network table now
 ## Real-time signal 7 (42)
 
 Scan binary search lookup tables for hash collisions and report if any are found. This is a debugging signal and not meaningful production. Scanning the lookup tables is a time-consuming operation and may stall DNS resolution for a while on low-end devices.
+
+# `dnsmasq` signals
+
+`pihole-FTL` passes the following signals through to its embedded `dnsmasq` thread, where they behave as documented in [`man dnsmasq`](https://dnsmasq.org/docs/dnsmasq-man.html).
+
+## `SIGHUP`
+
+`dnsmasq`'s behavior with `SIGHUP` is already included in the [`SIGHUP` section above](#reload-everything-using-sighup).
+
+## `SIGUSR1`
+
+`SIGUSR1` causes `dnsmasq` to write its cache usage statistics to the log and dump the current cache content (names and addresses). The cache dump output is described in detail on the [cache dump page](cache_dump.md).
+
+```bash
+sudo killall -USR1 pihole-FTL
+```
+
+## `SIGUSR2`
+
+When logging directly to a file (configured via [`files.log.dnsmasq`](configfile.md#dnsmasq), default `/var/log/pihole/pihole.log`), `SIGUSR2` causes `pihole-FTL` to close and reopen the log file. This is commonly used for [logrotate](https://github.com/pi-hole/pi-hole/blob/master/advanced/Templates/logrotate).
+
+```bash
+sudo killall -USR2 pihole-FTL
+```
