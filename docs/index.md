@@ -46,7 +46,7 @@ If you'd rather not donate (_which is okay!_), there are other ways you can help
 - [Patreon](https://patreon.com/pihole) _Become a patron for rewards_
 - [Digital Ocean](https://www.digitalocean.com/?refcode=344d234950e1) _new account credits with our affiliate link_
 - [Stickermule](https://www.stickermule.com/unlock?ref_id=9127301701&utm_medium=link&utm_source=invite) _earn a $10 credit after your first purchase_
-- [Amazon](https://www.amazon.com/exec/obidos/redirect-home/pihole09-20) _affiliate link_
+- [Amazon](https://amzn.to/4wmgYfl) _affiliate link_
 - Spreading the word about our software, and how you have benefited from it
 
 ### Contributing via GitHub

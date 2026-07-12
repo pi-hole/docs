@@ -95,18 +95,23 @@ true or false
 
 ### `blockESNI`
 
-Should `_esni.` subdomains be blocked by default? Encrypted Server Name Indication
-(ESNI) is certainly a good step into the right direction to enhance privacy on the
-web. It prevents on-path observers, including ISPs, coffee shop owners and
-firewalls, from intercepting the TLS Server Name Indication (SNI) extension by
-encrypting it. This prevents the SNI from being used to determine which websites
-users are visiting.
+Should `_esni.` subdomains of blocked domains also be blocked by default? Encrypted
+Server Name Indication (ESNI) is certainly a good step into the right direction to
+enhance privacy on the web. It prevents on-path observers, including ISPs, coffee
+shop owners and firewalls, from intercepting the TLS Server Name Indication (SNI)
+extension by encrypting it. This prevents the SNI from being used to determine which
+websites users are visiting.
 
 ESNI will obviously cause issues for pixelserv-tls which will be unable to generate
-matching certificates on-the-fly when it cannot read the SNI. Cloudflare and Firefox
-are already enabling ESNI. According to the IETF draft (link above), we can easily
-restore pixelserv-tls's operation by replying NXDOMAIN to `_esni.` subdomains of
-blocked domains as this mimics a `"not configured for this domain"` behavior.
+matching certificates on-the-fly when it cannot read the SNI. According to the IETF
+draft (link above), we can easily restore pixelserv-tls's operation by replying
+NXDOMAIN to `_esni.` subdomains of blocked domains as this mimics a `"not configured
+for this domain"` behavior.
+
+ESNI is mostly obsolete. It was previously rolled out by Cloudflare and Firefox, but
+they, as well as almost every client and server, are now using Encrypted Client
+Hello (ECH) instead of ESNI. ECH is served via the HTTPS record on the same RRname,
+so it will automatically be blocked.
 
 **Allowed values are:**
 true or false
@@ -2096,6 +2101,38 @@ true or false
       FTLCONF_resolver_resolveIPv6: true
     ```
 
+### `macNames`
+
+Control whether FTL should attempt to obtain client names from the network table by
+MAC address.
+
+This can provide hostnames for devices that do not have a hostname or have multiple
+IP addresses (e.g. IPv4 and IPv6).
+However, MAC-derived names can be ambiguous (e.g., when a MAC appears for multiple
+IPs due to a router/NAT or MAC reuse), which may lead to incorrect hostnames being
+shown. Disabling this option can prevent such issues but may lead to more clients
+without hostnames.
+
+**Allowed values are:**
+true or false
+
+**Default value:** `true`
+
+=== "TOML"
+    ```toml
+    [resolver]
+      macNames = true
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config resolver.macNames true
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_resolver_macNames: true
+    ```
+
 ### `networkNames`
 
 Control whether FTL should use the fallback option to try to obtain client names from
@@ -2564,7 +2601,7 @@ An array of HTTP headers
 ```toml
   [
     "X-DNS-Prefetch-Control: off",
-    "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
+    "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'",
     "X-Frame-Options: DENY",
     "X-XSS-Protection: 0",
     "X-Content-Type-Options: nosniff",
@@ -2577,7 +2614,7 @@ An array of HTTP headers
     [webserver]
       headers = [
         "X-DNS-Prefetch-Control: off",
-        "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'",
+        "Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self'",
         "X-Frame-Options: DENY",
         "X-XSS-Protection: 0",
         "X-Content-Type-Options: nosniff",
@@ -2586,14 +2623,14 @@ An array of HTTP headers
     ```
 === "CLI"
     ```shell
-    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'none';connect-src'self';font-src'self';frame-ancestors'none';img-src'self';manifest-src'self';script-src'self';style-src'self''unsafe-inline'","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
+    sudo pihole-FTL --config webserver.headers '["X-DNS-Prefetch-Control:off","Content-Security-Policy:default-src'none';connect-src'self';font-src'self';frame-ancestors'none';img-src'self';manifest-src'self';script-src'self';style-src'self''unsafe-inline';form-action'self'","X-Frame-Options:DENY","X-XSS-Protection:0","X-Content-Type-Options:nosniff","Referrer-Policy:strict-origin-when-cross-origin"]'
     ```
 === "Environment (Docker Compose)"
     ```yaml
     environment:
       FTLCONF_webserver_headers: |-
         X-DNS-Prefetch-Control: off
-        Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline
+        Content-Security-Policy: default-src 'none'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; img-src 'self'; manifest-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self
         X-Frame-Options: DENY
         X-XSS-Protection: 0
         X-Content-Type-Options: nosniff
@@ -2740,7 +2777,7 @@ All directories along the path must be readable and accessible by the user runni
 FTL (typically 'pihole'). This option is only required when at least one of
 webserver.port is TLS. The file must be in PEM format, and it must have both,
 private key and certificate (the `*.pem` file created must contain a 'CERTIFICATE'
-section as well as a 'RSA PRIVATE KEY' section).
+section as well as a 'PRIVATE KEY' section).
 
 The `*.pem` file can be created using `cp server.crt server.pem && cat server.key >>
 server.pem` if you have these files instead
@@ -3038,9 +3075,10 @@ A valid Pi-hole password hash
 
 ### `totp_secret`
 
-Pi-hole 2FA TOTP secret. When set to something different than `""`, 2FA authentication
-will be enforced for the API and the web interface. This setting is write-only, you
-can not read the secret back.
+Pi-hole 2FA TOTP secret. When set to something different than an empty string, 2FA
+authentication will be enforced for the API and the web interface. This setting is
+write-only, the secret itself cannot be read back, but the CLI will show `"********"`
+to indicate that 2FA is configured.
 
 **Allowed values are:**
 A valid TOTP secret (20 Bytes in Base32 encoding)
@@ -3389,30 +3427,6 @@ Kelvin
 
 
 ## `[files]`
-
-### `pid`
-
-The file which contains the PID of FTL's main process.
-
-**Allowed values are:**
-Any writable file
-
-**Default value:** `"/run/pihole-FTL.pid"`
-
-=== "TOML"
-    ```toml
-    [files]
-      pid = "/run/pihole-FTL.pid"
-    ```
-=== "CLI"
-    ```shell
-    sudo pihole-FTL --config files.pid "/run/pihole-FTL.pid"
-    ```
-=== "Environment (Docker Compose)"
-    ```yaml
-    environment:
-      FTLCONF_files_pid: '/run/pihole-FTL.pid'
-    ```
 
 ### `database`
 
@@ -4832,6 +4846,33 @@ true or false
     ```yaml
     environment:
       FTLCONF_debug_timing: false
+    ```
+
+### `performance`
+
+Log gravity lookup and FTL DNS cache performance statistics every 5 minutes. For each
+operation type (gravity, antigravity, denylist, allowlist), reports the call count,
+average and maximum latency, and percentage of slow queries (>1 ms). Also reports
+the FTL cache hit/miss ratio, indicating how often gravity.db is queried at all.
+
+**Allowed values are:**
+true or false
+
+**Default value:** `false`
+
+=== "TOML"
+    ```toml
+    [debug]
+      performance = false
+    ```
+=== "CLI"
+    ```shell
+    sudo pihole-FTL --config debug.performance false
+    ```
+=== "Environment (Docker Compose)"
+    ```yaml
+    environment:
+      FTLCONF_debug_performance: false
     ```
 
 ### `all`

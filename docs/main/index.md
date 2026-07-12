@@ -1,4 +1,4 @@
-Before installing Pi-hole, you need to make sure your system meets the [prerequisites](prerequisites.md) (hardware and operating system) and decide whether you want a [normal installation](basic-install.md) (bare metal) or a [docker installation](https://github.com/pi-hole/docker-pi-hole/).
+Before installing Pi-hole, you need to make sure your system meets the [prerequisites](prerequisites.md) (hardware and operating system) and decide whether you want a [normal installation](basic-install.md) (bare metal) or a [docker installation](../docker/index.md).
 
 After the installation is complete, check the [Post-Install steps](post-install.md) to make sure your network is using Pi-hole.
 

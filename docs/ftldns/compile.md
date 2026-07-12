@@ -47,8 +47,8 @@ Compile and install a recent version using:
 wget https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-4.0.0/mbedtls-4.0.0.tar.bz2 -O mbedtls-4.0.0.tar.bz2
 tar -xjf mbedtls-4.0.0.tar.bz2
 cd mbedtls-4.0.0
-sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' include/mbedtls/mbedtls_config.h
-sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' include/mbedtls/mbedtls_config.h
+sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' tf-psa-crypto/include/psa/crypto_config.h
+sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' tf-psa-crypto/include/psa/crypto_config.h
 cmake -S . -B build -DCMAKE_C_FLAGS="-fomit-frame-pointer"
 cmake --build build -j $(nproc)
 sudo cmake --install build

@@ -15,16 +15,16 @@ The standard Pi-hole customization abilities apply to this docker, but with dock
 Navigate to the directory in which your `docker-compose.yml` file exists and run the following commands
 
 ```bash
-docker compose down
 docker compose pull
+docker compose down
 docker compose up -d
 ```
 
 ### Docker run
 
 ```bash
+docker pull pihole/pihole:latest
 docker stop pihole
 docker rm pihole
-docker pull pihole/pihole:latest
 docker run [ ... arguments (see Getting Started) ... ]
 ```
