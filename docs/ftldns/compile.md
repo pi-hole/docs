@@ -65,20 +65,20 @@ FTL uses this cryptographic library (OpenSSL) containing cryptographic primitive
 Compile and install a recent version using:
 
 ```bash
-wget https://github.com/openssl/openssl/releases/download/openssl-3.5.7/openssl-3.5.7.tar.gz -O openssl-3.5.7.tar.gz
-tar -xzf openssl-3.5.7.tar.gz
-cd openssl-3.5.7
+wget https://ftl.pi-hole.net/libraries/openssl-4.0.0.tar.gz -O openssl-4.0.0.tar.gz
+tar -xzf openssl-4.0.0.tar.gz
+cd openssl-4.0.0
 ./config \
     no-shared no-tests no-docs no-apps \
-    no-legacy no-comp no-dtls no-ssl3 \
+    no-legacy no-comp no-dtls \
     no-psk no-srp no-idea no-rc2 no-rc4 no-rc5 no-md4 no-mdc2 no-whirlpool \
-    no-engine no-dso \
+    no-dso \
     --prefix=/usr/local --libdir=lib --openssldir=/usr/local/ssl
 make -j $(nproc)
 sudo make install_dev
 ```
 
-`./config` auto-detects the correct build target for your host, so no per-architecture tuning is needed. The `no-*` options trim the build down to just the static `libssl`/`libcrypto` that FTL links against, dropping the legacy provider, unused protocols and ciphers, engines and DSO to keep the binary small. Multi-threading support is enabled by default, so no manual configuration is required. `make install_dev` installs only the headers and static libraries (no `openssl` command-line tool or man pages).
+`./config` auto-detects the correct build target for your host, so no per-architecture tuning is needed. The `no-*` options trim the build down to just the static `libssl`/`libcrypto` that FTL links against, dropping the legacy provider, unused protocols and ciphers, and DSO to keep the binary small (`no-ssl3` and `no-engine` are not needed on OpenSSL 4.0 - SSLv3 and the ENGINE API are already removed there). Multi-threading support is enabled by default, so no manual configuration is required. `make install_dev` installs only the headers and static libraries (no `openssl` command-line tool or man pages).
 
 ## Get the source
 
