@@ -37,9 +37,11 @@ sudo make install
 
 Since Ubuntu 20.04, you need to specify the library directory explicitly. Otherwise, the library will be installed in custom locations where it would not be found by `cmake`.
 
+FTL needs one of the following two cryptographic libraries for serving the web interface and the API over HTTPS. Which one you need depends on the branch you build (see [Get the source](#get-the-source) below): the `master` branch still links against mbedTLS, while the `development` branch - and the upcoming release - uses OpenSSL. Compiling the matching library is enough, though installing both does no harm.
+
 ## Compile `libmbedtls` from source
 
-FTL uses another cryptographic library (`libmbedtls`) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols used for serving the web interface and the API over HTTPS.
+FTL uses this cryptographic library (`libmbedtls`) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols used for serving the web interface and the API over HTTPS.
 
 Compile and install a recent version using:
 
@@ -55,6 +57,28 @@ sudo cmake --install build
 ```
 
 The `sed` commands are necessary to enable multi-threading support in `libmbedtls` as there is no `configure` script to do this for us (see also [here](https://github.com/Mbed-TLS/mbedtls#configuration)).
+
+## Compile `OpenSSL` from source
+
+FTL uses this cryptographic library (OpenSSL) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS protocols used for serving the web interface and the API over HTTPS.
+
+Compile and install a recent version using:
+
+```bash
+wget https://ftl.pi-hole.net/libraries/openssl-4.0.0.tar.gz -O openssl-4.0.0.tar.gz
+tar -xzf openssl-4.0.0.tar.gz
+cd openssl-4.0.0
+./config \
+    no-shared no-tests no-docs no-apps \
+    no-legacy no-comp no-dtls \
+    no-psk no-srp no-idea no-rc2 no-rc4 no-rc5 no-md4 no-mdc2 no-whirlpool \
+    no-dso \
+    --prefix=/usr/local --libdir=lib --openssldir=/usr/local/ssl
+make -j $(nproc)
+sudo make install_dev
+```
+
+`./config` auto-detects the correct build target for your host, so no per-architecture tuning is needed. The `no-*` options trim the build down to just the static `libssl`/`libcrypto` that FTL links against, dropping the legacy provider, unused protocols and ciphers, and DSO to keep the binary small (`no-ssl3` and `no-engine` are not needed on OpenSSL 4.0 - SSLv3 and the ENGINE API are already removed there). Multi-threading support is enabled by default, so no manual configuration is required. `make install_dev` installs only the headers and static libraries (no `openssl` command-line tool or man pages).
 
 ## Get the source
 
