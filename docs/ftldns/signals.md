@@ -1,6 +1,6 @@
 You can influence FTL by sending signals to the process. There are various signals supported to trigger specific actions, described below.
 
-# Reload everything using `SIGHUP`
+## Reload everything using `SIGHUP`
 
 When FTL receives a `SIGHUP`, it clears the entire DNS cache, and then
 
@@ -29,7 +29,7 @@ When FTL receives a `SIGHUP`, it clears the entire DNS cache, and then
 - The blocking cache (storing if a domain has already been analyzed and what the result was) is cleared.
 - If `DEBUG_CAPS` is enabled, the current set of available capabilities is logged.
 
-# Real-time (RT) signals
+## Real-time (RT) signals
 
 While `SIGHUP` updates/flushes almost everything, such a massive operation is often not necessary. Hence, we added several small real-time signals available for fine-grained control of what FTL does. When you see `SIGHUP` as a "big gun", the real-time signals are rather the "scalpel" to serve rather specific needs.
 
@@ -50,7 +50,7 @@ For the signals described below, we recommend using the exact signal number desc
 sudo pkill -SIG35 pihole-FTL
 ```
 
-## Real-time signal 0 (35)
+### Real-time signal 0 (35)
 
 This signal does:
 
@@ -64,30 +64,54 @@ The most important difference to `SIGHUP` is that the DNS cache itself is **not*
 
 This is the preferred signal to be used after manipulating the `gravity.db` database manually as it reloads only what is needed in this case.
 
-## Real-time signal 1 (36)
+### Real-time signal 1 (36)
 
 *Reserved* - Currently ignored
 
-## Real-time signal 2 (37)
+### Real-time signal 2 (37)
 
 *Reserved* - Used for internal signaling that a fork or thread crashed and needs to inform the main process to shut down, storing the last (valid) queries still into the long-term database.
 
-## Real-time signal 3 (38)
+### Real-time signal 3 (38)
 
 Reimport alias-clients from the database and recompute affected client statistics.
 
-## Real-time signal 4 (39)
+### Real-time signal 4 (39)
 
 Re-resolve all clients and forward destination hostnames. This forces refreshing hostnames as in that the usual "resolve only recently active clients" condition is ignored. The re-resolution adheres to the specified `REFRESH_HOSTNAMES` config option meaning that this option may not try to resolve all hostnames.
 
-## Real-time signal 5 (40)
+### Real-time signal 5 (40)
 
 Re-parse ARP/neighbour-cache now to update the Network table now
 
-## Real-time signal 6 (41)
+### Real-time signal 6 (41)
 
 *reserved* - Signal used internally to terminate the embedded `dnsmasq`. Please do not use this signal to prevent misbehaviour.
 
-## Real-time signal 7 (42)
+### Real-time signal 7 (42)
 
 Scan binary search lookup tables for hash collisions and report if any are found. This is a debugging signal and not meaningful production. Scanning the lookup tables is a time-consuming operation and may stall DNS resolution for a while on low-end devices.
+
+## `dnsmasq` signals
+
+`pihole-FTL` passes the following signals through to its embedded `dnsmasq` thread, where they behave as documented in [`man dnsmasq`](https://dnsmasq.org/docs/dnsmasq-man.html).
+
+### `SIGHUP`
+
+`dnsmasq`'s behavior with `SIGHUP` is already included in the [`SIGHUP` section above](#reload-everything-using-sighup).
+
+### `SIGUSR1`
+
+`SIGUSR1` causes `dnsmasq` to write its cache usage statistics to the log and dump the current cache content (names and addresses). The cache dump output is described in detail on the [cache dump page](cache_dump.md).
+
+```bash
+sudo killall -USR1 pihole-FTL
+```
+
+### `SIGUSR2`
+
+When logging directly to a file (configured via [`files.log.dnsmasq`](configfile.md#dnsmasq), default `/var/log/pihole/pihole.log`), `SIGUSR2` causes `pihole-FTL` to close and reopen the log file. This is commonly used for [logrotate](https://github.com/pi-hole/pi-hole/blob/master/advanced/Templates/logrotate).
+
+```bash
+sudo killall -USR2 pihole-FTL
+```
