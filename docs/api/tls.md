@@ -103,17 +103,17 @@ If the last step did not work, see the remark below the Firefox instructions abo
 
 The certificate will be valid for all apps that use the Android certificate store. This includes the Firefox Mobile browser but also others such as Chrome.
 
-### Additional steps for recent Firefox Mobile versions (tested with Android 14 and Firefox Mobile 136.0)
+#### Additional steps for recent Firefox Mobile versions (tested with Android 14 and Firefox Mobile 136.0)
 
-On recent versions of Firefox Android browser (does not seem necessary with Chrome), you may need to perform the following additional steps to enable your browser to use user-defined certificates:
+On recent versions of the Firefox Android browser (this does not seem necessary with Chrome), you may need to perform the following additional steps to enable the browser to use user-defined certificates:
 
-1. Run the browser.
-2. Go to Settings → About Firefox.
-3. Tap the Firefox logo five times.
-4. Navigate to Settings → Secret Settings.
-5. Toggle Use third party CA certificates.
+1. Open Firefox
+2. Navigate to "Settings" and then "About Firefox"
+3. Tap the Firefox logo five times to unlock the hidden menu
+4. Go back to "Settings" and open "Secret Settings"
+5. Enable "Use third party CA certificates"
 
-If this still doesn't work, see the note under Firefox instructions above.
+If this still did not work, see the remark below the Firefox instructions above.
 
 ## Using your own certificate
 
