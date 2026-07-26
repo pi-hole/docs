@@ -2,13 +2,13 @@
 
 Pi-hole has its own embedded package dumping. It can be enabled by adding the following to a file like `/etc/dnsmasq.d/99-record.conf`:
 
-```
+```text
 dumpfile=/etc/pihole/dump.pcap
 ```
 
 (or any other location you prefer), in addition to
 
-```
+```text
 dumpmask=<mask>
 ```
 
@@ -26,7 +26,7 @@ Each time a packet is written to the dumpfile, we log the packet sequence and th
 
 If you just want to record everything and later filter this in Wireshark you can just add the two lines
 
-```
+```text
 dumpfile=/etc/pihole/dump.pcap
 dumpmask=0x00ff
 ```

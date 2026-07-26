@@ -1,7 +1,7 @@
 ---
 title: Community Projects
 description: Things built with Pi-hole
-last_updated: Sun Sep 06 14:28:14 2020 UTC
+last_updated: Sun May 24 2026 UTC
 ---
 
 - [The Big Blocklist Collection](https://firebog.net/)
@@ -22,3 +22,4 @@ last_updated: Sun Sep 06 14:28:14 2020 UTC
 - [Enable/Disable Pi-Hole from your iPhone Home Screen](https://codeopolis.com/posts/how-to-control-pi-hole-from-your-iphone/)
 - [Pi-hole Shortcuts: Native macOS client](https://github.com/dotWee/macOS-PiholeShortcuts)
 - [Discord Pi-hole Bot: Bot for easy Pi-hole server management and stats through discord](https://github.com/josephistired/Discord-Pi-hole-Bot)
+- [Pi-hole In One](https://github.com/creeperkatze/pihole-in-one): A browser extension to control your Pi-hole conveniently from within the browser. ([Chrome](https://chromewebstore.google.com/detail/pi-hole-in-one/gaaobidjebianpcngcfpkniaocibidhe)) ([Firefox](https://addons.mozilla.org/firefox/addon/pihole-in-one/)) ([Edge](https://microsoftedge.microsoft.com/addons/detail/pihole-in-one/hbigjlhijpiegpnbdhmdgdlfbcgljdao))

@@ -2,7 +2,7 @@
 
 Pi-hole offers three choices for interface on its dashboard:
 
-![Available interface settings](/images/interface-settings.png)
+![Available interface settings](../images/interface-settings.png)
 
 By default, FTL binds the wildcard address. It does this for all options except *Bind only on interface `enp2s0`*. Your Pi-hole then discards requests that it shouldn't reply to. This has the big advantage of working even when interfaces come and go and change address (this happens way more often than one would think).
 
@@ -14,7 +14,7 @@ This setting accepts DNS queries only from hosts whose address is on a local sub
 
 The `dnsmasq` option
 
-``` plain
+```plain
 local-service
 ```
 
@@ -29,7 +29,7 @@ The loopback (`lo`) interface is automatically added to the list of interfaces t
 
 The `dnsmasq` option
 
-``` plain
+```plain
 interface=enp2s0
 ```
 
@@ -46,7 +46,7 @@ When this option is used, IP alias interface labels (e.g. `enp2s0:0`) are checke
 
 The `dnsmasq` options
 
-``` plain
+```plain
 interface=enp2s0
 bind-interfaces
 ```
@@ -59,7 +59,7 @@ This truly allows any traffic to be replied to and is a dangerous thing to do as
 
 The `dnsmasq` option
 
-``` plain
+```plain
 except-interface=nonexisting
 ```
 

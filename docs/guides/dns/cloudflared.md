@@ -1,3 +1,14 @@
+<!-- markdownlint-disable code-block-style -->
+!!! Warning
+    As of November 2025 the proxy-dns feature that this guide relies upon is [deprecated by cloudflare](https://developers.cloudflare.com/changelog/2025-11-11-cloudflared-proxy-dns/).
+
+    Current installations will continue to work and are supported for 12 months after their release date. However, if cloudflared is updated after the 2nd of February 2026 it will no longer function as per this guide.
+
+    New installations via this method are not recommended.
+
+    Uninstallation instructions are available below.
+<!-- markdownlint-enable code-block-style -->
+
 ### Why use DNS-Over-HTTPS? [^guide]
 
 DNS-Over-HTTPS is a protocol for performing DNS lookups via the same protocol you use to browse the web securely: **HTTPS**.
@@ -9,12 +20,12 @@ It is worth noting, however, that the upstream DNS-Over-HTTPS provider will stil
 
 ## Configuring DNS-Over-HTTPS
 
-Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/), Cloudflare implemented DNS-Over-HTTPS proxy functionality into one of their tools: [`cloudflared`](https://github.com/cloudflare/cloudflared).
+Along with releasing their DNS service [1.1.1.1](https://blog.cloudflare.com/announcing-1111/) (and later [1.1.1.1 for Families](https://blog.cloudflare.com/introducing-1-1-1-1-for-families)) Cloudflare implemented DNS-Over-HTTPS proxy functionality into one of their tools: [`cloudflared`](https://github.com/cloudflare/cloudflared).
 
 In the following sections, we will be covering how to install and configure this tool on `Pi-hole`.
 
 !!! info
-    The `cloudflared` binary will work with other DoH providers (for example, you could use `https://8.8.8.8/dns-query` for Google's DNS-Over-HTTPS service).
+    The `cloudflared` binary will also work with other DoH providers (for example, [Google's DoH service](https://developers.google.com/speed/public-dns/docs/doh) or [Quad9's DoH service](https://quad9.net/service/service-addresses-and-features)).
 
 ### Installing `cloudflared`
 
@@ -81,7 +92,17 @@ Edit configuration file by copying the following in to `/etc/default/cloudflared
 
 ```bash
 # Commandline args for cloudflared, using Cloudflare DNS
-CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
+CLOUDFLARED_OPTS=--port 5053 --upstream https://cloudflare-dns.com/dns-query
+```
+
+!!! info
+    See the other available [Cloudflare endpoints](https://developers.cloudflare.com/1.1.1.1/infrastructure/network-operators/#available-endpoints).
+
+If you're running cloudflared on different host than pi-hole, you can add listening address to all IPs (for security, change 0.0.0.0 to your machine's IP, e.g. 192.168.1.1):
+
+```bash
+# Commandline args for cloudflared, using Cloudflare DNS
+CLOUDFLARED_OPTS=--port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query --address 0.0.0.0
 ```
 
 Update the permissions for the configuration file and `cloudflared` binary to allow access for the cloudflared user:
@@ -154,13 +175,13 @@ google.com.             191     IN      A       172.217.22.14
 
 Finally, configure Pi-hole to use the local `cloudflared` service as the upstream DNS server by specifying `127.0.0.1#5053` as the Custom DNS (IPv4):
 
-![Screenshot of Pi-hole configuration](/images/DoHConfig.png)
+![Screenshot of Pi-hole configuration](../../images/DoHConfig.png)
 
 (don't forget to hit Return or click on `Save`)
 
 ### Updating `cloudflared`
 
-The `cloudflared` tool will not receive updates through the package manager. However, you should keep the program update to date. You can either do this manually, or via a cron script.
+The `cloudflared` tool will not receive updates through the package manager. However, you should keep the program update to date. You can either do this manually (e.g. by watching their [repo](https://github.com/cloudflare/cloudflared) for new releases), or via a cron script.
 
 The procedure for updating depends on how you configured the `cloudflared` binary.
 
@@ -200,7 +221,7 @@ sudo chown root:root /etc/cron.weekly/cloudflared-updater
 <!-- markdownlint-disable code-block-style -->
 !!! warning
     Make sure to add shebang `#!/bin/bash` in the beginning of  `/etc/cron.weekly/cloudflared-updater`.
-    Otherwise, the command would not executed.
+    Otherwise, the command will not be executed.
 <!-- markdownlint-enable code-block-style -->
 
 The system will now attempt to update the cloudflared binary automatically, once per week.
@@ -219,6 +240,8 @@ sudo deluser cloudflared
 sudo rm /etc/default/cloudflared
 sudo rm /etc/systemd/system/cloudflared.service
 sudo rm /usr/local/bin/cloudflared
+sudo rm /etc/cron.weekly/cloudflared-updater
+sudo apt purge cloudflared -y
 ```
 
 #### If installed with `cloudflare service install`

@@ -4,7 +4,7 @@
 2. Clone `https://github.com/<your_namespace>/<your_repo_name>/` with the tool of you choice.
 3. To keep your fork in sync with our repo, add an upstream remote for pi-hole/pi-hole to your repo.
 
-    ```
+    ```bash
     git remote add upstream https://github.com/pi-hole/pi-hole.git
     ```
 
@@ -30,21 +30,21 @@ Forking is a GitHub concept and cannot be done from GitHub to other git-based co
 
 To rebase your commits and squash previous commits, you can use:
 
-```
-  git rebase -i your_topic_branch~(number of commits to combine)
+```bash
+git rebase -i your_topic_branch~(number of commits to combine)
 ```
 
 For more details visit [gitready.com](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html)
 
 1. The following would combine the last four commits in the branch `mytopic`.
 
-    ```
+    ```bash
     git rebase -i mytopic~4
     ```
 
 2. An editor window opens with the most recent commits indicated: (edit the commands to the left of the commit ID)
 
-    ```
+    ```text
     pick 9dff55b2 existing commit comments
     squash ebb1a730 existing commit comments
     squash 07cc5b50 existing commit comments
@@ -53,21 +53,21 @@ For more details visit [gitready.com](http://gitready.com/advanced/2009/02/10/sq
 
 3. Save and close the editor. The next editor window opens: (edit the new commit message). *If you select reword for a commit, an additional editor window will open for you to edit the comment.*
 
-    ```
+    ```text
     new commit comments
     Signed-off-by: yourname <your email address>
-   ```
+    ```
 
 4. Save and close the editor for the rebase process to execute. The terminal output should say something like the following:
 
-    ```
+    ```text
     Successfully rebased and updated refs/heads/mytopic.
     ```
 
 5. Once you have a successful rebase, and before you sync your local clone, you have to force push origin to update your repo:
 
-    ```
+    ```bash
     git push -f origin
-   ```
+    ```
 
 6. Continue on from step #7 from [Forking and Cloning from GitHub to GitHub](#forking-and-cloning-from-github-to-github)

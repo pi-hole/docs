@@ -86,10 +86,4 @@ MTU = 1500
 
 ## Pi-hole not listening on `wg0` after reboot
 
-If, e.g., after reboot, the `wg0` interface isn't up before Pi-hole is ready (more precisely, the `pihole-FTL` service is started), you may experience that Pi-hole doesn't listen on the Wireguard interface. This can be mitigated by artificially delaying the start of Pi-hole using, e.g., the config option
-
-```plain
-DELAY_STARTUP=5
-```
-
-in `/etc/pihole/pihole-FTL.conf` to have Pi-hole delay the start of the DNS server by `5` seconds.
+If, e.g., after reboot, the `wg0` interface isn't up before Pi-hole is ready (more precisely, the `pihole-FTL` service is started), you may experience that Pi-hole doesn't listen on the Wireguard interface. This can be mitigated by artificially delaying the start of Pi-hole using, e.g., `pihole-FTL --config mic.delay_startup 5` to have Pi-hole delay the start of the DNS server by `5` seconds.

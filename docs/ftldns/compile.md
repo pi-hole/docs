@@ -1,4 +1,4 @@
-We pre-compile *FTL*DNS for you to save you the trouble of compiling anything yourself. However, sometimes you may want to make your own modifications. To test them, you have to compile *FTL*DNS from source. Luckily, you don't have to be a programmer to build *FTL*DNS from source and install it on your system; you only have to know the basics we provide in here. With just a few commands, you can build *FTL*DNS from source like a pro.
+We pre-compile FTL for you to save you the trouble of compiling anything yourself. However, sometimes you may want to make your own modifications. To test them, you have to compile FTL from source. Luckily, you don't have to be a programmer to build FTL from source and install it on your system; you only have to know the basics we provide in here. With just a few commands, you can build FTL from source like a pro.
 
 # Install native build environment
 
@@ -12,34 +12,53 @@ Install them by running the following command in a terminal:
 ### Debian / Ubuntu / Raspbian
 
 ```bash
-sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn11-dev libreadline-dev xxd
+sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn2-dev libunistring-dev libreadline-dev xxd
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn-devel readline-devel xxd
+sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn2-devel libunistring-devel readline-devel xxd
 ```
 
 ## Compile `libnettle` from source
 
-*FTL*DNS uses a cryptographic library (`libnettle`) for handling DNSSEC signatures.
+FTL uses a cryptographic library (`libnettle`) for handling DNSSEC signatures.
 Compile and install a recent version using:
 
 ```bash
-wget https://ftp.gnu.org/gnu/nettle/nettle-3.8.1.tar.gz
-tar -xzf nettle-3.8.1.tar.gz
-cd nettle-3.8.1
-./configure --libdir=/usr/local/lib
+wget https://ftp.gnu.org/gnu/nettle/nettle-3.10.2.tar.gz
+tar -xzf nettle-3.10.2.tar.gz
+cd nettle-3.10.2
+./configure --libdir=/usr/local/lib --enable-static --disable-shared --disable-openssl --disable-mini-gmp -disable-gcov --disable-documentation
 make -j $(nproc)
 sudo make install
 ```
 
 Since Ubuntu 20.04, you need to specify the library directory explicitly. Otherwise, the library will be installed in custom locations where it would not be found by `cmake`.
 
+## Compile `libmbedtls` from source
+
+FTL uses another cryptographic library (`libmbedtls`) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols used for serving the web interface and the API over HTTPS.
+
+Compile and install a recent version using:
+
+```bash
+wget https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-4.0.0/mbedtls-4.0.0.tar.bz2 -O mbedtls-4.0.0.tar.bz2
+tar -xjf mbedtls-4.0.0.tar.bz2
+cd mbedtls-4.0.0
+sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' tf-psa-crypto/include/psa/crypto_config.h
+sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' tf-psa-crypto/include/psa/crypto_config.h
+cmake -S . -B build -DCMAKE_C_FLAGS="-fomit-frame-pointer"
+cmake --build build -j $(nproc)
+sudo cmake --install build
+```
+
+The `sed` commands are necessary to enable multi-threading support in `libmbedtls` as there is no `configure` script to do this for us (see also [here](https://github.com/Mbed-TLS/mbedtls#configuration)).
+
 ## Get the source
 
-Now, clone the *FTL*DNS repo (or your own fork) to get the source code of *FTL*DNS:
+Now, clone the FTL repo (or your own fork) to get the source code of FTL:
 
 ```bash
 git clone https://github.com/pi-hole/FTL.git && cd FTL
@@ -53,7 +72,7 @@ git checkout development
 
 ## Compile the source
 
-*FTL*DNS can now be compiled using either the build script
+FTL can now be compiled using either the build script
 
 ```bash
 ./build.sh
@@ -83,11 +102,15 @@ or
 cd cmake && sudo make install
 ```
 
-Finally, restart *FTL*DNS to use the new binary:
+Finally, restart FTL to use the new binary:
 
 ```bash
 sudo service pihole-FTL restart
 ```
+
+## Caution
+
+Once your homebrew `pihole-FTL` binary is built and installed, do not run `pihole -up` or `pihole checkout`. These commands might overwrite your local `pihole-FTL` binary with Pi-hole's pre-compiled binaries.
 
 # Use containerized build environment
 

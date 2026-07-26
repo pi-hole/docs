@@ -10,26 +10,28 @@ on:
 
 env:
   FORCE_COLOR: 2
-  NODE: 20
-  PYTHON_VERSION: "3.11"
+  NODE: 24
+  PYTHON_VERSION: "3.14"
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.6.0
+      - name: Clone repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 #v7.0.0
         with:
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4.7.0
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 #v6.3.0
         with:
           python-version: "${{ env.PYTHON_VERSION }}"
           architecture: "x64"
           cache: pip
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3.8.1
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 #v7.0.0
         with:
           node-version: "${{ env.NODE }}"
           cache: npm
@@ -40,8 +42,5 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Build docs
-        run: mkdocs build
-
-      - name: Test
+      - name: Build and test
         run: npm test

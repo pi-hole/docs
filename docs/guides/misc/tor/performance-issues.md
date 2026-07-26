@@ -24,7 +24,7 @@ This is not recommended, but here are some things you can do:
 
     Edit `/etc/tor/torrc` as root and, add the following lines to the end and replace `CountryCodeN` (keep the `{` and `}`) with the country code you've chosen (you can also use only one country code; in this case, it would be just `{CountryCode1}` without a comma).
 
-    ```
+    ```text
     ExitNodes {CountryCode1},{CountryCode2},{CountryCode3}
     StrictNodes 1
     ```
@@ -45,7 +45,7 @@ This is not recommended, but here are some things you can do:
 3. Make sure the relay allows Port `53` in his `IPv4 Exit Policy Summary` (and/or `IPv6 Exit Policy Summary` if you want to resolve IPv6 AAAA queries).
 4. As root copy the `Fingerprint` (Top Right under Relay Details) of those two Relays to the end of your `/etc/tor/torrc` file on the Pi-hole host in the following format:
 
-    ```
+    ```text
     ExitNodes Fingerprint1,Fingerprint2
     StrictNodes 1
     ```

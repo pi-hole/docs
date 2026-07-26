@@ -10,7 +10,7 @@ The easiest and most reliable solution would be to use the [Tor Browser](https:/
 
 Edit `/etc/tor/torrc` on your Pi-hole as root, include the following line at the end and save the changes
 
-```
+```text
 SocksPort 0.0.0.0:9050
 ```
 

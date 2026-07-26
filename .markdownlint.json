@@ -32,10 +32,13 @@
   },
   "MD036": false,
   "MD038": false,
-  "MD040": false,
   "MD041": false,
   "MD045": false,
   "MD046": {
     "style": "fenced"
+  },
+  "MD059": false,
+  "MD060": {
+    "style": "any"
   }
 }

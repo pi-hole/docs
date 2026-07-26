@@ -2,14 +2,14 @@
 
 The `dnsmasq` core embedded into `pihole-FTL` prints a dump of the current cache content into the main log file (default location `/var/log/pihole/pihole.log`) when receiving `SIGUSR1`, e.g. by
 
-``` bash
+```bash
 sudo killall -USR1 pihole-FTL
 ```
 
 Such a cache dump looks like
 
-``` plain
-cache size 10000, 0/20984 cache insertions re-used unexpired cache entries.
+```plain
+cache size 10000, 0/20984 cache insertions reused unexpired cache entries.
 queries forwarded 10247, queries answered locally 14713
 queries for authoritative zones 0
 pool memory in use 22272, max 24048, allocated 480000
@@ -79,15 +79,15 @@ where we stripped lines like `Dec 15 20:32:02 dnsmasq[4177892]:` for the sake of
 
 ### Cache metrics
 
-``` plain
-cache size 10000, 0/20984 cache insertions re-used unexpired cache entries.
+```plain
+cache size 10000, 0/20984 cache insertions reused unexpired cache entries.
 ```
 
 tells us that the cache size is 10000 (Pi-hole's default value). None of the 20984 cache insertions had to overwrite still valid cache lines. If this number is zero, your cache was sufficiently large at any time. If this number is notably larger than zero, you should consider increasing the cache size.
 
 ### Query statistics
 
-``` plain
+```plain
 queries forwarded 10247, queries answered locally 14713
 queries for authoritative zones 0
 ```
@@ -96,7 +96,7 @@ Mostly self-explanatory. Queries answered locally can both be from local configu
 
 ### Blockdata statistics
 
-``` plain
+```plain
 pool memory in use 22272, max 24048, allocated 480000
 ```
 
@@ -104,7 +104,7 @@ Blockdata is used to cache records that do not fit in normal cache records. Thes
 
 ### Server statistics
 
-```
+```text
 server 127.0.0.1#5353: queries sent 10801, retried or failed 69
 server 192.168.2.1#53: queries sent 388, retried or failed 3
 ```
@@ -115,28 +115,28 @@ Self-explanatory: Queries sent, retried, and failed to the individual upstream s
 
 The first character of the flags describes the query type:
 
-Character | Record type
-----------|------------
-`4` | `A` (IPv4 address)
-`6` | `AAAA` (IPv6 address)
-`C` | `CNAME`
-`V` | `SRV`
-`S` | `DS`
-`K` | `DNSKEY`
-`(empty)` | something else
+| Character | Record type |
+| ---------- | ------------ |
+| `4` | `A` (IPv4 address) |
+| `6` | `AAAA` (IPv6 address) |
+| `C` | `CNAME` |
+| `V` | `SRV` |
+| `S` | `DS` |
+| `K` | `DNSKEY` |
+| `(empty)` | something else |
 
 The rest of the flags can be almost any combination of the following bits:
 
-Bit | Interpretation
--------|---------------
-`F` | Forward entry (domain-to-address record)
-`R` | Reverse entry (address-to-domain, typically combined with `D` or `H`)
-`I` | Immortal cache entry (no expiry, typically from local configuration)
-`D` | DHCP-provided record
-`N` | Negative record (This record does not exist)
-`X` | NXDOMAIN (No record exists at all for this domain)
-`H` | From HOSTS file (always combined with `I`)
-`V` | DNSSEC verified
+| Bit | Interpretation |
+| ------- | --------------- |
+| `F` | Forward entry (domain-to-address record) |
+| `R` | Reverse entry (address-to-domain, typically combined with `D` or `H`) |
+| `I` | Immortal cache entry (no expiry, typically from local configuration) |
+| `D` | DHCP-provided record |
+| `N` | Negative record (This record does not exist) |
+| `X` | NXDOMAIN (No record exists at all for this domain) |
+| `H` | From HOSTS file (always combined with `I`) |
+| `V` | DNSSEC verified |
 
 The `V` flag in negative DS records has a different meaning. Only validated `DS` records are every cached, and the `V` bit is used to store information about the presence of an `NS` record for the domain, i.e., if there's a zone cut at that point.
 
@@ -144,7 +144,7 @@ The `V` flag in negative DS records has a different meaning. Only validated `DS`
 
 #### `A` (`DHCP` provided)
 
-``` plain
+```plain
 Host                                     Address                        Flags      Expires
 Internet-Radio                 192.168.2.239                            4F  D      Thu Dec 16 12:54:33 2021
 Internet-Radio.lan             192.168.2.239                            4FR D      Thu Dec 16 12:54:33 2021
@@ -154,7 +154,7 @@ Both cache entries describe an IPv4 cache record for a device in the local netwo
 
 #### `DNSKEY/DS`
 
-``` plain
+```plain
 Host                                     Address                        Flags      Expires
 de                             57564   8 256                            KF      V  Wed Dec 15 20:32:59 2021
 de                             26755   8 257                            KF      V  Wed Dec 15 20:32:59 2021
@@ -170,7 +170,7 @@ The three numbers in the `address` field correspond to the key tag, the algorith
 
 Note that `DS` records may have an empty `address` field when they are `NODATA` (flag `N`) like
 
-```
+```text
 Host                                     Address                        Flags      Expires
 hosted-by-discourse.com                                                 SF   N  V  Sat Dec 18 11:06:03 2021
 ```
@@ -179,7 +179,7 @@ The `DS` of the root zone is marked *immortal* as it is given by the locally def
 
 #### `CNAME`
 
-``` plain
+```plain
 Host                                     Address                        Flags      Expires
 i.stack.imgur.com              ipv4.imgur.map.fastly.net                CF         Fri Dec 17 22:10:29 2021
 ```
@@ -188,7 +188,7 @@ The `address` field corresponds to the `CNAME` target record.
 
 #### `SRV`
 
-``` plain
+```plain
 Host                                     Address                        Flags      Expires
 _sip._tcp.pcscf2.ims.telekom.d 100 10 5062 pspcscfhost2.ims.telekom.de  VF         Sat Dec 18 13:33:37 2021
 ```

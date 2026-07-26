@@ -117,7 +117,7 @@ After a restart, the server file should look like:
 
 ```plain
 [Interface]
-Address = 10.100.0.1/24, fd08:4711::1/128
+Address = 10.100.0.1/24, fd08:4711::1/64
 ListenPort = 47111
 PrivateKey = XYZ123456ABC=                   # PrivateKey will be different
 
@@ -235,6 +235,6 @@ peer: F+80gbmHVlOrU+es13S18oMEX2g=   ⬅ Your peer's public key will be differen
 
 ## Test for DNS leaks
 
-You should run a DNS leak test on [www.dnsleaktest.com](https://www.dnsleaktest.com) to ensure your WireGuard tunnel does not leak DNS requests (so all are processed by your Pi-hole). The expected outcome is that you should only see DNS servers belonging to the upstream DNS destination you selected in Pi-hole. If you configured [Pi-hole as All-Around DNS Solution](/guides/dns/unbound/), you should only see the public IP address of your WireGuard server and no other DNS server.
+You should run a DNS leak test on [www.dnsleaktest.com](https://www.dnsleaktest.com) to ensure your WireGuard tunnel does not leak DNS requests (so all are processed by your Pi-hole). The expected outcome is that you should only see DNS servers belonging to the upstream DNS destination you selected in Pi-hole. If you configured [Pi-hole as All-Around DNS Solution](../../dns/unbound.md), you should only see the public IP address of your WireGuard server and no other DNS server.
 
 See also [What is a DNS leak and why should I care?](https://www.dnsleaktest.com/what-is-a-dns-leak.html) (external link).

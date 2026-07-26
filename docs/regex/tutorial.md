@@ -1,6 +1,6 @@
 # Pi-hole regular expressions tutorial
 
-We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing blocking or whitelisting rules (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
+We provide a short but thorough introduction to our regular expressions implementation. This may come in handy if you are designing rules to deny or allow domains (see also our cheat sheet below!). In our implementation, all characters match themselves except for the following special characters: `.[]{}()\*+?|^$`. If you want to match those, you need to escape them like `\.` for a literal period, but no rule without exception (see character groups below for further details).
 
 ## Anchors (`^` and `$`)
 
@@ -78,31 +78,39 @@ Example | Interpretation
 ## Alternations (`|`)
 
 Alternations can be used as an "or" operator in regular expressions.
-
+<!-- markdownlint-disable MD056 -->
+<!-- markdownlint-disable MD060 -->
 Example | Interpretation
 --- | ---
 `(abc)|(def)` | matches `abc` *and* `def`
 `domain(a|b)\.com` | matches `domaina.com` and `domainb.com` but not `domain.com` or `domainx.com`
 `domain(a|b)*\.com` | matches `domain.com`, `domainaaaa.com` `domainbbb.com` but not `domainab.com` (any number of `a` or `b` in between `domain` and `.com`)
-
+<!-- markdownlint-enable MD056 -->
+<!-- markdownlint-enable MD060 -->
 ## Character classes (`[:class:]`)
 
 In addition to character groups, there are also some special character classes available, such as
 
-Character class | Group equivalent | Pi-hole specific | Interpretation
+Character class | Equivalent | Pi-hole specific | Interpretation
 --------------- | ---------------- | ---------------- | ---------------
-`[:digit:]` | `[0-9]` | No | matches digits
-`[:lower:]` | `[a-z]` | No | matched lowercase letters(FTL matches case-insensitive by default)
-`[:upper:]` | `[A-Z]` | No | matched uppercase letters(FTL matches case-insensitive by default)
-`[:alpha:]` | `[A-Za-z]` | No | matches alphabetic characters
-`[:alnum:]` | `[A-Za-z0-9]` | No | matches alphabetic characters and digits
-`[:blank:]` | `[ \t]` | Yes | blank characters
-`[:cntrl:]` | N/A | Yes | control characters
-`[:graph:]` | N/A | Yes | all printable characters except space
-`[:print:]` | N/A | Yes | printable characters including space
-`[:punct:]` | N/A | Yes | printable characters not space or alphanumeric
-`[:space:]` | `[ \f\n\r\t\v]` | Yes | white-space characters
-`[:xdigit:]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
+`[[:digit:]]` | `[0-9]` | No | digits
+`[[:lower:]]` | `[a-z]` | No | lowercase letters[^*]
+`[[:upper:]]` | `[A-Z]` | No | uppercase letters[^*]
+`[[:alpha:]]` | `[A-Za-z]` | No | alphabetic characters[^*]
+`[[:alnum:]]` | `[A-Za-z0-9]` | No | alphabetic characters[^*] and digits
+`[[:blank:]]` | `[ \t]` | Yes | blank characters
+`[[:cntrl:]]` | N/A | Yes | control characters
+`[[:graph:]]` | N/A | Yes | all printable characters except space
+`[[:print:]]` | N/A | Yes | printable characters including space
+`[[:punct:]]` | N/A | Yes | printable characters not space or alphanumeric
+`[[:space:]]` | `[ \f\n\r\t\v]` | Yes | white-space characters
+`[[:xdigit:]]` | `[0-9a-fA-F]` | Yes | hexadecimal digits
+
+///Footnotes Go Here///
+
+[^*]: FTL matches case-insensitive by default as case does not matter in domain names
+
+Note that character classes are abbreviations, they need to be used in character groups, i.e., enclosed in `[]`. As such, the equivalent of `[0-9]` would be `[[:digit:]]`, *not* `[:digit:]`. It is allowed to mix character classes with classical character groups. For example, `[a-z0-9]` is identical to `[a-z[:digit:]]`.
 
 # Advanced examples
 
@@ -110,7 +118,7 @@ After going through our quick tutorial, we provide some more advanced examples s
 
 ## Block domain with only numbers
 
-```
+```text
 ^[0-9][^a-z]+\.((com)|(edu))$
 ```
 
@@ -118,14 +126,15 @@ Blocks domains containing only numbers (no letters) and ending in `.com` or `.ed
 
 ### Block domains without subdomains
 
-```
+```text
 ^[a-z0-9]+([-]{1}[a-z0-9]+)*\.[a-z]{2,7}$
 ```
 
 A domain name shall not start or end with a dash but can contain any number of them. It must be followed by a TLD (we assume a valid TLD length of two to seven characters)
 
 # Cheatsheet
-
+<!-- markdownlint-disable MD056 -->
+<!-- markdownlint-disable MD060 -->
 Expression | Meaning | Example
 ------------ | ------------- | -----------
 `^`  | Beginning of string | `^client` matches strings that begin with `client`, such as `client.server.com` but not `more.client.server.com` (exception: within a character range (`[]`) `^` means negation)
@@ -140,3 +149,5 @@ Expression | Meaning | Example
 `[^]`| Negation | `[^0-9]` matches any character *except* `0` to `9`
 `{ }` | Matches a specified number of occurrences of the previous  | `[0-9]{3}` matches any three-digit number like `315` but not `31`;<br>`[0-9]{2,4}` matches two- to four-digit numbers like `12`, `123`, and `1234` but not `1` or `12345`;<br>`[0-9]{2,}` matches any number with two or more digits like `1234567`, `123456789`, but not `1`
 `\` | Used to escape a special character not inside `[]` | `google\.com` matches `google.com`
+<!-- markdownlint-enable MD056 -->
+<!-- markdownlint-enable MD060 -->

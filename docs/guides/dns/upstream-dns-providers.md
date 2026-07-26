@@ -1,12 +1,13 @@
-The Pi-hole setup offers 8 options for an upstream DNS provider during the initial setup.
+The Pi-hole setup offers nine options for an upstream DNS provider during the initial setup.
 
 ```text
 Google
 OpenDNS
 Level3
 Comodo
-DNS.WATCH
 Quad9
+Quad9 (unfiltered)
+Quad9 (ECS)
 CloudFlare DNS
 Custom
 ```
@@ -19,6 +20,8 @@ Default upstream DNS provider on the Pi-hole.
 
 - 8.8.8.8
 - 8.8.4.4
+- 2001:4860:4860::8888 (IPv6)
+- 2001:4860:4860::8844 (IPv6)
 
 [More information on Google Public DNS](https://developers.google.com/speed/public-dns/)
 
@@ -60,25 +63,30 @@ SecureDNS references a real-time block list (RBL) of harmful websites (i.e. phis
 
 [More information on Comodo Secure DNS](https://www.comodo.com/secure-dns/)
 
-### DNS.WATCH
-
-DNS.WATCH offers Fast, free and uncensored DNS resolution.
-
-- 84.200.69.80
-- 84.200.70.40
-- 2001:1608:10:25::1c04:b12f (IPv6)
-- 2001:1608:10:25::9249:d69b (IPv6)
-
-[More information on DNS.WATCH](https://dns.watch/)
-
 ### Quad9
 
 Quad9 is a free, recursive, anycast DNS platform that provides end users robust security protections, high-performance, and privacy.
+
+Filtered
 
 - 9.9.9.9
 - 149.112.112.112
 - 2620:fe::fe (IPv6)
 - 2620:fe::9 (IPv6)
+
+Unfiltered, no DNSSEC
+
+- 9.9.9.10
+- 149.112.112.10
+- 2620:fe::10 (IPv6)
+- 2620:fe::fe:10 (IPv6)
+
+Filtered, ECS enabled
+
+- 9.9.9.11
+- 149.112.112.11
+- 2620:fe::11 (IPv6)
+- 2620:fe::fe:11 (IPv6)
 
 [More information on Quad9](https://www.quad9.net/about/)
 

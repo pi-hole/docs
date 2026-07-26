@@ -129,11 +129,11 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
     If you see this message continuously, you are affected by some unusual truncation on the path from your Pi-hole to the configured upstream server.
     You can get rid of the warning by adding a config file like `/etc/dnsmasq.d/99-edns.conf` and adding
 
-    ``` plain
+    ```plain
     edns-packet-max=1232
     ```
 
-    After running `pihole restartdns` your Pi-hole will not even try larger packet sizes (the default is 4096). Check out our [unbound guide](../guides/dns/unbound.md) for a comment about the particular value of `1232` or reference [this comment](https://discourse.pi-hole.net/t/dnsmasq-warn-reducing-dns-packet-size/51803/31) regarding the various allowed packet sizes for the various upstream DNS servers.
+    After restarting `pihole-FTL` it will not even try larger packet sizes (the default is 4096). Check out our [`unbound` guide](../guides/dns/unbound.md) for a comment about the particular value of `1232` or reference [this comment](https://discourse.pi-hole.net/t/dnsmasq-warn-reducing-dns-packet-size/51803/31) regarding the various allowed packet sizes for the various upstream DNS servers.
 
 !!! warning "Ignoring query from non-local network"
 
@@ -167,7 +167,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
 
 !!! warning "overflow: `NUMBER` log entries lost"
 
-    When using asynchronous logging and the disk is too slow, we can loose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
+    When using asynchronous logging and the disk is too slow, we can lose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
 
 !!! warning "failed to create listening socket for `ADDRESS`: `MSG`"
 
@@ -179,7 +179,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
 
 !!! warning "LOUD WARNING: listening on `ADDRESS` may accept requests via interfaces other than `IFNAME`"
 
-    When using `bind-interfaces`, the only access control is the addresses `dnsmasq` is listening on. There's nothing to avoid a query to the address of an internal interface arriving via an external interface where we don't want to accept queries, except that in the usual case the addresses of internal interfaces are RFC1918. When `bind-interfaces` in use, and we listen on an address that looks like it's probably globally routeable, this warning is printed.
+    When using `bind-interfaces`, the only access control is the addresses `dnsmasq` is listening on. There's nothing to avoid a query to the address of an internal interface arriving via an external interface where we don't want to accept queries, except that in the usual case the addresses of internal interfaces are RFC1918. When `bind-interfaces` in use, and we listen on an address that looks like it's probably globally routable, this warning is printed.
 
 !!! warning "LOUD WARNING: use --bind-dynamic rather than --bind-interfaces to avoid DNS amplification attacks via these interface(s)"
 
