@@ -137,10 +137,12 @@ nav:
     - 'FTLDNS': ftldns/index.md
     - 'Configuration': ftldns/configfile.md
     - 'Interfaces': ftldns/interfaces.md
+    - 'DNS cache': ftldns/dns-cache.md
     - 'DNS resolver': ftldns/dns-resolver.md
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
+    - 'Webserver': ftldns/webserver.md
     - 'Advanced':
         - 'Install from source': ftldns/compile.md
         - 'Signals': 'ftldns/signals.md'
@@ -166,11 +168,13 @@ nav:
       - 'Upgrading from v5.x': docker/upgrading/v5-v6.md
     - 'Building': docker/build-image.md
     - 'DHCP': docker/DHCP.md
+    - 'Tips and Tricks': docker/tips-and-tricks.md
   - 'Contributing':
     - 'Contributing': guides/github/index.md
     - 'Developer Certificate of Origin (DCO)': guides/github/dco.md
     - 'How to sign-off commits': guides/github/how-to-signoff.md
     - 'How to fork and rebase': guides/github/how-to-fork-rebase.md
+    - 'How to sign commits': guides/github/sign.md
   - 'Guides':
     - 'DNS':
       - 'unbound': guides/dns/unbound.md
@@ -187,19 +191,6 @@ nav:
           - 'Make local devices accessible': guides/vpn/wireguard/internal.md
           - 'Tunnel all Internet traffic': guides/vpn/wireguard/route-everything.md
         - 'Troubleshooting': guides/vpn/wireguard/faq.md
-      - 'OpenVPN':
-        - 'OpenVPN': guides/vpn/openvpn/index.md
-        - 'Installation': guides/vpn/openvpn/installation.md
-        - 'Setup OpenVPN Server': guides/vpn/openvpn/setup-openvpn-server.md
-        - 'Firewall Configuration': guides/vpn/openvpn/firewall.md
-        - 'Connecting clients':
-          - 'General': guides/vpn/openvpn/clients.md
-          - 'Android': guides/vpn/openvpn/android-client.md
-        - 'Optional: Only route DNS via VPN': guides/vpn/openvpn/only-dns-via-vpn.md
-        - 'Optional: Dual operation: LAN & VPN at the same time': guides/vpn/openvpn/dual-operation.md
-        - 'Optional: Full and DNS-only': guides/vpn/openvpn/dual-VPN.md
-        - 'Optional: Dynamic DNS': guides/vpn/openvpn/dynDNS.md
-        - 'Troubleshooting': guides/vpn/openvpn/troubleshooting.md
     - 'Misc':
       - 'Home Assistant': guides/misc/homeassistant.md
       - 'Benchmarking': guides/misc/benchmark.md
@@ -210,6 +201,7 @@ nav:
         - 'Performance and other issues': guides/misc/tor/performance-issues.md
         - 'Using DNSSEC': guides/misc/tor/dnssec.md
       - 'Allowlist and Denylist editing': guides/misc/allowlist-denylist.md
+      - 'Network Time Protocol': guides/misc/ntp.md
   - 'Router setup':
     - 'ASUS router': routers/asus.md
     - 'Fritz!Box (EN)': routers/fritzbox.md
@@ -220,6 +212,9 @@ nav:
     - 'Ubiquiti USG': routers/ubiquiti-usg.md
   - 'FAQ': main/faq.md
   - 'Community Projects': main/projects.md
+
+not_in_nav: |
+  /abbreviations.md
 
 extra:
   social:
@@ -235,27 +230,18 @@ extra_css:
 
 plugins:
   - search
-  - git-revision-date-localized
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+      enable_parallel_processing: false
   - redirects:
       redirect_maps:
         'ftldns/database.md': database/index.md
-        'ftldns/regex/index.md': ftldns/regex/overview.md
         'main/presentations.md': index.md
         'main/prerequesites.md': main/prerequisites.md
         'guides/unbound.md': guides/dns/unbound.md
         'guides/upstream-dns-providers.md': guides/dns/upstream-dns-providers.md
         'guides/dns-over-https.md': guides/dns/cloudflared.md
-        'guides/vpn/overview.md': guides/vpn/openvpn/index.md
-        'guides/vpn/installation.md': guides/vpn/openvpn/installation.md
-        'guides/vpn/setup-openvpn-server.md': guides/vpn/openvpn/setup-openvpn-server.md
-        'guides/vpn/firewall.md': guides/vpn/openvpn/firewall.md
-        'guides/vpn/clients.md': guides/vpn/openvpn/clients.md
-        'guides/vpn/android-client.md': guides/vpn/openvpn/android-client.md
-        'guides/vpn/only-dns-via-vpn.md': guides/vpn/openvpn/only-dns-via-vpn.md
-        'guides/vpn/dual-operation.md': guides/vpn/openvpn/dual-operation.md
-        'guides/vpn/dual-VPN.md': guides/vpn/openvpn/dual-VPN.md
-        'guides/vpn/dynDNS.md': guides/vpn/openvpn/dynDNS.md
-        'guides/vpn/troubleshooting.md': guides/vpn/openvpn/troubleshooting.md
+        'guides/vpn/overview.md': guides/vpn/wireguard/index.md
         'guides/benchmark.md': guides/misc/benchmark.md
         'guides/tor/overview.md': guides/misc/tor/index.md
         'guides/tor/setup.md': guides/misc/tor/setup.md
@@ -275,7 +261,6 @@ plugins:
         'group_management/groups.md': group_management/index.md
         'regex/overview.md': regex/index.md
         'guides/vpn/wireguard/overview.md': guides/vpn/wireguard/index.md
-        'guides/vpn/openvpn/overview.md': guides/vpn/openvpn/index.md
         'guides/misc/tor/overview.md': guides/misc/tor/index.md
         'guides/github/contributing.md': guides/github/index.md
         'guides/misc/whitelist-blacklist.md': guides/misc/allowlist-denylist.md

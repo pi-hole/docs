@@ -4,7 +4,7 @@
 
 Pi-hole includes a caching and *forwarding* DNS server, now known as *FTL*DNS. After applying the blocking lists, it forwards requests made by the clients to configured upstream DNS server(s). However, as has been mentioned by several users in the past, this leads to some privacy concerns as it ultimately raises the question: *Whom can you trust?* Recently, more and more small (and not so small) DNS upstream providers have appeared on the market, advertising free and private DNS service, but how can you know that they keep their promises? Right, you can't.
 
-Furthermore, from the point of an attacker, the DNS servers of larger providers are very worthwhile targets, as they only need to poison one DNS server, but millions of users might be affected. Instead of your bank's actual IP address, you could be sent to a phishing site hosted on some island. This scenario has [already happened](https://www.zdnet.com/article/dns-cache-poisoning-attacks-exploited-in-the-wild/) and it isn't unlikely to happen again...
+Furthermore, from the point of an attacker, the DNS servers of larger providers are very worthwhile targets, as they only need to poison one DNS server, but millions of users might be affected. Instead of your bank's actual IP address, you could be sent to a phishing site hosted on some island. This scenario has [already happened](https://www.zdnet.com/article/dns-cache-poisoning-attacks-exploited-in-the-wild/) and it is likely to happen again...
 
 When you operate your own (tiny) recursive DNS server, then the likeliness of getting affected by such an attack is greatly reduced.
 
@@ -50,6 +50,48 @@ You can easily imagine even longer chains for subdomains as the query process co
 - Drawback: Traversing the path may be slow, especially for the first time you visit a website - while the bigger DNS providers always have answers for commonly used domains in their cache, you will have to traverse the path if you visit a page for the first time. The first request to a formerly unknown TLD may take up to a second (or even more if you're also using DNSSEC). Subsequent requests to domains under the same TLD usually complete in `< 0.1s`.
 Fortunately, both your Pi-hole as well as your recursive server will be configured for efficient caching to minimize the number of queries that will actually have to be performed.
 
+### Recommended: Test access to root servers
+
+Some ISPs intercept and redirect outbound DNS traffic on port 53 to their own resolvers, without any indication that this is happening. Security or parental filtering software, including the firmware on many consumer-grade and home routers may do the same. Either of these will prevent `unbound` from reaching the root servers directly, and likely cause it to fail in ways that can be difficult to diagnose.
+
+Before proceeding, it is worth confirming that your device can definitively reach a root server. The following tests use `a.root-servers.net` at `198.41.0.4`, and should be run on the system upon which you intend to install unbound.
+
+1. **Test UDP reachability and check for interception.** Query `a.root-servers.net` directly for the root name servers, without requesting recursion:
+
+    ```bash
+    dig @198.41.0.4 . NS +norec +time=3
+    ```
+
+    Check the `flags:` line in the response. If you are talking directly to a root server, the response will include `aa` (*Authoritative Answer*) which confirms the server is authoritative for the root zone and simultaneously the `ra` (*Recursion Available*) flag will be **absent**, as root servers do not offer recursion.
+
+    e.g. `;; flags: qr aa; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 27`
+
+    If your DNS traffic is being intercepted, the `ra` flag will be **present** and `aa` will most likely be absent, as an ISP resolver or proxy is answering instead of the root server.
+
+    e.g. `;; flags: qr ra; QUERY: 1, ANSWER: 13, AUTHORITY: 0, ADDITIONAL: 0`
+
+2. **Test TCP reachability.** `unbound` relies on TCP/53 for large DNSSEC responses and for retries:
+
+    ```bash
+    dig @198.41.0.4 . NS +norec +tcp +time=3
+    ```
+
+    Some CG-NAT implementations pass UDP DNS traffic unscathed while silently dropping TCP DNS traffic. If step 1 succeeded but this command times out then this will likely cause cryptic `unbound` failures on your network when larger DNS requests are required. If you are reaching the root server, the `flags:` line will be structurally identical to the previous step.
+
+3. **Confirm server identity via the `CHAOS` class.** Root servers respond to `CHAOS` (`CH`) class queries with unique identifiers. Most ISP interception proxies do not handle `CHAOS` queries:
+
+    ```bash
+    dig @198.41.0.4 version.bind CH TXT +time=3
+    ```
+
+    If you are connecting to the root server directly, the response will be a `TXT` record containing `ATLAS`.
+
+    e.g. `version.bind.   0    CH    TXT    "ATLAS"`
+
+    If your traffic is being intercepted then this command will return a string othert that `ATLAS` or could time out or return `SERVFAIL`. This can happen even if the previous tests appeared to succeed, as  proxies generally handle standard query classes correctly. If the first two tests succeed but this one fails then be aware that your DNS traffic is being proxied, including an understanding that DNS reliability and privacy of **any** unencrypted DNS queries may be effected.
+
+If any of these tests fail, it is not recommended to proceed with installation of unbound as a local recursive resolver before investigating the source of failure (e.g. ISP redirection or proxying of DNS queries, CG-NAT blocking of TCP DNS traffic or security/parental filtering on router) and its successful remediation.
+
 ## Setting up Pi-hole as a recursive DNS server solution
 
 We will use [`unbound`](https://github.com/NLnetLabs/unbound), a secure open-source recursive DNS server primarily developed by NLnet Labs, VeriSign Inc., Nominet, and Kirei.
@@ -76,9 +118,9 @@ Highlights:
 - Verify DNSSEC signatures, discarding BOGUS domains
 - Apply a few security and privacy tricks
 
-`/etc/unbound/unbound.conf.d/pi-hole.conf`:
+(Note that for some Red Hat based distros including CentOS up to v10, the path for the `pi-hole.conf` file may be `/etc/unbound/conf.d/pi-hole.conf`)
 
-```yaml
+```yaml title="/etc/unbound/unbound.conf.d/pi-hole.conf"
 server:
     # If no logfile is specified, syslog is used
     # logfile: "/var/log/unbound/unbound.log"
@@ -145,6 +187,13 @@ server:
     private-address: 10.0.0.0/8
     private-address: fd00::/8
     private-address: fe80::/10
+
+    # Ensure no reverse queries to non-public IP ranges (RFC6303 4.2)
+    private-address: 192.0.2.0/24
+    private-address: 198.51.100.0/24
+    private-address: 203.0.113.0/24
+    private-address: 255.255.255.255/32
+    private-address: 2001:db8::/32
 ```
 
 Start your local recursive server and test that it's operational:
@@ -162,18 +211,18 @@ You can test DNSSEC validation using
 
 ```bash
 dig fail01.dnssec.works @127.0.0.1 -p 5335
-dig dnssec.works @127.0.0.1 -p 5335
+dig +ad dnssec.works @127.0.0.1 -p 5335
 ```
 
-The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address.
+The first command should give a status report of `SERVFAIL` and no IP address. The second should give `NOERROR` plus an IP address in addition to a `ad` in the `flags:` section. The `ad` signifies (Authentic Data), indicating the DNS response has been authenticated and validated using DNSSEC.
 
 ### Configure Pi-hole
 
-Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` as the Custom DNS (IPv4):
+Finally, configure Pi-hole to use your recursive DNS server by specifying `127.0.0.1#5335` in the ***Settings > DNS > Custom DNS servers*** section and ensuring that all the other upstream servers are unticked, as shown below:
 
 ![Upstream DNS Servers Configuration](../../images/RecursiveResolver.png)
 
-(don't forget to hit Return or click on `Save`)
+Don't forget to click on the ***Save & Apply*** button.
 
 ### Disable `resolvconf.conf` entry for `unbound` (Required for Debian Bullseye+ releases)
 
@@ -261,6 +310,83 @@ Lastly, restart unbound:
 ```bash
 sudo service unbound restart
 ```
+
+### Verifying that Pi-hole is querying unbound as its upstream
+
+Query a dns using `dig`:
+
+```bash
+dig en.wikipedia.org @127.0.0.1
+```
+
+Then view Pi-hole's log file, follow a query seeing it sent to and receiving a reply from 127.0.0.1#5335 such as below:
+
+```bash
+sudo tail /var/log/pihole/pihole.log
+
+Nov 24 11:57:47 dnsmasq[973]: query[A] en.wikipedia.org from 127.0.0.1
+Nov 24 11:57:47 dnsmasq[973]: forwarded en.wikipedia.org to 127.0.0.1#5335
+Nov 24 11:57:47 dnsmasq[973]: reply en.wikipedia.org is <CNAME>
+Nov 24 11:57:47 dnsmasq[973]: reply dyna.wikimedia.org is 103.102.166.224
+```
+
+If you see the reply to queries from 127.0.0.1#5335, then Pi-hole is using unbound as its upstream.
+
+### Common Issues & Troubleshooting
+
+#### Fix `so-rcvbuf` warning in unbound
+
+The configuration in `/etc/unbound/unbound.conf.d/pi-hole.conf` sets the **socket receive buffer size** for incoming DNS queries to a higher-than-default value in order to handle high query rates:
+
+```bash
+so-rcvbuf: 1m
+```
+
+As a result, you may see this warning in unbound logs:
+
+```bash
+so-rcvbuf 1048576 was not granted. Got 425984. To fix: start with root permissions(linux) or sysctl bigger net.core.rmem_max(linux) or kern.ipc.maxsockbuf(bsd) values.
+```
+
+To fix it:
+
+1. Check the current limit. This will show something like `net.core.rmem_max = 425984`:
+
+    ```bash
+    sudo sysctl net.core.rmem_max
+    ```
+
+2. Temporarily increase the limit to match unbound's request:
+
+    ```bash
+    sudo sysctl -w net.core.rmem_max=1048576
+    ```
+
+3. Make it permanent. Edit `/etc/sysctl.d/99-unbound.conf` (or on old systems eg Debian ≤ 12 edit `/etc/sysctl.conf`) and add or edit the line:
+
+    ```bash
+    net.core.rmem_max=1048576
+    ```
+
+4. Save and apply:
+
+    On up to date systems (eg Debian 13)
+
+    ```bash
+    sudo systemctl restart systemd-sysctl
+    ```
+
+    Older systems (eg Debian ≤ 12)
+
+    ```bash
+    sudo sysctl -p
+    ```
+
+5. Restart unbound:
+
+    ```bash
+    sudo service unbound restart
+    ```
 
 ### Uninstall `unbound`
 

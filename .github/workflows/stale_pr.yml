@@ -5,19 +5,18 @@ name: Close stale PR
 
 on:
   schedule:
-    - cron: '0 10 * * *'
+    - cron: "0 10 * * *"
   workflow_dispatch:
 
 jobs:
   stale:
-
     runs-on: ubuntu-latest
     permissions:
       issues: write
       pull-requests: write
 
     steps:
-      - uses: actions/stale@v9.1.0
+      - uses: actions/stale@1e223db275d687790206a7acac4d1a11bd6fe629 #v10.4.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           # Do not automatically mark PR/issue as stale
@@ -27,9 +26,9 @@ jobs:
           # Close PRs immediately, after marking them 'stale'
           days-before-pr-close: 0
           # only run the action on merge conflict PR
-          any-of-labels: 'Merge Conflict'
-          exempt-pr-labels: 'Internal, Never Stale, On Hold, WIP'
+          any-of-labels: "Merge Conflict"
+          exempt-pr-labels: "Internal, Never Stale, On Hold, WIP"
           exempt-all-pr-assignees: true
           operations-per-run: 300
-          stale-pr-message: ''
-          close-pr-message: 'Existing merge conflicts have not been addressed. This PR is considered abandoned.'
+          stale-pr-message: ""
+          close-pr-message: "Existing merge conflicts have not been addressed. This PR is considered abandoned."

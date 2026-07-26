@@ -8,7 +8,7 @@ Our implementation is light and fast as each domain is only checked once for a m
 *FTL*DNS uses a specific hierarchy to ensure regex filters work as you expect them to. Allowlisting always has priority over denylisting.
 There are two locations where regex filters are important:
 
-1. On loading the blocking domains form the `gravity` database table, *FTL*DNS skips not only exactly allowlisted domains but also those that match enabled allowlist regex filters.
+1. On loading the blocking domains from the `gravity` database table, *FTL*DNS skips not only exactly allowlisted domains but also those that match enabled allowlist regex filters.
 2. When a queried domain matches a denylist regex filter, the query will *not* be blocked if the domain *also* matches an exact or a regex allowlist entry.
 
 ## How to use regular expressions for filtering domains

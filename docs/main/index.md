@@ -1,8 +1,13 @@
-Before installing Pi-hole, you need to make sure your system meets the [prerequisites](prerequisites.md) (hardware and operating system) and decide whether you want a [normal installation](basic-install.md) (bare metal) or a [docker installation](https://github.com/pi-hole/docker-pi-hole/).
+Before installing Pi-hole, you need to make sure your system meets the [prerequisites](prerequisites.md) (hardware and operating system) and decide whether you want a [normal installation](basic-install.md) (bare metal) or a [docker installation](../docker/index.md).
 
 After the installation is complete, check the [Post-Install steps](post-install.md) to make sure your network is using Pi-hole.
 
-With the [`pihole` command](pihole-command.md), you can manually run Pi-hole commands, including [update Pi-hole](update.md).
+With the `pihole` command, you can manually run [Pi-hole commands](pihole-command.md). Examples:
+
+- `pihole status` to check Pi-hole status;
+- `pihole update` to [update](update.md) Pi-hole software;
+- `pihole version` to show currently installed versions of Pi-hole, Web Interface and FTL;
+- and many other commands.
 
 Alternatively, you can also use the [web interface](https://github.com/pi-hole/web/) to run and configure your Pi-hole.
 

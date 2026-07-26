@@ -167,7 +167,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
 
 !!! warning "overflow: `NUMBER` log entries lost"
 
-    When using asynchronous logging and the disk is too slow, we can loose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
+    When using asynchronous logging and the disk is too slow, we can lose log lines during busy times. This can be avoided by decreasing the system load or switching to synchronous logging. Note that synchronous logging has the disadvantage of blocking DNS resolution when waiting for the log to be written to disk.
 
 !!! warning "failed to create listening socket for `ADDRESS`: `MSG`"
 
@@ -179,7 +179,7 @@ Warnings commonly seen in `dnsmasq`'s log file (`/var/log/pihole/pihole.log`) an
 
 !!! warning "LOUD WARNING: listening on `ADDRESS` may accept requests via interfaces other than `IFNAME`"
 
-    When using `bind-interfaces`, the only access control is the addresses `dnsmasq` is listening on. There's nothing to avoid a query to the address of an internal interface arriving via an external interface where we don't want to accept queries, except that in the usual case the addresses of internal interfaces are RFC1918. When `bind-interfaces` in use, and we listen on an address that looks like it's probably globally routeable, this warning is printed.
+    When using `bind-interfaces`, the only access control is the addresses `dnsmasq` is listening on. There's nothing to avoid a query to the address of an internal interface arriving via an external interface where we don't want to accept queries, except that in the usual case the addresses of internal interfaces are RFC1918. When `bind-interfaces` in use, and we listen on an address that looks like it's probably globally routable, this warning is printed.
 
 !!! warning "LOUD WARNING: use --bind-dynamic rather than --bind-interfaces to avoid DNS amplification attacks via these interface(s)"
 
