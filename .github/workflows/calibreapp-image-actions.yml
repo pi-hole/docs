@@ -3,10 +3,10 @@ name: Compress Images
 on:
   pull_request:
     paths:
-      - '**.jpg'
-      - '**.jpeg'
-      - '**.png'
-      - '**.webp'
+      - "**.jpg"
+      - "**.jpeg"
+      - "**.png"
+      - "**.webp"
 
 jobs:
   build:
@@ -15,10 +15,12 @@ jobs:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4.2.2
+      - name: Clone repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 #v7.0.0
+        with:
+          persist-credentials: false
 
       - name: Compress Images
-        uses: calibreapp/image-actions@1.1.0 # TODO: if they start using a tag like v1, switch to that
+        uses: calibreapp/image-actions@9d037c06280028c110ff61c433ad4dc7d33c3c43 #1.5.0 TODO: if they start using a tag like v1, switch to that
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

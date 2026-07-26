@@ -4,7 +4,7 @@ Most (but not all) endpoints require authentication. API endpoints requiring aut
 
 ## Accessing the API documentation
 
-The entire API is documented at http://pi.hole/api/docs and self-hosted by your Pi-hole to match 100% the API versions your local Pi-hole has. Using this locally served API documentation is preferred. In case you don't have Pi-hole installed yet, you can also check out the documentation for all branches online, e.g., [Pi-hole API documentation](https://ftl.pi-hole.net/master/docs/) (branch `master`). Similarly, you can check out the documentation for a specific other branches by replacing `master` with the corresponding branch name. <!-- markdownlint-disable-line no-bare-urls -->
+The entire API is documented at http://pi.hole/api/docs and self-hosted by your Pi-hole to match 100% the API version your local Pi-hole has. Using this locally served API documentation is preferred. In case you don't have Pi-hole installed yet, you can also check out the documentation for all branches online, e.g., [Pi-hole API documentation](https://ftl.pi-hole.net/master/docs/) (branch `master`). Similarly, you can check out the documentation for a specific other branches by replacing `master` with the corresponding branch name. <!-- markdownlint-disable-line no-bare-urls -->
 
 ## API endpoints
 
@@ -118,7 +118,7 @@ In contrast, errors have a uniform, predictable style to ease their programmatic
 
 ## HTTP methods used by this API
 
-Each HTTP request consists of a method that indicates the action to be performed on the identified resource. The relevant standards is [RFC 2616](https://tools.ietf.org/html/rfc2616). Though, RFC 2616 has been very clear in differentiating between the methods, complex wordings are a source of confusion for many users.
+Each HTTP request consists of a method that indicates the action to be performed on the identified resource. The relevant standard is [RFC 2616](https://tools.ietf.org/html/rfc2616). Though, RFC 2616 has been very clear in differentiating between the methods, complex wordings are a source of confusion for many users.
 
 Pi-hole's API uses the methods like this:
 
@@ -168,7 +168,7 @@ Method   | Description
     `DELETE` operations are **idempotent**. If you `DELETE` a resource, it’s removed from the collection of resources. Repeatedly calling `DELETE` on that resource will not change the outcome – however, calling `DELETE` on a resource a second time *may* return a 404 (NOT FOUND) since it was already removed.
 
 ???+ info "Example"
-    Let’s list down few URIs and their purpose to get better understanding when to use which method:
+    Let’s list down a few URIs and their purpose to get better understanding when to use which method:
 
     Method + URI | Interpretation
     ---------------------|--------------------

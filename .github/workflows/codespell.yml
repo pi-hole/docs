@@ -8,12 +8,13 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-    -
-      name: Checkout repository
-      uses: actions/checkout@v4.2.2
-    -
-      name: Spell-Checking
-      uses: codespell-project/actions-codespell@master
-      with:
-        ignore_words_file: .codespellignore
-        skip: ./docs/routers/fritzbox-de.md,./mkdocs.yml,./package.json,./package-lock.json,./.markdownlint.json,./requirements.txt, ./MathJax-es5/*
+      - name: Clone repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 #v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Spell-Checking
+        uses: codespell-project/actions-codespell@8f01853be192eb0f849a5c7d721450e7a467c579 #v2.2
+        with:
+          ignore_words_file: .codespellignore
+          skip: ./docs/routers/fritzbox-de.md,./mkdocs.yml,./package.json,./package-lock.json,./.markdownlint.json,./requirements.txt, ./MathJax-es5/*

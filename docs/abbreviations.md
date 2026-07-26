@@ -3,7 +3,7 @@
 *[API]: Application Programming Interface (a set of subroutine definitions, protocols, and tools for building application software)
 *[CSRF]: Cross-site request forgery
 *[DNS]: Domain Name Service (decentralized naming system for computers, services, or other resources connected to the Internet)
-*[DnyDNS]: Dynamic DNS record pointing to a frequently changing IP address
+*[DynDNS]: Dynamic DNS record pointing to a frequently changing IP address
 *[DHCP]: Dynamic Host Configuration Protocol (network management protocol for configuring Internet Protocol version 4 (IPv4) hosts with IP addresses)
 *[DHCPv6]: Dynamic Host Configuration Protocol version 6 (a network protocol for configuring Internet Protocol version 6 (IPv6) hosts with IP addresses)
 *[FTL]: Pi-hole's Faster Than Light daemon
@@ -48,3 +48,4 @@
 *[URL]: Uniform Resource Locator, commonly known as "web address"
 *[REST]: Representational State Transfer - a software architecture for distributed systems like the World Wide Web (WWW)
 *[XSS]: Cross-site scripting
+*[NTP]: Network Time Protocol is used to synchronize the clocks of computers over a network
