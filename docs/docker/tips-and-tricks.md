@@ -69,3 +69,33 @@ Example sysconfig nmcli commands:
     ```bash
     nmcli connection up ens160-night
     ```
+
+## Common Issues
+
+- A good way to test things are working right is by loading this page: [http://pi.hole/admin/](http://pi.hole/admin/)
+- Port conflicts?  Stop your server's existing DNS / Web services.
+    - Don't forget to stop your services from auto-starting again after you reboot.
+    - Ubuntu users see below for more detailed information.
+    - If only ports 80 and/or 443 are in use, you have two options:
+        - Change the container's port mapping by adjusting the Docker `-p` flags or the `ports:` section in the compose file. For example, change `- "80:80/tcp"` to `- "8080:80/tcp"` to expose the container’s internal HTTP port 80 as 8080 on the host.
+        - Or, when running the container in `network_mode: host`, where port mappings are not available, change the ports used by the Pi-hole web server using the `FTLCONF_webserver_port` environment variable.<br>
+          Example:<br>
+          `FTLCONF_webserver_port: '8080o,[::]:8080o,8443os,[::]:8443os'`<br>
+          This makes the web interface available on HTTP port 8080 and HTTPS port 8443 for both IPv4 and IPv6.
+        - **Note:** This only applies to web interface ports (80 and 443). DNS (53), DHCP (67), and NTP (123) ports must still be handled via Docker port mappings or host networking.
+- Docker's default network mode `bridge` isolates the container from the host's network. This is a more secure setting, but requires setting the Pi-hole DNS option for _Interface listening behavior_ to "Listen on all interfaces, permit all origins".
+- If you're using a Red Hat based distribution with an SELinux Enforcing policy, add `:z` to line with volumes.
+
+## Note on Watchtower
+
+We have noticed that a lot of people use Watchtower to keep their Pi-hole containers up to date. For the same reason we don't provide an auto-update feature on a bare metal install, you _should not_ have a system automatically update your Pi-hole container. Especially unattended. As much as we try to ensure nothing will go wrong, sometimes things do go wrong - and you need to set aside time to _manually_ pull and update to the version of the container you wish to run. The upgrade process should be along the lines of:
+
+- **Important**: Read the release notes. Sometimes you will need to make changes other than just updating the image.
+- Pull the new image.
+- Stop and _remove_ the running Pi-hole container
+    - If you care about your data (logs/customizations), make sure you have it volume-mapped or it will be deleted in this step.
+- Recreate the container using the new image.
+
+To exclude the Pi-hole container from Watchtower's auto-update system take a look at [Full Exclude](https://containrrr.dev/watchtower/container-selection/#full_exclude) in Watchtower's docs.
+
+Pi-hole is an integral part of your network, don't let it fall over because of an unattended update in the middle of the night.

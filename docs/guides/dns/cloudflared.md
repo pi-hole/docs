@@ -240,6 +240,8 @@ sudo deluser cloudflared
 sudo rm /etc/default/cloudflared
 sudo rm /etc/systemd/system/cloudflared.service
 sudo rm /usr/local/bin/cloudflared
+sudo rm /etc/cron.weekly/cloudflared-updater
+sudo apt purge cloudflared -y
 ```
 
 #### If installed with `cloudflare service install`

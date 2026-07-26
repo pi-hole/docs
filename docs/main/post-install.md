@@ -33,5 +33,5 @@ sudo usermod -aG pihole $USER
 For Alpine
 
 ```code
-sudo addgroup pihole $USER
+doas addgroup $USER pihole
 ```

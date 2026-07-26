@@ -1,6 +1,9 @@
+<!-- markdownlint-disable MD051 MD046 -->
 # Configuration
 
-The recommended way to configure the Pi-hole docker container is by utilizing [environment variables](https://docs.docker.com/compose/how-tos/environment-variables/), however if you are persisting your `/etc/pihole` directory, you choose instead to set them via the web interface, or by directly editing `pihole.toml`
+The recommended way to configure the Pi-hole docker container is by utilizing [environment variables](https://docs.docker.com/compose/how-tos/environment-variables/) for a simple and easily reproducible setup.
+
+If you are persisting your `/etc/pihole` directory, you choose instead to set them via the web interface, or by directly editing `pihole.toml`
 
 ## Environment Variables
 
@@ -27,161 +30,169 @@ An example of how some of these variables may look in your compose file
 ```yaml
     environment:
       TZ: europe/London
-      FTLCONF_dns_revServers: 'true,192.168.0.0/16,192.168.0.1,lan'
-      FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4'
+      FTLCONF_dns_revServers: 'true,192.168.0.0/16,192.168.0.1,lan'      
       FTLCONF_webserver_api_password: 'correct horse battery staple'
       FTLCONF_webserver_port: '8082,443s'
       FTLCONF_debug_api: 'true'
+
+      # Array Types can either be delimited by semicolon
+      # If you have only a few items this may be more convienient
+      FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9'
+      FTLCONF_misc_dnsmasq_lines: 'address=/example.com/192.168.1.1;address=/example.org/192.168.1.2;address=/example.net/192.168.1.3'
+      
+      # Or YAML Multiline block style can be used for better redability.
+      # https://yaml.org/spec/1.2.2/#literal-style
+      FTLCONF_dns_upstreams: |-
+        8.8.8.8
+        8.8.4.4
+        1.1.1.1
+        9.9.9.9        
+      FTLCONF_misc_dnsmasq_lines: |-
+        address=/example.com/192.168.1.1
+        address=/example.org/192.168.1.2
+        address=/example.net/192.168.1.3      
 ```
 
-### Recommended Variables
+### Recommended Environment Variables
 
-#### `TZ` (Default: `UTC`)
+| Variable | Description |
+| :--- | :--- |
+| `TZ` | Set your [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to make sure logs rotate at local midnight instead of at UTC midnight. |
+| `FTLCONF_webserver_api_password` | To set a specific password for the web interface (per the quick-start example).<br><br>If this variable is not detected, and you have not already set one previously inside the container via `pihole setpassword` or `pihole-FTL --config webserver.api.password`, then a random password will be assigned on startup, and will be printed to the log.<br><br>You can find this password by running `docker logs pihole` and looking for "random password". See [Setting the Web Interface Password](#setting-the-web-interface-password) below for usage examples. |
+| `FTLCONF_dns_upstreams` | Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon<br><br>Supports non-standard ports with #[port number] e.g `127.0.0.1#5053;8.8.8.8;8.8.4.4`<br><br>Supports [Docker service names and links](https://docs.docker.com/compose/networking/) instead of IPs e.g `upstream0;upstream1` where upstream0 and upstream1 are the service names of or links to docker services |
 
-Set your [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to make sure logs rotate at local midnight instead of at UTC midnight.
 
-#### `FTLCONF_webserver_api_password` (Default: `unset`)
+## Setting the Web Interface Password {: #setting-the-web-interface-password }
 
-To set a specific password for the web interface, use the environment variable `FTLCONF_webserver_api_password` (per the quick-start example). If this variable is not detected, and you have not already set one previously inside the container via `pihole setpassword` or `pihole-FTL --config webserver.api.password`, then a random password will be assigned on startup, and will be printed to the log. You can find this password with the command `docker logs pihole | grep random password` on your host to find this password. See [Notes On Web Interface Password](#notes-on-web-interface-password) below for usage examples.
+The web interface password can be set using the `FTLCONF_webserver_api_password` environment variable as documented above or using the `WEBPASSWORD_FILE` environment variable using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/).
 
 !!! note
     To _explicitly_ set no password, set `FTLCONF_webserver_api_password: ''`<br/><br/>
     Using `pihole setpassword` for the purpose of setting an empty password will not persist between container restarts
 
-#### `FTLCONF_dns_upstreams` (Default: `8.8.8.8;8.8.4.4`)
+### Examples
 
-- Upstream DNS server(s) for Pi-hole to forward queries to, separated by a semicolon
-- Supports non-standard ports with #[port number] e.g `127.0.0.1#5053;8.8.8.8;8.8.4.4`
-- Supports Docker service names and links instead of IPs e.g `upstream0;upstream1` where upstream0 and upstream1 are the service names of or links to docker services
+The `FTLCONF_webserver_api_password` variable can be set directly or sourced from files, environment variables, or Docker secrets. Choose the workflow that best matches your deployment.
 
-### Other Variables
+=== "Docker Compose"
+    Provide the password directly inside your Compose file.
 
-#### `TAIL_FTL_LOG` (Default: `1`)
-
-Whether or not to output the FTL log when running the container. Can be disabled by setting the value to 0
-
-#### `PIHOLE_UID` (Default: `1000`)
-
-Overrides image's default pihole user id to match a host user id
-
-#### `PIHOLE_GID` (Default: `1000`)
-
-Overrides image's default pihole group id to match a host group id
-
-!!! Warning
-    For the above two settings, the `id` must not already be in use inside the container!
-
-#### `FTL_CMD` (Default: `no-daemon`)
-
-Customize the options with which dnsmasq gets started. e.g. `no-daemon -- --dns-forward-max 300` to increase max. number of concurrent dns queries on high load setups.
-
-#### `DNSMASQ_USER` (Default: `pihole`)
-
-Allows changing the user that FTLDNS runs as. Default: pihole, some systems such as Synology NAS may require you to change this to root (See [pihole/docker-pi-hole#963](https://github.com/pi-hole/docker-pi-hole/issues/963))
-
-#### `ADDITIONAL_PACKAGES` (Default: unset)
-
-Mostly for development purposes, this just makes it easier for those of us that always like to have whatever additional tools we need inside the container for debugging.
-
-Adding packages here is the same as running `apk add <package>` inside the container
-
-#### `PH_VERBOSE` (Default: `0`)
-
-Setting this environment variable to `1` will set `-x`, making the scripts that run on container startup more verbose. Useful for debugging only.
-
-#### `WEBPASSWORD_FILE` (Default: unset)
-
-Set the web interface password using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) if using Compose or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/) if using Docker Swarm. If `FTLCONF_webserver_api_password` is set, `WEBPASSWORD_FILE` is ignored. If `FTLCONF_webserver_api_password` is empty, and `WEBPASSWORD_FILE` is set to a valid readable file path, then `FTLCONF_webserver_api_password` will be set to the contents of `WEBPASSWORD_FILE`. See [Notes On Web Interface Password](#notes-on-web-interface-password) below for usage examples.
-
-### Variable Formatting
-
-Environment variables may be set in the format given here, or they may be entirely uppercase in the conventional manner.
-
-For example, both `FTLCONF_dns_upstreams` and `FTLCONF_DNS_UPSTREAMS` are functionally equivalent when used as environment variables.
-
-## Notes On Web Interface Password
-
-The web interface password can be set using the `FTLCONF_webserver_api_password` environment variable as documented above or using the `WEBPASSWORD_FILE` environment variable using [Docker Compose Secrets](https://docs.docker.com/compose/how-tos/use-secrets/) or [Docker Swarm secrets](https://docs.docker.com/engine/swarm/secrets/).
-
-### `FTLCONF_webserver_api_password` Examples
-
-The `FTLCONF_webserver_api_password` variable can be set in a `docker run` command or as an environment attribute in a Docker Compose yaml file.
-
-#### Docker run example
-
-```bash
-docker run --name pihole -p 53:53/tcp -p 53:53/udp -p 80:80/tcp -p 443:443/tcp -e TZ=Europe/London -e FTLCONF_webserver_api_password="correct horse battery staple" -e FTLCONF_dns_listeningMode=all -v ./etc-pihole:/etc/pihole -v ./etc-dnsmasq.d:/etc/dnsmasq.d --cap-add NET_ADMIN --restart unless-stopped pihole/pihole:latest
-```
-
-#### Docker Compose examples
-
-Set using a text value.
-
-```yaml
+    ```yaml
     ...
     environment:
       FTLCONF_webserver_api_password: 'correct horse battery staple'
     ...
-```
+    ```
 
-Set using an [environment variable](https://docs.docker.com/compose/how-tos/environment-variables/) called, for example, `ADMIN_PASSWORD`. The value of `ADMIN_PASSWORD` can be set in the shell of the `docker compose` command or in an `.env` file. See the link above for detailed information.
+=== "Docker Compose (env var)"
+    Reference an [environment variable](https://docs.docker.com/compose/how-tos/environment-variables/) such as `ADMIN_PASSWORD`.
 
-```yaml
+    ```yaml
     ...
     environment:
       FTLCONF_webserver_api_password: ${ADMIN_PASSWORD}
     ...
-```
+    ```
 
-Define ADMIN_PASSWORD in shell.
+    Define it in the shell:
 
-```bash
-export ADMIN_PASSWORD=correct horse battery staple
-docker compose -f compose.yaml
-```
+    ```bash
+    export ADMIN_PASSWORD=correct horse battery staple
+    docker compose -f compose.yaml
+    ```
 
-Or define ADMIN_PASSWORD in `.env` file. The `.env` file is placed in the same directory where the Compose yaml file (e.g. `compose.yaml`) is located.
+    Or in an `.env` file kept alongside your Compose yaml:
 
-```bash
-$ cat .env
-ADMIN_PASSWORD=correct horse battery staple
-$ docker compose -f compose.yaml
-```
+    ```bash
+    $ cat .env
+    ADMIN_PASSWORD=correct horse battery staple
+    $ docker compose -f compose.yaml
+    ```
 
-### `WEBPASSWORD_FILE` Example
+=== "Docker Compose secret"
+    Use `WEBPASSWORD_FILE` with Docker secrets to avoid storing the password directly in your Compose file.
 
-Create a text file called `pihole_password.txt` containing the password in the same directory containing the Compose yaml file (e.g `compose.yaml`).
+    ```bash
+    $ cat pihole_password.txt
+    correct horse battery staple
+    ```
 
-  ```bash
-  $cat pihole_password.txt
-  correct horse battery staple
-  ```
+    ```yaml
+    ---
+    services:
+      pihole:
+        container_name: pihole
+        image: pihole/pihole:latest
 
-Amend compose yaml file with Docker Secrets attributes.
+        # lines deleted
 
-```yaml
----
-# define pihole service
-services:
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
+        environment:
+          WEBPASSWORD_FILE: pihole_webpasswd
 
-    # lines deleted
+        # lines deleted
 
-    environment:
-      WEBPASSWORD_FILE: pihole_webpasswd
-
-    # lines deleted
+        secrets:
+          - pihole_webpasswd
+        restart: unless-stopped
 
     secrets:
-      - pihole_webpasswd
-    restart: unless-stopped
+      pihole_webpasswd:
+        file: ./pihole_password.txt
+    ...
+    ```
 
-# define pihole_webpasswd secret
-secrets:
-  pihole_webpasswd:
-    file: ./pihole_password.txt
-...
-```
+=== "Docker run"
+    Set the password inline when launching the container.
+
+    ```bash
+    docker run --name pihole -p 53:53/tcp -p 53:53/udp -p 80:80/tcp -p 443:443/tcp -e TZ=Europe/London -e FTLCONF_webserver_api_password="correct horse battery staple" -e FTLCONF_dns_listeningMode=all -v ./etc-pihole:/etc/pihole -v ./etc-dnsmasq.d:/etc/dnsmasq.d --cap-add NET_ADMIN --restart unless-stopped pihole/pihole:latest
+    ```
+
+
+## Configuration Reference
+
+### Optional Variables
+
+| Variable | Default | Value | Description |
+| :--- | :--- | :--- | :--- |
+| `TAIL_FTL_LOG` | `1` | `<0\|1>` | Whether or not to output the FTL log when running the container. Can be disabled by setting the value to 0. |
+| `PIHOLE_UID` | `1000` | Number | Overrides image's default pihole user id to match a host user id.<br/>**IMPORTANT**: id must not already be in use inside the container! |
+| `PIHOLE_GID` | `1000` | Number | Overrides image's default pihole group id to match a host group id.<br/>**IMPORTANT**: id must not already be in use inside the container! |
+
+### Advanced Variables
+
+| Variable | Default | Value | Description |
+| :--- | :--- | :--- | :--- |
+| `FTL_CMD` | `no-daemon` | `no-daemon -- <dnsmasq option>` | Customize dnsmasq startup options. e.g. `no-daemon -- --dns-forward-max 300` to increase max. number of concurrent dns queries on high load setups. |
+| `DNSMASQ_USER` | unset | `<pihole\|root>` | Allows changing the user that FTLDNS runs as. Default: `pihole`, some systems such as Synology NAS may require you to change this to `root`.<br><br>(See [#963](https://github.com/pi-hole/docker-pi-hole/issues/963)) |
+| `ADDITIONAL_PACKAGES` | unset | Space separated list of APKs | HERE BE DRAGONS. Mostly for development purposes, this just makes it easier for those of us that always like to have whatever additional tools we need inside the container for debugging. |
+
+### Docker Arguments
+
+Here is a rundown of other arguments for your docker-compose / docker run.
+
+| Docker Arguments | Description |
+| :--- | :--- |
+| `-p <port>:<port>` **Recommended** | Ports to expose (53, 80, 443, 67), the bare minimum ports required for Pi-holes HTTP, HTTPS and DNS services. |
+| `--restart=unless-stopped`<br/> **Recommended** | Automatically (re)start your Pi-hole on boot or in the event of a crash. |
+| `-v $(pwd)/etc-pihole:/etc/pihole`<br/> **Recommended** | Volumes for your Pi-hole configs help persist changes across docker image updates. |
+| `--net=host`<br/> _Optional_ | Alternative to `-p <port>:<port>` arguments (Cannot be used at same time as `-p`) if you don't run any other web application. DHCP runs best with `--net=host`, otherwise your router must support dhcp-relay settings. |
+| `--cap-add=NET_ADMIN`<br/> _Recommended_ | Commonly added capability for DHCP, see [Note on Capabilities](#note-on-capabilities) below for other capabilities. |
+| `--dns=n.n.n.n`<br/> _Optional_ | Explicitly set container's DNS server. It is **_not recommended_** to set this to `localhost`/`127.0.0.1`. |
+| `--env-file .env` <br/> _Optional_ | File to store environment variables for docker replacing `-e key=value` settings. Here for convenience. |
+
+## Note on Capabilities {: #note-on-capabilities }
+
+Pi-hole's DNS core (FTL) expects to have the following capabilities available:
+
+- `CAP_NET_BIND_SERVICE`: Allows FTLDNS binding to TCP/UDP sockets below 1024 (specifically DNS service on port 53)
+- `CAP_NET_RAW`: use raw and packet sockets (needed for handling DHCPv6 requests, and verifying that an IP is not in use before leasing it)
+- `CAP_NET_ADMIN`: modify routing tables and other network-related operations (in particular inserting an entry in the neighbor table to answer DHCP requests using unicast packets)
+- `CAP_SYS_NICE`: FTL sets itself as an important process to get some more processing time if the latter is running low
+- `CAP_CHOWN`: we need to be able to change ownership of log files and databases in case FTL is started as a different user than `pihole`
+- `CAP_SYS_TIME`: FTL needs to be able to set the system time to update it using the Network Time Protocol (NTP) in the background
+
+This image automatically grants those capabilities, if available, to the FTLDNS process, even when run as non-root.\
+By default, docker does not include the `NET_ADMIN` capability for non-privileged containers, and it is recommended to explicitly add it to the container using `--cap-add=NET_ADMIN`.\
+However, if DHCP and IPv6 Router Advertisements are not in use, it should be safe to skip it. For the most paranoid, it should even be possible to explicitly drop the `NET_RAW` capability to prevent FTLDNS from automatically gaining it.
 
