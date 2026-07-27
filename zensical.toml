@@ -123,21 +123,6 @@ extra_css = ["extra.css"]
         ]},
         {"Troubleshooting" = "guides/vpn/wireguard/faq.md"}
       ]},
-      {"OpenVPN" = [
-        {"OpenVPN" = "guides/vpn/openvpn/index.md"},
-        {"Installation" = "guides/vpn/openvpn/installation.md"},
-        {"Setup OpenVPN Server" = "guides/vpn/openvpn/setup-openvpn-server.md"},
-        {"Firewall Configuration" = "guides/vpn/openvpn/firewall.md"},
-        {"Connecting clients" = [
-          {"General" = "guides/vpn/openvpn/clients.md"},
-          {"Android" = "guides/vpn/openvpn/android-client.md"}
-        ]},
-        {"Optional: Only route DNS via VPN" = "guides/vpn/openvpn/only-dns-via-vpn.md"},
-        {"Optional: Dual operation: LAN & VPN at the same time" = "guides/vpn/openvpn/dual-operation.md"},
-        {"Optional: Full and DNS-only" = "guides/vpn/openvpn/dual-VPN.md"},
-        {"Optional: Dynamic DNS" = "guides/vpn/openvpn/dynDNS.md"},
-        {"Troubleshooting" = "guides/vpn/openvpn/troubleshooting.md"}
-      ]}
     ]},
     {"Misc" = [
       {"Home Assistant" = "guides/misc/homeassistant.md"},
