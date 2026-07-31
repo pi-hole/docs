@@ -14,7 +14,7 @@ in the file `/etc/sysctl.d/99-sysctl.conf`
 Then apply the new option with the command below.
 
 ```bash
-sudo sysctl -p
+sudo sysctl --system
 ```
 
 If you see the options repeated like
