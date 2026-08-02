@@ -36,6 +36,7 @@ The Pi-hole documentation, published at [docs.pi-hole.net](https://docs.pi-hole.
 ## Common pitfalls
 
 - Adding a page without adding it to `nav` in `mkdocs.yml`, which fails the strict build.
+- Editing `docs/ftldns/configfile.md` file. This file should not be changed. It is updated by an automated FTL PR, or every FTL release.
 - Documenting behaviour from the `development` branches of other repos as if it were released.
 - Forgetting the DCO sign-off on commits.
 - Markdown that passes a casual preview but fails markdownlint.
