@@ -17,7 +17,7 @@
   "homepage": "https://docs.pi-hole.net/",
   "scripts": {
     "build": "mkdocs build --clean --strict",
-    "markdownlint": "markdownlint-cli2 \"**/*.md\" \"!**/node_modules/**\"",
+    "markdownlint": "markdownlint-cli2 \"**/*.md\" \"!**/node_modules/**\" \"!**/.git/**\"",
     "linkinator": "linkinator site --recurse --silent --skip \"^(?!http://localhost)\"",
     "pretest": "npm run build",
     "test": "npm run markdownlint && npm run linkinator",
