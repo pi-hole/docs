@@ -17,4 +17,4 @@ jobs:
         uses: codespell-project/actions-codespell@8f01853be192eb0f849a5c7d721450e7a467c579 #v2.2
         with:
           ignore_words_file: .codespellignore
-          skip: ./docs/routers/fritzbox-de.md,./mkdocs.yml,./package.json,./package-lock.json,./.markdownlint.json,./requirements.txt, ./MathJax-es5/*
+          skip: ./docs/routers/fritzbox-de.md,./zensical.toml,./package.json,./package-lock.json,./.markdownlint.json,./requirements.txt
