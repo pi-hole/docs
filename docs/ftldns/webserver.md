@@ -11,6 +11,20 @@ FTL comes with the embedded webserver [CivetWeb](https://github.com/civetweb/civ
 
 You can use the webserver to serve static files, dynamic content, or even custom HTTP responses (see the following examples). The webserver is configured through `pihole.toml` and can be accessed at `https://pi.hole/admin/`. Serving files outside of the webserver's home directory (`admin/`) is disabled by default for security reasons. It can be enabled by setting `webserver.serve_all` to `true`.
 
+### HTTP/2 and HTTP/3
+
+On encrypted ports, FTL terminates TLS itself and speaks HTTP/1.1, HTTP/2 and HTTP/3, whichever the client asks for. CivetWeb keeps serving the actual content over HTTP/1.1 behind that front end, which is why the Lua pages and everything else described on this page work the same regardless of the protocol version a browser picked.
+
+The protocol is chosen through ALPN during the TLS handshake, so there is nothing to configure and nothing to enable:
+
+- **HTTP/1.1** is used by clients that ask for nothing else, and on plaintext ports.
+- **HTTP/2** (`h2`) is used by every current browser on your HTTPS port.
+- **HTTP/3** (`h3`) runs on QUIC, i.e., on **UDP** with the same port number as the HTTPS port. Because a browser cannot know this in advance, FTL advertises it in an `Alt-Svc` header on its HTTP/2 responses, and the browser transparently switches over for subsequent requests.
+
+The practical consequence is the firewall: if you only allow TCP to your web server port, everything keeps working but clients never get past HTTP/2, because their QUIC attempts on UDP time out. Allow UDP on the same port to make HTTP/3 usable.
+
+TLS 1.2 is the lowest version FTL accepts. Clients older than that cannot connect at all, which in practice concerns only rather ancient devices.
+
 ### Example 1: Custom HTTP status code
 
 Create a file like

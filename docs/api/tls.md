@@ -1,4 +1,4 @@
-Pi-hole creates a self-signed certificate during installation. This certificate is used to encrypt the web interface and the API. While this certificate is secure, it is not trusted by your browser. This means that you will get a warning when you open the web interface or use the API like:
+Pi-hole creates a self-signed certificate during installation. This certificate is used to encrypt the web interface and the API. It is also the certificate Pi-hole presents to clients using it as an [encrypted resolver](../ftldns/encrypted-dns.md) through DoT, DoH or DoQ, so the trust considerations below apply to those clients as well. While this certificate is secure, it is not trusted by your browser. This means that you will get a warning when you open the web interface or use the API like:
 
 ![Warning in Firefox](../images/api/firefox-tls-insecure.png)
 
@@ -12,7 +12,7 @@ It is also possible to add the CA to your operating system's certificate store. 
 
 Note that you have to add the **CA** certificate (e.g., `/etc/pihole/tls_ca.crt`) and not the server certificate (e.g., `/etc/pihole/tls.pem`).
 
-It is worth noting that the certificate is only valid for the domain that you had configured during certificate creation. If you access the Pi-hole web interface using a different domain, you will get a warning. This is because the certificate does not match the domain. You can either add the certificate for the other domain as well or you can create a new certificate for the other domain. You can easily create a new certificate by removing the old certificate and restarting `pihole-FTL` (e.g., `sudo rm /etc/pihole/tls* && sudo service pihole-FTL restart`). This will create a new certificate for the domain configured in `/etc/pihole/pihole.toml` (setting `webserver.domain`).
+It is worth noting that the certificate is valid for `pi.hole` and, if you configured one, for your custom `webserver.domain` - but for nothing else, in particular not for your Pi-hole's IP address. If you access the web interface under any other name, you will get a warning because the certificate does not match the domain. You can either add the certificate for the other domain as well or you can create a new certificate for the other domain. You can easily create a new certificate by removing the old certificate and restarting `pihole-FTL` (e.g., `sudo rm /etc/pihole/tls* && sudo service pihole-FTL restart`). This will create a new certificate for the domain configured in `/etc/pihole/pihole.toml` (setting `webserver.domain`).
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "Security warning"
@@ -118,3 +118,17 @@ If this still did not work, see the remark below the Firefox instructions above.
 ## Using your own certificate
 
 If you want to use your own certificate, you can do so by placing the certificate and the private key in a location that can be read by user `pihole` (e.g., `/etc/pihole`) and, change the path in `/etc/pihole/pihole.toml` (setting `webserver.tls.cert`) and restart `pihole-FTL` (e.g., `sudo service pihole-FTL restart`). The certificate and the private key must be in PEM format (check automatically generated certificate for an example).
+
+## Certificate renewal
+
+Certificates Pi-hole generated itself are valid for `webserver.tls.validity` days (47 by default) and are renewed automatically two days before they expire, so `pihole-FTL` never ends up serving an expired certificate.
+
+Renewal creates a *new* certificate authority as well, because the old CA's private key was discarded right after the previous certificate was signed and can no longer sign anything. Every device you added the CA to therefore has to be given the new `/etc/pihole/tls_ca.crt` after each renewal. If you added the CA to your devices, a longer `webserver.tls.validity` means fewer of these rounds - or use a certificate from a public CA instead.
+
+Pi-hole recognizes its own certificates by their common name: both issuer and subject have to read `pi.hole`. A self-signed certificate Pi-hole created for a different `webserver.domain` therefore does *not* qualify - it is treated like a foreign certificate and only logs `is about to expire soon, but it is not a Pi-hole certificate` when the time comes. Renew it by deleting `/etc/pihole/tls*` and restarting `pihole-FTL`.
+
+If you use your own certificate, you have to renew it yourself, and we recommend setting `webserver.tls.validity` to `0` in that case: Pi-hole then leaves that certificate alone entirely and does not track its expiry either, so renewing it in time is up to you. Note that `0` disables renewal, not the initial generation - if the file `webserver.tls.cert` points at does not exist, Pi-hole still creates a self-signed certificate for it, then with a fixed validity of roughly 30 years.
+
+## Supported protocol versions
+
+FTL terminates TLS itself and requires at least TLS 1.2. On encrypted ports it offers HTTP/1.1, HTTP/2 and HTTP/3, negotiated through ALPN - see [Webserver](../ftldns/webserver.md#http2-and-http3) for what that means for your firewall.

@@ -139,6 +139,7 @@ nav:
     - 'Interfaces': ftldns/interfaces.md
     - 'DNS cache': ftldns/dns-cache.md
     - 'DNS resolver': ftldns/dns-resolver.md
+    - 'Encrypted DNS': ftldns/encrypted-dns.md
     - 'Blocking mode': ftldns/blockingmode.md
     - 'Privacy levels': ftldns/privacylevels.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
