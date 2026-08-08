@@ -1,5 +1,8 @@
 We pre-compile FTL for you to save you the trouble of compiling anything yourself. However, sometimes you may want to make your own modifications. To test them, you have to compile FTL from source. Luckily, you don't have to be a programmer to build FTL from source and install it on your system; you only have to know the basics we provide in here. With just a few commands, you can build FTL from source like a pro.
 
+!!! note
+    These instructions follow FTL's `development` branch - the code the next release is built from. They are not guaranteed to match the current `master` branch or older releases, whose build dependencies can differ (for example, `master` still links mbedTLS while `development` has moved to OpenSSL). If you are building a different branch and something does not line up, just ask us - we are happy to help with the specifics.
+
 # Install native build environment
 
 This will install all necessary tools to build FTL directly in your host operating system. It is usually the easiest solution and works with all editors available.
@@ -37,24 +40,60 @@ sudo make install
 
 Since Ubuntu 20.04, you need to specify the library directory explicitly. Otherwise, the library will be installed in custom locations where it would not be found by `cmake`.
 
-## Compile `libmbedtls` from source
+## Compile `OpenSSL` from source
 
-FTL uses another cryptographic library (`libmbedtls`) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS and DTLS protocols used for serving the web interface and the API over HTTPS.
+FTL uses this cryptographic library (OpenSSL) containing cryptographic primitives, X.509 certificate manipulation and the SSL/TLS protocols used for serving the web interface and the API over HTTPS. Build **OpenSSL 4.0** here: it is the version FTL is developed against and the one that provides the native QUIC API the HTTP/3 features rely on.
 
 Compile and install a recent version using:
 
 ```bash
-wget https://github.com/Mbed-TLS/mbedtls/releases/download/mbedtls-4.0.0/mbedtls-4.0.0.tar.bz2 -O mbedtls-4.0.0.tar.bz2
-tar -xjf mbedtls-4.0.0.tar.bz2
-cd mbedtls-4.0.0
-sed -i '/#define MBEDTLS_THREADING_C/s*^//**g' tf-psa-crypto/include/psa/crypto_config.h
-sed -i '/#define MBEDTLS_THREADING_PTHREAD/s*^//**g' tf-psa-crypto/include/psa/crypto_config.h
-cmake -S . -B build -DCMAKE_C_FLAGS="-fomit-frame-pointer"
-cmake --build build -j $(nproc)
-sudo cmake --install build
+wget https://ftl.pi-hole.net/libraries/openssl-4.0.0.tar.gz -O openssl-4.0.0.tar.gz
+tar -xzf openssl-4.0.0.tar.gz
+cd openssl-4.0.0
+./config \
+    no-shared no-tests no-docs no-apps \
+    no-legacy no-comp no-dtls \
+    no-psk no-srp no-idea no-rc2 no-rc4 no-rc5 no-md4 no-mdc2 no-whirlpool \
+    no-dso \
+    --prefix=/usr/local --libdir=lib --openssldir=/usr/local/ssl
+make -j $(nproc)
+sudo make install_dev
 ```
 
-The `sed` commands are necessary to enable multi-threading support in `libmbedtls` as there is no `configure` script to do this for us (see also [here](https://github.com/Mbed-TLS/mbedtls#configuration)).
+`./config` auto-detects the correct build target for your host, so no per-architecture tuning is needed. The `no-*` options trim the build down to just the static `libssl`/`libcrypto` that FTL links against, dropping the legacy provider, unused protocols and ciphers, and DSO to keep the binary small (`no-ssl3` and `no-engine` are not needed on OpenSSL 4.0 - SSLv3 and the ENGINE API are already removed there). Multi-threading support is enabled by default, so no manual configuration is required. `make install_dev` installs only the headers and static libraries (no `openssl` command-line tool or man pages).
+
+!!! note "Building against an older OpenSSL"
+    An older OpenSSL such as 3.5.7 works too, but it lacks the per-connection QUIC peer-address API FTL relies on, so building against it disables the HTTP/3 and QUIC features (HTTP/1.1 and HTTP/2 remain available). Use OpenSSL 4.0 for a feature-complete binary.
+
+## Compile `nghttp2` from source
+
+FTL uses `nghttp2` to serve the web interface and the API over HTTP/2. Compile and install a recent version using:
+
+```bash
+wget https://ftl.pi-hole.net/libraries/nghttp2-1.69.0.tar.gz -O nghttp2-1.69.0.tar.gz
+tar -xzf nghttp2-1.69.0.tar.gz
+cd nghttp2-1.69.0
+./configure --enable-lib-only --enable-static --disable-shared
+make -j $(nproc)
+sudo make install
+```
+
+`--enable-lib-only` builds just the `libnghttp2` library FTL links against, skipping the bundled applications and their extra dependencies.
+
+## Compile `nghttp3` from source
+
+FTL uses `nghttp3` together with OpenSSL's native QUIC to serve the web interface and the API over HTTP/3. Compile and install a recent version using:
+
+```bash
+wget https://ftl.pi-hole.net/libraries/nghttp3-1.17.0.tar.gz -O nghttp3-1.17.0.tar.gz
+tar -xzf nghttp3-1.17.0.tar.gz
+cd nghttp3-1.17.0
+./configure --enable-lib-only --enable-static --disable-shared
+make -j $(nproc)
+sudo make install
+```
+
+`nghttp2` and `nghttp3` are technically optional - without them FTL still builds and serves the web interface over HTTP/1.1 - but we install both here so the locally built binary is feature-complete and matches the official release (HTTP/1.1, HTTP/2 and, with OpenSSL 4.0, HTTP/3).
 
 ## Get the source
 
