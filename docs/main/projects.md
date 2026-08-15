@@ -1,7 +1,7 @@
 ---
 title: Community Projects
 description: Things built with Pi-hole
-last_updated: Sun May 24 2026 UTC
+last_updated: Sat Aug 15 2026 UTC
 ---
 
 - [The Big Blocklist Collection](https://firebog.net/)
@@ -23,3 +23,4 @@ last_updated: Sun May 24 2026 UTC
 - [Pi-hole Shortcuts: Native macOS client](https://github.com/dotWee/macOS-PiholeShortcuts)
 - [Discord Pi-hole Bot: Bot for easy Pi-hole server management and stats through discord](https://github.com/josephistired/Discord-Pi-hole-Bot)
 - [Pi-hole In One](https://github.com/creeperkatze/pihole-in-one): A browser extension to control your Pi-hole conveniently from within the browser. ([Chrome](https://chromewebstore.google.com/detail/pi-hole-in-one/gaaobidjebianpcngcfpkniaocibidhe)) ([Firefox](https://addons.mozilla.org/firefox/addon/pihole-in-one/)) ([Edge](https://microsoftedge.microsoft.com/addons/detail/pihole-in-one/hbigjlhijpiegpnbdhmdgdlfbcgljdao))
+- [Holeberry](https://github.com/pedrovieira/Holeberry): A native macOS menu bar app to monitor and control your Pi-hole instances
