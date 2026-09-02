@@ -39,3 +39,10 @@ updates:
         patterns:
           - "*"
     target-branch: master
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer/"
+    schedule:
+      interval: "weekly"
+      day: saturday
+      time: "10:00"
+    target-branch: master
