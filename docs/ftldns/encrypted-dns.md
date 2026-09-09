@@ -9,7 +9,7 @@ This page is about the *downstream* side, i.e., the encryption between your clie
 
 ## What is served where
 
-Protocol | Standard | Transport      | Default port                     | Config option
+Protocol | Standard | Transport      | Port                             | Config option
 ---------|----------|----------------|----------------------------------|--------------
 DoT      | RFC 7858 | TCP            | `853`                            | `dns.dot`
 DoQ      | RFC 9250 | UDP (QUIC)     | `853`                            | `dns.doq`
@@ -17,19 +17,19 @@ DoH      | RFC 8484 | TCP/UDP (HTTP) | the HTTPS port of the web server | `dns.d
 
 All three are enabled by default and all three use the same TLS certificate as the web interface (`webserver.tls.cert`, see [TLS/SSL](../api/tls.md)).
 
-DoT and DoQ share the port number `853` without colliding, as one uses TCP and the other UDP. Both ports are configurable, but we recommend staying with the defaults: `853` is the port assigned by the respective standard, and it is what clients try first (many of them do not even offer a field for a different port). Setting either option to `0` disables that listener.
+DoT and DoQ share the port number `853` without colliding, as one uses TCP and the other UDP. The port is fixed: `853` is what the respective standard assigns and what clients try first, and many of them do not even offer a field for a different one.
 
 DoH has no port of its own. It is served at the path `/dns-query` on the web server's HTTPS port, i.e., the first entry in `webserver.port` carrying the `s` flag, so a Pi-hole reachable at `https://pi.hole/admin` answers DoH at `https://pi.hole/dns-query`. If you change the web server's HTTPS port, the DoH endpoint moves with it.
 
 ## Enabling and disabling
 
 ```bash
-sudo pihole-FTL --config dns.dot 853   # DoT on the standard port (default)
-sudo pihole-FTL --config dns.doq 853   # DoQ on the standard port (default)
+sudo pihole-FTL --config dns.dot true  # DoT on TCP port 853 (default)
+sudo pihole-FTL --config dns.doq true  # DoQ on UDP port 853 (default)
 sudo pihole-FTL --config dns.doh true  # DoH on the HTTPS web server port (default)
 ```
 
-Set `dns.dot` or `dns.doq` to `0`, or `dns.doh` to `false`, to switch the respective listener off. Changing any of the three makes `pihole-FTL` restart itself so the new setting takes effect, which interrupts DNS resolution for a moment - you do not have to restart it yourself.
+Set any of the three to `false` to switch the respective listener off. Changing one of them makes `pihole-FTL` restart itself so the new setting takes effect, which interrupts DNS resolution for a moment - you do not have to restart it yourself.
 
 Who may query these listeners is governed by [`dns.listeningMode`](configfile.md), but the rule is stricter than the one dnsmasq applies on port 53: unless the mode is `ALL`, the client has to sit on a subnet directly attached to your Pi-hole, where loopback and point-to-point peers such as a VPN count as local, and in `SINGLE` or `BIND` it must be on the subnet of the configured `dns.interface`. Plain DNS is more permissive, as `SINGLE` and `BIND` accept any origin that reaches the configured interface, so a routed client that gets an answer on port 53 can still be turned away here. That is deliberate - encrypted resolvers are often reachable from the Internet by design, and Pi-hole does not open itself up just because you enabled DoT.
 
