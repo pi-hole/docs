@@ -51,13 +51,23 @@ By default, Pi-hole will respond to NTP requests on all addresses. The Pi-hole N
 
 ## Real time clock (RTC) synchronisation
 
-Pi-hole is able to set the time of the hardware real time clock, if present. This makes the time more accurate immediately after reboot. Note that not all devices are fitted with hardware clocks, Raspberry Pis in particular do not ship with a hardware clock.
+Many computers keep time while powered off using a small, battery-backed hardware clock called the *real time clock* (RTC). The operating system reads it at boot to know the current time before it has had a chance to reach the network. If that clock drifts, or was never set, the system can start up with the wrong time - and being off by even a few minutes is enough to break TLS certificate validation or DNSSEC until the first successful NTP synchronisation.
 
-This is enabled by the setting `ntp.sync.rtc.set`.
+Pi-hole can keep the hardware clock correct for you. When this is enabled, after each successful synchronisation Pi-hole checks the hardware clock against the accurate time it just obtained and, if the two differ, corrects it. There is no needless writing when the clock is already right. The RTC therefore stays close to the real time, and your system comes up with a good time immediately after a reboot, even before it has reached an NTP server.
+
+This is disabled by default and enabled with `ntp.sync.rtc.set`.
+
+Note that not every device has a hardware clock - Raspberry Pis in particular do not ship with one, which is why this is off by default. If your device has no RTC there is simply nothing for Pi-hole to update, and the setting can be left disabled.
 
 ### RTC location
 
-The path to the real time clock can be specified at `ntp.sync.rtc.device`.
+Leave `ntp.sync.rtc.device` empty and Pi-hole looks for the clock in the usual places (`/dev/rtc0`, `/dev/rtc`, and so on). If your clock lives somewhere else, or you have more than one and want a specific one, set the exact path here, for example `/dev/rtc0`.
+
+The RTC device is normally owned by `root`, while Pi-hole itself runs as an unprivileged user. Pi-hole takes care of accessing the clock for the brief moment it needs to and restores the original ownership afterwards, so you do not need to adjust any permissions yourself.
+
+### UTC or local time
+
+`ntp.sync.rtc.utc` controls whether the hardware clock is written in UTC (Coordinated Universal Time) instead of your local time zone. Storing the RTC in UTC is the usual convention on Linux and is the default. You normally only need to change this if another operating system on the same machine expects the clock in local time - the classic example being a dual-boot setup with Windows.
 
 ## Advertising Pi-hole's NTP server to devices on your network
 
