@@ -54,7 +54,8 @@ The binary `pihole-FTL`, which is the resolver at the heart of Pi-hole, is pre-b
 - armv8 (aarch64)
 - riscv64
 
-For other architectures, you will need to compile [FTL from source](../ftldns/compile.md) yourself.
+For other architectures, you will need to compile [FTL from source](../ftldns/compile.md) yourself. To ease installation/upgrading you can set the
+flag `--skipFTL` to the installer and upgrade command to skip the FTL binary check. Note that you need to copy the self-build binary to `/usr/bin/pihole-FTL` before you run the installer the first time.
 
 ## IP Addressing
 
