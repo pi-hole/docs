@@ -88,7 +88,7 @@ Before proceeding, it is worth confirming that your device can definitively reac
 
     e.g. `version.bind.   0    CH    TXT    "ATLAS"`
 
-    If your traffic is being intercepted then this command will return a string othert that `ATLAS` or could time out or return `SERVFAIL`. This can happen even if the previous tests appeared to succeed, as  proxies generally handle standard query classes correctly. If the first two tests succeed but this one fails then be aware that your DNS traffic is being proxied, including an understanding that DNS reliability and privacy of **any** unencrypted DNS queries may be effected.
+    If your traffic is being intercepted then this command will return a string other than `ATLAS` or could time out or return `SERVFAIL`. This can happen even if the previous tests appeared to succeed, as  proxies generally handle standard query classes correctly. If the first two tests succeed but this one fails then be aware that your DNS traffic is being proxied, including an understanding that DNS reliability and privacy of **any** unencrypted DNS queries may be effected.
 
 If any of these tests fail, it is not recommended to proceed with installation of unbound as a local recursive resolver before investigating the source of failure (e.g. ISP redirection or proxying of DNS queries, CG-NAT blocking of TCP DNS traffic or security/parental filtering on router) and its successful remediation.
 
@@ -207,7 +207,7 @@ The first query may be quite slow, but subsequent queries, also to other domains
 
 ### Test validation
 
-You can test DNSSEC validation using
+You can test DNSSEC validation using:
 
 ```bash
 dig fail01.dnssec.works @127.0.0.1 -p 5335
@@ -226,7 +226,7 @@ Don't forget to click on the ***Save & Apply*** button.
 
 ### Disable `resolvconf.conf` entry for `unbound` (Required for Debian Bullseye+ releases)
 
-Debian Bullseye+ releases auto-install a package called [`openresolv`](https://wiki.archlinux.org/title/Openresolv) with a certain configuration that will cause unexpected behaviour for pihole and unbound. The effect is that the `unbound-resolvconf.service` instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`. That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured. You need to edit the configuration file and disable the service to work-around the misconfiguration.
+Debian Bullseye+ releases auto-install a package called [`openresolv`](https://wiki.archlinux.org/title/Openresolv) with a certain configuration that will cause unexpected behaviour for Pi-hole and unbound. The effect is that the `unbound-resolvconf.service` instructs `resolvconf` to write `unbound`'s own DNS service at `nameserver 127.0.0.1` , but without the 5335 port, into the file `/etc/resolv.conf`. That `/etc/resolv.conf` file is used by local services/processes to determine DNS servers configured. You need to edit the configuration file and disable the service to work-around the misconfiguration.
 
 #### Step 1 - Disable the Service
 
@@ -298,7 +298,7 @@ Create (or edit if existing) the file `/etc/apparmor.d/local/usr.sbin.unbound` a
 /var/log/unbound/unbound.log rw,
 ```
 
-to the end (make sure this value is the same as above). Then reload AppArmor using
+to the end (make sure this value is the same as above). Then reload AppArmor using:
 
 ```bash
 sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
@@ -313,7 +313,7 @@ sudo service unbound restart
 
 ### Verifying that Pi-hole is querying unbound as its upstream
 
-Query a dns using `dig`:
+Query a DNS using `dig`:
 
 ```bash
 dig en.wikipedia.org @127.0.0.1
@@ -362,7 +362,7 @@ To fix it:
     sudo sysctl -w net.core.rmem_max=1048576
     ```
 
-3. Make it permanent. Edit `/etc/sysctl.d/99-unbound.conf` (or on old systems eg Debian ≤ 12 edit `/etc/sysctl.conf`) and add or edit the line:
+3. Make it permanent. Edit `/etc/sysctl.d/99-unbound.conf` (or on old systems e.g. Debian ≤ 12 edit `/etc/sysctl.conf`) and add or edit the line:
 
     ```bash
     net.core.rmem_max=1048576
@@ -370,13 +370,13 @@ To fix it:
 
 4. Save and apply:
 
-    On up to date systems (eg Debian 13)
+    On up to date systems (e.g. Debian 13)
 
     ```bash
     sudo systemctl restart systemd-sysctl
     ```
 
-    Older systems (eg Debian ≤ 12)
+    Older systems (e.g. Debian ≤ 12)
 
     ```bash
     sudo sysctl -p
