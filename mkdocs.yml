@@ -132,6 +132,7 @@ nav:
   - 'Pi-hole API':
     - 'Pi-hole API': api/index.md
     - 'Authentication': api/auth.md
+    - 'Metrics': api/prometheus.md
     - 'TLS/SSL': api/tls.md
   - 'FTLDNS':
     - 'FTLDNS': ftldns/index.md
