@@ -418,4 +418,3 @@ Session-based authentication, while convenient and widely used, does have severa
 
 Remember, no security measure is foolproof, but by understanding the potential risks and the multiple layers of defense your Pi-hole implemented against these risks, you can make an informed decision about how to use the Pi-hole API securely in the context of your own scripts. Always use the secure transmission method (HTTPS) offered by your Pi-hole to access the API. The strong encryption will prevent attackers from eavesdropping on your requests and makes stealing your session ID basically impossible.
 
-{!abbreviations.md!}
