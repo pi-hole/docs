@@ -1,4 +1,4 @@
-FROM node:26-alpine3.22
+FROM node:26-alpine3.24
 
 RUN apk add --no-cache \
     gcompat \
