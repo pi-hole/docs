@@ -11,8 +11,8 @@
             "eamodio.gitlens",
             "EditorConfig.EditorConfig",
             "github.vscode-github-actions",
-            "DavidAnson.vscode-markdownlint"
-
+            "DavidAnson.vscode-markdownlint",
+            "zensical.zensical-studio"
           ]
         }
     },
