@@ -1,6 +1,7 @@
 FROM node:26-alpine3.22
 
 RUN apk add --no-cache \
+    gcompat \
     git \
     nano \
     openssh \
