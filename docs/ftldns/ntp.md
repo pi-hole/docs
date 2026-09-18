@@ -4,19 +4,19 @@
 
 Network Time Protocol (NTP) is used to synchronise the clocks of devices on a network, ensuring they report the same time. In a home network, NTP helps keep computers, routers, and iot/smart devices running on the same time, ensuring consistency between scheduling events, logging activities, and within  time-sensitive applications. It works by connecting to time servers on the internet, which provide accurate time based on atomic clocks. A server on your own network can then relay the information to devices on your network. Operating your own server minimises external traffic and helps keep the time consistent across your devices.
 
-# Configuring Pi-hole's NTP client and server
+## Configuring Pi-hole's NTP client and server
 
 Settings relating to NTP are in the "Network Time Sync" tab of the All Settings page. If All Settings is not visible, click where it says "Basic" at the top right to toggle the Expert settings, and All Settings will become visible in the Settings section.
 
 ![](all_settings.png)
 
-## Client settings
+### Client settings
 
 Pi-hole acts as an NTP client, synchronising the time on your Raspberry Pi or other system with that provided by a reliable online source. Having the correct time ensures that certificates fall within their valid time frame, allowing protocols such as DNSSEC to work effectively.
 
 The NTP client is enabled by default, but can be disabled by deselecting `ntp.sync.active`
 
-### Upstream NTP Server
+#### Upstream NTP Server
 
 You can specify the server you wish to synchronise with at `ntp.sync.server`
 
@@ -29,7 +29,7 @@ If your ISP provides an NTP server (or if there is an NTP server on your network
 
 Typically the closer you are to the server there will be less network jitter, and you will be able to obtain a more accurate time.
 
-### Synchronisation frequency
+#### Synchronisation frequency
 
 The frequency that Pi-hole queries the server is set at `ntp.sync.interval`, and the number of readings compared at each synchronisation is set at `ntp.sync.count`
 
@@ -39,33 +39,31 @@ If there is an NTP server on your network, the time between queries can be decre
 
 If you are using a public time server, note that querying excessively violates the terms of use of many public servers, and could result in your IP being banned.
 
-## Server settings
+### Server settings
 
 Pi-hole acts as an NTP server, allowing other devices on your network to synchronise their time with it. This passes along the accurate time that was obtained over the internet.
 
 The NTP server is enabled by default, but can be disabled by deselecting `ntp.ipv4.active` and `ntp.ipv6.active`.
 
-### Listening addresses
+#### Listening addresses
 
 By default, Pi-hole will respond to NTP requests on all addresses. The Pi-hole NTP server can be restricted to listening to a single address, which may be specified by `ntp.ipv4.address` and `ntp.ipv6.address`.
 
-## Real time clock (RTC) synchronisation
+### Real time clock (RTC) synchronisation
 
 Many computers keep time while powered off using a small, battery-backed hardware clock called the *real time clock* (RTC). The operating system reads it at boot to know the current time before it has had a chance to reach the network. If that clock drifts, or was never set, the system can start up with the wrong time - and being off by even a few minutes is enough to break TLS certificate validation or DNSSEC until the first successful NTP synchronisation.
 
-Pi-hole can keep the hardware clock correct for you. When this is enabled, after each successful synchronisation Pi-hole checks the hardware clock against the accurate time it just obtained and, if the two differ, corrects it. There is no needless writing when the clock is already right. The RTC therefore stays close to the real time, and your system comes up with a good time immediately after a reboot, even before it has reached an NTP server.
+Pi-hole can keep the hardware clock in sync for you. When this is enabled, after each successful synchronisation Pi-hole checks the hardware clock against the accurate time it just obtained from NTP and, if the two differ, corrects it. There is no needless writing when the clock is already right. The RTC therefore stays close to the real time, and your system comes up with a good time immediately after a reboot, even before it has reached an NTP server.
 
-This is disabled by default and enabled with `ntp.sync.rtc.set`.
+This is disabled by default and enabled with `ntp.sync.rtc.set`. Not every device has a hardware clock - Raspberry Pis in particular do not ship with one - and if yours has none there is nothing for Pi-hole to update, so the setting can be left alone.
 
-Note that not every device has a hardware clock - Raspberry Pis in particular do not ship with one, which is why this is off by default. If your device has no RTC there is simply nothing for Pi-hole to update, and the setting can be left disabled.
-
-### RTC location
+#### RTC location
 
 Leave `ntp.sync.rtc.device` empty and Pi-hole looks for the clock in the usual places (`/dev/rtc0`, `/dev/rtc`, and so on). If your clock lives somewhere else, or you have more than one and want a specific one, set the exact path here, for example `/dev/rtc0`.
 
 The RTC device is normally owned by `root`, while Pi-hole itself runs as an unprivileged user. Pi-hole takes care of accessing the clock for the brief moment it needs to and restores the original ownership afterwards, so you do not need to adjust any permissions yourself.
 
-### UTC or local time
+#### UTC or local time
 
 `ntp.sync.rtc.utc` controls whether the hardware clock is written in UTC (Coordinated Universal Time) instead of your local time zone. Storing the RTC in UTC is the usual convention on Linux and is the default. You normally only need to change this if another operating system on the same machine expects the clock in local time - the classic example being a dual-boot setup with Windows.
 
