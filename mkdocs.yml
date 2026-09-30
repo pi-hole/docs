@@ -143,6 +143,7 @@ nav:
     - 'Privacy levels': ftldns/privacylevels.md
     - 'dnsmasq warnings': ftldns/dnsmasq_warn.md
     - 'Webserver': ftldns/webserver.md
+    - 'Clustering': ftldns/cluster.md
     - 'Advanced':
         - 'Install from source': ftldns/compile.md
         - 'Signals': 'ftldns/signals.md'
