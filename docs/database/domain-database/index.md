@@ -1,7 +1,3 @@
----
-title: Domain Database
----
-
 Pi-hole uses the well-known relational database management system SQLite3 for managing the various domains that are used to control the DNS filtering system. The database-based domain management has been added with Pi-hole v5.0. The ability to subscribe to external *allow*lists has been added with Pi-hole v6.0.
 
 ## Priorities
