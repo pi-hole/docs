@@ -114,6 +114,7 @@ nav:
     - 'Contact Us': main/contact.md
     - 'Pi-hole Origins': main/origins.md
     - 'On the Web': main/coverage.md
+    - 'Architecture': main/architecture.md
   - 'Getting Started':
     - 'Getting Started': main/index.md
     - 'Prerequisites': main/prerequisites.md
