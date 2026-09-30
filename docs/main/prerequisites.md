@@ -69,10 +69,15 @@ Pi-hole needs a static IP address to properly function (a DHCP reservation is ju
 | pihole-FTL | 547 (DHCPv6) | IPv6 UDP | The DHCP server is an optional feature that requires additional ports. |
 | pihole-FTL | 80  (HTTP)<br/>443   (HTTPS) | TCP | If you have another webserver already listening on port `80`/`443`, then `pihole-FTL` will attempt to bind to `8080`/`8443` instead. If neither of these ports are available, `pihole-FTL`'s webserver will be unavailable until ports are configured manually (see configuration option `webserver.port`) |
 | pihole-FTL | 123 (NTP) | UDP | The NTP server is an optional feature that requires an additional port. |
+| pihole-FTL | 853 (DoT/DoQ) | TCP/UDP | Encrypted DNS for your clients: DNS-over-TLS on TCP, DNS-over-QUIC on UDP (configuration options `dns.dot` and `dns.doq`). DNS-over-HTTPS needs no port of its own, it is served on the HTTPS port(s) above. See [Encrypted DNS](../ftldns/encrypted-dns.md) |
 
 !!! info
     The use of pihole-FTL on ports _67_ or _547_ is optional, but required if you use the DHCP functions of Pi-hole.
     The use of port _123_ is required when using pihole-FTL as NTP-Server.
+    The use of port _853_ is only required if your clients should use Pi-hole as an encrypted resolver.
+
+!!! info "HTTP/3 uses UDP"
+    Pi-hole's web server offers HTTP/3 on the **UDP** port with the same number as its HTTPS port (`443` by default). Blocking UDP there does not break anything, clients simply stay on HTTP/2.
 
 ## Firewalls
 
@@ -80,6 +85,8 @@ Below are some examples of firewall rules that will need to be set on your Pi-ho
 Because Pi-hole was designed to work inside a local network, the following rules will block the traffic from the Internet for security reasons. `192.168.0.0/16` is the most common local network IP range for home users but it can be different in your case, for example other common local network IPs are `10.0.0.0/8` and `172.16.0.0/12`.
 
 **Check your local network settings before applying these rules.**
+
+The examples cover the ports Pi-hole uses by default. If your clients use Pi-hole as an [encrypted resolver](../ftldns/encrypted-dns.md), add the same rules for `853/tcp` and `853/udp`, and for `443/udp` if they should reach the web interface over HTTP/3.
 
 ### IPTables
 
