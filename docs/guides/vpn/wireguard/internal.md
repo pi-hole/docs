@@ -87,19 +87,19 @@ The rules will then be cleared once the tunnel is down.
 
 ### `ufw`
 
-If you are using UFW the above doesn't work and you will need to edit `/etc/ufw/before.rules`:
+UFW drops forwarded packets by default, so in addition to the NAT rules above you need to allow forwarding for the tunnel subnet by editing `/etc/ufw/before.rules`:
 
-Insert this into the before.rules file but **before** the FIRST commit line:
+Insert this **before** the first `COMMIT` line:
 
 ```bash
 # allow forwarding for trusted network
--A ufw-before-forward -s 10.10.10.0/24 -j ACCEPT
--A ufw-before-forward -d 10.10.10.0/24 -j ACCEPT
+-A ufw-before-forward -s 10.100.0.0/24 -j ACCEPT
+-A ufw-before-forward -d 10.100.0.0/24 -j ACCEPT
 ```
 
 For IPv6 you need to do the same but at `/etc/ufw/before6.rules`:
 
-Put the following near the bottom but **before** the first COMMIT line:
+Put the following near the bottom but **before** the first `COMMIT` line:
 
 ```bash
 # allow forwarding for trusted network
@@ -107,7 +107,7 @@ Put the following near the bottom but **before** the first COMMIT line:
 -A ufw6-before-forward -d fd08:4711::/64 -j ACCEPT
 ```
 
-Restart ufw for the changes to take effect: `systemctl restart ufw`
+Reload UFW for the changes to take effect: `sudo ufw reload`
 
 ## Allow clients to access other devices
 
