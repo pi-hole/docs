@@ -22,3 +22,8 @@
 [data-md-color-scheme="slate"][data-md-color-primary="indigo"] {
     --md-typeset-a-color: #70a0ff; /* links */
 }
+
+[data-md-color-scheme="slate"][data-md-color-primary="indigo"] .md-nav--primary .md-nav__item .md-nav__link--active {
+    color: #fff;
+    background: color-mix(#70a0ff 15%, transparent);
+}
