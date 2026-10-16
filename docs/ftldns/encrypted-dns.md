@@ -9,24 +9,24 @@ This page is about the *downstream* side, i.e., the encryption between your clie
 
 ## What is served where
 
-Protocol | Standard | Transport      | Port                             | Config option
----------|----------|----------------|----------------------------------|--------------
-DoT      | RFC 7858 | TCP            | `853`                            | `dns.dot`
-DoQ      | RFC 9250 | UDP (QUIC)     | `853`                            | `dns.doq`
-DoH      | RFC 8484 | TCP/UDP (HTTP) | the HTTPS port of the web server | `dns.doh`
+Protocol | Standard | Transport      | Port                              | Config option
+---------|----------|----------------|-----------------------------------|--------------
+DoT      | RFC 7858 | TCP            | `853`                             | `dns.dot`
+DoQ      | RFC 9250 | UDP (QUIC)     | `853`                             | `dns.doq`
+DoH      | RFC 8484 | TCP/UDP (HTTP) | the HTTPS ports of the web server | `dns.doh`
 
 All three are enabled by default and all three use the same TLS certificate as the web interface (`webserver.tls.cert`, see [TLS/SSL](../api/tls.md)).
 
 DoT and DoQ share the port number `853` without colliding, as one uses TCP and the other UDP. The port is fixed: `853` is what the respective standard assigns and what clients try first, and many of them do not even offer a field for a different one.
 
-DoH has no port of its own. It is served at the path `/dns-query` on the web server's HTTPS port, i.e., the first entry in `webserver.port` carrying the `s` flag, so a Pi-hole reachable at `https://pi.hole/admin` answers DoH at `https://pi.hole/dns-query`. If you change the web server's HTTPS port, the DoH endpoint moves with it.
+DoH has no port of its own. It is served at the path `/dns-query` on every HTTPS port of the web server, i.e., every entry in `webserver.port` carrying the `s` flag, so a Pi-hole reachable at `https://pi.hole/admin` answers DoH at `https://pi.hole/dns-query`. If you change the web server's HTTPS ports, the DoH endpoint moves with them.
 
 ## Enabling and disabling
 
 ```bash
 sudo pihole-FTL --config dns.dot true  # DoT on TCP port 853 (default)
 sudo pihole-FTL --config dns.doq true  # DoQ on UDP port 853 (default)
-sudo pihole-FTL --config dns.doh true  # DoH on the HTTPS web server port (default)
+sudo pihole-FTL --config dns.doh true  # DoH on the HTTPS web server ports (default)
 ```
 
 Set any of the three to `false` to switch the respective listener off. Changing one of them makes `pihole-FTL` restart itself so the new setting takes effect, which interrupts DNS resolution for a moment - you do not have to restart it yourself.
@@ -86,3 +86,32 @@ Queries arriving this way show up in the query log like any other query, attribu
 ## Requests over plain HTTP
 
 `/dns-query` is only served over HTTPS. A plaintext request is answered with `426 Upgrade Required` rather than being resolved, so a misconfigured client cannot silently fall back to sending your DNS traffic in the clear.
+
+## Behind a reverse proxy
+
+If a reverse proxy in front of Pi-hole already terminates TLS, e.g., HAProxy, it can hand DoH on to Pi-hole over plain HTTP. Pi-hole serves such a request only from a proxy you list, and only if the proxy says the client used TLS:
+
+```bash
+sudo pihole-FTL --config webserver.trustedProxies '["192.168.1.10"]'
+sudo pihole-FTL --config dns.dohReverseProxy true
+```
+
+The proxy says so in a [PROXY protocol](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) version 2 header at the start of each connection, which also names the real client. In HAProxy, that is `send-proxy-v2-ssl` on the `server` line:
+
+```text
+frontend doh
+    mode http
+    bind :443 ssl crt /etc/haproxy/certs/dns.example.com.pem alpn h2,http/1.1
+    default_backend pihole
+
+backend pihole
+    mode http
+    server pihole 192.168.1.2:80 send-proxy-v2-ssl
+```
+
+Pi-hole then treats the query as coming from the client the header names: the query log shows that client, and `dns.listeningMode` and `webserver.acl` apply to it rather than to the proxy. The header of any address not in `webserver.trustedProxies` is ignored, and a plain request without one still gets the `426` from above.
+
+<!-- markdownlint-disable code-block-style -->
+!!! warning "List only addresses the proxy alone uses"
+    Anything that connects from a listed address can claim to be any client. A proxy on the same machine connects from `127.0.0.1` or `::1`, and listing those extends this to every local process.
+<!-- markdownlint-enable code-block-style -->
