@@ -24,3 +24,4 @@ last_updated: Sat Aug 15 2026 UTC
 - [Discord Pi-hole Bot: Bot for easy Pi-hole server management and stats through discord](https://github.com/josephistired/Discord-Pi-hole-Bot)
 - [Pi-hole In One](https://github.com/creeperkatze/pihole-in-one): A browser extension to control your Pi-hole conveniently from within the browser. ([Chrome](https://chromewebstore.google.com/detail/pi-hole-in-one/gaaobidjebianpcngcfpkniaocibidhe)) ([Firefox](https://addons.mozilla.org/firefox/addon/pihole-in-one/)) ([Edge](https://microsoftedge.microsoft.com/addons/detail/pihole-in-one/hbigjlhijpiegpnbdhmdgdlfbcgljdao))
 - [Holeberry](https://github.com/pedrovieira/Holeberry): A native macOS menu bar app to monitor and control your Pi-hole instances
+- [Dobbelt-Pi-hole](https://github.com/tursoe/Dobbelt-Pi-hole): A lightweight dashboard for managing two, three or four Pi-hole v6 instances, with Docker installation and English, Danish and German interfaces.
