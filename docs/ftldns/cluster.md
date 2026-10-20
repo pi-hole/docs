@@ -37,6 +37,13 @@ a second, and any node can be the one that is down.
     a minute later. On a single Pi-hole you know when you started gravity; in a cluster the node
     starts it by itself, so check the log or the HA cluster page ("not rebuilt") before editing
     lists on a node that has just taken a peer's adlists.
+
+    The lists travel as one unit rather than entry by entry: a node takes a peer's newer set whole,
+    so two nodes whose lists were edited while they could not see each other do not combine the
+    edits - the later set replaces the other. A node whose own edits are replaced that way before
+    any other node had them says so, in the log and as a Pi-hole diagnosis message. Settings are
+    different, as each of them travels on its own - see
+    [What happens when a node comes back](#what-happens-when-a-node-comes-back).
 - **The membership.** The list of nodes is itself a synchronized setting, so adding a node is one
   edit on one machine rather than one edit per machine.
 - **The credentials**, if you let it. The web interface password, the application passwords and the
@@ -98,11 +105,10 @@ many nodes answered.
 
 **Every node after that** joins instead. The nodes that are already clustered answer on UDP port
 4712 with nothing but the port they speak HTTPS on, so the scan fills the address in for you. Pick
-one, enter *that* node's web interface password, and press **Join**.
+one, enter *that* node's web interface password and its fingerprint, and press **Join**.
 
-The password is the one thing that cannot be automatic: it is what proves you are allowed to have
-the cluster's secret, its configuration and its passwords, rather than merely being on the same
-network as it.
+The password cannot be automatic: it is what proves you are allowed to have the cluster's secret,
+its configuration and its passwords, rather than merely being on the same network as it.
 
 The joining node takes the cluster's shared secret, its member list, its configuration and its
 lists, and **replaces its own with them** - this is the step that decides which machine's setup
@@ -127,12 +133,12 @@ cannot create would protect nothing anyway - whoever can reach it can already ma
 nodes whatever they like.
 
 This is also the one connection a cluster cannot authenticate for itself, since the joining node
-holds no secret yet, so by default the certificate the other node presents is taken as it comes.
-The **Fingerprint** field is how you close that: every node shows its own fingerprint on its HA
-cluster page, and a joining node given one refuses to join through anything that does not present
-exactly that certificate. It is entirely optional - leave it empty and joining works as it always
-does - and it has to be carried by hand from one machine to the other, because a fingerprint that
-arrived over the connection it is meant to vouch for would vouch for nothing.
+holds no secret yet, which is what the **Fingerprint** field is for: every node shows its own
+fingerprint on its HA cluster page, and a joining node refuses to join through anything that does
+not present exactly that certificate. With the field empty the join is refused before anything is
+sent - unless `cluster.tls.ca` is set, which checks the certificate against your own CA instead.
+The fingerprint has to be carried by hand from one machine to the other, because one that arrived
+over the connection it is meant to vouch for would vouch for nothing.
 
 The beacon is only bound while `cluster.enabled` is set, so a Pi-hole that is not in a cluster
 neither answers nor is found. It says nothing about the node beyond its HTTPS port.
@@ -252,17 +258,17 @@ of it does not. `/api/cluster/status` shows the address each member was last rea
 At this point the nodes are talking to each other, and within a round or two they are in step.
 
 !!! warning
-    There is no merge, here or anywhere else: the newest configuration wins whole, and so does the
-    newest set of lists. In a cluster built this way nobody has changed anything yet - none of the
-    commands above is a setting the cluster carries - so there is no "newest" to go on, and the
-    nodes settle on one of them arbitrarily in the first round they can all see each other. That
-    applies to the configuration and to the lists alike.
+    The newest version of each setting wins, and so does the newest set of lists. In a cluster built
+    this way nobody has changed anything yet - none of the commands above is a setting the cluster
+    carries - so there is no "newest" to go on, and the nodes settle on one of them arbitrarily in
+    the first round they can all see each other. That applies to every setting and to the lists
+    alike.
 
 If one of these machines is the one you have been curating and the others are fresh installs, do not
-leave that to chance: change something on the curated node *after* switching clustering on there and
-*before* switching it on anywhere else - one setting through the web interface, and adding and
-removing an adlist for the lists. That makes it the newest on both counts, and the others take from
-it.
+leave that to chance: create the cluster on the curated node
+[from the web interface](#building-a-cluster-from-the-web-interface) and join the others to it.
+Changing a setting there first is no help, as settings are dated one by one - it makes that one
+setting the newest, not the others.
 
 #### 3. Switch on what you want
 
@@ -309,10 +315,13 @@ rather than as an HTTP error.
 ### DHCP failover
 
 With `cluster.dhcp.failover` enabled, one node runs the DHCP server and the others keep theirs
-switched off until they are needed. Which one is decided by the node identities in `cluster.state`:
-the reachable node with the lowest one serves. That is arbitrary but stable, and every node reaches
-the same answer on its own - there is no coordinator to ask, and nothing to configure. A node is in
-the running only while it is reachable, has failover switched on itself, and could actually serve.
+switched off until they are needed. Where none serves yet, or two do, which one is decided by the
+node identities in `cluster.state`: the reachable node with the lowest one serves. That is arbitrary
+but stable, and every node reaches the same answer on its own - there is no coordinator to ask, and
+nothing to configure. After that the node that serves keeps it, also when a node with a lower
+identity joins or comes back: moving DHCP costs a restart on both nodes, so there is no failback. A
+node is in the running only while it is reachable, has failover switched on itself, and could
+actually serve.
 
 Never by name: two Pi-holes imaged from the same card are both `raspberrypi`, and a comparison
 neither of them wins is two DHCP servers on one network.
@@ -325,19 +334,18 @@ them a new identity by deleting its `/etc/pihole/cluster.state` and restarting.
 
 Handing over to a node that is already serving happens at once - the wait exists so that one missed
 answer does not move DHCP, not to keep two servers running. Taking over needs two consecutive rounds
-to agree first, and handing back three, so a single missed answer moves nothing. No node takes over
-while another still reports serving: two DHCP servers with separate lease databases on one network
-is worse than a few seconds without one. A node that could not actually start a DHCP server - no
-lease range, no gateway, a read-only configuration - says so to its peers rather than being elected
-and then failing.
+to agree first, so a single missed answer moves nothing. No node takes over while another still
+reports serving: two DHCP servers with separate lease databases on one network is worse than a few
+seconds without one. A node that could not actually start a DHCP server - no lease range, no
+gateway, a read-only configuration - says so to its peers rather than being elected and then
+failing.
 
 Which machine that turns out to be is not something you choose, and does not need to be. Unplug the
-one that is serving and the next takes over by itself. Plug it back in and it starts serving again
-straight away, from its own lease file - `dhcp.active` is still set in its `pihole.toml` - and the
-node that stood in for it yields within a round. For that round both answer, and the leases the
-stand-in handed out in between are in neither file afterwards: a client renewing one of them is
-offered an address afresh rather than confirmed. A lease time comfortably longer than an outage
-keeps that to the few clients that arrived during it.
+one that is serving and the next takes over by itself. Plug it back in and it stays a standby: a
+node starting up holds back a `dhcp.active` still set in its `pihole.toml` until its first round
+has asked the others, and then finds the stand-in serving. Only a restart FTL does by itself - one
+a changed setting asks for, say - keeps `dhcp.active` as it is, as nobody takes over in the few
+seconds that takes.
 
 How long that takes follows from `cluster.interval`, which is ten seconds by default. The node that
 takes over has to see the other one gone for two rounds running before it does anything - one round
@@ -356,18 +364,22 @@ the first place - with `cluster.dhcp.failover` off, `dhcp.active` is your settin
 
 #### What happens if the nodes cannot see each other
 
-A node that cannot reach any peer is, from where it stands, the only node left - so it elects itself
-and starts serving. That is the right answer when the other machine really is gone, and it is also
-what happens when both machines are running but something between them is not: a switch that died
-between two floors, a firewall rule, an access point that isolates its clients from each other. Each
-side then has its own DHCP server and its own copy of the virtual IP address.
+A node takes DHCP or the virtual IP address only while it reaches enough of the cluster. With three
+or more members that is a strict majority of the member list, counting itself and the members the
+others still reach. A node cut off from the rest takes nothing, and gives up what it holds after two
+rounds - the two the majority waits before taking over - and says so in the log. A switch that died
+between two floors, a firewall rule, an access point that isolates its clients from each other: at
+most one side holds a majority, so the network gets no second DHCP server and no second holder of
+the address. The price is that a cluster of three with two nodes down has neither, as the last
+node cannot tell whether the others are gone or merely out of its sight.
 
-Where the two halves are genuinely separate networks that is what you want. Where they are not - the
-nodes cannot see each other but the clients can still see both - it means two DHCP servers handing
-out the same range and two machines answering for the same address, which is the one thing the rest
-of this design works to avoid. There is no way for a node to tell the two situations apart: a cluster
-this size has nobody to ask, and requiring a majority would mean two nodes could never fail over at
-all.
+Two nodes have no majority to go by. A node there stands down only while the other one is
+demonstrably alive - it cannot reach the other, but the other has polled it since, within the last
+three rounds - and a peer that died stops polling, so failover is not held up. When nothing passes
+in either direction, both machines running and something between them not, each of them therefore
+takes over: two DHCP servers and two copies of the virtual IP address. Where the two halves are
+genuinely separate networks that is what you want. Where the clients can still see both, it is the
+one thing the rest of this design works to avoid, and a third node is what prevents it.
 
 That is the case where *nobody* can reach a node. A single broken direction is different and much more
 common - a firewall rule someone added on one side, an asymmetric route, a certificate pin that no
@@ -383,6 +395,12 @@ releases the address within a few rounds, and the configuration and lists reconc
 they would after any outage. What does not repair itself is any address handed out twice while the
 two halves were apart, so a DHCP lease time short enough to turn those over is worth having.
 
+Two nodes that still both serve DHCP, or both hold the address, for more than a round after they see
+each other are a conflict the cluster could not settle - `dhcp.active` pinned through the
+environment on one of them, for instance. Each of them says so once: an error in the log, a Pi-hole
+diagnosis message, and `dhcp.conflict` or `vip.conflict` in the `node` part of
+`/api/cluster/status`.
+
 A member that *answers* but does not accept this node is a different case, and it is treated
 differently on purpose. A Pi-hole that is listed but has clustering switched off, holds a different
 secret, or is too old to know about clustering at all, is still a Pi-hole - it may well be serving
@@ -395,20 +413,21 @@ reason.
 
 #### The leases travel with it
 
-The node handing out addresses is the only one writing `/etc/pihole/dhcp.leases`, and its peers keep
-a copy of that file. Whichever of them takes over therefore already knows which client holds which
-address: a client renewing after a failover is recognized and keeps the address it has, rather than
-being refused and offered a different one.
+The node handing out addresses is the only one writing `/etc/pihole/dhcp.leases`, and its peers
+merge that file into a copy of their own. Whichever of them takes over therefore already knows which
+client holds which address: a client renewing after a failover is recognized and keeps the address
+it has, rather than being refused and offered a different one.
 
 It works because of when the file is read. A Pi-hole that is not serving DHCP never opens it, and a
 node taking over restarts FTL, which reads it at startup - so the copy the cluster maintains is
 exactly what the new server starts from. Nothing is injected into a running DHCP server.
 
 The copy flows from whoever is actually serving, so it changes direction on its own when DHCP moves.
-It flows to a node that is *not* serving, which is why a server coming back from a reboot does not
-pick up what its stand-in handed out - it is serving again before it could ask.
-A node with `cluster.dhcp.failover` switched off keeps no copy at all: it will never take over, and
-a file full of another machine's clients has no business being there.
+It is merged rather than written over what a node holds - per address the later expiry wins, and an
+infinite lease beats any other - so a node coming back from an outage keeps the leases it handed
+out before and adds the ones its stand-in handed out meanwhile, and whoever serves next starts from
+both. A node with `cluster.dhcp.failover` switched off keeps no copy at all: it will never take
+over, and a file full of another machine's clients has no business being there.
 
 Such a node also keeps whatever `dhcp.active` its administrator gave it. That is deliberate - the
 cluster does not switch off a setting it was told not to manage - but it means a node that runs its
@@ -441,9 +460,9 @@ Two cases are worth knowing about:
   not taken until it can be identified again, and the log says so once. `cluster.tls.ca` is the
   answer for a proxy that is meant to be there.
 - **Joining is the one connection none of this covers**, because a node that is not a member yet
-  holds no secret. The password crosses it, so if that matters to you, copy the pin out of the other
-  node's HA cluster page and hand it over with the join - the connection is then refused unless that
-  node presents exactly that key.
+  holds no secret. The password and the cluster secret cross it, so a join needs the pin out of the
+  other node's HA cluster page - the connection is then refused unless that node presents exactly
+  that key - or `cluster.tls.ca`. With neither, it is refused before anything is sent.
 
 `cluster.tls.ca` is for people who run their own CA: point it at the bundle and the chain is verified
 as well. With Pi-hole's own certificates it stays empty.
@@ -461,6 +480,11 @@ cluster where the factor is skipped by opening a different node instead.
 Because the second factor travels too, a cluster that has it on has it on everywhere - so joining a
 new node to it needs a token as well as the password. The join card has a field for one; leave it
 empty unless the node you are joining asks for it.
+
+The nodes also tell each other the last two-factor code they accepted, so a code logs in once
+across the cluster rather than once on every node. They learn it when they poll each other, though,
+so for up to one round - `cluster.interval`, ten seconds by default - a code just used on one node
+is still accepted on another.
 
 It is worth knowing what it costs. The nodes authenticate with the shared secret, and with the
 password synchronized that file becomes as good as the password on every node: whoever holds it can
@@ -490,9 +514,15 @@ than the plain *differs* when that is the only difference left.
 ### The virtual IP address
 
 `cluster.vip.address` is an address that follows whichever node the clients should be talking to. It
-is added to `cluster.vip.interface` and announced with a gratuitous ARP - an unsolicited neighbour
+is added to `cluster.vip.interface` and announced with a gratuitous ARP - an unsolicited neighbor
 advertisement for IPv6 - so switches and clients stop sending to the previous holder rather than
-waiting for their ARP entry to expire.
+waiting for their ARP entry to expire. The holder repeats that every round for as long as it holds
+the address, three times a round while another node says it holds it too and for a round after: a
+client sends to whichever holder it heard from last.
+
+A restart FTL does by itself - one a changed setting asks for, say - leaves the address where it is,
+so the clients do not lose it for the length of the restart. It is given up only when that restart
+hands DHCP to another node, when clustering is switched off, or when `cluster.vip.address` changed.
 
 Pick an address the network is not using and that the DHCP server would not hand out. The web
 interface will suggest one: it takes the subnet holding the default route and offers the highest
@@ -535,12 +565,18 @@ advertised there at all.
 ### What happens when a node comes back
 
 A node that was down missed the changes made while it was away. When it returns, the nodes compare
-fingerprints, and the node whose configuration was changed more recently hands its version to the
-other. A node that was never configured at all - a fresh install joining an established cluster -
-holds nothing worth handing anybody and adopts the cluster's configuration instead.
+fingerprints, and where those differ they go setting by setting: every setting carries the time it
+was last changed, and each node hands the other the settings it holds a newer version of. Two
+different settings changed on two nodes while they were apart both survive. A node that was never
+configured at all - a fresh install joining an established cluster - holds nothing worth handing
+anybody and adopts the cluster's configuration instead.
 
-Two people changing settings on two nodes in the same moment is the one case that cannot be
-reconciled. The later change wins, and the cluster ends up on that node's values.
+Two people changing the same setting on two nodes is the one case that cannot be reconciled. The
+later change wins, and the cluster ends up on that value. The `node` part of `/api/cluster/status`
+shows when each setting was last changed, under `sync.config.items`, and `sync.config.refused`
+names the settings of the last push from a peer that this node kept its own value of, and why: not
+newer than its own, pinned through the environment, or rejected by a validator. The log says the
+same, once per push.
 
 !!! note
     Because the newer change wins, the nodes have to agree on what time it is. A node whose clock is
@@ -565,7 +601,7 @@ versions named next to the difference. Nothing is stuck and nothing is being ret
 there is simply no answer that would make two different sets of settings identical. It resolves when
 they are on the same version.
 
-For the same reason a node keeps its own configuration timestamp across an upgrade rather than
+For the same reason a node keeps the timestamps of its settings across an upgrade rather than
 treating the new version's settings as an edit somebody made. The practical advice is the ordinary
 one: upgrade the nodes in one go where you can, and expect the page to say they differ while you are
 part way through.
@@ -721,7 +757,7 @@ docker exec pihole-3 pihole-FTL --config dns.cache.size
 | `cluster.name` | hostname | How this node calls itself in logs and to its peers |
 | `cluster.members` | `[]` | The web interface URLs of all nodes, this one included, at most eight |
 | `cluster.interval` | `10` | Seconds between rounds. Also how long a peer may take to answer: a fifth of it, and never under two seconds |
-| `cluster.tls.ca` | `""` | A CA bundle of your own. Empty means the peers are identified by their public keys |
+| `cluster.tls.ca` | `""` | A CA bundle of your own. Empty means the peers are identified by their public keys, and joining needs the other node's fingerprint |
 | `cluster.sync.credentials` | `true` | Let the passwords and the two-factor secret travel with the rest. Only ever while every member is an `https://` one |
 | `cluster.dhcp.failover` | `false` | Hand DHCP over when the serving node fails |
 | `cluster.vip.address` | `""` | An address that follows whichever node the clients should use, synchronized |
