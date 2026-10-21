@@ -31,12 +31,9 @@ a second, and any node can be the one that is down.
     ready - it arrives without anybody asking for it, so it is worth making large list changes when
     a gap of a minute or two on the other nodes does not matter.
 
-    One more thing about that run, which is `pihole -g` behaving as it always has: it builds the new
-    database in a copy and moves the copy into place when it is done, so a list entry added on a
-    node *while its rebuild is running* is lost with the swap - accepted by the web interface, gone
-    a minute later. On a single Pi-hole you know when you started gravity; in a cluster the node
-    starts it by itself, so check the log or the HA cluster page ("not rebuilt") before editing
-    lists on a node that has just taken a peer's adlists.
+    One more thing about that run: `pihole -g` builds the new database in a copy and moves the copy
+    into place when it is done, copying the lists in once more right before that, so a list entry
+    added on a node *while its rebuild is running* is kept.
 
     The lists travel as one unit rather than entry by entry: a node takes a peer's newer set whole,
     so two nodes whose lists were edited while they could not see each other do not combine the
@@ -44,6 +41,12 @@ a second, and any node can be the one that is down.
     any other node had them says so, in the log and as a Pi-hole diagnosis message. Settings are
     different, as each of them travels on its own - see
     [What happens when a node comes back](#what-happens-when-a-node-comes-back).
+
+    Edit the lists through the web interface or the API. A change made to `gravity.db` directly -
+    with `sqlite3`, by a tool that writes the database itself, or by copying a database in - does
+    not count as an edit: the node it was made on replaces it with the cluster's lists and says so,
+    in the log and as a Pi-hole diagnosis message. `pihole -g` putting its new database in place is
+    not such a change.
 - **The membership.** The list of nodes is itself a synchronized setting, so adding a node is one
   edit on one machine rather than one edit per machine.
 - **The credentials**, if you let it. The web interface password, the application passwords and the
@@ -264,11 +267,14 @@ At this point the nodes are talking to each other, and within a round or two the
     the first round they can all see each other. That applies to every setting and to the lists
     alike.
 
+A node that holds no version of anything - a fresh install on which nothing has been changed since
+clustering started there - only settles that way with nodes that hold none either. Where a member
+holds one, it waits for that member and takes the settings and the lists from there, so a fresh
+install added this way to an established cluster ends up with the cluster's setup.
+
 If one of these machines is the one you have been curating and the others are fresh installs, do not
 leave that to chance: create the cluster on the curated node
 [from the web interface](#building-a-cluster-from-the-web-interface) and join the others to it.
-Changing a setting there first is no help, as settings are dated one by one - it makes that one
-setting the newest, not the others.
 
 #### 3. Switch on what you want
 
@@ -343,9 +349,11 @@ failing.
 Which machine that turns out to be is not something you choose, and does not need to be. Unplug the
 one that is serving and the next takes over by itself. Plug it back in and it stays a standby: a
 node starting up holds back a `dhcp.active` still set in its `pihole.toml` until its first round
-has asked the others, and then finds the stand-in serving. Only a restart FTL does by itself - one
-a changed setting asks for, say - keeps `dhcp.active` as it is, as nobody takes over in the few
-seconds that takes.
+has asked the others, and then finds the stand-in serving. That hold-back is in the running
+configuration only: `pihole.toml` keeps the value until the cluster switches DHCP on or off there.
+A plain restart or a reboot of the serving node goes through it as well, and so costs about one
+round without DHCP and a second restart. Only a restart FTL does by itself - one a changed setting
+asks for, say - keeps `dhcp.active` as it is, as nobody takes over in the few seconds that takes.
 
 How long that takes follows from `cluster.interval`, which is ten seconds by default. The node that
 takes over has to see the other one gone for two rounds running before it does anything - one round
@@ -375,7 +383,11 @@ node cannot tell whether the others are gone or merely out of its sight.
 
 Two nodes have no majority to go by. A node there stands down only while the other one is
 demonstrably alive - it cannot reach the other, but the other has polled it since, within the last
-three rounds - and a peer that died stops polling, so failover is not held up. When nothing passes
+three rounds - and a peer that died stops polling, so failover is not held up. Only the other
+member's own polls count, not those of anything else holding the secret, such as a removed node or
+a monitoring script. A poll also says whether its sender serves DHCP or holds the virtual IP
+address, so a node that serves keeps both while the other one polls it and serves neither, and
+gives them up after two rounds when the other serves or holds the address too. When nothing passes
 in either direction, both machines running and something between them not, each of them therefore
 takes over: two DHCP servers and two copies of the virtual IP address. Where the two halves are
 genuinely separate networks that is what you want. Where the clients can still see both, it is the
@@ -423,9 +435,11 @@ node taking over restarts FTL, which reads it at startup - so the copy the clust
 exactly what the new server starts from. Nothing is injected into a running DHCP server.
 
 The copy flows from whoever is actually serving, so it changes direction on its own when DHCP moves.
-It is merged rather than written over what a node holds - per address the later expiry wins, and an
-infinite lease beats any other - so a node coming back from an outage keeps the leases it handed
-out before and adds the ones its stand-in handed out meanwhile, and whoever serves next starts from
+It is merged rather than written over what a node holds. For every address the serving node has a
+lease for, its line is the one kept. A lease only the copy has is dropped once it has expired, once
+the serving node released it, or once that client holds another address there. Every other lease
+stays, so a node coming back from an outage keeps the leases it handed out itself while it served
+and adds the ones its stand-in handed out meanwhile, and whoever serves next starts from
 both. A node with `cluster.dhcp.failover` switched off keeps no copy at all: it will never take
 over, and a file full of another machine's clients has no business being there.
 
@@ -482,9 +496,9 @@ new node to it needs a token as well as the password. The join card has a field 
 empty unless the node you are joining asks for it.
 
 The nodes also tell each other the last two-factor code they accepted, so a code logs in once
-across the cluster rather than once on every node. They learn it when they poll each other, though,
-so for up to one round - `cluster.interval`, ten seconds by default - a code just used on one node
-is still accepted on another.
+across the cluster rather than once on every node. A node that accepts one tells the others right
+away, so the same code is refused on them a moment later, and within one round on a node it could
+not reach at the time.
 
 It is worth knowing what it costs. The nodes authenticate with the shared secret, and with the
 password synchronized that file becomes as good as the password on every node: whoever holds it can
@@ -523,12 +537,18 @@ client sends to whichever holder it heard from last.
 A restart FTL does by itself - one a changed setting asks for, say - leaves the address where it is,
 so the clients do not lose it for the length of the restart. It is given up only when that restart
 hands DHCP to another node, when clustering is switched off, or when `cluster.vip.address` changed.
+Setting `cluster.vip.interface` to another interface moves it there within a round.
 
 Pick an address the network is not using and that the DHCP server would not hand out. The web
 interface will suggest one: it takes the subnet holding the default route and offers the highest
 address in it that nothing Pi-hole has seen is using and no DHCP lease could land on. That is a
 suggestion rather than a guarantee - a device that has been switched off since Pi-hole started has
 never been seen, and still owns its address.
+
+Before a node claims the address it asks the link whether anybody holds it - an ARP probe, or a
+neighbor solicitation for IPv6 - and a host that answers and is not a member keeps it from being
+claimed, with an error in the log. A link-local address (`169.254.0.0/16`) and the network or
+broadcast address of the node's own subnet are refused as `cluster.vip.address` altogether.
 
 One address serves one segment. Pi-hole hands out a single DHCP range, so a cluster spanning two
 segments is outside what this models.
@@ -538,16 +558,16 @@ on. Without a virtual IP address every node is advertised individually, which al
 keeps resolving when the node it was talking to stops answering, it just takes a resolver timeout to
 notice.
 
-That second form needs the member list written as IPv4 addresses. A DHCP option carries an address,
-so a member written as a name cannot go into one and is left out - and a list of names alone leaves
-the clients knowing about the serving node and nothing else, which is the outage failing over exists
-to prevent. FTL says so in the log. A virtual IP address has no such limitation and is the better
-answer either way. For IPv6 clients a virtual IP address is the only form: individual nodes are not
-advertised there at all.
+That second form needs the member list written as addresses: IPv4 clients learn the members written
+as IPv4 addresses, IPv6 clients the ones written as IPv6 addresses. A DHCP option carries an
+address, so a member written as a name cannot go into one and is left out - and a list of names
+alone leaves the clients knowing about the serving node and nothing else, which is the outage
+failing over exists to prevent. FTL says so in the log. A virtual IP address has no such limitation
+and is the better answer either way.
 
 !!! note
-    Adding and removing an address needs `CAP_NET_ADMIN`, and the gratuitous ARP needs
-    `CAP_NET_RAW`. FTL holds both.
+    Adding and removing an address needs `CAP_NET_ADMIN`, and the gratuitous ARP and the probe
+    before a claim need `CAP_NET_RAW`. FTL holds both.
 
 !!! warning
     `dns.listeningMode = BIND` and a virtual IP address do not go together. In that mode dnsmasq
