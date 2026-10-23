@@ -74,7 +74,7 @@ Filtered
 - 2620:fe::fe (IPv6)
 - 2620:fe::9 (IPv6)
 
-Unfiltered, no DNSSEC
+Unfiltered
 
 - 9.9.9.10
 - 149.112.112.10
