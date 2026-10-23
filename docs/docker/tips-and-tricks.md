@@ -32,7 +32,7 @@ Once pi-hole is installed, you'll want to configure your clients to use it ([see
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "**Important: Catch-22 situation**"
-    When Pi-hole is used as the host's DNS server and Pi-hole is down, the host will lack DNS resolution. This can lead to situation where you might be unable to spin-up the Pi-hole container.
+    When Pi-hole is used as the host's DNS server and Pi-hole is down, the host will lack DNS resolution. This can lead to a situation where you might be unable to spin-up the Pi-hole container.
 <!-- markdownlint-enable code-block-style -->
 Example netplan:
 

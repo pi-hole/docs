@@ -21,7 +21,7 @@ The database stores allow-, and denylists which are directly relevant for Pi-hol
 
 The date fields are defined as `INTEGER` fields as they expect numerical timestamps also known as *UNIX time*. The `date_added` and `date_modified` fields are initialized with the current timestamp converted to UNIX time. The `comment` field is optional and can be empty.
 
-Pi-hole's *FTL*DNS reads the tables through the various view, omitting any disabled domains.
+Pi-hole's *FTL*DNS reads the tables through the various views, omitting any disabled domains.
 
 Label | Type | Uniqueness enforced | Content
 ----- | ---- | ------------------- | --------
@@ -78,7 +78,7 @@ Label | Type | Content
 Clients can be identified by subnets. Arbitrary subnet configurations can be specified using the widely known [Classless Inter-Domain Routing (CIDR) notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_blocks).
 This allows to specify "broad clients" such as
 
-- `192.168.1.0/24` which will match al clients in the range `192.168.1.1` to `192.168.1.255` (256 devices),
+- `192.168.1.0/24` which will match all clients in the range `192.168.1.1` to `192.168.1.255` (256 devices),
 - `10.8.0.0/16` will match all clients in the range `10.8.0.1` to `10.8.255.255` (65,536 devices), and
 - `192.168.100.0/22` representing the 1024 IPv4 addresses from `192.168.100.0` to `192.168.103.255`.
 

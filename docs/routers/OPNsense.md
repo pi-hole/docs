@@ -1,4 +1,4 @@
-This guide was developed using a OPNsense 25.1.1. Following the first method below will have you adding your Pi-hole as a DNS server for all devices on your LAN. Following the second method below will have DNS queries route through your OPNsense and then to your Pi-hole. Either option is valid, depending on your specific requirements, but it is recommended to choose one or the other - not both.
+This guide was developed using an OPNsense 25.1.1. Following the first method below will have you adding your Pi-hole as a DNS server for all devices on your LAN. Following the second method below will have DNS queries route through your OPNsense and then to your Pi-hole. Either option is valid, depending on your specific requirements, but it is recommended to choose one or the other - not both.
 
 Optionally, there is also the possibility to block DNS traffic to other, non-Pi-hole DNS servers via firewall rules. This can be used to prevent clients like Chromecasts of using their hardcoded DNS servers.
 
@@ -78,11 +78,11 @@ Doing so will have DNS queries taking the following path:
 
 ### Block other DNS servers (optional)
 
-Some clients have hardcoded DNS settings. To prevent them from circumventing our Pi-Hole, we can optionally block all DNS request that are not coming from our Pi-Hole.
+Some clients have hardcoded DNS settings. To prevent them from circumventing our Pi-Hole, we can optionally block all DNS requests that are not coming from our Pi-Hole.
 !!! warning
     If your device does not have any fallback from the hardcoded DNS settings, this could break its DNS.
 
-We first create an Alias for Pi-holes MAC address.
+We first create an Alias for Pi-hole's MAC address.
 Go to **Firewall** --> **Aliases** scroll down and click on the plus button to create a new alias.
 Give it a Name, select the type MAC address and enter the MAC address from Pi-Hole into the "Content" field and then click save.
 The MAC address of your device you can find out by looking at the line `ether` from our `ifconfig eth0` output we got earlier.

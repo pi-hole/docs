@@ -60,7 +60,7 @@ will not block `abc` with type `AAAA` (but everything else) for the clients assi
 ^abc$;invert
 ```
 
-will block **not** block `abc` but **everything else**.
+will **not** block `abc` but **everything else**.
 
 ## Specify reply type
 
@@ -108,7 +108,7 @@ You can specify comments within your regex using the syntax
 (?#some comment here)
 ```
 
-The comment can contain any characters except for a closing parenthesis `)` (for the sole reason being the terminating element). The text in the comment is completely ignored by the regex parser and it used solely for readability purposes.
+The comment can contain any characters except for a closing parenthesis `)` (for the sole reason being the terminating element). The text in the comment is completely ignored by the regex parser and it is used solely for readability purposes.
 
 ```plain
 $ pihole-FTL regex-test "doubleclick.net" "(^|\.)doubleclick\.(?#TODO: We need to maybe support more than just .net here)net$"
