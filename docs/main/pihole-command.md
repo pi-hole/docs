@@ -15,6 +15,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | [Debugger](#debugger) | `pihole debug` |
 | [Log Flush](#log-flush) | `pihole flush` |
 | [Network Flush](#network-flush) | `pihole networkflush` |
+| [Log Rotate](#log-rotate) | `pihole logrotate` |
 | [Repair](#repair) | `pihole repair` |
 | [Tail](#tail) | `pihole tail` |
 | [Set password](#password) | `pihole setpassword` |
@@ -74,7 +75,17 @@ The Pi-hole debugger will attempt to diagnose any issues, and link to an FAQ wit
 | Script Location | [`/opt/pihole/piholeLogFlush.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeLogFlush.sh) |
 | Example Usage | [`pihole flush`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#flushing-the-log) |
 
-When invoked manually, this command will allow you to empty Pi-hole's log, which is located at `/var/log/pihole/pihole.log`. The command also serves to rotate the log daily, if the `logrotate` application is installed.
+When invoked manually, this command will allow you to empty Pi-hole's logs, which are located at `/var/log/pihole/` and removed the last 24h from the long-term database.
+
+### Log Rotate
+
+| | |
+| -------------- | -------------- |
+| Help Command | N/A |
+| Script Location | [`/opt/pihole/piholeLogRotate.sh`](https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeLogRotate.sh) |
+| Example Usage | [`pihole logrotate`] |
+
+When invoked manually, this command will allow you rotate Pi-hole's logs, which are located at `/var/log/pihole/`.
 
 ### Network Flush
 
