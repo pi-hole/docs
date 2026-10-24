@@ -1,8 +1,3 @@
----
-title: Overview of Pi-hole
-description: Brief overview of Pi-hole
----
-
 <p class="text-center">
     <a href="https://pi-hole.net/">
         <img src="https://pi-hole.github.io/graphics/Vortex/Vortex_with_Wordmark.svg" width="150" height="260" alt="Pi-hole">
