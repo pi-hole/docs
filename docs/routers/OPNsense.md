@@ -78,7 +78,7 @@ Doing so will have DNS queries taking the following path:
 
 ### Block other DNS servers (optional)
 
-Some clients have hardcoded DNS settings. To prevent them from circumventing our Pi-Hole, we can optionally block all DNS requests that are not coming from our Pi-Hole.
+Some clients have hardcoded DNS settings. To prevent them from circumventing our Pi-Hole, we can optionally block all DNS requests that are not coming from our Pi-hole.
 !!! warning
     If your device does not have any fallback from the hardcoded DNS settings, this could break its DNS.
 
