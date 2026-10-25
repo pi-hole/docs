@@ -22,7 +22,7 @@ This is not recommended, but here are some things you can do:
 
 * Pick the Country Codes you want to use as ExitNodes from the "List of country codes for Tor" list on [this page](https://b3rn3d.herokuapp.com/blog/2014/03/05/tor-country-codes).
 
-    Edit `/etc/tor/torrc` as root and, add the following lines to the end and replace `CountryCodeN` (keep the `{` and `}`) with the country code you've chosen (you can also use only one country code; in this case, it would be just `{CountryCode1}` without a comma).
+    Edit `/etc/tor/torrc` as root and add the following lines to the end and replace `CountryCodeN` (keep the `{` and `}`) with the country code you've chosen (you can also use only one country code; in this case, it would be just `{CountryCode1}` without a comma).
 
     ```text
     ExitNodes {CountryCode1},{CountryCode2},{CountryCode3}
