@@ -64,12 +64,10 @@ And what it deliberately does *not*:
   to the node that is serving. With `cluster.dhcp.failover` set the same range on every node - each
   of them has to be able to serve it on its own. The *leases themselves* do travel, from whichever
   node is handing out addresses to the ones that might have to take over.
-- **Whether blocking is paused.** "Disable blocking" and `pihole disable 5m` are that machine's
-  pause: the timer that puts it back lives in the memory of the node you asked, so a pause that
-  travelled would take blocking off the others with nothing to switch it on again. Pause each node
-  you want paused - and note that the timer does not survive a restart, on a cluster no more than on
-  a single Pi-hole. In a cluster somebody else's settings change can be what restarts it, so a pause
-  that outlives its five minutes is worth checking for.
+- **Whether blocking is on.** "Disable blocking" and `pihole disable 5m` act on the node you asked
+  only, with a timer or without - a timed pause lives in that node's memory. Pause each node you
+  want paused. A restart ends a pause early, and in a cluster somebody else's settings change can
+  be what restarts the node.
 - **Anything that is an instruction rather than a setting.** `misc.dnsmasq_lines`,
   `misc.etc_dnsmasq_d` and `webserver.advancedOpts` are handed to dnsmasq and to the webserver as
   written, so a node able to set them on its peers would be a node able to run commands on them.
