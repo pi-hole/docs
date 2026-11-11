@@ -2438,7 +2438,8 @@ If a subnet mask is omitted, such as -1.2.3.4, this means to deny only that sing
 IP address. If this value is not set (empty string), all accesses are allowed.
 Otherwise, the default setting is to deny all accesses. On each request the full
 list is traversed, and the last (!) match wins. IPv6 addresses may be specified in
-CIDR-form `[a:b::c]`/64.
+CIDR-form `[a:b::c]`/64. IPv4 clients are matched as IPv4 also on a dual-stack port
+(`"+80"`), and `[::ffff:a.b.c.d]` is the same entry as a.b.c.d.
 
 Example 1: `"+127.0.0.1,+[::1]"` ---> deny all access, except from 127.0.0.1 and ::1
 
@@ -3975,7 +3976,8 @@ Should FTL hide warnings coming from dnsmasq?
 By default, FTL reports warnings coming from the embedded dnsmasq DNS server to the
 FTL log file. These warnings can be useful to identify misconfigurations or problems
 with the DNS server. However, some warnings may be harmless and can be ignored in
-certain setups. Enabling this setting will hide all dnsmasq warnings.
+certain setups. Enabling this setting hides them in the FTL log file, the dnsmasq
+log is left untouched.
 
 **Allowed values are:**
 true or false
@@ -4005,8 +4007,8 @@ By default, FTL reports network connection errors (e.g., Connection prematurely
 closed by remote server) to the FTL log file. These warnings can be useful to
 identify intermittent network problems or general problem with upstream servers.
 However, in some setups, these warnings may be expected (e.g. due to low-quality
-Internet connectivity) and cannot be fixed. Enabling this setting will hide all
-connection warnings.
+Internet connectivity) and cannot be fixed. Enabling this setting hides them in the
+FTL log file, the dnsmasq log is left untouched.
 
 **Allowed values are:**
 true or false
