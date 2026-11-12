@@ -9,6 +9,8 @@ Another way of controlling the size of the long-term database is by setting a ma
 
 The config parameter `database.DBimport` controls whether `FTL` loads information from the database on startup. It needs to do this to populate the internal data structure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
 
+Since FTL v7.0, the recent query history lives in shared memory only, and FTL writes new queries from there straight into the database every `database.DBinterval` and when it stops. The in-memory and temporary query databases of earlier versions are gone, and with them the options `database.forceDisk` and `files.tmp_db`. A `/etc/pihole/pihole-tmp.db` left behind by an earlier version is no longer used and can be deleted, and Docker setups can drop the environment variables `FTLCONF_database_forceDisk` and `FTLCONF_files_tmp_db`.
+
 ---
 
 ### Split database
