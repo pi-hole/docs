@@ -1,40 +1,70 @@
-.md-nav {
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.md-nav__link {
-    display: inline-flex;
+/* Define a custom foreground color. This color will be used with both light and dark modes */
+:root {
+    --main-custom-color: #183aa0;
+    --md-primary-fg-color: var(--main-custom-color);
 }
 
 .md-typeset {
-    font-size: .7rem;
-    line-height: 1.5;
-}
-
-.md-typeset code,
-.md-typeset pre {
-    color: var(--code-color);
+    line-height: 1.65;
 }
 
 .text-center {
     text-align: center !important;
 }
 
+/* Table headers */
 .md-typeset table:not([class]) th {
-    color: var(--table-foreground);
-    background-color: var(--table-background);
+    color: rgb(var(--color-foreground));
+    background-color: var(--md-typeset-table-color);
 }
 
+/* Code element color */
 [data-md-color-scheme="default"] {
-    --code-color: #532ba8;
-    --table-foreground: var(--md-default-bg-color); /* table header backgrounds */
-    --table-background: var(--md-default-fg-color--light); /* table header (text) */
+    --md-code-fg-color: #462290;
+}
+[data-md-color-scheme="slate"] {
+    --md-code-fg-color: #beb8ff;
 }
 
-[data-md-color-scheme="slate"] {
-    --code-color: #a47df8;
-    --md-typeset-a-color: #7c90ff; /* links */
-    --table-foreground: #a3acdf; /* table header (text) */
-    --table-background: #272e53; /* table header backgrounds */
+/* Links - dark mode - Indigo theme */
+[data-md-color-scheme="slate"][data-md-color-primary="indigo"] {
+    --md-typeset-a-color: #799aff;
+    --md-accent-fg-color: #99b3ff; /* used for hover color */
+}
+
+/* Menu - active item (light) */
+[data-md-color-scheme="default"] .md-nav--primary .md-nav__item .md-nav__link--active {
+    color: var(--main-custom-color);
+    background: #f2f6ff;
+}
+/* Menu - active item (dark) */
+[data-md-color-scheme="slate"] .md-nav--primary .md-nav__item .md-nav__link--active {
+    color: #fff;
+    background: color-mix(var(--main-custom-color) 90%, transparent);
+}
+
+/* Header - custom background color and white text (light and dark modes) */
+.md-header {
+    --md-default-fg-color:#fff;
+    --md-default-fg-color--light:#fff9;
+    --md-default-fg-color--lighter:#fff5;
+    --md-default-fg-color--lightest:#fff2;
+
+    --md-default-bg-color: var(--main-custom-color);
+    --md-default-bg-color--light: color-mix(var(--md-default-bg-color) 70%, transparent);
+    --md-default-bg-color--lighter: color-mix(var(--md-default-bg-color) 30%, transparent);
+    --md-default-bg-color--lightest: color-mix(var(--md-default-bg-color) 15%, transparent);
+
+    background-color: var(--md-default-bg-color);
+}
+
+/* Header logo - white background */
+.md-header__button.md-logo {
+    background: var(--md-default-fg-color);
+    border-radius: 50%;
+    width: 1.8rem;
+    height: 1.8rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
