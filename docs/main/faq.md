@@ -61,8 +61,8 @@ Hence, DNS servers never see any IDN domain name, which means DNS records do not
 The order of locally defined DNS records is:
 
 1. The device's host name and `pi.hole`
-2. Configured in a config file in `/etc/dnsmasq.d/`
+2. Configured in a config file in `/etc/dnsmasq.d/` (only read when `misc.etc_dnsmasq_d` is `true`)
 3. Read from `/etc/hosts`
-4. Read from the "Local (custom) DNS" list (stored in `/etc/pihole/custom.list`)
+4. Read from the "Local DNS Records" list (stored as `dns.hosts` in `/etc/pihole/pihole.toml`)
 
 Only the first record will trigger an address-to-name association.
