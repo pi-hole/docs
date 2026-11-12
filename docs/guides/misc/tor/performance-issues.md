@@ -2,7 +2,7 @@
 
 You're constantly using new DNS Servers that are located all over the world, so it might happen that sometimes hostname resolving is slow or might not work at all for certain domains. In this case, you have to wait a few minutes until you switch to another Tor circuit or configure Tor to accept control connections and send a command that tells Tor to [switch circuits immediately](https://superuser.com/a/139018).
 
-You could set `ExitNodes` in your torrc to a specific set of Exit nodes that are reliable for you or use only Exit nodes in a [specific country](https://b3rn3d.herokuapp.com/blog/2014/03/05/tor-country-codes/) (on Debian derivatives you need to have the `tor-geoipdb` package installed for that to work) and thus avoid problems with DNS lookups to some extent.
+You could set `ExitNodes` in your torrc to a specific set of Exit nodes that are reliable for you or use only Exit nodes in a [specific country](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) (on Debian derivatives you need to have the `tor-geoipdb` package installed for that to work) and thus avoid problems with DNS lookups to some extent.
 
 Keep in mind that this approach increases the correlation attack vulnerability if you only have a small amount of `ExitNodes` set or your selected country/s has/have few Exit nodes. If your goal is only to slightly increase security and maintain performance and reliability, this approach might be for you. It is not recommended.
 
@@ -20,7 +20,7 @@ This is not recommended, but here are some things you can do:
     sudo apt install tor-geoipdb
     ```
 
-* Pick the Country Codes you want to use as ExitNodes from the "List of country codes for Tor" list on [this page](https://b3rn3d.herokuapp.com/blog/2014/03/05/tor-country-codes).
+* Pick the two-letter [ISO 3166-1 country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) you want to use as ExitNodes.
 
     Edit `/etc/tor/torrc` as root and add the following lines to the end and replace `CountryCodeN` (keep the `{` and `}`) with the country code you've chosen (you can also use only one country code; in this case, it would be just `{CountryCode1}` without a comma).
 
