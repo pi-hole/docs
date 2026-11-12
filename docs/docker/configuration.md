@@ -156,6 +156,7 @@ The `FTLCONF_webserver_api_password` variable can be set directly or sourced fro
 | Variable | Default | Value | Description |
 | :--- | :--- | :--- | :--- |
 | `TAIL_FTL_LOG` | `1` | `<0\|1>` | Whether or not to output the FTL log when running the container. Can be disabled by setting the value to 0. |
+| `TAIL_WEB_LOG` | `1` | `<0\|1>` | Whether or not to output the web server log when running the container. Can be disabled by setting the value to 0. |
 | `PIHOLE_UID` | `1000` | Number | Overrides image's default pihole user id to match a host user id.<br/>**IMPORTANT**: id must not already be in use inside the container! |
 | `PIHOLE_GID` | `1000` | Number | Overrides image's default pihole group id to match a host group id.<br/>**IMPORTANT**: id must not already be in use inside the container! |
 
