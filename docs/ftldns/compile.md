@@ -12,13 +12,13 @@ Install them by running the following command in a terminal:
 ### Debian / Ubuntu / Raspbian
 
 ```bash
-sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn2-dev libunistring-dev libreadline-dev xxd
+sudo apt install git wget ca-certificates build-essential libgmp-dev m4 cmake libidn2-dev libunistring-dev libreadline-dev xxd zlib1g-dev
 ```
 
 ### Fedora
 
 ```bash
-sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn2-devel libunistring-devel readline-devel xxd
+sudo dnf install git wget ca-certificates gcc gmp-devel gmp-static m4 cmake libidn2-devel libunistring-devel readline-devel xxd zlib-devel
 ```
 
 ## Compile `libnettle` from source
@@ -55,6 +55,37 @@ sudo cmake --install build
 ```
 
 The `sed` commands are necessary to enable multi-threading support in `libmbedtls` as there is no `configure` script to do this for us (see also [here](https://github.com/Mbed-TLS/mbedtls#configuration)).
+
+## Compile `libcurl` from source
+
+FTL uses `libcurl` to talk to the other nodes of a cluster. This one is optional: leave it out and
+FTL builds and runs exactly as before, with `cmake` reporting
+`Building FTL with cluster support: NO (libcurl not found)` and the clustering features unavailable.
+
+It has to be built against the same TLS library FTL itself links, and installed where `cmake` looks -
+a `libcurl` from your distribution is generally linked against a different one, and two of those in
+one process is a problem that shows up later rather than at build time.
+
+```bash
+wget https://ftl.pi-hole.net/libraries/curl-8.21.0.tar.gz
+tar -xzf curl-8.21.0.tar.gz
+cd curl-8.21.0
+./configure --enable-static --disable-shared --with-openssl=/usr/local \
+    --with-zlib --with-libidn2 --without-libpsl --without-brotli --without-zstd \
+    --disable-ldap --disable-ldaps --disable-docs --disable-manual
+make -j $(nproc) -C lib
+make -j $(nproc) -C include
+sudo make -C lib install
+sudo make -C include install
+```
+
+That is the short version. The library shipped in the official build containers is trimmed a good
+deal further - the protocols it can speak are cut back to the handful FTL offers, so that a URL
+cannot reach somewhere a downloader has no business reaching. The full set of options lives in
+`ftl-build/Dockerfile` in the
+[pi-hole/docker-base-images](https://github.com/pi-hole/docker-base-images) repository, and the
+script beside it, `ftl-build/build-libcurl-natively.sh`, reads the version and the options straight
+out of that file and builds the same library on a Debian or Ubuntu machine.
 
 ## Get the source
 
