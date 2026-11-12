@@ -8,14 +8,23 @@ on:
     branches:
       - "**"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 env:
   FORCE_COLOR: 2
   NODE: 24
   PYTHON_VERSION: "3.14"
 
+permissions: {}
+
 jobs:
   test:
+    name: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # to read the repository contents
     steps:
       - name: Clone repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
