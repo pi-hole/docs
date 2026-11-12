@@ -34,7 +34,7 @@ Pi-hole makes use of many commands, and here we will break down those required t
 | -------------- | -------------- |
 | Help Command | `pihole --help` |
 | Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
-| Example Usage | `pihole -b advertiser.example.com` |
+| Example Usage | `pihole deny advertiser.example.com` |
 
 The core script of Pi-hole provides the ability to tie many DNS related functions into a simple and user-friendly management system, so that one may easily block unwanted content such as advertisements. For both the Command-line Interface (CLI) and Web Interface, we achieve this through the `pihole` command (this helps minimize code duplication, and allows users to read exactly what's happening using `bash` scripting). This "wrapper" elevates the current user (whether it be your own user account, or `www-data`) using `sudo`, but restricts the elevation to solely what can be called through the wrapper.
 
