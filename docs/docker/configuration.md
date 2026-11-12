@@ -9,7 +9,7 @@ If you are persisting your `/etc/pihole` directory, you choose instead to set th
 
 ### Configuring FTL Via The Environment
 
-While FTL's configuration file can be manually edited, set via the CLI (`pihole-FTL --config setting.name=value`), or set via the web interface - the recommended approach is to do this via environment variables
+While FTL's configuration file can be manually edited, set via the CLI (`pihole-FTL --config setting.name value`), or set via the web interface - the recommended approach is to do this via environment variables
 
 As with the recommended examples above for the web password and DNS upstreams, the syntax is `FTLCONF_[section_][setting]`
 
@@ -29,7 +29,7 @@ An example of how some of these variables may look in your compose file
 
 ```yaml
     environment:
-      TZ: europe/London
+      TZ: 'Europe/London'
       FTLCONF_dns_revServers: 'true,192.168.0.0/16,192.168.0.1,lan'      
       FTLCONF_webserver_api_password: 'correct horse battery staple'
       FTLCONF_webserver_port: '8082,443s'
@@ -37,8 +37,8 @@ An example of how some of these variables may look in your compose file
 
       # Array Types can either be delimited by semicolon
       # If you have only a few items this may be more convienient
-      FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9'
-      FTLCONF_misc_dnsmasq_lines: 'address=/example.com/192.168.1.1;address=/example.org/192.168.1.2;address=/example.net/192.168.1.3'
+      # FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9'
+      # FTLCONF_misc_dnsmasq_lines: 'address=/example.com/192.168.1.1;address=/example.org/192.168.1.2;address=/example.net/192.168.1.3'
       
       # Or YAML Multiline block style can be used for better redability.
       # https://yaml.org/spec/1.2.2/#literal-style
@@ -46,11 +46,11 @@ An example of how some of these variables may look in your compose file
         8.8.8.8
         8.8.4.4
         1.1.1.1
-        9.9.9.9        
+        9.9.9.9
       FTLCONF_misc_dnsmasq_lines: |-
         address=/example.com/192.168.1.1
         address=/example.org/192.168.1.2
-        address=/example.net/192.168.1.3      
+        address=/example.net/192.168.1.3
 ```
 
 ### Recommended Environment Variables
@@ -97,8 +97,8 @@ The `FTLCONF_webserver_api_password` variable can be set directly or sourced fro
     Define it in the shell:
 
     ```bash
-    export ADMIN_PASSWORD=correct horse battery staple
-    docker compose -f compose.yaml
+    export ADMIN_PASSWORD='correct horse battery staple'
+    docker compose -f compose.yaml up -d
     ```
 
     Or in an `.env` file kept alongside your Compose yaml:
@@ -106,7 +106,7 @@ The `FTLCONF_webserver_api_password` variable can be set directly or sourced fro
     ```bash
     $ cat .env
     ADMIN_PASSWORD=correct horse battery staple
-    $ docker compose -f compose.yaml
+    $ docker compose -f compose.yaml up -d
     ```
 
 === "Docker Compose secret"
