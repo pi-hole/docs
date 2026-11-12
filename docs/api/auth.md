@@ -32,9 +32,12 @@ To get a session ID, you will have to send a `POST` request to the `/api/auth` e
 
         xhr.addEventListener("readystatechange", function () {
           if (this.readyState === this.DONE) {
-            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
           }
         });
+
+        xhr.open("POST", "https://pi.hole/api/auth");
+        xhr.send(data);
         ```
 
     === "JavaScript (jQuery)"
@@ -138,7 +141,7 @@ Once you have a valid SID, you can use it to authenticate your requests. You can
 3. In the `X-FTL-SID` header: `X-FTL-SID: vFA+EP4MQ5JJvJg+3Q2Jnw=`
 4. In the `sid` cookie: `Cookie: sid=vFA+EP4MQ5JJvJg+3Q2Jnw=`
 
-Note that when using cookie-based authentication, you will also need to send a `X-FTL-CSRF` header with the CSRF token that was returned when you authenticated. This is to prevent a certain kind of identity theft attack the Pi-hole API is immune against.
+> Note that when using cookie-based authentication, you will also need to send a `X-CSRF-TOKEN` header with the CSRF token that was returned when you authenticated. This is to prevent a certain kind of identity theft attack the Pi-hole API is immune against. Also note that the API checks for a session ID in the cookie header before checking the request URI. Setting the session ID in the request URI is meaningless in cases where the browser automatically sets the session ID in the cookie header.
 
 ???+ example "Authentication with SID"
 
@@ -159,7 +162,6 @@ Note that when using cookie-based authentication, you will also need to send a `
         payload = {}
         headers = {
           "X-FTL-SID": "vFA+EP4MQ5JJvJg+3Q2Jnw=",
-          "X-FTL-CSRF": "Ux87YTIiMOf/GKCefVIOMw="
         }
 
         response = requests.request("GET", url, headers=headers, data=payload, verify=False)
@@ -175,12 +177,13 @@ Note that when using cookie-based authentication, you will also need to send a `
 
         xhr.addEventListener("readystatechange", function () {
           if (this.readyState === this.DONE) {
-            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
           }
         });
 
-        xhr.open("GET", "https://pi.hole/api/dns/blocking?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=");
-        xhr.setRequestHeader("X-FTL-CSRF", "Ux87YTIiMOf/GKCefVIOMw=");
+        // The browser sets the "Cookie: sid=vFA+EP4MQ5JJvJg+3Q2Jnw=" header automatically
+        xhr.open("GET", "https://pi.hole/api/dns/blocking");
+        xhr.setRequestHeader("X-CSRF-TOKEN", "Ux87YTIiMOf/GKCefVIOMw=");
         xhr.send(data);
         ```
 
@@ -195,7 +198,6 @@ Note that when using cookie-based authentication, you will also need to send a `
           contentType: "application/json",
           headers: {
             "X-FTL-SID": "vFA+EP4MQ5JJvJg+3Q2Jnw=",
-            "X-FTL-CSRF": "Ux87YTIiMOf/GKCefVIOMw="
           }
         }).done(function(data) {
           console.log(data);
@@ -210,7 +212,7 @@ Note that when using cookie-based authentication, you will also need to send a `
 
     **Headers**
 
-    If you use cookie-based authentication, you will also need to send a `X-FTL-CSRF` header with the CSRF token that was returned when you authenticated.
+    If you use cookie-based authentication, you will also need to send a `X-CSRF-TOKEN` header with the CSRF token that was returned when you authenticated.
 
 ## Authentication with 2FA
 
@@ -248,9 +250,12 @@ If you have 2FA enabled for your Pi-hole, you will need to provide a TOTP token 
 
         xhr.addEventListener("readystatechange", function () {
           if (this.readyState === this.DONE) {
-            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
           }
         });
+
+        xhr.open("POST", "https://pi.hole/api/auth");
+        xhr.send(data);
         ```
 
     === "JavaScript (jQuery)"
@@ -355,11 +360,13 @@ To end your session before the SID expires, you can send a `DELETE` request to t
 
         xhr.addEventListener("readystatechange", function () {
           if (this.readyState === this.DONE) {
-            console.log(this.responseText);
+            console.log(JSON.parse(this.responseText));
           }
         });
 
-        xhr.open("DELETE", "https://pi.hole/api/auth?sid=vFA+EP4MQ5JJvJg+3Q2Jnw=");
+        // The browser sets the "Cookie: sid=vFA+EP4MQ5JJvJg+3Q2Jnw=" header automatically
+        xhr.open("DELETE", "https://pi.hole/api/auth");
+        xhr.setRequestHeader("X-CSRF-TOKEN", "Ux87YTIiMOf/GKCefVIOMw=");
         xhr.send(data);
         ```
 
