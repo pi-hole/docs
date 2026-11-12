@@ -36,6 +36,7 @@ jobs:
           persist-credentials: false
 
       - name: Compress Images
+        id: calibre
         # TODO: if they start using a tag like v1, switch to that
         uses: calibreapp/image-actions@9d037c06280028c110ff61c433ad4dc7d33c3c43 #1.5.0
         with:
@@ -48,6 +49,7 @@ jobs:
         if: |
           github.event_name != 'pull_request' &&
           steps.calibre.outputs.markdown != ''
-        run: gh pr create -B image_compress -H master --title 'Auto Compress Images' --body ${{ steps.calibre.outputs.markdown }}
+        run: gh pr create -B image_compress -H master --title 'Auto Compress Images' --body "$BODY"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BODY: ${{ steps.calibre.outputs.markdown }}
