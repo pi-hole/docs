@@ -5,7 +5,7 @@ We update this database periodically and on the exit of *FTL*DNS (triggered e.g.
 
 The location of the database can be configured by the config parameter `files.database`. It defaults to `/etc/pihole/pihole-FTL.db`. If the given file does not exist, *FTL*DNS will create a new (empty) database file.
 
-Another way of controlling the size of the long-term database is by setting a maximum age for log queries to keep using the config parameter `database.maxDBdays`. It defaults to 365 days, i.e. queries that are older than one year get periodically removed to limit the growth of the long-term database file.
+Another way of controlling the size of the long-term database is by setting a maximum age for log queries to keep using the config parameter `database.maxDBdays`. It defaults to 91 days, i.e. queries that are older than about three months get periodically removed to limit the growth of the long-term database file.
 
 The config parameter `database.DBimport` controls whether `FTL` loads information from the database on startup. It needs to do this to populate the internal data structure with the most recent history. However, as importing from the database on disk can delay FTL on very large deploys, it can be disabled using this option.
 
@@ -53,7 +53,7 @@ Label | Type | Allowed to be empty | Content
 `reply_type` | integer | Yes | Type of the reply for this query  (see [Supported reply types](query-database.md#supported-reply-types))
 `reply_time` | real | Yes | Seconds it took until the final reply was received
 `dnssec` | integer | Yes | Type of the DNSSEC status for this query  (see [DNSSEC status](query-database.md#dnssec-status))
-`regex_id` | integer | Yes | ID of the regex filter that matched this query (only set if blocked by a regex filter)
+`list_id` | integer | Yes | ID of the list that matched this query: a `domainlist` ID for exact and regex allow/deny entries (values `>= 0`), or a subscribed list from `adlist`, stored as `-2 - adlist.id` (`NULL` if no list matched)
 
 The `queries` `VIEW` is dynamically generated from the data actually stored in the `query_storage` table and the linking tables `domain_by_id`, `client_by_id`, `forward_by_id`, and `addinfo_by_id` (see below). The table `query_storage` will contains integer IDs pointing to the respective entries of the linking tables to save space and make searching the database faster. If you haven't upgraded for some time, the table may still contain strings instead of integer IDs.
 

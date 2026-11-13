@@ -60,7 +60,7 @@ doubleclick.net.        2       IN      A       192.168.1.42
 
 In `IP` mode, blocked queries will be answered with the local IP addresses of your Pi-hole. To set this mode explicitly, run `pihole-FTL --config dns.blocking.mode IP`.
 
-The IP that is returned is automatically determined by FTL, however it can also be set with `reply.blocking.IPv4` and `reply.blocking.IPv6` FTL options.
+The IP that is returned is automatically determined by FTL, however it can also be set with the `dns.reply.blocking.IPv4` and `dns.reply.blocking.IPv6` FTL options. These only take effect when `dns.reply.blocking.force4` or `dns.reply.blocking.force6` is set to `true`.
 
 A blocked query would look like the following:
 
@@ -84,7 +84,7 @@ doubleclick.net.        2       IN      AAAA    fda2:2001:4756:0:ab27:beff:ef37:
 
 ## Pi-hole's NXDOMAIN blocking mode
 
-In `NXDOMAIN` mode, blocked queries will be answered with an empty response (i.e., there won't be an *answer* section) and status `NXDOMAIN`. A `NXDOMAIN` response should indicate that there is *no such domain* to the client making the query. To set this mode explicitly, run `pihole-FTL --config dns.blocking.mode NXDOMAIN`.
+In `NXDOMAIN` mode, blocked queries will be answered with an empty response (i.e., there won't be an *answer* section) and status `NXDOMAIN`. A `NXDOMAIN` response should indicate that there is *no such domain* to the client making the query. To set this mode explicitly, run `pihole-FTL --config dns.blocking.mode NX`.
 
 A blocked query would look like the following:
 
