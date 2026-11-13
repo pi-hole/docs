@@ -25,23 +25,31 @@ Array type configs should be delimited with `;`
 !!! note
     All FTL settings that are set via environment variables effectively become read-only, meaning that you will not be able to change them via the web interface or CLI. This is to ensure a "single source of truth" on the config. If you later unset or remove an environment variable, then FTL will revert to the default value for that setting
 
-An example of how some of these variables may look in your compose file
+An example of how some of these variables may look in your compose file:
 
 ```yaml
     environment:
       TZ: 'Europe/London'
-      FTLCONF_dns_revServers: 'true,192.168.0.0/16,192.168.0.1,lan'      
+      FTLCONF_dns_revServers: 'true,192.168.0.0/16,192.168.0.1,lan'
       FTLCONF_webserver_api_password: 'correct horse battery staple'
       FTLCONF_webserver_port: '8082,443s'
       FTLCONF_debug_api: 'true'
+```
 
-      # Array Types can either be delimited by semicolon
-      # If you have only a few items this may be more convienient
-      # FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9'
-      # FTLCONF_misc_dnsmasq_lines: 'address=/example.com/192.168.1.1;address=/example.org/192.168.1.2;address=/example.net/192.168.1.3'
-      
-      # Or YAML Multiline block style can be used for better redability.
-      # https://yaml.org/spec/1.2.2/#literal-style
+Array Types can either be delimited by semicolon or using [YAML Multiline block style](https://yaml.org/spec/1.2.2/#literal-style).
+
+If you have only a few items this format may be more convenient:
+
+```yaml
+    environment:
+      FTLCONF_dns_upstreams: '8.8.8.8;8.8.4.4;1.1.1.1;9.9.9.9'
+      FTLCONF_misc_dnsmasq_lines: 'address=/example.com/192.168.1.1;address=/example.org/192.168.1.2;address=/example.net/192.168.1.3'
+```
+
+When working with many or complex lines, multiline block style can be used for better readability:
+
+```yaml
+    environment:
       FTLCONF_dns_upstreams: |-
         8.8.8.8
         8.8.4.4
