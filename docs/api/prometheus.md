@@ -167,63 +167,76 @@ Setting                                     | Default | Description
 
 ### Query statistics
 
-Metric                     | Type  | Description
----------------------------|-------|-------------------------------------------------------------------------------------
-`pihole_queries`           | gauge | Number of DNS queries in FTL's history window
-`pihole_queries_blocked`   | gauge | Number of blocked DNS queries in FTL's history window
-`pihole_queries_forwarded` | gauge | Number of forwarded DNS queries in FTL's history window
-`pihole_queries_cached`    | gauge | Number of cached DNS queries in FTL's history window
-`pihole_query_frequency`   | gauge | Queries per second (rolling average)
-`pihole_queries_by_type`   | gauge | Queries by record type, label `type` (e.g., `A`, `AAAA`, `HTTPS`)
-`pihole_queries_by_status` | gauge | Queries by processing status, label `status` (e.g., `GRAVITY`, `FORWARDED`, `CACHE`)
-`pihole_queries_by_reply`  | gauge | Queries by reply type, label `reply` (e.g., `NODATA`, `NXDOMAIN`, `IP`)
+Metric                     | Type    | Description
+---------------------------|---------|--------------------------------------------------------------------------------------------
+`pihole_dns_queries_total` | counter | DNS queries received since FTL started, not counting the history imported from the database
+`pihole_queries`           | gauge   | Number of DNS queries in FTL's history window
+`pihole_queries_blocked`   | gauge   | Number of blocked DNS queries in FTL's history window
+`pihole_queries_forwarded` | gauge   | Number of forwarded DNS queries in FTL's history window
+`pihole_queries_cached`    | gauge   | Number of cached DNS queries in FTL's history window
+`pihole_query_frequency`   | gauge   | Queries per second (rolling average)
+`pihole_queries_by_type`   | gauge   | Queries by record type, label `type` (e.g., `A`, `AAAA`, `HTTPS`)
+`pihole_queries_by_status` | gauge   | Queries by processing status, label `status` (e.g., `GRAVITY`, `FORWARDED`, `CACHE`)
+`pihole_queries_by_reply`  | gauge   | Queries by reply type, label `reply` (e.g., `NODATA`, `NXDOMAIN`, `IP`)
 
 <!-- markdownlint-disable code-block-style -->
-!!! info "Why are the query totals gauges?"
-    These values describe the queries currently held in FTL's in-memory history, which spans the last `webserver.api.maxHistory` seconds (24 hours by default). Garbage collection decrements them as queries age out, so they can go down as well as up and are *not* monotonically increasing counters. Applying `rate()` or `increase()` to them yields meaningless results - use the `counter` metrics from the [DNS](#dns) and [DHCP](#dhcp) sections below for that.
+!!! info "Why are most of the query totals gauges?"
+    These values describe the queries currently held in FTL's in-memory history, which spans the last `webserver.api.maxHistory` seconds (24 hours by default). Garbage collection decrements them as queries age out, so they can go down as well as up and are *not* monotonically increasing counters. Applying `rate()` or `increase()` to them yields meaningless results. Use `pihole_dns_queries_total` to get the query rate, and the `counter` metrics from the [DNS](#dns) and [DHCP](#dhcp) sections below for the other rates.
 <!-- markdownlint-enable code-block-style -->
 
 ### Clients, domains and gravity
 
 Metric                                         | Type  | Description
------------------------------------------------|-------|--------------------------------------------------
-`pihole_clients_total`                         | gauge | Number of known clients
-`pihole_clients_active`                        | gauge | Number of clients active within the last 24 hours
-`pihole_domains_total`                         | gauge | Number of unique domains seen
-`pihole_upstreams_total`                       | gauge | Number of known upstream destinations
+-----------------------------------------------|-------|--------------------------------------------------------------------------
+`pihole_clients`                               | gauge | Number of clients added since FTL started, including those recycled since
+`pihole_clients_active`                        | gauge | Number of clients with queries in FTL's history window
+`pihole_domains`                               | gauge | Number of domains added since FTL started, including those recycled since
+`pihole_upstreams`                             | gauge | Number of upstream destinations held in memory
 `pihole_gravity_domains`                       | gauge | Number of domains on the gravity (block) list
 `pihole_gravity_last_update_timestamp_seconds` | gauge | Unix time of the last gravity update
 
+The two gravity metrics are left out while the gravity database cannot be read.
+
 ### DNS
 
-Metric                            | Type    | Description
-----------------------------------|---------|------------------------------------------------------------------------------------------------
-`pihole_dns_cache_size`           | gauge   | Number of entries in the DNS cache
-`pihole_dns_cache_inserted_total` | counter | Number of entries inserted into the DNS cache
-`pihole_dns_cache_evicted_total`  | counter | Number of live cache entries evicted before their TTL
-`pihole_dns_cache_expired_total`  | counter | Number of expired DNS cache entries
-`pihole_dns_cache_immortal`       | gauge   | Number of immortal DNS cache entries
-`pihole_dns_replies_total`        | counter | DNS replies by source, label `source` (`local`, `forwarded`, `optimized`, `unanswered`, `auth`)
+Metric                                 | Type    | Description
+---------------------------------------|---------|-----------------------------------------------------------------------------------
+`pihole_dns_cache_size`                | gauge   | Configured capacity of the DNS cache
+`pihole_dns_cache_inserted_total`      | counter | Number of entries inserted into the DNS cache
+`pihole_dns_cache_evicted_total`       | counter | Number of live cache entries evicted before their TTL
+`pihole_dns_cache_expired`             | gauge   | Number of expired entries currently in the DNS cache
+`pihole_dns_cache_immortal`            | gauge   | Number of immortal DNS cache entries
+`pihole_dns_replies_total`             | counter | DNS replies by source, label `source` (`local`, `optimized`, `auth`)
+`pihole_dns_upstream_sent_total`       | counter | DNS queries sent to upstream servers, retransmissions included
+`pihole_dns_upstream_unanswered_total` | counter | DNS queries given up without an upstream answer, counted when their slot is reused
+
+`optimized` are stale answers served from the cache. These counters come from `dnsmasq`, which counts them on its UDP path only: TCP queries, including everything handed over by FTL's own DoT, DoQ and DoH servers, are missing. `dnsmasq` also resets the cache counters on every cache flush (e.g., when blocking is turned on or off), which Prometheus treats like a restart of the counter.
 
 ### DHCP
 
-Metric                       | Type    | Description
------------------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------
-`pihole_dhcp_messages_total` | counter | DHCP messages by type, label `type` (`ack`, `decline`, `discover`, `inform`, `nak`, `offer`, `release`, `request`, `noanswer`, `bootp`, `pxe`)
-`pihole_dhcp_leases`         | gauge   | DHCP leases, labels `family` (`ipv4`, `ipv6`) and `operation` (`allocated`, `pruned`)
+Metric                               | Type    | Description
+-------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------
+`pihole_dhcp_messages_total`         | counter | DHCPv4 messages by type, label `type` (`ack`, `decline`, `discover`, `inform`, `nak`, `offer`, `release`, `request`, `noanswer`, `bootp`, `pxe`)
+`pihole_dhcp_leases_allocated_total` | counter | DHCP leases allocated since FTL started, label `family` (`ipv4`, `ipv6`)
+`pihole_dhcp_leases_pruned_total`    | counter | DHCP leases removed since FTL started, label `family` (`ipv4`, `ipv6`)
 
-These counters are also exported when the DHCP server is disabled - they simply stay at zero.
+Leases read from the lease file at startup count as allocated, so `pihole_dhcp_leases_allocated_total - pihole_dhcp_leases_pruned_total` is the number of active leases. These counters are also exported when the DHCP server is disabled - they simply stay at zero.
 
 ### Per-domain and per-client metrics (optional)
 
-When `webserver.api.prometheus.perEntityMetrics` is enabled, two additional metrics are exported:
+When `webserver.api.prometheus.perEntityMetrics` is enabled, three additional metrics are exported:
 
 Metric                      | Type  | Description
-----------------------------|-------|--------------------------------------------------------------
+----------------------------|-------|---------------------------------------------------------------------
 `pihole_top_domain_queries` | gauge | Permitted queries for the most active domains, label `domain`
-`pihole_top_client_queries` | gauge | Queries of the most active clients, labels `ip` and `name`
+`pihole_top_client_queries` | gauge | Queries of the most active clients, label `ip`
+`pihole_client_info`        | gauge | Names of the most active clients, labels `ip` and `name`, always `1`
 
-The client IP is used as the primary label because it uniquely identifies a client - two clients sharing a hostname would otherwise produce duplicate time series, which makes Prometheus reject the entire scrape. The hostname is added as a secondary label for readability.
+The client IP is the only label of `pihole_top_client_queries` because it uniquely identifies a client: two clients sharing a hostname would otherwise produce duplicate time series, which makes Prometheus reject the entire scrape. A client's name can also change (the first scrape often comes before its reverse lookup has finished), which would start a new series every time. The name is therefore exported separately in `pihole_client_info`, which you can join on `ip`, e.g.:
+
+```text
+pihole_top_client_queries * on(ip) group_left(name) pihole_client_info
+```
 
 <!-- markdownlint-disable code-block-style -->
 !!! warning "Privacy and cardinality"
