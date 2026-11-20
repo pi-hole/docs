@@ -318,3 +318,8 @@ name = "GitHub"
 "guides/github/contributing.md" = "guides/github/index.md"
 "guides/misc/whitelist-blacklist.md" = "guides/misc/allowlist-denylist.md"
 "ftldns/debugging.md" = "ftldns/gdb.md"
+
+
+[project.plugins.git-revision-date-localized]
+fallback_to_build_date = true
+enable_parallel_processing = false
