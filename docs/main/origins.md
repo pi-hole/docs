@@ -1,9 +1,3 @@
----
-title: Pi-hole Origins
-description: Software packages used in Pi-hole
-last_updated: Sun Jan 13 18:35:14 2019 UTC
----
-
 Pi-hole being a **advertising-aware DNS/Web server**, makes use of the following technologies:
 
 - [`dnsmasq`](https://www.thekelleys.org.uk/dnsmasq/doc.html) - a lightweight DNS and DHCP server
