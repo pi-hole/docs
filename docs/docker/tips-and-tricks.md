@@ -83,7 +83,7 @@ Example sysconfig nmcli commands:
           `FTLCONF_webserver_port: '8080o,[::]:8080o,8443os,[::]:8443os'`<br>
           This makes the web interface available on HTTP port 8080 and HTTPS port 8443 for both IPv4 and IPv6.
         - **Note:** This only applies to web interface ports (80 and 443). DNS (53), DHCP (67), and NTP (123) ports must still be handled via Docker port mappings or host networking.
-- Docker's default network mode `bridge` isolates the container from the host's network. This is a more secure setting, but requires setting the Pi-hole DNS option for _Interface listening behavior_ to "Listen on all interfaces, permit all origins".
+- Docker's default network mode `bridge` isolates the container from the host's network. This is a more secure setting, but requires setting the Pi-hole DNS option _Interface settings_ to "Permit all origins" (Settings > DNS, shown in Expert mode), or `FTLCONF_dns_listeningMode: 'ALL'`.
 - If you're using a Red Hat based distribution with an SELinux Enforcing policy, add `:z` to line with volumes.
 
 ## Note on Watchtower
