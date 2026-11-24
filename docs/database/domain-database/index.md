@@ -49,6 +49,7 @@ Label | Type | Uniqueness enforced | Content
 `number` | integer | No | Number of domains on this list
 `invalid_domains` | integer | No | Number of invalid domains on this list
 `status` | integer | No | `1` = List download was successful, `2` = List unchanged upstream, Pi-hole used a local copy, `3` = List unavailable, Pi-hole used a local copy, `4` = List unavailable, there is no local copy of this list available on your Pi-hole
+`abp_entries` | integer | No | Number of ABP style entries on this list
 
 ## Gravity Tables (`gravity` and `antigravity`)
 
@@ -62,6 +63,25 @@ Label | Type | Content
 `adlist_id` | integer | ID associated to subscribed list in table `adlist`
 
 Uniqueness is enforced on pairs of (`domain`, `adlist_id`) in both tables. In other words: domains can be added multiple times, however, only when they are referencing different lists as their origins.
+
+### ABP style entries
+
+In addition to plain domains, subscribed lists can also contain a subset of Adblock Plus (ABP) styled syntax:
+
+List type | Supported syntax | Matches
+--------- | ---------------- | -------
+Blocklist | <code>&#124;&#124;example.com^</code> | `example.com` and all its subdomains
+Allowlist | <code>@@&#124;&#124;example.com^</code> | `example.com` and all its subdomains
+
+Plain domains are matched exactly. ABP style entries match the domain as well as every subdomain, so for example `||example.com^` blocks `example.com`, `ads.example.com`, `a.b.example.com`, and so on. Single label entries such as `||com^` are also allowed in this syntax.
+
+When parsing lists, `pihole -g`
+
+- skips comment lines and header lines such as `[Adblock Plus 2.0]`,
+- ignores cosmetic and element hiding rules (`##`, `#@#`, `#?#`, `#$#`, `#%#`),
+- counts any other ABP syntax as invalid. For example modifiers (`||example.com^$third-party`), wildcards and URL rules. An allowlist entry (`@@||`) on a blocklist would also count as invalid, and so does a blocklist entry (`||`) on an allowlist.
+
+ABP style entries are stored-as-is in the `gravity` and `antigravity` tables.
 
 ## Client table (`client`)
 
