@@ -37,19 +37,23 @@ Label | Type | Uniqueness enforced | Content
 
 The `adlist` table contains all sources for domains to be collected by `pihole -g`. Just like the other tables, it has a few extra fields to store metadata related to a given source.
 
-Label | Type | Uniqueness enforced | Content
+Label | Type | Content
 ----- | ---- | ------------------- | --------
-`id` | integer | Yes | Unique ID for database operations
-`address` | text | Yes | The URL of the list
-`enabled` | boolean | No | Flag whether domain should be used by `pihole-FTL`<br>(`0` = disabled, `1` = enabled)
-`date_added` | integer | No | Timestamp when domain was added
-`date_modified` | integer | No | Timestamp when domain was last modified, automatically updated when a record is changed
-`comment` | text | No | Optional field for arbitrary user comments
-`date_updated` | integer | No | Timestamp when this list has last been updated (`pihole -g` does **not** update this timestamp when the downloaded list did not change since the last `pihole -g` run)
-`number` | integer | No | Number of domains on this list
-`invalid_domains` | integer | No | Number of invalid domains on this list
-`status` | integer | No | `1` = List download was successful, `2` = List unchanged upstream, Pi-hole used a local copy, `3` = List unavailable, Pi-hole used a local copy, `4` = List unavailable, there is no local copy of this list available on your Pi-hole
-`abp_entries` | integer | No | Number of ABP style entries on this list
+`id` | integer | Unique ID for database operations
+`address` | text | The URL of the list
+`enabled` | boolean | Flag whether domain should be used by `pihole-FTL`<br>(`0` = disabled, `1` = enabled)
+`date_added` | integer | Timestamp when domain was added
+`date_modified` | integer | Timestamp when domain was last modified, automatically updated when a record is changed
+`comment` | text | Optional field for arbitrary user comments
+`date_updated` | integer | Timestamp when this list has last been updated (`pihole -g` does **not** update this timestamp when the downloaded list did not change since the last `pihole -g` run)
+`number` | integer | Number of domains on this list
+`invalid_domains` | integer | Number of invalid domains on this list
+`status` | integer | `1` = List download was successful, `2` = List unchanged upstream, Pi-hole used a local copy, `3` = List unavailable, Pi-hole used a local copy, `4` = List unavailable, there is no local copy of this list available on your Pi-hole
+`abp_entries` | integer | Number of ABP style entries on this list
+`type` | integer | `0` = gravity, `1` = antigravity
+
+The combination of `address` and `type` must be unique, but the same `address` can appear once for each `type` value.
+
 
 ## Gravity Tables (`gravity` and `antigravity`)
 
