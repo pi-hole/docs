@@ -146,7 +146,7 @@ This command specifies whether the Pi-hole log should be used.
 | --------------- | --------------- |
 | Help Command | `pihole query --help` |
 | Script Location | [`/usr/local/bin/pihole`](https://github.com/pi-hole/pi-hole/blob/master/pihole) |
-| Example Usage | [`pihole -q -exact -adlist example.domain.com`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#adlist-query) |
+| Example Usage | [`pihole -q example.domain.com`](https://discourse.pi-hole.net/t/the-pihole-command-with-examples/738#adlist-query) |
 
 This command will query your allowlist, denylist, wildcards and subscribed lists for a specified domain.
 
