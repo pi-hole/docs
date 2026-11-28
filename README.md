@@ -14,7 +14,7 @@ This repo is the source for the official [Pi-hole documentation](https://docs.pi
 
 ### How to contribute
 
-To add a new link on the navigation panel you need to edit the `mkdocs.yml` file in the root of the repo. There is a guide for building the navbar [on the mkdocs wiki](https://www.mkdocs.org/user-guide/configuration/#nav)
+To add a new link on the navigation panel you need to edit the `zensical.toml` file in the root of the repo. There is a guide for building the navbar [on the zensical documentation](https://zensical.org/docs/setup/navigation/)
 
 To add a new document or guide.
 
@@ -26,7 +26,7 @@ To add a new document or guide.
 
 ### Testing your changes
 
-When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
+When working on this repo, it is advised that you review your changes locally before committing them. The `zensical serve` command can be used to live preview your changes (as you type) on your local machine.
 
 Please make sure you fork the repo and change the clone URL in the example below for your fork:
 
@@ -51,7 +51,7 @@ Please make sure you fork the repo and change the clone URL in the example below
     - Running the docs server:
 
     ```bash
-    mkdocs serve --dev-addr 0.0.0.0:8000
+    zensical serve --dev-addr 0.0.0.0:8000
     ```
 
 - Fedora Linux instructions (tested on Fedora Linux 28):
@@ -66,20 +66,12 @@ Please make sure you fork the repo and change the clone URL in the example below
     - Running the docs server:
 
     ```bash
-    mkdocs serve --dev-addr 0.0.0.0:8000
+    zensical serve --dev-addr 0.0.0.0:8000
     ```
 
-- Docker instructions:
-    - One-shot run:
+- Docker devcontainer instructions:
+    - We provide a `devcontainer.json` and a dockerfile which will setup the required development environment for an easy deployment. Devcontainers can be used with various editors, e.g. VS Code
 
-    ```bash
-    docker run -v `pwd`:/opt/app/ -w /opt/app/ -p 8000:8000 -it nikolaik/python-nodejs:python3.7-nodejs16 \
-      sh -c "pip install --user -r requirements.txt && \
-      /root/.local/bin/mkdocs build && \
-      npm ci && \
-      npm test && \
-      /root/.local/bin/mkdocs serve --dev-addr 0.0.0.0:8000"
-    ```
 
 After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
 
