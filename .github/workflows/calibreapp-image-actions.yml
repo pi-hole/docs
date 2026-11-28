@@ -3,10 +3,16 @@ name: Compress Images
 on:
   pull_request:
     paths:
-      - "**.jpg"
-      - "**.jpeg"
-      - "**.png"
-      - "**.webp"
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.webp'
+      - '**.avif'
+  workflow_dispatch:
+  # Trigger on push to the master branch to compress images from forks
+  push:
+    branches:
+      - master
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -30,7 +36,20 @@ jobs:
           persist-credentials: false
 
       - name: Compress Images
+        id: calibre
         # TODO: if they start using a tag like v1, switch to that
         uses: calibreapp/image-actions@9d037c06280028c110ff61c433ad4dc7d33c3c43 #1.5.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # For non-Pull Requests, run in compressOnly mode and we'll PR after.
+          compressOnly: ${{ github.event_name != 'pull_request' }}
+
+      # If it's not a Pull Request then commit any changes as a new PR.
+      - name: Create Pull Request if needed
+        if: |
+          github.event_name != 'pull_request' &&
+          steps.calibre.outputs.markdown != ''
+        run: gh pr create -B image_compress -H master --title 'Auto Compress Images' --body "$BODY"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BODY: ${{ steps.calibre.outputs.markdown }}
